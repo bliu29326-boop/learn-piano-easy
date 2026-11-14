@@ -67,6 +67,7 @@ faster as rows, and a work's parts read best together under it.
   Memory: three optional fields per part row, about 6 KB in the catalog. Usability: about three times
   the songs per screen, and 80 works fold 215 parts. The cost is a click to reach a part, and no tags at
   a glance. Simplicity: one row element replaces the card, and the grouping is one pure function.
+- **The goal works in `main`,** in the project's own tree, with no branch and no worktree.
 - **Lanes:** the three stages share `src/library/library-panel.ts` and run in order.
 - **The chain:** this goal runs after `original-arrangements` and before `faithful-levels`.
 
@@ -114,9 +115,7 @@ faster as rows, and a work's parts read best together under it.
 
 ### State
 
-Stage 1 is committed on the branch `song-rows`, in the worktree `.agent-tmp/worktrees/song-rows`.
-The branch merges into `main` once `original-arrangements` is reached, since that goal edits the
-chain. 356 catalog rows are parts. A card still shows a part's label as its title and its work below.
+Stage 1 is committed on `main`. 356 catalog rows are parts. A card still shows a part's label as its title and its work below.
 The player's head reads the work and the part, such as "Sonata No. 14 'Moonlight' · Movement 2".
 
 ### Next
