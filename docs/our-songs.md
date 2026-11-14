@@ -22,6 +22,10 @@ player with years of practice. The reasons are in [decision 0002](decisions/0002
 - **The id is the version's name in the code,** and the learner never reads it. A version's file is
   `<id>.mid`, such as `legendary.mid`, and its catalog row carries the id as `rarity`. Every row of a
   song names the file of its Original as `mythic`.
+- **A version whose notes are reworked moves to `<id>-2.mid`,** and its old file leaves the catalog
+  and the folder. A learner's work follows it, except the fingers set by hand, which are keyed by note
+  index. The head comment of [src/library/moved-songs.ts](../src/library/moved-songs.ts) owns the move.
+  A version that keeps its notes keeps its file.
 - **The meter and the song tools name a version by its id.** The columns of the meter's table are
   Common, Rare, Epic and Legendary.
 - **A version's name is its level.** The song explorer's difficulty is five chips: the four versions'
@@ -72,6 +76,11 @@ edition. The tune marks its *hook*, the bars a listener knows the song by.
 
 - **Every version plays the hook note for note,** within its first 8 bars. A move to another key is
   allowed.
+- **Every bar after the tune is the source's,** never a bar of our own. A version goes on with the
+  source's next real phrase, simplified to its limits. A version too short for that phrase ends on
+  the home chord.
+- **A bar of our own still left is marked** in the version's `ownBars`. The songs of our own tunes are
+  exempt.
 - **Beginner may simplify the rest of the tune.** It may straighten a dotted rhythm, merge repeated
   notes and drop one note in ten.
 - **Easy and above play every note of the tune** at its place in the bar.
@@ -96,6 +105,9 @@ review checks them.
   thirds or sixths under the tune.
 - **Hard:** octave bass, stride, arpeggios over two octaves, a counter-melody, the tune in chords, and a
   hand crossing as a show move.
+- **Medium and Hard take the source's own accompaniment figure** where their limits allow it. They
+  fall back to their level's patterns above only where the limits refuse it.
+- **Beginner and Easy keep their level's patterns,** whatever figure the source has.
 - **Every version follows the tune's own chords,** taken from the public domain edition where it has
   them, and ends on the home chord.
 - **Every version sounds complete by itself,** never like a part with something missing.
