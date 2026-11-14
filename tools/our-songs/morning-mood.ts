@@ -7,19 +7,20 @@
  * sixteenth as a quarter, so each print bar is a bar of 6/2. Its range is E5 to C sharp 6, and the hook
  * is all four bars.
  *
- * Every version writes the tune in 6/4 quarters, two bars per print bar, and then plays 8 bars of our
- * own. Epic and Legendary then play the tune again in another setting. The tune sits on the tonic, with
- * the dominant at the half of bar 7. Our own bars add the subdominant and the dominant. Epic and
- * Legendary put the sixth chord under the high C sharps of bar 6. Every version closes on the tonic.
+ * Every version writes the tune in 6/4 quarters, two bars per print bar. Bars 9 to 16 then play the
+ * Original's bars 5 to 8, where the tune comes back and its last bar turns to G sharp major. Bar 17
+ * closes on the tonic. Common and Rare play bars 9 to 16 at the tune's height, without the graces. Epic
+ * and Legendary play them an octave lower, as the print does, with its graces as eighths.
  *
  * Common moves the song to C major and Rare to G major, where the tune keeps one hand position. E major
  * has four sharps, so Epic moves it to D major, and Legendary keeps E major.
  *
  * Common plays the tune over held open fifths and single bass notes, with the left hand still. Rare
- * plays a waltz bass in one place: a low note on the beat, then a chord or a single note twice. Epic
- * rolls an Alberti bass with the pedal, then plays the tune again with a third or a sixth under it.
- * Legendary plays an octave bass and a chord on each beat, arpeggios over two octaves under our own
- * bars, and the tune again in chords of three and four notes.
+ * plays a waltz bass: a low note on the beat, then a chord or a fifth twice. Epic and Legendary take the
+ * Original's left hand: a chord held through each bar with the pedal. In bars 8 and 16 the left hand
+ * echoes the tune's last three notes, as the print does. The print's widest chords are voiced within an
+ * octave, in three notes for Epic and four for Legendary. Each chord ends an eighth early, so the hand
+ * can jump.
  *
  * The Original is Grieg's own piano version, as G. Schirmer printed it in 1899. It sets the whole piece,
  * 87 bars of 6/8 in E major. Each bar is 24 units of a 32nd, and the tempo is a dotted quarter at 60.
@@ -55,41 +56,31 @@ const tune =
  * sharp, since fingers 3 and 4 stretch badly over a minor third. In bars 9 and 10 finger 2 takes G sharp,
  * so finger 5 can reach C sharp. Finger 5 then steps back to B, the tune's one change of position.
  */
-const TUNE_RIGHT = [
+const TUNE_LINES = [
   "B5/5:2 G#5/3:2 F#5/2:2 | E5/1:2 F#5/2:2 G#5/3:2",
   "B5/5:2 G#5/3:2 F#5/2:2 | E5/1:2 F#5/2:1 G#5/3:1 F#5/2:1 G#5/3:1",
   "B5/5:2 G#5/2:2 B5/4:2 | C#6/5:2 G#5/2:2 C#6/5:2",
   "B5/5:2 G#5/3:2 F#5/2:2 | E5/1:4 r:2",
-].join(" | ");
+];
+const TUNE_RIGHT = TUNE_LINES.join(" | ");
 
-/** Our eight bars after the tune, in E major quarters, on E, F sharp, G sharp and B, with the hand still. */
-const OWN = [
-  "B5/5:2 F#5/2:2 B5/5:2 | G#5/3:2 F#5/2:2 E5/1:2 | F#5/2:2 G#5/3:2 B5/5:2 | B5/5:4 F#5/2:2",
-  "E5/1:2 F#5/2:2 B5/5:2 | G#5/3:2 E5/1:2 G#5/3:2 | F#5/2:2 G#5/3:2 F#5/2:2",
-].join(" | ");
+/**
+ * The Original's bars 5 to 8 in E major quarters, at the tune's height and without the graces. They
+ * play the tune again, and its last bar turns to G sharp major: D sharp, B sharp, A sharp, then G
+ * sharp. Finger 5 steps up to D sharp, and the thumb ends on G sharp.
+ */
+const NEXT_QUARTERS = [...TUNE_LINES.slice(0, 3), "D#6/5:2 B#5/3:2 A#5/2:2 | G#5/1:4 r:2"].join(" | ");
 
-/** Our eight bars after the tune, in E major eighths, over A, E, C-sharp minor and B. */
-const OWN_EIGHTHS = [
-  "C#6/3:2 B5/2:2 A5/1:2 B5/2:2 C#6/3:2 E6/5:2 | B5/5:4 G#5/3:2 E5/1:2 F#5/2:2 G#5/3:2",
-  "C#6/5:2 B5/4:2 G#5/3:2 F#5/2:2 E5/1:2 F#5/2:2 | F#5/2:4 D#5/1:2 F#5/2:2 B5/5:4",
-  "A5/1:2 C#6/2:2 E6/4:2 C#6/2:2 B5/1:4 | B5/5:2 G#5/3:2 E5/1:2 G#5/3:2 B5/5:4",
-  "F#5/2:2 B5/5:2 A5/4:2 F#5/2:2 D#5/1:2 F#5/2:2 | E5/1:12",
-].join(" | ");
-
-/** Epic's tune again in E major eighths, with a third or a sixth under most of its notes. */
-const EPIC_TUNE_AGAIN = [
-  "G#5+B5/3+4:4 E5+G#5/1+3:4 F#5/2:4 | E5/1:4 F#5/2:4 E5+G#5/1+3:4",
-  "G#5+B5/3+4:4 E5+G#5/1+3:4 F#5/2:4 | E5/1:4 F#5/2:2 G#5/3:2 F#5/2:2 G#5/3:2",
-  "G#5+B5/3+4:4 E5+G#5/1+3:4 G#5+B5/3+4:4 | E5+C#6/1+5:4 E5+G#5/1+3:4 E5+C#6/1+5:4",
-  "G#5+B5/3+4:4 G#5/3:4 F#5/2:3 r:1 | G#4+B4+E5/1+2+5:12",
-].join(" | ");
-
-/** Legendary's tune again in E major eighths, in chords of three and four notes with the tune on top. */
-const LEGENDARY_TUNE_AGAIN = [
-  "E5+G#5+B5/1+3+5:4 B4+E5+G#5/1+2+4:4 B4+F#5/1+4:4 | G#4+B4+E5/1+2+3:4 B4+F#5/1+4:4 B4+E5+G#5/1+2+4:4",
-  "E5+G#5+B5/1+3+5:4 B4+E5+G#5/1+2+4:4 B4+F#5/1+4:4 | G#4+B4+E5/1+2+3:4 F#5/4:2 G#5/5:2 F#5/4:2 G#5/5:2",
-  "E5+G#5+B5/1+3+5:4 B4+E5+G#5/1+2+4:4 E5+G#5+B5/1+3+5:4 | C#5+E5+G#5+C#6/1+2+3+5:4 C#5+E5+G#5/1+2+4:4 C#5+E5+G#5+C#6/1+2+3+5:4",
-  "E5+G#5+B5/1+3+5:4 B4+G#5/1+4:4 B4+D#5+F#5/1+2+4:3 r:1 | E4+G#4+B4+E5/1+2+3+5:12",
+/**
+ * The Original's bars 5 to 8 in E major eighths, at the print's height, an octave below the tune. A
+ * print 32nd is our eighth, so its graces sound as eighths. The print's chord of G sharp, E and B is too
+ * wide for the hand, so it keeps E and B.
+ */
+const NEXT_EIGHTHS = [
+  "E4+B4/1+5:4 G#4/4:4 F#4/3:4 | E4/2:4 F#4/3:4 G#4/4:4",
+  "E4+B4/1+5:2 G#4/3:1 A4/4:1 G#4/3:4 F#4/2:4 | E4/1:4 F#4/2:2 G#4/3:2 F#4/2:2 G#4/3:2",
+  "G#4/2:1 A4/3:1 E4+B4/1+4:2 G#4/2:4 B4/4:4 | E4+C#5/1+4:4 G#4/2:4 C#5/4:4",
+  "D#4+D#5/1+5:4 B#4/4:4 A#4/3:4 | G#4/2:8 r:4",
 ].join(" | ");
 
 /** The name of each pitch class, spelled with sharps, as C, G, D and E major spell them. */
@@ -117,7 +108,7 @@ function times(text: string, count: number): string {
   return Array<string>(count).fill(text).join(" ");
 }
 
-/** Bars of `patterns` from `chords`, such as `"EEAB"`: one letter per half bar, two per bar. */
+/** Bars of `patterns` from `chords`, such as `"gggd"`: one letter per half bar, two per bar. */
 function bars(patterns: Record<string, string>, chords: string): string {
   const halves = [...chords].map((chord) => {
     const pattern = patterns[chord];
@@ -129,76 +120,72 @@ function bars(patterns: Record<string, string>, chords: string): string {
   return lines.join(" | ");
 }
 
-/** The chords under the tune, two per bar: E, A, B and C are E major, A major, B major and C-sharp minor. */
-const TUNE_CHORDS = "EEEEEEEEEECCEBEE";
+/** Common's left hand under the tune's first six bars, in C major quarters: an open fifth, held. */
+const COMMON_HELD = Array<string>(6).fill("C3+G3/5+1:6").join(" | ");
 
-/** The chords under our eight bars, two per bar. */
-const OWN_CHORDS = "AAEECCBBAAEEBBEE";
-
-/** Common's left hand in C major quarters: an open fifth or one bass note, held, with the hand still. */
+/**
+ * Common's left hand in C major quarters, with the hand still: open fifths under the tune and its
+ * return, then E under the turn to E major, and the fifth again under the last bar.
+ */
 const COMMON_LEFT = [
-  "C3+G3/5+1:6 | C3+G3/5+1:6 | C3+G3/5+1:6 | C3+G3/5+1:6",
-  "C3+G3/5+1:6 | C3+G3/5+1:6 | C3+G3/5+1:3 D3+G3/4+1:3 | C3+G3/5+1:6",
-  "F3/2:6 | C3+G3/5+1:6 | C3+G3/5+1:6 | D3+G3/4+1:6",
-  "F3/2:6 | C3+G3/5+1:6 | D3+G3/4+1:6 | C3+G3/5+1:6",
+  COMMON_HELD,
+  "C3+G3/5+1:3 D3+G3/4+1:3 | C3+G3/5+1:6",
+  COMMON_HELD,
+  "E3/3:6 | E3/3:6 | C3+G3/5+1:6",
 ].join(" | ");
 
-/** Rare's half bar in G major quarters: a low note, then a two-note chord twice, with the hand still. */
+/** Rare's half bar in G major quarters: a low note, then a chord or a fifth twice. B moves the hand. */
 const WALTZ: Record<string, string> = {
   g: "G2/5:1 B2+D3/3+1:1 B2+D3/3+1:1",
-  c: "G2/5:1 A2+C3/4+2:1 A2+C3/4+2:1",
   d: "A2/4:1 D3/1:1 D3/1:1",
+  b: "B2/5:1 F#3/1:1 F#3/1:1",
 };
 
-/** Epic's half bar in E major eighths: an Alberti group, low, high, middle, high, middle, high. */
-const ALBERTI: Record<string, string> = {
-  E: "E3/5:1 B3/1:1 G#3/3:1 B3/1:1 G#3/3:1 B3/1:1",
-  A: "A2/5:1 E3/1:1 C#3/3:1 E3/1:1 C#3/3:1 E3/1:1",
-  B: "B2/5:1 F#3/1:1 D#3/3:1 F#3/1:1 D#3/3:1 F#3/1:1",
-  C: "C#3/5:1 G#3/1:1 E3/3:1 G#3/1:1 E3/3:1 G#3/1:1",
-};
-
-/** Legendary's half bar in eighths: an octave on the beat, a chord on the next two, each with a rest to jump. */
-const STRIDE: Record<string, string> = {};
-for (const [chord, [octave, triad]] of Object.entries({
-  E: ["E2+E3/5+1", "B2+E3+G#3/5+2+1"],
-  A: ["A1+A2/5+1", "A2+C#3+E3/5+3+1"],
-  B: ["B1+B2/5+1", "B2+D#3+F#3/5+3+1"],
-  C: ["C#2+C#3/5+1", "C#3+E3+G#3/5+3+1"],
-})) {
-  STRIDE[chord] = `${octave}:1 r:1 ${triad}:1 r:1 ${triad}:1 r:1`;
+/** `chord` held through a bar of E major eighths, ending an eighth early so the hand can jump. */
+function held(chord: string): string {
+  return `${chord}:11 r:1`;
 }
 
-/** The six notes of each chord over two octaves, for Legendary's arpeggios. */
-const WIDE_NOTES: Record<string, string> = {
-  A: "A1 E2 A2 C#3 E3 A3",
-  E: "E2 B2 E3 G#3 B3 E4",
-  C: "C#2 G#2 C#3 E3 G#3 C#4",
-  B: "B1 F#2 B2 D#3 F#3 B3",
-};
+/**
+ * The Original's left hand under bars 1 to 4, for each version bar in E major eighths: a chord held
+ * through the bar, and the tune's falling B, G sharp and F sharp echoed in the last bar. The print's
+ * chord of E, B and G sharp is too wide for the hand, so `chords` voices it.
+ */
+function heldUnderTune(chords: { e: string; cSharp: string }): string {
+  const { e, cSharp } = chords;
+  return [...Array<string>(5).fill(held(e)), held(cSharp), held(e), "B3/2:4 G#3/3:4 F#3/4:3 r:1"].join(" | ");
+}
 
-/** Legendary's bar of arpeggio in eighths: up two octaves, back down to the fifth, then a rest to jump. */
-const WIDE: Record<string, string> = {};
-for (const [chord, notes] of Object.entries(WIDE_NOTES)) {
-  const pitches = notes.split(" ");
-  const steps: [number, number][] = [[0, 5], [1, 2], [2, 1], [3, 3], [4, 2], [5, 1], [4, 2], [3, 3], [2, 1], [1, 2]];
-  WIDE[chord] = `${steps.map(([at, finger]) => `${pitches[at]}/${finger}:1`).join(" ")} r:2`;
+/**
+ * The Original's left hand under bars 5 to 8 in E major eighths, two bars per print bar: low E major,
+ * C sharp minor, G sharp major, and the echo of D sharp, B sharp and A sharp.
+ */
+function heldUnderNext(gSharp: string): string {
+  return [
+    ...Array<string>(5).fill(held("E2+B2+E3/5+2+1")),
+    held("C#3+G#3+C#4/5+2+1"),
+    held(gSharp),
+    "D#4/2:4 B#3/3:4 A#3/4:3 r:1",
+  ].join(" | ");
 }
 
 /** The last bar of Epic and Legendary in the left hand: a low E major chord, held. */
 const LAST_LEFT = "E2+B2+E3/5+2+1:12";
 
-/** The pedal of Epic and Legendary in eighths: changed at each half bar, held through the last bar. */
-const PEDAL = `${Array<string>(23).fill("P:6 P:6").join(" | ")} | P:12`;
+/** The pedal of Epic and Legendary in eighths: held through each bar, and lifted for each echo. */
+const PEDAL = [...Array<string>(7).fill("P:12"), "r:12", ...Array<string>(7).fill("P:12"), "r:12", "P:12"].join(" | ");
 
-/** Epic's left hand in E major eighths: the Alberti bass under all three parts, then the last chord. */
-const EPIC_LEFT = `${bars(ALBERTI, `${TUNE_CHORDS}${OWN_CHORDS}${TUNE_CHORDS.slice(0, -2)}`)} | ${LAST_LEFT}`;
+/** Epic's left hand in E major eighths: chords of three notes as the Original holds them, then the last chord. */
+const EPIC_LEFT = [
+  heldUnderTune({ e: "E3+B3+E4/5+2+1", cSharp: "C#3+G#3+C#4/5+2+1" }),
+  heldUnderNext("G#2+D#3+G#3/5+2+1"),
+  LAST_LEFT,
+].join(" | ");
 
-/** Legendary's left hand: stride under the tune, arpeggios under our bars, stride again and the last chord. */
+/** Legendary's left hand in E major eighths: chords of four notes where the hand spans them, then the last chord. */
 const LEGENDARY_LEFT = [
-  bars(STRIDE, TUNE_CHORDS),
-  [..."AECBAEBE"].map((chord) => WIDE[chord]).join(" | "),
-  bars(STRIDE, TUNE_CHORDS.slice(0, -2)),
+  heldUnderTune({ e: "E3+G#3+B3+E4/5+3+2+1", cSharp: "C#3+E3+G#3+C#4/5+3+2+1" }),
+  heldUnderNext("G#2+B#2+D#3+G#3/5+3+2+1"),
   LAST_LEFT,
 ].join(" | ");
 
@@ -471,13 +458,12 @@ export const morningMood: OurSong = {
       numerator: 6,
       denominator: 4,
       steps: 1,
-      ownBars: [9, 10, 11, 12, 13, 14, 15],
-      right: moved(`${TUNE_RIGHT} | ${OWN} | E5/1:6`, -16),
+      right: moved(`${TUNE_RIGHT} | ${NEXT_QUARTERS} | G#5/1:6`, -16),
       left: COMMON_LEFT,
       skills: ["five-finger-position", "open-fifths"],
       practice: [
         { text: "Play the first four bars with the right hand alone, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 4], wait: true },
-        { text: "Play bars 9 to 16 with the right hand alone. The hand stays in the same place.", hands: "right", speed: 0.6, loop: [9, 16], wait: true },
+        { text: "Play bars 9 to 17 with the right hand alone. The tune comes back, and then it turns to E.", hands: "right", speed: 0.6, loop: [9, 17], wait: true },
         { text: "Now the left hand alone. It holds each shape for a whole bar.", hands: "left", speed: 0.6, loop: null, wait: true },
         { text: "Put both hands together on the first eight bars, slowly.", hands: "both", speed: 0.7, loop: [1, 8], wait: true },
         { text: "Play the whole song with both hands at full speed.", hands: "both", speed: 1, loop: null, wait: false },
@@ -489,8 +475,8 @@ export const morningMood: OurSong = {
       ],
       tricky: {
         5: "Finger 2 takes E here, and finger 4 takes G. That frees finger 5 for the high A in bar 6.",
-        6: "Finger 5 plays A, and finger 2 plays E. Keep the hand open between them.",
         7: "Finger 5 steps back from A to G. The left hand moves to D and G at the half bar.",
+        15: "The hand moves up so finger 5 plays B. Fingers 3 and 2 then play the black keys G sharp and F sharp.",
       },
     },
     rare: {
@@ -499,9 +485,8 @@ export const morningMood: OurSong = {
       numerator: 6,
       denominator: 4,
       steps: 1,
-      ownBars: [9, 10, 11, 12, 13, 14, 15],
-      right: moved(`${TUNE_RIGHT} | ${OWN} | E5+G#5/1+3:6`, -9),
-      left: `${bars(WALTZ, "gggggggggggggdgg")} | ${bars(WALTZ, "ccggggddccggdd")} | G2+B2+D3/5+3+1:6`,
+      right: moved(`${TUNE_RIGHT} | ${NEXT_QUARTERS} | E5+G#5/1+3:6`, -9),
+      left: `${bars(WALTZ, "gggggggggggggdgg")} | ${bars(WALTZ, "ggggggggggggbbbb")} | G2+B2+D3/5+3+1:6`,
       skills: ["waltz-bass", "two-note-chords"],
       practice: [
         { text: "Play the left hand alone: a low note, then a two-note chord twice. The hand stays still.", hands: "left", speed: 0.6, loop: [1, 4], wait: true },
@@ -513,12 +498,12 @@ export const morningMood: OurSong = {
       tips: [
         { fromBar: 1, toBar: 8, kind: "rhythm", text: "The left hand plays on every beat. Count one, two, three, twice in each bar." },
         { fromBar: 1, toBar: 16, kind: "sound", text: "Keep the left hand's chords soft, so the tune floats above them like morning light." },
-        { fromBar: 16, toBar: 16, kind: "fingering", text: "End with G and B together. Fingers 1 and 3 press them as one." },
+        { fromBar: 17, toBar: 17, kind: "fingering", text: "End with G and B together. Fingers 1 and 3 press them as one." },
       ],
       tricky: {
-        5: "Finger 2 takes B here, and finger 4 takes D. That frees finger 5 for the high E in bar 6.",
         7: "Finger 5 steps back from E to D. The left hand moves to A and D at the half bar.",
-        9: "The left hand keeps finger 5 on G. Fingers 4 and 2 move to A and C for the new chord.",
+        15: "The hand moves up so finger 5 plays F sharp. Then fingers 3 and 2 play D sharp and C sharp. The left hand moves to B.",
+        17: "Use the rest to move the thumb down to G. Fingers 1 and 3 press G and B together.",
       },
     },
     epic: {
@@ -527,27 +512,26 @@ export const morningMood: OurSong = {
       numerator: 6,
       denominator: 4,
       steps: 2,
-      right: moved([inEighths(TUNE_RIGHT), OWN_EIGHTHS, EPIC_TUNE_AGAIN].join(" | "), -2),
+      right: moved([inEighths(TUNE_RIGHT), NEXT_EIGHTHS, "E4+G#4+B4/1+3+5:12"].join(" | "), -2),
       left: moved(EPIC_LEFT, -2),
       pedal: PEDAL,
-      ownBars: [9, 10, 11, 12, 13, 14, 15],
-      skills: ["alberti-bass", "pedal", "thirds-and-sixths"],
+      skills: ["pedal", "left-hand-melody"],
       practice: [
-        { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
-        { text: "Play the right hand's thirds and sixths alone, and press both notes of each pair as one.", hands: "right", speed: 0.6, loop: [17, 20], wait: true },
+        { text: "Play the left hand alone. Hold each chord for the whole bar, and lift it just before the next.", hands: "left", speed: 0.5, loop: [1, 8], wait: true },
+        { text: "Play bars 9 to 16 with the right hand alone. The tune comes back an octave lower, with quick grace notes.", hands: "right", speed: 0.6, loop: [9, 16], wait: true },
         { text: "Join the hands on the first eight bars, slowly.", hands: "both", speed: 0.5, loop: [1, 8], wait: true },
         { text: "Play the whole song with both hands at three-quarter speed.", hands: "both", speed: 0.75, loop: null, wait: false },
         { text: "Now play it at full speed, with the pedal.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
-        { fromBar: 1, toBar: 8, kind: "sound", text: "Change the pedal on each new bass note, twice in every bar." },
-        { fromBar: 9, toBar: 16, kind: "fingering", text: "Our own bars move the hand. Look ahead to the first finger of each bar." },
-        { fromBar: 17, toBar: 24, kind: "sound", text: "The tune is the top note of each pair, so let the upper finger lead." },
+        { fromBar: 1, toBar: 16, kind: "sound", text: "Press the pedal with each chord. Lift it in bars 8 and 16, where the left hand echoes the tune." },
+        { fromBar: 8, toBar: 8, kind: "sound", text: "The left hand answers the tune with A, F sharp and E. Let it sing like a second voice." },
+        { fromBar: 11, toBar: 13, kind: "rhythm", text: "The grace notes are quick eighths. Play them lightly, and land on the beat after them." },
       ],
       tricky: {
-        7: "At the half bar the left hand changes to an A major Alberti group, with finger 5 on the low A.",
-        11: "Five notes walk down from B to D, one finger each. Then finger 2 steps back up to E.",
-        24: "Use the short rest to spread the right hand over F sharp, A and D for the last chord.",
+        9: "The right hand drops an octave. Spread fingers 1 and 5 over D and A, while the left hand holds a low D chord.",
+        16: "The right hand holds F sharp. The left hand plays C sharp, A sharp and G sharp, each for two beats.",
+        17: "Spread the right hand over D, F sharp and A with fingers 1, 3 and 5. The left hand holds a low D chord.",
       },
     },
     legendary: {
@@ -556,27 +540,26 @@ export const morningMood: OurSong = {
       numerator: 6,
       denominator: 4,
       steps: 2,
-      right: [inEighths(TUNE_RIGHT), OWN_EIGHTHS, LEGENDARY_TUNE_AGAIN].join(" | "),
+      right: [inEighths(TUNE_RIGHT), NEXT_EIGHTHS, "E4+G#4+B4+E5/1+2+3+5:12"].join(" | "),
       left: LEGENDARY_LEFT,
       pedal: PEDAL,
-      ownBars: [9, 10, 11, 12, 13, 14, 15],
-      skills: ["octave-bass", "arpeggios", "melody-in-chords"],
+      skills: ["pedal", "left-hand-melody", "position-change"],
       practice: [
-        { text: "Play the left hand alone: an octave on the beat, then a chord twice, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },
-        { text: "Play the left hand's arpeggios alone. They climb two octaves and come back down.", hands: "left", speed: 0.5, loop: [9, 16], wait: true },
-        { text: "Play the right hand's chords alone, and let the top finger sing the tune.", hands: "right", speed: 0.5, loop: [17, 24], wait: true },
+        { text: "Play the left hand alone. Hold each chord of four notes for the whole bar, and lift it just before the next.", hands: "left", speed: 0.5, loop: [1, 8], wait: true },
+        { text: "Play bars 9 to 16 with the right hand alone. The tune comes back an octave lower, with quick grace notes.", hands: "right", speed: 0.5, loop: [9, 16], wait: true },
+        { text: "Play bars 13 to 17 with both hands, slowly. Watch the left hand's jump up to the echo in bar 16.", hands: "both", speed: 0.5, loop: [13, 17], wait: true },
         { text: "Play the whole song with both hands at three-quarter speed.", hands: "both", speed: 0.75, loop: null, wait: false },
         { text: "Now play it at full speed, and let the last chord ring.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
-        { fromBar: 1, toBar: 8, kind: "trick", text: "Use the short rest after each octave and chord to jump to the next one." },
-        { fromBar: 9, toBar: 16, kind: "sound", text: "Let the arpeggios flow softly under the tune, and change the pedal on each new chord." },
-        { fromBar: 17, toBar: 24, kind: "sound", text: "Play the top note of each chord a little louder than the others." },
+        { fromBar: 1, toBar: 17, kind: "trick", text: "Lift each chord an eighth early. The short rest gives the hand time to jump to the next one." },
+        { fromBar: 8, toBar: 8, kind: "sound", text: "The left hand answers the tune with B, G sharp and F sharp. Let it sing like a second voice." },
+        { fromBar: 15, toBar: 16, kind: "sound", text: "The tune turns to G sharp major here. Play the D sharp octave warmly, then let the left hand's echo answer." },
       ],
       tricky: {
-        6: "The left hand jumps to C sharp for the whole bar. The right hand plays C sharp with finger 5 and G sharp with finger 2.",
-        22: "The two C sharps make an octave, with E and G sharp between them. Keep the hand spread for the whole bar.",
-        23: "Three shapes follow each other: E major, then B and G sharp, then B major. The left hand changes to B at the half bar.",
+        9: "The right hand drops an octave. Spread fingers 1 and 5 over E and B, while the left hand holds a low E chord.",
+        16: "The right hand holds G sharp. The left hand plays D sharp, B sharp and A sharp, each for two beats.",
+        17: "Spread the right hand over E, G sharp, B and E with fingers 1, 2, 3 and 5. The left hand holds a low E chord.",
       },
     },
   },
@@ -590,7 +573,7 @@ export const morningMood: OurSong = {
       common: {
         practice: [
           "Spiel die ersten vier Takte nur mit der rechten Hand, und lass das Stück auf jeden Ton warten.",
-          "Spiel die Takte 9 bis 16 nur mit der rechten Hand. Die Hand bleibt an derselben Stelle.",
+          "Spiel die Takte 9 bis 17 nur mit der rechten Hand. Die Melodie kehrt zurück und wendet sich dann zum E.",
           "Jetzt die linke Hand allein. Sie hält jeden Griff einen ganzen Takt lang.",
           "Spiel die ersten acht Takte langsam mit beiden Händen zusammen.",
           "Spiel das ganze Stück mit beiden Händen im vollen Tempo.",
@@ -602,8 +585,8 @@ export const morningMood: OurSong = {
         ],
         tricky: {
           5: "Hier nimmt Finger 2 das E, und Finger 4 nimmt das G. So ist Finger 5 frei für das hohe A in Takt 6.",
-          6: "Finger 5 spielt das A, und Finger 2 spielt das E. Halt die Hand dazwischen offen.",
           7: "Finger 5 geht vom A zurück zum G. Die linke Hand wechselt in der Mitte des Takts zu D und G.",
+          15: "Die Hand rückt hinauf, damit Finger 5 das H spielt. Finger 3 und 2 spielen dann die schwarzen Tasten Gis und Fis.",
         },
       },
       rare: {
@@ -620,47 +603,47 @@ export const morningMood: OurSong = {
           "Am Ende spielst du G und H zusammen. Finger 1 und 3 drücken sie wie einen Ton.",
         ],
         tricky: {
-          5: "Hier nimmt Finger 2 das H, und Finger 4 nimmt das D. So ist Finger 5 frei für das hohe E in Takt 6.",
           7: "Finger 5 geht vom E zurück zum D. Die linke Hand wechselt in der Mitte des Takts zu A und D.",
-          9: "Die linke Hand lässt Finger 5 auf dem G. Finger 4 und 2 gehen für den neuen Akkord zu A und C.",
+          15: "Die Hand rückt hinauf, damit Finger 5 das Fis spielt. Dann spielen Finger 3 und 2 Dis und Cis. Die linke Hand wechselt zum H.",
+          17: "Nutz die Pause, um den Daumen hinunter zum G zu setzen. Finger 1 und 3 drücken G und H zusammen.",
         },
       },
       epic: {
         practice: [
-          "Spiel den Alberti-Bass allein, bis er von selbst rollt: tief, hoch, Mitte, hoch.",
-          "Spiel die Terzen und Sexten der rechten Hand allein, und drück beide Töne jedes Paars wie einen an.",
+          "Spiel die linke Hand allein. Halt jeden Akkord den ganzen Takt lang, und lös ihn kurz vor dem nächsten.",
+          "Spiel die Takte 9 bis 16 nur mit der rechten Hand. Die Melodie kehrt eine Oktave tiefer zurück, mit schnellen Vorschlägen.",
           "Spiel die ersten acht Takte langsam mit beiden Händen zusammen.",
           "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
           "Jetzt spiel es im vollen Tempo, mit Pedal.",
         ],
         tips: [
-          "Wechsle das Pedal bei jedem neuen Basston, zweimal in jedem Takt.",
-          "In unseren eigenen Takten wandert die Hand. Schau voraus auf den ersten Finger jedes Takts.",
-          "Die Melodie ist der obere Ton jedes Paars, also lass den oberen Finger führen.",
+          "Tritt das Pedal mit jedem Akkord. Lös es in den Takten 8 und 16, wo die linke Hand die Melodie als Echo spielt.",
+          "Die linke Hand antwortet der Melodie mit A, Fis und E. Lass sie singen wie eine zweite Stimme.",
+          "Die Vorschläge sind schnelle Achtel. Spiel sie leicht, und lande auf dem Schlag danach.",
         ],
         tricky: {
-          7: "In der Mitte des Takts wechselt die linke Hand zu einer Alberti-Figur in A-Dur, mit Finger 5 auf dem tiefen A.",
-          11: "Fünf Töne gehen vom H hinunter zum D, ein Finger für jeden. Dann geht Finger 2 zurück hinauf zum E.",
-          24: "Nutz die kurze Pause, um die rechte Hand über Fis, A und D für den letzten Akkord zu spannen.",
+          9: "Die rechte Hand geht eine Oktave hinunter. Spann Finger 1 und 5 über D und A, während die linke Hand einen tiefen D-Dur-Akkord hält.",
+          16: "Die rechte Hand hält das Fis. Die linke Hand spielt Cis, Ais und Gis, jeden Ton zwei Schläge lang.",
+          17: "Spann die rechte Hand mit Finger 1, 3 und 5 über D, Fis und A. Die linke Hand hält einen tiefen D-Dur-Akkord.",
         },
       },
       legendary: {
         practice: [
-          "Spiel die linke Hand allein: eine Oktave auf dem Schlag, dann zweimal einen Akkord, jeweils mit einer kurzen Pause zum Springen.",
-          "Spiel die Arpeggios der linken Hand allein. Sie steigen zwei Oktaven hinauf und kommen wieder herunter.",
-          "Spiel die Akkorde der rechten Hand allein, und lass den obersten Finger die Melodie singen.",
+          "Spiel die linke Hand allein. Halt jeden Vierklang den ganzen Takt lang, und lös ihn kurz vor dem nächsten.",
+          "Spiel die Takte 9 bis 16 nur mit der rechten Hand. Die Melodie kehrt eine Oktave tiefer zurück, mit schnellen Vorschlägen.",
+          "Spiel die Takte 13 bis 17 langsam mit beiden Händen. Achte in Takt 16 auf den Sprung der linken Hand hinauf zum Echo.",
           "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
           "Jetzt spiel es im vollen Tempo, und lass den letzten Akkord klingen.",
         ],
         tips: [
-          "Nutz die kurze Pause nach jeder Oktave und jedem Akkord, um zum nächsten Griff zu springen.",
-          "Lass die Arpeggios leise unter der Melodie fließen, und wechsle das Pedal bei jedem neuen Akkord.",
-          "Spiel den oberen Ton jedes Akkords etwas lauter als die anderen.",
+          "Lös jeden Akkord ein Achtel früher. Die kurze Pause gibt der Hand Zeit, zum nächsten zu springen.",
+          "Die linke Hand antwortet der Melodie mit H, Gis und Fis. Lass sie singen wie eine zweite Stimme.",
+          "Hier wendet sich die Melodie nach Gis-Dur. Spiel die Dis-Oktave warm, dann lass das Echo der linken Hand antworten.",
         ],
         tricky: {
-          6: "Die linke Hand springt für den ganzen Takt zum Cis. Die rechte Hand spielt das Cis mit Finger 5 und das Gis mit Finger 2.",
-          22: "Die beiden Cis bilden eine Oktave, mit E und Gis dazwischen. Halt die Hand den ganzen Takt lang gespannt.",
-          23: "Drei Griffe folgen aufeinander: E-Dur, dann H und Gis, dann H-Dur. Die linke Hand wechselt in der Mitte des Takts zum H.",
+          9: "Die rechte Hand geht eine Oktave hinunter. Spann Finger 1 und 5 über E und H, während die linke Hand einen tiefen E-Dur-Akkord hält.",
+          16: "Die rechte Hand hält das Gis. Die linke Hand spielt Dis, His und Ais, jeden Ton zwei Schläge lang.",
+          17: "Spann die rechte Hand mit Finger 1, 2, 3 und 5 über E, Gis, H und E. Die linke Hand hält einen tiefen E-Dur-Akkord.",
         },
       },
     },

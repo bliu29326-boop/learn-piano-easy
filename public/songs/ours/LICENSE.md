@@ -292,16 +292,16 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `handel-sarabande/epic.mid` | Sarabande in D minor, Medium | George Frideric Handel | MIT |
 | `handel-sarabande/legendary.mid` | Sarabande in D minor, Hard | George Frideric Handel | MIT |
 | `handel-sarabande/guide.json` | Sarabande in D minor, the guide | | MIT |
-| `william-tell/common.mid` | William Tell Overture, Beginner | Gioachino Rossini | MIT |
-| `william-tell/rare.mid` | William Tell Overture, Easy | Gioachino Rossini | MIT |
-| `william-tell/epic.mid` | William Tell Overture, Medium | Gioachino Rossini | MIT |
-| `william-tell/legendary.mid` | William Tell Overture, Hard | Gioachino Rossini | MIT |
+| `william-tell/common-2.mid` | William Tell Overture, Beginner | Gioachino Rossini | MIT |
+| `william-tell/rare-2.mid` | William Tell Overture, Easy | Gioachino Rossini | MIT |
+| `william-tell/epic-2.mid` | William Tell Overture, Medium | Gioachino Rossini | MIT |
+| `william-tell/legendary-2.mid` | William Tell Overture, Hard | Gioachino Rossini | MIT |
 | `william-tell/mythic.mid` | William Tell Overture, Original | Gioachino Rossini | MIT |
 | `william-tell/guide.json` | William Tell Overture, the guide | | MIT |
-| `swan-lake/common.mid` | Swan Lake, Beginner | Pyotr Ilyich Tchaikovsky | MIT |
-| `swan-lake/rare.mid` | Swan Lake, Easy | Pyotr Ilyich Tchaikovsky | MIT |
-| `swan-lake/epic.mid` | Swan Lake, Medium | Pyotr Ilyich Tchaikovsky | MIT |
-| `swan-lake/legendary.mid` | Swan Lake, Hard | Pyotr Ilyich Tchaikovsky | MIT |
+| `swan-lake/common-2.mid` | Swan Lake, Beginner | Pyotr Ilyich Tchaikovsky | MIT |
+| `swan-lake/rare-2.mid` | Swan Lake, Easy | Pyotr Ilyich Tchaikovsky | MIT |
+| `swan-lake/epic-2.mid` | Swan Lake, Medium | Pyotr Ilyich Tchaikovsky | MIT |
+| `swan-lake/legendary-2.mid` | Swan Lake, Hard | Pyotr Ilyich Tchaikovsky | MIT |
 | `swan-lake/mythic.mid` | Swan Lake, Original | Pyotr Ilyich Tchaikovsky | MIT |
 | `swan-lake/guide.json` | Swan Lake, the guide | | MIT |
 | `night-on-bald-mountain/common.mid` | Night on Bald Mountain, Beginner | Modest Mussorgsky | MIT |
@@ -309,10 +309,10 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `night-on-bald-mountain/epic.mid` | Night on Bald Mountain, Medium | Modest Mussorgsky | MIT |
 | `night-on-bald-mountain/legendary.mid` | Night on Bald Mountain, Hard | Modest Mussorgsky | MIT |
 | `night-on-bald-mountain/guide.json` | Night on Bald Mountain, the guide | | MIT |
-| `the-sorcerers-apprentice/common.mid` | The Sorcerer's Apprentice, Beginner | Paul Dukas | MIT |
-| `the-sorcerers-apprentice/rare.mid` | The Sorcerer's Apprentice, Easy | Paul Dukas | MIT |
-| `the-sorcerers-apprentice/epic.mid` | The Sorcerer's Apprentice, Medium | Paul Dukas | MIT |
-| `the-sorcerers-apprentice/legendary.mid` | The Sorcerer's Apprentice, Hard | Paul Dukas | MIT |
+| `the-sorcerers-apprentice/common-2.mid` | The Sorcerer's Apprentice, Beginner | Paul Dukas | MIT |
+| `the-sorcerers-apprentice/rare-2.mid` | The Sorcerer's Apprentice, Easy | Paul Dukas | MIT |
+| `the-sorcerers-apprentice/epic-2.mid` | The Sorcerer's Apprentice, Medium | Paul Dukas | MIT |
+| `the-sorcerers-apprentice/legendary-2.mid` | The Sorcerer's Apprentice, Hard | Paul Dukas | MIT |
 | `the-sorcerers-apprentice/mythic.mid` | The Sorcerer's Apprentice, Original | Paul Dukas | MIT |
 | `the-sorcerers-apprentice/guide.json` | The Sorcerer's Apprentice, the guide | | MIT |
 | `ave-maria/common.mid` | Ave Maria, Beginner | Franz Schubert | MIT |
@@ -320,10 +320,10 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `ave-maria/epic.mid` | Ave Maria, Medium | Franz Schubert | MIT |
 | `ave-maria/legendary.mid` | Ave Maria, Hard | Franz Schubert | MIT |
 | `ave-maria/guide.json` | Ave Maria, the guide | | MIT |
-| `bolero/common.mid` | Boléro, Beginner | Maurice Ravel | MIT |
-| `bolero/rare.mid` | Boléro, Easy | Maurice Ravel | MIT |
-| `bolero/epic.mid` | Boléro, Medium | Maurice Ravel | MIT |
-| `bolero/legendary.mid` | Boléro, Hard | Maurice Ravel | MIT |
+| `bolero/common-2.mid` | Boléro, Beginner | Maurice Ravel | MIT |
+| `bolero/rare-2.mid` | Boléro, Easy | Maurice Ravel | MIT |
+| `bolero/epic-2.mid` | Boléro, Medium | Maurice Ravel | MIT |
+| `bolero/legendary-2.mid` | Boléro, Hard | Maurice Ravel | MIT |
 | `bolero/mythic.mid` | Boléro, Original | Maurice Ravel | MIT |
 | `bolero/guide.json` | Boléro, the guide | | MIT |
 | `funeral-march/common.mid` | Funeral March, Beginner | Frédéric Chopin | MIT |
@@ -331,10 +331,10 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `funeral-march/epic.mid` | Funeral March, Medium | Frédéric Chopin | MIT |
 | `funeral-march/legendary.mid` | Funeral March, Hard | Frédéric Chopin | MIT |
 | `funeral-march/guide.json` | Funeral March, the guide | | MIT |
-| `beethoven-5/common.mid` | Symphony No. 5, Beginner | Ludwig van Beethoven | MIT |
-| `beethoven-5/rare.mid` | Symphony No. 5, Easy | Ludwig van Beethoven | MIT |
-| `beethoven-5/epic.mid` | Symphony No. 5, Medium | Ludwig van Beethoven | MIT |
-| `beethoven-5/legendary.mid` | Symphony No. 5, Hard | Ludwig van Beethoven | MIT |
+| `beethoven-5/common-2.mid` | Symphony No. 5, Beginner | Ludwig van Beethoven | MIT |
+| `beethoven-5/rare-2.mid` | Symphony No. 5, Easy | Ludwig van Beethoven | MIT |
+| `beethoven-5/epic-2.mid` | Symphony No. 5, Medium | Ludwig van Beethoven | MIT |
+| `beethoven-5/legendary-2.mid` | Symphony No. 5, Hard | Ludwig van Beethoven | MIT |
 | `beethoven-5/mythic.mid` | Symphony No. 5, Original | Ludwig van Beethoven | MIT |
 | `beethoven-5/guide.json` | Symphony No. 5, the guide | | MIT |
 | `chopin-nocturne-c-sharp-minor/common.mid` | Nocturne in C-sharp minor, Beginner | Frédéric Chopin | MIT |
@@ -342,10 +342,10 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `chopin-nocturne-c-sharp-minor/epic.mid` | Nocturne in C-sharp minor, Medium | Frédéric Chopin | MIT |
 | `chopin-nocturne-c-sharp-minor/legendary.mid` | Nocturne in C-sharp minor, Hard | Frédéric Chopin | MIT |
 | `chopin-nocturne-c-sharp-minor/guide.json` | Nocturne in C-sharp minor, the guide | | MIT |
-| `morning-mood/common.mid` | Morning Mood, Beginner | Edvard Grieg | MIT |
-| `morning-mood/rare.mid` | Morning Mood, Easy | Edvard Grieg | MIT |
-| `morning-mood/epic.mid` | Morning Mood, Medium | Edvard Grieg | MIT |
-| `morning-mood/legendary.mid` | Morning Mood, Hard | Edvard Grieg | MIT |
+| `morning-mood/common-2.mid` | Morning Mood, Beginner | Edvard Grieg | MIT |
+| `morning-mood/rare-2.mid` | Morning Mood, Easy | Edvard Grieg | MIT |
+| `morning-mood/epic-2.mid` | Morning Mood, Medium | Edvard Grieg | MIT |
+| `morning-mood/legendary-2.mid` | Morning Mood, Hard | Edvard Grieg | MIT |
 | `morning-mood/mythic.mid` | Morning Mood, Original | Edvard Grieg | MIT |
 | `morning-mood/guide.json` | Morning Mood, the guide | | MIT |
 | `wedding-march/common.mid` | Wedding March, Beginner | Felix Mendelssohn | MIT |
@@ -353,16 +353,16 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `wedding-march/epic.mid` | Wedding March, Medium | Felix Mendelssohn | MIT |
 | `wedding-march/legendary.mid` | Wedding March, Hard | Felix Mendelssohn | MIT |
 | `wedding-march/guide.json` | Wedding March, the guide | | MIT |
-| `can-can/common.mid` | Can-can, Beginner | Jacques Offenbach | MIT |
-| `can-can/rare.mid` | Can-can, Easy | Jacques Offenbach | MIT |
-| `can-can/epic.mid` | Can-can, Medium | Jacques Offenbach | MIT |
-| `can-can/legendary.mid` | Can-can, Hard | Jacques Offenbach | MIT |
+| `can-can/common-2.mid` | Can-can, Beginner | Jacques Offenbach | MIT |
+| `can-can/rare-2.mid` | Can-can, Easy | Jacques Offenbach | MIT |
+| `can-can/epic-2.mid` | Can-can, Medium | Jacques Offenbach | MIT |
+| `can-can/legendary-2.mid` | Can-can, Hard | Jacques Offenbach | MIT |
 | `can-can/mythic.mid` | Can-can, Original | Jacques Offenbach | MIT |
 | `can-can/guide.json` | Can-can, the guide | | MIT |
-| `vltava/common.mid` | Vltava, Beginner | Bedřich Smetana | MIT |
-| `vltava/rare.mid` | Vltava, Easy | Bedřich Smetana | MIT |
-| `vltava/epic.mid` | Vltava, Medium | Bedřich Smetana | MIT |
-| `vltava/legendary.mid` | Vltava, Hard | Bedřich Smetana | MIT |
+| `vltava/common-2.mid` | Vltava, Beginner | Bedřich Smetana | MIT |
+| `vltava/rare-2.mid` | Vltava, Easy | Bedřich Smetana | MIT |
+| `vltava/epic-2.mid` | Vltava, Medium | Bedřich Smetana | MIT |
+| `vltava/legendary-2.mid` | Vltava, Hard | Bedřich Smetana | MIT |
 | `vltava/mythic.mid` | Vltava, Original | Bedřich Smetana | MIT |
 | `vltava/guide.json` | Vltava, the guide | | MIT |
 | `aquarium/common.mid` | Aquarium, Beginner | Camille Saint-Saëns | MIT |

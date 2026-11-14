@@ -3,18 +3,19 @@
  *
  * The tune is the oboe's theme in bars 1 to 8 of Act II No. 10. The print is in 4/4 with eighths, and
  * the tune writes every eighth as a quarter, so each print bar is a bar of 4/2. Its key is B minor, and
- * the hook is bars 1 to 4. Every version plays the 8 tune bars, then 8 bars of our own over E minor,
- * B minor and F-sharp major. Epic and Legendary then play the tune again in another setting.
+ * the hook is bars 1 to 4. The tune is the Original's bars 2 to 9.
  *
- * Our chords, one or two per bar, are B minor, then G major and E minor in bars 3 and 7, then F-sharp
- * major before each B minor close. Common and Rare move the song to A minor. They play E minor for the
- * whole of bars 3 and 7, because a G under the held F sharp would rub against it. Every version closes
- * on B minor, or on A minor in Common and Rare.
+ * After the tune, every version plays the source's next phrase, the Original's bars 10 to 17. It climbs
+ * through A major, F sharp minor and E minor, and ends on C major. Common and Rare move the song to A
+ * minor. Common plays bars 10 to 13 only, which end on the home chord, and closes on A minor. Rare plays
+ * bars 10 to 17 and closes on A minor. Both leave out a few passing notes, so the hand moves only twice.
  *
  * Common plays the tune over held open fifths and single bass notes. Rare plays a low note on each beat
- * and a two-note chord on the next. Epic rolls an Alberti bass under the tune with the pedal, then plays
- * the tune again with a third or a sixth under its long notes. Legendary plays an octave bass and a
- * chord on each beat, then arpeggios over two octaves, and plays the tune again in four-note chords.
+ * and a two-note chord on the next. Epic and Legendary take the Original's own accompaniment from its
+ * bars 2 to 25: the left hand's tremolo under the tune, and triplet arpeggios under the next phrase. Then
+ * comes bar 18, and the tune again in the left hand under the right hand's tremolo. Legendary plays these
+ * bars as printed, and Epic plays each tremolo at half its speed. Both let go a short rest before each
+ * leap no hand spans, and close on a held B minor chord.
  *
  * The Original is the whole Scene, Act II No. 1, all 70 bars of Kashkin's two-hand piano score. It
  * plays the oboe's theme over a soft tremolo, then in the left hand under loud chords, and last in
@@ -42,25 +43,48 @@ const TUNE_OPENING =
 /** The tune in 4/2, in quarters, fingered in one place. */
 const TUNE_RIGHT = `${TUNE_OPENING} | B4/1:5 E5/4:1 D5/3:1 C#5/2:1 | ${TUNE_OPENING} | B4/1:6 B4/1:2`;
 
-/** Our eight bars after the tune, in 4/2 quarters, over E minor, B minor and F-sharp major. */
-const OWN = [
-  "E5/4:4 D5/3:2 C#5/2:2 | D5/3:4 F#5/5:2 D5/3:2 | B4/1:4 E5/4:2 D5/3:2 | C#5/2:4 E5/4:2 C#5/2:2",
-  "F#5/5:4 E5/4:2 D5/3:2 | E5/4:4 C#5/2:4 | B4/1:2 D5/3:2 C#5/2:4",
-].join(" | ");
+/**
+ * The Original's bars 10 and 14 in A minor quarters, for Common and Rare. The last F is left out, so the
+ * hand moves only after the held E.
+ */
+const RISE_A_MINOR = "B4/2:2 C5/3:2 D5/4:2 E5/5:2";
 
-/** Our eight bars after the tune in 4/2 eighths, with a few passing notes, for Epic and Legendary. */
-const OWN_EIGHTHS = [
-  "E5/4:4 F#5/5:2 E5/4:2 D5/3:4 C#5/2:4 | D5/3:8 F#5/5:4 D5/3:4",
-  "B4/1:4 C#5/2:2 D5/3:2 E5/4:4 D5/3:4 | C#5/2:8 E5/4:4 C#5/2:4",
-  "F#5/5:8 E5/4:4 D5/3:4 | E5/4:4 D5/3:2 E5/4:2 C#5/2:8",
-  "B4/1:4 D5/3:4 C#5/2:8 | B4/1:12 r:4",
-].join(" | ");
+/** The Original's bars 11 and 15 in A minor quarters. Finger 5 moves up from E to G. */
+const SIGH_A_MINOR = "G5/5:3 F5/3:1 E5/2:2 F5/3:1 G5/4:1";
 
-/** The chords under the tune for Epic and Legendary, two per bar: b, g, e and f are B, G, E and F sharp. */
-const TUNE_CHORDS = "bbbbgebfbbbbgefb";
+/** The Original's bars 12 and 16 in A minor quarters. */
+const CLIMB_A_MINOR = "A5/5:3 G5/3:1 F5/2:2 G5/3:1 A5/4:1";
 
-/** The chords under our eight bars, two per bar. */
-const OWN_CHORDS = "eebbeeffbbefbfbb";
+/** The Original's bar 13 in A minor quarters. It leaves out the run from C to B, and lands on A. */
+const PEAK_A_MINOR = "B5/5:3 A5/4:1 E5/2:2 A4/1:2";
+
+/** The Original's bar 13 in A minor quarters, as Common plays it: the high B and A, then a held E. */
+const COMMON_PEAK = "B5/5:3 A5/4:1 E5/2:4";
+
+/** The Original's bar 17 in A minor quarters: B flat major. */
+const TURN_A_MINOR = "Bb5/5:3 F5/2:1 D5/1:2 F5/2:1 Bb5/5:1";
+
+/**
+ * Common's left hand under the Original's bars 10 to 13 and its close, in A minor: G major, E minor,
+ * D minor, then B and E before the A minor close.
+ */
+const COMMON_PHRASE_LEFT = "G2+D3/5+2:8 | B2+E3/4+1:4 B2/4:4 | D3/2:8 | B2/4:4 E3/1:4 | A2+E3/5+1:8";
+
+/** Rare's half bar in A minor quarters under the Original's bars 10 to 17: a low note, then a chord. */
+const RARE_PULSE: Record<string, string> = {
+  g: "G2/5:2 D3/2:2",
+  G: "G2/5:2 B2+D3/3+2:2",
+  e: "E3/1:2 G2+B2/5+3:2",
+  d: "A2/4:2 D3+F3/2+1:2",
+  f: "A2/4:2 C3+F3/2+1:2",
+  b: "B2/4:2 D#3+F#3/2+1:2",
+  7: "B2/4:2 D3+E3/2+1:2",
+  B: "Bb2/4:2 D3+F3/2+1:2",
+  D: "D3/2:2 D3+F3/2+1:2",
+};
+
+/** Rare's chords under the Original's bars 10 to 17, two per bar. */
+const RARE_PHRASE_CHORDS = "gGeeddb7gGeedfBD";
 
 /** Each pitch of the B minor text and its pitch in A minor, a whole step down. */
 const DOWN_A_STEP: Record<string, string> = { B: "A", "C#": "B", D: "C", E: "D", "F#": "E", G: "F", A: "G", "A#": "G#" };
@@ -74,9 +98,9 @@ function toAMinor(text: string): string {
   });
 }
 
-/** `text` with every length doubled, so a line in quarters reads in eighths. */
-function inEighths(text: string): string {
-  return text.replace(/:(\d+)/g, (_, units: string) => `:${2 * Number(units)}`);
+/** `text` with every length times `factor`, so a line in quarters reads in the Original's units at 12. */
+function scaled(text: string, factor: number): string {
+  return text.replace(/:(\d+)/g, (_, units: string) => `:${factor * Number(units)}`);
 }
 
 /** Bars of `patterns` from `chords`, such as `"bbge"`: one letter per half bar, two per bar. */
@@ -91,12 +115,10 @@ function bars(patterns: Record<string, string>, chords: string): string {
   return lines.join(" | ");
 }
 
-/** Common's left hand in B minor quarters, one bar per entry: an open fifth, or one bass note, held. */
+/** Common's left hand under the tune in B minor quarters, one bar per entry: an open fifth, or one bass note, held. */
 const COMMON_LEFT = [
   "B2+F#3/5+1:8 | B2+F#3/5+1:8 | E3/2:8 | B2+F#3/5+1:4 F#3/1:4",
   "B2+F#3/5+1:8 | B2+F#3/5+1:8 | E3/2:8 | F#3/1:4 B2+F#3/5+1:4",
-  "E3/2:8 | B2+F#3/5+1:8 | E3/2:8 | F#3/1:8",
-  "B2+F#3/5+1:8 | E3/2:4 F#3/1:4 | B2+F#3/5+1:4 F#3/1:4 | B2+F#3/5+1:8",
 ].join(" | ");
 
 /** Rare's half bar in B minor quarters: a low note on the beat, then a two-note chord. `h` holds F sharp. */
@@ -106,68 +128,6 @@ const PULSE: Record<string, string> = {
   f: "F#3/1:2 C#3+F#3/4+1:2",
   h: "F#3/1:4",
 };
-
-/** Epic's half bar in eighths: an Alberti group, low, high, middle, high, twice. */
-const ALBERTI: Record<string, string> = {
-  b: "B2/5:1 F#3/1:1 D3/3:1 F#3/1:1",
-  g: "G2/5:1 D3/1:1 B2/3:1 D3/1:1",
-  e: "E2/5:1 B2/1:1 G2/3:1 B2/1:1",
-  f: "F#2/5:1 C#3/1:1 A#2/3:1 C#3/1:1",
-};
-for (const chord of Object.keys(ALBERTI)) ALBERTI[chord] = `${ALBERTI[chord]} ${ALBERTI[chord]}`;
-
-/** Legendary's half bar in eighths: an octave on the beat, a chord on the next, each with a rest to jump. */
-const STRIDE: Record<string, string> = {
-  b: "B1+B2/5+1:3 r:1 D3+F#3+B3/4+2+1:3 r:1",
-  g: "G1+G2/5+1:3 r:1 B2+D3+G3/4+2+1:3 r:1",
-  e: "E1+E2/5+1:3 r:1 G2+B2+E3/4+2+1:3 r:1",
-  f: "F#1+F#2/5+1:3 r:1 A#2+C#3+F#3/4+2+1:3 r:1",
-};
-
-/** The six notes of each chord over two octaves, for Legendary's arpeggios. */
-const WIDE_NOTES: Record<string, string> = {
-  b: "B1 F#2 B2 D3 F#3 B3",
-  e: "E2 B2 E3 G3 B3 E4",
-  f: "F#1 C#2 F#2 A#2 C#3 F#3",
-};
-
-/** Legendary's half bar of arpeggio in eighths: up two octaves and back one note, then a rest to jump. */
-const WIDE: Record<string, string> = {};
-for (const [chord, notes] of Object.entries(WIDE_NOTES)) {
-  const pitches = notes.split(" ");
-  const fingers = [5, 2, 1, 3, 2, 1];
-  WIDE[chord] = `${[0, 1, 2, 3, 4, 5, 4].map((at) => `${pitches[at]}/${fingers[at]}:1`).join(" ")} r:1`;
-}
-
-/** Epic's tune again in eighths, with a third or a sixth under its long notes. */
-const TUNE_THIRDS_OPENING = [
-  "D5+F#5/3+5:8 B4/1:2 C#5/2:2 D5/3:2 E5/4:2",
-  "D5+F#5/3+5:6 B4+D5/1+3:2 D5+F#5/3+5:6 B4+D5/1+3:2",
-  "D5+F#5/3+5:6 B4/2:2 D5/3:2 B4/2:2 G4/1:2 D5/5:2",
-].join(" | ");
-
-/** Epic's tune again, ending on a three-note B minor chord after a short rest. */
-const EPIC_TUNE_AGAIN = [
-  TUNE_THIRDS_OPENING,
-  "D4+B4/1+3:9 r:1 E5/5:2 D5/4:2 C#5/3:2",
-  TUNE_THIRDS_OPENING,
-  "F#4+B4/1+3:11 r:1 D4+F#4+B4/1+2+5:4",
-].join(" | ");
-
-/** Legendary's tune again in eighths, with its long notes in chords of three and four notes. */
-const LEGENDARY_OPENING = [
-  "F#4+B4+D5+F#5/1+2+3+5:8 B4/1:2 C#5/2:2 D5/3:2 E5/4:2",
-  "B4+D5+F#5/1+3+5:6 B4+D5/1+3:2 B4+D5+F#5/1+3+5:6 B4+D5/1+3:2",
-  "B4+D5+F#5/1+3+5:6 B4/2:2 D5/3:2 B4/2:2 G4/1:2 D5/5:2",
-].join(" | ");
-
-/** Legendary's tune again, ending on a four-note B minor chord. */
-const LEGENDARY_TUNE_AGAIN = [
-  LEGENDARY_OPENING,
-  "D4+F#4+B4/1+2+3:9 r:1 E5/5:2 D5/4:2 C#5/3:2",
-  LEGENDARY_OPENING,
-  "D4+F#4+B4/1+2+4:11 r:1 B3+D4+F#4+B4/1+2+3+5:4",
-].join(" | ");
 
 /** One bar of the Original in 24 units a quarter, 96 to the bar: the right hand, the left hand and the pedal. */
 type PrintBar = readonly [right: string, left: string, pedal: string];
@@ -536,6 +496,142 @@ function rolledWide(text: string): string {
     .join(" ");
 }
 
+/** Print bar `bar` of the Original. */
+function printBar(bar: number): PrintBar {
+  const found = PRINT_BARS[bar];
+  if (found === undefined) throw new Error(`Swan Lake's Original has no bar ${bar}`);
+  return found;
+}
+
+/** `part` of the Original's bars `from` to `to`, one entry per bar. */
+function printPart(from: number, to: number, part: 0 | 1 | 2): string[] {
+  return Array.from({ length: to - from + 1 }, (_, at) => printBar(from + at)[part]);
+}
+
+/**
+ * The right hand's bars 10 and 14 for Epic and Legendary. The first chord lets go a short rest early, so
+ * finger 2 can take D and the hand climbs to G.
+ */
+const A_CHORDS_FINGERED = "E4+A4+C#5/1+2+4:18 r:6 D5/2:24 A4+C#5+E5/1+2+3:24 F#5/4:12 G5/5:12";
+
+/** The left hand's triplets on A for Epic and Legendary: the thumb takes the A above, and finger 3 crosses over it. */
+const A_RISE_FINGERED = "A3/1:8 C#4/3:8 E4/2:8 C#4/3:8 A3/1:8";
+
+/** The left hand's E minor arpeggio of bars 12 and 16 for Epic and Legendary, fingered 5, 3, 2, 1, then over to E. */
+const E_RISE_FINGERED = "E2+E3/5+1:8 B2/3:8 E3/2:8 G3/1:8 B3/2:8 E4/1:8";
+
+/** The tune's long F sharp in the left hand's chord, let go a short rest before the low octave. */
+const HIGH_F_SHARP = "F#3+B3+D4+F#4/5+3+2+1:18 r:6";
+
+/** The left hand's bars 19 and 23 for Legendary: the long F sharp, a low octave, then B climbing to E. */
+const LOW_CLIMB_FINGERED = `${HIGH_F_SHARP} B1+B2/5+1:18 r:6 G3+B3/5+4:12 C#4/3:12 D4/2:12 E4/1:12`;
+
+/** The left hand's bars 20 and 24 for Legendary: F sharp and D twice, over a low octave. */
+const LOW_SWING_FINGERED = `${HIGH_F_SHARP} B1+B2/5+1:6 r:6 D4/2:12 F#4/1:36 D4/2:12`;
+
+/** The left hand's bar 22 for Epic and Legendary: the tune's long B, then E, D and C sharp. */
+const LOW_TURN_LEFT = "D3+F#3+B3/5+3+1:18 r:6 B1+B2/5+1:18 r:6 B2+E3+G3/5+3+2:6 r:6 E4/1:12 D4/2:12 C#4/3:12";
+
+/** The left hand's bars 21 and 25 for Legendary, with `low` as the lowest note of the G chord. */
+function lowTurnFingered(low: string): string {
+  return `${HIGH_F_SHARP} B1+B2/5+1:6 r:6 B3/2:12 ${low}+G3+D4/5+4+1:12 B3/2:12 E3+G3/5+3:12 D4/1:12`;
+}
+
+/**
+ * The Original's bars that Epic and Legendary play in another fingering, by bar: the right hand, then the
+ * left. A version's fingers are checked move by move, where the Original's are not. So these bars move
+ * fingers within the hand's span, and let go a short rest before each leap no hand spans.
+ */
+const FINGERED: Record<number, [right: string | undefined, left: string | undefined]> = {
+  2: [undefined, `B2/5:6 r:6 ${shake(...B_SHAKE, 3, 6)} ${shake(...E_SHAKE, 3, 8)}`],
+  3: [undefined, `${shake(...B_SHAKE, 3, 15)} r:6`],
+  4: [
+    undefined,
+    `B2/5:6 r:6 ${shake(...B_SHAKE, 3, 6)} ${shake("G#3+B3/4+2", "F4/1", 3, 4)} ${shake("G3+B3/4+2", "E4/1", 3, 2)} ${shake("F#3+A#3/5+3", "E4/1", 3, 2)}`,
+  ],
+  10: [A_CHORDS_FINGERED, `A2/5:8 ${A_RISE_FINGERED} G2/5:8 ${A_RISE_FINGERED}`],
+  12: [undefined, "E2+E3/5+1:8 B2/3:8 E3/2:8 G3/1:8 B3/3:8 E4/2:8 G4/1:12 r:36"],
+  13: [
+    "C#5+E#5+C#6/1+2+5:36 B5/4:12 A#4+F#5/1+4:12 D5/3:12 F#4+C#5/1+2:12 B4/2:12",
+    "C#2+C#3/5+1:8 G#2/3:8 C#3/2:8 E#3/1:8 G#3/3:8 C#4/2:8 F#3+F#4/5+1:24 B3+D4/2+1:18 r:6",
+  ],
+  14: [A_CHORDS_FINGERED, `A2+A3/5+1:8 ${A_RISE_FINGERED} G2+G3/5+1:8 ${A_RISE_FINGERED}`],
+  16: [undefined, `${E_RISE_FINGERED} D3/5:8 G3/3:8 B3/2:8 F4/1:8 B3/2:8 G3/3:8`],
+  17: [undefined, "C3+E3/5+3:6 G3/2:6 C4/1:6 G3/2:6 E3/5:5 G3/3:5 C4/2:5 E4/1:5 G4/2:4 C5/1:18 r:6 Bb2+Bb3/5+1:18 r:6"],
+  18: [undefined, "E#3+B3+C#4/5+2+1:18 r:6 G#2+G#3/5+1:18 r:6 E3+A#3+C#4/5+2+1:18 r:6 F#2+F#3/5+1:18 r:6"],
+  19: [`B5/5:12 ${shake("E5/2", "B4/1", 3, 6)} ${shake("B4+E5/2+5", "G4/1", 3, 8)}`, LOW_CLIMB_FINGERED],
+  20: [undefined, LOW_SWING_FINGERED],
+  21: [undefined, lowTurnFingered("F3")],
+  22: [undefined, LOW_TURN_LEFT],
+  23: [undefined, LOW_CLIMB_FINGERED],
+  24: [undefined, LOW_SWING_FINGERED],
+  25: [undefined, lowTurnFingered("F#3")],
+};
+
+/** Epic's tremolo: `low`, then `high`, an eighth each, `pairs` times. It runs at half the Original's speed. */
+function slowShake(low: string, high: string, pairs: number): string {
+  return shake(low, high, 6, pairs);
+}
+
+/** Epic's left hand under the tune: the Original's tremolo of bars 2 to 9, at half its speed. */
+const EPIC_THEME_LEFT = [
+  `B2/5:6 r:6 ${slowShake(...B_SHAKE, 3)} ${slowShake(...E_SHAKE, 4)}`,
+  `${slowShake(...B_SHAKE, 7)} B3+D4/4+2:6 r:6`,
+  `B2/5:6 r:6 ${slowShake(...B_SHAKE, 3)} ${slowShake("G#3+B3/4+2", "F4/1", 2)} ${slowShake("G3+B3/4+2", "E4/1", 1)} ${slowShake("F#3+A#3/5+3", "E4/1", 1)}`,
+  `D4/1:6 F#3/3:6 B2/5:6 F#3/5:6 ${slowShake(...E_SHAKE, 2)} ${slowShake("B3+F#4/4+2", "A4/1", 2)} ${slowShake(...E_SHAKE, 2)}`,
+  `${slowShake(...B_SHAKE, 2)} ${slowShake("A3+D4/4+2", "F#4/1", 2)} ${slowShake("G#3+B3/4+2", "F4/1", 2)} ${slowShake("G3+B3/4+2", "E4/1", 2)}`,
+  `${slowShake("F#3+B3/4+2", "D4/1", 2)} ${slowShake("F#3+G#3/3+2", "B3/1", 2)} ${slowShake("E3+F#3+A#3/5+4+2", "C#4/1", 2)} ${slowShake("D3+F#3/4+2", "B3/1", 2)}`,
+  [
+    slowShake("C#3+E3+F#3/5+3+2", "A#3/1", 1),
+    slowShake("C#3+E3/5+3", "F#3/1", 1),
+    slowShake("B2+D3/5+3", "F#3/1", 1),
+    slowShake("A2+D3/5+2", "F#3/1", 1),
+    slowShake("G#2+B2/5+4", "F3/1", 2),
+    slowShake("G2+B2/5+4", "E3/1", 1),
+    slowShake("F#2+A#2/5+4", "E3/1", 1),
+  ].join(" "),
+  "B2/5:8 D3/4:8 F#3/2:8 B3/1:8 F#3/2:8 D3/4:8 B2/5:12 r:36",
+];
+
+/** Epic's left hand of the Original's bar 17: its quintuplet climbs in triplet eighths, and its high C is left out. */
+const EPIC_C_LEFT = "C3+E3/5+3:6 G3/2:6 C4/1:6 G3/2:6 E3/5:8 G3/3:8 C4/1:32 Bb2+Bb3/5+1:18 r:6";
+
+/** Epic's chord of the tune's long F sharp, in three notes, let go a short rest before the low octave. */
+const EPIC_HIGH_F_SHARP = "B3+D4+F#4/3+2+1:18 r:6";
+
+/** Epic's left hand of the Original's bars 19 to 25: the tune, with a short rest before each low octave. */
+const EPIC_MARCATO_LEFT = [
+  `${EPIC_HIGH_F_SHARP} B1+B2/5+1:18 r:6 G3+B3/5+4:12 C#4/3:12 D4/2:12 E4/1:12`,
+  `${EPIC_HIGH_F_SHARP} B1+B2/5+1:6 r:6 D4/3:12 F#4/1:36 D4/3:12`,
+  `${EPIC_HIGH_F_SHARP} B1+B2/5+1:6 r:6 B3/2:12 F3+G3+D4/5+4+1:12 B3/2:12 E3+G3/5+3:12 D4/1:12`,
+  LOW_TURN_LEFT,
+  `${EPIC_HIGH_F_SHARP} B1+B2/5+1:18 r:6 G3+B3/5+4:12 C#4/3:12 D4/2:12 E4/1:12`,
+  `${EPIC_HIGH_F_SHARP} B1+B2/5+1:6 r:6 D4/3:12 F#4/1:36 D4/3:12`,
+  `${EPIC_HIGH_F_SHARP} B1+B2/5+1:6 r:6 B3/2:12 F#3+G3+D4/5+4+1:12 B3/2:12 E3+G3/5+3:12 D4/1:12`,
+];
+
+/** Epic's right hand of the Original's bars 19 to 25: the tremolo over the tune, at half its speed. */
+const EPIC_MARCATO_RIGHT = [
+  `B5/5:12 ${slowShake("E5/2", "B4/1", 3)} ${slowShake("B4+E5/2+5", "G4/1", 4)}`,
+  slowShake("D5+F#5/2+4", "B4/1", 8),
+  `${slowShake("D5+F#5/2+4", "B4/1", 4)} ${slowShake("D5+G5/2+5", "B4/1", 2)} ${slowShake("E5+A#5/2+5", "A#4/1", 2)}`,
+  `${slowShake(...B_HIGH, 4)} ${slowShake(...E_HIGH, 4)}`,
+  `${slowShake(...B_HIGH, 4)} ${slowShake(...E_HIGH, 4)}`,
+  slowShake(...B_HIGH, 8),
+  `${slowShake(...B_HIGH, 4)} ${slowShake("D5+G5/2+5", "B4/1", 2)} ${slowShake("E5+A#5/2+5", "A#4/1", 2)}`,
+];
+
+/** `part` of the Original's bars `from` to `to` as Epic and Legendary play them: from `FINGERED` where it has the bar. */
+function fingeredPart(from: number, to: number, part: 0 | 1): string[] {
+  return Array.from({ length: to - from + 1 }, (_, at) => {
+    const bar = from + at;
+    return FINGERED[bar]?.[part] ?? printBar(bar)[part];
+  });
+}
+
+/** The B minor chord that closes Epic and Legendary: the left hand's part. */
+const CLOSE_LEFT = "B2+F#3+B3/5+2+1:96";
+
 export const swanLake: OurSong = {
   slug: "swan-lake",
   title: "Swan Lake",
@@ -597,13 +693,12 @@ export const swanLake: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 2,
-      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
-      right: toAMinor(`${TUNE_RIGHT} | ${OWN} | B4/1:8`),
-      left: toAMinor(COMMON_LEFT),
+      right: `${toAMinor(TUNE_RIGHT)} | ${RISE_A_MINOR} | ${SIGH_A_MINOR} | ${CLIMB_A_MINOR} | ${COMMON_PEAK} | A4/1:8`,
+      left: `${toAMinor(COMMON_LEFT)} | ${COMMON_PHRASE_LEFT}`,
       skills: ["five-finger-position", "held-bass"],
       practice: [
         { text: "Play the first four bars with the right hand alone, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 4], wait: true },
-        { text: "Play bars 9 to 16 with the right hand alone. The hand stays in one place.", hands: "right", speed: 0.6, loop: [9, 16], wait: true },
+        { text: "Play bars 9 to 13 with the right hand alone. Finger 5 moves up from E to G in bar 10.", hands: "right", speed: 0.6, loop: [9, 13], wait: true },
         { text: "Now the left hand alone. It holds one shape for a whole bar or half a bar.", hands: "left", speed: 0.6, loop: null, wait: true },
         { text: "Put both hands together on the first eight bars, slowly.", hands: "both", speed: 0.7, loop: [1, 8], wait: true },
         { text: "Play the whole song with both hands at full speed.", hands: "both", speed: 1, loop: null, wait: false },
@@ -614,9 +709,9 @@ export const swanLake: OurSong = {
         { fromBar: 3, toBar: 3, kind: "fingering", text: "Finger 2 plays A in this bar, so the thumb can reach down to F." },
       ],
       tricky: {
-        1: "After the long E, land the thumb on A. Fingers 2, 3 and 4 then climb to D.",
         3: "Play A with finger 2 here. Then the thumb reaches down to F, and finger 3 takes C.",
         7: "As in bar 3, finger 2 plays A, and the thumb reaches down to F.",
+        10: "Finger 5 holds E, then moves up to G. Finger 3 takes F, and finger 2 takes E.",
       },
     },
     rare: {
@@ -625,9 +720,19 @@ export const swanLake: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 2,
-      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
-      right: toAMinor(`${TUNE_RIGHT} | ${OWN} | B4+D5/1+3:8`),
-      left: toAMinor(`${bars(PULSE, "bbbbeebhbbbbeefb")} | ${bars(PULSE, "eebbeeffbbefbf")} | B2+D3+F#3/5+3+1:8`),
+      right: [
+        toAMinor(TUNE_RIGHT),
+        RISE_A_MINOR,
+        SIGH_A_MINOR,
+        CLIMB_A_MINOR,
+        PEAK_A_MINOR,
+        RISE_A_MINOR,
+        SIGH_A_MINOR,
+        CLIMB_A_MINOR,
+        TURN_A_MINOR,
+        "C5+A5/1+4:8",
+      ].join(" | "),
+      left: `${toAMinor(bars(PULSE, "bbbbeebhbbbbeefb"))} | ${bars(RARE_PULSE, RARE_PHRASE_CHORDS)} | A2+C3+E3/5+3+1:8`,
       skills: ["two-note-chords", "waltz-bass"],
       practice: [
         { text: "Play the left hand alone. A low note comes on the beat, and a two-note chord answers it.", hands: "left", speed: 0.6, loop: [1, 4], wait: true },
@@ -638,13 +743,13 @@ export const swanLake: OurSong = {
       ],
       tips: [
         { fromBar: 1, toBar: 4, kind: "rhythm", text: "The left hand plays on every beat: a low note, then a chord. Count it as one, two." },
-        { fromBar: 1, toBar: 16, kind: "sound", text: "Keep the left hand soft, so the tune sings above it." },
-        { fromBar: 16, toBar: 16, kind: "fingering", text: "End with A and C together. Fingers 1 and 3 press them as one." },
+        { fromBar: 1, toBar: 17, kind: "sound", text: "Keep the left hand soft, so the tune sings above it." },
+        { fromBar: 17, toBar: 17, kind: "fingering", text: "End with C and A together. Fingers 1 and 4 press them as one." },
       ],
       tricky: {
-        3: "Finger 2 plays A in this bar, so the thumb can reach down to F.",
-        7: "As in bar 3, finger 2 plays A, and the thumb reaches down to F.",
-        12: "The left hand plays E with finger 1, then adds B below it with finger 4.",
+        9: "Finger 2 starts on B, and each finger climbs one key up to E. The left hand plays G, then D.",
+        10: "Finger 5 moves up from E to G. Then fingers 3 and 2 take F and E.",
+        14: "As in bar 10, finger 5 moves up from E to G.",
       },
     },
     epic: {
@@ -652,59 +757,57 @@ export const swanLake: OurSong = {
       bpm: 144,
       numerator: 4,
       denominator: 2,
-      steps: 4,
-      right: [inEighths(TUNE_RIGHT), OWN_EIGHTHS, EPIC_TUNE_AGAIN].join(" | "),
-      left: `${bars(ALBERTI, `${TUNE_CHORDS}${OWN_CHORDS}${TUNE_CHORDS.slice(0, -1)}`)} B2+D3+F#3/5+3+1:8`,
-      pedal: Array(24).fill("P:8 P:8").join(" | "),
-      markedClashBars: [3, 7, 19, 23],
-      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
-      skills: ["alberti-bass", "pedal", "thirds-and-sixths"],
+      steps: 24,
+      right: [scaled(TUNE_RIGHT, 12), ...fingeredPart(10, 18, 0), ...EPIC_MARCATO_RIGHT, "B4+D5+F#5/1+2+4:96"].join(" | "),
+      left: [...EPIC_THEME_LEFT, ...fingeredPart(10, 16, 1), EPIC_C_LEFT, ...fingeredPart(18, 18, 1), ...EPIC_MARCATO_LEFT, CLOSE_LEFT].join(" | "),
+      pedal: [...Array<string>(17).fill(UP), ...printPart(19, 25, 2), "P:96"].join(" | "),
+      markedClashBars: [12, 24],
+      skills: ["left-hand-melody", "broken-chords", "pedal"],
       practice: [
-        { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
-        { text: "Play the right hand's thirds alone, and press both notes of each pair as one.", hands: "right", speed: 0.6, loop: [17, 20], wait: true },
+        { text: "Play bars 1 to 4 with the left hand alone. Shake evenly between the lower notes and the upper note.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
+        { text: "Play bars 18 to 24 with the left hand alone. It carries the tune here, under the right hand's tremolo.", hands: "left", speed: 0.5, loop: [18, 24], wait: true },
         { text: "Join the hands on the first eight bars, slowly.", hands: "both", speed: 0.5, loop: [1, 8], wait: true },
         { text: "Play the whole song with both hands at three-quarter speed.", hands: "both", speed: 0.75, loop: null, wait: false },
         { text: "Now play it at full speed, with the pedal.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
-        { fromBar: 1, toBar: 8, kind: "sound", text: "Change the pedal on each new bass note, twice in every bar." },
-        { fromBar: 3, toBar: 3, kind: "sound", text: "The low G rubs against the held F sharp. That sharp, sad sound is on purpose." },
-        { fromBar: 17, toBar: 20, kind: "fingering", text: "The tune is the top note of each pair, so let the upper finger lead." },
+        { fromBar: 1, toBar: 8, kind: "sound", text: "Play the tremolo as softly as you can, so the tune sings above it." },
+        { fromBar: 9, toBar: 16, kind: "rhythm", text: "The left hand plays three notes to each beat. Keep them even against the right hand's straight notes." },
+        { fromBar: 18, toBar: 24, kind: "sound", text: "The tune is in the left hand now. Let it sing out, and keep the right hand's tremolo softer." },
       ],
       tricky: {
-        8: "The left hand plays A sharp in the first half. Then it moves back to B minor for the close.",
-        21: "Fingers 3 and 5 hold D and F sharp. Then the thumb starts the climb from B to E.",
-        24: "Use the short rest to spread the right hand over D, F sharp and B.",
+        18: "The left hand now plays the tune. It lets go of its chord early, jumps down to a low octave, then climbs from B to E.",
+        19: "Let go of the chord a little early, and jump down to the low B octave. Then finger 3 takes D, and the thumb takes F sharp.",
+        23: "As in bar 19, jump down to the low octave in the short rest. The right hand keeps shaking evenly above.",
       },
     },
     legendary: {
       key: B_MINOR,
-      bpm: 152,
+      bpm: 144,
       numerator: 4,
       denominator: 2,
-      steps: 4,
-      right: [inEighths(TUNE_RIGHT), OWN_EIGHTHS, LEGENDARY_TUNE_AGAIN].join(" | "),
-      left: [bars(STRIDE, TUNE_CHORDS), bars(WIDE, OWN_CHORDS), `${bars(STRIDE, TUNE_CHORDS.slice(0, -1))} B1+F#2+B2/5+2+1:8`].join(" | "),
-      pedal: Array(24).fill("P:8 P:8").join(" | "),
-      markedClashBars: [3, 4, 7, 8, 19, 20, 23, 24],
-      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
-      skills: ["octave-bass", "arpeggios", "melody-in-chords"],
+      steps: 24,
+      right: [...fingeredPart(2, 25, 0), "B4+D5+F#5+B5/1+2+3+5:96"].join(" | "),
+      left: [...fingeredPart(2, 25, 1), CLOSE_LEFT].join(" | "),
+      pedal: [...printPart(2, 25, 2), "P:96"].join(" | "),
+      markedClashBars: [12, 24],
+      skills: ["left-hand-melody", "arpeggios", "octave-bass"],
       practice: [
-        { text: "Play the left hand alone: an octave on the beat, then a chord, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },
-        { text: "Play the left hand's arpeggios alone. The thumb passes under, and finger 3 crosses over.", hands: "left", speed: 0.5, loop: [9, 16], wait: true },
-        { text: "Play the right hand's chords alone, and let the top finger sing the tune.", hands: "right", speed: 0.5, loop: [17, 20], wait: true },
+        { text: "Play bars 1 to 8 with the left hand alone. Shake evenly between the lower notes and the upper note, and keep it very soft.", hands: "left", speed: 0.5, loop: [1, 8], wait: false },
+        { text: "Play bars 9 to 16 with the left hand alone. It plays three notes to each beat, and finger 3 crosses over the thumb.", hands: "left", speed: 0.5, loop: [9, 16], wait: true },
+        { text: "Play bars 18 to 24 with the left hand alone. It carries the tune, and jumps down to a low octave in each bar.", hands: "left", speed: 0.5, loop: [18, 24], wait: true },
         { text: "Play the whole song with both hands at three-quarter speed.", hands: "both", speed: 0.75, loop: null, wait: false },
         { text: "Now play it at full speed, and let the last chord ring.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
-        { fromBar: 1, toBar: 8, kind: "trick", text: "Use the short rest after each octave and chord to jump to the next one." },
-        { fromBar: 9, toBar: 16, kind: "sound", text: "Let the arpeggios flow softly under the tune, and change the pedal on each new chord." },
-        { fromBar: 17, toBar: 24, kind: "sound", text: "Play the top note of each chord a little louder than the others." },
+        { fromBar: 1, toBar: 8, kind: "sound", text: "Play the tremolo as softly as you can. The oboe's tune sings above it." },
+        { fromBar: 9, toBar: 16, kind: "rhythm", text: "The left hand plays three notes to each beat. Keep them even against the right hand's straight notes." },
+        { fromBar: 18, toBar: 24, kind: "sound", text: "The tune moves into the left hand. Let it sing out, and keep the right hand's tremolo softer." },
       ],
       tricky: {
-        12: "The left hand climbs two octaves from F sharp, twice. Finger 3 crosses over the thumb onto A sharp.",
-        19: "Finger 2 takes B after the chord. Then the thumb reaches down to G, and finger 5 takes D.",
-        23: "As in bar 19, the thumb reaches down to G, and finger 5 takes D.",
+        22: "The left hand lets go of its four-note chord early, and jumps down to the low B octave. Then it climbs from B to E.",
+        23: "The left hand plays the tune's F sharp in a chord, then jumps down to a low B octave. Then finger 2 takes D.",
+        24: "Jump down to the low octave, then back up to B. The right hand's tremolo moves to G, then to A sharp.",
       },
     },
   },
@@ -718,7 +821,7 @@ export const swanLake: OurSong = {
       common: {
         practice: [
           "Spiel die ersten vier Takte nur mit der rechten Hand, und lass das Stück auf jeden Ton warten.",
-          "Spiel die Takte 9 bis 16 nur mit der rechten Hand. Die Hand bleibt an einem Platz.",
+          "Spiel die Takte 9 bis 13 nur mit der rechten Hand. In Takt 10 geht Finger 5 vom E hinauf zum G.",
           "Jetzt die linke Hand allein. Sie hält jeden Griff einen ganzen oder einen halben Takt lang.",
           "Spiel die ersten acht Takte langsam mit beiden Händen zusammen.",
           "Spiel das ganze Stück mit beiden Händen im vollen Tempo.",
@@ -729,9 +832,9 @@ export const swanLake: OurSong = {
           "In diesem Takt spielt Finger 2 das A, damit der Daumen hinunter zum F reicht.",
         ],
         tricky: {
-          1: "Setz nach dem langen E den Daumen auf das A. Dann steigen Finger 2, 3 und 4 bis zum D.",
           3: "Spiel das A hier mit Finger 2. Dann reicht der Daumen hinunter zum F, und Finger 3 nimmt das C.",
           7: "Wie in Takt 3 spielt Finger 2 das A, und der Daumen reicht hinunter zum F.",
+          10: "Finger 5 hält das E und geht dann hinauf zum G. Finger 3 nimmt das F, und Finger 2 nimmt das E.",
         },
       },
       rare: {
@@ -745,50 +848,50 @@ export const swanLake: OurSong = {
         tips: [
           "Die linke Hand spielt auf jedem Schlag: erst einen tiefen Ton, dann einen Akkord. Zähl dazu eins, zwei.",
           "Spiel die linke Hand leise, damit die Melodie darüber singt.",
-          "Am Ende spielst du A und C zusammen. Finger 1 und 3 drücken sie wie einen Ton.",
+          "Am Ende spielst du C und A zusammen. Finger 1 und 4 drücken sie wie einen Ton.",
         ],
         tricky: {
-          3: "In diesem Takt spielt Finger 2 das A, damit der Daumen hinunter zum F reicht.",
-          7: "Wie in Takt 3 spielt Finger 2 das A, und der Daumen reicht hinunter zum F.",
-          12: "Die linke Hand spielt das E mit Finger 1 und nimmt dann das H darunter mit Finger 4 dazu.",
+          9: "Finger 2 beginnt auf dem H, und jeder Finger steigt eine Taste höher bis zum E. Die linke Hand spielt G, dann D.",
+          10: "Finger 5 geht vom E hinauf zum G. Dann nehmen Finger 3 und 2 das F und das E.",
+          14: "Wie in Takt 10 geht Finger 5 vom E hinauf zum G.",
         },
       },
       epic: {
         practice: [
-          "Spiel den Alberti-Bass allein, bis er von selbst rollt: tief, hoch, Mitte, hoch.",
-          "Spiel die Terzen der rechten Hand allein, und drück beide Töne jedes Paars wie einen an.",
+          "Spiel die Takte 1 bis 4 nur mit der linken Hand. Wechsle gleichmäßig zwischen den unteren Tönen und dem oberen Ton.",
+          "Spiel die Takte 18 bis 24 nur mit der linken Hand. Sie trägt hier die Melodie, unter dem Tremolo der rechten Hand.",
           "Spiel die ersten acht Takte langsam mit beiden Händen zusammen.",
           "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
           "Jetzt spiel es im vollen Tempo, mit Pedal.",
         ],
         tips: [
-          "Wechsle das Pedal bei jedem neuen Basston, zweimal in jedem Takt.",
-          "Das tiefe G reibt sich am gehaltenen Fis. Dieser scharfe, traurige Klang ist gewollt.",
-          "Die Melodie ist der obere Ton jedes Paars, also lass den oberen Finger führen.",
+          "Spiel das Tremolo so leise, wie du kannst, damit die Melodie darüber singt.",
+          "Die linke Hand spielt drei Töne auf jeden Schlag. Halt sie gleichmäßig gegen die geraden Töne der rechten Hand.",
+          "Die Melodie liegt jetzt in der linken Hand. Lass sie singen, und spiel das Tremolo der rechten Hand leiser.",
         ],
         tricky: {
-          8: "Die linke Hand spielt in der ersten Hälfte ein Ais. Dann kehrt sie für den Schluss nach h-Moll zurück.",
-          21: "Finger 3 und 5 halten D und Fis. Dann beginnt der Daumen den Aufstieg vom H zum E.",
-          24: "Nutz die kurze Pause, um die rechte Hand über D, Fis und H zu spannen.",
+          18: "Die linke Hand spielt jetzt die Melodie. Sie lässt ihren Akkord früh los, springt hinunter zu einer tiefen Oktave und steigt dann vom H zum E.",
+          19: "Lass den Akkord etwas früher los, und spring hinunter zur tiefen H-Oktave. Dann nimmt Finger 3 das D und der Daumen das Fis.",
+          23: "Wie in Takt 19 springst du in der kurzen Pause hinunter zur tiefen Oktave. Die rechte Hand wechselt darüber gleichmäßig weiter.",
         },
       },
       legendary: {
         practice: [
-          "Spiel die linke Hand allein: eine Oktave auf dem Schlag, dann einen Akkord, jeweils mit einer kurzen Pause zum Springen.",
-          "Spiel die Arpeggios der linken Hand allein. Der Daumen geht unter, und Finger 3 kreuzt darüber.",
-          "Spiel die Akkorde der rechten Hand allein, und lass den obersten Finger die Melodie singen.",
+          "Spiel die Takte 1 bis 8 nur mit der linken Hand. Wechsle gleichmäßig zwischen den unteren Tönen und dem oberen Ton, und spiel sehr leise.",
+          "Spiel die Takte 9 bis 16 nur mit der linken Hand. Sie spielt drei Töne auf jeden Schlag, und Finger 3 kreuzt über den Daumen.",
+          "Spiel die Takte 18 bis 24 nur mit der linken Hand. Sie trägt die Melodie und springt in jedem Takt hinunter zu einer tiefen Oktave.",
           "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
           "Jetzt spiel es im vollen Tempo, und lass den letzten Akkord klingen.",
         ],
         tips: [
-          "Nutz die kurze Pause nach jeder Oktave und jedem Akkord, um zum nächsten Griff zu springen.",
-          "Lass die Arpeggios leise unter der Melodie fließen, und wechsle das Pedal bei jedem neuen Akkord.",
-          "Spiel den oberen Ton jedes Akkords etwas lauter als die anderen.",
+          "Spiel das Tremolo so leise, wie du kannst. Die Melodie der Oboe singt darüber.",
+          "Die linke Hand spielt drei Töne auf jeden Schlag. Halt sie gleichmäßig gegen die geraden Töne der rechten Hand.",
+          "Die Melodie wandert in die linke Hand. Lass sie singen, und spiel das Tremolo der rechten Hand leiser.",
         ],
         tricky: {
-          12: "Die linke Hand steigt zweimal zwei Oktaven vom Fis hinauf. Finger 3 kreuzt über den Daumen auf das Ais.",
-          19: "Nach dem Akkord nimmt Finger 2 das H. Dann reicht der Daumen hinunter zum G, und Finger 5 nimmt das D.",
-          23: "Wie in Takt 19 reicht der Daumen hinunter zum G, und Finger 5 nimmt das D.",
+          22: "Die linke Hand lässt ihren Vierklang früh los und springt hinunter zur tiefen H-Oktave. Dann steigt sie vom H zum E.",
+          23: "Die linke Hand spielt das Fis der Melodie in einem Akkord und springt dann hinunter zu einer tiefen H-Oktave. Dann nimmt Finger 2 das D.",
+          24: "Spring hinunter zur tiefen Oktave und dann zurück hinauf zum H. Das Tremolo der rechten Hand geht zum G und dann zum Ais.",
         },
       },
     },

@@ -10,6 +10,9 @@ Traps a session paid for once, so the next one does not. **It is not a changelog
 <!-- looper:end playbook -->
 
 ## Tooling
+- **One reviewer of eight reworked songs runs out of context before the last song.** Each note-for-note
+  check reads a module's versions and its Original, so the reviewer skipped `tools/our-songs/william-tell.ts`.
+  Give a batch two reviewers of four songs each, sent out together.
 - **Write and Edit turn a typed `⁨` into the raw isolate character.** A translation file then hides
   its isolates, though `src/i18n/messages/*.ar.ts` writes them as escapes. A typed backslash escape
   turns raw too, and a doubled backslash stays doubled. Write the backslash itself as the escape

@@ -47,7 +47,40 @@ const MOVED_SLUGS = ["mary-had-a-little-lamb", "twinkle-twinkle-little-star", "o
  * The versions of ours whose notes were reworked, as `<slug>/<id>`, such as `morning-mood/common`. Each
  * left `ours/<slug>/<id>.mid` for `ours/<slug>/<id>-2.mid`.
  */
-export const REWORKED_VERSIONS: readonly string[] = [];
+export const REWORKED_VERSIONS: readonly string[] = [
+  "beethoven-5/common",
+  "beethoven-5/rare",
+  "beethoven-5/epic",
+  "beethoven-5/legendary",
+  "bolero/common",
+  "bolero/rare",
+  "bolero/epic",
+  "bolero/legendary",
+  "can-can/common",
+  "can-can/rare",
+  "can-can/epic",
+  "can-can/legendary",
+  "morning-mood/common",
+  "morning-mood/rare",
+  "morning-mood/epic",
+  "morning-mood/legendary",
+  "swan-lake/common",
+  "swan-lake/rare",
+  "swan-lake/epic",
+  "swan-lake/legendary",
+  "the-sorcerers-apprentice/common",
+  "the-sorcerers-apprentice/rare",
+  "the-sorcerers-apprentice/epic",
+  "the-sorcerers-apprentice/legendary",
+  "vltava/common",
+  "vltava/rare",
+  "vltava/epic",
+  "vltava/legendary",
+  "william-tell/common",
+  "william-tell/rare",
+  "william-tell/epic",
+  "william-tell/legendary",
+];
 
 /** The file name of the version `id` of the song `slug`, in its folder: `<id>-2.mid` once reworked, else `<id>.mid`. */
 export function versionFileName(slug: string, id: string, reworked: readonly string[] = REWORKED_VERSIONS): string {

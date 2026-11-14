@@ -25,7 +25,6 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         3: "Jari 4 memainkan B tiga kali. Tanganmu baru saja bergeser satu tuts ke atas, jadi jari 5 menunggu di atas C.",
-        5: "Setelah dua C tinggi, jari 4 memainkan B lagi. Jaga tanganmu tetap diam, dan biarkan jari-jarinya berjalan turun.",
         8: "Mainkan dua F kres pertama dengan ibu jari, dan yang ketiga dengan jari 2. Dengan begitu ibu jari bebas untuk E.",
       },
     },
@@ -44,46 +43,6 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         3: "Jari 4 memainkan B tiga kali setelah tangan bergeser ke atas. Tangan kiri memainkan E yang panjang, lalu B yang pendek.",
-        5: "Jari 4 memainkan B tiga kali lagi, dan jari 3 menunggu di atas A untuk birama berikutnya.",
-        12: "Jari 3, 4, dan 5 naik dari G ke B. Lalu A dan G turun kembali dengan cepat sebelum B yang panjang.",
-      },
-    },
-    epic: {
-      practice: [
-        "Mainkan tangan kiri saja sampai akor terurainya mengalir dengan sendirinya.",
-        "Mainkan tangan kanan saja pada birama 10 sampai 17, dan susupkan ibu jari saat naik.",
-        "Mainkan terts dan sekst tangan kanan saja, dan tekan kedua not setiap pasangan sebagai satu.",
-        "Mainkan seluruh lagu dengan kedua tangan, dengan tiga perempat kecepatan.",
-        "Sekarang mainkan dengan kecepatan penuh, dengan pedal.",
-      ],
-      tips: [
-        "Ganti pedal di setiap not bas baru, dua kali dalam setiap birama.",
-        "Susupkan ibu jari ke G setelah F kres. Lalu jari 2, 3, dan 4 meraih A, B, dan C.",
-        "Melodinya adalah not teratas setiap pasangan, jadi biarkan jari yang di atas memimpin.",
-      ],
-      tricky: {
-        16: "Ibu jari mengambil D kres, dan tangan kiri memainkan D kres rendah di bawahnya. Keduanya mengantar pulang ke E.",
-        17: "Jari 3, 2, dan 1 berjalan turun ke E. Lalu ibu jari melompat turun ke B, not gantung yang membuka melodi.",
-        24: "Jari 1 dan 3 menahan D kres dan F kres. Lalu ibu jari meregang turun ke A untuk sekst.",
-      },
-    },
-    legendary: {
-      practice: [
-        "Mainkan tangan kiri saja: satu oktaf tepat pada ketukan, lalu satu akor dua kali, masing-masing dengan istirahat singkat untuk melompat.",
-        "Mainkan arpeggio tangan kiri saja. Ibu jari menyusup, dan jari 3 menyeberang.",
-        "Mainkan akor tangan kanan saja, dan biarkan jari yang di atas menyanyikan melodinya.",
-        "Mainkan seluruh lagu dengan kedua tangan, dengan tiga perempat kecepatan.",
-        "Sekarang mainkan dengan kecepatan penuh, dan biarkan akor terakhir berbunyi.",
-      ],
-      tips: [
-        "Pakai istirahat singkat setelah setiap oktaf dan akor untuk melompat ke posisi berikutnya.",
-        "Biarkan arpeggio mengalir dengan lembut, seperti sungai di bawah melodi.",
-        "Beberapa akor sengaja bergesekan dengan bas. Mainkan not teratas setiap akor sedikit lebih keras.",
-      ],
-      tricky: {
-        20: "Rentangkan tanganmu di atas C, E, A, dan C untuk akor pertama. Lalu ibu jari naik ke E untuk akor kedua.",
-        22: "Akor A minor berbunyi tiga kali. Biarkan tanganmu lemas, dan mainkan yang terakhir dengan jari 2 dan 5.",
-        24: "Tahan akor B mayor, lalu pakai istirahat singkat untuk merentangkan tanganmu di atas E, G, B, dan E.",
       },
     },
   },

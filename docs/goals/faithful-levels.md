@@ -9,7 +9,7 @@ stages:
     status: done
   - id: 2
     title: "Batch 1: the songs with an Original of ours"
-    status: open
+    status: done
   - id: 3
     title: "Batch 2: the catalog's Originals and the slow classics"
     status: open
@@ -83,8 +83,10 @@ inside the limits they keep.
   on the home chord. Each still earns its place.
 - **The audit's open points are settled by the batch's writer:** the edges of *William Tell*'s bars,
   *Moonlight Sonata*'s closing bars and the unread versions of *Yankee Doodle*.
+- **A print's chord that clashes with the tune past a version's limit gives way** to the print's next
+  chord, a half bar early. *Can-Can*'s bar 4 takes D7 under the tune's C for that reason.
 - **Writers, review and commits** work as `original-arrangements` rules: four writing subagents of two
-  songs each, one fresh reviewer per batch, one commit per batch.
+  songs each, two fresh reviewers of four songs each per batch, one commit per batch.
 - **The chain:** this goal runs after `original-arrangements` and before `urdu` and `japanese`.
 
 ## Stages
@@ -120,18 +122,18 @@ the audit. A version named for its accompaniment takes the source's figure the i
 ### 2. Batch 1: the songs with an Original of ours
 
 **Does:** reworks the eight songs whose Original is ours. The writer reads the next phrase from it.
-**Split:** four writing subagents of two songs each, then one fresh reviewer for the batch. Writers
+**Split:** four writing subagents of two songs each, then two fresh reviewers of four songs each. Writers
 build nothing, and the session runs the writer and the build once all end.
 **Gate:** stage 1 is done.
 
-- [ ] *Beethoven's Fifth*: all four (c 5-12, r e l 5-16). `tools/our-songs/beethoven-5.ts:1`
-- [ ] *Boléro*: all four (c 9-11, r e l 9-15). Epic and Legendary keep the snare rhythm throughout. `tools/our-songs/bolero.ts:1`
-- [ ] *Can-Can*: all four (c r 8-15, e l 8-16). `tools/our-songs/can-can.ts:1`
-- [ ] *Morning Mood*: all four (9-15). `tools/our-songs/morning-mood.ts:1`
-- [ ] *Swan Lake*: all four (9-16). Epic and Legendary weigh the Original's tremolo. `tools/our-songs/swan-lake.ts:1`
-- [ ] *The Sorcerer's Apprentice*: all four (11-15). `tools/our-songs/the-sorcerers-apprentice.ts:1`
-- [ ] *Vltava*: all four (c r 10-16, e l 10-17). Epic and Legendary weigh the river's eighths. `tools/our-songs/vltava.ts:1`
-- [ ] *William Tell*: all four (as marked). Epic and Legendary weigh the gallop's repeated chords. `tools/our-songs/william-tell.ts:1`
+- [x] *Beethoven's Fifth*: all four (c 5-12, r e l 5-16). `tools/our-songs/beethoven-5.ts:1`
+- [x] *Boléro*: all four (c 9-11, r e l 9-15). Epic and Legendary keep the snare rhythm throughout. `tools/our-songs/bolero.ts:1`
+- [x] *Can-Can*: all four (c r 8-15, e l 8-16). `tools/our-songs/can-can.ts:1`
+- [x] *Morning Mood*: all four (9-15). `tools/our-songs/morning-mood.ts:1`
+- [x] *Swan Lake*: all four (9-16). Epic and Legendary weigh the Original's tremolo. `tools/our-songs/swan-lake.ts:1`
+- [x] *The Sorcerer's Apprentice*: all four (11-15). `tools/our-songs/the-sorcerers-apprentice.ts:1`
+- [x] *Vltava*: all four (c r 10-16, e l 10-17). Epic and Legendary weigh the river's eighths. `tools/our-songs/vltava.ts:1`
+- [x] *William Tell*: all four (as marked). Epic and Legendary weigh the gallop's repeated chords. `tools/our-songs/william-tell.ts:1`
 
 ### 3. Batch 2: the catalog's Originals and the slow classics
 
@@ -202,25 +204,29 @@ another setting or ends on the home chord.
 
 ### State
 
-Stage 1 is done. The rules are in `docs/our-songs.md`, and `REWORKED_VERSIONS` drives the new files
-and the move of a learner's work. 34 modules mark their bars of our own in `ownBars`. No version is
-reworked yet, so `REWORKED_VERSIONS` is empty.
+Stages 1 and 2 are done. All 32 versions of batch 1 play the source's phrases, and each is in
+`REWORKED_VERSIONS` with its `<id>-2.mid` file. No code named an old file of the batch, so nothing
+else moved. Two fresh reviewers compared the new bars with each Original. Their must-fixes are in:
+*Can-Can*'s chords, *Vltava*'s Medium lower voice, and *William Tell*'s Medium bar 15 and Hard bar 20.
 
-The audit found 35 songs with bars of our own and three accompaniments to take from the source:
-*Boléro*, *Funeral March* and *Für Elise*. The rest are in the batches above. The tunes of 39 songs are
-whole verses or carols, so they need no rework.
+26 modules still mark bars of our own in `ownBars`, in stages 3 to 6.
 
 ### Next
 
-**Stage 2: batch 1, the songs with an Original of ours.** Files: the eight modules the stage names,
-`src/library/moved-songs.ts:50` and their guides. Gate: stage 1 is done.
+**Stage 3: batch 2, the catalog's Originals and the slow classics.** Files: the eight modules the
+stage names, `src/library/moved-songs.ts:50` and their guides. Gate: stage 2 is done.
 
-- [ ] Eight songs, each item of stage 2 above. `tools/our-songs/beethoven-5.ts:1`
+- [ ] Eight songs, each item of stage 3 above. `tools/our-songs/clair-de-lune.ts:1`
 - [ ] `REWORKED_VERSIONS` lists every reworked version of the batch. `src/library/moved-songs.ts:50`
-- [ ] Every reference to an old file moves to its new one. `src/play-modes/modes.ts:109`
+- [ ] No code names an old file of the batch, as `git grep` finds them. `src/play-modes/modes.ts:109`
 
-Expected red: `no_version_plays_a_bar_of_our_own` until stage 6. A reworked file breaks any test that
-names it by its old path.
+*Clair de Lune*, *Moonlight Sonata* and *Für Elise* read their next phrase from the catalog's file in
+`public/songs/piano-midi/`.
+
+Expected red: `no_version_plays_a_bar_of_our_own` until stage 6.
+
+Optional from batch 1's review: *William Tell*'s `TUNE_CHORDS` puts the dominant under tune bar 4's
+first half, where the print keeps E major. It is inside the tune, so Common and Rare keep it.
 
 ### Backlog
 
