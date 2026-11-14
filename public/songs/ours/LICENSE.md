@@ -247,45 +247,45 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `moonlight-sonata/epic-2.mid` | Moonlight Sonata, Medium | Ludwig van Beethoven | MIT |
 | `moonlight-sonata/legendary-2.mid` | Moonlight Sonata, Hard | Ludwig van Beethoven | MIT |
 | `moonlight-sonata/guide.json` | Moonlight Sonata, the guide | | MIT |
-| `beethoven-7-allegretto/common.mid` | Symphony No. 7: Allegretto, Beginner | Ludwig van Beethoven | MIT |
-| `beethoven-7-allegretto/rare.mid` | Symphony No. 7: Allegretto, Easy | Ludwig van Beethoven | MIT |
-| `beethoven-7-allegretto/epic.mid` | Symphony No. 7: Allegretto, Medium | Ludwig van Beethoven | MIT |
-| `beethoven-7-allegretto/legendary.mid` | Symphony No. 7: Allegretto, Hard | Ludwig van Beethoven | MIT |
+| `beethoven-7-allegretto/common-2.mid` | Symphony No. 7: Allegretto, Beginner | Ludwig van Beethoven | MIT |
+| `beethoven-7-allegretto/rare-2.mid` | Symphony No. 7: Allegretto, Easy | Ludwig van Beethoven | MIT |
+| `beethoven-7-allegretto/epic-2.mid` | Symphony No. 7: Allegretto, Medium | Ludwig van Beethoven | MIT |
+| `beethoven-7-allegretto/legendary-2.mid` | Symphony No. 7: Allegretto, Hard | Ludwig van Beethoven | MIT |
 | `beethoven-7-allegretto/guide.json` | Symphony No. 7: Allegretto, the guide | | MIT |
-| `gymnopedie-1/common.mid` | Gymnopédie No. 1, Beginner | Erik Satie | MIT |
-| `gymnopedie-1/rare.mid` | Gymnopédie No. 1, Easy | Erik Satie | MIT |
-| `gymnopedie-1/epic.mid` | Gymnopédie No. 1, Medium | Erik Satie | MIT |
-| `gymnopedie-1/legendary.mid` | Gymnopédie No. 1, Hard | Erik Satie | MIT |
+| `gymnopedie-1/common-2.mid` | Gymnopédie No. 1, Beginner | Erik Satie | MIT |
+| `gymnopedie-1/rare-2.mid` | Gymnopédie No. 1, Easy | Erik Satie | MIT |
+| `gymnopedie-1/epic-2.mid` | Gymnopédie No. 1, Medium | Erik Satie | MIT |
+| `gymnopedie-1/legendary-2.mid` | Gymnopédie No. 1, Hard | Erik Satie | MIT |
 | `gymnopedie-1/guide.json` | Gymnopédie No. 1, the guide | | MIT |
-| `hungarian-dance-5/common.mid` | Hungarian Dance No. 5, Beginner | Johannes Brahms | MIT |
-| `hungarian-dance-5/rare.mid` | Hungarian Dance No. 5, Easy | Johannes Brahms | MIT |
-| `hungarian-dance-5/epic.mid` | Hungarian Dance No. 5, Medium | Johannes Brahms | MIT |
-| `hungarian-dance-5/legendary.mid` | Hungarian Dance No. 5, Hard | Johannes Brahms | MIT |
+| `hungarian-dance-5/common-2.mid` | Hungarian Dance No. 5, Beginner | Johannes Brahms | MIT |
+| `hungarian-dance-5/rare-2.mid` | Hungarian Dance No. 5, Easy | Johannes Brahms | MIT |
+| `hungarian-dance-5/epic-2.mid` | Hungarian Dance No. 5, Medium | Johannes Brahms | MIT |
+| `hungarian-dance-5/legendary-2.mid` | Hungarian Dance No. 5, Hard | Johannes Brahms | MIT |
 | `hungarian-dance-5/guide.json` | Hungarian Dance No. 5, the guide | | MIT |
 | `eine-kleine-nachtmusik/common-2.mid` | Eine kleine Nachtmusik, Beginner | Wolfgang Amadeus Mozart | MIT |
 | `eine-kleine-nachtmusik/rare-2.mid` | Eine kleine Nachtmusik, Easy | Wolfgang Amadeus Mozart | MIT |
 | `eine-kleine-nachtmusik/epic-2.mid` | Eine kleine Nachtmusik, Medium | Wolfgang Amadeus Mozart | MIT |
 | `eine-kleine-nachtmusik/legendary-2.mid` | Eine kleine Nachtmusik, Hard | Wolfgang Amadeus Mozart | MIT |
 | `eine-kleine-nachtmusik/guide.json` | Eine kleine Nachtmusik, the guide | | MIT |
-| `lacrimosa/common.mid` | Lacrimosa, Beginner | Wolfgang Amadeus Mozart, completed by Franz Xaver Süssmayr | MIT |
-| `lacrimosa/rare.mid` | Lacrimosa, Easy | Wolfgang Amadeus Mozart, completed by Franz Xaver Süssmayr | MIT |
-| `lacrimosa/epic.mid` | Lacrimosa, Medium | Wolfgang Amadeus Mozart, completed by Franz Xaver Süssmayr | MIT |
-| `lacrimosa/legendary.mid` | Lacrimosa, Hard | Wolfgang Amadeus Mozart, completed by Franz Xaver Süssmayr | MIT |
+| `lacrimosa/common-2.mid` | Lacrimosa, Beginner | Wolfgang Amadeus Mozart, completed by Franz Xaver Süssmayr | MIT |
+| `lacrimosa/rare-2.mid` | Lacrimosa, Easy | Wolfgang Amadeus Mozart, completed by Franz Xaver Süssmayr | MIT |
+| `lacrimosa/epic-2.mid` | Lacrimosa, Medium | Wolfgang Amadeus Mozart, completed by Franz Xaver Süssmayr | MIT |
+| `lacrimosa/legendary-2.mid` | Lacrimosa, Hard | Wolfgang Amadeus Mozart, completed by Franz Xaver Süssmayr | MIT |
 | `lacrimosa/guide.json` | Lacrimosa, the guide | | MIT |
-| `mozart-21-andante/common.mid` | Piano Concerto No. 21: Andante, Beginner | Wolfgang Amadeus Mozart | MIT |
-| `mozart-21-andante/rare.mid` | Piano Concerto No. 21: Andante, Easy | Wolfgang Amadeus Mozart | MIT |
-| `mozart-21-andante/epic.mid` | Piano Concerto No. 21: Andante, Medium | Wolfgang Amadeus Mozart | MIT |
-| `mozart-21-andante/legendary.mid` | Piano Concerto No. 21: Andante, Hard | Wolfgang Amadeus Mozart | MIT |
+| `mozart-21-andante/common-2.mid` | Piano Concerto No. 21: Andante, Beginner | Wolfgang Amadeus Mozart | MIT |
+| `mozart-21-andante/rare-2.mid` | Piano Concerto No. 21: Andante, Easy | Wolfgang Amadeus Mozart | MIT |
+| `mozart-21-andante/epic-2.mid` | Piano Concerto No. 21: Andante, Medium | Wolfgang Amadeus Mozart | MIT |
+| `mozart-21-andante/legendary-2.mid` | Piano Concerto No. 21: Andante, Hard | Wolfgang Amadeus Mozart | MIT |
 | `mozart-21-andante/guide.json` | Piano Concerto No. 21: Andante, the guide | | MIT |
 | `air-on-the-g-string/common-2.mid` | Air on the G String, Beginner | Johann Sebastian Bach | MIT |
 | `air-on-the-g-string/rare-2.mid` | Air on the G String, Easy | Johann Sebastian Bach | MIT |
 | `air-on-the-g-string/epic-2.mid` | Air on the G String, Medium | Johann Sebastian Bach | MIT |
 | `air-on-the-g-string/legendary-2.mid` | Air on the G String, Hard | Johann Sebastian Bach | MIT |
 | `air-on-the-g-string/guide.json` | Air on the G String, the guide | | MIT |
-| `toccata-in-d-minor/common.mid` | Toccata and Fugue in D minor, Beginner | Johann Sebastian Bach | MIT |
-| `toccata-in-d-minor/rare.mid` | Toccata and Fugue in D minor, Easy | Johann Sebastian Bach | MIT |
-| `toccata-in-d-minor/epic.mid` | Toccata and Fugue in D minor, Medium | Johann Sebastian Bach | MIT |
-| `toccata-in-d-minor/legendary.mid` | Toccata and Fugue in D minor, Hard | Johann Sebastian Bach | MIT |
+| `toccata-in-d-minor/common-2.mid` | Toccata and Fugue in D minor, Beginner | Johann Sebastian Bach | MIT |
+| `toccata-in-d-minor/rare-2.mid` | Toccata and Fugue in D minor, Easy | Johann Sebastian Bach | MIT |
+| `toccata-in-d-minor/epic-2.mid` | Toccata and Fugue in D minor, Medium | Johann Sebastian Bach | MIT |
+| `toccata-in-d-minor/legendary-2.mid` | Toccata and Fugue in D minor, Hard | Johann Sebastian Bach | MIT |
 | `toccata-in-d-minor/guide.json` | Toccata and Fugue in D minor, the guide | | MIT |
 | `handel-sarabande/common.mid` | Sarabande in D minor, Beginner | George Frideric Handel | MIT |
 | `handel-sarabande/rare.mid` | Sarabande in D minor, Easy | George Frideric Handel | MIT |
@@ -304,10 +304,10 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `swan-lake/legendary-2.mid` | Swan Lake, Hard | Pyotr Ilyich Tchaikovsky | MIT |
 | `swan-lake/mythic.mid` | Swan Lake, Original | Pyotr Ilyich Tchaikovsky | MIT |
 | `swan-lake/guide.json` | Swan Lake, the guide | | MIT |
-| `night-on-bald-mountain/common.mid` | Night on Bald Mountain, Beginner | Modest Mussorgsky | MIT |
-| `night-on-bald-mountain/rare.mid` | Night on Bald Mountain, Easy | Modest Mussorgsky | MIT |
-| `night-on-bald-mountain/epic.mid` | Night on Bald Mountain, Medium | Modest Mussorgsky | MIT |
-| `night-on-bald-mountain/legendary.mid` | Night on Bald Mountain, Hard | Modest Mussorgsky | MIT |
+| `night-on-bald-mountain/common-2.mid` | Night on Bald Mountain, Beginner | Modest Mussorgsky | MIT |
+| `night-on-bald-mountain/rare-2.mid` | Night on Bald Mountain, Easy | Modest Mussorgsky | MIT |
+| `night-on-bald-mountain/epic-2.mid` | Night on Bald Mountain, Medium | Modest Mussorgsky | MIT |
+| `night-on-bald-mountain/legendary-2.mid` | Night on Bald Mountain, Hard | Modest Mussorgsky | MIT |
 | `night-on-bald-mountain/guide.json` | Night on Bald Mountain, the guide | | MIT |
 | `the-sorcerers-apprentice/common-2.mid` | The Sorcerer's Apprentice, Beginner | Paul Dukas | MIT |
 | `the-sorcerers-apprentice/rare-2.mid` | The Sorcerer's Apprentice, Easy | Paul Dukas | MIT |
@@ -370,10 +370,10 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `aquarium/epic.mid` | Aquarium, Medium | Camille Saint-Saëns | MIT |
 | `aquarium/legendary.mid` | Aquarium, Hard | Camille Saint-Saëns | MIT |
 | `aquarium/guide.json` | Aquarium, the guide | | MIT |
-| `mahler-adagietto/common.mid` | Adagietto, Beginner | Gustav Mahler | MIT |
-| `mahler-adagietto/rare.mid` | Adagietto, Easy | Gustav Mahler | MIT |
-| `mahler-adagietto/epic.mid` | Adagietto, Medium | Gustav Mahler | MIT |
-| `mahler-adagietto/legendary.mid` | Adagietto, Hard | Gustav Mahler | MIT |
+| `mahler-adagietto/common-2.mid` | Adagietto, Beginner | Gustav Mahler | MIT |
+| `mahler-adagietto/rare-2.mid` | Adagietto, Easy | Gustav Mahler | MIT |
+| `mahler-adagietto/epic-2.mid` | Adagietto, Medium | Gustav Mahler | MIT |
+| `mahler-adagietto/legendary-2.mid` | Adagietto, Hard | Gustav Mahler | MIT |
 | `mahler-adagietto/guide.json` | Adagietto, the guide | | MIT |
 | `drunken-sailor/common.mid` | Drunken Sailor, Beginner | Traditional | MIT |
 | `drunken-sailor/rare.mid` | Drunken Sailor, Easy | Traditional | MIT |

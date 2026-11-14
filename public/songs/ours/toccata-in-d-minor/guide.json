@@ -31,15 +31,15 @@
   "mythic": null,
   "versions": {
     "common": {
-      "file": "ours/toccata-in-d-minor/common.mid",
+      "file": "ours/toccata-in-d-minor/common-2.mid",
       "skills": [
         "position-change",
         "open-fifths",
         "held-bass"
       ],
       "fingers": {
-        "right": [5, 5, 4, 3, 2, 1, 2, 5, 3, 4, 1, 2, 4, 5, 3, 2, 1, 2],
-        "left": [5, 1, 4, 1, 5, 1, 5, 1, 1, 4, 1, 5, 3, 2, 1, 5, 2, 5, 2, 5, 2, 3, 1]
+        "right": [5, 5, 4, 3, 2, 1, 2, 5, 3, 4, 1, 2, 4, 2],
+        "left": [5, 1, 4, 1, 5, 1, 5, 1, 1, 4, 1, 5, 3, 2, 1, 5, 2, 5, 2]
       },
       "start": {
         "right": [null, null, null, null, 81],
@@ -216,22 +216,6 @@
           }
         },
         {
-          "bar": 11,
-          "text": {
-            "en": "After the short rest, the left hand jumps down to A with finger 5. The right thumb takes C sharp.",
-            "de": "Nach der kurzen Pause springt die linke Hand mit Finger 5 hinab zum A. Der rechte Daumen nimmt das Cis.",
-            "es": "Después del silencio corto, la mano izquierda salta abajo al la con el dedo 5. El pulgar derecho toma el do sostenido.",
-            "zh": "短休止符之后，左手用 5 指往下跳到 A。右手拇指弹升 C。",
-            "hi": "छोटे रेस्ट के बाद बायाँ हाथ उँगली 5 से नीचे A पर छलाँग लगाता है। दाएँ हाथ का अँगूठा C शार्प बजाता है।",
-            "ar": "بعد السكتة القصيرة، تقفز اليد اليسرى نزولًا إلى نغمة لا بالإصبع 5. ويأخذ إبهام اليد اليمنى دو دييز.",
-            "pt": "Depois da pausa curta, a mão esquerda salta para baixo até o Lá com o dedo 5. O polegar direito pega o Dó sustenido.",
-            "id": "Setelah tanda istirahat pendek, tangan kiri melompat turun ke A dengan jari 5. Ibu jari kanan mengambil C kres.",
-            "bn": "ছোট রেস্টের পর বাঁ হাত লাফিয়ে নেমে 5 নম্বর আঙুলে A বাজায়। ডান হাতের বুড়ো আঙুল C শার্প নেয়।",
-            "ru": "После короткой паузы левая рука прыгает вниз на ля 5-м пальцем. Первый палец правой руки берёт до-диез.",
-            "fr": "Après le court silence, la main gauche saute en bas sur le la avec le doigt 5. Le pouce droit prend le do dièse."
-          }
-        },
-        {
           "bar": 2,
           "text": {
             "en": "Use the rest to move finger 5 from A down to G. The run then falls finger by finger.",
@@ -246,18 +230,25 @@
             "ru": "Используйте паузу, чтобы перенести 5-й палец с ля вниз на соль. Затем пассаж спускается палец за пальцем.",
             "fr": "Profite du silence pour descendre le doigt 5 du la au sol. Le trait descend ensuite doigt après doigt."
           }
+        },
+        {
+          "bar": 5,
+          "text": {
+            "en": "After the rest, fingers 3, 4 and 1 play E, F and C sharp. The left thumb holds A for the whole bar.",
+            "de": "Nach der Pause spielen Finger 3, 4 und 1 E, F und Cis. Der linke Daumen hält das A den ganzen Takt."
+          }
         }
       ]
     },
     "rare": {
-      "file": "ours/toccata-in-d-minor/rare.mid",
+      "file": "ours/toccata-in-d-minor/rare-2.mid",
       "skills": [
         "triads",
         "pedal"
       ],
       "fingers": {
-        "right": [5, 5, 4, 3, 2, 1, 2, 5, 3, 4, 1, 2, 1, 2, 3, 5, 1, 3, 5, 4, 3, 1, 2, 2, 1, 2, 4, 3, 1, 1, 5, 3, 5, 4, 2, 1, 2, 3, 5, 2, 4, 1, 5],
-        "left": [5, 3, 1, 4, 2, 1, 5, 3, 1, 5, 3, 1, 2, 1, 4, 1, 5, 3, 2, 1, 5, 3, 2, 4, 1, 4, 2, 1, 5, 3, 1, 4, 2, 1, 4, 2, 1, 4, 2, 1, 5, 3, 1, 5, 3, 1, 4, 2, 1, 5, 3, 1, 5, 1]
+        "right": [5, 5, 4, 3, 2, 1, 2, 5, 3, 4, 1, 2, 1, 2, 3, 5, 2, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 3, 5, 5, 4, 3, 2, 1, 3, 2, 1, 2, 4],
+        "left": [5, 3, 1, 4, 2, 1, 5, 3, 1, 5, 3, 1, 2, 1, 4, 1, 5, 3, 2, 1, 5, 3, 2, 5, 3, 1, 1, 1, 5, 3, 2, 5, 5, 2, 4]
       },
       "start": {
         "right": [null, null, null, null, 81],
@@ -267,16 +258,7 @@
         {
           "text": {
             "en": "Play the right hand alone on the first six bars, and let the song wait for each note.",
-            "de": "Spiel die ersten sechs Takte nur mit der rechten Hand, und lass das Stück auf jeden Ton warten.",
-            "es": "Toca los primeros seis compases con la mano derecha sola, y deja que la canción espere cada nota.",
-            "zh": "只用右手弹前六个小节，让歌曲等你弹每个音。",
-            "hi": "पहले छह माप सिर्फ़ दाएँ हाथ से बजाएँ, और गाने को हर नोट पर आपका इंतज़ार करने दें।",
-            "ar": "اعزف أول 6 موازير باليد اليمنى وحدها، ودع الأغنية تنتظر كل نغمة.",
-            "pt": "Toque só a mão direita nos 6 primeiros compassos, e deixe a música esperar cada nota.",
-            "id": "Mainkan tangan kanan saja pada 6 birama pertama, dan biarkan lagu menunggu setiap not.",
-            "bn": "প্রথম ছয়টি বার শুধু ডান হাতে বাজান, আর প্রতিটি নোটের জন্য গানটিকে অপেক্ষা করতে দিন।",
-            "ru": "Сыграйте первые шесть тактов одной правой рукой. Песня подождёт каждую ноту.",
-            "fr": "Joue les six premières mesures à la main droite seule. Le morceau attend chaque note."
+            "de": "Spiel die ersten sechs Takte nur mit der rechten Hand, und lass das Stück auf jeden Ton warten."
           },
           "hands": "right",
           "speed": 0.6,
@@ -286,16 +268,7 @@
         {
           "text": {
             "en": "Play the left hand alone. Keep each triad in one hand shape and move it only one step.",
-            "de": "Spiel die linke Hand allein. Halt jeden Dreiklang in einer Griffform, und bewege ihn nur einen Schritt.",
-            "es": "Toca con la mano izquierda sola. Mantén cada tríada en una sola forma de la mano, y muévela solo un paso.",
-            "zh": "只用左手弹。每个三和弦都保持同一个手型，每次只移动一级。",
-            "hi": "सिर्फ़ बाएँ हाथ से बजाएँ। हर ट्रायड को हाथ के एक ही आकार में रखें, और उसे सिर्फ़ एक कदम खिसकाएँ।",
-            "ar": "اعزف باليد اليسرى وحدها. أبق كل تآلف ثلاثي في شكل يد واحد، وانقله خطوة واحدة فقط.",
-            "pt": "Toque só a mão esquerda. Mantenha cada tríade numa só posição da mão, e mova-a só um grau.",
-            "id": "Mainkan tangan kiri saja. Pertahankan setiap trisuara dalam satu posisi tangan, dan geser hanya satu tuts.",
-            "bn": "শুধু বাঁ হাতে বাজান। প্রতিটি ট্রায়াডে হাত একই আকারে রাখুন, আর হাত শুধু পাশের চাবিতে সরান।",
-            "ru": "Сыграйте одной левой рукой. Держите каждое трезвучие в одной позиции руки и сдвигайте его только на шаг.",
-            "fr": "Joue la main gauche seule. Garde chaque accord de trois notes dans une même position, et ne le déplace que d’un pas."
+            "de": "Spiel die linke Hand allein. Halt jeden Dreiklang in einer Griffform, und bewege ihn nur einen Schritt."
           },
           "hands": "left",
           "speed": 0.6,
@@ -305,16 +278,7 @@
         {
           "text": {
             "en": "Join the hands on bars 7 to 9, with the pedal down for each whole bar.",
-            "de": "Spiel die Takte 7 bis 9 mit beiden Händen, mit dem Pedal unten für jeden ganzen Takt.",
-            "es": "Junta las manos en los compases 7 a 9, con el pedal pisado durante cada compás entero.",
-            "zh": "双手一起弹第 7～9 小节，每一整个小节都踩住踏板。",
-            "hi": "माप 7 से 9 तक दोनों हाथों से बजाएँ, और हर पूरे माप में पेडल दबाए रखें।",
-            "ar": "اعزف الموازير من 7 إلى 9 باليدين معًا، واضغط الدواسة طوال كل مازورة.",
-            "pt": "Junte as mãos nos compassos 7 a 9, com o pedal pisado durante cada compasso inteiro.",
-            "id": "Gabungkan kedua tangan pada birama 7 sampai 9, dengan pedal diinjak sepanjang setiap birama.",
-            "bn": "7 থেকে 9 নম্বর বার দুই হাতে বাজান, প্রতিটি বারের পুরোটা প্যাডেল চেপে রেখে।",
-            "ru": "Сыграйте такты 7–9 двумя руками и держите педаль нажатой весь такт.",
-            "fr": "Joue les mesures 7 à 9 à deux mains, en gardant la pédale enfoncée toute la mesure."
+            "de": "Spiel die Takte 7 bis 9 mit beiden Händen, mit dem Pedal unten für jeden ganzen Takt."
           },
           "hands": "both",
           "speed": 0.6,
@@ -323,36 +287,18 @@
         },
         {
           "text": {
-            "en": "Play the whole song with both hands, a little slower than written.",
-            "de": "Spiel das ganze Stück mit beiden Händen, etwas langsamer als notiert.",
-            "es": "Toca toda la canción con las dos manos juntas, un poco más lento de lo escrito.",
-            "zh": "用双手弹完整首歌，比谱上写的稍慢一点。",
-            "hi": "दोनों हाथों से पूरा गाना, लिखी स्पीड से थोड़ा धीमा बजाएँ।",
-            "ar": "اعزف الأغنية كاملة باليدين معًا، أبطأ قليلًا من السرعة المكتوبة.",
-            "pt": "Toque a música inteira com as duas mãos, um pouco mais devagar que o escrito.",
-            "id": "Mainkan seluruh lagu dengan kedua tangan, sedikit lebih lambat dari tertulis.",
-            "bn": "দুই হাতে পুরো গানটি লেখা গতির চেয়ে একটু ধীরে বাজান।",
-            "ru": "Сыграйте всю песню двумя руками чуть медленнее, чем написано.",
-            "fr": "Joue tout le morceau à deux mains, un peu plus lentement que le tempo écrit."
+            "en": "Play bars 10 and 11 with the right hand alone. In the short rest of bar 10, move the thumb from C sharp to E.",
+            "de": "Spiel die Takte 10 und 11 nur mit der rechten Hand. Setz den Daumen in der kurzen Pause von Takt 10 vom Cis aufs E."
           },
-          "hands": "both",
-          "speed": 0.8,
-          "loop": null,
-          "wait": false
+          "hands": "right",
+          "speed": 0.6,
+          "loop": [10, 11],
+          "wait": true
         },
         {
           "text": {
             "en": "Now play it at full speed, loud and proud.",
-            "de": "Jetzt spiel es im vollen Tempo, laut und stolz.",
-            "es": "Ahora tócala a velocidad completa, fuerte y con orgullo.",
-            "zh": "现在用原速弹，弹得响亮又自豪。",
-            "hi": "अब इसे पूरी स्पीड पर, ज़ोर से और शान से बजाएँ।",
-            "ar": "والآن اعزفها بالسرعة الكاملة، بقوة وفخر.",
-            "pt": "Agora toque na velocidade normal, forte e com orgulho.",
-            "id": "Sekarang mainkan dengan kecepatan penuh, keras dan gagah.",
-            "bn": "এবার পুরো গতিতে বাজান, জোরে আর গর্বের সঙ্গে।",
-            "ru": "Теперь сыграйте в полном темпе, громко и гордо.",
-            "fr": "Maintenant, joue-le au tempo, fort et avec fierté."
+            "de": "Jetzt spiel es im vollen Tempo, laut und stolz."
           },
           "hands": "both",
           "speed": 1,
@@ -434,19 +380,10 @@
           }
         },
         {
-          "bar": 16,
+          "bar": 10,
           "text": {
-            "en": "Use the short rest in bar 15 to jump the left hand down to the low D and A.",
-            "de": "Nutz die kurze Pause in Takt 15, um mit der linken Hand hinab zum tiefen D und A zu springen.",
-            "es": "Usa el silencio corto del compás 15 para que la mano izquierda salte abajo al re y al la graves.",
-            "zh": "利用第 15 小节的短休止符，让左手往下跳到低音 D 和 A。",
-            "hi": "माप 15 के छोटे रेस्ट में बाएँ हाथ से नीचे वाले D और A पर छलाँग लगाएँ।",
-            "ar": "استغل السكتة القصيرة في المازورة 15 لتقفز اليد اليسرى نزولًا إلى ري المنخفضة ونغمة لا.",
-            "pt": "Use a pausa curta do compasso 15 para saltar com a mão esquerda até o Ré e o Lá graves.",
-            "id": "Pakai tanda istirahat pendek di birama 15 untuk melompatkan tangan kiri turun ke D dan A rendah.",
-            "bn": "15 নম্বর বারের ছোট রেস্টে বাঁ হাত লাফিয়ে নিচের D আর A-তে নিয়ে যান।",
-            "ru": "Используйте короткую паузу в такте 15, чтобы левая рука прыгнула вниз на нижние ре и ля.",
-            "fr": "Profite du court silence de la mesure 15 pour faire sauter la main gauche en bas, sur le ré et le la graves."
+            "en": "Fingers 2, 3 and 1 play D, E and C sharp three times. In the short rest, move the thumb up to E.",
+            "de": "Finger 2, 3 und 1 spielen dreimal D, E und Cis. Setz den Daumen in der kurzen Pause hinauf aufs E."
           }
         },
         {
@@ -468,15 +405,15 @@
       ]
     },
     "epic": {
-      "file": "ours/toccata-in-d-minor/epic.mid",
+      "file": "ours/toccata-in-d-minor/epic-2.mid",
       "skills": [
         "alberti-bass",
         "left-hand-melody",
         "sixteenth-notes"
       ],
       "fingers": {
-        "right": [5, 4, 5, 5, 4, 3, 2, 1, 2, 5, 4, 5, 3, 4, 1, 2, 1, 2, 3, 5, 1, 2, 5, 1, 2, 5, 2, 4, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 1, 3, 5, 5, 4, 3, 2, 1, 2, 1, 2, 3, 2, 1, 2, 3, 1, 3, 5, 1, 2, 5, 1, 2, 5, 1, 2, 5, 1, 2, 5],
-        "left": [5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 2, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 4, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 3, 2, 1, 5, 2, 1, 5, 2, 1, 1, 1, 2, 3, 4, 5, 4, 5, 2, 1, 5, 2, 1, 5, 2, 1, 2, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1]
+        "right": [5, 4, 5, 5, 4, 3, 2, 1, 2, 5, 4, 5, 3, 4, 1, 2, 1, 2, 3, 5, 1, 2, 5, 1, 2, 5, 2, 4, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 3, 4, 2, 3, 4, 2, 3, 4, 2, 3, 4, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 3, 4, 2, 3, 4, 2, 3, 4, 2, 3, 4, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 3, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 1, 2, 5, 4, 3, 2, 1, 3, 2, 1, 2, 1, 2, 3, 5, 4, 3, 1, 3],
+        "left": [5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 2, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 4, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 3, 2, 1, 5, 2, 1, 5, 2, 1, 1, 1, 2, 3, 4, 5, 4, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 5, 3, 1, 5, 2, 1]
       },
       "start": {
         "right": [null, null, null, 79, 81],
@@ -486,16 +423,7 @@
         {
           "text": {
             "en": "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.",
-            "de": "Spiel den Alberti-Bass allein, bis er von selbst rollt: tief, hoch, Mitte, hoch.",
-            "es": "Toca con la mano izquierda sola el bajo de Alberti, hasta que ruede por sí mismo: grave, agudo, medio, agudo.",
-            "zh": "单独弹阿尔贝蒂低音，直到它自己流畅地滚动起来：低、高、中、高。",
-            "hi": "सिर्फ़ अल्बर्टी बेस बजाएँ, जब तक वह अपने-आप न बहने लगे: नीचे वाला, ऊपर वाला, बीच वाला, ऊपर वाला।",
-            "ar": "اعزف باص ألبرتي وحده حتى ينساب من تلقاء نفسه: المنخفضة، فالعالية، فالوسطى، فالعالية.",
-            "pt": "Toque só o baixo Alberti até ele rolar sozinho: grave, agudo, meio, agudo.",
-            "id": "Mainkan bas Alberti saja sampai mengalir dengan sendirinya: rendah, tinggi, tengah, tinggi.",
-            "bn": "আলবের্তি বেস আলাদা করে বাজান, যতক্ষণ না সেটি নিজে থেকে গড়িয়ে চলে: নিচের, উপরের, মাঝের, উপরের।",
-            "ru": "Сыграйте альбертиевы басы отдельно, пока они не покатятся сами: нижняя, верхняя, средняя, верхняя.",
-            "fr": "Joue la basse d’Alberti seule, jusqu’à ce qu’elle roule toute seule : grave, aigu, milieu, aigu."
+            "de": "Spiel den Alberti-Bass allein, bis er von selbst rollt: tief, hoch, Mitte, hoch."
           },
           "hands": "left",
           "speed": 0.5,
@@ -505,16 +433,7 @@
         {
           "text": {
             "en": "Play the right hand alone on the first six bars. Flick a quick A, G, A at the start of each long A.",
-            "de": "Spiel die ersten sechs Takte nur mit der rechten Hand. Schnipp ein schnelles A, G, A an den Anfang jedes langen A.",
-            "es": "Toca los primeros seis compases con la mano derecha sola. Toca un la, sol, la rápido al comienzo de cada la largo.",
-            "zh": "只用右手弹前六个小节。每个长音 A 开始时，快速弹出 A、G、A。",
-            "hi": "पहले छह माप सिर्फ़ दाएँ हाथ से बजाएँ। हर लंबे A की शुरुआत में फुर्ती से A, G, A बजाएँ।",
-            "ar": "اعزف أول 6 موازير باليد اليمنى وحدها. اعزف «لا، صول، لا» بلمسة خاطفة في بداية كل نغمة لا طويلة.",
-            "pt": "Toque só a mão direita nos 6 primeiros compassos. Faça um Lá, Sol, Lá rápido no começo de cada Lá longo.",
-            "id": "Mainkan tangan kanan saja pada 6 birama pertama. Sentilkan A, G, A yang cepat di awal setiap A panjang.",
-            "bn": "প্রথম ছয়টি বার শুধু ডান হাতে বাজান। প্রতিটি লম্বা A-র শুরুতে ঝটপট A, G, A বাজান।",
-            "ru": "Сыграйте первые шесть тактов одной правой рукой. В начале каждого долгого ля быстро и легко сыграйте ля, соль, ля.",
-            "fr": "Joue les six premières mesures à la main droite seule. Lance un la, sol, la rapide au début de chaque long la."
+            "de": "Spiel die ersten sechs Takte nur mit der rechten Hand. Schnipp ein schnelles A, G, A an den Anfang jedes langen A."
           },
           "hands": "right",
           "speed": 0.5,
@@ -524,16 +443,7 @@
         {
           "text": {
             "en": "Play the left hand alone in bar 10, where the bass echoes the opening run.",
-            "de": "Spiel die linke Hand allein in Takt 10. Dort wiederholt der Bass den Lauf vom Anfang.",
-            "es": "Toca el compás 10 con la mano izquierda sola, donde el bajo repite como un eco el pasaje del comienzo.",
-            "zh": "只用左手弹第 10 小节，低音在这里呼应开头的快速经过句。",
-            "hi": "माप 10 में सिर्फ़ बाएँ हाथ से बजाएँ, जहाँ बेस शुरुआत वाली तेज़ नोटों की लड़ी को दोहराता है।",
-            "ar": "اعزف باليد اليسرى وحدها في المازورة 10، حيث يردد الباص صدى السلسلة الافتتاحية.",
-            "pt": "Toque só a mão esquerda no compasso 10, onde o baixo ecoa a passagem rápida do início.",
-            "id": "Mainkan tangan kiri saja di birama 10, tempat bas menggemakan rentetan not cepat di awal lagu.",
-            "bn": "10 নম্বর বারে শুধু বাঁ হাতে বাজান, যেখানে বেস শুরুর দ্রুত নোটের সারির প্রতিধ্বনি তোলে।",
-            "ru": "Сыграйте одной левой рукой такт 10. Здесь бас повторяет пассаж из начала.",
-            "fr": "Joue la main gauche seule à la mesure 10, où la basse reprend en écho le trait du début."
+            "de": "Spiel die linke Hand allein in Takt 10. Dort wiederholt der Bass den Lauf vom Anfang."
           },
           "hands": "left",
           "speed": 0.5,
@@ -542,36 +452,18 @@
         },
         {
           "text": {
-            "en": "Play the whole song with both hands at three-quarter speed.",
-            "de": "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
-            "es": "Toca toda la canción con las dos manos juntas a tres cuartos de velocidad.",
-            "zh": "双手合奏，用四分之三速度弹完整首歌。",
-            "hi": "दोनों हाथों से पूरा गाना तीन-चौथाई स्पीड पर बजाएँ।",
-            "ar": "اعزف الأغنية كاملة باليدين معًا، بثلاثة أرباع السرعة.",
-            "pt": "Toque a música inteira com as duas mãos, a três quartos da velocidade.",
-            "id": "Mainkan seluruh lagu dengan kedua tangan, dengan tiga perempat kecepatan.",
-            "bn": "দুই হাতে পুরো গানটি তিন-চতুর্থাংশ গতিতে বাজান।",
-            "ru": "Сыграйте всю песню двумя руками на скорости 75 %.",
-            "fr": "Joue tout le morceau à deux mains, à 75 % de la vitesse."
+            "en": "Play bars 11 to 17 with both hands, slowly. The hands play the same notes an octave apart.",
+            "de": "Spiel die Takte 11 bis 17 langsam mit beiden Händen. Die Hände spielen dieselben Töne im Abstand einer Oktave."
           },
           "hands": "both",
-          "speed": 0.75,
-          "loop": null,
-          "wait": false
+          "speed": 0.5,
+          "loop": [11, 17],
+          "wait": true
         },
         {
           "text": {
             "en": "Now play it at full speed, with the pedal, as dramatic as you dare.",
-            "de": "Jetzt spiel es im vollen Tempo, mit Pedal, so dramatisch, wie du dich traust.",
-            "es": "Ahora tócala a velocidad completa, con el pedal, con todo el dramatismo que te atrevas a darle.",
-            "zh": "现在用原速弹，加上踏板，弹得要多有戏剧性就多有戏剧性。",
-            "hi": "अब इसे पूरी स्पीड पर पेडल के साथ बजाएँ, जितने नाटकीय अंदाज़ में बजाने की हिम्मत हो।",
-            "ar": "والآن اعزفها بالسرعة الكاملة، مع الدواسة، وبكل ما تجرؤ عليه من دراما.",
-            "pt": "Agora toque na velocidade normal, com o pedal, e capriche no drama.",
-            "id": "Sekarang mainkan dengan kecepatan penuh, dengan pedal, sedramatis mungkin, kalau kamu berani.",
-            "bn": "এবার প্যাডেলসহ পুরো গতিতে বাজান, যতটা নাটকীয় করে বাজানোর সাহস হয়।",
-            "ru": "Теперь сыграйте в полном темпе, с педалью, так драматично, как только решитесь.",
-            "fr": "Maintenant, joue-le au tempo, avec la pédale, et mets-y autant de drame que tu oses."
+            "de": "Jetzt spiel es im vollen Tempo, mit Pedal, so dramatisch, wie du dich traust."
           },
           "hands": "both",
           "speed": 1,
@@ -586,56 +478,36 @@
           "kind": "trick",
           "text": {
             "en": "The quick A, G, A is a mordent. Play it as one tiny shake, then hold the A.",
-            "de": "Das schnelle A, G, A ist ein Mordent. Spiel es wie ein winziges Zittern, dann halt das A.",
-            "es": "El la, sol, la rápido es un mordente. Tócalo como una sola sacudida pequeña, y luego mantén el la.",
-            "zh": "快速的 A、G、A 是一个波音。把它弹成一下小小的抖动，然后按住 A。",
-            "hi": "फुर्ती से बजने वाला A, G, A एक मॉर्डेंट है। इसे एक नन्ही-सी थरथराहट की तरह बजाएँ, फिर A दबाए रखें।",
-            "ar": "«لا، صول، لا» السريعة زخرفة اسمها موردنت. اعزفها كهزة صغيرة واحدة، ثم أبق نغمة لا مضغوطة.",
-            "pt": "O Lá, Sol, Lá rápido é um mordente. Toque-o como um tremor bem pequeno, e depois segure o Lá.",
-            "id": "A, G, A yang cepat itu adalah mordent. Mainkan sebagai satu getaran kecil, lalu tahan A-nya.",
-            "bn": "ঝটপট A, G, A হলো একটি মরডেন্ট। এটি একটি ছোট্ট কাঁপুনির মতো বাজান, তারপর A ধরে রাখুন।",
-            "ru": "Быстрые ля, соль, ля — это мордент. Сыграйте его как одну крошечную дрожь, затем держите ля.",
-            "fr": "Le la, sol, la rapide est un mordant. Joue-le comme un minuscule frisson, puis tiens le la."
+            "de": "Das schnelle A, G, A ist ein Mordent. Spiel es wie ein winziges Zittern, dann halt das A."
           }
         },
         {
-          "fromBar": 13,
-          "toBar": 13,
-          "kind": "fingering",
-          "text": {
-            "en": "In this run finger 2 crosses over the thumb, and the thumb comes back. Keep the wrist level.",
-            "de": "In diesem Lauf kreuzt Finger 2 über den Daumen, und der Daumen kommt zurück. Halt das Handgelenk ruhig.",
-            "es": "En este pasaje, el dedo 2 cruza por encima del pulgar, y el pulgar vuelve. Mantén la muñeca nivelada.",
-            "zh": "在这个快速经过句里，2 指从拇指上面跨过去，然后拇指再回来。手腕保持平稳。",
-            "hi": "इस लड़ी में उँगली 2 अँगूठे के ऊपर से जाती है, और अँगूठा वापस आता है। कलाई सीधी रखें।",
-            "ar": "في هذه السلسلة يعبر الإصبع 2 فوق الإبهام، ثم يعود الإبهام. أبق المعصم مستويًا.",
-            "pt": "Nesta passagem, o dedo 2 cruza por cima do polegar, e o polegar volta. Mantenha o pulso nivelado.",
-            "id": "Dalam rentetan not cepat ini, jari 2 menyeberang di atas ibu jari, lalu ibu jari kembali. Jaga pergelangan tangan tetap datar.",
-            "bn": "এই সারিতে 2 নম্বর আঙুল বুড়ো আঙুলের উপর দিয়ে যায়, আর বুড়ো আঙুল ফিরে আসে। কবজি সমান রাখুন।",
-            "ru": "В этом пассаже 2-й палец перекладывается через первый, а первый палец возвращается. Держите запястье ровно.",
-            "fr": "Dans ce trait, le doigt 2 passe par-dessus le pouce, puis le pouce revient. Garde le poignet bien à plat."
-          }
-        },
-        {
-          "fromBar": 14,
-          "toBar": 15,
+          "fromBar": 11,
+          "toBar": 16,
           "kind": "sound",
           "text": {
-            "en": "Change the pedal halfway through each bar, right as the new chord sounds.",
-            "de": "Wechsle das Pedal in der Mitte jedes Takts, genau wenn der neue Akkord klingt.",
-            "es": "Cambia el pedal a la mitad de cada compás, justo cuando suena el acorde nuevo.",
-            "zh": "每小节的中间换踏板，正好在新和弦响起时。",
-            "hi": "हर माप के बीच में, ठीक जब नया कॉर्ड बजता है, पेडल बदलें।",
-            "ar": "غيّر الدواسة في منتصف كل مازورة، لحظة صدور التآلف الجديد تمامًا.",
-            "pt": "Troque o pedal no meio de cada compasso, bem quando o novo acorde soa.",
-            "id": "Ganti pedal di tengah setiap birama, tepat saat akor baru berbunyi.",
-            "bn": "প্রতিটি বারের মাঝখানে, ঠিক যখন নতুন কর্ড বাজে, প্যাডেল বদলান।",
-            "ru": "Меняйте педаль в середине каждого такта, точно когда звучит новый аккорд.",
-            "fr": "Change de pédale au milieu de chaque mesure, pile quand le nouvel accord sonne."
+            "en": "Play bars 11 to 16 without the pedal, so each note of the quick figures sounds clear.",
+            "de": "Spiel die Takte 11 bis 16 ohne Pedal, damit jeder Ton der schnellen Figuren klar klingt."
+          }
+        },
+        {
+          "fromBar": 15,
+          "toBar": 17,
+          "kind": "fingering",
+          "text": {
+            "en": "Each group of three notes starts one step lower than the last. Keep the same fingers, and let the hand slide down.",
+            "de": "Jede Dreiergruppe beginnt einen Schritt tiefer als die vorige. Behalt dieselben Finger, und lass die Hand hinuntergleiten."
           }
         }
       ],
       "tricky": [
+        {
+          "bar": 12,
+          "text": {
+            "en": "Play A, B flat and G with fingers 4, 5 and 3. Use the long rest to move both hands up an octave.",
+            "de": "Spiel A, B und G mit Finger 4, 5 und 3. Nutz die lange Pause, um beide Hände eine Oktave höher zu setzen."
+          }
+        },
         {
           "bar": 4,
           "text": {
@@ -655,47 +527,22 @@
         {
           "bar": 11,
           "text": {
-            "en": "The run climbs A, C sharp, E and G with fingers 1, 2, 3 and 5, then turns back down.",
-            "de": "Der Lauf steigt A, Cis, E und G hinauf, mit Finger 1, 2, 3 und 5, dann kehrt er um.",
-            "es": "El pasaje sube por el la, el do sostenido, el mi y el sol con los dedos 1, 2, 3 y 5, y luego da la vuelta hacia abajo.",
-            "zh": "快速经过句用 1、2、3、5 指往上弹 A、升 C、E、G，然后转身往下。",
-            "hi": "लड़ी उँगली 1, 2, 3 और 5 से A, C शार्प, E और G पर ऊपर चढ़ती है, फिर वापस नीचे मुड़ती है।",
-            "ar": "تصعد السلسلة على نغمات لا ودو دييز ومي وصول بالأصابع 1 و2 و3 و5، ثم تعود نزولًا.",
-            "pt": "A passagem sobe por Lá, Dó sustenido, Mi e Sol com os dedos 1, 2, 3 e 5, e depois volta a descer.",
-            "id": "Rentetan not cepat naik melalui A, C kres, E, dan G dengan jari 1, 2, 3, dan 5, lalu berbalik turun.",
-            "bn": "দ্রুত নোটের সারি 1, 2, 3 আর 5 নম্বর আঙুলে A, C শার্প, E আর G বেয়ে ওঠে, তারপর ঘুরে আবার নামে।",
-            "ru": "Пассаж поднимается по ля, до-диезу, ми и соль пальцами 1, 2, 3 и 5, затем поворачивает вниз.",
-            "fr": "Le trait monte la, do dièse, mi et sol avec les doigts 1, 2, 3 et 5, puis redescend."
-          }
-        },
-        {
-          "bar": 14,
-          "text": {
-            "en": "Use the short rest to jump the left hand down from D to the low A. Change the pedal there too.",
-            "de": "Nutz die kurze Pause, um mit der linken Hand vom D hinab zum tiefen A zu springen. Wechsle dort auch das Pedal.",
-            "es": "Usa el silencio corto para que la mano izquierda salte del re abajo al la grave. Cambia el pedal ahí también.",
-            "zh": "利用短休止符让左手从 D 往下跳到低音 A。也在这里换踏板。",
-            "hi": "छोटे रेस्ट में बाएँ हाथ से D से नीचे वाले A पर छलाँग लगाएँ। वहीं पेडल भी बदलें।",
-            "ar": "استغل السكتة القصيرة لتقفز اليد اليسرى من ري نزولًا إلى نغمة لا المنخفضة. وغيّر الدواسة هناك أيضًا.",
-            "pt": "Use a pausa curta para saltar com a mão esquerda do Ré até o Lá grave. Troque o pedal nesse ponto também.",
-            "id": "Pakai tanda istirahat pendek untuk melompatkan tangan kiri dari D turun ke A rendah. Ganti pedal di situ juga.",
-            "bn": "ছোট রেস্টে বাঁ হাত D থেকে লাফিয়ে নিচের A-তে নিয়ে যান। সেখানে প্যাডেলও বদলান।",
-            "ru": "Используйте короткую паузу, чтобы левая рука прыгнула с ре вниз на нижнее ля. Там же смените педаль.",
-            "fr": "Profite du court silence pour faire sauter la main gauche vers le bas, du ré au la grave. Change aussi de pédale à ce moment-là."
+            "en": "Each quarter holds three quick notes. Play D, E and C sharp with fingers 2, 3 and 1, then F, G and E with fingers 3, 4 and 2.",
+            "de": "Jede Viertel hat drei schnelle Töne. Spiel D, E und Cis mit Finger 2, 3 und 1, dann F, G und E mit Finger 3, 4 und 2."
           }
         }
       ]
     },
     "legendary": {
-      "file": "ours/toccata-in-d-minor/legendary.mid",
+      "file": "ours/toccata-in-d-minor/legendary-2.mid",
       "skills": [
         "arpeggios",
         "octave-bass",
         "stride"
       ],
       "fingers": {
-        "right": [5, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 5, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 2, 3, 1, 2, 3, 4, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 3, 5, 1, 2, 3, 4, 1, 2, 3, 5, 3, 2, 1, 4, 3, 2, 1, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 1, 2, 3, 5, 5, 4, 3, 2, 1, 2, 1, 2, 3, 2, 1, 2, 2, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 4, 5, 1, 2, 4, 5, 1, 2, 3, 5],
-        "left": [5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 1, 5, 1, 5, 1, 5, 3, 1, 5, 1, 5, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 1, 5, 1, 5, 1, 2, 1, 5, 1, 5, 4, 3, 2, 1, 3, 2, 1, 5, 1, 5, 2, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 3, 1, 5, 1, 5, 3, 1, 5, 1, 5, 3, 1, 5, 1, 5, 3, 1, 5, 1, 5, 3, 1, 5, 1, 5, 3, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1]
+        "right": [5, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 5, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 2, 3, 1, 2, 3, 4, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 3, 5, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 3, 4, 2, 3, 4, 2, 3, 4, 2, 3, 4, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 3, 4, 2, 3, 4, 2, 3, 4, 2, 3, 4, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 3, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 1, 2, 3, 5, 4, 3, 2, 1, 3, 2, 1, 2, 1, 2, 3, 5, 4, 3, 1, 2, 3, 5],
+        "left": [5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 1, 5, 1, 5, 1, 5, 3, 1, 5, 1, 5, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 1, 5, 1, 5, 1, 2, 1, 5, 1, 5, 4, 3, 2, 1, 3, 2, 1, 5, 1, 5, 2, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 5, 3, 1, 5, 1]
       },
       "start": {
         "right": [81, null, null, 91, 93],
@@ -856,51 +703,24 @@
       ],
       "tricky": [
         {
-          "bar": 12,
-          "text": {
-            "en": "Keep the hand open over the octave, with finger 5 on the high D and the thumb on the low D.",
-            "de": "Halt die Hand offen über der Oktave, mit Finger 5 auf dem hohen D und dem Daumen auf dem tiefen D.",
-            "es": "Mantén la mano abierta sobre la octava, con el dedo 5 en el re agudo y el pulgar en el re grave.",
-            "zh": "手在八度上保持张开，5 指放在高音 D 上，拇指放在低音 D 上。",
-            "hi": "ऑक्टेव पर हाथ खुला रखें, उँगली 5 ऊपर वाले D पर और अँगूठा नीचे वाले D पर।",
-            "ar": "أبق اليد مفتوحة فوق الأوكتاف، والإصبع 5 على ري العالية، والإبهام على ري المنخفضة.",
-            "pt": "Mantenha a mão aberta sobre a oitava, com o dedo 5 no Ré agudo e o polegar no Ré grave.",
-            "id": "Biarkan tangan terbuka selebar satu oktaf, dengan jari 5 di D tinggi dan ibu jari di D rendah.",
-            "bn": "অক্টেভ জুড়ে হাত খোলা রাখুন, 5 নম্বর আঙুল উপরের D-তে আর বুড়ো আঙুল নিচের D-তে।",
-            "ru": "Держите руку раскрытой над октавой: 5-й палец на верхнем ре, первый палец на нижнем ре.",
-            "fr": "Garde la main ouverte sur l’octave, le doigt 5 sur le ré aigu et le pouce sur le ré grave."
-          }
-        },
-        {
-          "bar": 13,
-          "text": {
-            "en": "Finger 2 crosses over the thumb to C sharp, and the thumb comes back to D.",
-            "de": "Finger 2 kreuzt über den Daumen zum Cis, und der Daumen kommt zurück zum D.",
-            "es": "El dedo 2 cruza por encima del pulgar hasta el do sostenido, y el pulgar vuelve al re.",
-            "zh": "2 指从拇指上面跨过去弹升 C，然后拇指回到 D。",
-            "hi": "उँगली 2 अँगूठे के ऊपर से होकर C शार्प पर जाती है, और अँगूठा वापस D पर आता है।",
-            "ar": "يعبر الإصبع 2 فوق الإبهام إلى دو دييز، ويعود الإبهام إلى ري.",
-            "pt": "O dedo 2 cruza por cima do polegar até o Dó sustenido, e o polegar volta para o Ré.",
-            "id": "Jari 2 menyeberang di atas ibu jari ke C kres, dan ibu jari kembali ke D.",
-            "bn": "2 নম্বর আঙুল বুড়ো আঙুলের উপর দিয়ে C শার্পে যায়, আর বুড়ো আঙুল ফিরে আসে D-তে।",
-            "ru": "2-й палец перекладывается через первый на до-диез, а первый палец возвращается на ре.",
-            "fr": "Le doigt 2 passe par-dessus le pouce jusqu’au do dièse, et le pouce revient sur le ré."
-          }
-        },
-        {
           "bar": 11,
           "text": {
-            "en": "The arpeggio climbs two octaves. The thumb passes under on A, and finger 4 crosses back over.",
-            "de": "Das Arpeggio steigt zwei Oktaven hinauf. Der Daumen geht auf dem A unter, und Finger 4 kreuzt zurück darüber.",
-            "es": "El arpegio sube dos octavas. El pulgar pasa por debajo en el la, y el dedo 4 cruza de vuelta por encima.",
-            "zh": "琶音往上走两个八度。弹到 A 时拇指从下面穿过去，然后 4 指再跨回来。",
-            "hi": "आर्पेजियो दो ऑक्टेव ऊपर चढ़ता है। A पर अँगूठा नीचे से जाता है, और उँगली 4 वापस ऊपर से आती है।",
-            "ar": "يصعد الأربيجيو أوكتافين. يمر الإبهام من تحت عند نغمة لا، ويعبر الإصبع 4 عائدًا من فوق.",
-            "pt": "O arpejo sobe duas oitavas. O polegar passa por baixo no Lá, e o dedo 4 cruza de volta por cima.",
-            "id": "Arpeggio naik dua oktaf. Ibu jari menyusup di A, dan jari 4 menyeberang kembali.",
-            "bn": "আর্পেজিওটি দুই অক্টেভ বেয়ে ওঠে। A-তে বুড়ো আঙুল নিচ দিয়ে যায়, আর 4 নম্বর আঙুল আবার উপর দিয়ে ফিরে আসে।",
-            "ru": "Арпеджио поднимается на две октавы. Первый палец подкладывается на ля, а 4-й палец перекладывается обратно через него.",
-            "fr": "L’arpège monte sur deux octaves. Le pouce passe dessous sur le la, et le doigt 4 repasse par-dessus."
+            "en": "Each quarter holds three quick notes. Play D, E and C sharp with fingers 2, 3 and 1, then F, G and E with fingers 3, 4 and 2.",
+            "de": "Jede Viertel hat drei schnelle Töne. Spiel D, E und Cis mit Finger 2, 3 und 1, dann F, G und E mit Finger 3, 4 und 2."
+          }
+        },
+        {
+          "bar": 3,
+          "text": {
+            "en": "The left hand jumps from the low D octave to the chord above it. Use each short rest to travel.",
+            "de": "Die linke Hand springt von der tiefen D-Oktave zum Akkord darüber. Nutz jede kurze Pause für den Weg."
+          }
+        },
+        {
+          "bar": 12,
+          "text": {
+            "en": "Play A, B flat and G with fingers 4, 5 and 3. Use the long rest to move both hands up an octave.",
+            "de": "Spiel A, B und G mit Finger 4, 5 und 3. Nutz die lange Pause, um beide Hände eine Oktave höher zu setzen."
           }
         }
       ]

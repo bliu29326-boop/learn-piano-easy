@@ -23,6 +23,10 @@ Traps a session paid for once, so the next one does not. **It is not a changelog
 - **A no-break space typed as itself in Write or Edit can land as an ASCII space.** The rules test
   then fails on `%` or a unit. Type a backslash, then `u00A0`, which the tools write raw. Then Grep each
   file under `src/i18n/messages/` for a digit or `}` followed by an ASCII space and `%`.
+- **A writer that deletes guide texts can rewrite the lines it kept.** Two writers turned the narrow
+  no-break spaces and isolates of `tools/our-songs/<slug>.fr.ts` and `.ar.ts` into plain characters. A
+  rework only deletes locale texts, so `git diff -U0` of each locale file must show no added text line.
+  Restore any file that does, and delete its texts with a line-based script.
 - **An Edit of a French or Arabic text fails with "String to replace not found".** The text holds a
   narrow no-break space before `?`, `!`, `;` or `:`, which the old string typed as a plain space. End
   the old string before that mark, so it holds no such space, as in `src/learn/lessons/*/*.fr.ts`.

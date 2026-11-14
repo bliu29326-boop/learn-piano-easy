@@ -25,17 +25,9 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         2: "Use a pausa para levar o dedo 5 do Lá para baixo até o Sol. A passagem rápida então desce dedo por dedo.",
         4: "Use a pausa do compasso 3 para levar a mão uma oitava abaixo. O dedo 5 cai no Lá.",
-        11: "Depois da pausa curta, a mão esquerda salta para baixo até o Lá com o dedo 5. O polegar direito pega o Dó sustenido.",
       },
     },
     rare: {
-      practice: [
-        "Toque só a mão direita nos 6 primeiros compassos, e deixe a música esperar cada nota.",
-        "Toque só a mão esquerda. Mantenha cada tríade numa só posição da mão, e mova-a só um grau.",
-        "Junte as mãos nos compassos 7 a 9, com o pedal pisado durante cada compasso inteiro.",
-        "Toque a música inteira com as duas mãos, um pouco mais devagar que o escrito.",
-        "Agora toque na velocidade normal, forte e com orgulho.",
-      ],
       tips: [
         "Toque o Lá longo com força, e depois deixe a passagem rápida descer rolando até o Ré.",
         "O pedal mantém cada nota da subida soando, e assim o acorde cresce uma nota de cada vez.",
@@ -44,26 +36,11 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         2: "Use a pausa para levar o dedo 5 do Lá para baixo até o Sol. Depois a passagem rápida desce dedo por dedo.",
         4: "Use a pausa do compasso 3 para levar a mão direita uma oitava abaixo. O dedo 5 cai no Lá.",
-        16: "Use a pausa curta do compasso 15 para saltar com a mão esquerda até o Ré e o Lá graves.",
       },
     },
     epic: {
-      practice: [
-        "Toque só o baixo Alberti até ele rolar sozinho: grave, agudo, meio, agudo.",
-        "Toque só a mão direita nos 6 primeiros compassos. Faça um Lá, Sol, Lá rápido no começo de cada Lá longo.",
-        "Toque só a mão esquerda no compasso 10, onde o baixo ecoa a passagem rápida do início.",
-        "Toque a música inteira com as duas mãos, a três quartos da velocidade.",
-        "Agora toque na velocidade normal, com o pedal, e capriche no drama.",
-      ],
-      tips: [
-        "O Lá, Sol, Lá rápido é um mordente. Toque-o como um tremor bem pequeno, e depois segure o Lá.",
-        "Nesta passagem, o dedo 2 cruza por cima do polegar, e o polegar volta. Mantenha o pulso nivelado.",
-        "Troque o pedal no meio de cada compasso, bem quando o novo acorde soa.",
-      ],
       tricky: {
         4: "Use a pausa do compasso 3 para levar a mão direita uma oitava abaixo. Depois faça Lá, Sol, Lá rápido e segure o Lá.",
-        11: "A passagem sobe por Lá, Dó sustenido, Mi e Sol com os dedos 1, 2, 3 e 5, e depois volta a descer.",
-        14: "Use a pausa curta para saltar com a mão esquerda do Ré até o Lá grave. Troque o pedal nesse ponto também.",
       },
     },
     legendary: {
@@ -79,11 +56,6 @@ export const translation: Translation<GuideTranslation> = {
         "A mão esquerda começa a subida, e a mão direita a termina. Deve soar como uma única passagem longa.",
         "O baixo repete em oitavas a passagem do início. Faça-o roncar como os tubos mais graves do órgão.",
       ],
-      tricky: {
-        11: "O arpejo sobe duas oitavas. O polegar passa por baixo no Lá, e o dedo 4 cruza de volta por cima.",
-        12: "Mantenha a mão aberta sobre a oitava, com o dedo 5 no Ré agudo e o polegar no Ré grave.",
-        13: "O dedo 2 cruza por cima do polegar até o Dó sustenido, e o polegar volta para o Ré.",
-      },
     },
   },
 };

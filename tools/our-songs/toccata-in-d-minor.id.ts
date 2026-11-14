@@ -25,17 +25,9 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         2: "Pakai tanda istirahat untuk memindahkan jari 5 dari A turun ke G. Lalu rentetan not cepat turun jari demi jari.",
         4: "Pakai tanda istirahat di birama 3 untuk memindahkan tangan turun satu oktaf. Jari 5 mendarat di A.",
-        11: "Setelah tanda istirahat pendek, tangan kiri melompat turun ke A dengan jari 5. Ibu jari kanan mengambil C kres.",
       },
     },
     rare: {
-      practice: [
-        "Mainkan tangan kanan saja pada 6 birama pertama, dan biarkan lagu menunggu setiap not.",
-        "Mainkan tangan kiri saja. Pertahankan setiap trisuara dalam satu posisi tangan, dan geser hanya satu tuts.",
-        "Gabungkan kedua tangan pada birama 7 sampai 9, dengan pedal diinjak sepanjang setiap birama.",
-        "Mainkan seluruh lagu dengan kedua tangan, sedikit lebih lambat dari tertulis.",
-        "Sekarang mainkan dengan kecepatan penuh, keras dan gagah.",
-      ],
       tips: [
         "Mainkan A panjang dengan keras, lalu biarkan rentetan not cepat berjatuhan turun ke D.",
         "Pedal membuat setiap not tanjakan terus berbunyi, sehingga akor tumbuh not demi not.",
@@ -44,26 +36,11 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         2: "Pakai tanda istirahat untuk memindahkan jari 5 dari A turun ke G. Lalu rentetan not cepat turun jari demi jari.",
         4: "Pakai tanda istirahat di birama 3 untuk memindahkan tangan kanan turun satu oktaf. Jari 5 mendarat di A.",
-        16: "Pakai tanda istirahat pendek di birama 15 untuk melompatkan tangan kiri turun ke D dan A rendah.",
       },
     },
     epic: {
-      practice: [
-        "Mainkan bas Alberti saja sampai mengalir dengan sendirinya: rendah, tinggi, tengah, tinggi.",
-        "Mainkan tangan kanan saja pada 6 birama pertama. Sentilkan A, G, A yang cepat di awal setiap A panjang.",
-        "Mainkan tangan kiri saja di birama 10, tempat bas menggemakan rentetan not cepat di awal lagu.",
-        "Mainkan seluruh lagu dengan kedua tangan, dengan tiga perempat kecepatan.",
-        "Sekarang mainkan dengan kecepatan penuh, dengan pedal, sedramatis mungkin, kalau kamu berani.",
-      ],
-      tips: [
-        "A, G, A yang cepat itu adalah mordent. Mainkan sebagai satu getaran kecil, lalu tahan A-nya.",
-        "Dalam rentetan not cepat ini, jari 2 menyeberang di atas ibu jari, lalu ibu jari kembali. Jaga pergelangan tangan tetap datar.",
-        "Ganti pedal di tengah setiap birama, tepat saat akor baru berbunyi.",
-      ],
       tricky: {
         4: "Pakai tanda istirahat di birama 3 untuk memindahkan tangan kanan turun satu oktaf. Lalu sentilkan A, G, A, dan tahan A-nya.",
-        11: "Rentetan not cepat naik melalui A, C kres, E, dan G dengan jari 1, 2, 3, dan 5, lalu berbalik turun.",
-        14: "Pakai tanda istirahat pendek untuk melompatkan tangan kiri dari D turun ke A rendah. Ganti pedal di situ juga.",
       },
     },
     legendary: {
@@ -79,11 +56,6 @@ export const translation: Translation<GuideTranslation> = {
         "Tangan kiri memulai tanjakan, dan tangan kanan menyelesaikannya. Bunyinya harus seperti satu rentetan panjang.",
         "Bas menggemakan rentetan not cepat di awal lagu dalam oktaf. Buat bunyinya bergemuruh seperti pipa orgel yang paling rendah.",
       ],
-      tricky: {
-        11: "Arpeggio naik dua oktaf. Ibu jari menyusup di A, dan jari 4 menyeberang kembali.",
-        12: "Biarkan tangan terbuka selebar satu oktaf, dengan jari 5 di D tinggi dan ibu jari di D rendah.",
-        13: "Jari 2 menyeberang di atas ibu jari ke C kres, dan ibu jari kembali ke D.",
-      },
     },
   },
 };

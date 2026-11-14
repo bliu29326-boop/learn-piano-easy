@@ -15,7 +15,7 @@ stages:
     status: done
   - id: 4
     title: "Batch 3: the orchestral and choral classics"
-    status: open
+    status: done
   - id: 5
     title: "Batch 4: the short motifs and the codas"
     status: open
@@ -87,8 +87,9 @@ inside the limits they keep.
   *Moonlight Sonata*'s closing bars and the unread versions of *Yankee Doodle*.
 - **A print's chord that clashes with the tune past a version's limit gives way** to the print's next
   chord, a half bar early. *Can-Can*'s bar 4 takes D7 under the tune's C for that reason.
-- **Writers, review and commits** work as `original-arrangements` rules: four writing subagents of two
-  songs each, two fresh reviewers of four songs each per batch, one commit per batch.
+- **Writers, review and commits** work as `original-arrangements` rules: two fresh reviewers of four
+  songs each per batch, and one commit per batch. Each writing subagent takes one song, four at a time,
+  since a writer reading a print runs out of context before a second song.
 - **The chain:** this goal runs after `original-arrangements` and before `urdu` and `japanese`.
 
 ## Stages
@@ -159,19 +160,20 @@ build nothing, and the session runs the writer and the build once all end.
 **Split:** as stage 2.
 **Gate:** stage 3 is done.
 
-- [ ] *Lacrimosa*: all four (as marked). `tools/our-songs/lacrimosa.ts:1`
-- [ ] *Adagietto*: all four (c 9-11, r e l 9-15). `tools/our-songs/mahler-adagietto.ts:1`
-- [ ] *Piano Concerto No. 21, Andante*: all four (c 7-8, r e l 13-15). `tools/our-songs/mozart-21-andante.ts:1`
-- [ ] *Night on Bald Mountain*: all four (as marked). `tools/our-songs/night-on-bald-mountain.ts:1`
-- [ ] *Seventh Symphony, Allegretto*: all four (c 9-11, r e l 17-19). `tools/our-songs/beethoven-7-allegretto.ts:1`
-- [ ] *Gymnopédie No. 1*: all four (c 12, r e l 12-14). `tools/our-songs/gymnopedie-1.ts:1`
-- [ ] *Hungarian Dance No. 5*: all four (as marked). `tools/our-songs/hungarian-dance-5.ts:1`
-- [ ] *Toccata in D minor*: the versions marked. `tools/our-songs/toccata-in-d-minor.ts:1`
+- [x] *Lacrimosa*: all four (as marked). `tools/our-songs/lacrimosa.ts:1`
+- [x] *Adagietto*: all four (c 9-11, r e l 9-15). `tools/our-songs/mahler-adagietto.ts:1`
+- [x] *Piano Concerto No. 21, Andante*: all four (c 7-8, r e l 13-15). `tools/our-songs/mozart-21-andante.ts:1`
+- [x] *Night on Bald Mountain*: all four (as marked). `tools/our-songs/night-on-bald-mountain.ts:1`
+- [x] *Seventh Symphony, Allegretto*: all four (c 9-11, r e l 17-19). `tools/our-songs/beethoven-7-allegretto.ts:1`
+- [x] *Gymnopédie No. 1*: all four (c 12, r e l 12-14). `tools/our-songs/gymnopedie-1.ts:1`
+- [x] *Hungarian Dance No. 5*: all four (as marked). `tools/our-songs/hungarian-dance-5.ts:1`
+- [x] *Toccata in D minor*: the versions marked. `tools/our-songs/toccata-in-d-minor.ts:1`
 
 ### 5. Batch 4: the short motifs and the codas
 
 **Does:** reworks six classics and two songs with a coda of ours. The source is found as in stage 4.
-**Split:** as stage 2.
+**Split:** eight writing subagents of one song each, four at a time, then two fresh reviewers of four
+songs each. Writers build nothing, and the session runs the writer and the build once all end.
 **Gate:** stage 4 is done.
 
 - [ ] *Aquarium*: all four (c r 9-15, e l 9-16). `tools/our-songs/aquarium.ts:1`
@@ -187,7 +189,7 @@ build nothing, and the session runs the writer and the build once all end.
 
 **Does:** reworks four sea songs. Where the print ends with the tune, a version plays the tune again in
 another setting or ends on the home chord.
-**Split:** two writing subagents of two songs each, then one fresh reviewer.
+**Split:** four writing subagents of one song each, then one fresh reviewer.
 **Gate:** stage 5 is done.
 
 - [ ] *Drunken Sailor*: all four (9-16). `tools/our-songs/drunken-sailor.ts:1`
@@ -206,37 +208,43 @@ another setting or ends on the home chord.
 
 ### State
 
-Stages 1 to 3 are done. The 30 reworked versions of batch 2 play the source's phrases, and each is
-in `REWORKED_VERSIONS` with its `<id>-2.mid` file. *Für Elise* reworked only Medium and Hard, so the
-e2e test of the library now names `fur-elise/legendary-2.mid`. Two fresh reviewers compared the
-new bars with each source. Their must-fixes are in:
+Stages 1 to 4 are done. Batch 3 reworked all four versions of its eight songs, 32 versions in all.
+Each is in `REWORKED_VERSIONS` with its `<id>-2.mid` file. No code outside the generated files named
+an old file of the batch. Two fresh reviewers compared the new bars with each print and found no
+must-fix. The meter accepts every module, and `bun x tsc` is clean.
 
-- *Clair de Lune*'s Medium bar 17 climbs in the print's four steps.
-- *Funeral March* plays the print's B flat and A flat as two eighths in bars 13 and 15.
-- *Clair de Lune*'s Beginner bar 9 sounds an octave lower, so the hand never leaps two octaves.
+- *Adagietto*'s Easy plays the tune twice. The print's next phrase breaks Easy's limit on notes outside the key.
+- *Toccata*'s Beginner ends on D minor at bar 10, since its tempo leaves no time for the next phrase.
+- *Mozart 21* reads a four-hands arrangement on Commons that looks like a modern engraving. It is the
+  print the module already cited, and Commons tags it public domain.
 
-*Nocturne in C sharp minor* has no public domain print past bar 8. Its versions repeat the print's bars
-1 to 8, as the new standing decision says. Its Beginner bar 2 keeps E on the third beat, since its
-bass rule refuses the print's rhythm there.
+Two writers rewrote the narrow spaces and isolates of the `fr` and `ar` files they kept. Those files
+were restored and pruned by `.agent-tmp/prune-locales.ts`, so every locale diff is deletions only.
 
-18 modules still mark bars of our own in `ownBars`, in stages 4 to 6.
+11 modules still mark bars of our own in `ownBars`, in stages 5 and 6.
 
 ### Next
 
-**Stage 4: batch 3, the orchestral and choral classics.** Files: the eight modules the stage names,
-`src/library/moved-songs.ts:50` and their guides. Gate: stage 3 is done.
+**Stage 5: batch 4, the short motifs and the codas.** Files: the eight modules the stage names,
+`src/library/moved-songs.ts:50` and their guides. Gate: stage 4 is done.
 
-- [ ] Eight songs, each item of stage 4 above. `tools/our-songs/lacrimosa.ts:1`
+- [ ] Eight songs, each item of stage 5 above. `tools/our-songs/aquarium.ts:1`
 - [ ] `REWORKED_VERSIONS` lists every reworked version of the batch. `src/library/moved-songs.ts:50`
-- [ ] No code names an old file of the batch, as `git grep` finds them. `src/play-modes/modes.ts:109`
+- [ ] No code names an old file of the batch. *In the Hall of the Mountain King* is named in `src/play-modes/modes.ts:109`.
 
-No song of batch 3 has a file in `public/songs/piano-midi/`. Each writer reads the Mutopia Project's
-`.ly` first, then a print on Commons. Give each writer one brief file under `.agent-tmp/` and the
-two songs, and check the module with `bun tools/check-our-song.ts` after every fix.
+Reuse `.agent-tmp/brief-s4-rework.md` and `.agent-tmp/brief-s4-review.md`. Give each writer one song,
+not two: three of four writers ran out of context before their second song. Run
+`bun tools/check-our-song.ts` on every module once all writers end, since a half-edited module breaks
+the others' checks. Check each locale file's `git diff -U0` for added text lines before you stamp.
 
 Expected red: `no_version_plays_a_bar_of_our_own` until stage 6.
 
 Optional from the reviews:
+
+- *Toccata*'s Easy holds C sharp in the left hand under the run in bars 14 and 15. The print rests there.
+- *Hungarian Dance No. 5*'s Medium and Hard bar 12 fill the print's single F sharp with a chord.
+- *Mozart 21*'s Medium and Hard leave the print's D and F half note of bar 14 to the left hand.
+- *Gymnopédie No. 1*'s Beginner and Easy end on C and G, with no third.
 
 - *William Tell*'s `TUNE_CHORDS` puts the dominant under tune bar 4's first half, where the print
   keeps E major. It is inside the tune, so Common and Rare keep it.
