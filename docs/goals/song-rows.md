@@ -134,10 +134,15 @@ reads "Movement 1: Allegro". The e2e tests open Albéniz's tango as "Opus 165 'E
 by the query "albeniz tango". The `openSong` helpers of `e2e/tracks.e2e.ts` and `e2e/sheet.e2e.ts`
 take a query beside the title.
 
+The floor check `song-explorer-e2e` in `docs/goals/README.md` names the two tests stage 2 renamed:
+`a_tag_in_the_rail_filters_by_it_and_a_row_shows_no_tags` and
+`the_arrow_keys_move_through_the_rows_and_enter_opens`. It is green. `docs/findings.md` § `song-rows`
+holds the harvest.
+
 ### Next
 
-**The goal is reached.** Harvest it into `docs/findings.md` § `song-rows`, move its check into the
-floor, and delete this file. Then `faithful-levels` is the live goal. No test is expected to go red.
+**The goal is reached.** Move its check into the floor and delete this file. Then `faithful-levels` is
+the live goal. No test is expected to go red.
 
 ### Backlog
 

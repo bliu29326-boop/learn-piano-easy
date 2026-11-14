@@ -1688,3 +1688,33 @@ rest at a fraction of the tokens are ready.
 - An Original may hold a hook note the tune strikes twice, where the print ties it.
 - A print that changes tempo keeps every note's length on one grid at one meter and tempo.
 - A cadenza that overruns its bar fills whole extra bars at its printed lengths.
+
+## song-rows
+
+**Target:** the song explorer lists songs as rows that read work, part and composer. A work's parts open
+from one row.
+
+### Findings
+
+- 215 of the catalog's 385 rows are parts of 80 works. Each now reads its place and its own name.
+- A row shows about three times the songs per screen that a card did.
+- The cost is a click to reach a part, and no tags at a glance.
+- A work's name keeps its catalogue number, such as "Hoboken XVI:7". A later goal may split it out.
+- The renamed titles broke one unit test and eight e2e tests. The e2e tests now find a part by a
+  query, such as "albeniz tango".
+
+### Decisions that still bind
+
+- A part of a work carries `part`, `kind` and `name` in the catalog. `kind` is `movement`, `number`
+  or `variation`.
+- A part's `title` is its English label, and `songTitle` names its work first in the live locale.
+- A row is a part when it has `part` or `name` beside a `piece`. A `piece` that only sorts gives no part.
+- The catalog owns the parts of the piano-midi rows, and `tools/mutopia-picks.json` owns the Mutopia rows'.
+- A row reads the work or the song's title first, then the composer. The tags stay in the rail.
+- A work's row stands where its first matching part would stand, and its parts keep the work's order.
+- A filter or a query opens every work it matches, and with no filter a work starts closed.
+- A work with one part in the result shows that part alone.
+- An Original that a song of ours names stays on that song's row, never under its work.
+- Up and Down move between rows. Right opens a work and Left closes it, mirrored in a right-to-left
+  locale.
+- The length's tooltip reads "Length · license · credit" under the key `lengthLicense`.

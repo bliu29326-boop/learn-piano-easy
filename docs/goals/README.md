@@ -349,7 +349,7 @@ floor:
   - id: song-explorer-e2e
     name: "the song explorer keeps its place, stars favourites, filters by tag and moves by keyboard"
     run: [bun, x, playwright, test, e2e/song-explorer.e2e.ts]
-    tests: [the_explorer_reopens_as_it_was_left_with_the_open_song_marked_and_in_view, the_scroll_and_the_sort_come_back_after_a_close, a_star_makes_a_favourite_that_leads_the_page_and_filters, a_tag_on_a_card_filters_by_it, nothing_found_shows_the_mascot_and_one_way_back, the_arrow_keys_move_through_the_cards_and_enter_opens]
+    tests: [the_explorer_reopens_as_it_was_left_with_the_open_song_marked_and_in_view, the_scroll_and_the_sort_come_back_after_a_close, a_star_makes_a_favourite_that_leads_the_page_and_filters, a_tag_in_the_rail_filters_by_it_and_a_row_shows_no_tags, nothing_found_shows_the_mascot_and_one_way_back, the_arrow_keys_move_through_the_rows_and_enter_opens]
     from: premium-design
   - id: settings-panel-e2e
     name: "the settings panel moves between its groups, finds a setting and resets it"
