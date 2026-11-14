@@ -1,8 +1,9 @@
-# Our songs: every tune in four versions, named by difficulty
+# Our songs: every tune in four versions and its Original
 
 An *our song* is our own piano arrangement of a public domain tune, written in four versions. Each
-version is named by its difficulty: Beginner, Easy, Medium and Hard. The arrangements are ours, under
-the MIT License, so the library can ship them freely.
+version is named by its difficulty: Beginner, Easy, Medium and Hard. A song whose tune is not our own
+ends on its Original, the piece as its score has it. The arrangements are ours, under the MIT License,
+so the library can ship them freely.
 
 Our learner is in their first year of piano. Hard is the top of that year, and no version measures a
 player with years of practice. The reasons are in [decision 0002](decisions/0002.md), and the names in
@@ -16,11 +17,11 @@ player with years of practice. The reasons are in [decision 0002](decisions/0002
 | Easy | `rare` | blue | First weeks. Plays a tune over a slow bass. | 2 to 2.5 | Burgmüller's *La Candeur* |
 | Medium | `epic` | purple | First months. Moves the hand while playing, and both hands keep busy. | 3 to 3.5 | Clementi's Op. 36 No. 1 |
 | Hard | `legendary` | gold | About a year. Hands work apart from each other, and quickly. | 4 to 4.5 | Burgmüller's *La Chasse* and *Ballade* |
-| Original | `mythic` | red | The original score, where the catalog holds it and rates it above 4.5. It is not ours. | Its own rating | *Für Elise* at 5 |
+| Original | `mythic` | red | The whole piece: the composer's piano score from the catalog, or our setting for two hands. | The meter's rating, or the catalog's | *Für Elise* at 5 |
 
 - **The id is the version's name in the code,** and the learner never reads it. A version's file is
-  `<id>.mid`, such as `legendary.mid`, and its catalog row carries the id as `rarity`. The row names the
-  file of the song's original score as `mythic`.
+  `<id>.mid`, such as `legendary.mid`, and its catalog row carries the id as `rarity`. Every row of a
+  song names the file of its Original as `mythic`.
 - **The meter and the song tools name a version by its id.** The columns of the meter's table are
   Common, Rare, Epic and Legendary.
 - **A version's name is its level.** The song explorer names every song's difficulty as a level, a band
@@ -99,12 +100,45 @@ review checks them.
   them, and ends on the home chord.
 - **Every version sounds complete by itself,** never like a part with something missing.
 
-## The guide every version carries
+## The Original
 
-Each version ships with a guide, so the learner knows how to play it before the first note.
+The Original is the last step of a song, after Hard. [Decision 0014](decisions/0014.md) gives the
+reasons.
 
-- **About the song.** Where the tune comes from, in two to four sentences, and one fun fact. All four
-  versions share it.
+- **The catalog's own piano score stays the Original** where the catalog holds it. *Für Elise*,
+  *Moonlight Sonata*, *Clair de Lune* and *The Entertainer* keep theirs, and their row is not ours.
+- **Every other Original is our own setting of the piece for two hands,** under the MIT License. Its file
+  is `ours/<slug>/mythic.mid`, and its catalog row carries no `rarity`.
+- **A tune of our own has no Original.** *Black Flag Jig*, *Last Horizon* and *Neon Chase* end on Hard.
+- **Its source is a public domain print.** The composer's own piano version comes first. A piano
+  reduction printed before 1931 comes next, then the full score.
+- **A modern arrangement, a recording or a catalog MIDI is never a source.** The module records the
+  edition and the year it was printed.
+- **It follows its source** in form, key, meter, tempo, harmony, voicing, pedal and accompaniment. A
+  score for more hands is reduced to what two hands reach. The tune and the bass come first, then the
+  figure that gives the piece its sound.
+- **It is the whole piece when that plays in about four minutes or less.** A longer piece keeps its
+  best-known sections in their order, cut where a section ends, and closes on the home chord.
+- **It adds no bar of our own.** A cut's last cadence may add at most two bars, and the module names
+  them in `addedBars`.
+- **It keeps no limit of the four versions.** It keeps the checks of a hand: a finger on every note and
+  the practical span. It plays the hook note for note in the tune's own key.
+- **The meter rates it** as the lowest version whose limits it fits, at that version's catalog difficulty.
+  Past Hard it rates 5, the level Advanced. The head comment of
+  [tools/song-meter.ts](../tools/song-meter.ts) owns the rule.
+- **It stays the last step of its card,** even where it rates below Hard. The level filter files it under
+  its own level.
+- **Its tagline says the piece is set for two hands.** A catalog Original keeps the tagline "The
+  composer's own notes."
+
+## The guide every step carries
+
+Each version ships with a guide, and so does an Original of ours. The learner then knows how to play it
+before the first note. An Original's guide has the same parts as a version's, and its tricky spots are
+the bars the meter names.
+
+- **About the song.** Where the tune comes from, in two to four sentences, and one fun fact. Every step
+  of the song shares it.
 - **Skills.** One to three skills the version teaches, named from a fixed list, such as "thumb under" or
   "Alberti bass". The library can then show what is new in each version.
 - **Fingering.** A finger for every note, written by the arranger. The app shows it as the song's own
@@ -144,7 +178,9 @@ locale up to date, as [translation.md](agent/translation.md) says. The German fo
 4. **Run the meter.** It refuses a bar that does not fill, a broken limit and a lost hook. It also
    refuses a version that does not earn its place, a missing finger and a move past its practical span.
 5. **Write the guide,** with a tip for every tricky spot the meter names.
-6. **Listen in the app.** The user plays each new batch and files what sounds wrong, and each note becomes
+6. **Set the Original** from its print, bar by bar, with its guide. `bun tools/check-our-song.ts` checks it
+   with the versions, and a fresh reviewer reads it against the print.
+7. **Listen in the app.** The user plays each new batch and files what sounds wrong, and each note becomes
    a fix.
 
 The meter is calibrated on books a learner meets late in the first year, and a test keeps them in Medium

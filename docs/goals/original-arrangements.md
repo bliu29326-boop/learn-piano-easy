@@ -110,6 +110,12 @@ own, which follows the piece and keeps no limit of the four versions.
   song modules but share the catalog and the license file that the writer rewrites. They run in order.
 - **The chain:** this goal runs before `faithful-levels`, `urdu` and `japanese`. The translation goals
   then translate each new guide once.
+- **Our Original's row has no `rarity`.** It names its own file as `mythic`, which is how `stepOf` in
+  `src/library/guide-panel.ts` tells it. The four versions keep `Rarity`, and `GuideStep` adds `mythic`.
+- **A print is fetched from the Internet Archive or Wikimedia Commons, never from IMSLP.** IMSLP's
+  `robots.txt` refuses its downloads to every agent. A writer reads the page images of
+  `archive.org/download/<item>/page/n<N>.jpg`.
+- **`check-our-song.ts` takes the module's path,** as `bun tools/check-our-song.ts tools/our-songs/<slug>.ts`.
 
 ## Stages
 
@@ -121,19 +127,24 @@ the first one as the pilot.
 `rarity` field, across `src/` and `tools/`. The session does the rest itself, because every later
 stage copies its pattern.
 
-- [ ] `OurSong.mythic` takes our Original, with its own source edition. `tools/make-our-songs.ts:248`
-- [ ] The writer writes `mythic.mid`, its catalog row and the four rows' `mythic` pointing to it. `tools/make-our-songs.ts:510`
-- [ ] The writer's `songProblems` checks our Original against the hand's checks and the hook. `tools/make-our-songs.ts:374`
-- [ ] The folder's `LICENSE.md` lists each `mythic.mid` of ours. `tools/make-our-songs.ts:530`
-- [ ] The meter rates an Original: the lowest version it fits, else 5. Its head comment says so. `tools/song-meter.ts:618`
-- [ ] `guide.json` carries the Original's version guide, and `readGuide` accepts it. `src/library/guide.ts:148`
-- [ ] The guide panel shows our Original's guide when its row is open. The level-up offer leads to it as before. `src/library/guide-panel.ts:87`
-- [ ] The new tagline of our Original, in English and German. `src/i18n/messages/player-library.en.ts:15`
+- [x] `OurSong.mythic` takes our Original, with its own source edition. `tools/make-our-songs.ts:248`
+- [x] The writer writes `mythic.mid`, its catalog row and the four rows' `mythic` pointing to it. `tools/make-our-songs.ts:510`
+- [x] The writer's `songProblems` checks our Original against the hand's checks and the hook. `tools/make-our-songs.ts:374`
+- [x] The folder's `LICENSE.md` lists each `mythic.mid` of ours. `tools/make-our-songs.ts:530`
+- [x] The meter rates an Original: the lowest version it fits, else 5. Its head comment says so. `tools/song-meter.ts:618`
+- [x] `guide.json` carries the Original's version guide, and `readGuide` accepts it. `src/library/guide.ts:148`
+- [x] The guide panel shows our Original's guide when its row is open. The level-up offer leads to it as before. `src/library/guide-panel.ts:87`
+- [x] The new tagline of our Original, in English and German. `src/i18n/messages/player-library.en.ts:15`
 - [ ] *Morning Mood*'s Original, from the best source the order above finds, with its guide in English and German. `tools/our-songs/morning-mood.ts:206`
+  - [x] The source: Schirmer's 1899 piano edition of Op. 46, scanned as Internet Archive item `31761045200615`.
+  - [ ] Four subagents transcribe the print's four pages to files, one page each.
+  - [ ] A writing subagent sets the whole piece from those files, with its guide in English and German.
+  - [ ] `bun tools/check-our-song.ts` accepts it, and a fresh reviewer reads it against the print.
+  - [ ] `bun tools/make-our-songs.ts` writes `mythic.mid`, its row and its guide.
 - [ ] Test `every_original_of_ours_keeps_its_hook_and_a_hand`. `tools/our-songs.test.ts:42`
 - [ ] Test `the_original_of_ours_shows_its_guide`: *Morning Mood*'s Original step opens our file and its guide. `e2e/guide.e2e.ts:1`
-- [ ] The rules of decision 0014 move into `docs/our-songs.md`: the Original's row, its rules, its guide and how it is made. `docs/our-songs.md:19`
-- [ ] The feature list says every song ends on its Original. `docs/reference/features.md:1`
+- [x] The rules of decision 0014 move into `docs/our-songs.md`: the Original's row, its rules, its guide and how it is made. `docs/our-songs.md:19`
+- [x] The feature list says every song ends on its Original. `docs/reference/features.md:1`
 - [ ] Look at *Morning Mood*'s card and the Original's guide with `bun run shot`, on a phone and a desktop.
 
 ### 2. Originals: the orchestral showpieces
@@ -268,19 +279,39 @@ its first print with accompaniment, or a songbook's setting printed before 1931.
 
 ### State
 
-The goal is written, and [decision 0014](../decisions/0014.md) records its reasons. No stage has
-started. *Morning Mood*'s versions play four bars of Grieg's flute theme and eight bars of our own, which
-is the gap this goal closes.
+The Original's plumbing has landed. `OurSong.mythic` takes an `OurOriginal`, and `originalProblems` in
+`tools/make-our-songs.ts` checks it. The meter's `originalDifficulty` rates it. The guide's `original`,
+`stepOf`, the shell and the library show it. The docs and both tests are written.
+
+*Morning Mood* has no Original yet. Its source is Schirmer's piano edition of 1899, edited by Louis
+Oesterle, Internet Archive item `31761045200615`. Printed pages 3 to 6 hold the whole piece. They are
+`.agent-tmp/src-morning-mood/n6.jpg` to `n9.jpg`, refetched from
+`https://archive.org/download/31761045200615/page/n<N>.jpg` if missing.
+
+One writing subagent tried the whole piece and ran out of context before writing a note. Its findings:
+
+- `bpm: 90, numerator: 6, denominator: 8, steps: 4` gives dotted quarter = 60 with a 32nd per unit.
+- A hand's line holds one chord at a time, so it carries no second voice. A note held under moving notes
+  is cut at the next onset and left to the pedal.
+- Page 4 has a left-hand chord with a sharp at the ff bar. Its "molto" crescendo bars give treble
+  sixteenths to the left hand.
 
 ### Next
 
-**Stage 1: the Original's plumbing and Morning Mood.** Files: `tools/make-our-songs.ts`,
-`tools/song-meter.ts`, `src/library/guide.ts`, `src/library/guide-panel.ts` and
-`tools/our-songs/morning-mood.ts`. Gate: none.
+**Stage 1, the rest: Morning Mood's Original.** Files: `tools/our-songs/morning-mood.ts`. Gate: none.
 
-Every item of stage 1 above is open.
+1. **Transcribe in four read-only subagents, one per page, side by side.** Each crops its page one system
+   at a time with `magick` and writes its bars in the notation to `.agent-tmp/src-morning-mood/page-n<N>.txt`.
+   It writes the file after each system, so a full context loses nothing. Each numbers its bars from its
+   page's first bar, and the session renumbers them.
+2. **One writing subagent assembles the module** from the four files: the Original, its fingers, pedal,
+   guide and German. It runs `bun tools/check-our-song.ts tools/our-songs/morning-mood.ts` until it passes.
+3. **A fresh reviewer reads it against the print,** and the session settles each finding.
+4. Run `bun tools/make-our-songs.ts`, the build, and the two tests by name. Then take the shots on a phone and
+   a desktop. `tools/shot.ts` has no fill step, so type the search with `--eval`.
 
-Expected red: none.
+Expected red: `every_original_of_ours_keeps_its_hook_and_a_hand` and `the_original_of_ours_shows_its_guide`,
+until *Morning Mood* holds an Original.
 
 ### Backlog
 

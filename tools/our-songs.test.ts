@@ -89,7 +89,8 @@ test("every_original_of_ours_keeps_its_hook_and_a_hand", () => {
   }
   // A version that keeps the tune's key passes as an Original, and each broken rule is named.
   const song = ourSongs.find((one) => one.slug === "silent-night")!;
-  const as = (original: OurOriginal): OurSong => ({ ...song, de: undefined, mythic: original });
+  const { de: _german, ...bare } = song;
+  const as = (original: OurOriginal): OurSong => ({ ...bare, mythic: original });
   const good: OurOriginal = { ...song.versions.legendary, source: { edition: "A print", printed: 1900 } };
   expect(originalProblems(as(good), 2026)).toEqual([]);
   expect(originalDifficulty({ ...measure(versionMeter(song, "legendary")), "starts per second, one hand": 99 })).toBe(ORIGINAL_PAST_LEGENDARY);

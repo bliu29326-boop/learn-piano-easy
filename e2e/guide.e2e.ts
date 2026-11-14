@@ -91,6 +91,31 @@ test("a_practice_step_sets_hands_speed_and_loop", async ({ page }) => {
   expect(values.waitForNotes).toBeUndefined();
 });
 
+test("the_original_of_ours_shows_its_guide", async ({ page }) => {
+  await page.goto("./play/");
+  await page.getByRole("button", { name: "Songs", exact: true }).click();
+  const songs = page.getByRole("dialog", { name: "Songs" });
+  await songs.getByRole("searchbox", { name: "Search songs" }).fill("morning mood");
+  // The card's last step is the Original, and its hover text says we set it for two hands.
+  const original = songs.getByRole("button", { name: "Original", exact: true });
+  await expect(original).toHaveAttribute("data-tip", "Original: The piece as its score has it, set for two hands.");
+  await original.click();
+
+  // The Original opens our own file, not a catalog score.
+  const file = page.waitForResponse((response) => response.url().endsWith("songs/ours/morning-mood/mythic.mid"));
+  await songs.getByRole("button", { name: "Morning Mood, Original" }).click();
+  await file;
+  await expect(page.getByLabel("Open song")).toHaveText("Morning Mood, Original");
+
+  // Its guide names it, says what it is, and plans its practice like a version's.
+  await page.getByRole("button", { name: "Guide", exact: true }).click();
+  const dialog = page.getByRole("dialog", { name: "Guide to Morning Mood, Original" });
+  await expect(dialog.locator(".library-rarity[data-rarity='mythic']")).toHaveText("Original");
+  await expect(dialog.getByText("The piece as its score has it, set for two hands.", { exact: false })).toBeVisible();
+  await expect(dialog.getByRole("heading", { name: "Tricky spots" })).toBeVisible();
+  await expect(dialog.getByRole("button", { name: "Apply step 1" })).toBeVisible();
+});
+
 test("the_guide_reads_in_the_pages_language", async ({ page }) => {
   const de = CATALOGS.de.player;
   await page.goto("./de/play/");

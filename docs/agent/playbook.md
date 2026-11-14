@@ -103,6 +103,9 @@ Traps a session paid for once, so the next one does not. **It is not a changelog
 - **A tune with neither `<score>` nor MIDI may still have a printed page on Commons,** as *O Holy
   Night* has Schirmer's print of 1871. Crop each voice staff with `magick <png> -crop`, enlarged, and
   read it with Read. IMSLP is no fallback, since its `robots.txt` refuses `/images/` to every agent.
+- **An Internet Archive PDF on Commons shows blank staves once its images are pulled out.** Its colour
+  layer is JPEG 2000 without ink, and the notes sit in a JBIG2 layer nothing here decodes. Fetch each
+  page as `archive.org/download/<item>/page/n<N>.jpg` instead.
 - **A song module checked in a tree with uncommitted meter edits may fail at HEAD.** `tools/check-our-song.ts`
   reads the tree's `tools/song-meter.ts`, and the writer rewrites every catalog row. Check, write and
   build in a detached worktree under `.agent-tmp/`, after `bun install --frozen-lockfile` there. Add

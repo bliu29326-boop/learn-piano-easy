@@ -123,8 +123,9 @@ in `effects-and-extras`.
 
 Ours takes its songs from four sources: our own arrangements, piano-midi.de, Mutopia and our original
 pieces. `public/songs/catalog.json` lists every song with its license and credit. Our arrangements
-follow [our-songs.md](../our-songs.md). The library groups some of them as collections: Christmas, film
-music and sea shanties. Ours keeps everything the learner has in one backup file, as
+follow [our-songs.md](../our-songs.md). Each comes in four versions from Beginner to Hard. Every song of
+ours whose tune is not our own ends on its Original, the whole piece set for two hands. The library groups
+some of them as collections: Christmas, film music and sea shanties. Ours keeps everything the learner has in one backup file, as
 [design.md](../design.md) § *The learner's data* says.
 
 The library is `song-library` and `more-songs`, settings are `settings`, and PDF export is
