@@ -6,6 +6,7 @@ import { extname, join } from "node:path";
 import { expect, test, type Page } from "@playwright/test";
 import { GROUP_INDEX, type GroupIndex } from "../src/pwa/cache-groups";
 import { contentHash } from "../src/pwa/current";
+import { saveParts } from "./save-parts";
 
 /** Collects every uncaught error and console error the page reports from now on. */
 function watchErrors(page: Page): string[] {
@@ -96,7 +97,8 @@ const NEXT_CSS = "\n/* The next version. */\n";
  * A server of this run's build that the test can move to a next version. Playwright never sees the
  * request for a worker's script, so only a server can change it. The next version changes `app.css`
  * alone, and its `sw.js` names the new version and the stylesheet's new hash. The server is the test's
- * own, so no other test's browser finds the update. `fetched` lists the paths asked for since `next`.
+ * own, so no other test's browser finds the update. `fetched` lists the paths asked for since the
+ * start, or since `next` once it has run. `index` is the run's index of the cache groups.
  */
 async function updatableSite() {
   const dist = join(".agent-tmp/e2e/runs", process.env.E2E_RUN!, "dist");
@@ -109,7 +111,7 @@ async function updatableSite() {
   const fetched: string[] = [];
   const server = createServer(async (request, response) => {
     let path = decodeURIComponent(new URL(request.url!, "http://localhost").pathname);
-    if (next) fetched.push(path);
+    fetched.push(path);
     if (path.endsWith("/")) path += "index.html";
     try {
       let body: Buffer | string = await readFile(join(dist, path));
@@ -124,8 +126,12 @@ async function updatableSite() {
   await new Promise<void>((resolve) => server.listen(0, "localhost", resolve));
   return {
     url: `http://localhost:${(server.address() as AddressInfo).port}/`,
-    next: () => (next = true),
+    next: () => {
+      next = true;
+      fetched.length = 0;
+    },
     fetched,
+    index,
     close: () => {
       server.closeAllConnections();
       server.close();
@@ -178,9 +184,30 @@ test("the_offer_of_a_new_version_stays_until_the_learner_answers_it", async ({ p
   }
 });
 
+test("a_first_visit_to_the_landing_page_fetches_and_caches_no_part_of_the_shell", async ({ page }) => {
+  const site = await updatableSite();
+  try {
+    await page.goto(site.url);
+    await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+    const { player, learn } = site.index.groups;
+    // A file `./x` of the index is the path `/x` on this server, which serves the build at its root.
+    const parts = new Set([...player.files, ...learn.files].map((file) => file.slice(1)));
+    expect(parts.size).toBeGreaterThan(0);
+    expect(site.fetched.filter((path) => parts.has(path))).toEqual([]);
+    const cached = await page.evaluate(async () => {
+      const shell = (await caches.keys()).filter((name) => name.startsWith("shell-"));
+      const keys = await Promise.all(shell.map(async (name) => (await caches.open(name)).keys()));
+      return keys.flat().map((request) => new URL(request.url).pathname);
+    });
+    expect(cached).toContain("/app.js");
+    expect(cached.filter((path) => parts.has(path))).toEqual([]);
+  } finally {
+    site.close();
+  }
+});
+
 test("app_reloads_offline_from_the_service_worker", async ({ page, context }) => {
-  await page.goto("./play/");
-  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+  await saveParts(page, ["Just Play Piano"]);
   await context.setOffline(true);
   const errors = watchErrors(page);
   await page.reload();

@@ -11,8 +11,9 @@
 import { expect, test, type Page } from "@playwright/test";
 import { loadEveryLocale } from "../src/i18n/all-catalogs";
 import { rowOf } from "../src/i18n/locale";
-import { allPages, pageAt, pageTitle, REPO_URL } from "../src/site/routes";
+import { allPages, lessonPages, pageAt, pageTitle, REPO_URL } from "../src/site/routes";
 import { checkLayout, LOCALES, pastSetup, THEMES, WIDTHS } from "./layout-check";
+import { saveParts } from "./save-parts";
 
 test.beforeAll(loadEveryLocale);
 
@@ -178,8 +179,8 @@ test("the_landing_page_loads_no_player_code", async ({ page }) => {
 
 test("every_route_reloads_offline", async ({ page, context }) => {
   test.setTimeout(120_000);
-  await page.goto("./");
-  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+  // A first visit saves the site's core alone, and the player and Learn Piano are saved when opened.
+  await saveParts(page, ["Just Play Piano", "Learn Piano"]);
   await context.setOffline(true);
   const errors = watchErrors(page);
   for (const site of allPages()) {
@@ -188,6 +189,10 @@ test("every_route_reloads_offline", async ({ page, context }) => {
     await expect(page.locator("html")).toHaveAttribute("lang", rowOf(site.locale).lang);
     await expect(heading(page)).toBeAttached();
   }
+  // A lesson's page is in Learn Piano's part, which the learner saved.
+  const [lesson] = await lessonPages(["de"]);
+  await page.goto(`./${lesson!.path}`);
+  await expect(page).toHaveTitle(pageTitle(lesson!));
   // An unknown path shows the landing page of its locale.
   await page.goto("./de/nowhere/");
   await expect(page).toHaveTitle(pageTitle(pageAt("de/")!));
