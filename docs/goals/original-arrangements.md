@@ -12,7 +12,7 @@ stages:
     status: done
   - id: 3
     title: "A page is read by the system, and its bars are set by a command"
-    status: open
+    status: done
   - id: 4
     title: "the goal is verified once, and every failure is fixed"
     status: open
@@ -258,13 +258,13 @@ reviewer then reads the batch against its sources.
 pieces whole, at a target of a fifth of stage 2's tokens a song.
 **Gate:** stage 2 is committed.
 
-- [ ] `tools/crop-systems.ts <page image>` finds each system from its staff lines' rows and cuts it into two half-system crops at twice the scan's size, through `magick`. `tools/crop-systems.ts:1`
-- [ ] Test `crop_systems_finds_every_system`, on a page of three systems that the test draws. `tools/crop-systems.test.ts:1`
-- [ ] `tools/original-from-pages.ts <slug>` reads `.agent-tmp/src-<slug>/page-*.txt` and writes `tools/our-songs/<slug>-print.ts`, the print's bars as `PrintBar`s keyed by their page labels. It refuses a hand that does not fill its bar and a `?` left in a pitch. `tools/original-from-pages.ts:1`
-- [ ] Test `original_from_pages_keeps_every_bar_and_refuses_a_short_hand`. `tools/original-from-pages.test.ts:1`
-- [ ] The three briefs leave `.agent-tmp/` for `docs/agent/originals.md`, rewritten for this stage's tools. They brief a transcriber of one system, a writer of the guide and the cut, and a reviewer of flagged bars. `docs/agent/originals.md:1`
-- [ ] `docs/our-songs.md` § *How a song is made* says how an Original is made with the two tools. `docs/our-songs.md:189`
-- [ ] Both tools pass `bun run build`, and the session commits the stage.
+- [x] `tools/crop-systems.ts <page image>` finds each system from its staff lines' rows and cuts it into two half-system crops at twice the scan's size, through `magick`. `tools/crop-systems.ts:1`
+- [x] Test `crop_systems_finds_every_system`, on a page of three systems that the test draws. `tools/crop-systems.test.ts:1`
+- [x] `tools/original-from-pages.ts <slug>` reads `.agent-tmp/src-<slug>/page-*.txt` and writes `tools/our-songs/<slug>-print.ts`, the print's bars as `PrintBar`s keyed by their page labels. It refuses a hand that does not fill its bar and a `?` left in a pitch. `tools/original-from-pages.ts:1`
+- [x] Test `original_from_pages_keeps_every_bar_and_refuses_a_short_hand`. `tools/original-from-pages.test.ts:1`
+- [x] The three briefs leave `.agent-tmp/` for `docs/agent/originals.md`, rewritten for this stage's tools. They brief a transcriber of one system, a writer of the guide and the cut, and a reviewer of flagged bars. `docs/agent/originals.md:1`
+- [x] `docs/our-songs.md` § *How a song is made* says how an Original is made with the two tools. `docs/our-songs.md:189`
+- [x] Both tools pass `bun run build`, and the session commits the stage.
 
 ### 4. the goal is verified once, and every failure is fixed
 

@@ -185,8 +185,10 @@ locale up to date, as [translation.md](agent/translation.md) says. The German fo
 4. **Run the meter.** It refuses a bar that does not fill, a broken limit and a lost hook. It also
    refuses a version that does not earn its place, a missing finger and a move past its practical span.
 5. **Write the guide,** with a tip for every tricky spot the meter names.
-6. **Set the Original** from its print, bar by bar, with its guide. `bun tools/check-our-song.ts` checks it
-   with the versions, and a fresh reviewer reads it against the print.
+6. **Set the Original** from its print, or from that print's text encoding where one exists.
+   `tools/crop-systems.ts` cuts each page into half-system crops, and one transcriber writes each system's
+   bars. `tools/original-from-pages.ts` sets the bars, and a writer adds the cut and the guide. A fresh
+   reviewer reads only the flagged bars. [originals.md](agent/originals.md) is the method.
 7. **Listen in the app.** The user plays each new batch and files what sounds wrong, and each note becomes
    a fix.
 
