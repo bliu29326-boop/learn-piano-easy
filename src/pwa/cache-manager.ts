@@ -7,10 +7,12 @@
  *   It fetches with cache mode `reload`, which the service worker passes to the network. A cached file
  *   stays until its fresh copy arrives, so a failed fetch never leaves a group emptier than before.
  * - The core group is precached by every install, so it has no setting.
+ * - A shell group counts its language-neutral files and the subsets of the marked locales, English
+ *   always among them, as `cache-groups.ts` says. Its size and status are those files alone.
  * - A part of the shell is saved through `ensureParts` of `parts.ts`, which marks it, so every install
- *   keeps it. Saving a part saves the parts it needs too. Removing a part drops its mark and its files,
- *   and those of every part that needs it, so Learn Piano goes with the player. Each section touched
- *   shows its new status. A part has no setting, since its mark keeps it.
+ *   keeps it. It saves the part in the marked locales, with the parts it needs. Removing a part drops its
+ *   mark and its files in every locale, and those of every part that needs it, so Learn Piano goes with
+ *   the player. Each section touched shows its new status. A part has no setting, since its mark keeps it.
  * - A save shows its bytes in a Loading card of `src/ui/components/loading.ts`, under the status.
  * - `autoCacheSongs` and `autoCacheSounds` keep their group offline: turning one on caches the group.
  * - The last version the page started is kept in `localStorage`. A start on a new version is an update.
@@ -29,10 +31,11 @@ import type { SettingsStore } from "../settings/store";
 import { loading } from "../ui/components/loading";
 import { button, el } from "../ui/dom";
 import { toggleControl } from "../ui/controls";
-import { cacheNameOf, GROUP_IDS, loadGroupIndex, PARTS, withNeeds, type GroupId, type GroupIndex, type PartId } from "./cache-groups";
+import type { Locale } from "../i18n/locale-table";
+import { cacheNameOf, filesIn, GROUP_IDS, inShell, loadGroupIndex, PARTS, withNeeds, type GroupFiles, type GroupId, type GroupIndex, type PartId } from "./cache-groups";
 import { inParallel, isCurrent } from "./current";
 import { showProgress } from "./download-progress";
-import { ensureParts, unmarkPart } from "./parts";
+import { ensureParts, markedLocales, unmarkPart } from "./parts";
 import "../settings/panel.css";
 import "./cache-manager.css";
 
@@ -72,11 +75,19 @@ function absolute(file: string): string {
   return new URL(file, document.baseURI).href;
 }
 
-/** How many of a group's files are cached. */
-export async function cachedCount(index: GroupIndex, group: GroupId): Promise<number> {
+/**
+ * The files of a group the dialog counts: a shell group's language-neutral files and the subsets of
+ * `locales`, the marked ones, or every file of another group.
+ */
+export function shownFiles(index: GroupIndex, group: GroupId, locales: readonly Locale[]): GroupFiles {
+  return inShell(group) ? filesIn(index.groups[group], locales) : index.groups[group];
+}
+
+/** How many of `files`, a group's, are cached. */
+export async function cachedCount(index: GroupIndex, group: GroupId, files: GroupFiles = index.groups[group]): Promise<number> {
   const cache = await caches.open(cacheNameOf(group, index.version));
   const held = new Set((await cache.keys()).map((request) => request.url));
-  return index.groups[group].files.filter((file) => held.has(absolute(file))).length;
+  return files.files.filter((file) => held.has(absolute(file))).length;
 }
 
 /** How far a fill has come: the files done and in total, and their bytes done and in total. */
@@ -96,14 +107,14 @@ const running = new Map<GroupId, { done: Promise<number>; listeners: Set<Progres
 
 /**
  * Fetches the files `fetching` names of a group from the network into its cache, and returns how many
- * failed. `progress` hears the count done after each file. A call while the group is filling joins
- * that run, whatever its `fetching`.
+ * failed. `files` are the group's files it looks at, all of them by default. `progress` hears the count
+ * done after each file. A call while the group is filling joins that run, whatever its `fetching`.
  */
-export function cacheGroup(index: GroupIndex, group: GroupId, fetching: Fetching, progress?: Progress): Promise<number> {
+export function cacheGroup(index: GroupIndex, group: GroupId, fetching: Fetching, progress?: Progress, files: GroupFiles = index.groups[group]): Promise<number> {
   let run = running.get(group);
   if (run === undefined) {
     const listeners = new Set<Progress>();
-    const done = fill(index, group, fetching, (...progress) => listeners.forEach((l) => l(...progress)));
+    const done = fill(index, group, files, fetching, (...progress) => listeners.forEach((l) => l(...progress)));
     run = { done, listeners };
     running.set(group, run);
     void done.finally(() => running.delete(group));
@@ -112,10 +123,10 @@ export function cacheGroup(index: GroupIndex, group: GroupId, fetching: Fetching
   return run.done;
 }
 
-async function fill(index: GroupIndex, group: GroupId, fetching: Fetching, progress: Progress): Promise<number> {
+async function fill(index: GroupIndex, group: GroupId, listed: GroupFiles, fetching: Fetching, progress: Progress): Promise<number> {
   const cache = await caches.open(cacheNameOf(group, index.version));
   const held = new Set((await cache.keys()).map((request) => request.url));
-  const { files, hashes, sizes } = index.groups[group];
+  const { files, hashes, sizes } = listed;
   const entries = files.map((file, i) => ({ url: absolute(file), hash: hashes[i] ?? "", size: sizes[i] ?? 0 }));
   const wanted: typeof entries = [];
   await inParallel(entries, PARALLEL, async (entry) => {
@@ -199,14 +210,14 @@ export function createCacheManager(settings: SettingsStore): HTMLElement {
     return body;
   }
   body.append(el("p", { text: say.reading }));
-  void loadGroupIndex().then((index) => {
+  void Promise.all([loadGroupIndex(), markedLocales()]).then(([index, locales]) => {
     if (index === undefined) {
       body.replaceChildren(el("p", { text: say.unreadable }));
       return;
     }
     // Each section's status, by its group, so a change to one part shows in the parts it touches.
     const shows = new Map<GroupId, () => Promise<void>>();
-    body.replaceChildren(el("p", { text: say.intro }), ...GROUP_IDS.map((id) => groupSection(settings, index, id, shows)));
+    body.replaceChildren(el("p", { text: say.intro }), ...GROUP_IDS.map((id) => groupSection(settings, index, shownFiles(index, id, locales), id, shows)));
   });
   return body;
 }
@@ -216,16 +227,17 @@ function dependentsOf(part: PartId): PartId[] {
   return PARTS.filter((other) => other !== part && withNeeds([other]).includes(part));
 }
 
-function groupSection(settings: SettingsStore, index: GroupIndex, id: GroupId, shows: Map<GroupId, () => Promise<void>>): HTMLElement {
+/** The section of group `id`, whose `listed` files are those the dialog counts. */
+function groupSection(settings: SettingsStore, index: GroupIndex, listed: GroupFiles, id: GroupId, shows: Map<GroupId, () => Promise<void>>): HTMLElement {
   const say = t().player.shell.cache;
   const { label, description } = textsOf(id);
-  const { files, bytes } = index.groups[id];
+  const { files, bytes } = listed;
   const status = el("p", { class: "cache-status", attrs: { role: "status" } });
   const card = loading({ place: "inline", locale: liveLocale() });
   let busy = false;
 
   const show = async () => {
-    const count = await cachedCount(index, id);
+    const count = await cachedCount(index, id, listed);
     const state = count === files.length ? say.allSaved : count === 0 ? say.noneSaved : say.someSaved(count, files.length);
     status.textContent = say.status(formatBytes(bytes), files.length, state);
     save.textContent = count === files.length ? say.saveAgain : say.save;
@@ -252,10 +264,16 @@ function groupSection(settings: SettingsStore, index: GroupIndex, id: GroupId, s
   const saving = say.savingGroup(label);
   const fillAndShow = (fetching: Fetching) =>
     void work(async () => {
-      const failed = await cacheGroup(index, id, fetching, (done, total, bytesDone, totalBytes) => {
-        status.textContent = say.saving(done, total);
-        showProgress(card, saving, { bytes: bytesDone, totalBytes });
-      });
+      const failed = await cacheGroup(
+        index,
+        id,
+        fetching,
+        (done, total, bytesDone, totalBytes) => {
+          status.textContent = say.saving(done, total);
+          showProgress(card, saving, { bytes: bytesDone, totalBytes });
+        },
+        listed,
+      );
       return failed > 0 ? say.failed(failed) : undefined;
     });
   // A part fills whole with the parts it needs and marks each, and a file in a version's shell cache is

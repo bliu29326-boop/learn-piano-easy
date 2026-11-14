@@ -11,14 +11,15 @@
  * groups, and bundles the service worker `src/pwa/sw.ts` into `sw.js` with each shell group's files and
  * the version written in.
  *
- * `src/pwa/cache-groups.ts` owns which file joins which group. The shell is the core and its two parts,
- * the player and learn. The bundle's chunks join them by the bundler's graph of the site, in
- * `chunkParts`, and every other file by its path. The worker precaches the core, and each part once the
- * page has marked it. Every grouped file gets a content hash, and the version hashes each one's path and
+ * `src/pwa/cache-groups.ts` owns which file joins which group and which locale. The shell is the core
+ * and its two parts, the player and learn. The bundle's chunks join them by the bundler's graph of the
+ * site, in `chunkParts`, and a locale's subset in `chunkLocales`. Every other file joins by its path. The
+ * worker precaches the core, and each part once the page has marked it, each in the marked locales.
+ * Every grouped file gets a content hash, and the version hashes each one's path and
  * hash. The version names the worker's cache, so a change to any grouped file makes the next visit
  * install a new shell. That install fetches only the files whose hash changed. The index,
- * `cache-groups.json`, lists the hashes. It joins the core but not the version, because it holds the
- * version. Its byte counts leave out the index itself.
+ * `cache-groups.json`, lists the hashes and the locales. It joins the core but not the version, because
+ * it holds the version. Its byte counts leave out the index itself.
  *
  * Every page names the site, its locale and the other locales for social sites. A hidden route's page
  * asks search engines not to index it.
@@ -41,6 +42,8 @@ import {
   GROUP_INDEX,
   groupIndex,
   groupOf,
+  KEPT_LOCALE,
+  LOCALE_ROOTS,
   PART_ANCHORS,
   PART_ROOTS,
   PARTS,
@@ -258,6 +261,69 @@ export function chunkParts(meta: Bun.BuildMetafile, entry: string): Map<string, 
   return parts;
 }
 
+/**
+ * The locale of each chunk of the page bundle `meta` whose entry is `entry`. A chunk missing from the map
+ * is language-neutral. It throws, naming the modules, when a locale's texts would land where another
+ * locale loads them.
+ *
+ * - **Neutral** is every chunk the entry reaches without loading a root of `LOCALE_ROOTS`.
+ * - **A locale's chunk** is one only that locale's roots reach. A chunk two locales' roots share is
+ *   neutral. A stylesheet goes with the chunk that loads it.
+ * - **The guard** fails when a neutral chunk imports a locale's chunk statically, and when a locale's
+ *   root lands in a chunk that is not that locale's own. Either way another locale would load its texts.
+ */
+export function chunkLocales(meta: Bun.BuildMetafile, entry: string): Map<string, Locale> {
+  const edges = new Map<string, ChunkEdge[]>();
+  for (const [path, output] of Object.entries(meta.outputs)) {
+    const chunk = outputPath(path);
+    if (chunk.endsWith(".map")) continue;
+    const list = output.imports.map((i) => ({ to: outputPath(i.path), dynamic: i.kind === "dynamic-import" }));
+    if (output.cssBundle !== undefined) list.push({ to: outputPath(output.cssBundle), dynamic: false });
+    edges.set(chunk, list);
+  }
+  const chunkOf = (module: string) => [...edges.keys()].find((c) => c.endsWith(".js") && meta.outputs[`./${c}`]?.inputs[module] !== undefined);
+  /** Each locale's root modules, wherever the bundler put them. */
+  const rootModules = new Map<Locale, string[]>(
+    LOCALES.filter((locale) => locale !== KEPT_LOCALE).map((locale) => {
+      const globs = LOCALE_ROOTS.map((pattern) => new Bun.Glob(pattern.replaceAll("{locale}", locale)));
+      return [locale, Object.keys(meta.inputs).filter((module) => globs.some((glob) => glob.match(module)))];
+    }),
+  );
+  const rootChunks = new Map<string, Locale>();
+  for (const [locale, modules] of rootModules) {
+    for (const module of modules) {
+      const chunk = chunkOf(module);
+      if (chunk !== undefined && meta.outputs[`./${chunk}`]?.entryPoint === module) rootChunks.set(chunk, locale);
+    }
+  }
+  const neutral = reach(edges, [entry], (chunk) => rootChunks.has(chunk));
+  const owner = new Map<string, Locale | null>();
+  for (const locale of rootModules.keys()) {
+    const seeds = [...rootChunks].filter(([, l]) => l === locale).map(([chunk]) => chunk);
+    for (const chunk of reach(edges, seeds, (c) => neutral.has(c))) owner.set(chunk, owner.has(chunk) && owner.get(chunk) !== locale ? null : locale);
+  }
+  const locales = new Map([...owner].filter((entry): entry is [string, Locale] => entry[1] !== null));
+
+  const problems: string[] = [];
+  const moduleOf = (chunk: string) => meta.outputs[`./${chunk}`]?.entryPoint ?? Object.keys(meta.outputs[`./${chunk}`]?.inputs ?? {})[0] ?? chunk;
+  for (const chunk of neutral) {
+    for (const edge of edges.get(chunk) ?? []) {
+      if (!edge.dynamic && locales.has(edge.to)) problems.push(`${moduleOf(chunk)} imports ${moduleOf(edge.to)} statically.`);
+    }
+  }
+  for (const [locale, modules] of rootModules) {
+    for (const module of modules) {
+      const chunk = chunkOf(module);
+      if (chunk !== undefined && locales.get(chunk) !== locale) problems.push(`${module} of ${locale} lands in ${chunk}, which is not ${locale}'s own.`);
+    }
+  }
+  if (problems.length > 0) {
+    const fix = `Load a locale's texts only with import() of a module that LOCALE_ROOTS of src/pwa/cache-groups.ts declares.`;
+    throw new Error(`The split of the shell into its locales fails:\n${[...new Set(problems)].join("\n")}\n${fix}`);
+  }
+  return locales;
+}
+
 /** `text` safe inside an HTML attribute or element. */
 function escapeHtml(text: string): string {
   return text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
@@ -433,6 +499,7 @@ export async function build(options: BuildOptions): Promise<BuildResult> {
   // The stylesheet sits at the app's root, because its font URLs are relative to `fonts/`.
   const site = await bundlePage("src/main.ts", "app", outDir, dev);
   const chunks = chunkParts(site.meta, "app.js");
+  const locales = chunkLocales(site.meta, "app.js");
 
   const parser = await Bun.build({
     entrypoints: [join(root, "src/midi/parse-worker.ts")],
@@ -457,18 +524,18 @@ export async function build(options: BuildOptions): Promise<BuildResult> {
     }),
   );
   const version = await contentHash(new TextEncoder().encode(files.map((f) => `${f.path}\0${f.hash}\0`).join("")));
-  const index = groupIndex(version, files, chunks);
+  const index = groupIndex(version, files, chunks, locales);
   const indexText = JSON.stringify(index);
   await Bun.write(join(outDir, GROUP_INDEX), indexText);
-  // The worker's shell groups: each file's URL with its content hash and bytes, the index too in the core.
+  // The worker's shell groups: each file's URL with its content hash, bytes and locale, the index too in the core.
   const shell = Object.fromEntries(
     SHELL_GROUPS.map((id) => {
-      const { files: urls, hashes, sizes } = index.groups[id];
-      return [id, Object.fromEntries(urls.map((url, i) => [url, [hashes[i] ?? "", sizes[i] ?? 0]]))];
+      const { files: urls, hashes, sizes, locales: of } = index.groups[id];
+      return [id, Object.fromEntries(urls.map((url, i) => [url, [hashes[i] ?? "", sizes[i] ?? 0, of[i] ?? ""]]))];
     }),
-  ) as Record<ShellGroupId, Record<string, [string, number]>>;
+  ) as Record<ShellGroupId, Record<string, [string, number, string]>>;
   const indexBytes = new TextEncoder().encode(indexText);
-  shell.app[`./${GROUP_INDEX}`] = [await contentHash(indexBytes), indexBytes.length];
+  shell.app[`./${GROUP_INDEX}`] = [await contentHash(indexBytes), indexBytes.length, ""];
 
   const worker = await Bun.build({
     entrypoints: [join(root, "src/pwa/sw.ts")],

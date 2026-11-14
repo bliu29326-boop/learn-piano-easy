@@ -1,16 +1,20 @@
 /**
- * The shell's parts on the page: `ensureParts` makes the parts a view needs available offline before the
- * view loads their code. `cache-groups.ts` says what each part holds.
+ * The shell's parts and locales on the page: `ensureParts` makes the parts a view needs available offline
+ * before the view loads their code, and `ensureLocale` does the same for a locale before the site shows
+ * it. `cache-groups.ts` says what each part and each locale's subset holds.
  *
  * The contract of `ensureParts(ids, onProgress, scope)`:
  * - It resolves once every part of `ids`, and every part each needs by `PART_NEEDS`, is in the shell
- *   cache of the version the page runs: the version `cache-groups.json` names. It never rejects.
+ *   cache of the version the page runs: the version `cache-groups.json` names. Of each part it fills the
+ *   language-neutral files and the subsets of the marked locales. It never rejects.
  * - `scope` `view` fills only what a view opens with: every file but the route pages, the `index.html`
  *   of each of Learn Piano's routes in each locale. Those are most of Learn Piano's files and bytes, and
  *   only an offline reload of a route reads one. The worker answers a missing one with the root page,
  *   which shows the same route. `all`, the default, fills every file, and its `cached` means all of them.
  * - It writes each part's mark before it fetches, so every later install keeps the part. An install
  *   that a fill cut short finishes it.
+ * - `ensureLocale(locale, onProgress, scope)` keeps the same contract for one locale's subset of the core
+ *   and of every marked part. It writes the locale's mark before it fetches.
  * - It fetches only the files that cache misses. A file in a version's cache is that version's, since
  *   the worker copies a file only by its hash and this fill checks the hash of each file it fetches.
  * - `onProgress` hears the files stored and the bytes arrived, and the totals the call fetches. It hears
@@ -37,7 +41,19 @@
  * - A body is read as a stream, so the bar moves within a big file. The file is stored with its bytes
  *   and its `Content-Type` alone, since the bytes are already decoded.
  */
-import { loadGroupIndex, PARTS_CACHE, partMark, shellCacheName, withNeeds, type PartId } from "./cache-groups";
+import type { Locale } from "../i18n/locale-table";
+import {
+  KEPT_LOCALE,
+  loadGroupIndex,
+  localeMark,
+  markedIn,
+  PARTS_CACHE,
+  partMark,
+  shellCacheName,
+  withNeeds,
+  type GroupFiles,
+  type PartId,
+} from "./cache-groups";
 import { contentHash, inParallel } from "./current";
 import { readBody } from "./read-body";
 
@@ -115,7 +131,28 @@ function fetchOnce(cache: Cache, url: string, hash: string, onBytes: (bytes: num
   return run.run;
 }
 
-/** Makes the parts `ids` available offline, as the head comment's contract says. */
+/** A file a fill may fetch: its absolute URL, its content hash and its bytes. */
+interface Wanted {
+  url: string;
+  hash: string;
+  size: number;
+}
+
+/** The files of `group` whose locale `keep` takes, `""` for a language-neutral one, as fill entries. */
+function wantedOf(group: GroupFiles, keep: (locale: Locale | "") => boolean): Wanted[] {
+  const wanted: Wanted[] = [];
+  group.files.forEach((file, i) => {
+    if (keep(group.locales[i] ?? "")) wanted.push({ url: new URL(file, document.baseURI).href, hash: group.hashes[i] ?? "", size: group.sizes[i] ?? 0 });
+  });
+  return wanted;
+}
+
+/** What the parts cache keeps: the marked parts, and the marked locales with English. */
+async function marked(marks: Cache): Promise<{ parts: PartId[]; locales: Locale[] }> {
+  return markedIn((await marks.keys()).map((request) => request.url), document.baseURI);
+}
+
+/** Makes the parts `ids` available offline in every marked locale, as the head comment's contract says. */
 export async function ensureParts(
   ids: readonly PartId[],
   onProgress?: (progress: PartsProgress) => void,
@@ -124,47 +161,83 @@ export async function ensureParts(
   if (!partsCached()) return "ready";
   const index = await loadGroupIndex();
   if (index === undefined) return "offline";
-  const root = document.baseURI;
   const parts = withNeeds(ids);
   try {
     const marks = await caches.open(PARTS_CACHE);
-    await Promise.all(parts.map((id) => marks.put(partMark(id, root), new Response(""))));
-    const cache = await caches.open(shellCacheName(index.version));
-    const held = new Set((await cache.keys()).map((request) => request.url));
-    const wanted = parts
-      .flatMap((id) => {
-        const { files, hashes, sizes } = index.groups[id];
-        return files.map((file, i) => ({ url: new URL(file, root).href, hash: hashes[i] ?? "", size: sizes[i] ?? 0 }));
-      })
-      .filter((file) => !held.has(file.url) && (scope === "all" || !file.url.endsWith(ROUTE_PAGE)));
-    if (wanted.length === 0) return "cached";
-
-    const progress: PartsProgress = { files: 0, totalFiles: wanted.length, bytes: 0, totalBytes: 0 };
-    for (const file of wanted) progress.totalBytes += file.size;
-    onProgress?.({ ...progress });
-    let failure: "offline" | "stale" | undefined;
-    await inParallel(wanted, PARALLEL, async (file) => {
-      if (failure !== undefined) return;
-      // A joined fetch may have read some bytes already, so each report adds what is new since the last.
-      let counted = 0;
-      const outcome = await fetchOnce(cache, file.url, file.hash, (bytes) => {
-        progress.bytes += bytes - counted;
-        counted = bytes;
-        onProgress?.({ ...progress });
-      });
-      if (outcome !== "ok") {
-        // A newer server explains a failed fetch too, so `stale` wins over `offline`.
-        if (failure !== "stale") failure = outcome;
-        return;
-      }
-      progress.files++;
-      progress.bytes += file.size - counted;
-      onProgress?.({ ...progress });
-    });
-    return failure ?? "ready";
+    await Promise.all(parts.map((id) => marks.put(partMark(id, document.baseURI), new Response(""))));
+    const { locales } = await marked(marks);
+    const wanted = parts.flatMap((id) => wantedOf(index.groups[id], (locale) => locale === "" || locales.includes(locale)));
+    return await fill(index.version, wanted, scope, onProgress);
   } catch {
     return "offline";
   }
+}
+
+/**
+ * Makes `locale` available offline, as the head comment's contract says for a part: its subset of the
+ * core and of every marked part. It marks the locale first, so every later install keeps it.
+ */
+export async function ensureLocale(locale: Locale, onProgress?: (progress: PartsProgress) => void, scope: PartsScope = "all"): Promise<PartsResult> {
+  if (!partsCached()) return "ready";
+  const index = await loadGroupIndex();
+  if (index === undefined) return "offline";
+  try {
+    const marks = await caches.open(PARTS_CACHE);
+    await marks.put(localeMark(locale, document.baseURI), new Response(""));
+    const { parts } = await marked(marks);
+    const wanted = (["app", ...parts] as const).flatMap((id) => wantedOf(index.groups[id], (of) => of === locale));
+    return await fill(index.version, wanted, scope, onProgress);
+  } catch {
+    return "offline";
+  }
+}
+
+/** Marks `locale` without a fetch, so the first install of a first visit fills its subsets. */
+export async function markLocale(locale: Locale): Promise<void> {
+  if (!partsCached()) return;
+  try {
+    await (await caches.open(PARTS_CACHE)).put(localeMark(locale, document.baseURI), new Response(""));
+  } catch {
+    // A browser that refuses to store the mark caches the locale when the learner next opens it.
+  }
+}
+
+/** The locales every install keeps: the marked ones, and English. */
+export async function markedLocales(): Promise<Locale[]> {
+  if (typeof caches === "undefined") return [KEPT_LOCALE];
+  return (await marked(await caches.open(PARTS_CACHE))).locales;
+}
+
+/** Fetches into the shell cache of `version` the files of `wanted` that it misses, within `scope`. */
+async function fill(version: string, wanted: readonly Wanted[], scope: PartsScope, onProgress?: (progress: PartsProgress) => void): Promise<PartsResult> {
+  const cache = await caches.open(shellCacheName(version));
+  const held = new Set((await cache.keys()).map((request) => request.url));
+  const missing = wanted.filter((file) => !held.has(file.url) && (scope === "all" || !file.url.endsWith(ROUTE_PAGE)));
+  if (missing.length === 0) return "cached";
+
+  const progress: PartsProgress = { files: 0, totalFiles: missing.length, bytes: 0, totalBytes: 0 };
+  for (const file of missing) progress.totalBytes += file.size;
+  onProgress?.({ ...progress });
+  let failure: "offline" | "stale" | undefined;
+  await inParallel(missing, PARALLEL, async (file) => {
+    if (failure !== undefined) return;
+    // A joined fetch may have read some bytes already, so each report adds what is new since the last.
+    let counted = 0;
+    const outcome = await fetchOnce(cache, file.url, file.hash, (bytes) => {
+      progress.bytes += bytes - counted;
+      counted = bytes;
+      onProgress?.({ ...progress });
+    });
+    if (outcome !== "ok") {
+      // A newer server explains a failed fetch too, so `stale` wins over `offline`.
+      if (failure !== "stale") failure = outcome;
+      return;
+    }
+    progress.files++;
+    progress.bytes += file.size - counted;
+    onProgress?.({ ...progress });
+  });
+  return failure ?? "ready";
 }
 
 /** Removes the mark of part `id`, so no later install keeps it. The caller removes its files. */

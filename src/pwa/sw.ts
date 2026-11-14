@@ -3,12 +3,14 @@
  *
  * - **The shell** is the core and the parts of `cache-groups.ts`, as `tools/build.ts` lists them, in
  *   one cache named by the build's version. The install fills the core, and every part the page marked
- *   in the parts cache. It copies each file whose bytes a shell cache already holds, and fetches only
- *   the rest. A part no page marked is never fetched here: the page fills it when the learner opens it.
+ *   in the parts cache. Of each it fills the language-neutral files and the subsets of the locales the
+ *   page marked, English always among them. It copies each file whose bytes a shell cache already holds,
+ *   and fetches only the rest. A part or a locale no page marked is never fetched here: the page fills it
+ *   when the learner first opens it.
  * - **Every shell file is served cache-first,** the core's and the parts' alike, and from the network
  *   when the cache misses it. A navigation gets its route's page, so every route of the site reloads
- *   offline. A route whose page the cache misses, such as a lesson while learn is not saved, and an unknown
- *   path get the root page. The site reads the address, and shows the route or the landing page of the
+ *   offline. A route whose page the cache misses, such as a lesson while learn is not saved or a page of a
+ *   locale not saved, and an unknown path get the root page. The site reads the address, and shows the route or the landing page of the
  *   path's locale. A request for a byte range, as a video makes, gets that range of the cached file
  *   through `ranged.ts`.
  * - **Songs and sounds** are cached on first use into one content cache that outlives versions. After
@@ -48,12 +50,15 @@ interface WorkerScope {
   addEventListener(type: "message", listener: (event: MessageEvent) => void): void;
 }
 
-import { CONTENT_CACHE, groupOf, inShell, INSTALL_PROGRESS, PARTS, PARTS_CACHE, partMark, shellCacheName, type InstallProgress, type ShellGroupId } from "./cache-groups";
+import { CONTENT_CACHE, groupOf, inShell, INSTALL_PROGRESS, markedIn, PARTS_CACHE, shellCacheName, type InstallProgress, type ShellGroupId } from "./cache-groups";
 import { inParallel, isCurrent } from "./current";
 import { ranged } from "./ranged";
 
-/** Each shell group's file URLs, relative to the scope, each with its content hash and its bytes. */
-declare const __SHELL__: Record<ShellGroupId, Record<string, [hash: string, bytes: number]>>;
+/**
+ * Each shell group's file URLs, relative to the scope, each with its content hash, its bytes and its
+ * locale, `""` for a language-neutral file.
+ */
+declare const __SHELL__: Record<ShellGroupId, Record<string, [hash: string, bytes: number, locale: string]>>;
 declare const __VERSION__: string;
 
 /** The fewest milliseconds between two progress messages of an install. */
@@ -69,12 +74,16 @@ const worker = globalThis as unknown as WorkerScope;
 const SHELL_CACHE = shellCacheName(__VERSION__);
 const scope = new URL(worker.registration.scope);
 
-/** The files this install fills: the core's, and those of each part the page marked. */
-async function installFiles(): Promise<[string, [string, number]][]> {
+/**
+ * The files this install fills: the core's, and those of each part the page marked. Of each, it takes
+ * the language-neutral files and those of the marked locales, English always among them.
+ */
+async function installFiles(): Promise<[string, [string, number, string]][]> {
   const marks = await caches.open(PARTS_CACHE);
-  const marked = new Set((await marks.keys()).map((request) => request.url));
-  const groups: ShellGroupId[] = ["app", ...PARTS.filter((part) => marked.has(partMark(part, scope.href)))];
-  return groups.flatMap((group) => Object.entries(__SHELL__[group]));
+  const { parts, locales } = markedIn((await marks.keys()).map((request) => request.url), scope.href);
+  const groups: ShellGroupId[] = ["app", ...parts];
+  const kept = new Set<string>(["", ...locales]);
+  return groups.flatMap((group) => Object.entries(__SHELL__[group]).filter(([, [, , locale]]) => kept.has(locale)));
 }
 
 /** Posts `progress` to every page of the scope, controlled or not. */

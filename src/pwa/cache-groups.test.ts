@@ -3,7 +3,7 @@ import { join, relative, sep } from "node:path";
 import { expect, test } from "../testing";
 import { LANDING_SONGS } from "../landing/songs";
 import { allPages } from "../site/routes";
-import { groupIndex, groupOf, inShell, partMark, PARTS, withNeeds } from "./cache-groups";
+import { filesIn, groupIndex, groupOf, inShell, localeMark, localeOf, markedIn, partMark, PARTS, withNeeds } from "./cache-groups";
 const PUBLIC = join(import.meta.dir, "..", "..", "public");
 
 async function publicFiles(): Promise<string[]> {
@@ -69,17 +69,51 @@ test("the_index_lists_each_group_with_its_hashes_and_sizes_and_sums_its_bytes", 
       { path: "sounds/x/y.json", bytes: 7, hash: "h5" },
       { path: "chunk-l.js", bytes: 4, hash: "h6" },
       { path: "learn/index.html", bytes: 1, hash: "h7" },
+      { path: "chunk-d.js", bytes: 6, hash: "h8" },
+      { path: "de/learn/index.html", bytes: 1, hash: "h9" },
     ],
-    new Map([["chunk-l.js", "learn"]]),
+    new Map([
+      ["chunk-l.js", "learn"],
+      ["chunk-d.js", "learn"],
+    ]),
+    new Map([["chunk-d.js", "de"]]),
   );
   expect(index).toEqual({
     version: "v1",
     groups: {
-      app: { files: ["./", "./index.html", "./app.js"], hashes: ["h0", "h0", "h1"], sizes: [2, 2, 10], bytes: 12 },
-      player: { files: ["./songs/catalog.json"], hashes: ["h3"], sizes: [5], bytes: 5 },
-      learn: { files: ["./chunk-l.js", "./learn/index.html"], hashes: ["h6", "h7"], sizes: [4, 1], bytes: 5 },
-      songs: { files: ["./songs/a.mid"], hashes: ["h4"], sizes: [3], bytes: 3 },
-      sounds: { files: ["./sounds/x/y.json"], hashes: ["h5"], sizes: [7], bytes: 7 },
+      app: { files: ["./", "./index.html", "./app.js"], hashes: ["h0", "h0", "h1"], sizes: [2, 2, 10], locales: ["", "en", ""], bytes: 12 },
+      player: { files: ["./songs/catalog.json"], hashes: ["h3"], sizes: [5], locales: [""], bytes: 5 },
+      learn: {
+        files: ["./chunk-l.js", "./learn/index.html", "./chunk-d.js", "./de/learn/index.html"],
+        hashes: ["h6", "h7", "h8", "h9"],
+        sizes: [4, 1, 6, 1],
+        locales: ["", "en", "de", "de"],
+        bytes: 12,
+      },
+      songs: { files: ["./songs/a.mid"], hashes: ["h4"], sizes: [3], locales: [""], bytes: 3 },
+      sounds: { files: ["./sounds/x/y.json"], hashes: ["h5"], sizes: [7], locales: [""], bytes: 7 },
     },
   });
+  // A locale's subset joins the neutral files only where it is asked for.
+  expect(filesIn(index.groups.learn, ["en"]).files).toEqual(["./chunk-l.js", "./learn/index.html"]);
+  expect(filesIn(index.groups.learn, ["en", "de"]).bytes).toBe(12);
+  expect(filesIn(index.groups.app, []).bytes).toBe(10);
+});
+
+test("a_page_belongs_to_its_locale_and_every_other_file_but_a_placed_chunk_is_neutral", () => {
+  expect(localeOf("index.html")).toBe("en");
+  expect(localeOf("play/index.html")).toBe("en");
+  expect(localeOf("de/play/index.html")).toBe("de");
+  expect(localeOf("fr/learn/meet-the-piano/find-c/index.html")).toBe("fr");
+  expect(localeOf("en-XA/learn/index.html")).toBe("en-XA");
+  expect(localeOf("app.js")).toBe("");
+  expect(localeOf("licenses/LICENSE.txt")).toBe("");
+  expect(localeOf("chunk-d.js", new Map([["chunk-d.js", "de"]]))).toBe("de");
+});
+
+test("the_marks_keep_english_always_and_the_marked_parts_and_locales", () => {
+  const root = "https://example.org/piano/";
+  expect(localeMark("de", root)).toBe("https://example.org/piano/__locales/de");
+  expect(markedIn([], root)).toEqual({ parts: [], locales: ["en"] });
+  expect(markedIn([partMark("learn", root), localeMark("fr", root), localeMark("de", root)], root)).toEqual({ parts: ["learn"], locales: ["en", "de", "fr"] });
 });

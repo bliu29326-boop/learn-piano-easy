@@ -26,9 +26,22 @@
  * - Everything else is core. `app.css` holds the styles every page shares, and the pictures are the
  *   landing page's and the mascot's, which the core's pages show.
  *
+ * **Locale is the shell's second dimension.** Each shell group splits into its language-neutral files and
+ * one subset per locale, a pseudo-locale too. A route page belongs to its locale's subset. A chunk
+ * belongs to a locale's subset when only that locale's roots in `LOCALE_ROOTS` reach it: its catalog and
+ * its lesson texts. The build places the chunks from the bundler's graph, as it does the parts. Every
+ * other file is language-neutral.
+ * - **A locale is marked** in the parts cache, under `localeMark`, when the site first shows a page in
+ *   it. Every install fills the neutral files and the subsets of the marked locales alone.
+ * - **English is always kept.** Every locale's catalog and lesson texts fill their gaps with the English
+ *   at run time, so the English texts sit in the neutral code. English's own subset holds only its route
+ *   pages, and `markedIn` counts English as marked, so a visit in any locale keeps them too.
+ *
  * The build writes `cache-groups.json` into the core. It names the version and lists each group's files,
- * their content hashes and their bytes, so the cache manager reads sizes without a network call.
+ * their content hashes, their bytes and their locales, so the cache manager reads sizes without a
+ * network call.
  */
+import { DEFAULT_LOCALE, isPseudoLocale, LOCALES, PSEUDO_LOCALES, type Locale } from "../i18n/locale-table";
 import { LANDING_SONGS } from "../landing/songs";
 
 /** A part of the shell, which the page fills on first use. */
@@ -87,6 +100,16 @@ export const PART_ANCHORS: Readonly<Record<PartId, readonly string[]>> = {
   learn: ["src/learn/steps/kinds.ts"],
 };
 
+/**
+ * The roots of each locale's subset: the source modules whose `import()` loads one locale's texts, with
+ * `{locale}` for its code. They are each catalog and each world's lesson texts. English and the
+ * pseudo-locales have none, since their texts are in the neutral code.
+ */
+export const LOCALE_ROOTS: readonly string[] = ["src/i18n/messages/{locale}.ts", "src/learn/lessons/*/texts.{locale}.ts"];
+
+/** The locale English stands for: every locale falls back to its texts, so every install keeps it. */
+export const KEPT_LOCALE: Locale = DEFAULT_LOCALE;
+
 /** The groups the worker caches on first use, never up front. Each is a top-level folder of `public/`. */
 export const ON_DEMAND: readonly GroupId[] = ["songs", "sounds"];
 
@@ -123,6 +146,21 @@ export function partOfPath(path: string): PartId | undefined {
   return undefined;
 }
 
+/** The locale of a file that is no chunk, by its path: a route page's, or `""` for a neutral file. */
+function localeOfPath(path: string): Locale | "" {
+  if (path !== "index.html" && !path.endsWith("/index.html")) return "";
+  const first = topFolder(path);
+  return (LOCALES as readonly string[]).includes(first) || isPseudoLocale(first) ? (first as Locale) : DEFAULT_LOCALE;
+}
+
+/**
+ * The locale whose subset holds `path`, or `""` for a language-neutral file. `locales` names the locale
+ * of each chunk the build placed in one.
+ */
+export function localeOf(path: string, locales?: ReadonlyMap<string, Locale>): Locale | "" {
+  return locales?.get(path) ?? localeOfPath(path);
+}
+
 /**
  * The group that holds `path`, or `undefined` for a file no group caches. `chunks` names the part of each
  * chunk the build placed in one. Without it a chunk counts as core, which serves the worker: it answers
@@ -155,14 +193,26 @@ export function cacheNameOf(group: GroupId, version: string): string {
 }
 
 /**
- * The cache that holds the marks of the parts the learner opened, one entry each under `partMark`. It
- * outlives versions, so each install knows which parts to keep.
+ * The cache that holds the marks of the parts the learner opened and the locales the site showed, one
+ * entry each under `partMark` and `localeMark`. It outlives versions, so each install knows what to keep.
  */
 export const PARTS_CACHE = "parts";
 
 /** The URL of a part's mark in `PARTS_CACHE`, below the app's root `root`. It is never fetched. */
 export function partMark(part: PartId, root: string): string {
   return new URL(`__parts/${part}`, root).href;
+}
+
+/** The URL of a locale's mark in `PARTS_CACHE`, below the app's root `root`. It is never fetched. */
+export function localeMark(locale: Locale, root: string): string {
+  return new URL(`__locales/${locale}`, root).href;
+}
+
+/** What the marks `urls` of `PARTS_CACHE` keep: the marked parts, and the marked locales with English. */
+export function markedIn(urls: readonly string[], root: string): { parts: PartId[]; locales: Locale[] } {
+  const held = new Set(urls);
+  const locales: Locale[] = [...LOCALES, ...PSEUDO_LOCALES].filter((locale) => locale === KEPT_LOCALE || held.has(localeMark(locale, root)));
+  return { parts: PARTS.filter((part) => held.has(partMark(part, root))), locales };
 }
 
 /** The `type` of the message a worker's install posts to the pages as it goes. */
@@ -189,8 +239,25 @@ export interface GroupFiles {
   hashes: string[];
   /** The bytes of the file at the same place in `files`. */
   sizes: number[];
+  /** The locale of the file at the same place in `files`, or `""` for a language-neutral one. */
+  locales: (Locale | "")[];
   /** The bytes of every file in total. */
   bytes: number;
+}
+
+/** The files of `group` that are language-neutral or in one of `locales`, with their bytes summed. */
+export function filesIn(group: GroupFiles, locales: readonly Locale[]): GroupFiles {
+  const kept: GroupFiles = { files: [], hashes: [], sizes: [], locales: [], bytes: 0 };
+  group.files.forEach((file, i) => {
+    const locale = group.locales[i] ?? "";
+    if (locale !== "" && !locales.includes(locale)) return;
+    kept.files.push(file);
+    kept.hashes.push(group.hashes[i] ?? "");
+    kept.sizes.push(group.sizes[i] ?? 0);
+    kept.locales.push(locale);
+    if (file !== "./") kept.bytes += group.sizes[i] ?? 0;
+  });
+  return kept;
 }
 
 /** What `cache-groups.json` holds. */
@@ -218,17 +285,24 @@ export interface BuiltFile {
 }
 
 /**
- * The index of `files` for `version`, with each chunk's part from `chunks`. The app group also holds
- * `./`, the root page, whose bytes are those of `index.html`.
+ * The index of `files` for `version`, with each chunk's part from `chunks` and its locale from `locales`.
+ * The app group also holds `./`, the root page, whose bytes are those of `index.html`. It is
+ * language-neutral, since the worker answers a page it lacks in any locale with it.
  */
-export function groupIndex(version: string, files: readonly BuiltFile[], chunks?: ReadonlyMap<string, PartId>): GroupIndex {
-  const empty = (): GroupFiles => ({ files: [], hashes: [], sizes: [], bytes: 0 });
+export function groupIndex(
+  version: string,
+  files: readonly BuiltFile[],
+  chunks?: ReadonlyMap<string, PartId>,
+  locales?: ReadonlyMap<string, Locale>,
+): GroupIndex {
+  const empty = (): GroupFiles => ({ files: [], hashes: [], sizes: [], locales: [], bytes: 0 });
   const groups = Object.fromEntries(GROUP_IDS.map((id) => [id, empty()])) as Record<GroupId, GroupFiles>;
   const root = files.find((file) => file.path === "index.html");
   if (root !== undefined) {
     groups.app.files.push("./");
     groups.app.hashes.push(root.hash);
     groups.app.sizes.push(root.bytes);
+    groups.app.locales.push("");
   }
   for (const { path, bytes, hash } of files) {
     const id = groupOf(path, chunks);
@@ -237,6 +311,7 @@ export function groupIndex(version: string, files: readonly BuiltFile[], chunks?
     group.files.push(`./${path}`);
     group.hashes.push(hash);
     group.sizes.push(bytes);
+    group.locales.push(inShell(id) ? localeOf(path, locales) : "");
     group.bytes += bytes;
   }
   return { version, groups };

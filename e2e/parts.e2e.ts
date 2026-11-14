@@ -5,23 +5,20 @@
  *
  * The parts' scripts are held back a moment on their way, so a bar shows long enough to be seen.
  */
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
 import { expect, test, type Page } from "@playwright/test";
-import { GROUP_INDEX, type GroupIndex, type PartId } from "../src/pwa/cache-groups";
+import { filesIn, type PartId } from "../src/pwa/cache-groups";
+import { runIndex, shellPaths } from "./save-parts";
 
 /** How long each file of a part is held back. */
 const HOLD = 400;
 
-/** The run's index of the cache groups. */
-async function runIndex(): Promise<GroupIndex> {
-  return JSON.parse(await readFile(join(".agent-tmp/e2e/runs", process.env.E2E_RUN!, "dist", GROUP_INDEX), "utf8")) as GroupIndex;
-}
-
-/** The paths of the files of `parts`, as the server serves them at its root, such as `/parse-worker.js`. */
+/**
+ * The paths of the files of `parts` in English, the one locale these tests use, as the server serves
+ * them at its root, such as `/parse-worker.js`.
+ */
 async function partPaths(parts: readonly PartId[]): Promise<Set<string>> {
   const index = await runIndex();
-  return new Set(parts.flatMap((part) => index.groups[part].files.map((file) => file.slice(1))));
+  return new Set(parts.flatMap((part) => filesIn(index.groups[part], ["en"]).files.map((file) => file.slice(1))));
 }
 
 /**
@@ -37,15 +34,6 @@ async function holdParts(page: Page, parts: readonly PartId[]): Promise<void> {
       await route.continue();
     },
   );
-}
-
-/** The paths every shell cache of the page holds. */
-function shellPaths(page: Page): Promise<string[]> {
-  return page.evaluate(async () => {
-    const shell = (await caches.keys()).filter((name) => name.startsWith("shell-"));
-    const keys = await Promise.all(shell.map(async (name) => (await caches.open(name)).keys()));
-    return keys.flat().map((request) => new URL(request.url).pathname);
-  });
 }
 
 /** Expects every file of `parts` in a shell cache of the page soon. The route pages fill after the view opens. */

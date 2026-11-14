@@ -3,7 +3,7 @@ import { dirname, join, relative } from "node:path";
 import { expect, test } from "../testing";
 import type { Loading, LoadingProgress } from "../ui/components/loading";
 import { PART_ROOTS, PARTS, type InstallProgress, type PartId } from "./cache-groups";
-import { openPart, type PartSteps } from "./part-loader";
+import { openLocale, openPart, type PartSteps } from "./part-loader";
 import type { PartsProgress, PartsResult } from "./parts";
 
 /** A loading card that records what it was asked to show. */
@@ -25,14 +25,16 @@ function recorder() {
 /** Steps whose ensure answers each of `results` in turn, reporting `progress` first, and whose update answers `update`. */
 function steps(results: PartsResult[], progress: PartsProgress[] = [], update: "offline" | "none" = "none"): PartSteps & { asked: string[] } {
   const asked: string[] = [];
+  const ensure = async (what: string, onProgress: (progress: PartsProgress) => void, scope: string): Promise<PartsResult> => {
+    asked.push(`${what} ${scope}`);
+    if (scope === "all") return "ready";
+    progress.forEach(onProgress);
+    return results.shift() ?? "ready";
+  };
   return {
     asked,
-    ensure: async (ids, onProgress, scope) => {
-      asked.push(`${ids.join()} ${scope}`);
-      if (scope === "all") return "ready";
-      progress.forEach(onProgress);
-      return results.shift() ?? "ready";
-    },
+    ensure: (ids, onProgress, scope) => ensure(ids.join(), onProgress, scope),
+    ensureLocale: (locale, onProgress, scope) => ensure(locale, onProgress, scope),
     update: async (onProgress: (progress: InstallProgress) => void) => {
       onProgress({ type: "install-progress", files: 1, totalFiles: 2, bytes: 512 * 1024, totalBytes: 1024 * 1024 });
       return update;
@@ -111,6 +113,30 @@ test("a_load_without_a_host_rejects_rather_than_updating_the_page", async () => 
   expect(openPart("player", async () => "module", undefined, fill)).rejects.toThrow();
   await Bun.sleep(0);
   expect(updated).toBe(false);
+});
+
+test("a_new_locale_downloads_with_a_bar_named_in_its_own_language_then_loads", async () => {
+  const { card, shown } = recorder();
+  const fill = steps(["ready"], [{ files: 0, totalFiles: 3, bytes: 0, totalBytes: MB }]);
+  expect(await openLocale("fr", async () => "catalog", card, fill)).toBe("catalog");
+  expect(fill.asked).toEqual(["fr view", "fr all"]);
+  expect(shown).toEqual([{ label: "Loading Français", amount: "0.0 of 1.0 MB", value: 0 }, "clear"]);
+});
+
+test("a_cached_locale_loads_without_a_bar", async () => {
+  const { card, shown } = recorder();
+  expect(await openLocale("de", async () => "catalog", card, steps(["cached"]))).toBe("catalog");
+  expect(shown).toEqual(["clear"]);
+});
+
+test("offline_a_new_locale_says_so_and_retry_loads_it", async () => {
+  const { card, shown, retry } = recorder();
+  const fill = steps(["offline", "ready"]);
+  const loading = openLocale("fr", async () => "catalog", card, fill);
+  await Bun.sleep(0);
+  expect(shown).toEqual([{ message: "Français needs the internet the first time it opens. Connect and try again." }]);
+  retry();
+  expect(await loading).toBe("catalog");
 });
 
 /** Every source file of `src/`, by its path from the repository's root with forward slashes. */

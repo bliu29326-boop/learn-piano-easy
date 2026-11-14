@@ -6,7 +6,7 @@ import { LANDING_SONGS } from "../src/landing/songs";
 import { groupOf } from "../src/pwa/cache-groups";
 import { afterAll, beforeAll, expect, test } from "../src/testing";
 import { allPages, lessonPages, pageOf, pageTitle, ROUTES, socialImageOf } from "../src/site/routes";
-import { build, chunkParts, crawlerFiles, renderPage, root, structuredData, type BuildResult } from "./build";
+import { build, chunkLocales, chunkParts, crawlerFiles, renderPage, root, structuredData, type BuildResult } from "./build";
 
 const outDir = join(root, ".agent-tmp", `build-test-${process.pid}`);
 let result: BuildResult;
@@ -119,6 +119,66 @@ test("the_split_fails_naming_the_import_that_carries_a_part_into_the_core", () =
     "odd.js": { module: "src/site/odd-view.ts", imports: [["three.js", "static"]] },
   });
   expect(() => chunkParts(meta, "app.js")).toThrow("src/main.ts loads src/site/odd-view.ts with import()");
+});
+
+/** The locale of the built file at `path`, as the index lists it, `""` for a neutral one. */
+function localeOfBuilt(path: string): string | undefined {
+  for (const group of Object.values(result.index.groups)) {
+    const at = group.files.indexOf(`./${path}`);
+    if (at >= 0) return group.locales[at];
+  }
+  return undefined;
+}
+
+test("each_locale_s_texts_and_pages_are_its_own_subset_and_the_code_is_neutral", async () => {
+  const chunkHolding = async (source: string) => {
+    for (const file of result.files.filter((f) => f.startsWith("chunk-") && f.endsWith(".js"))) {
+      const map = (await Bun.file(join(outDir, `${file}.map`)).json()) as { sources: string[] };
+      if (map.sources.some((s) => s.endsWith(source))) return file;
+    }
+    return undefined;
+  };
+  const catalog = await chunkHolding("src/i18n/messages/de.ts");
+  const texts = await chunkHolding("src/learn/lessons/meet-the-piano/texts.de.ts");
+  const world = await chunkHolding("src/learn/lessons/meet-the-piano/index.ts");
+  expect([catalog, texts, world].every((chunk) => chunk !== undefined)).toBe(true);
+  const placed = (path: string) => [groupOfBuilt(path), localeOfBuilt(path)];
+  expect(placed(catalog!)).toEqual(["app", "de"]);
+  expect(placed(texts!)).toEqual(["learn", "de"]);
+  // A world's English texts load with its lessons, since every locale falls back to them.
+  expect(placed(world!)).toEqual(["learn", ""]);
+  expect(placed("de/learn/meet-the-piano/find-c/index.html")).toEqual(["learn", "de"]);
+  expect(placed("de/play/index.html")).toEqual(["app", "de"]);
+  expect(placed("app.js")).toEqual(["app", ""]);
+  expect(placed("app.css")).toEqual(["app", ""]);
+  // English's subset is its route pages alone.
+  const english = result.index.groups.app.files.filter((_, i) => result.index.groups.app.locales[i] === "en");
+  expect(english.every((file) => file.endsWith("index.html"))).toBe(true);
+});
+
+test("the_locale_split_places_each_chunk_by_the_one_locale_that_reaches_it", () => {
+  const locales = chunkLocales(
+    metafile({
+      "app.js": { module: "src/main.ts", imports: [["de.js", "dynamic"], ["fr.js", "dynamic"], ["world.js", "dynamic"]] },
+      "de.js": { module: "src/i18n/messages/de.ts", imports: [["plural.js", "static"], ["de-data.js", "static"]] },
+      "fr.js": { module: "src/i18n/messages/fr.ts", imports: [["plural.js", "static"]] },
+      "plural.js": { module: "src/i18n/plural.ts", entry: false },
+      "de-data.js": { module: "src/i18n/messages/data.de.ts", entry: false },
+      "world.js": { module: "src/learn/lessons/rhythm/index.ts", imports: [["texts-de.js", "dynamic"]] },
+      "texts-de.js": { module: "src/learn/lessons/rhythm/texts.de.ts" },
+    }),
+    "app.js",
+  );
+  // A chunk two locales share is neutral.
+  expect(Object.fromEntries(locales)).toEqual({ "de.js": "de", "de-data.js": "de", "fr.js": "fr", "texts-de.js": "de" });
+});
+
+test("the_locale_split_fails_when_neutral_code_imports_a_locale_s_texts_statically", () => {
+  const meta = metafile({
+    "app.js": { module: "src/main.ts", imports: [["de.js", "static"]] },
+    "de.js": { module: "src/i18n/messages/de.ts", entry: false },
+  });
+  expect(() => chunkLocales(meta, "app.js")).toThrow("src/i18n/messages/de.ts of de lands in de.js");
 });
 
 test("build_writes_a_page_per_route_and_locale", async () => {
