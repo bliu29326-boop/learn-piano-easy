@@ -117,6 +117,10 @@ below say how each is used.
   nothing loops.
 - **Nothing flickers.** A view shows only once its fonts, its text and its first data are ready. A slow
   part shows a skeleton of its final size, never a spinner that moves the layout.
+- **A big download shows a progress bar.** Whatever the learner waits on that downloads more than a
+  little, such as a part of the app, the sound set or a group of offline files, shows the Progress
+  component. It names what loads and how much of it has arrived. It never waits silently or behind a
+  bare spinner. A download the cache already holds shows no bar.
 
 ## The components
 

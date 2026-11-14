@@ -173,3 +173,5 @@ Rules that bind only this project go here, one sentence each, with a link to the
    [translation.md](docs/agent/translation.md)).
 10. **A text whose meaning changes gets a new key,** and a reworded text keeps its key
     ([decision 0012](docs/decisions/0012.md)).
+11. **A big download the learner waits on shows a progress bar,** never a silent wait or a bare spinner
+    ([docs/site-design.md](docs/site-design.md) § *Motion*).
