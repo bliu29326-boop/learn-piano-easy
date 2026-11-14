@@ -64,7 +64,6 @@ export const playerLibrary: typeof en = {
     },
     sets: { path: "Einsteigerpfad", ours: "Unsere Arrangements" },
     yours: { favourite: "Favoriten", played: "Gespielt", upload: "Deine Dateien" },
-    tagTitle: (name: string) => `Nur anzeigen: ${name}`,
     sort: {
       label: "Sortieren nach",
       suggested: "Empfohlen",
@@ -98,6 +97,7 @@ export const playerLibrary: typeof en = {
     },
     favourite: { label: "Favorit", title: (title: string) => `Favorit: ${title}` },
     lengthTitle: "Länge",
+    lengthLicense: (license: string, credit: string) => `Länge · ${license} · ${credit}`,
     empty: { title: "Kein Lied passt", message: "Versuch ein anderes Wort, oder nimm einen Filter heraus." },
     own: {
       heading: "Deine Lieder",

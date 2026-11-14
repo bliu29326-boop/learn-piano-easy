@@ -57,7 +57,6 @@ export const playerLibrary: Translation<typeof en> = {
     },
     sets: { path: "入门路线", ours: "我们的改编" },
     yours: { favourite: "收藏", played: "弹过的", upload: "你的文件" },
-    tagTitle: (name: string) => `只显示：${name}`,
     sort: {
       label: "排序方式",
       suggested: "推荐",

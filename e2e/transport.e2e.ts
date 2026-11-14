@@ -207,7 +207,7 @@ test("closing_a_player_panel_gives_play_the_focus", async ({ page }) => {
   // Picking a song closes the explorer the same way, and Space plays the new song.
   await page.getByRole("button", { name: "Songs", exact: true }).click();
   const songs = page.getByRole("dialog", { name: "Songs" });
-  await songs.locator(".song-card__open").first().click();
+  await songs.locator(".song-row__open").first().click();
   await expect(songs).toHaveCount(0);
   await expect(page.getByLabel("Open song")).not.toHaveText("Demo song");
   await expect(play).toBeFocused();

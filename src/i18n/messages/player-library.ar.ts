@@ -60,7 +60,6 @@ export const playerLibrary: Translation<typeof en> = {
     },
     sets: { path: "طريق المبتدئين", ours: "توزيعاتنا" },
     yours: { favourite: "المفضلة", played: "عُزفت سابقًا", upload: "ملفاتك" },
-    tagTitle: (name: string) => `إظهار ${isolate(name)} فقط`,
     sort: {
       label: "الترتيب حسب",
       suggested: "المقترحة",

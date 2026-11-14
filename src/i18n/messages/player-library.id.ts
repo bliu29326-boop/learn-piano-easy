@@ -56,7 +56,6 @@ export const playerLibrary: Translation<typeof en> = {
     },
     sets: { path: "Jalur pemula", ours: "Aransemen kami" },
     yours: { favourite: "Favorit", played: "Pernah dimainkan", upload: "File milikmu" },
-    tagTitle: (name: string) => `Tampilkan hanya: ${name}`,
     sort: {
       label: "Urutkan menurut",
       suggested: "Disarankan",

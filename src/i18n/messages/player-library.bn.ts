@@ -57,7 +57,6 @@ export const playerLibrary: Translation<typeof en> = {
     },
     sets: { path: "শুরুর পথ", ours: "আমাদের অ্যারেঞ্জমেন্ট" },
     yours: { favourite: "পছন্দের গান", played: "বাজানো গান", upload: "আপনার ফাইল" },
-    tagTitle: (name: string) => `শুধু দেখান: ${name}`,
     sort: {
       label: "সাজানোর ক্রম",
       suggested: "প্রস্তাবিত",

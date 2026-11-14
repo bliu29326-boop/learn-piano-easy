@@ -76,8 +76,6 @@ export const playerLibrary = {
     /** The sets beside the collections: the beginner path, and our arrangements in four versions. */
     sets: { path: "Beginner path", ours: "Our arrangements" },
     yours: { favourite: "Favourites", played: "Played", upload: "Your files" },
-    /** A tag's hover text on a card. */
-    tagTitle: (name: string) => `Show only: ${name}`,
     sort: {
       label: "Sort by",
       suggested: "Suggested",
@@ -111,6 +109,8 @@ export const playerLibrary = {
     },
     favourite: { label: "Favourite", title: (title: string) => `Favourite: ${title}` },
     lengthTitle: "Length",
+    /** The hover text of a catalog song's length: the word, then the song's license and who made its file. */
+    lengthLicense: (license: string, credit: string) => `Length · ${license} · ${credit}`,
     empty: { title: "No song matches", message: "Try another word, or take a filter off." },
     own: {
       heading: "Your songs",

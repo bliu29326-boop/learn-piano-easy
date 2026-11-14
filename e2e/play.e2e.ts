@@ -175,9 +175,9 @@ test("a_control_shows_the_apps_own_tooltip_and_no_native_one", async ({ page }) 
 
   // The tip shows above a modal dialog too, and no element anywhere carries a native tooltip.
   await page.getByRole("button", { name: "Songs", exact: true }).click();
-  const license = page.getByRole("dialog", { name: "Songs" }).locator(".library-license").first();
-  await license.hover();
+  const length = page.getByRole("dialog", { name: "Songs" }).locator(".song-row__length").first();
+  await length.hover();
   await expect(tip).toBeVisible();
-  await expect(tip).toHaveText((await license.getAttribute("data-tip"))!);
+  await expect(tip).toHaveText((await length.getAttribute("data-tip"))!);
   expect(await page.locator("body [title]").count()).toBe(0);
 });

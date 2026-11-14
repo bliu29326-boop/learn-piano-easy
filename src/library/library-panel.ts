@@ -1,53 +1,57 @@
 /**
- * The song explorer: every song of the catalog and every upload as a card, found by a search, by tags
- * and by a sort, with a preview and a star on each card.
+ * The song explorer: every song of the catalog and every upload as a row, found by a search, by tags
+ * and by a sort, with a preview and a star on each row.
  *
  * The shell shows it in a dialog. The panel is built once and kept, and `shown` puts it back as the
  * learner left it. Every button runs one of the shell's `LibraryActions`, so the panel stays a view.
  *
- * Its head holds the search, the five level chips, "Fits my keyboard", the count and the sort. A rail beside the cards holds the other tags of `tags.ts`, kind by kind. With no filter
- * on, the cards start with what the learner played, the favourites, the uploads and the next steps
- * of the beginner path. Its look is `library-panel.css`.
+ * Its head holds the search, the five level chips, "Fits my keyboard", the count and the sort. A rail
+ * beside the rows holds the other tags of `tags.ts`, kind by kind. With no filter on, the rows start
+ * with what the learner played, the favourites, the uploads and the next steps of the beginner path.
+ * Its look is `library-panel.css`.
  *
  * Decisions, and what each costs:
- * - A song is one card and counts once, whatever its versions. Every catalog card shows its versions as
- *   steps in its head: a song of ours its four and its Original, any other song its one Original. The
- *   card shows one version at a time. Its title, length, tags, preview and main button are that version's.
- * - A card shows the version the learner picked on it, else the one last played, else the easiest. A
+ * - A row reads the song's title on its first line and its composer on its second. A part of a work
+ *   reads as its work and its label, such as "Sonata No. 14 · Movement 2".
+ * - A song is one row and counts once, whatever its versions. Every catalog row shows its versions as
+ *   steps: a song of ours its four and its Original, any other song its one Original. The row shows
+ *   one version at a time. Its length, preview and main button are that version's.
+ * - A row shows the version the learner picked on it, else the one last played, else the easiest. A
  *   pick lasts until the page is left. A filter narrows the choice to the versions that pass it, so
- *   a card under "Hard" opens the hard version. The steps still offer every version.
- * - A pick draws the song's cards anew in place. No other card moves, and the result keeps its order
+ *   a row under "Hard" opens the hard version. The steps still offer every version.
+ * - A pick draws the song's rows anew in place. No other row moves, and the result keeps its order
  *   until the next redraw.
  * - The star is the song's. It is on when any version is a favourite, so a star set on one version
  *   before stays. Taking it off clears every version.
- * - A card names its difficulty by its steps alone. The catalog's number sorts the cards, and the
+ * - A row names its difficulty by its steps alone. The catalog's number sorts the rows, and the
  *   learner never reads it.
- * - The view is one object: the query, the chosen tags, the sort, the scroll and how many cards are
+ * - A row shows no tags, since the rail filters by them. The license and the credit are the length's
+ *   hover text, so the row keeps one line of tools.
+ * - The view is one object: the query, the chosen tags, the sort, the scroll and how many rows are
  *   drawn. It is written to `sessionStorage` under `VIEW_KEY`, so a reload of the page keeps it too.
- * - A change of the view redraws the cards, `CHUNK` at first. A sentinel under them draws the next
- *   chunk as it comes near, so a keystroke builds a screen of cards and never the whole catalog.
- * - `shown` draws as many cards as were drawn before, then restores the scroll. It then brings the
- *   open song's card into view when the filters keep it, drawing up to it first.
- * - The open song's card is marked `aria-current`. The head names the song too, so it is found even
- *   when a filter hides its card. That button clears the filters and goes to the card.
+ * - A change of the view redraws the rows, `CHUNK` at first. A sentinel under them draws the next
+ *   chunk as it comes near, so a keystroke builds a screen of rows and never the whole catalog.
+ * - `shown` draws as many rows as were drawn before, then restores the scroll. It then brings the
+ *   open song's row into view when the filters keep it, drawing up to it first.
+ * - The open song's row is marked `aria-current`. The head names the song too, so it is found even
+ *   when a filter hides its row. That button clears the filters and goes to the row.
  * - A lead section shows only while no filter is on, so a search shows each song once.
- * - A card's main button is a layer over the whole card, named by the song's title, and it opens the
- *   song. Its focus ring is then the card's. The star, the preview and the tags sit above it. Their
- *   names leave the song's title out, so the title names one button alone.
- * - A card's tags leave the Tab order, since the rail offers the same filters. The arrow keys move
- *   between the cards, and from the search field the down arrow enters them.
+ * - A row's main button is a layer over the whole row, named by the song's title, and it opens the
+ *   song. Its focus ring is then the row's. The steps, the length, the preview and the star sit above
+ *   it. Their names leave the song's title out, so the title names one button alone.
+ * - The up and down arrows move between the rows, and from the search field the down arrow enters them.
  * - A star and a preview change their buttons in place. The lead sections follow at the next redraw,
- *   so no card moves under the pointer.
+ *   so no row moves under the pointer.
  * - A song's length and a version's skills come from its catalog row, written by the song tools. A
- *   row costs a few bytes more, and the explorer parses no song to sort or tag the catalog.
- * - A song without a length, such as an upload, is read from its file when its card comes into view,
- *   and kept by `SongMemory`. That costs one fetch per card seen, which the service worker keeps for
+ *   catalog row costs a few bytes more, and the explorer parses no song to sort or tag the catalog.
+ * - A song without a length, such as an upload, is read from its file when its row comes into view,
+ *   and kept by `SongMemory`. That costs one fetch per row seen, which the service worker keeps for
  *   the preview. A browser that asks to save data measures only on a sort by length.
  * - A version without skills takes them from its guide, read once the panel first shows. Skills
  *   already remembered are trusted, so a guide that changes shows its new skills late.
  * - A preview stops when the dialog closes and when a song opens. `preview.ts` owns the rest.
  *
- * Bounds: a lead section shows `LEAD` cards, and the composers' group `COMPOSERS_SHOWN` until opened.
+ * Bounds: a lead section shows `LEAD` rows, and the composers' group `COMPOSERS_SHOWN` until opened.
  */
 import "./library-panel.css";
 import type { AudioEngine } from "../audio/engine";
@@ -61,6 +65,7 @@ import { icon } from "../ui/icons/icons";
 import { beginnerPath } from "./beginner-path";
 import { originalName, originalTagline, ourOriginalTagline, rarityName, rarityTagline } from "./guide";
 import { loadGuide } from "./guide-panel";
+import { partTitle } from "./parts";
 import { createMeasurer, createPreviewer } from "./preview";
 import {
   type CatalogSong,
@@ -118,7 +123,7 @@ export interface LibraryPanel {
   setSongs(songs: readonly CatalogSong[]): void;
   /** Shows `uploads` as the learner's own songs. */
   setUploads(uploads: readonly Upload[]): void;
-  /** Shows `message` in place of the cards, such as when the catalog failed to load. */
+  /** Shows `message` in place of the rows, such as when the catalog failed to load. */
   setError(message: string): void;
   /** Marks the song known as `id` as the one that plays now, and notes the play. */
   setCurrent(id: string | undefined): void;
@@ -130,10 +135,10 @@ export interface LibraryPanel {
 /** The `sessionStorage` key the view lives under. */
 export const VIEW_KEY = "learn-piano-easy.songExplorer";
 
-/** How many cards a redraw and each later step draw. */
+/** How many rows a redraw and each later step draw. */
 const CHUNK = 48;
 
-/** How many cards a lead section shows. */
+/** How many rows a lead section shows. */
 const LEAD = 6;
 
 /** How many composers their group shows until the learner opens it. */
@@ -148,15 +153,15 @@ interface View {
   tags: TagKey[];
   sort: Sort;
   fits: boolean;
-  /** The scroll of the cards, in pixels. */
+  /** The scroll of the rows, in pixels. */
   scroll: number;
-  /** How many cards of the result are drawn. */
+  /** How many rows of the result are drawn. */
   shown: number;
   /** Whether the rail is open on a narrow screen. */
   rail: boolean;
 }
 
-/** What one card shows: a version of a catalog song or an upload, under the id its settings use. */
+/** What one row shows: a version of a catalog song or an upload, under the id its settings use. */
 interface Item {
   id: string;
   title: string;
@@ -243,7 +248,7 @@ export function createLibraryPanel(
   /** The catalog as one entry per song, and the entry each of its rows belongs to. */
   let entries: SongEntry[] = [];
   let entryOf = new Map<CatalogSong, SongEntry>();
-  /** The file of the version the learner picked on a song's card, by the entry's key. */
+  /** The file of the version the learner picked on a song's row, by the entry's key. */
   const picks = new Map<string, string>();
   /** Each catalog row's id, its tags and the text a query may match beside its own. */
   let index = new Map<CatalogSong, { id: string; tags: ReadonlySet<TagKey>; text: string }>();
@@ -251,11 +256,11 @@ export function createLibraryPanel(
   /** Each file's step on the beginner path, from 1, and how many songs the path holds. */
   let steps = new Map<string, number>();
   let pathSongs = 0;
-  /** The result the cards are drawn from, as the version each song shows, and how many of them are drawn. */
+  /** The result the rows are drawn from, as the version each song shows, and how many of them are drawn. */
   let result: CatalogSong[] = [];
   let drawn = 0;
   let words: string[] = [];
-  let grid = el("ul", { class: "song-grid" });
+  let list = el("ul", { class: "song-list" });
   /** The filter buttons of the head and the rail, by tag, so a redraw sets which are pressed. */
   const filterButtons = new Map<TagKey, HTMLButtonElement>();
   let skillsAsked = false;
@@ -290,13 +295,13 @@ export function createLibraryPanel(
     return item.song !== undefined && index.get(item.song)!.tags.has(key);
   };
 
-  /** The version of `entry` its card shows, out of `open`: the learner's pick, else the last played, else the easiest. */
+  /** The version of `entry` its row shows, out of `open`: the learner's pick, else the last played, else the easiest. */
   const shownOf = (entry: SongEntry, open: readonly CatalogSong[] = entry.versions): CatalogSong => {
     const picked = picks.get(entry.key);
     const played = open.filter((row) => memory.playedAt(idOf(row)) !== undefined).sort((a, b) => memory.playedAt(idOf(b))! - memory.playedAt(idOf(a))!);
     return open.find((row) => row.file === picked) ?? played[0] ?? open[0]!;
   };
-  /** Forgets the pick on the card of the open song, so the card shows the version that plays. */
+  /** Forgets the pick on the row of the open song, so the row shows the version that plays. */
   const unpickCurrent = () => {
     const song = current === undefined ? undefined : byId.get(current)?.song;
     if (song !== undefined) picks.delete(entryOf.get(song)!.key);
@@ -316,7 +321,7 @@ export function createLibraryPanel(
         // A search field clears itself on Escape. The dialog closes on that key, and the query must outlive the close.
         if (event.key === "Escape") event.preventDefault();
         if (event.key !== "ArrowDown") return;
-        const first = results.querySelector<HTMLElement>(".song-card__open");
+        const first = results.querySelector<HTMLElement>(".song-row__open");
         if (first === null) return;
         event.preventDefault();
         first.focus();
@@ -442,25 +447,20 @@ export function createLibraryPanel(
     redraw();
   }
 
-  /** A filter chip for the tag `key`: a small one on a card, or one of the head or the rail, with `total` when it has one. */
-  function tagButton(key: TagKey, small: boolean, total?: number): HTMLButtonElement {
+  /** A filter chip of the head or the rail for the tag `key`, with `total` when it has one. */
+  function tagButton(key: TagKey, total?: number): HTMLButtonElement {
     const kind = tagKind(key);
-    const name = tagName(key);
     const node = el("button", {
-      class: small ? "tag tag--small" : "tag",
+      class: "tag",
       attrs: { type: "button", "data-kind": kind, "aria-pressed": String(view.tags.includes(key)) },
       on: { click: () => toggleTag(key) },
       children: [
         el("span", { class: "tag__dot", attrs: { "aria-hidden": "true" } }),
-        el("span", { class: "tag__label", children: small ? marked(name, words) : [name] }),
+        el("span", { class: "tag__label", text: tagName(key) }),
         total === undefined ? null : el("span", { class: "tag__count", attrs: { "aria-hidden": "true" }, text: String(total) }),
       ],
     });
     if (kind === "level") node.dataset.level = tagId(key);
-    if (small) {
-      node.tabIndex = -1;
-      node.dataset.tip = say().tagTitle(name);
-    }
     return node;
   }
 
@@ -501,7 +501,7 @@ export function createLibraryPanel(
       const keys = keysOf[kind].filter((key) => kind === "yours" || totals.has(key));
       if (keys.length === 0) return null;
       const chips = keys.map((key, i) => {
-        const chip = tagButton(key, false, totals.get(key));
+        const chip = tagButton(key, totals.get(key));
         if (kind === "composer" && i >= COMPOSERS_SHOWN) chip.dataset.extra = "";
         filterButtons.set(key, chip);
         return chip;
@@ -552,7 +552,7 @@ export function createLibraryPanel(
   const lengthOf = (id: string): number | undefined => byId.get(id)?.song?.seconds ?? memory.length(id);
   const learnLength = (id: string, seconds: number) => {
     memory.setLength(id, seconds);
-    for (const node of results.querySelectorAll<HTMLElement>(".song-card__length")) {
+    for (const node of results.querySelectorAll<HTMLElement>(".song-row__length")) {
       if (node.dataset.id === id) node.textContent = formatLength(memory.length(id)!);
     }
   };
@@ -560,7 +560,7 @@ export function createLibraryPanel(
     if (view.sort === "length" && element.isConnected) draw(true);
     else syncFilters();
   });
-  /** Measures a card's song once the card comes into view. */
+  /** Measures a row's song once the row comes into view. */
   const seen =
     typeof IntersectionObserver === "undefined" || saveData
       ? undefined
@@ -591,58 +591,59 @@ export function createLibraryPanel(
     pause: () => actions.pause(),
     failed: (id) => actions.toast(say().preview.failed(byId.get(id)?.title ?? "")),
     measured: learnLength,
-    changed: () => results.querySelectorAll<HTMLButtonElement>(".song-card__preview").forEach(paintPreview),
+    changed: () => results.querySelectorAll<HTMLButtonElement>(".song-row__preview").forEach(paintPreview),
   });
 
-  /** Shows the version `row` on every card of the song `entry`, as the learner picked it on the card `from`. */
+  /** Shows the version `row` on every row of the song `entry`, as the learner picked it on the row `from`. */
   function pick(entry: SongEntry, row: CatalogSong, from: HTMLElement): void {
     if (entry.versions.some((song) => idOf(song) === previewer.state?.id)) previewer.stop();
     picks.set(entry.key, row.file);
     const at = result.findIndex((song) => entryOf.get(song) === entry);
     if (at !== -1) result[at] = row;
-    for (const node of results.querySelectorAll<HTMLElement>(".song-card")) {
+    for (const node of results.querySelectorAll<HTMLElement>(".song-row")) {
       if (node.dataset.song !== entry.key) continue;
-      const next = card(byId.get(idOf(row))!, node.closest('[data-section="path"]') !== null);
+      const next = rowOf(byId.get(idOf(row))!, node.closest('[data-section="path"]') !== null);
       seen?.unobserve(node);
       node.replaceWith(next);
       if (node === from) next.querySelector<HTMLElement>('.song-step[aria-pressed="true"]')!.focus({ preventScroll: true });
     }
   }
 
-  /** The card of `item`. With `onPath`, the card shows the version's place on the beginner path. */
-  function card(item: Item, onPath = false): HTMLLIElement {
+  /** The row of `item`. With `onPath`, the row shows the version's place on the beginner path. */
+  function rowOf(item: Item, onPath = false): HTMLLIElement {
     const { song, upload, id } = item;
     const entry = song === undefined ? undefined : entryOf.get(song)!;
     const versions = entry?.versions ?? [];
     const step = song === undefined || !onPath ? undefined : steps.get(song.file);
-    // A song with versions takes its title from the first, so the card reads the same whichever shows.
+    // A song with versions takes its title from the first, so the row reads the same whichever shows.
+    // A part reads as its work and its label.
     const lead = versions[0] ?? song;
-    const title = lead === undefined ? item.title : lead.rarity === undefined ? lead.title : (lead.piece ?? lead.title);
-    const by = lead === undefined ? upload!.name : [composerOf(lead.composer), lead.rarity === undefined ? lead.piece : null].filter(Boolean).join(" · ");
+    const title = lead === undefined ? item.title : lead.rarity === undefined ? partTitle(lead) : (lead.piece ?? lead.title);
+    const by = lead === undefined ? upload!.name : composerOf(lead.composer);
     const length = lengthOf(id);
     const ids = versionIds(item);
     const songKey = entry?.key ?? id;
 
     const star = el("button", {
-      class: "song-card__star",
+      class: "song-row__star",
       attrs: { type: "button", "aria-label": say().favourite.label, "aria-pressed": String(ids.some((one) => memory.isFavourite(one))), "data-tip": say().favourite.title(title) },
       on: {
         click: () => {
           const on = !ids.some((one) => memory.isFavourite(one));
           if (on) memory.setFavourite(id, true);
           else for (const one of ids) memory.setFavourite(one, false);
-          for (const other of results.querySelectorAll<HTMLElement>(".song-card__star")) {
-            if (other.closest<HTMLElement>(".song-card")!.dataset.song === songKey) other.setAttribute("aria-pressed", String(on));
+          for (const other of results.querySelectorAll<HTMLElement>(".song-row__star")) {
+            if (other.closest<HTMLElement>(".song-row")!.dataset.song === songKey) other.setAttribute("aria-pressed", String(on));
           }
         },
       },
       children: [icon("star")],
     });
-    /** The head of the card: a step per version, or that the file is the learner's. */
+    /** A step per version, or that the file is the learner's. */
     const head: HTMLElement =
       versions.length > 0
         ? el("div", {
-            class: "song-card__steps",
+            class: "song-row__steps",
             attrs: { role: "group", "aria-label": say().kinds.level },
             children: versions.map((row) => {
               const name = row.rarity === undefined ? originalName() : rarityName(row.rarity);
@@ -656,84 +657,74 @@ export function createLibraryPanel(
                   "data-level": row.rarity === undefined ? "original" : levelOf(row.difficulty),
                   "data-tip": t().player.library.rarity.stepTitle(name, tagline),
                 },
-                on: { click: (event) => pick(entry!, row, (event.currentTarget as HTMLElement).closest<HTMLElement>(".song-card")!) },
+                on: { click: (event) => pick(entry!, row, (event.currentTarget as HTMLElement).closest<HTMLElement>(".song-row")!) },
                 children: row === song ? [el("span", { class: "tag__dot", attrs: { "aria-hidden": "true" } }), el("span", { class: "song-step__name", text: name })] : [name.charAt(0)],
               });
             }),
           })
-        : el("span", { class: "song-card__kicker", text: say().yours.upload });
+        : el("span", { class: "song-row__kicker", text: say().yours.upload });
     const preview = el("button", {
-      class: "song-card__preview",
+      class: "song-row__preview",
       attrs: { type: "button", "data-id": id, "data-tip": say().preview.title(item.title) },
       on: { click: () => void previewer.toggle(id, () => read(item)) },
-      children: [el("span", { class: "song-card__sweep", attrs: { "aria-hidden": "true" } }), icon("play")],
+      children: [el("span", { class: "song-row__sweep", attrs: { "aria-hidden": "true" } }), icon("play")],
     });
     paintPreview(preview);
 
-    // A tag the query matched comes first, so the learner sees why the card is here. The steps name the level.
-    const shown = song === undefined ? [] : [...index.get(song)!.tags].filter((key) => tagKind(key) !== "level");
-    const matched = (key: TagKey) => Number(words.some((word) => foldText(tagName(key)).includes(word)));
-    shown.sort((a, b) => matched(b) - matched(a));
-
     const node = el("li", {
-      class: "song-card",
+      class: "song-row",
       attrs: { "data-id": id, "data-song": songKey, ...(id === current ? { "aria-current": "true" } : {}) },
       children: [
-        el("div", {
-          class: "song-card__top",
-          children: [head, star],
-        }),
         el("button", {
-          class: "song-card__open library-song",
+          class: "song-row__open library-song",
           attrs: { type: "button", "aria-label": item.title, "data-tip": item.title },
           on: { click: () => (upload !== undefined ? actions.openUpload(upload) : actions.open(song!)) },
         }),
         el("div", {
-          class: "song-card__text",
+          class: "song-row__text",
           children: [
-            el("span", { class: "song-card__title library-title", children: marked(title, words) }),
-            el("span", { class: "song-card__by", children: marked(by, words) }),
+            el("span", { class: "song-row__title library-title", children: marked(title, words) }),
+            el("span", { class: "song-row__by", children: marked(by, words) }),
           ],
         }),
         el("div", {
-          class: "song-card__meta",
+          class: "song-row__tools",
           children: [
-            step === undefined ? null : el("span", { class: "song-card__step", text: say().step(step) }),
-            el("span", { class: "song-card__length", attrs: { "data-id": id, "data-tip": say().lengthTitle }, text: length === undefined ? "" : formatLength(length) }),
-            song === undefined ? null : el("span", { class: "library-license", attrs: { "data-tip": song.credit }, text: song.license }),
-          ],
-        }),
-        el("div", {
-          class: "song-card__foot",
-          children: [
-            el("div", { class: "song-card__tags", children: shown.map((key) => tagButton(key, true)) }),
+            step === undefined ? null : el("span", { class: "song-row__step", text: say().step(step) }),
+            head,
+            el("span", {
+              class: "song-row__length",
+              attrs: { "data-id": id, "data-tip": song === undefined ? say().lengthTitle : say().lengthLicense(song.license, song.credit) },
+              text: length === undefined ? "" : formatLength(length),
+            }),
             upload === undefined ? null : namedButton(say().own.export, say().own.exportTitle(item.title), "ghost", () => actions.exportUpload(upload)),
             upload === undefined ? null : namedButton(say().own.delete, say().own.deleteTitle(item.title), "ghost", () => actions.removeUpload(upload)),
-            preview,
           ],
         }),
+        preview,
+        star,
       ],
     });
     if (length === undefined) seen?.observe(node);
     return node;
   }
 
-  /** A section named by `name`, with its cards in a grid and an optional line and action in its head. */
-  function section(kind: string, name: string, cards: Node[], extra: (Node | null)[] = []): HTMLElement {
+  /** A section named by `name`, with its rows in a list and an optional line and action in its head. */
+  function section(kind: string, name: string, rows: Node[], extra: (Node | null)[] = []): HTMLElement {
     return el("section", {
       class: "song-section",
       attrs: { "aria-label": name, "data-section": kind },
       children: [
         el("div", { class: "song-section__head", children: [el("h3", { class: "song-section__name", text: name }), ...extra] }),
-        cards.length === 0 ? null : el("ul", { class: "song-grid", children: cards }),
+        rows.length === 0 ? null : el("ul", { class: "song-list", children: rows }),
       ],
     });
   }
 
-  /** Draws the next `n` cards of the result, and hides the sentinel once all are drawn. */
+  /** Draws the next `n` rows of the result, and hides the sentinel once all are drawn. */
   function more(n: number): void {
     const next = result.slice(drawn, drawn + n);
-    grid.append(...next.map((song) => card(byId.get(idOf(song))!)));
+    list.append(...next.map((song) => rowOf(byId.get(idOf(song))!)));
     drawn += next.length;
     view.shown = Math.max(CHUNK, drawn);
     sentinel.hidden = drawn >= result.length;
@@ -746,14 +737,14 @@ export function createLibraryPanel(
       ? undefined
       : new IntersectionObserver((entries) => entries.some((entry) => entry.isIntersecting) && more(CHUNK), { root: results, rootMargin: "600px" });
 
-  /** A change the learner made to the view: the cards start again from the top. */
+  /** A change the learner made to the view: the rows start again from the top. */
   function redraw(): void {
     view.scroll = 0;
     view.shown = CHUNK;
     draw(false);
   }
 
-  /** Draws the head's state and the cards. With `keep`, as many cards as before and the same scroll. */
+  /** Draws the head's state and the rows. With `keep`, as many rows as before and the same scroll. */
   function draw(keep: boolean, enter = false): void {
     if (failed) return;
     const m = say();
@@ -761,7 +752,7 @@ export function createLibraryPanel(
     const fit = view.fits ? { fits: normalizeRange(settings.get("keyboardFirstNote"), settings.get("keyboardLastNote")) } : {};
     const found = new Set(filterSongs(songs, { ...NO_FILTER, query: view.query, ...fit, text: (song) => index.get(song)!.text }));
     const passes = (song: CatalogSong) => found.has(song) && matchesTags((key) => has(byId.get(idOf(song))!, key), view.tags);
-    // A song passes when one of its versions does, and its card shows a version that passed.
+    // A song passes when one of its versions does, and its row shows a version that passed.
     const passing = entries.flatMap((entry) => {
       const open = entry.versions.filter(passes);
       return open.length === 0 ? [] : [shownOf(entry, open)];
@@ -778,8 +769,8 @@ export function createLibraryPanel(
 
     seen?.disconnect();
     const parts: Node[] = [];
-    /** The first `LEAD` songs that `ids` name, each once, as the cards of the versions they show. */
-    const cardsOf = (ids: readonly string[]) => {
+    /** The first `LEAD` songs that `ids` name, each once, as the rows of the versions they show. */
+    const rowsOf = (ids: readonly string[]) => {
       const shown = new Map<string, Item>();
       for (const id of ids) {
         const item = byId.get(id);
@@ -788,16 +779,16 @@ export function createLibraryPanel(
         const key = entry?.key ?? id;
         if (!shown.has(key)) shown.set(key, entry === undefined ? item : byId.get(idOf(shownOf(entry)))!);
       }
-      return [...shown.values()].slice(0, LEAD).map((item) => card(item));
+      return [...shown.values()].slice(0, LEAD).map((item) => rowOf(item));
     };
     if (plain) {
-      const played = cardsOf(memory.played);
+      const played = rowsOf(memory.played);
       if (played.length > 0) parts.push(section("continue", m.sections.continue, played));
-      const starred = cardsOf(memory.favourites);
+      const starred = rowsOf(memory.favourites);
       if (starred.length > 0) parts.push(section("favourites", m.sections.favourites, starred));
     }
     if (uploads.length === 0 ? plain : own.length > 0) {
-      const region = section("own", m.own.heading, own.map((item) => card(item)), [
+      const region = section("own", m.own.heading, own.map((item) => rowOf(item)), [
         localButton((x) => x.player.library.panel.own.addFiles.label, (x) => x.player.library.panel.own.addFiles.title, () => actions.addFiles()),
         localButton((x) => x.player.library.panel.own.addFolder.label, (x) => x.player.library.panel.own.addFolder.title, () => actions.addFolder()),
         uploads.length === 0 ? el("p", { class: "library-hint", text: m.own.hint }) : null,
@@ -823,17 +814,17 @@ export function createLibraryPanel(
         },
       });
       parts.push(
-        section("path", m.sections.path, next.map((song) => card(byId.get(idOf(song))!, true)), [
+        section("path", m.sections.path, next.map((song) => rowOf(byId.get(idOf(song))!, true)), [
           el("p", { class: "song-section__lead", text: m.sections.pathLead }),
           all,
         ]),
       );
     }
-    grid = el("ul", { class: "song-grid" });
+    list = el("ul", { class: "song-list" });
     drawn = 0;
     if (result.length > 0) {
       const all = section("all", plain ? m.sections.all : m.sections.results, []);
-      all.append(grid);
+      all.append(list);
       parts.push(all);
     } else if (own.length === 0 && !plain && songs.length > 0) {
       parts.push(
@@ -855,18 +846,18 @@ export function createLibraryPanel(
     save();
   }
 
-  /** Brings the open song's card into view, drawing up to it first. With `focus`, the card takes the focus. */
+  /** Brings the open song's row into view, drawing up to it first. With `focus`, the row takes the focus. */
   function reveal(focus = false): void {
     if (current === undefined) return;
     const box = results.getBoundingClientRect();
-    /** How far a card lies outside the cards' viewport, in pixels, or 0 when it shows whole. */
+    /** How far a row lies outside the rows' viewport, in pixels, or 0 when it shows whole. */
     const away = (node: HTMLElement) => {
       const own = node.getBoundingClientRect();
       return Math.max(0, box.top - own.top, own.bottom - box.bottom);
     };
-    const find = () => [...results.querySelectorAll<HTMLElement>(".song-card")].filter((node) => node.dataset.id === current);
+    const find = () => [...results.querySelectorAll<HTMLElement>(".song-row")].filter((node) => node.dataset.id === current);
     let nodes = find();
-    // A card of the song that shows already wins. Otherwise its card in the result is drawn, and the nearest one is taken.
+    // A row of the song that shows already wins. Otherwise its row in the result is drawn, and the nearest one is taken.
     if (!nodes.some((node) => away(node) === 0)) {
       const at = result.findIndex((song) => idOf(song) === current);
       if (at >= drawn) more(at + 1 - drawn);
@@ -875,7 +866,7 @@ export function createLibraryPanel(
     const node = nodes.sort((a, b) => away(a) - away(b))[0];
     if (node === undefined) return;
     if (away(node) > 0) node.scrollIntoView({ block: "center" });
-    if (focus) node.querySelector<HTMLElement>(".song-card__open")!.focus({ preventScroll: true });
+    if (focus) node.querySelector<HTMLElement>(".song-row__open")!.focus({ preventScroll: true });
   }
 
   /** Reads the guide of each song of ours whose rows lack skills, one after another, and keeps them. */
@@ -895,26 +886,14 @@ export function createLibraryPanel(
   results.addEventListener("scroll", () => {
     if (element.isConnected) view.scroll = results.scrollTop;
   });
-  // The arrow keys move between the cards by where each card sits, so they follow the grid's columns.
+  // The up and down arrows move between the rows, and up from the first row returns to the search.
   results.addEventListener("keydown", (event) => {
-    const from = (event.target as HTMLElement).closest<HTMLElement>(".song-card__open");
-    if (from === null || !["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) return;
-    const opens = [...results.querySelectorAll<HTMLElement>(".song-card__open")];
-    const at = opens.indexOf(from);
-    const box = from.getBoundingClientRect();
-    const sameColumn = (node: HTMLElement) => Math.abs(node.getBoundingClientRect().left - box.left) < box.width / 2;
-    const below = (node: HTMLElement) => node.getBoundingClientRect().top > box.top + 1;
-    const above = (node: HTMLElement) => node.getBoundingClientRect().top < box.top - 1;
-    const to =
-      event.key === "ArrowRight"
-        ? opens[at + 1]
-        : event.key === "ArrowLeft"
-          ? opens[at - 1]
-          : event.key === "ArrowDown"
-            ? (opens.slice(at + 1).find((node) => below(node) && sameColumn(node)) ?? opens.slice(at + 1).find(below))
-            : (opens.slice(0, at).reverse().find((node) => above(node) && sameColumn(node)) ?? opens.slice(0, at).reverse().find(above));
+    const from = (event.target as HTMLElement).closest<HTMLElement>(".song-row__open");
+    if (from === null || (event.key !== "ArrowUp" && event.key !== "ArrowDown")) return;
+    const opens = [...results.querySelectorAll<HTMLElement>(".song-row__open")];
+    const to = opens[opens.indexOf(from) + (event.key === "ArrowDown" ? 1 : -1)];
     event.preventDefault();
-    if (to === undefined) return event.key === "ArrowUp" || event.key === "ArrowLeft" ? search.focus() : undefined;
+    if (to === undefined) return event.key === "ArrowUp" ? search.focus() : undefined;
     to.focus();
   });
   const savePage = () => {
@@ -926,7 +905,7 @@ export function createLibraryPanel(
   const unsubscribe = settings.subscribe((id) => {
     if (view.fits && (id === "keyboardFirstNote" || id === "keyboardLastNote")) draw(true);
   });
-  // A change of locale names the tags anew, and draws the cards in it. An error in their place stays.
+  // A change of locale names the tags anew, and draws the rows in it. An error in their place stays.
   const stopLocale = onLocale(() => {
     reindex();
     draw(true);

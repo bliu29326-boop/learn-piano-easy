@@ -57,7 +57,6 @@ export const playerLibrary: Translation<typeof en> = {
     },
     sets: { path: "Parcours découverte", ours: "Nos arrangements" },
     yours: { favourite: "Favoris", played: "Déjà joués", upload: "Tes fichiers" },
-    tagTitle: (name: string) => `Afficher seulement : ${name}`,
     sort: {
       label: "Trier par",
       suggested: "Ordre suggéré",

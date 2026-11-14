@@ -56,7 +56,6 @@ export const playerLibrary: Translation<typeof en> = {
     },
     sets: { path: "शुरुआत की राह", ours: "हमारे वर्शन" },
     yours: { favourite: "पसंदीदा", played: "बजाए गए", upload: "आपकी फ़ाइलें" },
-    tagTitle: (name: string) => `सिर्फ़ यह दिखाएँ: ${name}`,
     sort: {
       label: "किस क्रम में",
       suggested: "सुझाए गए",

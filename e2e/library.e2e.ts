@@ -4,14 +4,14 @@ import { join } from "node:path";
 
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
-/** The card of the song titled `title` inside `scope`: the card whose main button carries that name. */
-function cardOf(scope: Locator, title: string): Locator {
-  return scope.locator(".song-card").filter({ has: scope.page().getByRole("button", { name: title, exact: true }) });
+/** The row of the song titled `title` inside `scope`: the row whose main button carries that name. */
+function rowOf(scope: Locator, title: string): Locator {
+  return scope.locator(".song-row").filter({ has: scope.page().getByRole("button", { name: title, exact: true }) });
 }
 
 /**
- * The filter chip named `name` in the group named `group`, in the head or the rail. A card of a song
- * with versions holds a group named "Difficulty" too, so the cards are left out.
+ * The filter chip named `name` in the group named `group`, in the head or the rail. A row of a song
+ * with versions holds a group named "Difficulty" too, so the rows are left out.
  */
 function chip(dialog: Locator, group: string, name: string): Locator {
   return dialog.locator(".song-explorer__head, .song-explorer__rail").getByRole("group", { name: group }).getByRole("button", { name, exact: true });
@@ -57,11 +57,11 @@ test("a_mutopia_piece_shows_its_license_and_credit_and_opens", async ({ page }) 
   await page.getByRole("button", { name: "Songs", exact: true }).click();
   const dialog = page.getByRole("dialog", { name: "Songs" });
   await dialog.getByRole("searchbox", { name: "Search songs" }).fill("maple leaf");
-  const card = cardOf(dialog, "Maple Leaf Rag");
-  const license = card.locator(".library-license");
-  await expect(license).toHaveText("Public Domain");
-  await expect(license).toHaveAttribute("data-tip", /The Mutopia Project$/);
-  await card.getByRole("button", { name: "Maple Leaf Rag", exact: true }).click();
+  const row = rowOf(dialog, "Maple Leaf Rag");
+  // The length's hover text names the license and who typeset the file.
+  const length = row.locator(".song-row__length");
+  await expect(length).toHaveAttribute("data-tip", /^Length · Public Domain · .*The Mutopia Project$/);
+  await row.getByRole("button", { name: "Maple Leaf Rag", exact: true }).click();
   await expect(page.getByLabel("Open song")).toHaveText("Maple Leaf Rag");
 });
 
@@ -70,22 +70,20 @@ test("an_original_piece_comes_first_and_opens_in_two_hands", async ({ page }) =>
   await page.getByRole("button", { name: "Songs", exact: true }).click();
   const dialog = page.getByRole("dialog", { name: "Songs" });
   // With no filter on, the catalog starts with our own pieces.
-  const first = dialog.locator(".song-section[data-section='all'] .song-card").first();
-  await expect(first.locator(".song-card__by")).toContainText("learn-piano-easy");
+  const first = dialog.locator(".song-section[data-section='all'] .song-row").first();
+  await expect(first.locator(".song-row__by")).toContainText("learn-piano-easy");
   // The composers' group shows its eight largest first, so this chip is read where it waits behind "more".
   const composer = dialog.locator(".song-explorer__rail .tag[data-kind='composer']").filter({ hasText: "learn-piano-easy" });
   await expect(composer.locator(".tag__count")).toHaveText("13");
 
   await dialog.getByRole("searchbox", { name: "Search songs" }).fill("twelve bar walk");
-  const card = cardOf(dialog, "Twelve-Bar Walk");
-  // A piece with one version is its own Original, so its card's one step names it.
-  await expect(card.locator(".song-step")).toHaveCount(1);
-  await expect(card.locator(".song-step")).toHaveAccessibleName("Original");
-  await expect(card.locator(".song-card__kicker")).toHaveCount(0);
-  const license = card.locator(".library-license");
-  await expect(license).toHaveText("MIT");
-  await expect(license).toHaveAttribute("data-tip", "Composed by the learn-piano-easy authors");
-  await card.getByRole("button", { name: "Twelve-Bar Walk", exact: true }).click();
+  const row = rowOf(dialog, "Twelve-Bar Walk");
+  // A piece with one version is its own Original, so its row's one step names it.
+  await expect(row.locator(".song-step")).toHaveCount(1);
+  await expect(row.locator(".song-step")).toHaveAccessibleName("Original");
+  await expect(row.locator(".song-row__kicker")).toHaveCount(0);
+  await expect(row.locator(".song-row__length")).toHaveAttribute("data-tip", "Length · MIT · Composed by the learn-piano-easy authors");
+  await row.getByRole("button", { name: "Twelve-Bar Walk", exact: true }).click();
   await expect(page.getByLabel("Open song")).toHaveText("Twelve-Bar Walk");
 
   await page.getByRole("button", { name: "Tracks", exact: true }).click();
@@ -101,19 +99,19 @@ test("the_beginner_path_comes_first_and_opens_its_steps", async ({ page }) => {
   const path = dialog.locator(".song-section[data-section='path']");
   const all = dialog.locator(".song-section[data-section='all']");
 
-  // A learner who played nothing yet finds the path's first step as the first card of the page.
-  const first = dialog.locator(".song-card").first();
-  await expect(first.locator(".song-card__open")).toHaveAccessibleName("Canon in D, Beginner");
-  await expect(first.locator(".song-card__step")).toHaveText("Step 1");
-  await expect(path.locator(".song-card").first().locator(".song-card__open")).toHaveAccessibleName("Canon in D, Beginner");
-  await expect(path.locator(".song-card")).toHaveCount(6);
+  // A learner who played nothing yet finds the path's first step as the first row of the page.
+  const first = dialog.locator(".song-row").first();
+  await expect(first.locator(".song-row__open")).toHaveAccessibleName("Canon in D, Beginner");
+  await expect(first.locator(".song-row__step")).toHaveText("Step 1");
+  await expect(path.locator(".song-row").first().locator(".song-row__open")).toHaveAccessibleName("Canon in D, Beginner");
+  await expect(path.locator(".song-row")).toHaveCount(6);
 
   // The whole path is the tag "Beginner path", sorted from its first step on. It counts each song once.
   await path.getByRole("button", { name: "Show all 111 songs" }).click();
   await expect(count).toHaveText("111 songs");
   await expect(dialog.getByRole("combobox", { name: "Sort by" })).toHaveValue("difficulty");
-  await expect(all.locator(".song-card__open").first()).toHaveAccessibleName("Canon in D, Beginner");
-  // The cards draw a chunk at a time, so the list scrolls down until the step's card is drawn.
+  await expect(all.locator(".song-row__open").first()).toHaveAccessibleName("Canon in D, Beginner");
+  // The rows draw a chunk at a time, so the list scrolls down until the step's row is drawn.
   const candeur = all.getByRole("button", { name: "25 Easy Studies, Opus 100 · No. 1: La Candeur", exact: true });
   const scroller = dialog.locator(".song-explorer__results");
   await expect
@@ -128,9 +126,9 @@ test("the_beginner_path_comes_first_and_opens_its_steps", async ({ page }) => {
   // and a song of ours shows its Easy version.
   await chip(dialog, "Difficulty", "Easy").click();
   await expect(count).toHaveText("84 songs");
-  await expect(all.locator(".song-card__open").first()).toHaveAccessibleName("Morning Light");
-  await expect(cardOf(all, "Canon in D, Easy")).toHaveCount(1);
-  await expect(cardOf(all, "Canon in D, Beginner")).toHaveCount(0);
+  await expect(all.locator(".song-row__open").first()).toHaveAccessibleName("Morning Light");
+  await expect(rowOf(all, "Canon in D, Easy")).toHaveCount(1);
+  await expect(rowOf(all, "Canon in D, Beginner")).toHaveCount(0);
   await expect
     .poll(async () => {
       await scroller.evaluate((node) => node.scrollTo(0, node.scrollHeight));
@@ -155,25 +153,25 @@ test("the_library_opens_a_song_at_each_rarity", async ({ page }) => {
   const dialog = page.getByRole("dialog", { name: "Songs" });
   const search = dialog.getByRole("searchbox", { name: "Search songs" });
   const count = dialog.locator(".library-count");
-  const cards = dialog.locator(".song-card");
-  const open = cards.locator(".song-card__open");
-  const steps = cards.getByRole("group", { name: "Difficulty" });
+  const rows = dialog.locator(".song-row");
+  const open = rows.locator(".song-row__open");
+  const steps = rows.getByRole("group", { name: "Difficulty" });
   const versions = { Beginner: "common", Easy: "rare", Medium: "epic", Hard: "legendary" };
   for (const [name, id] of Object.entries(versions)) {
     await page.getByRole("button", { name: "Songs", exact: true }).click();
     await search.fill("ode to joy");
-    // The song is one card whatever its versions, and a step puts its version on that card.
-    await expect(cards).toHaveCount(1);
-    await expect(cards).toHaveAttribute("data-song", "ode-to-joy");
+    // The song is one row whatever its versions, and a step puts its version on that row.
+    await expect(rows).toHaveCount(1);
+    await expect(rows).toHaveAttribute("data-song", "ode-to-joy");
     await steps.getByRole("button", { name, exact: true }).click();
-    await expect(cards).toHaveAttribute("data-id", `catalog:ours/ode-to-joy/${id}.mid`);
+    await expect(rows).toHaveAttribute("data-id", `catalog:ours/ode-to-joy/${id}.mid`);
     await expect(open).toHaveAccessibleName(`Ode to Joy, ${name}`);
     await open.click();
     await expect(dialog).toBeHidden();
     await expect(title).toHaveText(`Ode to Joy, ${name}`);
   }
 
-  // A level chip keeps the song by its version of that level, and the card shows that version, not the one last played.
+  // A level chip keeps the song by its version of that level, and the row shows that version, not the one last played.
   await page.getByRole("button", { name: "Songs", exact: true }).click();
   const medium = chip(dialog, "Difficulty", "Medium");
   const easy = chip(dialog, "Difficulty", "Easy");
@@ -182,14 +180,14 @@ test("the_library_opens_a_song_at_each_rarity", async ({ page }) => {
   await medium.click();
   await expect(count).toHaveText("1 song");
   await expect(open).toHaveAccessibleName("Ode to Joy, Medium");
-  await expect(cards).toHaveAttribute("data-id", "catalog:ours/ode-to-joy/epic.mid");
+  await expect(rows).toHaveAttribute("data-id", "catalog:ours/ode-to-joy/epic.mid");
   await expect(steps.getByRole("button", { name: "Medium", exact: true })).toHaveAttribute("aria-pressed", "true");
   // A level none of its versions has hides the song. Ode to Joy has no Original yet.
   await medium.click();
   await original.click();
   await expect(count).toHaveText("0 songs");
-  await expect(cards).toHaveCount(0);
-  // An original score is its song's last step, so the Original chip keeps the song and the card shows it.
+  await expect(rows).toHaveCount(0);
+  // An original score is its song's last step, so the Original chip keeps the song and the row shows it.
   await search.fill("für elise");
   await expect(count).toHaveText("1 song");
   await expect(open).toHaveAccessibleName("Für Elise");
@@ -204,20 +202,20 @@ test("the_library_opens_a_song_at_each_rarity", async ({ page }) => {
   await expect(count).toHaveText("139 songs");
 });
 
-test("a_song_is_one_card_and_a_step_picks_its_version", async ({ page }) => {
+test("a_song_is_one_row_and_a_step_picks_its_version", async ({ page }) => {
   await page.goto("./play/");
   await page.getByRole("button", { name: "Songs", exact: true }).click();
   const dialog = page.getByRole("dialog", { name: "Songs" });
-  // The skills arrive a moment after the first open and draw the cards anew, which would take a step's focus.
+  // The skills arrive a moment after the first open and draw the rows anew, which would take a step's focus.
   await expect(dialog.locator(".song-explorer__rail").getByRole("group", { name: "Skill" })).toBeVisible({ timeout: 15_000 });
   await dialog.getByRole("searchbox", { name: "Search songs" }).fill("für elise");
   await expect(dialog.locator(".library-count")).toHaveText("1 song");
-  const card = dialog.locator(".song-card");
-  await expect(card).toHaveCount(1);
+  const row = dialog.locator(".song-row");
+  await expect(row).toHaveCount(1);
 
   // The versions are steps from the easiest, with the composer's own score last. The easiest shows first.
-  const open = card.locator(".song-card__open");
-  const steps = card.getByRole("group", { name: "Difficulty" }).getByRole("button");
+  const open = row.locator(".song-row__open");
+  const steps = row.getByRole("group", { name: "Difficulty" }).getByRole("button");
   const names = ["Beginner", "Easy", "Medium", "Hard", "Original"];
   await expect(steps).toHaveCount(names.length);
   for (const [i, name] of names.entries()) {
@@ -226,19 +224,19 @@ test("a_song_is_one_card_and_a_step_picks_its_version", async ({ page }) => {
   }
   await expect(open).toHaveAccessibleName("Für Elise, Beginner");
 
-  // A step shows its version on the card in place, and the card then opens that version.
+  // A step shows its version on the row in place, and the row then opens that version.
   await steps.nth(3).click();
   await expect(open).toHaveAccessibleName("Für Elise, Hard");
-  await expect(card).toHaveAttribute("data-id", "catalog:ours/fur-elise/legendary.mid");
+  await expect(row).toHaveAttribute("data-id", "catalog:ours/fur-elise/legendary.mid");
   for (const [i, name] of names.entries()) await expect(steps.nth(i)).toHaveAttribute("aria-pressed", String(name === "Hard"));
   await expect(steps.nth(3)).toBeFocused();
   await open.click();
   await expect(dialog).toBeHidden();
   await expect(page.getByLabel("Open song")).toHaveText("Für Elise, Hard");
 
-  // Opening a version forgets the pick, so the card now shows Hard as the version last played.
+  // Opening a version forgets the pick, so the row now shows Hard as the version last played.
   await page.getByRole("button", { name: "Songs", exact: true }).click();
-  await expect(card).toHaveCount(1);
+  await expect(row).toHaveCount(1);
   await expect(open).toHaveAccessibleName("Für Elise, Hard");
   await expect(steps.nth(3)).toHaveAttribute("aria-pressed", "true");
   await expect(steps.nth(0)).toHaveAttribute("aria-pressed", "false");
@@ -254,13 +252,13 @@ test("the_library_lists_the_christmas_songs", async ({ page }) => {
   await expect(christmas.locator(".tag__count")).toHaveText(/^\d+$/);
   await christmas.click();
   await expect(christmas).toHaveAttribute("aria-pressed", "true");
-  await expect(dialog.locator(".song-card .library-title").first()).toHaveText("Jingle Bells");
+  await expect(dialog.locator(".song-row .library-title").first()).toHaveText("Jingle Bells");
 
-  // A song's other title finds it with no tag on, as one card that shows its easiest version.
+  // A song's other title finds it with no tag on, as one row that shows its easiest version.
   await christmas.click();
   await dialog.getByRole("searchbox", { name: "Search songs" }).fill("one horse open sleigh");
   await expect(dialog.locator(".library-count")).toHaveText("1 song");
-  await expect(dialog.locator(".song-card .library-title")).toHaveText(["Jingle Bells"]);
+  await expect(dialog.locator(".song-row .library-title")).toHaveText(["Jingle Bells"]);
   await dialog.getByRole("button", { name: "Jingle Bells, Beginner", exact: true }).click();
   await expect(page.getByLabel("Open song")).toHaveText("Jingle Bells, Beginner");
 });
@@ -275,7 +273,7 @@ test("the_library_lists_the_film_songs", async ({ page }) => {
   await expect(film).toHaveAccessibleName("At the movies", { timeout: 15_000 });
   await film.click();
   await expect(film).toHaveAttribute("aria-pressed", "true");
-  const titles = dialog.locator(".song-card .library-title");
+  const titles = dialog.locator(".song-row .library-title");
   await expect(titles.filter({ hasText: /^Canon in D$/ })).toHaveCount(1);
   await expect(titles.filter({ hasText: /^The Entertainer$/ })).toHaveCount(1);
   await expect(titles.filter({ hasText: /^Jingle Bells$/ })).toHaveCount(0);

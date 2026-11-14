@@ -1,30 +1,32 @@
 /*
  * The song explorer's styles. `src/library/library-panel.ts` is the home of how the explorer behaves.
  *
- * The explorer fills its dialog: a head that stays, a rail of filters and the cards, which scroll alone.
+ * The explorer fills its dialog: a head that stays, a rail of filters and the rows, which scroll alone.
  * The dialog is large on a desktop and a full-height sheet on a phone. The explorer is a container, so
- * the rail sits beside the cards when it has the room and folds above them when it has not.
+ * the rail sits beside the rows when it has the room and folds above them when it has not.
  *
  * - **The dialog's title and the search are one head.** No line parts them, and they share a left edge.
  * - **A phone's head stays short.** The quick filters are one row that scrolls sideways. The open
  *   song's button shows only its bars, and the sort shows only its select.
- * - **A card is raised.** It rests on the first surface with a lit edge, and lifts under the pointer.
- *   Its main button is a layer over the whole card, so the focus ring is the card's own edge.
- * - **Every card is the same height.** A title, a composer and the tags each keep to one line, so no
- *   card moves when a length or a tag arrives.
+ * - **A row is a flat band of a list.** A hairline parts it from the next, and the pointer tints it.
+ *   Its main button is a layer over the whole row, so the focus ring is the row's own edge.
+ * - **A row holds its text and its tools.** The title and the composer each keep to one line on the
+ *   left. The steps, the length, the preview and the star share one line on the right.
+ * - **On a phone the steps and the length take a line of their own** under the text. The preview and
+ *   the star stay beside the text, so five steps still fit the width.
+ * - **Every row of a list is the same height,** so no row moves when a length arrives.
  * - **Each kind of tag has a hue.** A kind sets `--tag-hue`, and one rule draws every chip from it. A
  *   chip's text stays `--c-text`, so the hue never carries the contrast. A level's hue climbs from
- *   teal to orchid. A card's kicker deepens its hue towards the text colour, so it stays readable.
+ *   teal to orchid. A row's kicker deepens its hue towards the text colour, so it stays readable.
  * - **Teal marks the song that plays,** and the preview that sounds. Honey marks a favourite.
  * - **The preview's progress is a fill that sweeps the button.** It runs for `--preview-ms`, and
- *   starts `--preview-at` in, so a card drawn while its song previews joins at the right place.
+ *   starts `--preview-at` in, so a row drawn while its song previews joins at the right place.
  *
  * Only `transform` and `opacity` move. With reduced motion nothing loops, and the sweep is a still tint.
- * A touch screen asks a target of 44 pixels. A card's small tag gets it from a clear border, so the
- * chip keeps its drawn size and only its hit area grows.
+ * A touch screen asks a target of 44 pixels, so a row's buttons grow to it there.
  */
 @layer pages {
-  /* The dialog around the explorer: large, with a body that hands its scroll to the cards. */
+  /* The dialog around the explorer: large, with a body that hands its scroll to the rows. */
   .dialog[open]:has(.song-explorer) {
     width: calc(var(--s-12) * 9.5);
     height: calc(100dvh - 2 * var(--s-gutter));
@@ -109,7 +111,7 @@
     text-overflow: ellipsis;
   }
 
-  /* The open song, named in teal. It leads to its card. */
+  /* The open song, named in teal. It leads to its row. */
   .song-explorer__now {
     display: inline-flex;
     flex: 0 1 auto;
@@ -324,7 +326,7 @@
     color: var(--c-accent);
   }
 
-  /* The rail and the cards. On a narrow explorer the rail folds above the cards. */
+  /* The rail and the rows. On a narrow explorer the rail folds above the rows. */
   .song-explorer__main {
     display: flex;
     flex: 1;
@@ -529,23 +531,7 @@
     transform: scale(1.5);
   }
 
-  /* A card's tag: smaller, on a tint of its hue, with no edge. */
-  .tag--small {
-    z-index: var(--z-raised);
-    gap: var(--s-1);
-    min-height: var(--s-6);
-    padding: 0 var(--s-2);
-    border-color: transparent;
-    background: color-mix(in oklab, var(--tag-hue) 12%, var(--c-surface-1)) padding-box;
-    font-size: var(--t-xs);
-  }
-
-  .tag--small .tag__dot {
-    width: 6px;
-    height: 6px;
-  }
-
-  /* A section of cards: a strong name, an optional line and action, then the grid. */
+  /* A section of rows: a strong name, an optional line and action, then the list. */
   .song-section {
     display: grid;
     flex: none;
@@ -589,56 +575,66 @@
     line-height: var(--lh-body);
   }
 
-  .song-grid {
+  /* A list of rows: one raised surface, its rows parted by hairlines. */
+  .song-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, calc(var(--s-12) * 2 + var(--s-2))), 1fr));
-    gap: var(--s-3);
+    grid-template-columns: minmax(0, 1fr);
     margin: 0;
-    padding: 0;
+    padding: var(--s-1);
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-card);
+    background: var(--c-surface-1);
+    box-shadow: var(--e-rim), var(--e-1);
     list-style: none;
   }
 
-  /* A card: a raised surface that lifts under the pointer. */
-  .song-card {
+  /* A row: its text on the left, its tools on the right. */
+  .song-row {
     --tag-hue: var(--c-text-soft);
 
     position: relative;
     isolation: isolate;
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--s-2);
+    grid-template-columns: minmax(0, 1fr) auto auto auto;
+    align-items: center;
+    gap: var(--s-1) var(--s-2);
     min-width: 0;
-    padding: var(--s-2) var(--s-3) var(--s-3) var(--s-4);
-    border: 1px solid var(--c-line);
-    border-radius: var(--r-card);
-    background: var(--c-surface-1);
-    box-shadow: var(--e-rim), var(--e-1);
+    padding: var(--s-2) var(--s-2) var(--s-2) var(--s-3);
+    border-radius: calc(var(--r-card) - var(--s-1));
     color: var(--c-text);
-    transition: transform var(--m-small) var(--ease-spring);
   }
 
-  /* The deeper shadow of a lifted card, faded in so no shadow animates. */
-  .song-card::after {
+  /* The hairline above every row but the first. */
+  .song-row + .song-row::before {
     content: "";
     position: absolute;
-    inset: -1px;
+    inset: -1px var(--s-3) auto;
+    height: 1px;
+    background: var(--c-line);
+    pointer-events: none;
+  }
+
+  /* The tint of a row under the pointer, faded in so no colour animates. */
+  .song-row::after {
+    content: "";
+    position: absolute;
+    inset: 0;
     z-index: -1;
     border-radius: inherit;
-    box-shadow: var(--e-2);
+    background: var(--c-surface-2);
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--m-small) var(--ease-standard);
   }
 
-  .song-card[aria-current="true"] {
-    border-color: var(--c-accent);
+  .song-row[aria-current="true"] {
     background: var(--c-accent-soft);
-    box-shadow: inset 0 0 0 1px var(--c-accent), var(--e-1);
+    box-shadow: inset 0 0 0 1px var(--c-accent);
   }
 
-  .song-card__open {
+  .song-row__open {
     position: absolute;
-    inset: -1px;
+    inset: 0;
     padding: 0;
     border: 0;
     border-radius: inherit;
@@ -646,15 +642,53 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  .song-card__top {
+  /* The tools keep to one line: the path's step, the steps, the length and an upload's buttons. */
+  .song-row__tools {
     display: flex;
     align-items: center;
     gap: var(--s-2);
+    min-width: 0;
     min-height: var(--s-7);
   }
 
-  .song-card__kicker,
-  .song-card__step {
+  .song-row__tools .btn {
+    z-index: var(--z-raised);
+    flex: none;
+  }
+
+  /*
+   * On a phone the preview and the star stay beside the text. The tools take a line of their own under
+   * it, with the steps at its start and the length at its end.
+   */
+  @container explorer (max-width: 479px) {
+    .song-row {
+      grid-template-columns: minmax(0, 1fr) auto auto;
+    }
+
+    .song-row__text {
+      grid-area: 1 / 1;
+    }
+
+    .song-row__preview {
+      grid-area: 1 / 2;
+    }
+
+    .song-row__star {
+      grid-area: 1 / 3;
+    }
+
+    .song-row__tools {
+      grid-row: 2;
+      grid-column: 1 / -1;
+    }
+
+    .song-row__length {
+      margin-inline-start: auto;
+    }
+  }
+
+  .song-row__kicker,
+  .song-row__step {
     display: inline-flex;
     align-items: center;
     gap: var(--s-1);
@@ -668,7 +702,7 @@
   }
 
   /* The kicker's text is its hue deepened towards the text colour, so gold and grey stay readable. */
-  .song-card__kicker {
+  .song-row__kicker {
     flex: 0 1 auto;
     color: color-mix(in oklab, var(--tag-hue) 75%, var(--c-text));
     overflow: hidden;
@@ -676,7 +710,7 @@
   }
 
   /* The steps: one pill per version of the song. The chosen one spells its name, the others their first letter. */
-  .song-card__steps {
+  .song-row__steps {
     z-index: var(--z-raised);
     display: flex;
     flex: 0 1 auto;
@@ -704,7 +738,7 @@
     transition: transform var(--m-small) var(--ease-spring);
   }
 
-  /* The chosen step gives way first where the card is narrow, and its name ends in an ellipsis. */
+  /* The chosen step gives way first where the row is narrow, and its name ends in an ellipsis. */
   .song-step[aria-pressed="true"] {
     flex: 0 1 auto;
     min-width: 0;
@@ -723,7 +757,7 @@
     transform: scale(0.94);
   }
 
-  .song-card__step {
+  .song-row__step {
     flex: none;
     padding: var(--s-1) var(--s-2);
     border-radius: var(--r-pill);
@@ -734,7 +768,7 @@
   }
 
   /* The star: an outline, and filled with honey once the song is a favourite. */
-  .song-card__star {
+  .song-row__star {
     z-index: var(--z-raised);
     display: inline-flex;
     flex: none;
@@ -742,7 +776,6 @@
     justify-content: center;
     width: var(--s-7);
     height: var(--s-7);
-    margin-inline-start: auto;
     padding: 0;
     border: 0;
     border-radius: var(--r-pill);
@@ -751,42 +784,42 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  .song-card__star .icon {
+  .song-row__star .icon {
     width: var(--s-5);
     height: var(--s-5);
     transition: transform var(--m-medium) var(--ease-spring);
   }
 
-  .song-card__star[aria-pressed="true"] {
+  .song-row__star[aria-pressed="true"] {
     color: var(--c-brand-text);
   }
 
-  .song-card__star[aria-pressed="true"] .icon {
+  .song-row__star[aria-pressed="true"] .icon {
     fill: var(--c-brand);
     transform: scale(1.15);
   }
 
-  .song-card__text {
+  .song-row__text {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 2px;
     min-width: 0;
   }
 
-  .song-card__title,
-  .song-card__by {
+  .song-row__title,
+  .song-row__by {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
-  .song-card__title {
+  .song-row__title {
     font-size: var(--t-md);
     font-weight: var(--w-bold);
     letter-spacing: var(--ls-heading);
   }
 
-  .song-card__by {
+  .song-row__by {
     color: var(--c-text-soft);
     font-size: var(--t-sm);
   }
@@ -797,57 +830,21 @@
     color: var(--c-text);
   }
 
-  .song-card__meta {
-    display: flex;
-    align-items: center;
-    gap: var(--s-2);
-    min-height: var(--s-5);
+  /* The length keeps its width while it is measured, and sits above the main button for its tip. */
+  .song-row__length {
+    z-index: var(--z-raised);
+    flex: none;
+    min-width: 5ch;
     color: var(--c-text-soft);
     font-size: var(--t-xs);
     font-weight: var(--w-semibold);
+    text-align: end;
+    font-variant-numeric: tabular-nums;
     white-space: nowrap;
   }
 
-  .song-card__meta .library-license {
-    z-index: var(--z-raised);
-    color: inherit;
-    font-size: inherit;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .song-card__length {
-    flex: none;
-    min-width: 4ch;
-    margin-inline-start: auto;
-    text-align: end;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .song-card__foot {
-    display: flex;
-    align-items: center;
-    gap: var(--s-2);
-    min-height: var(--s-7);
-  }
-
-  .song-card__foot .btn {
-    z-index: var(--z-raised);
-    flex: none;
-  }
-
-  /* The tags keep to one line, and fade out where the line ends. */
-  .song-card__tags {
-    display: flex;
-    flex: 1;
-    gap: var(--s-1);
-    min-width: 0;
-    overflow: hidden;
-    mask-image: linear-gradient(to var(--side-end), black calc(100% - var(--s-5)), transparent);
-  }
-
   /* The preview: a raised pill. While its song sounds it is teal, and a fill sweeps it. */
-  .song-card__preview {
+  .song-row__preview {
     position: relative;
     z-index: var(--z-raised);
     display: inline-flex;
@@ -867,14 +864,14 @@
     transition: transform var(--m-small) var(--ease-spring);
   }
 
-  .song-card__preview .icon {
+  .song-row__preview .icon {
     position: relative;
     width: var(--s-4);
     height: var(--s-4);
     fill: currentColor;
   }
 
-  .song-card__sweep {
+  .song-row__sweep {
     position: absolute;
     inset: 0;
     background: color-mix(in oklab, var(--c-accent-vivid) 34%, transparent);
@@ -882,21 +879,21 @@
     transform-origin: var(--side-start);
   }
 
-  .song-card__preview:not([data-state="idle"]) {
+  .song-row__preview:not([data-state="idle"]) {
     border-color: var(--c-accent);
     color: var(--c-accent);
   }
 
-  .song-card__preview[data-state="playing"] .song-card__sweep {
+  .song-row__preview[data-state="playing"] .song-row__sweep {
     animation: song-sweep var(--preview-ms) linear var(--preview-at) both;
   }
 
   /* Loading: the icon gives way to a ring that turns until the song is read. */
-  .song-card__preview[data-state="loading"] .icon {
+  .song-row__preview[data-state="loading"] .icon {
     opacity: 0;
   }
 
-  .song-card__preview[data-state="loading"]::before {
+  .song-row__preview[data-state="loading"]::before {
     content: "";
     position: absolute;
     width: var(--s-4);
@@ -908,11 +905,7 @@
   }
 
   @media (hover: hover) {
-    .song-card:hover {
-      transform: translateY(var(--motion-lift));
-    }
-
-    .song-card:hover::after {
+    .song-row:hover::after {
       opacity: 1;
     }
 
@@ -922,12 +915,12 @@
       transform: translateY(var(--motion-lift));
     }
 
-    .song-card__preview:hover,
-    .song-card__star:hover .icon {
+    .song-row__preview:hover,
+    .song-row__star:hover .icon {
       transform: scale(1.1);
     }
 
-    .song-card__star:hover {
+    .song-row__star:hover {
       color: var(--c-brand-text);
     }
 
@@ -944,15 +937,15 @@
   .tag:active,
   .song-explorer__now:active,
   .song-explorer__filters:active,
-  .song-card__preview:active {
+  .song-row__preview:active {
     transform: scale(0.95);
   }
 
-  .song-card:has(.song-card__open:active) {
-    transform: scale(0.985);
+  .song-row:has(.song-row__open:active)::after {
+    opacity: 1;
   }
 
-  .song-card__star:active .icon {
+  .song-row__star:active .icon {
     transform: scale(0.85);
   }
 
@@ -1008,17 +1001,13 @@
       min-height: var(--s-touch);
     }
 
-    .tag--small {
-      border-block: 10px solid transparent;
-    }
-
-    .song-card__star,
-    .song-card__preview {
+    .song-row__star,
+    .song-row__preview {
       width: var(--s-touch);
       height: var(--s-touch);
     }
 
-    .song-card__preview {
+    .song-row__preview {
       width: var(--s-9);
     }
 
@@ -1027,19 +1016,19 @@
       height: var(--s-touch);
     }
 
-    .song-card__foot {
+    .song-row__tools {
       min-height: var(--s-touch);
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .song-bars i,
-    .song-card__preview[data-state="loading"]::before,
-    .song-card__preview[data-state="playing"] .song-card__sweep {
+    .song-row__preview[data-state="loading"]::before,
+    .song-row__preview[data-state="playing"] .song-row__sweep {
       animation: none;
     }
 
-    .song-card__preview[data-state="playing"] .song-card__sweep {
+    .song-row__preview[data-state="playing"] .song-row__sweep {
       transform: none;
     }
   }

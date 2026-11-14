@@ -9,7 +9,7 @@ stages:
     status: done
   - id: 2
     title: The explorer lists songs as rows
-    status: open
+    status: done
   - id: 3
     title: "A work's parts open from its row"
     status: open
@@ -62,7 +62,12 @@ faster as rows, and a work's parts read best together under it.
 - **A filter or a query opens every work it matches,** showing only the matching parts. With no filter,
   a work starts closed, and the learner opens it.
 - **The arrow keys move between rows,** an open work's parts included. Right opens a work, and Left
-  closes it.
+  closes it. Stage 2 keeps Up and Down alone, and stage 3 adds Right and Left.
+- **On a phone the preview and the star stay beside the text.** The steps and the length take the
+  second line, since five touch-sized steps and the four tools never fit one line of 360 pixels.
+- **The length's tooltip reads "Length · license · credit"** under the new key `lengthLicense`. The
+  unused `tagTitle` left every locale.
+- **The rows of a section share one surface,** parted by hairlines, so a list reads as one block.
 - **Trade-offs.** Performance: a row is a smaller tree than a card, and a closed work draws no parts.
   Memory: three optional fields per part row, about 6 KB in the catalog. Usability: about three times
   the songs per screen, and 80 works fold 215 parts. The cost is a click to reach a part, and no tags at
@@ -90,10 +95,10 @@ faster as rows, and a work's parts read best together under it.
 
 **Does:** the card becomes a row of two lines, with the steps, the length, the preview and the star.
 
-- [ ] `card` becomes `row`, reading the title from `partLabel`. `src/library/library-panel.ts:613`
-- [ ] The row's look, on a desktop and a phone. `src/library/library-panel.css:1`
-- [ ] The e2e tests follow the new class names. `e2e/library.e2e.ts:1`, `e2e/song-explorer.e2e.ts:1`, `e2e/transport.e2e.ts:1`
-- [ ] Look at the list with `bun run shot`, on a phone and a desktop.
+- [x] `card` becomes `row`, reading the title from `partLabel`. `src/library/library-panel.ts:613`
+- [x] The row's look, on a desktop and a phone. `src/library/library-panel.css:1`
+- [x] The e2e tests follow the new class names. `e2e/library.e2e.ts:1`, `e2e/song-explorer.e2e.ts:1`, `e2e/transport.e2e.ts:1`
+- [x] Look at the list with `bun run shot`, on a phone and a desktop.
 
 ### 3. A work's parts open from its row
 
@@ -115,21 +120,26 @@ faster as rows, and a work's parts read best together under it.
 
 ### State
 
-Stage 1 is committed on `main`. 356 catalog rows are parts. A card still shows a part's label as its title and its work below.
-The player's head reads the work and the part, such as "Sonata No. 14 'Moonlight' · Movement 2".
+Stages 1 and 2 are committed on `main`. The explorer lists songs as rows: the title, then the
+composer, with the steps, the length, the preview and the star at the right. A part reads as its work
+and its label, such as "Sonata No. 14 'Moonlight' · Movement 2". Each part is still its own row.
+The rows show no tags, and the length's tooltip names the license and the credit.
 
 ### Next
 
-**Stage 2: the explorer lists songs as rows.** Files: `src/library/library-panel.ts`,
-`src/library/library-panel.css` and the three e2e files. Gate: stage 1 is committed.
+**Stage 3: a work's parts open from its row.** Files: `src/library/search.ts`,
+`src/library/library-panel.ts`, `src/library/library-panel.css`, `e2e/song-explorer.e2e.ts` and
+`docs/reference/features.md`. Gate: stage 2 is committed.
 
-1. `card` becomes `row`. Line 1 reads a part's work and label, and any other song's title. Line 2 reads
-   the composer. `src/library/library-panel.ts:613`
-2. The row's look: steps, length, preview and star on one line, two lines on a phone. `src/library/library-panel.css:1`
-3. `song-card` becomes `song-row` in the e2e tests. `e2e/library.e2e.ts:1`, `e2e/song-explorer.e2e.ts:1`, `e2e/transport.e2e.ts:1`
-4. Look at the list with `bun run shot`, on a phone and a desktop.
+1. `workEntries` groups the sorted result's parts by work, at the place of its first part. `src/library/search.ts:237`
+2. The work's row: its name, its composer and a count of parts, closed with no filter on. `src/library/library-panel.ts:613`
+3. The parts sit under the work's row, indented, each reading its label alone. `src/library/library-panel.css:1`
+4. Right opens a work, and Left closes it. Up and Down already move row by row. `src/library/library-panel.ts:889`
+5. Test `a_work_opens_to_show_its_parts`, and the feature list. `e2e/song-explorer.e2e.ts:1`, `docs/reference/features.md:1`
 
-Expected red: the e2e tests that name a part, until the gate stage runs them.
+Expected red, until the gate stage runs them: the e2e tests in `e2e/library.e2e.ts`,
+`e2e/song-explorer.e2e.ts`, `e2e/play.e2e.ts` and `e2e/transport.e2e.ts` that this stage changed have not
+run. Stage 3 may turn red the ones that find a part by its full title, since a closed work hides it.
 
 ### Backlog
 
