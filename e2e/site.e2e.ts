@@ -179,17 +179,18 @@ test("the_landing_page_loads_no_player_code", async ({ page }) => {
 
 test("every_route_reloads_offline", async ({ page, context }) => {
   test.setTimeout(120_000);
-  // A first visit saves the site's core alone, and the player and Learn Piano are saved when opened.
-  await openParts(page, ["player", "learn"]);
+  // A first visit saves the site's core in English alone. The player, Learn Piano and German are saved
+  // when the learner first opens them.
+  await openParts(page, ["player", "learn"], ["de"]);
   await context.setOffline(true);
   const errors = watchErrors(page);
-  for (const site of allPages()) {
+  for (const site of allPages().filter((at) => at.locale === "en" || at.locale === "de")) {
     await page.goto(`./${site.path}`);
     await expect(page).toHaveTitle(pageTitle(site));
     await expect(page.locator("html")).toHaveAttribute("lang", rowOf(site.locale).lang);
     await expect(heading(page)).toBeAttached();
   }
-  // A lesson's page is in Learn Piano's part, which the learner saved.
+  // A lesson's page is in Learn Piano's part, which the learner saved in German.
   const [lesson] = await lessonPages(["de"]);
   await page.goto(`./${lesson!.path}`);
   await expect(page).toHaveTitle(pageTitle(lesson!));
@@ -197,6 +198,9 @@ test("every_route_reloads_offline", async ({ page, context }) => {
   await page.goto("./de/nowhere/");
   await expect(page).toHaveTitle(pageTitle(pageAt("de/")!));
   await expect(heading(page)).toHaveText(pageTitle(pageAt("de/")!));
+  // A locale the learner never used needs the internet once.
+  await page.goto("./fr/play/");
+  await expect(page.getByText("Français needs the internet the first time it opens. Connect and try again.")).toBeVisible();
   expect(errors).toEqual([]);
 });
 

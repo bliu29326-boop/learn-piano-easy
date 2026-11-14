@@ -88,7 +88,7 @@ function schemeIcon(name: "sun" | "moon", scheme: "light" | "dark"): SVGElement 
   return node;
 }
 
-/** The language and theme switches. A language choice calls `onLanguage` after it is stored. */
+/** The language and theme switches. A language choice calls `onLanguage`, whose host stores it. */
 export function siteSwitches(locale: Locale, settings: SettingsStore, onLanguage: (locale: ShippedLocale) => void): SiteSwitches {
   const t = messagesOf(locale).topBar;
   // The switch lists only shipped locales, so a page of the pseudo-locale shows the default one.
@@ -96,10 +96,7 @@ export function siteSwitches(locale: Locale, settings: SettingsStore, onLanguage
     t.language,
     isLocale(locale) ? locale : DEFAULT_LOCALE,
     LOCALES.map((l) => [l, rowOf(l).endonym] as const),
-    (picked) => {
-      settings.set("language", picked);
-      onLanguage(picked);
-    },
+    onLanguage,
   );
   const themeNames: Record<SiteTheme, string> = { system: t.themeSystem, light: t.themeLight, dark: t.themeDark };
   const theme = selectControl<SiteTheme>(

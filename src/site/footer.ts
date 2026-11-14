@@ -4,8 +4,8 @@
  * names the license.
  *
  * A locale's link is the same page in that locale, named in its own language, so a learner who cannot
- * read the page still finds their own. A click on one stores that locale as the language choice, as
- * the top bar's switch does. The router takes the click after that and shows the page.
+ * read the page still finds their own. A click on one picks that locale as the language choice, as the
+ * top bar's switch does. The router takes the click after that and shows the page.
  *
  * The footer is built again on every route, since its locale links name the page on screen. The player
  * fills the window, so its view shows no footer.

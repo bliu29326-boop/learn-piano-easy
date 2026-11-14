@@ -9,10 +9,16 @@
  *   same page in that locale before anything shows.
  * - **A page shows once its locale's catalog has loaded.** The boot awaits it before the first view, and
  *   the router awaits it before each move, so the language switch shows the new locale whole.
+ * - **A locale shows once it is saved offline.** Only the locales the learner used are cached, so a
+ *   locale's first page waits for `openLocale` of `src/pwa/part-loader.ts`. It downloads the locale's
+ *   files with a bar over the window, and the page on screen stays until they are in. This holds for the
+ *   switch, a link and a page's first load. A page no worker controls yet only marks its locale, since
+ *   the worker's first install brings it.
  * - **Each page sets the live locale** of `src/i18n/live.ts`, which the player, the service worker's
  *   toasts and the About page read.
- * - **The language switch stores `language`** and shows the page on screen in that locale. The bar,
- *   the footer and every view of the new locale are then built in it.
+ * - **The language switch picks `language`** and shows the page on screen in that locale. The choice is
+ *   stored once that page shows. The bar, the footer and every view of the new locale are then built in
+ *   it.
  * - **`siteTheme` sets `data-site-theme` on the root,** or removes it to follow the system.
  * - **A view is made on its route's first visit and kept.** Leaving it hides it, so coming back keeps
  *   its scroll and its state. A view's own actions move into each new bar's page slot.
@@ -34,8 +40,11 @@
 import { folderSyncOn } from "../data/changes";
 import { setLiveLocale, t } from "../i18n/live";
 import { chooseLocale, loadLocale, localeOfPath, messagesOf, pathInLocale, rowOf, type Locale, type ShippedLocale } from "../i18n/locale";
+import { openLocale } from "../pwa/part-loader";
+import { markLocale } from "../pwa/parts";
 import { registerServiceWorker } from "../pwa/register";
 import type { SettingsStore } from "../settings/store";
+import { loading } from "../ui/components/loading";
 import { toasts } from "../ui/components/toast";
 import { el } from "../ui/dom";
 import { siteFooter } from "./footer";
@@ -73,13 +82,27 @@ export async function startSite(root: HTMLElement, settings: SettingsStore): Pro
   const landed = pageFor(pathOf(new URL(location.href), site) ?? "");
   const locale = chooseLocale(landed.locale, settings.get("language"), navigator.languages);
   if (locale !== landed.locale) history.replaceState(history.state, "", site + pathInLocale(landed.path, locale));
-  await loadLocale(locale);
+
+  // A locale's first download shows its bar over the window, and the page on screen stays until it ends.
+  const languageCard = loading({ place: "over" });
+  languageCard.element.classList.add("site-language");
+  root.append(languageCard.element);
+  const ready = new Set<Locale>();
+  const showable = async (shown: Locale) => {
+    if (ready.has(shown)) return;
+    await openLocale(shown, () => loadLocale(shown), languageCard);
+    ready.add(shown);
+  };
+  // A page no worker controls yet marks its locale alone, so the first install brings its subsets.
+  if ("serviceWorker" in navigator && navigator.serviceWorker.controller !== null) await showable(locale);
+  else await Promise.all([markLocale(locale), loadLocale(locale)]);
+  ready.add(locale);
 
   const barHost = el("div", { class: "site-bar-host" });
   const main = el("main", { class: "site-main", attrs: { id: "main" } });
   const footerHost = el("div", { class: "site-footer-host" });
   const stack = toasts();
-  root.replaceChildren(barHost, main, footerHost, stack.element);
+  root.replaceChildren(barHost, main, footerHost, stack.element, languageCard.element);
 
   // A bar at the bottom of the window takes no room at the top.
   const measureBar = () => {
@@ -98,18 +121,27 @@ export async function startSite(root: HTMLElement, settings: SettingsStore): Pro
   // The view the router is leaving, which has heard `hidden` while it stays on screen until the swap.
   let left: View | undefined;
   let switches: { locale: Locale; switches: SiteSwitches } | undefined;
-  const storeLanguage = (picked: ShippedLocale) => settings.set("language", picked);
+  // A language choice is stored once a page in it shows, so a download that fails stores none.
+  let picked: ShippedLocale | undefined;
+  const pickLanguage = (choice: ShippedLocale) => {
+    picked = choice;
+  };
   const mayLeave = () => shown?.mayLeave?.() ?? Promise.resolve(true);
 
   const render = (path: string) => {
     const page = pageFor(path);
     const { locale } = page;
     setLiveLocale(locale);
+    languageCard.clear();
+    if (picked === locale) settings.set("language", picked);
+    picked = undefined;
     if (switches?.locale !== locale) {
       switches?.switches.dispose();
-      const toLocale = (picked: Locale) =>
+      const toLocale = (choice: ShippedLocale) =>
         void mayLeave().then((ok) => {
-          if (ok) router.go(pathInLocale(router.current(), picked));
+          if (!ok) return;
+          pickLanguage(choice);
+          router.go(pathInLocale(router.current(), choice));
         });
       switches = { locale, switches: siteSwitches(locale, settings, toLocale) };
     }
@@ -135,7 +167,7 @@ export async function startSite(root: HTMLElement, settings: SettingsStore): Pro
     measureBar();
     view.shown?.(locale);
 
-    footerHost.replaceChildren(page.route.id === "play" ? "" : siteFooter(page, storeLanguage));
+    footerHost.replaceChildren(page.route.id === "play" ? "" : siteFooter(page, pickLanguage));
     root.dataset.route = page.route.id;
     document.documentElement.lang = rowOf(locale).lang;
     document.documentElement.dir = rowOf(locale).dir;
@@ -150,7 +182,7 @@ export async function startSite(root: HTMLElement, settings: SettingsStore): Pro
     shown.hidden?.();
   };
 
-  const prepare = (path: string) => loadLocale(pageFor(path).locale);
+  const prepare = (path: string) => showable(pageFor(path).locale);
   const router = startRouter({ root: site, leave, prepare, render, mayLeave });
   render(router.current());
   // Measured before the first paint, so the view never moves when the observer first reports.

@@ -4,7 +4,7 @@ import { createServer } from "node:http";
 import type { AddressInfo } from "node:net";
 import { extname, join } from "node:path";
 import { expect, test, type Page } from "@playwright/test";
-import { GROUP_INDEX, type GroupIndex } from "../src/pwa/cache-groups";
+import { GROUP_INDEX, shellCacheName, type GroupIndex } from "../src/pwa/cache-groups";
 import { contentHash } from "../src/pwa/current";
 import { openParts } from "./save-parts";
 
@@ -181,6 +181,32 @@ test("an_update_fetches_only_the_shell_files_that_changed", async ({ page }) => 
     await page.goto(`${site.url}play/`);
     await expect(page.locator(".stage canvas")).toBeVisible();
     expect(errors).toEqual([]);
+  } finally {
+    site.close();
+  }
+});
+
+test("an_update_keeps_every_marked_locale", async ({ page }) => {
+  const site = await updatableSite();
+  try {
+    // A first visit in German marks German, so its install caches German beside English.
+    await page.goto(`${site.url}de/`);
+    await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+    site.next();
+    await page.evaluate(() => navigator.serviceWorker.getRegistration().then((r) => r?.update()));
+    await expect.poll(() => page.evaluate(async () => (await navigator.serviceWorker.getRegistration())?.waiting !== null), { timeout: 30_000 }).toBe(true);
+    const held = await page.evaluate(async (old) => {
+      const name = (await caches.keys()).find((key) => key.startsWith("shell-") && key !== old);
+      if (name === undefined) return [];
+      return (await (await caches.open(name)).keys()).map((request) => new URL(request.url).pathname);
+    }, shellCacheName(site.index.version));
+    const { app } = site.index.groups;
+    const inLocale = (locale: string) => app.files.filter((_, i) => app.locales[i] === locale).map((file) => file.slice(1));
+    expect(inLocale("de").filter((path) => !held.includes(path))).toEqual([]);
+    expect(inLocale("en").filter((path) => !held.includes(path))).toEqual([]);
+    expect(inLocale("fr").filter((path) => held.includes(path))).toEqual([]);
+    // The new version copies the German files, since their bytes are the same.
+    expect(site.fetched.filter((path) => inLocale("de").includes(path))).toEqual([]);
   } finally {
     site.close();
   }

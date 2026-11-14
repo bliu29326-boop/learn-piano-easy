@@ -86,6 +86,13 @@
     position: fixed;
   }
 
+  /* A locale's first download floats over the window, under the bar, whatever the page's scroll. */
+  .site-language {
+    position: fixed;
+    inset-block-start: var(--site-bar-space, var(--s-12));
+    z-index: var(--z-bar);
+  }
+
   /* A lesson's sound card floats over the lesson. */
   .lesson-page {
     position: relative;
