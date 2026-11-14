@@ -9,6 +9,10 @@
  *   or tempo readout. Every other setting keeps its default.
  * - **The site's services stay the site's.** The input bus and the audio service are made with the
  *   host's `site` settings, so the sound's volume and set are the learner's, as on every other page.
+ * - **Its song has its own clock and scheduler,** on the engine's song sampler. The play page's song,
+ *   place, speed and loop then stay the play page's, and the embed's stay its own. The learner's
+ *   metronome and background track belong to the play page, so the embed plays neither. Its scheduler
+ *   reads how far ahead it queues from the learner's settings when it is made.
  * - **Its background is the box's colour,** or that of the nearest ancestor with one. It reads the colour
  *   again when the site's theme or the system's colour scheme changes.
  * - **It fits its box.** The scene's `ResizeObserver` follows the box, and the embed never sizes the page.
@@ -32,6 +36,8 @@ import type { KeyRange } from "../render/key-layout";
 import type { TrackLook } from "../render/scene";
 import { SettingsStore } from "../settings/store";
 import { audioService, inputService } from "../site/services";
+import { Scheduler } from "../audio/scheduler";
+import { SongClock } from "../play/clock";
 import { createPlayerCore } from "./player-core";
 
 /** What an embed plays, and how. */
@@ -108,7 +114,17 @@ export function embedPlayer(box: HTMLElement, options: EmbedOptions): EmbeddedPl
 
   const { bus } = inputService(options.site);
   const audio = audioService(options.site);
-  const core = createPlayerCore(box, settings, bus, audio);
+  const { engine } = audio;
+  const clock = new SongClock(engine.context);
+  const scheduler = new Scheduler(engine.song, clock, {
+    aheadMs: options.site.get("scheduleAheadMs"),
+    intervalMs: options.site.get("scheduleIntervalMs"),
+  });
+  const core = createPlayerCore(box, settings, bus, audio, {
+    clock,
+    // The embed has no metronome, so a count-in has nothing to click.
+    audio: { scheduler, metronome: { setCountIn: () => undefined }, song: engine.song, resume: () => engine.resume() },
+  });
   const { scene, transport } = core;
   const canvas = scene.canvas;
   box.classList.add("player-embed");

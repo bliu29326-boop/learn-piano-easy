@@ -292,6 +292,44 @@ test("only_one_landing_player_runs_at_a_time", async ({ page }) => {
   expect(errors).toEqual([]);
 });
 
+test("the_landing_player_and_the_play_page_each_keep_their_own_song", async ({ page }) => {
+  test.setTimeout(90_000);
+  const errors = watchErrors(page);
+  const player = t.player;
+  const started = await countSounds(page);
+  await page.goto("./");
+  const hero = page.locator(".landing-hero");
+  await hero.getByRole("button", { name: t.landing.hero.playSong }).click();
+  await expect(hero.locator(".player-box canvas")).toBeVisible();
+
+  // The play page opens another song, plays it a while and pauses it.
+  await page.locator(".site-bar-host").getByRole("link", { name: "Just Play Piano" }).click();
+  await page.getByRole("button", { name: player.shell.topbar.songs, exact: true }).click();
+  const songs = page.getByRole("dialog", { name: player.shell.dialog.songs });
+  await songs.getByRole("searchbox", { name: player.library.panel.search.label }).fill("silent night");
+  await songs.getByRole("button", { name: `Silent Night, ${player.library.panel.levels.beginner}` }).click();
+  await page.getByRole("button", { name: "Play", exact: true }).click();
+  const position = page.getByRole("slider", { name: "Song position" });
+  await expect.poll(async () => Number(await position.getAttribute("aria-valuenow")), { timeout: 30_000 }).toBeGreaterThan(1);
+  // Space pauses at once. A click on Pause waits for the playing bar to stand still.
+  await page.keyboard.press("Space");
+  await expect(page.getByRole("button", { name: "Play", exact: true })).toBeVisible();
+  const paused = (await position.getAttribute("aria-valuenow"))!;
+
+  // Back on the landing page its player plays on, on a clock of its own, so the play page's song stays put.
+  await page.goBack();
+  await expect(hero.getByRole("button", { name: t.landing.hero.stopSong })).toBeVisible();
+  const before = await started();
+  await expect.poll(started, { timeout: 20_000 }).toBeGreaterThan(before);
+  await page.waitForTimeout(2_000);
+  await page.goForward();
+  await expect(position).toBeVisible();
+  // The bar shows the position it last drew until the player's next frames, so it is read once they ran.
+  await page.waitForTimeout(500);
+  expect(await position.getAttribute("aria-valuenow")).toBe(paused);
+  expect(errors).toEqual([]);
+});
+
 test("the_rarity_showcase_switches_the_version", async ({ page }) => {
   const errors = watchErrors(page);
   const songs: string[] = [];

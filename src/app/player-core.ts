@@ -12,13 +12,25 @@
  *   notes then neither sound nor hold a key. A note off still passes, so no key or note hangs.
  * - **The core owns no song and no frame of the transport.** Its host loads the song and calls the
  *   transport's `tick`, as the shell's control bar and the embed each do.
+ * - **Each host's song has its own clock,** as `SongOutput` says, while both share the engine's samplers.
  */
 import { attachPointerPiano } from "../input/pointer-piano";
 import type { InputBus } from "../input/input-bus";
-import { createTransport, type Transport } from "../play/transport";
+import type { SongClock } from "../play/clock";
+import { Transport, type TransportAudio } from "../play/transport";
 import { createScene, type PianoScene } from "../render/scene";
 import type { SettingsStore } from "../settings/store";
 import type { AudioService } from "../site/services";
+
+/**
+ * The clock a transport plays its song by, and what sounds the song. The play page uses the site's
+ * own, with its metronome and background track. The embed has its own, so neither moves the other's
+ * song, place, speed or loop.
+ */
+export interface SongOutput {
+  clock: SongClock;
+  audio: TransportAudio;
+}
 
 /** The scene and the transport in a box, with the learner's keys wired to both. */
 export interface PlayerCore {
@@ -32,11 +44,20 @@ export interface PlayerCore {
   dispose(): void;
 }
 
-/** Builds the core into `box`, driven by `settings`, on the site's `input` bus and `audio` service. */
-export function createPlayerCore(box: HTMLElement, settings: SettingsStore, input: InputBus, audio: AudioService): PlayerCore {
+/**
+ * Builds the core into `box`, driven by `settings`, on the site's `input` bus and `audio` service. Its
+ * song plays through `song`, which is the site's own clock and engine when absent.
+ */
+export function createPlayerCore(
+  box: HTMLElement,
+  settings: SettingsStore,
+  input: InputBus,
+  audio: AudioService,
+  song: SongOutput = { clock: audio.clock, audio: audio.engine },
+): PlayerCore {
   const engine = audio.engine;
   const scene = createScene(box, settings);
-  const transport = createTransport(audio, scene);
+  const transport = new Transport(song.clock, song.audio, scene);
   let running = true;
 
   const stopInput = input.subscribe((event) => {

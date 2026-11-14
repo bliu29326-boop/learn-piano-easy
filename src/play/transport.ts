@@ -1,8 +1,8 @@
 /**
  * The transport: plays, pauses, seeks and speeds a song, keeping the sound and the picture on one clock.
  *
- * It drives the `SongClock` of the site's audio service. The audio scheduler queues notes by that clock, and the scene reads its song
- * time from it every frame, so neither keeps a timer of its own. Each command moves the clock first,
+ * It drives its own `SongClock`, which `src/app/player-core.ts` hands it. The audio scheduler queues
+ * notes by that clock, and the scene reads its song time from it every frame, so neither keeps a timer of its own. Each command moves the clock first,
  * then tells the scheduler, so the scheduler always queues from the clock's new song time.
  *
  * Decisions, and what each costs:
@@ -44,12 +44,11 @@
  * Gaps: a background tab runs no frames, so there a loop that pauses and a song that stops play on past
  * their end. A seamless repeat keeps its time there, but its listeners hear of its passes late.
  */
-import type { AudioEngine } from "../audio/engine";
 import type { Metronome } from "../audio/metronome";
 import { MAX_SPEED, MIN_SPEED, type Cycle, type NotePlayer, type Scheduler } from "../audio/scheduler";
 import type { Note, Song } from "../midi/song";
 import type { PianoScene } from "../render/scene";
-import { SongClock } from "./clock";
+import type { SongClock } from "./clock";
 import { loopRange, trainerSpeed, type LoopRange, type LoopSpec } from "./loop";
 /** The most semitones the song moves up or down. */
 export const MAX_TRANSPOSE = 12;
@@ -494,9 +493,4 @@ export class Transport {
     this.#audio.scheduler.restart();
     for (const listener of [...this.#seekListeners]) listener(from);
   }
-}
-
-/** A transport on the song clock and the engine of `audio`, playing into `scene`. */
-export function createTransport(audio: { clock: SongClock; engine: AudioEngine }, scene: TransportScene): Transport {
-  return new Transport(audio.clock, audio.engine, scene);
 }
