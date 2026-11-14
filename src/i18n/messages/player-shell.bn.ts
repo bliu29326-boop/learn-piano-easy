@@ -79,7 +79,6 @@ export const playerShell: Translation<typeof en> = {
   },
   cache: {
     groups: {
-      app: { label: "অ্যাপ", description: "পেজ, তার কোড আর গানের তালিকা। অফলাইনে খুলতে অ্যাপের এগুলো দরকার।" },
       songs: { label: "গান", description: "অ্যাপের সঙ্গে আসা সব গান, যাতে যেকোনোটি অফলাইনে খোলে।" },
       sounds: { label: "পিয়ানোর আওয়াজ", description: "সব সাউন্ড সেট, যাতে যে সেটই বেছে নেওয়া থাকুক না কেন, পিয়ানো অফলাইনে বাজে।" },
     },

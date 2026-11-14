@@ -5,8 +5,8 @@
  * `src/landing/rarities.ts` builds, switches between the four versions of *Ode to Joy*. A version's id
  * names its file, and the learner reads its name: Beginner, Easy, Medium or Hard.
  *
- * The service worker precaches each song with the shell, as `src/pwa/cache-groups.ts` reads this list.
- * So the landing page plays offline from its first visit on.
+ * Each song joins the player's part of the shell, as `src/pwa/cache-groups.ts` reads this list. So the
+ * landing page plays offline once the player is saved, with no song of its own to fetch.
  */
 import type { KeyRange } from "../render/key-layout";
 

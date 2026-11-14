@@ -2,28 +2,32 @@
  * The offline cache manager: a dialog that shows each cache group's size and how much of it is offline,
  * and caches or clears it. It also fetches the chosen groups again after an update.
  *
- * - The page reads `cache-groups.json`, which the shell holds, so the sizes show without a network call.
+ * - The page reads `cache-groups.json`, which the core holds, so the sizes show without a network call.
  * - The page writes the caches itself, through the Cache API, under the names `cache-groups.ts` gives.
  *   It fetches with cache mode `reload`, which the service worker passes to the network. A cached file
  *   stays until its fresh copy arrives, so a failed fetch never leaves a group emptier than before.
- * - The app group is precached by every install, so it has no setting. `autoCacheSongs` and
- *   `autoCacheSounds` keep their group offline: turning one on caches the group.
+ * - The core group is precached by every install, so it has no setting.
+ * - A part of the shell is saved through `ensureParts` of `parts.ts`, which marks it, so every install
+ *   keeps it. Removing a part drops its mark and its files. A part has no setting, since its mark keeps it.
+ * - `autoCacheSongs` and `autoCacheSounds` keep their group offline: turning one on caches the group.
  * - The last version the page started is kept in `localStorage`. A start on a new version is an update.
  *   An update fetches again only the cached files whose bytes no longer hash to the index's hash, and a
  *   kept group's missing files. Saving a group in the dialog does the same.
  * - Its texts, the groups' labels and descriptions too, come from the live catalog's `player.shell.cache`
- *   when the dialog opens or a toast is said.
+ *   when the dialog opens or a toast is said. The core group's texts are its `site` entry.
  *
  * Decisions, and what each costs:
  * - Six fetches run at once. More would hurry a fast link and starve a slow one.
- * - The status counts cached files by URL, with one `keys()` call per group, which is quick at 300 files.
+ * - The status counts cached files by URL, with one `keys()` call per group, which stays quick for the
+ *   largest group.
  */
 import { liveLocale, t } from "../i18n/live";
 import type { SettingsStore } from "../settings/store";
 import { button, el } from "../ui/dom";
 import { toggleControl } from "../ui/controls";
-import { CACHE_GROUPS, GROUP_INDEX, cacheNameOf, type GroupId, type GroupIndex } from "./cache-groups";
+import { cacheNameOf, GROUP_IDS, loadGroupIndex, PARTS, type GroupId, type GroupIndex, type PartId } from "./cache-groups";
 import { inParallel, isCurrent } from "./current";
+import { ensureParts, unmarkPart } from "./parts";
 import "../settings/panel.css";
 import "./cache-manager.css";
 
@@ -49,14 +53,14 @@ function cachesAvailable(): boolean {
   return typeof caches !== "undefined";
 }
 
-/** The index the build wrote, or `undefined` when it cannot be read. */
-export async function loadGroupIndex(): Promise<GroupIndex | undefined> {
-  try {
-    const response = await fetch(`./${GROUP_INDEX}`);
-    return response.ok ? ((await response.json()) as GroupIndex) : undefined;
-  } catch {
-    return undefined;
-  }
+/** Whether a group is a part of the shell. */
+function isPart(id: GroupId): id is PartId {
+  return (PARTS as readonly GroupId[]).includes(id);
+}
+
+/** A group's label and description in the live locale. The core group's are the catalog's `site`. */
+function textsOf(id: GroupId): { label: string; description: string } {
+  return t().player.shell.cache.groups[id === "app" ? "site" : id];
 }
 
 function absolute(file: string): string {
@@ -140,7 +144,7 @@ export async function clearGroup(index: GroupIndex, group: GroupId): Promise<voi
 
 /** The labels of `ids` in the live locale, joined for a sentence, such as `Songs and Piano sounds`. */
 function labelsOf(ids: readonly GroupId[]): string {
-  const labels = ids.map((id) => t().player.shell.cache.groups[id].label);
+  const labels = ids.map((id) => textsOf(id).label);
   return new Intl.ListFormat(liveLocale(), { type: "conjunction" }).format(labels);
 }
 
@@ -191,14 +195,14 @@ export function createCacheManager(settings: SettingsStore): HTMLElement {
       body.replaceChildren(el("p", { text: say.unreadable }));
       return;
     }
-    body.replaceChildren(el("p", { text: say.intro }), ...CACHE_GROUPS.map((group) => groupSection(settings, index, group.id)));
+    body.replaceChildren(el("p", { text: say.intro }), ...GROUP_IDS.map((id) => groupSection(settings, index, id)));
   });
   return body;
 }
 
 function groupSection(settings: SettingsStore, index: GroupIndex, id: GroupId): HTMLElement {
   const say = t().player.shell.cache;
-  const { label, description } = say.groups[id];
+  const { label, description } = textsOf(id);
   const { files, bytes } = index.groups[id];
   const status = el("p", { class: "cache-status", attrs: { role: "status" } });
   let busy = false;
@@ -231,9 +235,18 @@ function groupSection(settings: SettingsStore, index: GroupIndex, id: GroupId): 
       });
       return failed > 0 ? say.failed(failed) : undefined;
     });
-  const save = button(say.save, () => fillAndShow({ missing: true, changed: true }));
+  // A part fills whole and marks itself, and a file in a version's shell cache is current already.
+  const savePart = (part: PartId) =>
+    void work(async () => {
+      const result = await ensureParts([part], (progress) => {
+        status.textContent = say.saving(progress.files, progress.totalFiles);
+      });
+      return result === "offline" ? say.partOffline : result === "stale" ? say.partStale : undefined;
+    });
+  const save = button(say.save, () => (isPart(id) ? savePart(id) : fillAndShow({ missing: true, changed: true })));
   const remove = button(say.remove, () =>
     void work(async () => {
+      if (isPart(id)) await unmarkPart(id);
       await clearGroup(index, id);
       return undefined;
     }),
@@ -247,7 +260,7 @@ function groupSection(settings: SettingsStore, index: GroupIndex, id: GroupId): 
     status,
     el("div", { class: "cache-buttons", children: [save, remove] }),
   ];
-  if (id !== "app") {
+  if (id === "songs" || id === "sounds") {
     const setting = AUTO_CACHE[id];
     // Turning the setting on starts a fill in `keepGroupsOffline`. Saving here joins it, to show progress.
     const keep = toggleControl(say.keep, settings.get(setting), (value) => {

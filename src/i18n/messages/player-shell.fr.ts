@@ -81,7 +81,6 @@ export const playerShell: Translation<typeof en> = {
   },
   cache: {
     groups: {
-      app: { label: "Application", description: "La page, son code et la liste des morceaux. L’application en a besoin pour s’ouvrir hors ligne." },
       songs: { label: "Morceaux", description: "Tous les morceaux fournis avec l’application, pour que chacun s’ouvre hors ligne." },
       sounds: { label: "Sons de piano", description: "Toutes les banques de sons, pour que le piano joue hors ligne, quelle que soit la banque choisie." },
     },

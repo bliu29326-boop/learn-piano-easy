@@ -6,7 +6,8 @@ section shrinks to a link to it, in the same commit.
 ## The shape
 
 The app is one static folder, `dist/`, that any static host or a local file server serves. It has no
-server code. It needs the network only for its first load, and the service worker serves everything after.
+server code. It needs the network for its first load, and for the player and Learn Piano the first time
+each opens. The service worker serves everything after.
 
 - **Bun builds, serves and tests.** `tools/build.ts` owns the build, and `tools/dev.ts` owns the dev
   server and the production preview. Their head comments say how each works.

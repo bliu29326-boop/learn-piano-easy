@@ -79,8 +79,11 @@ export const playerShell = {
     build: (version: string) => `Build ${version}`,
   },
   cache: {
+    /** Each cache group's texts. `site` is the core group, which every page needs. */
     groups: {
-      app: { label: "App", description: "The page, its code and the song list. The app needs it to open offline." },
+      site: { label: "Website", description: "The site itself: its pages, code, styles and pictures. Every page needs it to open offline." },
+      player: { label: "Just Play Piano", description: "The 3D piano, the player and the song list. Learn Piano uses them too." },
+      learn: { label: "Learn Piano", description: "The course: its worlds, its lessons and your profile." },
       songs: { label: "Songs", description: "Every song the app ships, so any of them opens offline." },
       sounds: { label: "Piano sounds", description: "Every sound set, so the piano plays offline whichever set is chosen." },
     },
@@ -101,6 +104,10 @@ export const playerShell = {
     status: (size: string, total: number, state: string) => `${size}, ${files(total)}, ${state}.`,
     saving: (done: number, total: number) => `Saving ${formatNumber("en", done)} of ${files(total)}…`,
     failed: (n: number) => `${files(n)} could not be saved.`,
+    /** A part of the site could not be saved, since a file failed to download. */
+    partOffline: "It could not be saved. Check the connection and try again.",
+    /** A part of the site could not be saved, since the server already runs a newer version. */
+    partStale: "A new version of the site is out. Reload the page, then save again.",
     save: "Save",
     saveAgain: "Save again",
     remove: "Remove",

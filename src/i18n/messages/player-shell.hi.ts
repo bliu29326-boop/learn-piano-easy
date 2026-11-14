@@ -83,7 +83,6 @@ export const playerShell: Translation<typeof en> = {
   },
   cache: {
     groups: {
-      app: { label: "ऐप", description: "पेज, उसका कोड और गानों की सूची। ऐप को ऑफ़लाइन खोलने के लिए यह ज़रूरी है।" },
       songs: { label: "गाने", description: "ऐप के साथ आने वाले सारे गाने, ताकि हर गाना ऑफ़लाइन खुल सके।" },
       sounds: { label: "पियानो की आवाज़ें", description: "आवाज़ों के सारे सेट, ताकि कोई भी सेट चुना हो, पियानो ऑफ़लाइन बजे।" },
     },

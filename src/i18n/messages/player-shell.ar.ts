@@ -94,7 +94,6 @@ export const playerShell: Translation<typeof en> = {
   },
   cache: {
     groups: {
-      app: { label: "التطبيق", description: "الصفحة وشيفرتها وقائمة الأغاني. يحتاجها التطبيق ليُفتح دون اتصال." },
       songs: { label: "الأغاني", description: "كل أغنية تأتي مع التطبيق، لتُفتح أي منها دون اتصال." },
       sounds: { label: "أصوات البيانو", description: "كل مجموعات الأصوات، ليعزف البيانو دون اتصال أيًا كانت المجموعة المختارة." },
     },

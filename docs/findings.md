@@ -379,8 +379,8 @@ songs alongside the classical ones.
 - The library shows in the shell's dialog, built once and kept, so its search survives a close.
 - The songs of ours are written through our MIDI writer. The tunes are public domain, and our
   arrangements are MIT.
-- The catalog is precached with the shell, because every start reads it. A catalog change then fetches
-  the shell once more.
+- The catalog joins the player's part of the shell, because only the player reads it. A catalog change
+  then fetches it once more on the next update of a learner who saved the player.
 
 ## theory
 
@@ -598,9 +598,11 @@ removed the goal before the tag.
 
 ### Decisions that still bind
 
-- Three cache groups: app, songs and sounds. The manager shows each group's size, caches or clears it,
-  and can cache it again on each update.
-- The app group has no auto-cache setting, because every install precaches it.
+- Five cache groups: the core app group, the player and learn parts of the shell, songs and sounds. The
+  manager shows each group's size, and caches or clears it. Songs and sounds can be cached again on
+  each update.
+- The app group and the parts have no auto-cache setting. Every install precaches the core, and each
+  part the page marked.
   `autoCacheMain`, `autoCacheHqPiano` and `autoCacheFatBoy` are dropped.
 - The two remaining sound-set ids both map onto our one `autoCacheSounds`.
 - The cache manager fetches with cache mode `reload`, and the worker passes such a request to the
@@ -779,7 +781,8 @@ the two ways to play, the four rarities, the ways to connect, and why it is free
 - The landing page loads no player code and no three.js until a box's click loads the embed.
 - A landing box is silent and still until its click, and only one landing player runs at a time.
 - The hero loops the Beginner *Twinkle, Twinkle, Little Star*, and the versions' band switches *Ode to Joy*.
-- `LANDING_SONGS` of `src/landing/songs.ts` are precached with the shell, so the page plays offline.
+- `LANDING_SONGS` of `src/landing/songs.ts` join the player's part, so the page plays offline once the
+  player is saved.
 - The hero's keys are fixed at F2 to C5 in `HERO_RANGE`, so the panel keeps its size while the song loads.
 - The versions' band draws its notes in the version's colour, which it reads from its styles as track looks.
 - Under reduced motion a box's picture stands still, and its click still plays.

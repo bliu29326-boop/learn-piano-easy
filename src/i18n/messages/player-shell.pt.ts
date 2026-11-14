@@ -85,7 +85,6 @@ export const playerShell: Translation<typeof en> = {
   },
   cache: {
     groups: {
-      app: { label: "App", description: "A página, o código dela e a lista de músicas. O app precisa disso para abrir sem conexão." },
       songs: { label: "Músicas", description: "Todas as músicas que vêm com o app, para que qualquer uma delas abra sem conexão." },
       sounds: { label: "Sons do piano", description: "Todos os conjuntos de sons, para o piano tocar sem conexão com qualquer conjunto escolhido." },
     },

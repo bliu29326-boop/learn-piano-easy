@@ -70,7 +70,7 @@ test("every_space_token_is_on_the_grid", () => {
 test("the_site_styles_bundle_into_one_stylesheet_with_their_layers", async () => {
   const outDir = join(root, ".agent-tmp", `tokens-test-${process.pid}`);
   try {
-    const files = await bundlePage("src/ui/styles.ts", "site", outDir, false);
+    const { files } = await bundlePage("src/ui/styles.ts", "site", outDir, false);
     expect(files).toContain("site.css");
     const css = await Bun.file(join(outDir, "site.css")).text();
     expect(css.startsWith("@layer reset,tokens,base,components,pages;")).toBe(true);

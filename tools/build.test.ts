@@ -6,7 +6,7 @@ import { LANDING_SONGS } from "../src/landing/songs";
 import { groupOf } from "../src/pwa/cache-groups";
 import { afterAll, beforeAll, expect, test } from "../src/testing";
 import { allPages, lessonPages, pageOf, pageTitle, ROUTES, socialImageOf } from "../src/site/routes";
-import { build, crawlerFiles, renderPage, root, structuredData, type BuildResult } from "./build";
+import { build, chunkParts, crawlerFiles, renderPage, root, structuredData, type BuildResult } from "./build";
 
 const outDir = join(root, ".agent-tmp", `build-test-${process.pid}`);
 let result: BuildResult;
@@ -27,16 +27,105 @@ test("build_writes_page_bundle_and_worker", async () => {
   expect(worker).toContain(result.version);
   expect(worker).toContain("./app.js");
   expect(worker).toContain("./parse-worker.js");
-  expect(result.shell).not.toContain("app.js.map");
-  const assets = result.shell.filter((f) => f.startsWith("songs/") || f.startsWith("sounds/"));
-  // The shell holds the song list and the landing page's songs, and no other song or sound.
-  expect(assets).toEqual(["songs/catalog.json", ...LANDING_SONGS].sort());
+  const { app, player } = result.index.groups;
+  expect(app.files).not.toContain("./app.js.map");
+  const assets = (files: string[]) => files.filter((f) => f.startsWith("./songs/") || f.startsWith("./sounds/"));
+  // The core holds no song or sound. The player holds the song list and the landing page's songs.
+  expect(assets(app.files)).toEqual([]);
+  expect(assets(player.files).sort()).toEqual(["./songs/catalog.json", ...LANDING_SONGS.map((song) => `./${song}`)].sort());
+});
+
+/** The group of the built file at `path`, as the index lists it. */
+function groupOfBuilt(path: string): string | undefined {
+  return Object.entries(result.index.groups).find(([, group]) => group.files.includes(`./${path}`))?.[0];
+}
+
+test("the_shell_splits_into_the_core_the_player_and_learn", async () => {
+  const groups = (paths: string[]) => paths.map((path) => [path, groupOfBuilt(path)]);
+  /** The chunk whose source map lists `source`. */
+  const chunkHolding = async (source: string) => {
+    for (const file of result.files.filter((f) => f.startsWith("chunk-") && f.endsWith(".js"))) {
+      const map = (await Bun.file(join(outDir, `${file}.map`)).json()) as { sources: string[] };
+      if (map.sources.some((s) => s.endsWith(source))) return file;
+    }
+    return undefined;
+  };
+  const three = await chunkHolding("node_modules/three/build/three.core.js");
+  const lesson = await chunkHolding("src/learn/lessons/meet-the-piano/index.ts");
+  expect(three).toBeDefined();
+  expect(lesson).toBeDefined();
+  const players = [three!, "parse-worker.js", "models/hand.glb"];
+  expect(groups(players)).toEqual(players.map((path) => [path, "player"]));
+  expect(groupOfBuilt(lesson!)).toBe("learn");
+  expect(groupOfBuilt("de/learn/profile/index.html")).toBe("learn");
+  // The landing page's own scripts and styles are the core, so a first visit can show it offline.
+  const landing = ["app.js", "app.css", "index.html", ...(await staticScripts("app.js"))];
+  expect(groups(landing)).toEqual(landing.map((path) => [path, "app"]));
+  // The core is what a first visit fetches, so it stays a small part of the shell.
+  const { app, player, learn } = result.index.groups;
+  expect(app.bytes).toBeLessThan(4_000_000);
+  expect(app.bytes).toBeLessThan(player.bytes + learn.bytes);
+});
+
+/** A bundle's metafile that `chunkParts` reads: an entry chunk and its imports, one module per chunk. */
+function metafile(chunks: Record<string, { module: string; entry?: boolean; imports?: [string, "static" | "dynamic"][] }>): Bun.BuildMetafile {
+  const kind = (how: "static" | "dynamic") => (how === "static" ? "import-statement" : "dynamic-import");
+  const outputs = Object.fromEntries(
+    Object.entries(chunks).map(([path, chunk]) => [
+      `./${path}`,
+      {
+        bytes: 1,
+        inputs: { [chunk.module]: { bytesInOutput: 1 } },
+        imports: (chunk.imports ?? []).map(([to, how]) => ({ path: `./${to}`, kind: kind(how) })),
+        exports: [],
+        ...(chunk.entry === false ? {} : { entryPoint: chunk.module }),
+      },
+    ]),
+  );
+  const inputs = Object.fromEntries(
+    Object.values(chunks).map((chunk) => [
+      chunk.module,
+      {
+        bytes: 1,
+        imports: (chunk.imports ?? []).map(([to, how]) => ({ path: `./${to}`, kind: kind(how), entryPoint: chunks[to]?.module, external: true })),
+      },
+    ]),
+  );
+  return { inputs, outputs } as unknown as Bun.BuildMetafile;
+}
+
+test("the_split_places_each_chunk_by_the_roots_that_reach_it", () => {
+  const parts = chunkParts(
+    metafile({
+      "app.js": { module: "src/main.ts", imports: [["shared.js", "static"], ["shell.js", "dynamic"], ["lesson.js", "dynamic"], ["legal.js", "dynamic"]] },
+      "shared.js": { module: "src/ui/dom.ts", entry: false },
+      "shell.js": { module: "src/app/shell.ts", imports: [["three.js", "static"], ["shared.js", "static"]] },
+      "three.js": { module: "node_modules/three/build/three.core.js", entry: false },
+      "lesson.js": { module: "src/learn/lesson-view.ts", imports: [["three.js", "static"], ["steps.js", "static"]] },
+      "steps.js": { module: "src/learn/steps/kinds.ts", entry: false },
+      "legal.js": { module: "src/site/legal-view.ts", imports: [["link.js", "static"]] },
+      "link.js": { module: "src/ui/link.ts", entry: false },
+    }),
+    "app.js",
+  );
+  expect(Object.fromEntries(parts)).toEqual({ "shell.js": "player", "three.js": "player", "lesson.js": "learn", "steps.js": "learn" });
+});
+
+test("the_split_fails_naming_the_import_that_carries_a_part_into_the_core", () => {
+  const meta = metafile({
+    "app.js": { module: "src/main.ts", imports: [["shell.js", "dynamic"], ["odd.js", "dynamic"]] },
+    "shell.js": { module: "src/app/shell.ts", imports: [["three.js", "static"]] },
+    "three.js": { module: "node_modules/three/build/three.core.js", entry: false },
+    "odd.js": { module: "src/site/odd-view.ts", imports: [["three.js", "static"]] },
+  });
+  expect(() => chunkParts(meta, "app.js")).toThrow("src/main.ts loads src/site/odd-view.ts with import()");
 });
 
 test("build_writes_a_page_per_route_and_locale", async () => {
   for (const page of allPages()) {
     expect(result.files).toContain(page.file);
-    expect(result.shell).toContain(page.file);
+    const learn = page.route.id === "learn" || page.route.id === "profile";
+    expect([page.file, groupOfBuilt(page.file)]).toEqual([page.file, learn ? "learn" : "app"]);
     const html = await Bun.file(join(outDir, page.file)).text();
     expect(html).toContain(`<html lang="${rowOf(page.locale).lang}" dir="${rowOf(page.locale).dir}">`);
     expect(html).toContain(`<title>${pageTitle(page)}</title>`);

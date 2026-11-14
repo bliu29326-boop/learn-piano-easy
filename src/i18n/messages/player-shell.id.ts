@@ -79,7 +79,6 @@ export const playerShell: Translation<typeof en> = {
   },
   cache: {
     groups: {
-      app: { label: "Aplikasi", description: "Halaman, kodenya, dan daftar lagu. Aplikasi butuh ini agar bisa dibuka tanpa internet." },
       songs: { label: "Lagu", description: "Semua lagu bawaan aplikasi, agar setiap lagu bisa dibuka tanpa internet." },
       sounds: { label: "Suara piano", description: "Semua set suara, agar piano tetap berbunyi tanpa internet, set mana pun yang dipilih." },
     },

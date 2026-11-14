@@ -7,15 +7,17 @@
  *
  * It then writes one page for every route in every locale of `src/site/routes.ts`, each from the
  * template `public/index.html` through `renderPage`. Every page boots the same bundle. Its `<base>` is
- * the path back to the site's root, so its own links stay `./`. Last, it writes the index of the cache groups, and
- * bundles the service worker `src/pwa/sw.ts` into `sw.js` with the list of shell files and the version
- * written in.
+ * the path back to the site's root, so its own links stay `./`. Last, it writes the index of the cache
+ * groups, and bundles the service worker `src/pwa/sw.ts` into `sw.js` with each shell group's files and
+ * the version written in.
  *
- * `src/pwa/cache-groups.ts` owns which file joins which group. The shell is the app group, and the
- * worker precaches it. Every grouped file gets a content hash, and the version hashes each one's path and
+ * `src/pwa/cache-groups.ts` owns which file joins which group. The shell is the core and its two parts,
+ * the player and learn. The bundle's chunks join them by the bundler's graph of the site, in
+ * `chunkParts`, and every other file by its path. The worker precaches the core, and each part once the
+ * page has marked it. Every grouped file gets a content hash, and the version hashes each one's path and
  * hash. The version names the worker's cache, so a change to any grouped file makes the next visit
  * install a new shell. That install fetches only the files whose hash changed. The index,
- * `cache-groups.json`, lists the hashes. It joins the shell but not the version, because it holds the
+ * `cache-groups.json`, lists the hashes. It joins the core but not the version, because it holds the
  * version. Its byte counts leave out the index itself.
  *
  * Every page names the site, its locale and the other locales for social sites. A hidden route's page
@@ -35,7 +37,19 @@
  */
 import { cp, mkdir, readdir, rm } from "node:fs/promises";
 import { dirname, join, relative, resolve, sep } from "node:path";
-import { GROUP_INDEX, groupIndex, groupOf, type BuiltFile } from "../src/pwa/cache-groups";
+import {
+  GROUP_INDEX,
+  groupIndex,
+  groupOf,
+  PART_ANCHORS,
+  PART_ROOTS,
+  PARTS,
+  SHELL_GROUPS,
+  type BuiltFile,
+  type GroupIndex,
+  type PartId,
+  type ShellGroupId,
+} from "../src/pwa/cache-groups";
 import { contentHash } from "../src/pwa/current";
 import { loadEveryLocale } from "../src/i18n/all-catalogs";
 import { DEFAULT_LOCALE, isLocale, loadLocale, LOCALES, messagesOf, PSEUDO_LOCALES, rowOf, type Locale } from "../src/i18n/locale";
@@ -69,8 +83,8 @@ export interface BuildOptions {
 export interface BuildResult {
   /** Every file written, relative to `outDir`, with `/` separators. */
   files: string[];
-  /** The shell files the service worker precaches. */
-  shell: string[];
+  /** The index of the cache groups, as `cache-groups.json` holds it. */
+  index: GroupIndex;
   /** The hash of every grouped file's path and content hash, which names the worker's cache. */
   version: string;
 }
@@ -97,15 +111,21 @@ function check(result: Awaited<ReturnType<typeof Bun.build>>, what: string): voi
  */
 export const PAGE_EXTERNAL = ["./fonts/*"];
 
+/** A page's bundle: the paths it wrote, relative to `outDir`, and the bundler's graph of its files. */
+export interface PageBundle {
+  files: string[];
+  meta: Bun.BuildMetafile;
+}
+
 /**
  * Bundles a page of the site from its entry script into `<name>.js`, with `<name>.css` beside it.
  *
  * Bun's bundler joins every CSS file the script imports into that one stylesheet, in import order, and
  * keeps the cascade layers. Code splitting is on, so each `import()` of the script becomes a
- * `chunk-<hash>.js` that loads on its first call. The player is one, so a page without it loads no
- * three.js and no audio. Returns the paths it wrote, relative to `outDir`.
+ * `chunk-<hash>.js` that loads on its first call, with a `chunk-<hash>.css` of its own styles. The player
+ * is one, so a page without it loads no three.js and no audio.
  */
-export async function bundlePage(entry: string, name: string, outDir: string, dev: boolean): Promise<string[]> {
+export async function bundlePage(entry: string, name: string, outDir: string, dev: boolean): Promise<PageBundle> {
   const result = await Bun.build({
     entrypoints: [join(root, entry)],
     outdir: outDir,
@@ -116,9 +136,126 @@ export async function bundlePage(entry: string, name: string, outDir: string, de
     sourcemap: "linked",
     define: { __DEV__: JSON.stringify(dev) },
     external: PAGE_EXTERNAL,
+    metafile: true,
   });
   check(result, name);
-  return result.outputs.map((o) => relative(outDir, o.path).split(sep).join("/")).sort();
+  if (result.metafile === undefined) throw new Error(`The ${name} bundle wrote no metafile.`);
+  return { files: result.outputs.map((o) => relative(outDir, o.path).split(sep).join("/")).sort(), meta: result.metafile };
+}
+
+/** An import from one output file of a bundle to another, by their paths relative to the output folder. */
+interface ChunkEdge {
+  to: string;
+  dynamic: boolean;
+}
+
+/** `./chunk-a.js` as `chunk-a.js`: a metafile's output path as a path relative to the output folder. */
+function outputPath(path: string): string {
+  return path.replace(/^\.\//, "");
+}
+
+/** Every chunk reachable from `seeds` over `edges`, never entering a chunk `stop` holds. */
+function reach(edges: ReadonlyMap<string, readonly ChunkEdge[]>, seeds: Iterable<string>, stop: (chunk: string) => boolean, parent?: Map<string, string>): Set<string> {
+  const seen = new Set<string>();
+  const queue = [...seeds];
+  for (let chunk = queue.shift(); chunk !== undefined; chunk = queue.shift()) {
+    if (seen.has(chunk) || stop(chunk)) continue;
+    seen.add(chunk);
+    for (const edge of edges.get(chunk) ?? []) {
+      if (seen.has(edge.to) || stop(edge.to)) continue;
+      if (parent !== undefined && !parent.has(edge.to)) parent.set(edge.to, chunk);
+      queue.push(edge.to);
+    }
+  }
+  return seen;
+}
+
+/**
+ * The part of each chunk of the page bundle `meta` whose entry is `entry`, such as `app.js`. A chunk
+ * missing from the map is core. It throws, naming the modules, when the split would leave a part's code
+ * where the core loads it without a root.
+ *
+ * - **The core** is every chunk the entry reaches, through static and dynamic imports, without loading a
+ *   root of `PART_ROOTS`. The core then loads offline whatever it runs without asking for a part.
+ * - **A part** is every other chunk its roots reach. A chunk both parts reach is the player's, which
+ *   learn needs. A stylesheet goes with the chunk that loads it.
+ * - **The guard** fails when a core chunk imports a part's chunk statically, when an anchor of
+ *   `PART_ANCHORS` lands in the core, and when the core loads with `import()` a module a part also
+ *   loads, other than a root. Each says to declare a root, so no import skips the part's loader.
+ */
+export function chunkParts(meta: Bun.BuildMetafile, entry: string): Map<string, PartId> {
+  const edges = new Map<string, ChunkEdge[]>();
+  const entryOf = new Map<string, string>();
+  for (const [path, output] of Object.entries(meta.outputs)) {
+    const chunk = outputPath(path);
+    if (chunk.endsWith(".map")) continue;
+    const list = output.imports.map((i) => ({ to: outputPath(i.path), dynamic: i.kind === "dynamic-import" }));
+    if (output.cssBundle !== undefined) list.push({ to: outputPath(output.cssBundle), dynamic: false });
+    edges.set(chunk, list);
+    if (output.entryPoint !== undefined && chunk.endsWith(".js")) entryOf.set(chunk, output.entryPoint);
+  }
+  const rootsOf = (part: PartId): string[] => {
+    const globs = PART_ROOTS[part].map((pattern) => new Bun.Glob(pattern));
+    return [...entryOf].filter(([, module]) => globs.some((glob) => glob.match(module))).map(([chunk]) => chunk);
+  };
+  const roots = new Map(PARTS.map((part) => [part, rootsOf(part)]));
+  const rootChunks = new Set([...roots.values()].flat());
+  const parent = new Map<string, string>();
+  const core = reach(edges, [entry], (chunk) => rootChunks.has(chunk), parent);
+  const parts = new Map<string, PartId>();
+  for (const part of PARTS) {
+    for (const chunk of reach(edges, roots.get(part) ?? [], (c) => core.has(c) || parts.has(c))) parts.set(chunk, part);
+  }
+
+  const problems: string[] = [];
+  const moduleOf = (chunk: string) => entryOf.get(chunk) ?? Object.keys(meta.outputs[`./${chunk}`]?.inputs ?? {})[0] ?? chunk;
+  /** The module of `from` that loads `to` with `import()`, and the module it loads. */
+  const dynamicImport = (from: string, to: string) => {
+    const inputs = Object.keys(meta.outputs[`./${from}`]?.inputs ?? {});
+    for (const input of inputs) {
+      const found = meta.inputs[input]?.imports.find((i) => i.kind === "dynamic-import" && outputPath(i.path) === to);
+      if (found !== undefined) return `${input} loads ${found.entryPoint ?? moduleOf(to)} with import()`;
+    }
+    return `${moduleOf(from)} loads ${moduleOf(to)} with import()`;
+  };
+  for (const chunk of core) {
+    for (const edge of edges.get(chunk) ?? []) {
+      if (!edge.dynamic && !core.has(edge.to)) problems.push(`${moduleOf(chunk)} imports ${moduleOf(edge.to)} statically, so the core needs a part's root.`);
+    }
+  }
+  for (const part of PARTS) {
+    for (const anchor of PART_ANCHORS[part]) {
+      const chunk = [...edges.keys()].find((c) => c.endsWith(".js") && meta.outputs[`./${c}`]?.inputs[anchor] !== undefined);
+      if (chunk === undefined || !core.has(chunk)) continue;
+      // The last `import()` on the way from the entry is the one that should load a root.
+      let at = chunk;
+      let through = `${entry} imports it statically`;
+      for (let from = parent.get(at); from !== undefined; at = from, from = parent.get(at)) {
+        if (edges.get(from)?.some((edge) => edge.to === at && edge.dynamic)) {
+          through = dynamicImport(from, at);
+          break;
+        }
+      }
+      problems.push(`${anchor} of the ${part} lands in the core: ${through}.`);
+    }
+  }
+  // What the roots reach, short of the entry's static imports, which every page loads anyway.
+  const entryStatic = reach(
+    new Map([...edges].map(([chunk, list]) => [chunk, list.filter((edge) => !edge.dynamic)])),
+    [entry],
+    () => false,
+  );
+  const partsReach = reach(edges, rootChunks, (chunk) => entryStatic.has(chunk));
+  for (const chunk of core) {
+    for (const edge of edges.get(chunk) ?? []) {
+      if (edge.dynamic && !rootChunks.has(edge.to) && partsReach.has(edge.to)) problems.push(`${dynamicImport(chunk, edge.to)}, which a part loads too.`);
+    }
+  }
+  if (problems.length > 0) {
+    const fix = `Declare the module that starts a part in PART_ROOTS of src/pwa/cache-groups.ts.`;
+    throw new Error(`The split of the shell into its parts fails:\n${[...new Set(problems)].join("\n")}\n${fix}`);
+  }
+  return parts;
 }
 
 /** `text` safe inside an HTML attribute or element. */
@@ -294,7 +431,8 @@ export async function build(options: BuildOptions): Promise<BuildResult> {
 
   const define = { __DEV__: JSON.stringify(dev) };
   // The stylesheet sits at the app's root, because its font URLs are relative to `fonts/`.
-  await bundlePage("src/main.ts", "app", outDir, dev);
+  const site = await bundlePage("src/main.ts", "app", outDir, dev);
+  const chunks = chunkParts(site.meta, "app.js");
 
   const parser = await Bun.build({
     entrypoints: [join(root, "src/midi/parse-worker.ts")],
@@ -319,17 +457,17 @@ export async function build(options: BuildOptions): Promise<BuildResult> {
     }),
   );
   const version = await contentHash(new TextEncoder().encode(files.map((f) => `${f.path}\0${f.hash}\0`).join("")));
-  const index = groupIndex(version, files);
+  const index = groupIndex(version, files, chunks);
   const indexText = JSON.stringify(index);
   await Bun.write(join(outDir, GROUP_INDEX), indexText);
-  // The worker's shell: each file's URL with its content hash, the index too.
-  const app = index.groups.app;
-  const shellHashes: Record<string, string> = Object.fromEntries(app.files.map((file, i) => [file, app.hashes[i] ?? ""]));
-  shellHashes[`./${GROUP_INDEX}`] = await contentHash(new TextEncoder().encode(indexText));
-  const shell = Object.keys(shellHashes)
-    .filter((file) => file !== "./")
-    .map((file) => file.slice(2))
-    .sort();
+  // The worker's shell groups: each file's URL with its content hash, the index too in the core.
+  const shell = Object.fromEntries(
+    SHELL_GROUPS.map((id) => {
+      const { files: urls, hashes } = index.groups[id];
+      return [id, Object.fromEntries(urls.map((url, i) => [url, hashes[i] ?? ""]))];
+    }),
+  ) as Record<ShellGroupId, Record<string, string>>;
+  shell.app[`./${GROUP_INDEX}`] = await contentHash(new TextEncoder().encode(indexText));
 
   const worker = await Bun.build({
     entrypoints: [join(root, "src/pwa/sw.ts")],
@@ -339,13 +477,13 @@ export async function build(options: BuildOptions): Promise<BuildResult> {
     minify: !dev,
     define: {
       ...define,
-      __SHELL__: JSON.stringify(shellHashes),
+      __SHELL__: JSON.stringify(shell),
       __VERSION__: JSON.stringify(version),
     },
   });
   check(worker, "service worker");
 
-  return { files: await listFiles(outDir), shell, version };
+  return { files: await listFiles(outDir), index, version };
 }
 
 if (import.meta.main) {

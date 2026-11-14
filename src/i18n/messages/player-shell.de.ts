@@ -77,7 +77,12 @@ export const playerShell: typeof en = {
   },
   cache: {
     groups: {
-      app: { label: "App", description: "Die Seite, ihr Code und die Liedliste. Ohne sie öffnet sich die App offline nicht." },
+      site: {
+        label: "Website",
+        description: "Die Website selbst: ihre Seiten, ihr Code, ihre Stile und Bilder. Ohne sie öffnet sich offline keine Seite.",
+      },
+      player: { label: "Einfach Klavier spielen", description: "Das 3D-Klavier, der Player und die Liedliste. Klavier lernen nutzt sie auch." },
+      learn: { label: "Klavier lernen", description: "Der Kurs: seine Welten, seine Lektionen und dein Profil." },
       songs: { label: "Lieder", description: "Alle Lieder, die die App mitbringt, damit sich jedes davon offline öffnet." },
       sounds: { label: "Klavierklänge", description: "Alle Klangsets, damit das Klavier offline spielt, egal welches Set gewählt ist." },
     },
@@ -97,6 +102,8 @@ export const playerShell: typeof en = {
     status: (size, total, state) => `${size}, ${files(total)}, ${state}.`,
     saving: (done, total) => `${formatNumber("de", done)} von ${files(total)} werden gespeichert…`,
     failed: (n) => `${files(n)} ${plural("de", n, { one: "ließ", other: "ließen" })} sich nicht speichern.`,
+    partOffline: "Das ließ sich nicht speichern. Prüf die Verbindung und versuch es noch einmal.",
+    partStale: "Eine neue Version der Website ist da. Lade die Seite neu und speichere dann noch einmal.",
     save: "Speichern",
     saveAgain: "Erneut speichern",
     remove: "Entfernen",

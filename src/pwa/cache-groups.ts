@@ -1,9 +1,12 @@
 /**
  * The cache groups: which files of the build the learner caches together, and the caches that hold them.
  *
- * - **app** is the shell: the page, the code, the styles, the icons, the licenses, the song catalog and
- *   the landing page's songs. The service worker precaches it on install, into a cache named by the
- *   build's version.
+ * - **app** is the core of the shell: the site itself. It holds every page but Learn Piano's, and the
+ *   code the landing page and the other pages run. The styles, fonts, icons, pictures, licenses and the
+ *   index join it too. The service worker precaches it on install, into a cache named by the version.
+ * - **player** and **learn** are the shell's parts: the player, and Learn Piano. They live in the core's
+ *   versioned cache, but a first install fetches neither. The page fills a part whole through
+ *   `ensureParts` of `parts.ts`, and marks it. Every later install keeps each marked part.
  * - **songs** is every other file under `songs/`. The worker caches each on first use.
  * - **sounds** is every file under `sounds/`, cached the same way.
  *
@@ -12,23 +15,77 @@
  * `sitemap.xml` belong to no group. Only a developer loads a map, and the browser keeps the worker
  * itself. Only a search or social site fetches the rest.
  *
- * The build writes `cache-groups.json` into the shell. It names the version and lists each group's files,
+ * Which part a chunk of the site's bundle joins comes from the bundler's chunk graph, as `tools/build.ts`
+ * says, starting from each part's roots in `PART_ROOTS`. Every other file joins by its path, in
+ * `partOfPath`, by who uses it:
+ * - `parse-worker.js`, `models/` and the song catalog join the player. Only the player parses a MIDI
+ *   file, draws the hand and lists the songs.
+ * - The landing page's songs join the player too. Only the player plays them.
+ * - The pages of Learn Piano's routes join learn: its map, the profile and every lesson, in every locale.
+ *   The worker answers a page it does not hold with the root page, which shows the same route.
+ * - Everything else is core. `app.css` holds the styles every page shares, and the pictures are the
+ *   landing page's and the mascot's, which the core's pages show.
+ *
+ * The build writes `cache-groups.json` into the core. It names the version and lists each group's files,
  * their content hashes and their bytes, so the cache manager reads sizes without a network call.
  */
 import { LANDING_SONGS } from "../landing/songs";
 
+/** A part of the shell, which the page fills on first use. */
+export type PartId = "player" | "learn";
+
+/** A group of the versioned shell cache: the core, or a part. */
+export type ShellGroupId = "app" | PartId;
+
 /** A cache group's id. The id of an on-demand group is also its folder. */
-export type GroupId = "app" | "songs" | "sounds";
+export type GroupId = ShellGroupId | "songs" | "sounds";
 
 /**
- * A cache group. Its label and description are the catalog's `player.shell.cache.groups`, which the
- * cache manager reads, so the service worker that imports this file carries no texts.
+ * Every group, in the order the cache manager shows them. Each group's label and description are the
+ * catalog's `player.shell.cache.groups`, which the cache manager reads, so the worker carries no texts.
  */
-export interface CacheGroup {
-  id: GroupId;
-  /** Whether a path, relative to the app's root with `/` separators, belongs to this group. */
-  holds(path: string): boolean;
+export const GROUP_IDS: readonly GroupId[] = ["app", "player", "learn", "songs", "sounds"];
+
+/** The parts, each after every part it needs. */
+export const PARTS: readonly PartId[] = ["player", "learn"];
+
+/** The shell's groups, which share the versioned cache. */
+export const SHELL_GROUPS: readonly ShellGroupId[] = ["app", ...PARTS];
+
+/** The parts each part needs. Learn Piano's views draw the piano, so learn needs the player. */
+export const PART_NEEDS: Readonly<Record<PartId, readonly PartId[]>> = { player: [], learn: ["player"] };
+
+/** `ids` with every part each needs, in the order of `PARTS`. */
+export function withNeeds(ids: readonly PartId[]): PartId[] {
+  const wanted = new Set<PartId>();
+  const add = (id: PartId): void => {
+    if (wanted.has(id)) return;
+    wanted.add(id);
+    PART_NEEDS[id].forEach(add);
+  };
+  ids.forEach(add);
+  return PARTS.filter((id) => wanted.has(id));
 }
+
+/**
+ * Each part's roots: the source modules whose `import()` starts the part, as the bundler's inputs name
+ * them, or a glob of them. The player's are every module whose dynamic import loads three.js or the audio
+ * engine: the player, the landing page's player and piano, the site's audio service and the component
+ * gallery. Learn's are its three views and the course's worlds.
+ */
+export const PART_ROOTS: Readonly<Record<PartId, readonly string[]>> = {
+  player: ["src/app/shell.ts", "src/app/embed.ts", "src/render/piano-keys.ts", "src/site/services.ts", "src/ui/gallery.ts"],
+  learn: ["src/learn/map-view.ts", "src/learn/profile-view.ts", "src/learn/lesson-view.ts", "src/learn/lessons/*/index.ts"],
+};
+
+/**
+ * Each part's anchors: modules the build fails on when they land in the core. Only the part runs them,
+ * so one in the core means an `import()` that no root starts carries the part's code there.
+ */
+export const PART_ANCHORS: Readonly<Record<PartId, readonly string[]>> = {
+  player: ["node_modules/three/build/three.core.js", "src/audio/engine.ts"],
+  learn: ["src/learn/steps/kinds.ts"],
+};
 
 /** The groups the worker caches on first use, never up front. Each is a top-level folder of `public/`. */
 export const ON_DEMAND: readonly GroupId[] = ["songs", "sounds"];
@@ -39,11 +96,11 @@ export const ON_DEMAND: readonly GroupId[] = ["songs", "sounds"];
  */
 const UNGROUPED = ["sw.js", "robots.txt", "sitemap.xml"];
 
-/**
- * The files of an on-demand folder that the shell precaches: the song catalog, and the songs the landing
- * page plays, so it plays offline from the first visit on.
- */
-const IN_SHELL: ReadonlySet<string> = new Set(["songs/catalog.json", ...LANDING_SONGS]);
+/** The files of the songs folder that the player part holds. */
+const PLAYER_SONGS: ReadonlySet<string> = new Set(["songs/catalog.json", ...LANDING_SONGS]);
+
+/** A page of Learn Piano's routes, in any locale: its map, the profile and every lesson. */
+const LEARN_PAGE = /^(?:[^/]+\/)?learn\/(?:.+\/)?index\.html$/;
 
 /** The file the build writes with each group's files and bytes. */
 export const GROUP_INDEX = "cache-groups.json";
@@ -59,25 +116,29 @@ function grouped(path: string): boolean {
   return !path.endsWith(".map") && !UNGROUPED.includes(path) && !path.startsWith(SOCIAL_FOLDER);
 }
 
-/** The three groups, in the order the cache manager shows them. */
-export const CACHE_GROUPS: readonly CacheGroup[] = [
-  {
-    id: "app",
-    holds: (path) => grouped(path) && (IN_SHELL.has(path) || !ON_DEMAND.includes(topFolder(path) as GroupId)),
-  },
-  {
-    id: "songs",
-    holds: (path) => grouped(path) && topFolder(path) === "songs" && !IN_SHELL.has(path),
-  },
-  {
-    id: "sounds",
-    holds: (path) => grouped(path) && topFolder(path) === "sounds",
-  },
-];
+/** The part of a file outside the bundle's chunks, by its path, or `undefined` for the core. */
+export function partOfPath(path: string): PartId | undefined {
+  if (path === "parse-worker.js" || topFolder(path) === "models" || PLAYER_SONGS.has(path)) return "player";
+  if (LEARN_PAGE.test(path)) return "learn";
+  return undefined;
+}
 
-/** The group that holds `path`, or `undefined` for a file no group caches. */
-export function groupOf(path: string): GroupId | undefined {
-  return CACHE_GROUPS.find((group) => group.holds(path))?.id;
+/**
+ * The group that holds `path`, or `undefined` for a file no group caches. `chunks` names the part of each
+ * chunk the build placed in one. Without it a chunk counts as core, which serves the worker: it answers
+ * every shell group from the same cache.
+ */
+export function groupOf(path: string, chunks?: ReadonlyMap<string, PartId>): GroupId | undefined {
+  if (!grouped(path)) return undefined;
+  const part = chunks?.get(path) ?? partOfPath(path);
+  if (part !== undefined) return part;
+  const top = topFolder(path);
+  return top === "songs" || top === "sounds" ? top : "app";
+}
+
+/** Whether a group lives in the versioned shell cache. */
+export function inShell(group: GroupId): group is ShellGroupId {
+  return (SHELL_GROUPS as readonly GroupId[]).includes(group);
 }
 
 /** The name of the cache that holds the shell of `version`. */
@@ -90,18 +151,47 @@ export const CONTENT_CACHE = "content";
 
 /** The cache that holds a group's files. */
 export function cacheNameOf(group: GroupId, version: string): string {
-  return group === "app" ? shellCacheName(version) : CONTENT_CACHE;
+  return inShell(group) ? shellCacheName(version) : CONTENT_CACHE;
+}
+
+/**
+ * The cache that holds the marks of the parts the learner opened, one entry each under `partMark`. It
+ * outlives versions, so each install knows which parts to keep.
+ */
+export const PARTS_CACHE = "parts";
+
+/** The URL of a part's mark in `PARTS_CACHE`, below the app's root `root`. It is never fetched. */
+export function partMark(part: PartId, root: string): string {
+  return new URL(`__parts/${part}`, root).href;
+}
+
+/** A group's entry in `cache-groups.json`. */
+export interface GroupFiles {
+  /** The file URLs, relative to the app's root as `./path`. */
+  files: string[];
+  /** The content hash of the file at the same place in `files`, as `current.ts` makes it. */
+  hashes: string[];
+  /** The bytes of the file at the same place in `files`. */
+  sizes: number[];
+  /** The bytes of every file in total. */
+  bytes: number;
 }
 
 /** What `cache-groups.json` holds. */
 export interface GroupIndex {
   /** The build's version, which names its shell cache. */
   version: string;
-  /**
-   * Each group's file URLs, relative to the app's root as `./path`, and their bytes in total. `hashes`
-   * holds the content hash of the file at the same place in `files`, as `current.ts` makes it.
-   */
-  groups: Record<GroupId, { files: string[]; hashes: string[]; bytes: number }>;
+  groups: Record<GroupId, GroupFiles>;
+}
+
+/** The index the build wrote, read by the page from the app's root, or `undefined` when it cannot be read. */
+export async function loadGroupIndex(): Promise<GroupIndex | undefined> {
+  try {
+    const response = await fetch(`./${GROUP_INDEX}`);
+    return response.ok ? ((await response.json()) as GroupIndex) : undefined;
+  } catch {
+    return undefined;
+  }
 }
 
 /** A file of the build: its path relative to the app's root, its size in bytes and its content hash. */
@@ -112,22 +202,26 @@ export interface BuiltFile {
 }
 
 /**
- * The index of `files` for `version`. The app group also holds `./`, the root page, whose bytes are
- * those of `index.html`.
+ * The index of `files` for `version`, with each chunk's part from `chunks`. The app group also holds
+ * `./`, the root page, whose bytes are those of `index.html`.
  */
-export function groupIndex(version: string, files: readonly BuiltFile[]): GroupIndex {
-  const root = files.find((file) => file.path === "index.html")?.hash ?? "";
-  const groups: GroupIndex["groups"] = {
-    app: { files: ["./"], hashes: [root], bytes: 0 },
-    songs: { files: [], hashes: [], bytes: 0 },
-    sounds: { files: [], hashes: [], bytes: 0 },
-  };
+export function groupIndex(version: string, files: readonly BuiltFile[], chunks?: ReadonlyMap<string, PartId>): GroupIndex {
+  const empty = (): GroupFiles => ({ files: [], hashes: [], sizes: [], bytes: 0 });
+  const groups = Object.fromEntries(GROUP_IDS.map((id) => [id, empty()])) as Record<GroupId, GroupFiles>;
+  const root = files.find((file) => file.path === "index.html");
+  if (root !== undefined) {
+    groups.app.files.push("./");
+    groups.app.hashes.push(root.hash);
+    groups.app.sizes.push(root.bytes);
+  }
   for (const { path, bytes, hash } of files) {
-    const id = groupOf(path);
+    const id = groupOf(path, chunks);
     if (id === undefined) continue;
-    groups[id].files.push(`./${path}`);
-    groups[id].hashes.push(hash);
-    groups[id].bytes += bytes;
+    const group = groups[id];
+    group.files.push(`./${path}`);
+    group.hashes.push(hash);
+    group.sizes.push(bytes);
+    group.bytes += bytes;
   }
   return { version, groups };
 }

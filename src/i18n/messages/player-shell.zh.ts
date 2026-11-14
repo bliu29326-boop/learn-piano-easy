@@ -75,7 +75,6 @@ export const playerShell: Translation<typeof en> = {
   },
   cache: {
     groups: {
-      app: { label: "应用", description: "页面、代码和歌曲列表。应用要离线打开，就需要它们。" },
       songs: { label: "歌曲", description: "应用自带的所有歌曲，让每一首都能离线打开。" },
       sounds: { label: "钢琴音色", description: "所有音色，无论选哪一套，钢琴都能离线发声。" },
     },
