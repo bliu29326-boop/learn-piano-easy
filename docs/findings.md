@@ -1646,3 +1646,45 @@ them, and the French site ships.
 - A guide's prose names a work by its French title and a person by French Wikipedia's spelling.
 - A text that reads the same in French stays missing, so the English shows.
 - *Learn Piano Easy*, *MIDI*, the song titles and the composers' names are kept.
+
+## original-arrangements
+
+**Target:** the first songs end on an Original of ours that sounds like the piece. The tools that set the
+rest at a fraction of the tokens are ready.
+
+### Findings
+
+- Eight songs end on an Original of ours: *Morning Mood*, *William Tell*, *Swan Lake*, *Can-Can*, *Boléro*,
+  *Vltava*, *Beethoven's Fifth* and *The Sorcerer's Apprentice*.
+- The other 65 songs whose tune is not ours still end at Hard, and `mythic` is null on each. The user
+  stopped further songs for their tokens, and a later goal sets them.
+- The goal spent about 50M tokens a song. Transcribers took 73%, since each read about 30 crops over 39
+  turns and every turn re-read every image.
+- `tools/crop-systems.ts` and `tools/original-from-pages.ts` cut that cost. `docs/agent/originals.md`
+  holds the briefs that use them, and no song has been set with them yet.
+- The stage 2 page files predate the new format: they carry no `unit-bar:` line and no `~` ties.
+  `original-from-pages.ts` refuses some of their lines, so a later rerun fixes those pages first.
+- Audiveris 5.11 found 34% of the notes of *William Tell*'s page n10 and 75% of *Morning Mood*'s page
+  n6. Optical music recognition would still leave most bars to a model.
+- *Boléro* keeps its first four statements, since its tutti pages are unreadable in every reachable scan.
+- *Vltava* skips the repeat of bars 55 to 79 and plays about five minutes.
+- *The Sorcerer's Apprentice* keeps two literal readings the reviewer suspects as engraver's slips. They
+  are Fb6 at grid bar 18 and the left hand's Bb3 at grid bar 221, and the user's ear may settle them.
+- No allowed library serves *Night on Bald Mountain*'s print to an agent, so it has no Original.
+- The user has not yet listened to the eight Originals.
+
+### Decisions that still bind
+
+- [docs/our-songs.md](our-songs.md) § *The Original* owns the Original's rules, and
+  [docs/agent/originals.md](agent/originals.md) owns how agents make one.
+- An Original keeps its whole length. The user refused a cap on bars, so the cost is cut per bar.
+- A public domain or CC-BY text encoding of a print is read before its scan.
+- Our Original is the `mythic` step, in `ours/<slug>/mythic.mid`, and its catalog row has no `rarity`.
+- A print comes from a library whose `robots.txt` admits agents, never from IMSLP.
+- The plainest faithful two-hand print wins, and a virtuoso two-hand print still beats a four-hand one.
+- A cut keeps only readable pages, and a long piece drops a printed repeat before a best-known section.
+- Two kept sections join with no bar of our own, and a cut's last cadence adds at most two bars.
+- An Original's span check reads each chord, not each move, and a bracketed chord is rolled.
+- An Original may hold a hook note the tune strikes twice, where the print ties it.
+- A print that changes tempo keeps every note's length on one grid at one meter and tempo.
+- A cadenza that overruns its bar fills whole extra bars at its printed lengths.

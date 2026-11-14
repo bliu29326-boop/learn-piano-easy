@@ -18,7 +18,7 @@ Traps a session paid for once, so the next one does not. **It is not a changelog
   run together, and a locale's rules test may not catch it. Type the space as a backslash and `u0020`,
   then Grep every `tools/our-songs/*.<locale>.ts` you touched for `[^ ]" \+$` before you stamp.
 - **A no-break space typed as itself in Write or Edit can land as an ASCII space.** The rules test
-  then fails on `%` or a unit. Type a backslash, then `u00A0`, which the tools write raw, and Grep each
+  then fails on `%` or a unit. Type a backslash, then `u00A0`, which the tools write raw. Then Grep each
   file under `src/i18n/messages/` for a digit or `}` followed by an ASCII space and `%`.
 - **An Edit of a French or Arabic text fails with "String to replace not found".** The text holds a
   narrow no-break space before `?`, `!`, `;` or `:`, which the old string typed as a plain space. End
@@ -228,8 +228,8 @@ Traps a session paid for once, so the next one does not. **It is not a changelog
   the e2e step of `looper verify` with it. The same run from the upper-case spelling passes. Start a
   test of `e2e/` or the gate as `cd "E:/learn-piano-easy" && looper verify`.
 - **A layout check of a `learn/` page can fail on a contrast near 1 to 1 that no colour causes.** The
-  bar slot of `src/learn/game/bar-slot.ts` fades in after its first read, and a measure two frames
-  after load can catch it mid fade. Pass `ready: '.bar-slot[data-ready="true"]'` to `checkLayout`.
+  bar slot of `src/learn/game/bar-slot.ts` fades in after its first read. The map's worlds fade in after
+  it, even under reduced motion. Pass `ready: learnReady(path)` of `e2e/layout-check.ts` to `checkLayout`.
 - **A layout check can flag a text as clipped that a shot of the same page shows whole.** The font's
   `font-display: optional` in `src/ui/base.css` leaves a test's page in the fallback face, while a shot
   waits for the font.

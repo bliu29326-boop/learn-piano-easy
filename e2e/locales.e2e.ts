@@ -14,7 +14,7 @@
 import { expect, test, type Page } from "@playwright/test";
 import { COURSE } from "../src/learn/course";
 import { ROUTES } from "../src/site/routes";
-import { checkLayout, PASSED_LOCALES, PAST_SETUP, pastSetup, passedWidthsOf, THEMES, WIDTHS } from "./layout-check";
+import { checkLayout, learnReady, PASSED_LOCALES, PAST_SETUP, pastSetup, passedWidthsOf, THEMES, WIDTHS } from "./layout-check";
 
 /** Collects every uncaught error the page reports from now on. */
 function watchErrors(page: Page): string[] {
@@ -284,16 +284,9 @@ function shapeOf(flaw: string): string {
     .replace(/\d+(?:\.\d+)?/g, "#");
 }
 
-/** The body of each page that draws after a read of its own, which is `aria-busy` until it draws. */
-const BUSY_BODIES: Readonly<Record<string, string>> = { "learn/": ".map__body", "learn/profile/": ".profile__body" };
-
 for (const path of await checkedPaths()) {
   test(`every_passed_locale_passes_the_layout_checks_on_${path || "./"}`, async ({ browser, baseURL }) => {
-    // A page of *Learn Piano* fades its bar slot in once the slot's read ends, and the map and the
-    // profile fade their body in once their own read ends. The page is measured after both.
-    const body = BUSY_BODIES[path];
-    const slot = '.bar-slot[data-ready="true"]';
-    const ready = !path.startsWith("learn/") ? undefined : body === undefined ? slot : `body:has(${body}:not([aria-busy])):has(${slot})`;
+    const ready = learnReady(path);
     // Each width measures English once, with every passed locale checked at that width.
     const runs = WIDTHS.map((width) => ({ width, locales: PASSED_LOCALES.filter((locale) => passedWidthsOf(locale).includes(width)) })).filter((run) => run.locales.length > 0);
     test.setTimeout(runs.reduce((sum, run) => sum + run.locales.length + 1, 0) * THEMES.length * 20_000);

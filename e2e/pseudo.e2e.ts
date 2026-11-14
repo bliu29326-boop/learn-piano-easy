@@ -10,13 +10,13 @@
  * The longer texts run through the layout checks of `e2e/layout-check.ts` at every width, in English
  * and in the pseudo-locale. A flaw fails only where the longer text adds it, since each page's own test
  * holds its English. The theme changes no text's length, so one theme is enough. A page of *Learn Piano*
- * is measured once its bar slot has read the log and faded in, as its own tests measure it.
+ * is measured once its bar slot and its body have drawn and faded in, as `learnReady` says.
  */
 import { expect, test, type Browser } from "@playwright/test";
 import { PSEUDO_CLOSE, PSEUDO_OPEN } from "../src/i18n/pseudo";
 import { COURSE } from "../src/learn/course";
 import { ROUTES } from "../src/site/routes";
-import { checkLayout, inPseudo, PAST_SETUP, seedStorage, settle, textsInPage, WIDTHS } from "./layout-check";
+import { checkLayout, inPseudo, learnReady, PAST_SETUP, seedStorage, settle, textsInPage, WIDTHS } from "./layout-check";
 
 /** The words every locale keeps as they are. */
 const KEPT = new Set(["MIDI", "XP"]);
@@ -97,8 +97,7 @@ test("every_page_holds_longer_text", async ({ browser, baseURL }) => {
   for (const path of paths) {
     // Each page's own test holds it to the layout checks in English. Here a flaw counts only where the
     // longer text adds it.
-    // A page of *Learn Piano* fades its bar slot in once the slot's read ends, so it is measured after.
-    const ready = path.startsWith("learn/") ? '.bar-slot[data-ready="true"]' : undefined;
+    const ready = learnReady(path);
     const options = { themes: ["light"] as const, locales: ["en", "en-XA"], reducedMotion: true, storage: PAST_SETUP, ...(ready === undefined ? {} : { ready }) };
     const found = await checkLayout(browser, new URL(path, baseURL).href, options);
     const english = new Set(found.filter((flaw) => !flaw.includes(" en-XA: ")).map(shapeOf));

@@ -96,6 +96,21 @@ export interface LayoutCheckOptions {
   ready?: string;
 }
 
+/** The body of each page of *Learn Piano* that draws after a read of its own, `aria-busy` until it draws. */
+const LEARN_BODIES: Readonly<Record<string, string>> = { "learn/": ".map__body", "learn/profile/": ".profile__body" };
+
+/**
+ * The `ready` selector of the page at `path`, or none for a page outside *Learn Piano*. A page of it
+ * fades its bar slot in once the slot's read ends. The map and the profile load after the slot, and
+ * their worlds or cards fade in once their own read ends, so `ready` matches only after both.
+ */
+export function learnReady(path: string): string | undefined {
+  if (!path.startsWith("learn/")) return undefined;
+  const slot = '.bar-slot[data-ready="true"]';
+  const body = LEARN_BODIES[path];
+  return body === undefined ? slot : `body:has(${body}:not([aria-busy])):has(${slot})`;
+}
+
 /** Waits until `selector` matches in `page`, and then until every finite animation has ended. */
 export async function drawn(page: Page, selector: string): Promise<void> {
   await page.waitForSelector(selector, { state: "attached" });

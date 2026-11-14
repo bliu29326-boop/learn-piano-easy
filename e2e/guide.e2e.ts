@@ -96,8 +96,9 @@ test("the_original_of_ours_shows_its_guide", async ({ page }) => {
   await page.getByRole("button", { name: "Songs", exact: true }).click();
   const songs = page.getByRole("dialog", { name: "Songs" });
   await songs.getByRole("searchbox", { name: "Search songs" }).fill("morning mood");
-  // The card's last step is the Original, and its hover text says we set it for two hands.
-  const original = songs.getByRole("button", { name: "Original", exact: true });
+  // The card's last step is the Original, and its hover text says we set it for two hands. The level
+  // filter's Original chip shares the name, so the step is the button that is also a `.song-step`.
+  const original = songs.locator(".song-step").and(songs.getByRole("button", { name: "Original", exact: true }));
   await expect(original).toHaveAttribute("data-tip", "Original: The piece as its score has it, set for two hands.");
   await original.click();
 
