@@ -304,6 +304,14 @@
   }
 
   /*
+   * The link to GitHub: an unframed icon in the text colour, which the player's bar hides. Its name
+   * shows only in the menu, where the narrow rule below makes it a row like a switch's.
+   */
+  .site-bar__github[hidden] {
+    display: none;
+  }
+
+  /*
    * A switch: a face of our own, with its native select laid over it at no opacity. In the bar the
    * face is short, a code or an icon before a chevron. In the menu it is a row of a name and a choice.
    * The select's list still shows, since the browser draws it in the top layer, apart from the select.
@@ -508,6 +516,16 @@
 
     .site-bar__name {
       margin-inline-end: auto;
+    }
+
+    /* In the menu the link to GitHub is a row: the mark, then its name. */
+    .site-bar__github {
+      width: auto;
+      height: auto;
+      min-height: var(--s-touch);
+      justify-content: flex-start;
+      gap: var(--s-2);
+      padding-inline: var(--s-3);
     }
 
     /* A page's menu items stack above the switches, each as wide as the menu, with a line beneath. */

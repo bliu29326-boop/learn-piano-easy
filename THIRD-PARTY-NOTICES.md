@@ -25,10 +25,11 @@ development tools. They never ship in the built app.
 |---|---|---|---|---|---|
 | Plus Jakarta Sans, the variable font | commit `18d1cd2` | The Plus Jakarta Sans Project Authors | [SIL OFL 1.1](https://openfontlicense.org/) | <https://github.com/tokotype/PlusJakartaSans> | `public/fonts/plus-jakarta-sans/` |
 | Lucide icons, a subset of their path data | 1.71.0 | Lucide Icons and Contributors, and Cole Bemis for the icons from Feather | ISC, and MIT for the icons from Feather | <https://github.com/lucide-icons/lucide> | `src/ui/icons/` |
+| GitHub's mark, the `mark-github-24` icon of Octicons | 19.42.0 | GitHub Inc. | MIT | <https://github.com/primer/octicons> | `src/ui/icons/` |
 
 The font keeps the SIL Open Font License wherever it is passed on. Its folder's `LICENSE.md` holds the
-full text, and the build copies that folder with the font. The icons' `LICENSE.md` holds both of their
-license texts, and the build copies it into `licenses/`.
+full text, and the build copies that folder with the font. The icons' `LICENSE.md` holds all three of
+their license texts, and the build copies it into `licenses/`.
 
 ## Music
 

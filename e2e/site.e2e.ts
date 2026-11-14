@@ -11,7 +11,7 @@
 import { expect, test, type Page } from "@playwright/test";
 import { loadEveryLocale } from "../src/i18n/all-catalogs";
 import { rowOf } from "../src/i18n/locale";
-import { allPages, pageAt, pageTitle } from "../src/site/routes";
+import { allPages, pageAt, pageTitle, REPO_URL } from "../src/site/routes";
 import { checkLayout, LOCALES, pastSetup, THEMES, WIDTHS } from "./layout-check";
 
 test.beforeAll(loadEveryLocale);
@@ -66,6 +66,39 @@ test("the_top_bar_links_to_the_data_page_at_every_width", async ({ page }) => {
     await expect(heading(page)).toHaveText("Your data");
     await expect(bar(page).getByRole("link", { name: "Your data" })).toHaveAttribute("aria-current", "page");
   }
+});
+
+test("the_top_bar_links_to_the_source_code_beside_the_heart_and_in_the_menu", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  const github = () => bar(page).getByRole("link", { name: "Source code on GitHub" });
+
+  // Wide, GitHub's mark stands right after the heart and opens the repository in a new tab.
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto("./");
+  await expect(github()).toBeVisible();
+  await expect(github()).toHaveAttribute("href", REPO_URL);
+  await expect(github()).toHaveAttribute("target", "_blank");
+  await expect(github()).toHaveAttribute("rel", "noopener");
+  const heart = (await bar(page).getByRole("link", { name: "Sponsor", exact: true }).boundingBox())!;
+  const mark = (await github().boundingBox())!;
+  expect(mark.x).toBeGreaterThan(heart.x);
+  expect(mark.x - (heart.x + heart.width)).toBeLessThan(heart.width);
+
+  // On a phone the bar keeps one row, and the link waits in the menu with its name.
+  await page.setViewportSize({ width: 390, height: 800 });
+  await expect(github()).toBeHidden();
+  await bar(page).getByRole("button", { name: "Menu" }).click();
+  await expect(github()).toBeVisible();
+  await expect(github()).toContainText("Source code on GitHub");
+  await page.keyboard.press("Escape");
+
+  // The player's bar keeps its room for the controls, as it does without the heart.
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await bar(page).getByRole("link", { name: "Just Play Piano" }).click();
+  await expect(page.locator(".stage canvas")).toBeVisible();
+  await expect(github()).toBeHidden();
+  expect(errors).toEqual([]);
 });
 
 test("the_language_switch_keeps_the_page", async ({ page }) => {

@@ -99,6 +99,8 @@ export const en = {
     learn: "Learn Piano",
     play: "Just Play Piano",
     modes: "Play modes",
+    /** The name and tooltip of the top bar's link to the project's source code. */
+    github: "Source code on GitHub",
     menu: "Menu",
     language: "Language",
     theme: "Theme",

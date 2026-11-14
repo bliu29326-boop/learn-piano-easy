@@ -81,6 +81,7 @@ export const de: Messages = {
     learn: "Klavier lernen",
     play: "Einfach Klavier spielen",
     modes: "Spielmodi",
+    github: "Quellcode auf GitHub",
     menu: "Menü",
     language: "Sprache",
     theme: "Farbschema",

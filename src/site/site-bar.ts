@@ -2,14 +2,19 @@
  * The site's top bar: the bar of `src/ui/components/top-bar.ts`, filled from the locale's catalog.
  *
  * It holds the brand, the links to *Learn Piano*, "Just Play Piano" and the play modes, and the page's
- * slot. Then come the heart that leads to the sponsor page, the language switch, the theme switch and
- * the link to the Data page. Every link is relative to the page's `<base>`, which is the site's root,
- * so a link means the same on every route.
+ * slot. Then come the heart that leads to the sponsor page, GitHub's mark that leads to the source code,
+ * the language switch, the theme switch and the link to the Data page. Every link of the site is relative
+ * to the page's `<base>`, which is the site's root, so a link means the same on every route. The link to
+ * GitHub is the one absolute link, since it leaves the site.
  *
  * Decisions, and what each costs:
  * - **The heart shows in the bar at every width but the player's,** as an orchid icon with a tooltip.
  *   It is unframed, so it stands apart from the switches. On a phone it costs the page's slot the width
  *   of one more button. The player's bar keeps that room for its controls.
+ * - **GitHub's mark leads the switches,** so wide it stands right after the heart, as an unframed icon
+ *   in the text colour. Narrow, it moves into the menu as a row with its name, so a phone's bar keeps
+ *   one row. The player's bar hides it, as it hides the heart. It opens the repository in a new tab,
+ *   with `rel="noopener"`, as every link to GitHub does.
  * - **The player's bar has no links,** so its title, its tools and its controls keep the room. The
  *   brand still leads home, so another page costs the learner one more click.
  * - **The link to the Data page shows in the bar at every width,** as an icon with a tooltip. A
@@ -39,7 +44,7 @@ import { topBar } from "../ui/components/top-bar";
 import { selectControl } from "../ui/controls";
 import { el } from "../ui/dom";
 import { icon } from "../ui/icons/icons";
-import { type RouteId, type StaticRouteId, pageOf, routeOf } from "./routes";
+import { REPO_URL, type RouteId, type StaticRouteId, pageOf, routeOf } from "./routes";
 
 /** The id of the switches' popover, which the menu button opens. */
 const MENU_ID = "site-menu";
@@ -54,6 +59,8 @@ export interface SiteSwitches {
   element: HTMLElement;
   /** The page's own menu items, first among the switches. */
   page: HTMLElement;
+  /** The link to the source code on GitHub, after the page's items. Each bar shows or hides it. */
+  github: HTMLAnchorElement;
   /** Stops listening to the settings. */
   dispose(): void;
 }
@@ -112,11 +119,18 @@ export function siteSwitches(locale: Locale, settings: SettingsStore, onLanguage
     themeValue.textContent = themeNames[value as SiteTheme];
   });
   const page = el("div", { class: "site-bar__page" });
+  // An icon in the bar. In the menu it is a row, and its name shows beside the mark.
+  const github = iconLink({ label: t.github, icon: "github", href: REPO_URL, variant: "ghost", tip: "bottom" });
+  github.classList.add("site-bar__github");
+  github.target = "_blank";
+  github.rel = "noopener";
+  github.append(el("span", { class: "site-bar__name", attrs: { "aria-hidden": "true" }, text: t.github }));
   const element = el("div", {
     class: "site-bar__switches",
     attrs: { id: MENU_ID, popover: "auto" },
     children: [
       page,
+      github,
       switchOf(language.element, t.language, el("span", { class: "site-bar__value", text: rowOf(locale).endonym }), [
         el("span", { class: "site-bar__code", text: locale.toUpperCase() }),
       ]),
@@ -127,7 +141,7 @@ export function siteSwitches(locale: Locale, settings: SettingsStore, onLanguage
   page.addEventListener("click", (event) => {
     if ((event.target as Element).closest("button") !== null && element.matches(":popover-open")) element.hidePopover();
   });
-  return { element, page, dispose: stop };
+  return { element, page, github, dispose: stop };
 }
 
 /**
@@ -158,6 +172,7 @@ export function siteBar(id: RouteId, locale: Locale, switches: SiteSwitches, act
     tip: "bottom",
   });
   sponsor.classList.add("site-bar__sponsor");
+  switches.github.hidden = id === "play";
   const link = (target: StaticRouteId, label: string) => ({
     label,
     href: hrefOf(target, locale),
