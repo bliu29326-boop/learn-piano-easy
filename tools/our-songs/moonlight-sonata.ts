@@ -10,10 +10,15 @@
  * The print is in C-sharp minor with four sharps, and Epic allows three. So Common, Rare and Epic move the
  * tune a semitone up, to D minor. Legendary is written in D minor too, then moved down to the print's key.
  *
+ * The tune ends in the print's bar 9, on the relative major. The print's next phrase, bars 10 to 14, closes
+ * in B minor and never comes home. So every version ends on the home chord right after the tune, as the
+ * print's last two bars hold it.
+ *
  * Common plays the tune over held bass notes and open fifths. Rare plays it twice over a bass and a
- * two-note chord with the pedal, the second time an octave up. Epic rolls triplet broken chords under it,
- * then plays it in thirds and sixths. Legendary rolls triplet arpeggios over two octaves, plays the tune in
- * octaves, and crosses the left hand over for its last notes.
+ * two-note chord with the pedal, the second time an octave up. Epic rolls the print's own figure under it,
+ * a broken chord in triplets from low to high. It then plays the tune in thirds and sixths. Legendary rolls
+ * triplet arpeggios over two octaves, then plays the tune in octaves. Over its last chord, the left hand
+ * crosses over the right for three high notes.
  */
 import type { Key } from "../../src/theory/key";
 import type { OurSong } from "../make-our-songs";
@@ -63,14 +68,11 @@ function triplets(notes: string, count = 8): string {
 /** The order of an arpeggio over a whole bar: up, down, up and down, then a rest to jump to the next chord. */
 const WIDE_BAR = [0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0, 1];
 
-/** The order of an arpeggio over half a bar: up and down, then a rest. */
-const WIDE_HALF = [0, 1, 2, 3, 4, 5, 4, 3, 2, 1];
-
-/** An arpeggio over two octaves in triplet eighths: the thumb passes under and finger 3 crosses over it. */
-function wide(notes: string, order: readonly number[] = WIDE_BAR): string {
+/** A bar of arpeggio over two octaves in triplet eighths: the thumb passes under and finger 3 crosses over it. */
+function wide(notes: string): string {
   const pitches = notes.split(" ");
   const fingers = [5, 2, 1, 3, 2, 1];
-  return `${order.map((at) => `${pitches[at]}/${fingers[at]}:1`).join(" ")} r:2`;
+  return `${WIDE_BAR.map((at) => `${pitches[at]}/${fingers[at]}:1`).join(" ")} r:2`;
 }
 
 /** The chords under the tune and the bar after it, as close triads for Epic's broken chords. */
@@ -118,12 +120,11 @@ export const moonlightSonata: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 2,
-      ownBars: [10, 11],
-      right: `${RIGHT_QUARTERS} | G4/2:4 Bb4/4:4 | A4/3:4 G4/2:4 | F4/1:8`,
+      right: `${RIGHT_QUARTERS} | F4/1:8`,
       left: [
         "D3+A3/3+1:8 | A2+E3/5+2:8 | A2+E3/5+2:8 | D3+A3/3+1:8",
         "G2+D3/5+1:8 | C3/2:8 | C3/2:8 | F2+C3/5+1:8",
-        "F2+C3/5+1:8 | G2+D3/5+1:8 | A2+C#3/4+2:8 | D3/1:8",
+        "F2+C3/5+1:8 | D2+A2/5+1:8",
       ].join(" | "),
       skills: ["five-finger-position", "held-bass", "open-fifths"],
       practice: [
@@ -141,7 +142,7 @@ export const moonlightSonata: OurSong = {
       tricky: {
         2: "The left hand moves down from D and A to A and E. Finger 5 takes the low A.",
         5: "The left hand reaches down to G with finger 5, and the thumb stays on D.",
-        10: "The left hand moves up from F to G. The right hand comes back with finger 2 on G.",
+        10: "The right hand comes back with the thumb on F. The left hand moves down to D and A, with fingers 5 and 1.",
       },
     },
     rare: {
@@ -150,22 +151,21 @@ export const moonlightSonata: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 2,
-      right: `${RIGHT_QUARTERS} | ${octaveUp(RIGHT_QUARTERS.replace(" | r:8", ""))} | Bb5/4:4 G5/2:4 | F5+A5/1+3:8`,
+      right: `${RIGHT_QUARTERS} | ${octaveUp(RIGHT_QUARTERS.replace(" | r:8", ""))} | F5+A5/1+3:8`,
       left: [
         "D3/5:4 F3+A3/2+1:4 | C#3/5:4 E3+G3/2+1:4 | A2/5:4 E3+G3/2+1:4 | D3/5:4 F3+A3/2+1:4",
         "Bb2/5:4 D3+G3/2+1:4 | C3/5:4 F3+A3/2+1:4 | C3/5:4 E3+G3/2+1:4 | A2/5:4 C3+F3/2+1:4",
         "F2/5:4 C3+F3/2+1:4 | A2/5:4 D3+F3/2+1:4 | A2/5:4 E3+G3/2+1:4 | A2/5:4 E3+G3/2+1:4",
         "D3/5:4 F3+A3/2+1:4 | Bb2/5:4 D3+G3/2+1:4 | C3/5:4 F3+A3/2+1:4 | C3/5:4 E3+G3/2+1:4",
-        "A2/5:4 C3+F3/2+1:4 | G2/5:2 D3+G3/2+1:2 A2/5:2 E3+G3/2+1:1 r:1 | D3+F3+A3/5+3+1:8",
+        "A2/5:4 C3+F3/2+1:3 r:1 | D3+F3+A3/5+3+1:8",
       ].join(" | "),
-      pedal: Array(19).fill("P:8").join(" | "),
-      ownBars: [18],
+      pedal: Array(18).fill("P:8").join(" | "),
       skills: ["pedal", "position-change"],
       practice: [
         { text: "Play the right hand alone on the first eight bars, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 8], wait: true },
         { text: "Play the left hand alone. The low note comes first, and the two-note chord answers it.", hands: "left", speed: 0.6, loop: [1, 8], wait: true },
         { text: "Join the hands on the first eight bars, slowly, with the pedal.", hands: "both", speed: 0.6, loop: [1, 8], wait: true },
-        { text: "Play the second half, where the tune comes back an octave higher.", hands: "both", speed: 0.7, loop: [10, 19], wait: true },
+        { text: "Play the second half, where the tune comes back an octave higher.", hands: "both", speed: 0.7, loop: [10, 18], wait: true },
         { text: "Play the whole song with both hands at full speed.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
@@ -176,7 +176,7 @@ export const moonlightSonata: OurSong = {
       tricky: {
         4: "Play D with finger 5 of the left hand, then F and A together with fingers 2 and 1.",
         10: "Use the rest in bar 9 to move the right hand an octave up. Finger 3 lands on the high A.",
-        19: "Spread the left hand over D, F and A with fingers 5, 3 and 1. The right hand plays F and A together.",
+        18: "Spread the left hand over D, F and A with fingers 5, 3 and 1. The right hand plays F and A together.",
       },
     },
     epic: {
@@ -195,21 +195,18 @@ export const moonlightSonata: OurSong = {
         "F4+A4/1+3:24",
         "E4+G4/1+2:12 E4+C5/1+5:12",
         "A3+F4/1+5:21 r:3",
-        "G4+Bb4/2+4:12 E4+G4/1+3:9 r:3",
         "A3+D4+F4/1+2+4:24",
       ].join(" | "),
       left: [
         ...EPIC_CHORDS.map((chord) => triplets(chord)),
         ...EPIC_CHORDS.slice(0, 8).map((chord) => triplets(chord)),
-        `${triplets("Bb2 D3 G3", 4)} ${triplets("C#3 E3 G3", 3)} r:3`,
         "D2+A2+D3/5+2+1:24",
       ].join(" | "),
-      pedal: [...Array(17).fill(PEDAL_BAR), "P:12 P:12", PEDAL_BAR].join(" | "),
-      ownBars: [18],
+      pedal: Array(18).fill(PEDAL_BAR).join(" | "),
       skills: ["broken-chords", "pedal", "thirds-and-sixths"],
       practice: [
         { text: "Play the left hand alone. Each chord rolls up in threes, low, middle, high.", hands: "left", speed: 0.5, loop: [1, 9], wait: true },
-        { text: "Play the right hand's thirds and sixths alone, and press both notes of each pair as one.", hands: "right", speed: 0.6, loop: [10, 19], wait: true },
+        { text: "Play the right hand's thirds and sixths alone, and press both notes of each pair as one.", hands: "right", speed: 0.6, loop: [10, 17], wait: true },
         { text: "Join the hands on the first nine bars, slowly.", hands: "both", speed: 0.5, loop: [1, 9], wait: true },
         { text: "Play the whole song with both hands at three-quarter speed.", hands: "both", speed: 0.75, loop: null, wait: false },
         { text: "Now play it at full speed, with the pedal.", hands: "both", speed: 1, loop: null, wait: false },
@@ -220,9 +217,9 @@ export const moonlightSonata: OurSong = {
         { fromBar: 10, toBar: 17, kind: "fingering", text: "The tune is the top note of each pair, so let the upper finger lead." },
       ],
       tricky: {
+        11: "Move the thumb down from F to C sharp, and take A with finger 5 instead of finger 3.",
+        16: "Keep the thumb on E. Finger 2 plays G, then finger 5 reaches up to C.",
         17: "Spread the right hand to a sixth, with the thumb on A and the little finger on F.",
-        18: "The chord changes halfway through this bar. Change the pedal there too.",
-        19: "Spread the left hand over a whole octave: finger 5 on the low D, the thumb on the D above.",
       },
     },
     legendary: {
@@ -241,34 +238,31 @@ export const moonlightSonata: OurSong = {
         "A4+A5/1+5:24",
         "G4+G5/1+5:9 r:3 C5+C6/1+5:9 r:3",
         "F4+F5/1+5:21 r:3",
-        "Bb4+Bb5/1+5:9 r:3 G4+G5/1+5:9 r:3",
         "F4+A4+D5+F5/1+2+3+5:24",
       ].join(" | ")),
       left: semitoneDown([
         ...WIDE_CHORDS.map((chord) => wide(chord)),
         ...WIDE_CHORDS.slice(0, 8).map((chord) => wide(chord)),
-        `${wide("G1 D2 G2 Bb2 D3 G3", WIDE_HALF)} ${wide("A1 E2 A2 C#3 E3 G3", WIDE_HALF)}`,
         "D2+A2+D3/5+2+1:9 r:3 A5/3:3 D6/2:3 F6/1:6",
       ].join(" | ")),
-      pedal: [...Array(17).fill(PEDAL_BAR), "P:12 P:12", PEDAL_BAR].join(" | "),
-      ownBars: [18],
+      pedal: Array(18).fill(PEDAL_BAR).join(" | "),
       skills: ["arpeggios", "melody-in-chords", "hand-crossing"],
       practice: [
         { text: "Play the left hand alone. The thumb passes under and finger 3 crosses over, so each arpeggio spans two octaves.", hands: "left", speed: 0.5, loop: [1, 9], wait: true },
         { text: "Play the right hand's octaves alone. Keep the hand open, with the thumb and little finger ready.", hands: "right", speed: 0.5, loop: [10, 17], wait: true },
-        { text: "Play the ending slowly. The left hand crosses over the right for three high notes.", hands: "both", speed: 0.5, loop: [18, 19], wait: true },
+        { text: "Play the ending slowly. The left hand crosses over the right for three high notes.", hands: "both", speed: 0.5, loop: [17, 18], wait: true },
         { text: "Play the whole song with both hands at three-quarter speed.", hands: "both", speed: 0.75, loop: null, wait: false },
         { text: "Now play it at full speed, and let the last notes ring.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
         { fromBar: 1, toBar: 9, kind: "fingering", text: "In each arpeggio, the thumb passes under on the way down, and finger 3 crosses over on the way up." },
         { fromBar: 10, toBar: 17, kind: "sound", text: "Let the little finger sing the top note of each octave a little louder." },
-        { fromBar: 19, toBar: 19, kind: "trick", text: "While the right hand holds its chord, float the left hand over it like a ray of moonlight." },
+        { fromBar: 18, toBar: 18, kind: "trick", text: "While the right hand holds its chord, float the left hand over it like a ray of moonlight." },
       ],
       tricky: {
         10: "The right hand plays octaves from here. The thumb and little finger land on both G sharps together.",
         17: "The left hand starts its arpeggio on a low E. Use the rest at the end of bar 16 to get there.",
-        19: "Hold the right hand's chord, and cross the left hand over it to play G sharp, C sharp and E.",
+        18: "Hold the right hand's chord, and cross the left hand over it to play G sharp, C sharp and E.",
       },
     },
   },
@@ -295,7 +289,7 @@ export const moonlightSonata: OurSong = {
         tricky: {
           2: "Die linke Hand rückt von D und A hinab zu A und E. Finger 5 nimmt das tiefe A.",
           5: "Die linke Hand greift mit Finger 5 hinab zum G, und der Daumen bleibt auf dem D.",
-          10: "Die linke Hand rückt von F hinauf zu G. Die rechte Hand kommt mit Finger 2 auf dem G zurück.",
+          10: "Die rechte Hand kommt mit dem Daumen auf dem F zurück. Die linke Hand rückt hinab zu D und A, mit Finger 5 und 1.",
         },
       },
       rare: {
@@ -314,7 +308,7 @@ export const moonlightSonata: OurSong = {
         tricky: {
           4: "Spiel das D mit Finger 5 der linken Hand, dann F und A zusammen mit Finger 2 und 1.",
           10: "Nutz die Pause in Takt 9, um die rechte Hand eine Oktave höher zu setzen. Finger 3 landet auf dem hohen A.",
-          19: "Spann die linke Hand über D, F und A mit Finger 5, 3 und 1. Die rechte Hand spielt F und A zusammen.",
+          18: "Spann die linke Hand über D, F und A mit Finger 5, 3 und 1. Die rechte Hand spielt F und A zusammen.",
         },
       },
       epic: {
@@ -331,9 +325,9 @@ export const moonlightSonata: OurSong = {
           "Die Melodie ist der obere Ton jedes Paars, also lass den oberen Finger führen.",
         ],
         tricky: {
+          11: "Führ den Daumen vom F hinab zum Cis, und nimm das A mit Finger 5 statt mit Finger 3.",
+          16: "Lass den Daumen auf dem E. Finger 2 spielt das G, dann greift Finger 5 hinauf zum C.",
           17: "Spann die rechte Hand zur Sexte, mit dem Daumen auf dem A und dem kleinen Finger auf dem F.",
-          18: "Der Akkord wechselt mitten in diesem Takt. Wechsle dort auch das Pedal.",
-          19: "Spann die linke Hand über eine ganze Oktave: Finger 5 auf das tiefe D, den Daumen auf das D darüber.",
         },
       },
       legendary: {
@@ -352,7 +346,7 @@ export const moonlightSonata: OurSong = {
         tricky: {
           10: "Ab hier spielt die rechte Hand Oktaven. Daumen und kleiner Finger landen zusammen auf beiden Gis.",
           17: "Die linke Hand beginnt ihr Arpeggio auf einem tiefen E. Nutz die Pause am Ende von Takt 16, um dorthin zu kommen.",
-          19: "Halt den Akkord der rechten Hand, und kreuz die linke Hand darüber, um Gis, Cis und E zu spielen.",
+          18: "Halt den Akkord der rechten Hand, und kreuz die linke Hand darüber, um Gis, Cis und E zu spielen.",
         },
       },
     },

@@ -17,15 +17,8 @@ export const translation: Translation<GuideTranslation> = {
         "Gabungkan kedua tangan pada 8 birama pertama, pelan-pelan.",
         "Mainkan seluruh lagu dengan kedua tangan, dengan kecepatan penuh.",
       ],
-      tips: [
-        "Hitung sampai empat pada D pertama. Lalu D panjang dan D pendek mengantar ke birama berikutnya.",
-        "Mainkan dengan lembut dan berat, seperti langkah pelan di belakang peti mati.",
-        "Ibu jari terus bersandar di C kres. Ibu jari hanya bermain di birama 7, 12, dan 15.",
-      ],
       tricky: {
         7: "Tahan E selama tiga ketukan, lalu mainkan D selama satu ketukan. Tahan D selama tiga ketukan, dan ibu jari memainkan C kres paling akhir.",
-        12: "Jari 3 menahan E selama empat ketukan. Lalu ibu jari memainkan C kres, dan tangan kiri tetap di A.",
-        15: "Empat not yang rata: E, F, E, lalu C kres dengan ibu jari. Jaga setiap jari di tutsnya sendiri.",
       },
     },
     rare: {
@@ -36,52 +29,14 @@ export const translation: Translation<GuideTranslation> = {
         "Mainkan seluruh lagu dengan kedua tangan, sedikit lebih lambat dari tertulis.",
         "Sekarang mainkan dengan kecepatan penuh.",
       ],
-      tips: [
-        "Mainkan akor tangan kiri dengan lembut dan rata, agar melodi tetap di atas.",
-        "Di antara kedua akor, hanya not rendah yang bergerak. Jari 2 dan 1 tetap di D dan F.",
-        "Akhiri dengan D dan F bersamaan, dan biarkan keduanya memudar perlahan.",
-      ],
-      tricky: {
-        10: "Tekan D dan F bersamaan dengan jari 2 dan 4. Lalu jari 5 memainkan G, dan jari 4 memainkan F.",
-        11: "Tangan kiri memainkan G, B mol, dan D dengan jari 5, 4, dan 2. Tangan kanan berjalan turun dari G.",
-        12: "Ibu jari dan jari 3 menekan C kres dan E bersamaan. Tangan kiri hanya memainkan A, dengan jari 5.",
-      },
     },
     epic: {
-      practice: [
-        "Mainkan bas Alberti saja sampai mengalir dengan sendirinya: rendah, tinggi, tengah, tinggi.",
-        "Mainkan birama 11 dengan tangan kanan saja. Biarkan ibu jari menyusup ke F.",
-        "Gabungkan kedua tangan pada 8 birama pertama, pelan-pelan.",
-        "Mainkan seluruh lagu dengan kedua tangan, dengan tiga perempat kecepatan.",
-        "Sekarang mainkan dengan kecepatan penuh, dengan pedal.",
-      ],
-      tips: [
-        "Ganti pedal di setiap not bas baru, dua kali dalam setiap birama.",
-        "Biarkan ibu jari menyusup ke F setelah jari 3 memainkan E mol.",
-        "Kini melodinya ada di atas setiap pasangan not. Biarkan jari 5 menyanyikannya.",
-      ],
       tricky: {
-        19: "Jaga tanganmu tetap terbuka, dengan ibu jari di E mol dan jari 5 di C. Angkat ibu jari untuk C yang pendek.",
-        21: "Seperti di birama 19, ibu jari dan jari 5 memainkan sekst. Lalu jari 5 memainkan C sendirian.",
         22: "Jari 4 mengambil C dalam sekst itu, sehingga jari 5 bebas meraih ke atas ke E mol.",
       },
     },
     legendary: {
-      practice: [
-        "Mainkan tangan kiri saja: satu oktaf tepat pada ketukan, lalu satu akor, masing-masing dengan tanda istirahat pendek untuk melompat.",
-        "Mainkan arpeggio tangan kiri saja. Saat naik, jari 3 menyeberang di atas ibu jari.",
-        "Mainkan akor tangan kanan saja, dan biarkan jari teratas menyanyikan melodi.",
-        "Mainkan seluruh lagu dengan kedua tangan, dengan tiga perempat kecepatan.",
-        "Sekarang mainkan dengan kecepatan penuh, dan biarkan akor terakhir terus berbunyi.",
-      ],
-      tips: [
-        "Mainkan oktaf dengan berat dan pelan, seperti lonceng besar. Biarkan kelingking memimpin.",
-        "Dalam arpeggio, jari 3 menyeberang di atas ibu jari, dan ibu jari menyusup saat turun.",
-        "Mainkan not teratas setiap akor sedikit lebih keras dari yang lain.",
-      ],
       tricky: {
-        9: "Arpeggio dimulai. Jari 3 menyeberang di atas ibu jari ke E mol, sementara tangan kanan berjalan turun dari G.",
-        14: "Tangan kiri mulai di F rendah dengan jari 5. Jari 3 menyeberang di atas ibu jari ke A mol.",
         22: "Angkat tanganmu saat tanda istirahat pendek, lalu mendarat di E mol, A mol, C, dan E mol.",
       },
     },

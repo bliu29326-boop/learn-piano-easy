@@ -59,8 +59,8 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `hall-of-the-mountain-king/guide.json` | In the Hall of the Mountain King, the guide | | MIT |
 | `fur-elise/common.mid` | Für Elise, Beginner | Ludwig van Beethoven | MIT |
 | `fur-elise/rare.mid` | Für Elise, Easy | Ludwig van Beethoven | MIT |
-| `fur-elise/epic.mid` | Für Elise, Medium | Ludwig van Beethoven | MIT |
-| `fur-elise/legendary.mid` | Für Elise, Hard | Ludwig van Beethoven | MIT |
+| `fur-elise/epic-2.mid` | Für Elise, Medium | Ludwig van Beethoven | MIT |
+| `fur-elise/legendary-2.mid` | Für Elise, Hard | Ludwig van Beethoven | MIT |
 | `fur-elise/guide.json` | Für Elise, the guide | | MIT |
 | `the-entertainer/common.mid` | The Entertainer, Beginner | Scott Joplin | MIT |
 | `the-entertainer/rare.mid` | The Entertainer, Easy | Scott Joplin | MIT |
@@ -237,15 +237,15 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `dies-irae/epic.mid` | Dies irae, Medium | Traditional | MIT |
 | `dies-irae/legendary.mid` | Dies irae, Hard | Traditional | MIT |
 | `dies-irae/guide.json` | Dies irae, the guide | | MIT |
-| `clair-de-lune/common.mid` | Clair de lune, Beginner | Claude Debussy | MIT |
-| `clair-de-lune/rare.mid` | Clair de lune, Easy | Claude Debussy | MIT |
-| `clair-de-lune/epic.mid` | Clair de lune, Medium | Claude Debussy | MIT |
-| `clair-de-lune/legendary.mid` | Clair de lune, Hard | Claude Debussy | MIT |
+| `clair-de-lune/common-2.mid` | Clair de lune, Beginner | Claude Debussy | MIT |
+| `clair-de-lune/rare-2.mid` | Clair de lune, Easy | Claude Debussy | MIT |
+| `clair-de-lune/epic-2.mid` | Clair de lune, Medium | Claude Debussy | MIT |
+| `clair-de-lune/legendary-2.mid` | Clair de lune, Hard | Claude Debussy | MIT |
 | `clair-de-lune/guide.json` | Clair de lune, the guide | | MIT |
-| `moonlight-sonata/common.mid` | Moonlight Sonata, Beginner | Ludwig van Beethoven | MIT |
-| `moonlight-sonata/rare.mid` | Moonlight Sonata, Easy | Ludwig van Beethoven | MIT |
-| `moonlight-sonata/epic.mid` | Moonlight Sonata, Medium | Ludwig van Beethoven | MIT |
-| `moonlight-sonata/legendary.mid` | Moonlight Sonata, Hard | Ludwig van Beethoven | MIT |
+| `moonlight-sonata/common-2.mid` | Moonlight Sonata, Beginner | Ludwig van Beethoven | MIT |
+| `moonlight-sonata/rare-2.mid` | Moonlight Sonata, Easy | Ludwig van Beethoven | MIT |
+| `moonlight-sonata/epic-2.mid` | Moonlight Sonata, Medium | Ludwig van Beethoven | MIT |
+| `moonlight-sonata/legendary-2.mid` | Moonlight Sonata, Hard | Ludwig van Beethoven | MIT |
 | `moonlight-sonata/guide.json` | Moonlight Sonata, the guide | | MIT |
 | `beethoven-7-allegretto/common.mid` | Symphony No. 7: Allegretto, Beginner | Ludwig van Beethoven | MIT |
 | `beethoven-7-allegretto/rare.mid` | Symphony No. 7: Allegretto, Easy | Ludwig van Beethoven | MIT |
@@ -262,10 +262,10 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `hungarian-dance-5/epic.mid` | Hungarian Dance No. 5, Medium | Johannes Brahms | MIT |
 | `hungarian-dance-5/legendary.mid` | Hungarian Dance No. 5, Hard | Johannes Brahms | MIT |
 | `hungarian-dance-5/guide.json` | Hungarian Dance No. 5, the guide | | MIT |
-| `eine-kleine-nachtmusik/common.mid` | Eine kleine Nachtmusik, Beginner | Wolfgang Amadeus Mozart | MIT |
-| `eine-kleine-nachtmusik/rare.mid` | Eine kleine Nachtmusik, Easy | Wolfgang Amadeus Mozart | MIT |
-| `eine-kleine-nachtmusik/epic.mid` | Eine kleine Nachtmusik, Medium | Wolfgang Amadeus Mozart | MIT |
-| `eine-kleine-nachtmusik/legendary.mid` | Eine kleine Nachtmusik, Hard | Wolfgang Amadeus Mozart | MIT |
+| `eine-kleine-nachtmusik/common-2.mid` | Eine kleine Nachtmusik, Beginner | Wolfgang Amadeus Mozart | MIT |
+| `eine-kleine-nachtmusik/rare-2.mid` | Eine kleine Nachtmusik, Easy | Wolfgang Amadeus Mozart | MIT |
+| `eine-kleine-nachtmusik/epic-2.mid` | Eine kleine Nachtmusik, Medium | Wolfgang Amadeus Mozart | MIT |
+| `eine-kleine-nachtmusik/legendary-2.mid` | Eine kleine Nachtmusik, Hard | Wolfgang Amadeus Mozart | MIT |
 | `eine-kleine-nachtmusik/guide.json` | Eine kleine Nachtmusik, the guide | | MIT |
 | `lacrimosa/common.mid` | Lacrimosa, Beginner | Wolfgang Amadeus Mozart, completed by Franz Xaver Süssmayr | MIT |
 | `lacrimosa/rare.mid` | Lacrimosa, Easy | Wolfgang Amadeus Mozart, completed by Franz Xaver Süssmayr | MIT |
@@ -277,10 +277,10 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `mozart-21-andante/epic.mid` | Piano Concerto No. 21: Andante, Medium | Wolfgang Amadeus Mozart | MIT |
 | `mozart-21-andante/legendary.mid` | Piano Concerto No. 21: Andante, Hard | Wolfgang Amadeus Mozart | MIT |
 | `mozart-21-andante/guide.json` | Piano Concerto No. 21: Andante, the guide | | MIT |
-| `air-on-the-g-string/common.mid` | Air on the G String, Beginner | Johann Sebastian Bach | MIT |
-| `air-on-the-g-string/rare.mid` | Air on the G String, Easy | Johann Sebastian Bach | MIT |
-| `air-on-the-g-string/epic.mid` | Air on the G String, Medium | Johann Sebastian Bach | MIT |
-| `air-on-the-g-string/legendary.mid` | Air on the G String, Hard | Johann Sebastian Bach | MIT |
+| `air-on-the-g-string/common-2.mid` | Air on the G String, Beginner | Johann Sebastian Bach | MIT |
+| `air-on-the-g-string/rare-2.mid` | Air on the G String, Easy | Johann Sebastian Bach | MIT |
+| `air-on-the-g-string/epic-2.mid` | Air on the G String, Medium | Johann Sebastian Bach | MIT |
+| `air-on-the-g-string/legendary-2.mid` | Air on the G String, Hard | Johann Sebastian Bach | MIT |
 | `air-on-the-g-string/guide.json` | Air on the G String, the guide | | MIT |
 | `toccata-in-d-minor/common.mid` | Toccata and Fugue in D minor, Beginner | Johann Sebastian Bach | MIT |
 | `toccata-in-d-minor/rare.mid` | Toccata and Fugue in D minor, Easy | Johann Sebastian Bach | MIT |
@@ -315,10 +315,10 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `the-sorcerers-apprentice/legendary-2.mid` | The Sorcerer's Apprentice, Hard | Paul Dukas | MIT |
 | `the-sorcerers-apprentice/mythic.mid` | The Sorcerer's Apprentice, Original | Paul Dukas | MIT |
 | `the-sorcerers-apprentice/guide.json` | The Sorcerer's Apprentice, the guide | | MIT |
-| `ave-maria/common.mid` | Ave Maria, Beginner | Franz Schubert | MIT |
-| `ave-maria/rare.mid` | Ave Maria, Easy | Franz Schubert | MIT |
-| `ave-maria/epic.mid` | Ave Maria, Medium | Franz Schubert | MIT |
-| `ave-maria/legendary.mid` | Ave Maria, Hard | Franz Schubert | MIT |
+| `ave-maria/common-2.mid` | Ave Maria, Beginner | Franz Schubert | MIT |
+| `ave-maria/rare-2.mid` | Ave Maria, Easy | Franz Schubert | MIT |
+| `ave-maria/epic-2.mid` | Ave Maria, Medium | Franz Schubert | MIT |
+| `ave-maria/legendary-2.mid` | Ave Maria, Hard | Franz Schubert | MIT |
 | `ave-maria/guide.json` | Ave Maria, the guide | | MIT |
 | `bolero/common-2.mid` | Boléro, Beginner | Maurice Ravel | MIT |
 | `bolero/rare-2.mid` | Boléro, Easy | Maurice Ravel | MIT |
@@ -326,10 +326,10 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `bolero/legendary-2.mid` | Boléro, Hard | Maurice Ravel | MIT |
 | `bolero/mythic.mid` | Boléro, Original | Maurice Ravel | MIT |
 | `bolero/guide.json` | Boléro, the guide | | MIT |
-| `funeral-march/common.mid` | Funeral March, Beginner | Frédéric Chopin | MIT |
-| `funeral-march/rare.mid` | Funeral March, Easy | Frédéric Chopin | MIT |
-| `funeral-march/epic.mid` | Funeral March, Medium | Frédéric Chopin | MIT |
-| `funeral-march/legendary.mid` | Funeral March, Hard | Frédéric Chopin | MIT |
+| `funeral-march/common-2.mid` | Funeral March, Beginner | Frédéric Chopin | MIT |
+| `funeral-march/rare-2.mid` | Funeral March, Easy | Frédéric Chopin | MIT |
+| `funeral-march/epic-2.mid` | Funeral March, Medium | Frédéric Chopin | MIT |
+| `funeral-march/legendary-2.mid` | Funeral March, Hard | Frédéric Chopin | MIT |
 | `funeral-march/guide.json` | Funeral March, the guide | | MIT |
 | `beethoven-5/common-2.mid` | Symphony No. 5, Beginner | Ludwig van Beethoven | MIT |
 | `beethoven-5/rare-2.mid` | Symphony No. 5, Easy | Ludwig van Beethoven | MIT |
@@ -337,10 +337,10 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `beethoven-5/legendary-2.mid` | Symphony No. 5, Hard | Ludwig van Beethoven | MIT |
 | `beethoven-5/mythic.mid` | Symphony No. 5, Original | Ludwig van Beethoven | MIT |
 | `beethoven-5/guide.json` | Symphony No. 5, the guide | | MIT |
-| `chopin-nocturne-c-sharp-minor/common.mid` | Nocturne in C-sharp minor, Beginner | Frédéric Chopin | MIT |
-| `chopin-nocturne-c-sharp-minor/rare.mid` | Nocturne in C-sharp minor, Easy | Frédéric Chopin | MIT |
-| `chopin-nocturne-c-sharp-minor/epic.mid` | Nocturne in C-sharp minor, Medium | Frédéric Chopin | MIT |
-| `chopin-nocturne-c-sharp-minor/legendary.mid` | Nocturne in C-sharp minor, Hard | Frédéric Chopin | MIT |
+| `chopin-nocturne-c-sharp-minor/common-2.mid` | Nocturne in C-sharp minor, Beginner | Frédéric Chopin | MIT |
+| `chopin-nocturne-c-sharp-minor/rare-2.mid` | Nocturne in C-sharp minor, Easy | Frédéric Chopin | MIT |
+| `chopin-nocturne-c-sharp-minor/epic-2.mid` | Nocturne in C-sharp minor, Medium | Frédéric Chopin | MIT |
+| `chopin-nocturne-c-sharp-minor/legendary-2.mid` | Nocturne in C-sharp minor, Hard | Frédéric Chopin | MIT |
 | `chopin-nocturne-c-sharp-minor/guide.json` | Nocturne in C-sharp minor, the guide | | MIT |
 | `morning-mood/common-2.mid` | Morning Mood, Beginner | Edvard Grieg | MIT |
 | `morning-mood/rare-2.mid` | Morning Mood, Easy | Edvard Grieg | MIT |

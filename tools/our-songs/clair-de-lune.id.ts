@@ -25,7 +25,7 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         1: "Mainkan G dengan ibu jari, lalu lompat satu oktaf ke atas ke G dengan jari 5.",
         5: "Tanganmu bergeser turun saat tanda istirahat di birama 4. Jari 3 mendarat di A.",
-        7: "Mainkan E pertama dengan jari 3, bukan ibu jari. Dengan begitu jari 5 bebas untuk A.",
+        7:"Mainkan E pertama dengan jari 3, bukan ibu jari. Dengan begitu jari 5 bebas untuk A.",
       },
     },
     rare: {
@@ -67,22 +67,8 @@ export const translation: Translation<GuideTranslation> = {
       },
     },
     legendary: {
-      practice: [
-        "Mainkan tangan kiri saja. Ibu jari menyusup dan jari 3 menyeberang, sehingga setiap arpeggio merentang dua oktaf.",
-        "Mainkan akor empat not tangan kanan saja, dan angkat tanganmu di antara setiap akor.",
-        "Mainkan bagian akhir pelan-pelan. Tangan kiri menyeberang di atas tangan kanan untuk tiga not tinggi.",
-        "Mainkan seluruh lagu dengan kedua tangan, dengan tiga perempat kecepatan.",
-        "Sekarang mainkan dengan kecepatan penuh, dan biarkan akor terakhir terus berbunyi.",
-      ],
-      tips: [
-        "Di setiap arpeggio, ibu jari menyusup saat turun, dan jari 3 menyeberang saat naik.",
-        "Mainkan not teratas setiap akor sedikit lebih keras dari yang lain.",
-        "Sambil tangan kanan menahan akornya, ayunkan tangan kiri melewatinya seperti orang yang membunyikan lonceng.",
-      ],
       tricky: {
         13: "Di sini akor jatuh di setiap ketukan. Angkat tangan sedikit setelah setiap akor, dan biarkan pedal menyambungnya.",
-        17: "Tahan akor tangan kanan, lalu seberangkan tangan kiri di atasnya untuk memainkan B, D, dan G.",
-        18: "Angkat tangan kanan dari akornya, lalu bentangkan di atas C, E, G, dan C.",
       },
     },
   },

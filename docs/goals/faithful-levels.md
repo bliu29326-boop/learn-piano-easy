@@ -12,7 +12,7 @@ stages:
     status: done
   - id: 3
     title: "Batch 2: the catalog's Originals and the slow classics"
-    status: open
+    status: done
   - id: 4
     title: "Batch 3: the orchestral and choral classics"
     status: open
@@ -81,6 +81,8 @@ inside the limits they keep.
 - **A last bar that only holds the home chord is not a bar of our own.** It is how a version ends.
 - **Where the source has no next phrase, the version plays the tune again in another setting** or ends
   on the home chord. Each still earns its place.
+- **A source whose next phrase no public domain print shows counts as having none.** The versions then
+  repeat the print's readable bars, as *Nocturne in C sharp minor* repeats its bars 1 to 8.
 - **The audit's open points are settled by the batch's writer:** the edges of *William Tell*'s bars,
   *Moonlight Sonata*'s closing bars and the unread versions of *Yankee Doodle*.
 - **A print's chord that clashes with the tune past a version's limit gives way** to the print's next
@@ -141,14 +143,14 @@ build nothing, and the session runs the writer and the build once all end.
 **Split:** as stage 2.
 **Gate:** stage 2 is done.
 
-- [ ] *Clair de Lune*: all four (c 9, r e l 17). `tools/our-songs/clair-de-lune.ts:1`
-- [ ] *Moonlight Sonata*: all four (c 10-11, r e l 18). Check the closing bars against `piano-midi/mond_1.mid` first. `tools/our-songs/moonlight-sonata.ts:1`
-- [ ] *Für Elise*: Epic and Legendary take the rising broken chords Rare already plays. No bar is ours. `tools/our-songs/fur-elise.ts:1`
-- [ ] *Funeral March*: all four (9-16). Epic and Legendary take the rocking chords. `tools/our-songs/funeral-march.ts:1`
-- [ ] *Eine kleine Nachtmusik*: all four (as marked). `tools/our-songs/eine-kleine-nachtmusik.ts:1`
-- [ ] *Air on the G String*: all four (c 9-10, r e l 17-18). `tools/our-songs/air-on-the-g-string.ts:1`
-- [ ] *Ave Maria*: all four (as marked). `tools/our-songs/ave-maria.ts:1`
-- [ ] *Nocturne in C sharp minor*: all four (as marked). `tools/our-songs/chopin-nocturne-c-sharp-minor.ts:1`
+- [x] *Clair de Lune*: all four (c 9, r e l 17). `tools/our-songs/clair-de-lune.ts:1`
+- [x] *Moonlight Sonata*: all four (c 10-11, r e l 18). Check the closing bars against `piano-midi/mond_1.mid` first. `tools/our-songs/moonlight-sonata.ts:1`
+- [x] *Für Elise*: Epic and Legendary take the rising broken chords Rare already plays. No bar is ours. `tools/our-songs/fur-elise.ts:1`
+- [x] *Funeral March*: all four (9-16). Epic and Legendary take the rocking chords. `tools/our-songs/funeral-march.ts:1`
+- [x] *Eine kleine Nachtmusik*: all four (as marked). `tools/our-songs/eine-kleine-nachtmusik.ts:1`
+- [x] *Air on the G String*: all four (c 9-10, r e l 17-18). `tools/our-songs/air-on-the-g-string.ts:1`
+- [x] *Ave Maria*: all four (as marked). `tools/our-songs/ave-maria.ts:1`
+- [x] *Nocturne in C sharp minor*: all four (as marked). `tools/our-songs/chopin-nocturne-c-sharp-minor.ts:1`
 
 ### 4. Batch 3: the orchestral and choral classics
 
@@ -204,29 +206,43 @@ another setting or ends on the home chord.
 
 ### State
 
-Stages 1 and 2 are done. All 32 versions of batch 1 play the source's phrases, and each is in
-`REWORKED_VERSIONS` with its `<id>-2.mid` file. No code named an old file of the batch, so nothing
-else moved. Two fresh reviewers compared the new bars with each Original. Their must-fixes are in:
-*Can-Can*'s chords, *Vltava*'s Medium lower voice, and *William Tell*'s Medium bar 15 and Hard bar 20.
+Stages 1 to 3 are done. The 30 reworked versions of batch 2 play the source's phrases, and each is
+in `REWORKED_VERSIONS` with its `<id>-2.mid` file. *Für Elise* reworked only Medium and Hard, so the
+e2e test of the library now names `fur-elise/legendary-2.mid`. Two fresh reviewers compared the
+new bars with each source. Their must-fixes are in:
 
-26 modules still mark bars of our own in `ownBars`, in stages 3 to 6.
+- *Clair de Lune*'s Medium bar 17 climbs in the print's four steps.
+- *Funeral March* plays the print's B flat and A flat as two eighths in bars 13 and 15.
+- *Clair de Lune*'s Beginner bar 9 sounds an octave lower, so the hand never leaps two octaves.
+
+*Nocturne in C sharp minor* has no public domain print past bar 8. Its versions repeat the print's bars
+1 to 8, as the new standing decision says. Its Beginner bar 2 keeps E on the third beat, since its
+bass rule refuses the print's rhythm there.
+
+18 modules still mark bars of our own in `ownBars`, in stages 4 to 6.
 
 ### Next
 
-**Stage 3: batch 2, the catalog's Originals and the slow classics.** Files: the eight modules the
-stage names, `src/library/moved-songs.ts:50` and their guides. Gate: stage 2 is done.
+**Stage 4: batch 3, the orchestral and choral classics.** Files: the eight modules the stage names,
+`src/library/moved-songs.ts:50` and their guides. Gate: stage 3 is done.
 
-- [ ] Eight songs, each item of stage 3 above. `tools/our-songs/clair-de-lune.ts:1`
+- [ ] Eight songs, each item of stage 4 above. `tools/our-songs/lacrimosa.ts:1`
 - [ ] `REWORKED_VERSIONS` lists every reworked version of the batch. `src/library/moved-songs.ts:50`
 - [ ] No code names an old file of the batch, as `git grep` finds them. `src/play-modes/modes.ts:109`
 
-*Clair de Lune*, *Moonlight Sonata* and *Für Elise* read their next phrase from the catalog's file in
-`public/songs/piano-midi/`.
+No song of batch 3 has a file in `public/songs/piano-midi/`. Each writer reads the Mutopia Project's
+`.ly` first, then a print on Commons. Give each writer one brief file under `.agent-tmp/` and the
+two songs, and check the module with `bun tools/check-our-song.ts` after every fix.
 
 Expected red: `no_version_plays_a_bar_of_our_own` until stage 6.
 
-Optional from batch 1's review: *William Tell*'s `TUNE_CHORDS` puts the dominant under tune bar 4's
-first half, where the print keeps E major. It is inside the tune, so Common and Rare keep it.
+Optional from the reviews:
+
+- *William Tell*'s `TUNE_CHORDS` puts the dominant under tune bar 4's first half, where the print
+  keeps E major. It is inside the tune, so Common and Rare keep it.
+- *Air on the G String*'s thirds in bar 14 became C sharp under G, a tritone. A sixth, B under G,
+  also avoids the rub. `tools/our-songs/air-on-the-g-string.ts:144`
+- *Moonlight Sonata*'s last chord has the third on top, where the print has the root.
 
 ### Backlog
 

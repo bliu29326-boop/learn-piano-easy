@@ -25,7 +25,7 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         1: "Toque o Sol com o polegar e depois salte uma oitava acima, até o Sol, com o dedo 5.",
         5: "Sua mão desce na pausa do compasso 4. O dedo 3 cai no Lá.",
-        7: "Toque o primeiro Mi com o dedo 3, não com o polegar. Assim o dedo 5 fica livre para o Lá.",
+        7:"Toque o primeiro Mi com o dedo 3, não com o polegar. Assim o dedo 5 fica livre para o Lá.",
       },
     },
     rare: {
@@ -67,22 +67,8 @@ export const translation: Translation<GuideTranslation> = {
       },
     },
     legendary: {
-      practice: [
-        "Toque só a mão esquerda. O polegar passa por baixo e o dedo 3 cruza por cima, e assim cada arpejo cobre duas oitavas.",
-        "Toque só os acordes de quatro notas da mão direita, e levante a mão entre um e outro.",
-        "Toque o final devagar. A mão esquerda cruza por cima da direita para tocar três notas agudas.",
-        "Toque a música inteira com as duas mãos, a três quartos da velocidade.",
-        "Agora toque na velocidade normal, e deixe o último acorde soar.",
-      ],
-      tips: [
-        "Em cada arpejo, o polegar passa por baixo na descida, e o dedo 3 cruza por cima na subida.",
-        "Toque a nota de cima de cada acorde um pouco mais forte que as outras.",
-        "Enquanto a mão direita segura o acorde, passe a mão esquerda por cima num balanço, como quem toca um sino.",
-      ],
       tricky: {
         13: "Aqui cai um acorde em cada tempo. Levante um pouco a mão depois de cada um, e deixe o pedal ligar os acordes.",
-        17: "Segure o acorde da mão direita e cruze a mão esquerda por cima para tocar Si, Ré e Sol.",
-        18: "Tire a mão direita do acorde e depois abra a mão sobre Dó, Mi, Sol e Dó.",
       },
     },
   },

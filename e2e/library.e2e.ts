@@ -227,7 +227,7 @@ test("a_song_is_one_row_and_a_step_picks_its_version", async ({ page }) => {
   // A step shows its version on the row in place, and the row then opens that version.
   await steps.nth(3).click();
   await expect(open).toHaveAccessibleName("Für Elise, Hard");
-  await expect(row).toHaveAttribute("data-id", "catalog:ours/fur-elise/legendary.mid");
+  await expect(row).toHaveAttribute("data-id", "catalog:ours/fur-elise/legendary-2.mid");
   for (const [i, name] of names.entries()) await expect(steps.nth(i)).toHaveAttribute("aria-pressed", String(name === "Hard"));
   await expect(steps.nth(3)).toBeFocused();
   await open.click();

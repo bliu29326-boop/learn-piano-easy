@@ -31,14 +31,14 @@
   "mythic": "piano-midi/deb_clai.mid",
   "versions": {
     "common": {
-      "file": "ours/clair-de-lune/common.mid",
+      "file": "ours/clair-de-lune/common-2.mid",
       "skills": [
         "held-bass",
         "open-fifths"
       ],
       "fingers": {
-        "right": [1, 5, 4, 3, 4, 3, 2, 3, 2, 4, 2, 1, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 4, 3, 1, 2],
-        "left": [5, 1, 2, 5, 1, 2, 5, 4, 1, 5, 5, 2, 1]
+        "right": [1, 5, 4, 3, 4, 3, 2, 3, 2, 4, 2, 1, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 5, 3],
+        "left": [5, 1, 2, 5, 1, 2, 5, 4, 1, 5, 2, 1]
       },
       "start": {
         "right": [67, 72, 74, 76, 79],
@@ -249,14 +249,14 @@
       ]
     },
     "rare": {
-      "file": "ours/clair-de-lune/rare.mid",
+      "file": "ours/clair-de-lune/rare-2.mid",
       "skills": [
         "pedal",
         "open-fifths"
       ],
       "fingers": {
-        "right": [1, 5, 4, 3, 4, 3, 2, 3, 2, 4, 2, 1, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 1, 5, 4, 3, 4, 3, 2, 3, 2, 4, 2, 1, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 4, 3, 1, 1, 5],
-        "left": [5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1]
+        "right": [1, 5, 4, 3, 4, 3, 2, 3, 2, 4, 2, 1, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 1, 5, 4, 3, 4, 3, 2, 3, 2, 4, 2, 1, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 3, 5, 1, 3],
+        "left": [5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1]
       },
       "start": {
         "right": [67, 72, 74, 76, 79],
@@ -336,7 +336,7 @@
           },
           "hands": "both",
           "speed": 0.7,
-          "loop": [9, 18],
+          "loop": [9, 17],
           "wait": true
         },
         {
@@ -467,15 +467,15 @@
       ]
     },
     "epic": {
-      "file": "ours/clair-de-lune/epic.mid",
+      "file": "ours/clair-de-lune/epic-2.mid",
       "skills": [
         "broken-chords",
         "pedal",
         "thirds-and-sixths"
       ],
       "fingers": {
-        "right": [1, 5, 4, 3, 4, 3, 2, 3, 2, 4, 2, 1, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 1, 3, 3, 5, 1, 3, 1, 3, 2, 4, 1, 3, 1, 3, 2, 4, 1, 3, 3, 5, 1, 3, 1, 3, 2, 4, 1, 3, 1, 3, 2, 4, 1, 3, 3, 5, 1, 3, 1, 2, 2, 4, 1, 3, 1, 3, 2, 4, 1, 3, 1, 3, 1, 3, 2, 4, 1, 3, 3, 5, 1, 3, 1, 2, 2, 4, 1, 3, 1, 3, 2, 4, 1, 3, 1, 2, 1, 3, 2, 4, 1, 3, 1, 2, 5],
-        "left": [5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 2, 1]
+        "right": [1, 5, 4, 3, 4, 3, 2, 3, 2, 4, 2, 1, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 1, 3, 3, 5, 1, 3, 1, 3, 2, 4, 1, 3, 1, 3, 2, 4, 1, 3, 3, 5, 1, 3, 1, 3, 2, 4, 1, 3, 1, 3, 2, 4, 1, 3, 3, 5, 1, 3, 1, 2, 2, 4, 1, 3, 1, 3, 2, 4, 1, 3, 1, 3, 1, 3, 2, 4, 1, 3, 3, 5, 1, 3, 1, 2, 2, 4, 1, 3, 1, 3, 2, 4, 1, 3, 1, 2, 1, 3, 1, 3, 3, 5, 1, 3],
+        "left": [5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 5, 1]
       },
       "start": {
         "right": [67, 72, 74, 76, 79],
@@ -686,15 +686,15 @@
       ]
     },
     "legendary": {
-      "file": "ours/clair-de-lune/legendary.mid",
+      "file": "ours/clair-de-lune/legendary-2.mid",
       "skills": [
         "arpeggios",
         "melody-in-chords",
         "hand-crossing"
       ],
       "fingers": {
-        "right": [1, 5, 4, 3, 4, 3, 2, 3, 2, 4, 2, 1, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 1, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5],
-        "left": [5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 1, 2, 5, 2, 1, 3, 1, 2, 5, 2, 1, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 1, 2, 5, 2, 1, 3, 1, 2, 5, 2, 1, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 3, 2, 1, 5, 2, 1]
+        "right": [1, 5, 4, 3, 4, 3, 2, 3, 2, 4, 2, 1, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 3, 4, 3, 5, 3, 2, 4, 3, 2, 3, 2, 1, 1, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 3, 3, 5, 1, 3],
+        "left": [5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 1, 2, 5, 2, 1, 3, 1, 2, 5, 2, 1, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 1, 2, 5, 2, 1, 3, 1, 2, 5, 2, 1, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 3, 1, 5, 1, 3, 1]
       },
       "start": {
         "right": [67, 72, 74, 76, 79],
@@ -704,16 +704,7 @@
         {
           "text": {
             "en": "Play the left hand alone. The thumb passes under and finger 3 crosses over, so each arpeggio spans two octaves.",
-            "de": "Spiel die linke Hand allein. Der Daumen geht unter, Finger 3 kreuzt darüber, und so umspannt jedes Arpeggio zwei Oktaven.",
-            "es": "Toca la mano izquierda sola. El pulgar pasa por debajo y el dedo 3 cruza por encima, así que cada arpegio abarca dos octavas.",
-            "zh": "只用左手弹。拇指穿指，3 指跨指，这样每个琶音跨越两个八度。",
-            "hi": "सिर्फ़ बाएँ हाथ से बजाएँ। अँगूठा नीचे से जाता है और उँगली 3 ऊपर से, इसलिए हर आर्पेजियो दो ऑक्टेव तक फैलता है।",
-            "ar": "اعزف باليد اليسرى وحدها. يمر الإبهام من تحت ويعبر الإصبع 3 من فوق، فيمتد كل أربيجيو على أوكتافين.",
-            "pt": "Toque só a mão esquerda. O polegar passa por baixo e o dedo 3 cruza por cima, e assim cada arpejo cobre duas oitavas.",
-            "id": "Mainkan tangan kiri saja. Ibu jari menyusup dan jari 3 menyeberang, sehingga setiap arpeggio merentang dua oktaf.",
-            "bn": "শুধু বাঁ হাতে বাজান। বুড়ো আঙুল নিচ দিয়ে যায় আর 3 নম্বর আঙুল উপর দিয়ে যায়, তাই প্রতিটি আর্পেজিও দুই অক্টেভ জুড়ে ছড়ায়।",
-            "ru": "Сыграйте одной левой рукой. Первый палец подкладывается, а 3-й палец перекладывается, так что каждое арпеджио охватывает две октавы.",
-            "fr": "Joue la main gauche seule. Le pouce passe dessous et le doigt 3 passe par-dessus. Chaque arpège couvre ainsi deux octaves."
+            "de": "Spiel die linke Hand allein. Der Daumen geht unter, Finger 3 kreuzt darüber, und so umspannt jedes Arpeggio zwei Oktaven."
           },
           "hands": "left",
           "speed": 0.5,
@@ -723,16 +714,7 @@
         {
           "text": {
             "en": "Play the right hand's four-note chords alone, and lift the hand between them.",
-            "de": "Spiel die vierstimmigen Akkorde der rechten Hand allein, und heb die Hand zwischen ihnen an.",
-            "es": "Toca solos los acordes de cuatro notas de la mano derecha, y levanta la mano entre uno y otro.",
-            "zh": "单独弹右手的四音和弦，和弦之间把手抬起来。",
-            "hi": "सिर्फ़ दाएँ हाथ के चार नोटों वाले कॉर्ड बजाएँ, और उनके बीच हाथ उठाएँ।",
-            "ar": "اعزف تآلفات اليد اليمنى الرباعية وحدها، وارفع يدك بينها.",
-            "pt": "Toque só os acordes de quatro notas da mão direita, e levante a mão entre um e outro.",
-            "id": "Mainkan akor empat not tangan kanan saja, dan angkat tanganmu di antara setiap akor.",
-            "bn": "ডান হাতের চার নোটের কর্ডগুলো আলাদা করে বাজান, আর দুটি কর্ডের মাঝে হাত তুলে নিন।",
-            "ru": "Сыграйте аккорды правой руки из четырёх нот отдельно и поднимайте руку между ними.",
-            "fr": "Joue seuls les accords de quatre notes de la main droite, et lève la main entre deux accords."
+            "de": "Spiel die vierstimmigen Akkorde der rechten Hand allein, und heb die Hand zwischen ihnen an."
           },
           "hands": "right",
           "speed": 0.5,
@@ -741,36 +723,18 @@
         },
         {
           "text": {
-            "en": "Play the ending slowly. The left hand crosses over the right for three high notes.",
-            "de": "Spiel den Schluss langsam. Die linke Hand kreuzt über die rechte für drei hohe Töne.",
-            "es": "Toca el final despacio. La mano izquierda cruza por encima de la derecha para tres notas agudas.",
-            "zh": "慢慢弹结尾。左手跨过右手，弹三个高音。",
-            "hi": "आखिरी हिस्सा धीरे-धीरे बजाएँ। ऊपर के तीन नोटों के लिए बायाँ हाथ दाएँ हाथ के ऊपर से जाता है।",
-            "ar": "اعزف الخاتمة ببطء. تعبر اليد اليسرى فوق اليمنى لتعزف 3 نغمات عالية.",
-            "pt": "Toque o final devagar. A mão esquerda cruza por cima da direita para tocar três notas agudas.",
-            "id": "Mainkan bagian akhir pelan-pelan. Tangan kiri menyeberang di atas tangan kanan untuk tiga not tinggi.",
-            "bn": "শেষ অংশটি ধীরে ধীরে বাজান। উপরের তিনটি নোটের জন্য বাঁ হাত ডান হাতের উপর দিয়ে যায়।",
-            "ru": "Сыграйте концовку медленно. Левая рука переходит над правой и берёт три высокие ноты.",
-            "fr": "Joue la fin lentement. La main gauche passe par-dessus la droite pour trois notes aiguës."
+            "en": "Play the last two bars slowly. In the last bar, the left hand crosses over the right.",
+            "de": "Spiel die letzten zwei Takte langsam. Im letzten Takt kreuzt die linke Hand über die rechte."
           },
           "hands": "both",
           "speed": 0.5,
-          "loop": [17, 18],
+          "loop": [16, 17],
           "wait": true
         },
         {
           "text": {
             "en": "Play the whole song with both hands at three-quarter speed.",
-            "de": "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
-            "es": "Toca toda la canción con las dos manos juntas a tres cuartos de velocidad.",
-            "zh": "双手合奏，用四分之三速度弹完整首歌。",
-            "hi": "दोनों हाथों से पूरा गाना तीन-चौथाई स्पीड पर बजाएँ।",
-            "ar": "اعزف الأغنية كاملة باليدين معًا، بثلاثة أرباع السرعة.",
-            "pt": "Toque a música inteira com as duas mãos, a três quartos da velocidade.",
-            "id": "Mainkan seluruh lagu dengan kedua tangan, dengan tiga perempat kecepatan.",
-            "bn": "দুই হাতে পুরো গানটি তিন-চতুর্থাংশ গতিতে বাজান।",
-            "ru": "Сыграйте всю песню двумя руками на скорости 75 %.",
-            "fr": "Joue tout le morceau à deux mains, à 75 % de la vitesse."
+            "de": "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo."
           },
           "hands": "both",
           "speed": 0.75,
@@ -780,16 +744,7 @@
         {
           "text": {
             "en": "Now play it at full speed, and let the last chord ring.",
-            "de": "Jetzt spiel es im vollen Tempo, und lass den letzten Akkord klingen.",
-            "es": "Ahora tócala a velocidad completa, y deja que el último acorde resuene.",
-            "zh": "现在按原速弹，让最后一个和弦的声音延续。",
-            "hi": "अब इसे पूरी स्पीड पर बजाएँ, और आखिरी कॉर्ड की आवाज़ गूँजने दें।",
-            "ar": "والآن اعزفها بالسرعة الكاملة، واترك التآلف الأخير يرن.",
-            "pt": "Agora toque na velocidade normal, e deixe o último acorde soar.",
-            "id": "Sekarang mainkan dengan kecepatan penuh, dan biarkan akor terakhir terus berbunyi.",
-            "bn": "এবার পুরো গতিতে বাজান, আর শেষ কর্ডের আওয়াজ বাজতে দিন।",
-            "ru": "Теперь сыграйте в полном темпе и дайте последнему аккорду прозвучать.",
-            "fr": "Maintenant, joue-le au tempo et laisse sonner le dernier accord."
+            "de": "Jetzt spiel es im vollen Tempo, und lass den letzten Akkord klingen."
           },
           "hands": "both",
           "speed": 1,
@@ -804,16 +759,7 @@
           "kind": "fingering",
           "text": {
             "en": "In each arpeggio, the thumb passes under on the way down, and finger 3 crosses over on the way up.",
-            "de": "In jedem Arpeggio geht der Daumen abwärts unter, und Finger 3 kreuzt aufwärts darüber.",
-            "es": "En cada arpegio, el pulgar pasa por debajo al bajar, y el dedo 3 cruza por encima al subir.",
-            "zh": "每个琶音下行时拇指穿指，上行时 3 指跨指。",
-            "hi": "हर आर्पेजियो में नीचे जाते समय अँगूठा नीचे से जाता है, और ऊपर जाते समय उँगली 3 ऊपर से जाती है।",
-            "ar": "في كل أربيجيو، يمر الإبهام من تحت في النزول، ويعبر الإصبع 3 من فوق في الصعود.",
-            "pt": "Em cada arpejo, o polegar passa por baixo na descida, e o dedo 3 cruza por cima na subida.",
-            "id": "Di setiap arpeggio, ibu jari menyusup saat turun, dan jari 3 menyeberang saat naik.",
-            "bn": "প্রতিটি আর্পেজিওতে নামার সময় বুড়ো আঙুল নিচ দিয়ে যায়, আর ওঠার সময় 3 নম্বর আঙুল উপর দিয়ে যায়।",
-            "ru": "В каждом арпеджио первый палец подкладывается по пути вниз, а 3-й палец перекладывается по пути вверх.",
-            "fr": "Dans chaque arpège, le pouce passe dessous en descendant, et le doigt 3 passe par-dessus en montant."
+            "de": "In jedem Arpeggio geht der Daumen abwärts unter, und Finger 3 kreuzt aufwärts darüber."
           }
         },
         {
@@ -822,16 +768,7 @@
           "kind": "sound",
           "text": {
             "en": "Play the top note of each chord a little louder than the others.",
-            "de": "Spiel den oberen Ton jedes Akkords etwas lauter als die anderen.",
-            "es": "Toca la nota de arriba de cada acorde un poco más fuerte que las demás.",
-            "zh": "每个和弦最上面的音弹得比其他音稍响一点。",
-            "hi": "हर कॉर्ड का सबसे ऊपर वाला नोट बाकी नोटों से थोड़ा ज़ोर से बजाएँ।",
-            "ar": "اعزف النغمة العليا في كل تآلف بقوة أكبر قليلًا من غيرها.",
-            "pt": "Toque a nota de cima de cada acorde um pouco mais forte que as outras.",
-            "id": "Mainkan not teratas setiap akor sedikit lebih keras dari yang lain.",
-            "bn": "প্রতিটি কর্ডের সবচেয়ে উপরের নোটটি বাকিগুলোর চেয়ে একটু জোরে বাজান।",
-            "ru": "Играйте верхнюю ноту каждого аккорда чуть громче остальных.",
-            "fr": "Joue la note du haut de chaque accord un peu plus fort que les autres."
+            "de": "Spiel den oberen Ton jedes Akkords etwas lauter als die anderen."
           }
         },
         {
@@ -839,17 +776,8 @@
           "toBar": 17,
           "kind": "trick",
           "text": {
-            "en": "While the right hand holds its chord, swing the left hand over it like a bell ringer.",
-            "de": "Während die rechte Hand ihren Akkord hält, schwing die linke Hand darüber wie beim Glockenläuten.",
-            "es": "Mientras la mano derecha mantiene su acorde, pasa la mano izquierda por encima con un balanceo, como quien toca una campana.",
-            "zh": "右手按住和弦时，左手像敲钟人一样从它上面跨过去。",
-            "hi": "जब दायाँ हाथ अपना कॉर्ड दबाए रखता है, तब बायाँ हाथ उसके ऊपर से झुलाएँ, जैसे घंटा बजाने वाले का हाथ झूलता है।",
-            "ar": "بينما تبقي اليد اليمنى تآلفها مضغوطًا، حرك اليد اليسرى فوقها كقارع أجراس.",
-            "pt": "Enquanto a mão direita segura o acorde, passe a mão esquerda por cima num balanço, como quem toca um sino.",
-            "id": "Sambil tangan kanan menahan akornya, ayunkan tangan kiri melewatinya seperti orang yang membunyikan lonceng.",
-            "bn": "ডান হাত কর্ড ধরে থাকার সময় বাঁ হাতটি তার উপর দিয়ে দোলান, যেমন করে কেউ ঘণ্টা বাজায়।",
-            "ru": "Пока правая рука держит аккорд, перенесите над ней левую руку, как звонарь.",
-            "fr": "Pendant que la main droite tient son accord, fais passer la main gauche par-dessus, comme un sonneur de cloches."
+            "en": "The home chord climbs in four steps, from low C to high G. The hands take turns, like bells.",
+            "de": "Der Grundakkord steigt in vier Stufen vom tiefen C zum hohen G. Die Hände wechseln sich ab, wie Glocken."
           }
         }
       ],
@@ -857,33 +785,8 @@
         {
           "bar": 17,
           "text": {
-            "en": "Hold the right hand's chord, and cross the left hand over it to play B, D and G.",
-            "de": "Halt den Akkord der rechten Hand, und kreuz die linke Hand darüber, um H, D und G zu spielen.",
-            "es": "Mantén el acorde de la mano derecha, y cruza la mano izquierda por encima para tocar el si, el re y el sol.",
-            "zh": "右手按住和弦，左手跨过它弹 B、D 和 G。",
-            "hi": "दाएँ हाथ का कॉर्ड दबाए रखें, और B, D और G बजाने के लिए बायाँ हाथ उसके ऊपर से ले जाएँ।",
-            "ar": "أبق تآلف اليد اليمنى مضغوطًا، واعبر باليد اليسرى فوقه لتعزف سي وري وصول.",
-            "pt": "Segure o acorde da mão direita e cruze a mão esquerda por cima para tocar Si, Ré e Sol.",
-            "id": "Tahan akor tangan kanan, lalu seberangkan tangan kiri di atasnya untuk memainkan B, D, dan G.",
-            "bn": "ডান হাতের কর্ড ধরে রাখুন, আর B, D আর G বাজাতে বাঁ হাত তার উপর দিয়ে নিয়ে যান।",
-            "ru": "Держите аккорд правой руки и перенесите над ней левую, чтобы сыграть си, ре и соль.",
-            "fr": "Tiens l’accord de la main droite, et passe la main gauche par-dessus pour jouer si, ré et sol."
-          }
-        },
-        {
-          "bar": 18,
-          "text": {
-            "en": "Lift the right hand off its chord, then spread it over C, E, G and C.",
-            "de": "Heb die rechte Hand von ihrem Akkord, dann spann sie über C, E, G und C.",
-            "es": "Levanta la mano derecha de su acorde, y luego ábrela sobre el do, el mi, el sol y el do.",
-            "zh": "右手离开和弦，然后张开手盖住 C、E、G 和 C。",
-            "hi": "दाएँ हाथ को उसके कॉर्ड से उठाएँ, फिर उसे C, E, G और C पर फैलाएँ।",
-            "ar": "ارفع اليد اليمنى عن تآلفها، ثم افردها على دو ومي وصول ودو.",
-            "pt": "Tire a mão direita do acorde e depois abra a mão sobre Dó, Mi, Sol e Dó.",
-            "id": "Angkat tangan kanan dari akornya, lalu bentangkan di atas C, E, G, dan C.",
-            "bn": "ডান হাত কর্ড থেকে তুলে নিন, তারপর C, E, G আর C জুড়ে হাত ছড়িয়ে দিন।",
-            "ru": "Снимите правую руку с аккорда, затем раскройте её на до, ми, соль и до.",
-            "fr": "Lève la main droite de son accord, puis ouvre-la sur do, mi, sol et do."
+            "en": "The left hand plays low C and G, and the right hand E and G. Then the left hand crosses over to E and G, and the right hand jumps above it.",
+            "de": "Die linke Hand spielt das tiefe C und G, die rechte E und G. Dann kreuzt die linke Hand hinüber zu E und G, und die rechte springt darüber."
           }
         },
         {
@@ -900,6 +803,13 @@
             "bn": "এখানে প্রতিটি বিটে একটি কর্ড পড়ে। প্রতিটির পরে হাত একটু তুলুন, আর প্যাডেলকে সেগুলো জুড়ে দিতে দিন।",
             "ru": "Здесь аккорд звучит на каждую долю. Слегка поднимайте руку после каждого, а педаль пусть их соединяет.",
             "fr": "Ici, un accord tombe sur chaque temps. Lève un peu la main après chacun, et laisse la pédale les lier."
+          }
+        },
+        {
+          "bar": 9,
+          "text": {
+            "en": "Play G in octaves, then use the short rest to jump up to the four-note chord.",
+            "de": "Spiel das G in Oktaven, dann nutz die kurze Pause für den Sprung hinauf zum vierstimmigen Akkord."
           }
         }
       ]

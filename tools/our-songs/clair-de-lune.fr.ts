@@ -28,7 +28,7 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         1: "Joue le sol avec le pouce, puis saute d’une octave vers le sol aigu avec le doigt 5.",
         5: "La main descend pendant le silence de la mesure 4. Le doigt 3 arrive sur le la.",
-        7: "Joue le premier mi avec le doigt 3, pas avec le pouce. Le doigt 5 reste ainsi libre pour le la.",
+        7:"Joue le premier mi avec le doigt 3, pas avec le pouce. Le doigt 5 reste ainsi libre pour le la.",
       },
     },
     rare: {
@@ -70,22 +70,8 @@ export const translation: Translation<GuideTranslation> = {
       },
     },
     legendary: {
-      practice: [
-        "Joue la main gauche seule. Le pouce passe dessous et le doigt 3 passe par-dessus. Chaque arpège couvre ainsi deux octaves.",
-        "Joue seuls les accords de quatre notes de la main droite, et lève la main entre deux accords.",
-        "Joue la fin lentement. La main gauche passe par-dessus la droite pour trois notes aiguës.",
-        "Joue tout le morceau à deux mains, à 75 % de la vitesse.",
-        "Maintenant, joue-le au tempo et laisse sonner le dernier accord.",
-      ],
-      tips: [
-        "Dans chaque arpège, le pouce passe dessous en descendant, et le doigt 3 passe par-dessus en montant.",
-        "Joue la note du haut de chaque accord un peu plus fort que les autres.",
-        "Pendant que la main droite tient son accord, fais passer la main gauche par-dessus, comme un sonneur de cloches.",
-      ],
       tricky: {
         13: "Ici, un accord tombe sur chaque temps. Lève un peu la main après chacun, et laisse la pédale les lier.",
-        17: "Tiens l’accord de la main droite, et passe la main gauche par-dessus pour jouer si, ré et sol.",
-        18: "Lève la main droite de son accord, puis ouvre-la sur do, mi, sol et do.",
       },
     },
   },

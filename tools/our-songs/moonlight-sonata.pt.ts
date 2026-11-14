@@ -26,7 +26,6 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         2: "A mão esquerda desce de Ré e Lá para Lá e Mi. O dedo 5 toca o Lá grave.",
         5: "A mão esquerda desce até o Sol com o dedo 5, e o polegar fica no Ré.",
-        10: "A mão esquerda sobe de Fá para Sol. A mão direita volta com o dedo 2 no Sol.",
       },
     },
     rare: {
@@ -45,7 +44,7 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         4: "Toque o Ré com o dedo 5 da mão esquerda, e depois Fá e Lá juntos com os dedos 2 e 1.",
         10: "Use a pausa do compasso 9 para levar a mão direita uma oitava acima. O dedo 3 cai no Lá agudo.",
-        19: "Abra a mão esquerda sobre Ré, Fá e Lá, com os dedos 5, 3 e 1. A mão direita toca Fá e Lá juntos.",
+        18: "Abra a mão esquerda sobre Ré, Fá e Lá, com os dedos 5, 3 e 1. A mão direita toca Fá e Lá juntos.",
       },
     },
     epic: {
@@ -63,8 +62,6 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         17: "Abra a mão direita numa sexta, com o polegar no Lá e o dedo mínimo no Fá.",
-        18: "O acorde muda no meio deste compasso. Troque o pedal ali também.",
-        19: "Abra a mão esquerda sobre uma oitava inteira: o dedo 5 no Ré grave, o polegar no Ré de cima.",
       },
     },
     legendary: {
@@ -83,7 +80,7 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         10: "A partir daqui, a mão direita toca oitavas. O polegar e o dedo mínimo caem juntos nas duas teclas Sol sustenido.",
         17: "A mão esquerda começa o arpejo num Mi grave. Use a pausa no fim do compasso 16 para chegar até ele.",
-        19: "Segure o acorde da mão direita, e cruze a mão esquerda por cima dele para tocar Sol sustenido, Dó sustenido e Mi.",
+        18: "Segure o acorde da mão direita, e cruze a mão esquerda por cima dele para tocar Sol sustenido, Dó sustenido e Mi.",
       },
     },
   },

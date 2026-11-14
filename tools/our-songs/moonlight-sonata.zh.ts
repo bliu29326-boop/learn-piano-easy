@@ -25,7 +25,6 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         2: "左手从 D 和 A 往下移到 A 和 E。5 指弹低音 A。",
         5: "左手用 5 指往下够到 G，拇指留在 D 上。",
-        10: "左手从 F 往上移到 G。右手回来了，2 指放在 G 上。",
       },
     },
     rare: {
@@ -44,7 +43,7 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         4: "左手用 5 指弹 D，然后用 2 指和 1 指同时弹 F 和 A。",
         10: "利用第 9 小节的休止符，把右手往上移一个八度。3 指落在高音 A 上。",
-        19: "左手用 5、3、1 指张开，盖住 D、F、A。右手同时弹 F 和 A。",
+        18: "左手用 5、3、1 指张开，盖住 D、F、A。右手同时弹 F 和 A。",
       },
     },
     epic: {
@@ -62,8 +61,6 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         17: "右手张开到六度，拇指在 A 上，小指在 F 上。",
-        18: "和弦在这个小节中间变换。踏板也在那里换。",
-        19: "左手张开一整个八度：5 指在低音 D 上，拇指在上方的 D 上。",
       },
     },
     legendary: {
@@ -82,7 +79,7 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         10: "从这里开始右手弹八度。拇指和小指同时落在两个升 G 上。",
         17: "左手从一个低音 E 开始弹琶音。利用第 16 小节结尾的休止符移过去。",
-        19: "按住右手的和弦，左手跨过它，弹升 G、升 C 和 E。",
+        18: "按住右手的和弦，左手跨过它，弹升 G、升 C 和 E。",
       },
     },
   },

@@ -26,7 +26,6 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         2: "La main gauche descend de ré et la vers la et mi. Le doigt 5 prend le la grave.",
         5: "La main gauche descend jusqu’au sol avec le doigt 5, et le pouce reste sur le ré.",
-        10: "La main gauche monte du fa au sol. La main droite revient avec le doigt 2 sur le sol.",
       },
     },
     rare: {
@@ -45,7 +44,7 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         4: "Joue le ré avec le doigt 5 de la main gauche, puis fa et la ensemble avec les doigts 2 et 1.",
         10: "Profite du silence de la mesure 9 pour monter la main droite d’une octave. Le doigt 3 arrive sur le la aigu.",
-        19: "Ouvre la main gauche sur ré, fa et la, avec les doigts 5, 3 et 1. La main droite joue fa et la ensemble.",
+        18: "Ouvre la main gauche sur ré, fa et la, avec les doigts 5, 3 et 1. La main droite joue fa et la ensemble.",
       },
     },
     epic: {
@@ -63,8 +62,6 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         17: "Ouvre la main droite sur une sixte, le pouce sur le la et l’auriculaire sur le fa.",
-        18: "L’accord change au milieu de cette mesure. Change aussi de pédale à cet endroit.",
-        19: "Ouvre la main gauche sur toute une octave : le doigt 5 sur le ré grave, le pouce sur le ré au-dessus.",
       },
     },
     legendary: {
@@ -83,7 +80,7 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         10: "À partir d’ici, la main droite joue des octaves. Le pouce et l’auriculaire arrivent ensemble sur les deux sol dièse.",
         17: "La main gauche commence son arpège sur un mi grave. Profite du silence à la fin de la mesure 16 pour y arriver.",
-        19: "Tiens l’accord de la main droite, et passe la main gauche par-dessus pour jouer sol dièse, do dièse et mi.",
+        18: "Tiens l’accord de la main droite, et passe la main gauche par-dessus pour jouer sol dièse, do dièse et mi.",
       },
     },
   },

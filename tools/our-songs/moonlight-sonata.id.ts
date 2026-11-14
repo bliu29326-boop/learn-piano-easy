@@ -26,7 +26,6 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         2: "Tangan kiri turun dari D dan A ke A dan E. Jari 5 memainkan A rendah.",
         5: "Tangan kiri menjangkau turun ke G dengan jari 5, dan ibu jari tetap di D.",
-        10: "Tangan kiri naik dari F ke G. Tangan kanan kembali dengan jari 2 di G.",
       },
     },
     rare: {
@@ -45,7 +44,7 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         4: "Mainkan D dengan jari 5 tangan kiri, lalu F dan A bersamaan dengan jari 2 dan 1.",
         10: "Pakai tanda istirahat di birama 9 untuk memindahkan tangan kanan satu oktaf ke atas. Jari 3 mendarat di A tinggi.",
-        19: "Bentangkan tangan kiri di atas D, F, dan A dengan jari 5, 3, dan 1. Tangan kanan memainkan F dan A bersamaan.",
+        18: "Bentangkan tangan kiri di atas D, F, dan A dengan jari 5, 3, dan 1. Tangan kanan memainkan F dan A bersamaan.",
       },
     },
     epic: {
@@ -63,8 +62,6 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         17: "Bentangkan tangan kanan selebar sekst, dengan ibu jari di A dan kelingking di F.",
-        18: "Akor berganti di tengah birama ini. Ganti pedal di situ juga.",
-        19: "Bentangkan tangan kiri selebar satu oktaf penuh: jari 5 di D rendah, ibu jari di D di atasnya.",
       },
     },
     legendary: {
@@ -83,7 +80,7 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         10: "Mulai dari sini, tangan kanan memainkan oktaf. Ibu jari dan kelingking mendarat bersamaan di kedua tuts G kres.",
         17: "Tangan kiri memulai arpeggionya di E rendah. Pakai tanda istirahat di akhir birama 16 untuk sampai ke sana.",
-        19: "Tahan akor tangan kanan, lalu bawa tangan kiri menyeberang di atasnya untuk memainkan G kres, C kres, dan E.",
+        18: "Tahan akor tangan kanan, lalu bawa tangan kiri menyeberang di atasnya untuk memainkan G kres, C kres, dan E.",
       },
     },
   },

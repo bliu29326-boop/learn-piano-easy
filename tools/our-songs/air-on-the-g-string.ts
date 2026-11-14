@@ -8,22 +8,27 @@
  * B, and the step down to A. Every version writes the tune in 4/2, two bars per print bar, and a note held
  * across one of its bar lines ends at the line.
  *
- * The bass follows the print's continuo, one chord per print beat. After the tune, bars of ours close the
- * song over the home chord, the chord on the fourth, the dominant seventh and the home chord again.
+ * After the tune, every version plays the first violin's next bar, the print's bar 5. It ends on the
+ * chord that leads to the dominant. Epic and Legendary go on with bar 7, the second ending, which closes
+ * the first half on the dominant. Bar 7 would take Common and Rare past their longest time, so they stop
+ * after bar 5. Every version then ends on a bar of the home chord.
  *
- * Common and Rare move the tune down to C major, Wilhelmj's key. Epic and Legendary are written in C major
- * too, then moved up to the print's D major.
+ * The bass follows the print's continuo, one chord per print beat. Common and Rare move the tune down to
+ * C major, Wilhelmj's key. Epic and Legendary are written in C major too, then moved up to the print's D
+ * major.
  *
  * Common plays the tune once over held bass notes. It drops one A and lifts the hand off C for a moment, so
- * the hand moves down to B after a rest. Rare plays the tune twice over a bass note and a two-note chord.
- * Epic rolls an Alberti bass under it with the pedal, then plays it again in thirds and sixths. Legendary
- * walks the bass in octave leaps, as the continuo does. Its second time is an octave up, with four-note
- * chords on the long notes and thirds and sixths between them. Epic and Legendary strike the long first
- * note again in bar 2.
+ * the hand moves down to B after a rest. In bar 5 it merges the two shortest notes into one. Rare plays the
+ * tune twice over a bass note and a two-note chord. Epic and Legendary take the continuo's own walking
+ * bass, whose eighths leap by octaves and become half notes here. Epic plays it as written, with the
+ * pedal. Legendary doubles each note an octave below, with a short rest for each leap. Epic plays the tune
+ * again in thirds and sixths. Legendary's second time is an octave up, with four-note chords on the long
+ * notes and thirds and sixths between them. Epic and Legendary strike the long first note again in bar 2.
  *
  * Under the tune's first beat of bar 2, the print puts G in the bass against the held F sharp. Common and
- * Rare may not rub a semitone, so they put the chord's third in the bass there. Epic and Legendary keep the rub in bars 3 and 11,
- * and their guides mark it.
+ * Rare may not rub a semitone, so they put the chord's third in the bass there. Epic and Legendary keep the
+ * rub in bars 3 and 11, and their guides mark it. Legendary also marks its bar 17. There its chord's held D
+ * rubs against the bass's C sharp, as the viola's D does in the print.
  */
 import type { Key } from "../../src/theory/key";
 import type { OurSong } from "../make-our-songs";
@@ -59,28 +64,57 @@ function octaveUp(text: string): string {
 }
 
 /**
- * A broken chord over `eighths` eighths, from `notes`, low to high: low, high, middle, high, fingered 5, 1,
- * 2, 1. With `rest`, its last eighth is a rest, so the hand can jump to the next chord.
+ * The first violin's bar 5 in C major, in eighths, fingered: the phrase after the tune, which ends on the
+ * chord that leads to the dominant.
  */
-function broken(notes: string, eighths: number, rest = false): string {
-  const [low, middle, high] = notes.split(" ");
-  const group = [`${low}/5:1`, `${high}/1:1`, `${middle}/2:1`, `${high}/1:1`];
-  const line = Array.from({ length: eighths }, (_, at) => group[at % 4] ?? "");
-  if (rest) line[eighths - 1] = "r:1";
-  return line.join(" ");
-}
+const NEXT_BAR = "E5/3:12 F#5/4:2 G5/5:2 | C5/1:4 C5/1:1 D5/2:1 E5/3:4 D5/2:2 D5/2:2 C5/1:2";
 
-/** One bar of two chords, each a half bar long, broken. */
-function bar(first: string, second: string, rest = false): string {
-  return `${broken(first, 8)} ${broken(second, 8, rest)}`;
-}
+/** The first violin's bar 7 in C major, in eighths, fingered: the close of the first half on the dominant. */
+const CADENCE_BAR = "B4/3:2 A4/2:2 A4/2:1 B4/3:1 C5/4:6 B4/3:2 A4/2:2 | G4/1:16";
 
-/** Common's right hand in C major, in eighths: the tune once, then the bars of ours. */
+/** Common's right hand in C major, in eighths: the tune once, bar 5 of the print, then the home note. */
 const COMMON_RIGHT = [
   "E5/2:16 | r:16 | E5/2:4 A5/5:2 F5/3:2 D5/2:2 C5/1:1 r:1 B4/2:2 C5/3:2 | B4/2:8 G4/1:4 r:4",
   "G5/5:16 | r:2 E5/3:2 Bb4/1:4 D5/3:2 C#5/2:2 G5/5:2 F5/4:2 | F5/5:16 | r:2 D5/4:2 A4/2:2 G4/1:2 C5/3:2 B4/2:2 F5/5:2 E5/4:2",
-  "E5/4:8 F5/5:4 C5/3:4 | D5/4:8 B4/2:8 | C5/3:16",
+  "E5/3:12 F#5/4:2 G5/5:2 | C5/1:4 D5/2:2 E5/3:4 D5/2:2 D5/2:2 C5/1:2 | C5/1:16",
 ].join(" | ");
+
+/** The continuo's walking bass in C major, one bar of ours per string: the print's bars 1 to 4, a half bar each. */
+const WALK = ["C3 C4 B3 B2", "A2 A3 G3 G2", "F2 F3 F#3 F#2", "G2 G3 F3 F2", "E2 E3 D3 D2", "C#2 C#3 A2 A3", "D2 D3 C3 C2", "B1 B2 G2 G3"];
+
+/** The continuo's bars 5 and 7 in C major, a half bar each, then the last note of bar 7, which fills a bar. */
+const WALK_NEXT = ["C3 C4 B3 B2", "A2 A3 F#3 D3", "G3 C3 D3 D2"];
+
+/**
+ * Epic's walking bass under the tune in C major, each note a half note, fingered. Finger 5 takes the low
+ * notes and the thumb the high ones. Bar 6 ends early, so the hand can leap down to D.
+ */
+const EPIC_WALK = [
+  "C3/5:4 C4/1:4 B3/1:4 B2/5:4",
+  "A2/5:4 A3/1:4 G3/1:4 G2/5:4",
+  "F2/5:4 F3/1:4 F#3/1:4 F#2/5:4",
+  "G2/5:4 G3/1:4 F3/1:4 F2/5:4",
+  "E2/5:4 E3/1:4 D3/1:4 D2/5:4",
+  "C#2/5:4 C#3/1:4 A2/5:4 A3/1:3 r:1",
+  "D2/5:4 D3/1:4 C3/1:4 C2/5:4",
+  "B1/5:4 B2/1:4 G2/5:4 G3/1:4",
+].join(" | ");
+
+/** Epic's walking bass under bars 5 and 7 of the print, in C major, fingered. */
+const EPIC_WALK_NEXT = "C3/5:4 C4/1:4 B3/1:4 B2/5:4 | A2/5:4 A3/1:4 F#3/2:4 D3/4:4 | G3/1:4 C3/5:4 D3/1:4 D2/5:4 | G2/5:14 r:2";
+
+/** A note name an octave lower. */
+function octaveDown(name: string): string {
+  return name.replace(/(-?\d)$/, (octave) => String(Number(octave) - 1));
+}
+
+/** One bar of the walking bass in octaves: each note doubled below, held three eighths, so the hand leaps in the rest. */
+function octaveWalk(notes: string): string {
+  return notes
+    .split(" ")
+    .map((note) => `${octaveDown(note)}+${note}/5+1:3 r:1`)
+    .join(" ");
+}
 
 /** Rare's right hand in C major, in eighths: the whole tune once. */
 const RARE_TUNE = [
@@ -107,40 +141,25 @@ const THIRDS_FROM_BAR_3 = [
   "C5+E5/1+3:4 F5+A5/3+5:2 A4+F5/1+4:2 F#4+D5/1+4:2 A4+C5/2+3:2 G4+B4/1+2:2 A4+C5/2+3:2",
   "G4+B4/1+3:8 G4/1:8",
   "E5+G5/2+5:8 Bb4+G5/1+5:8",
-  "r:2 C#5+E5/3+5:2 G4+Bb4/1+2:2 A4/1:2 F4+D5/1+5:2 A4+C#5/1+3:2 Bb4+G5/1+5:2 D5+F5/2+4:2",
+  "r:2 C#5+E5/3+5:2 G4+Bb4/1+2:2 A4/1:2 F4+D5/1+5:2 A4+C#5/1+3:2 C#5+G5/2+5:2 D5+F5/2+4:2",
   "A4+F5/1+5:16",
   "r:2 B4+D5/3+5:2 F4+A4/1+2:2 G4/1:2 C5/4:2 G4+B4/1+3:2 D5+F5/3+5:2 C5+E5/2+4:2",
 ].join(" | ");
 
-/** Epic's chords under the tune in C major, two per bar, as close triads for the Alberti bass. */
-const EPIC_BASS = [
-  bar("C3 E3 G3", "B2 D3 G3"),
-  bar("A2 C3 E3", "G2 C3 E3"),
-  bar("F2 A2 C3", "F#2 C3 D3"),
-  bar("G2 B2 D3", "F2 B2 D3", true),
-  bar("E3 G3 C4", "D3 G3 Bb3"),
-  bar("C#3 E3 G3", "D3 F3 A3"),
-  bar("D3 F3 A3", "C3 F3 A3"),
-  `${broken("B2 D3 G3", 8)} ${broken("G2 B2 F3", 4)} ${broken("C3 E3 G3", 4)}`,
-].join(" | ");
+/** Legendary's walking bass under the tune in C major, in octaves. */
+const LEGENDARY_WALK = WALK.map(octaveWalk).join(" | ");
 
-/** Legendary's bass under the tune in C major: each chord's root, its octave and a note between, two per bar. */
-const LEGENDARY_BASS = [
-  bar("C2 G2 C3", "B1 G2 B2"),
-  bar("A1 E2 A2", "G1 E2 G2"),
-  bar("F1 C2 F2", "F#1 C2 F#2"),
-  bar("G1 D2 G2", "F1 B1 F2"),
-  bar("E2 C3 E3", "D2 Bb2 D3"),
-  bar("C#2 A2 C#3", "D2 A2 D3"),
-  bar("D2 A2 D3", "C2 F2 C3"),
-  `${broken("B1 G2 B2", 8, true)} ${broken("G1 F2 G2", 4)} ${broken("C2 G2 C3", 4)}`,
-].join(" | ");
+/**
+ * Legendary's walking bass under bars 5 and 7 of the print, in octaves. The last note of bar 7 ends early,
+ * so the hand can leap.
+ */
+const LEGENDARY_WALK_NEXT = `${WALK_NEXT.map(octaveWalk).join(" | ")} | G1+G2/5+1:14 r:2`;
 
 /** The pedal under the tune in eighths: changed with each chord, two per bar, and on the last beat of bar 8. */
 const PEDAL_TUNE = [...Array(7).fill("P:8 P:8"), "P:8 P:4 P:4"].join(" | ");
 
-/** The pedal under the bars of ours. */
-const PEDAL_END = "P:8 P:8 | P:16 | P:16";
+/** The pedal under bars 5 and 7 of the print and the last chord: changed with each chord. */
+const PEDAL_END = "P:8 P:8 | P:8 P:8 | P:4 P:4 P:8 | P:16 | P:16";
 
 export const airOnTheGString: OurSong = {
   slug: "air-on-the-g-string",
@@ -151,7 +170,7 @@ export const airOnTheGString: OurSong = {
     died: 1750,
     published: 1871,
     edition:
-      "Orchestral Suite No. 3 in D major, BWV 1068, Air, the first violin's bars 1 to 4, in the Bach-Gesellschaft edition as the Mutopia Project typesets it. The year is that of August Wilhelmj's arrangement, which gave the piece its name",
+      "Orchestral Suite No. 3 in D major, BWV 1068, Air, the first violin's bars 1 to 5 and 7 over the continuo, in the Bach-Gesellschaft edition as the Mutopia Project typesets it. The year is that of August Wilhelmj's arrangement, which gave the piece its name",
   },
   about:
     "Bach wrote this Air as a slow movement of his third Orchestral Suite. " +
@@ -168,18 +187,17 @@ export const airOnTheGString: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 4,
-      ownBars: [9, 10],
       right: COMMON_RIGHT,
       left: [
         "C3/1:8 B2/2:8 | A2/3:8 G2/4:8 | A2/3:8 D3/1:8 | G2/4:8 F2/5:8",
         "C3/2:8 D3/1:8 | C#3/2:8 D3/1:8 | D3/1:8 C3/2:8 | B2/3:8 G2/5:8",
-        "C3/2:8 F2+C3/5+2:8 | G2+D3/4+1:16 | C3/2:16",
+        "C3/1:8 B2/2:8 | A2/3:8 D3/1:8 | C3/2:16",
       ].join(" | "),
       skills: ["held-bass", "position-change"],
       practice: [
         { text: "Play bars 1 to 4 with the right hand alone, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 4], wait: true },
         { text: "Play bars 5 to 8 with the right hand alone. The tune leaps down and climbs back up.", hands: "right", speed: 0.6, loop: [5, 8], wait: true },
-        { text: "Now the left hand alone. It holds one bass note or an open fifth at a time.", hands: "left", speed: 0.6, loop: null, wait: true },
+        { text: "Now the left hand alone. It holds one bass note at a time.", hands: "left", speed: 0.6, loop: null, wait: true },
         { text: "Put both hands together, slowly.", hands: "both", speed: 0.7, loop: null, wait: true },
         { text: "Play the whole song with both hands at full speed.", hands: "both", speed: 1, loop: null, wait: false },
       ],
@@ -191,7 +209,7 @@ export const airOnTheGString: OurSong = {
       tricky: {
         3: "Lift the thumb off C for a moment, then play B with finger 2.",
         8: "After the rest, finger 4 plays D. Then the thumb reaches down to G.",
-        9: "The left hand stretches down to F with finger 5, while finger 2 stays on C.",
+        9: "After the rest, move the hand up: finger 3 takes E. Then fingers 4 and 5 climb to F sharp and G.",
       },
     },
     rare: {
@@ -200,16 +218,11 @@ export const airOnTheGString: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 4,
-      ownBars: [17, 18],
-      right: [
-        RARE_TUNE,
-        RARE_TUNE,
-        "E5/2:4 D5/1:2 E5/2:2 F5/3:4 A5/5:2 F5/3:2 | G5/5:4 F5/4:4 D5/2:8 | C5+E5/1+3:16",
-      ].join(" | "),
+      right: [RARE_TUNE, RARE_TUNE, NEXT_BAR, "C5+E5/1+3:16"].join(" | "),
       left: [
         RARE_BASS,
         RARE_BASS,
-        "C3/5:4 E3+G3/2+1:4 A2/5:4 C3+F3/2+1:4 | G2/5:4 B2+F3/2+1:4 G2/5:4 B2+F3/2+1:2 r:2 | C3+E3+G3/5+3+1:16",
+        "C3/5:4 E3+G3/2+1:4 B2/5:4 D3/2:4 | A2/5:4 C3+E3/2+1:4 F#2/5:4 A2+D3/2+1:2 r:2 | C3+E3+G3/5+3+1:16",
       ].join(" | "),
       skills: ["two-note-chords", "position-change"],
       practice: [
@@ -222,7 +235,7 @@ export const airOnTheGString: OurSong = {
       tips: [
         { fromBar: 1, toBar: 4, kind: "sound", text: "The bass walks down one step at a time under the long E. Keep it soft and smooth." },
         { fromBar: 3, toBar: 3, kind: "fingering", text: "Lift the thumb off C for a moment, so finger 2 can land on B." },
-        { fromBar: 17, toBar: 19, kind: "sound", text: "The last three bars are ours. They lead the tune home to C major." },
+        { fromBar: 17, toBar: 18, kind: "rhythm", text: "Bars 17 and 18 play Bach's next bar. Play the quick C and D of bar 18 lightly, then land on E." },
       ],
       tricky: {
         6: "After the rest, finger 5 takes E. Then fingers 2 and 1 play B flat and A.",
@@ -241,32 +254,31 @@ export const airOnTheGString: OurSong = {
           SINGLE_TUNE,
           "C5+E5/1+3:8 G4+E5/1+4:8 | C5+E5/1+3:16",
           THIRDS_FROM_BAR_3,
-          "E5/3:4 D5/2:2 E5/3:2 F5/4:4 A5/5:2 F5/4:2 | B4+G5/1+5:4 B4+F5/1+4:4 B4+D5/1+3:8 | G4+C5+E5/1+2+4:16",
+          NEXT_BAR,
+          CADENCE_BAR,
+          "G4+C5+E5/1+2+4:16",
         ].join(" | "),
       ),
-      left: wholeToneUp(
-        [EPIC_BASS, EPIC_BASS, `${bar("C3 E3 G3", "A2 C3 F3")} | ${bar("G2 B2 F3", "G2 B2 F3")} | C3+E3+G3/5+3+1:16`].join(" | "),
-      ),
+      left: wholeToneUp([EPIC_WALK, EPIC_WALK, EPIC_WALK_NEXT, "C3+E3+G3/5+3+1:16"].join(" | ")),
       pedal: [PEDAL_TUNE, PEDAL_TUNE, PEDAL_END].join(" | "),
       markedClashBars: [3, 11],
-      ownBars: [17, 18],
-      skills: ["alberti-bass", "pedal", "thirds-and-sixths"],
+      skills: ["pedal", "thirds-and-sixths"],
       practice: [
-        { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 8], wait: false },
+        { text: "Play the walking bass alone. Finger 5 takes each low note, and the thumb each high one.", hands: "left", speed: 0.5, loop: [1, 8], wait: false },
         { text: "Play the right hand's thirds and sixths alone, and press both notes of each pair as one.", hands: "right", speed: 0.6, loop: [9, 16], wait: true },
         { text: "Join the hands on the first eight bars, slowly.", hands: "both", speed: 0.5, loop: [1, 8], wait: true },
         { text: "Play the whole song with both hands at three-quarter speed.", hands: "both", speed: 0.75, loop: null, wait: false },
         { text: "Now play it at full speed, with the pedal.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
-        { fromBar: 1, toBar: 8, kind: "sound", text: "Keep the Alberti bass soft and even, so the long notes float above it." },
+        { fromBar: 1, toBar: 8, kind: "sound", text: "The bass walks in steady half notes and leaps by octaves, as Bach's cellos do. Keep it soft and even." },
         { fromBar: 3, toBar: 3, kind: "sound", text: "The G in the bass rubs against the F sharp above it. Bach wrote this rub, so let it ring." },
         { fromBar: 9, toBar: 16, kind: "fingering", text: "The tune is the top note of each pair, so let the upper finger lead." },
       ],
       tricky: {
-        5: "Use the rest at the end of bar 4 to move the left hand up to F sharp.",
-        13: "The left hand moves up again after its rest. Then the right hand opens to a sixth, C and A.",
+        7: "Use the short rest at the end of bar 6 to leap the left hand down to the low E with finger 5.",
         14: "Play each pair as one, and let the top finger sing the tune. The thumb takes most of the lower notes.",
+        15: "Hold B and G with the thumb and finger 5 for the whole bar. The left hand leaps down to the low E before it.",
       },
     },
     legendary: {
@@ -280,32 +292,31 @@ export const airOnTheGString: OurSong = {
           SINGLE_TUNE,
           "r:2 E5+G5+C6+E6/1+2+3+5:6 E5+G5+B5+E6/1+2+3+5:8 |E5+A5+C6+E6/1+2+3+5:14 r:2",
           octaveUp(THIRDS_FROM_BAR_3),
-          "E6/3:4 D6/2:2 E6/3:2 F6/4:4 A6/5:2 F6/4:2 | B5+G6/1+5:4 B5+F6/1+4:4 B5+D6/1+3:6 r:2 | C5+E5+G5+C6/1+2+3+5:16",
+          "G5+C6+E6/1+2+3:12 F#6/4:2 G6/5:2 | C6/1:4 C6/1:1 D6/2:1 E6/3:4 D6/2:2 D6/2:2 C6/1:2",
+          "B5/2:2 A5/1:2 A5/1:1 B5/2:1 C6/3:6 B5/2:2 A5/1:1 r:1 | B4+D5+G5/1+2+5:16",
+          "C5+E5+G5+C6/1+2+3+5:16",
         ].join(" | "),
       ),
-      left: wholeToneUp(
-        [LEGENDARY_BASS, LEGENDARY_BASS, `${broken("C2 G2 C3", 8, true)} ${broken("F1 C2 F2", 8)} |${bar("G1 F2 G2", "G1 F2 G2")} | C2+G2+C3/5+2+1:16`].join(" | "),
-      ),
+      left: wholeToneUp([LEGENDARY_WALK, LEGENDARY_WALK, LEGENDARY_WALK_NEXT, "C2+G2+C3/5+2+1:16"].join(" | ")),
       pedal: [PEDAL_TUNE, PEDAL_TUNE, PEDAL_END].join(" | "),
-      markedClashBars: [3, 11],
-      ownBars: [17, 18],
+      markedClashBars: [3, 11, 17],
       skills: ["octave-bass", "melody-in-chords", "pedal"],
       practice: [
-        { text: "Play the left hand alone. It leaps from each bass note up to its octave and back.", hands: "left", speed: 0.5, loop: [1, 8], wait: false },
+        { text: "Play the left hand alone. It walks in octaves, and leaps in the short rest after each one.", hands: "left", speed: 0.5, loop: [1, 8], wait: false },
         { text: "Play the right hand's chords alone on bars 9 and 10, and let the top finger sing.", hands: "right", speed: 0.5, loop: [9, 10], wait: true },
         { text: "Play the second half with both hands, slowly. The tune is an octave higher there.", hands: "both", speed: 0.6, loop: [9, 16], wait: true },
         { text: "Play the whole song with both hands at three-quarter speed.", hands: "both", speed: 0.75, loop: null, wait: false },
         { text: "Now play it at full speed, and let the last chord ring.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
-        { fromBar: 1, toBar: 8, kind: "fingering", text: "Keep finger 5 on the low bass note and the thumb on its octave. Finger 2 fills the note between." },
+        { fromBar: 1, toBar: 8, kind: "fingering", text: "Keep finger 5 and the thumb spread an octave apart, and move the whole hand from note to note." },
         { fromBar: 3, toBar: 3, kind: "sound", text: "The G in the bass rubs against the F sharp above it. Bach wrote this rub, so let it ring." },
         { fromBar: 9, toBar: 16, kind: "sound", text: "Play the top note of each chord a little louder than the others." },
       ],
       tricky: {
+        7: "The left hand leaps down to the octave on E. Lift each octave a little early, so the hand travels in the rest.",
         9: "Use the rest at the start to move the hand an octave up. Then grab four notes with fingers 1, 2, 3 and 5.",
-        16: "After the rest, fingers 3 and 5 take C sharp and E. Then the thumb walks down to G and climbs again.",
-        17: "Finger 5 reaches up to the high B. The left hand uses its rest to jump down to the low G.",
+        15: "Hold B and G with the thumb and finger 5 for the whole bar, while the left hand leaps down to the octave on E.",
       },
     },
   },
@@ -320,7 +331,7 @@ export const airOnTheGString: OurSong = {
         practice: [
           "Spiel die Takte 1 bis 4 nur mit der rechten Hand, und lass das Stück auf jeden Ton warten.",
           "Spiel die Takte 5 bis 8 nur mit der rechten Hand. Die Melodie springt hinab und steigt wieder hinauf.",
-          "Jetzt die linke Hand allein. Sie hält immer einen Basston oder eine leere Quinte.",
+          "Jetzt die linke Hand allein. Sie hält immer einen Basston.",
           "Nimm beide Hände zusammen, langsam.",
           "Spiel das ganze Stück mit beiden Händen im vollen Tempo.",
         ],
@@ -332,7 +343,7 @@ export const airOnTheGString: OurSong = {
         tricky: {
           3: "Heb den Daumen kurz vom C, dann spiel das H mit Finger 2.",
           8: "Nach der Pause spielt Finger 4 das D. Dann greift der Daumen hinab zum G.",
-          9: "Die linke Hand streckt sich mit Finger 5 hinab zum F, während Finger 2 auf dem C bleibt.",
+          9: "Rück die Hand nach der Pause hinauf: Finger 3 nimmt das E. Dann steigen Finger 4 und 5 zu Fis und G.",
         },
       },
       rare: {
@@ -346,7 +357,7 @@ export const airOnTheGString: OurSong = {
         tips: [
           "Unter dem langen E geht der Bass Schritt für Schritt abwärts. Spiel ihn leise und gebunden.",
           "Heb den Daumen kurz vom C, damit Finger 2 auf dem H landen kann.",
-          "Die letzten drei Takte sind von uns. Sie führen die Melodie nach Hause nach C-Dur.",
+          "Die Takte 17 und 18 spielen Bachs nächsten Takt. Spiel das schnelle C und D in Takt 18 leicht, dann lande auf dem E.",
         ],
         tricky: {
           6: "Nach der Pause nimmt Finger 5 das E. Dann spielen Finger 2 und 1 das B und das A.",
@@ -356,40 +367,40 @@ export const airOnTheGString: OurSong = {
       },
       epic: {
         practice: [
-          "Spiel den Alberti-Bass allein, bis er von selbst rollt: tief, hoch, Mitte, hoch.",
+          "Spiel den schreitenden Bass allein. Finger 5 nimmt jeden tiefen Ton, der Daumen jeden hohen.",
           "Spiel die Terzen und Sexten der rechten Hand allein, und drück beide Töne jedes Paars wie einen an.",
           "Spiel die ersten acht Takte langsam mit beiden Händen zusammen.",
           "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
           "Jetzt spiel es im vollen Tempo, mit Pedal.",
         ],
         tips: [
-          "Halt den Alberti-Bass leise und gleichmäßig, damit die langen Töne darüber schweben.",
+          "Der Bass schreitet in ruhigen Halben und springt in Oktaven, wie Bachs Celli. Spiel ihn leise und gleichmäßig.",
           "Das G im Bass reibt sich am Fis darüber. Bach hat diese Reibung so geschrieben, also lass sie klingen.",
           "Die Melodie ist der obere Ton jedes Paars, also lass den oberen Finger führen.",
         ],
         tricky: {
-          5: "Nutz die Pause am Ende von Takt 4, um die linke Hand hinauf zum Fis zu führen.",
-          13: "Die linke Hand rückt nach ihrer Pause wieder hinauf. Dann öffnet sich die rechte Hand zur Sexte, C und A.",
+          7: "Nutz die kurze Pause am Ende von Takt 6, um die linke Hand mit Finger 5 hinab zum tiefen E springen zu lassen.",
           14: "Spiel jedes Paar wie einen Ton, und lass den oberen Finger die Melodie singen. Der Daumen nimmt die meisten unteren Töne.",
+          15: "Halt H und G mit Daumen und Finger 5 den ganzen Takt. Die linke Hand springt davor hinab zum tiefen E.",
         },
       },
       legendary: {
         practice: [
-          "Spiel die linke Hand allein. Sie springt von jedem Basston hinauf zu seiner Oktave und zurück.",
+          "Spiel die linke Hand allein. Sie schreitet in Oktaven und springt in der kurzen Pause nach jeder.",
           "Spiel die Akkorde der rechten Hand in den Takten 9 und 10 allein, und lass den obersten Finger singen.",
           "Spiel die zweite Hälfte langsam mit beiden Händen. Dort liegt die Melodie eine Oktave höher.",
           "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
           "Jetzt spiel es im vollen Tempo, und lass den letzten Akkord klingen.",
         ],
         tips: [
-          "Halt Finger 5 auf dem tiefen Basston und den Daumen auf seiner Oktave. Finger 2 spielt den Ton dazwischen.",
+          "Halt Finger 5 und den Daumen eine Oktave weit gespreizt, und bewege die ganze Hand von Ton zu Ton.",
           "Das G im Bass reibt sich am Fis darüber. Bach hat diese Reibung so geschrieben, also lass sie klingen.",
           "Spiel den oberen Ton jedes Akkords etwas lauter als die anderen.",
         ],
         tricky: {
+          7: "Die linke Hand springt hinab zur Oktave auf E. Heb jede Oktave etwas früher ab, damit die Hand in der Pause reist.",
           9: "Nutz die Pause am Anfang, um die Hand eine Oktave höher zu setzen. Dann greif vier Töne mit Finger 1, 2, 3 und 5.",
-          16: "Nach der Pause nehmen Finger 3 und 5 das Cis und das E. Dann geht der Daumen hinab zum G und steigt wieder.",
-          17: "Finger 5 greift hinauf zum hohen H. Die linke Hand nutzt ihre Pause, um hinab zum tiefen G zu springen.",
+          15: "Halt H und G mit Daumen und Finger 5 den ganzen Takt, während die linke Hand hinab zur Oktave auf E springt.",
         },
       },
     },

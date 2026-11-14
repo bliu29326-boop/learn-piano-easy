@@ -31,15 +31,15 @@
   "mythic": "piano-midi/mond_1.mid",
   "versions": {
     "common": {
-      "file": "ours/moonlight-sonata/common.mid",
+      "file": "ours/moonlight-sonata/common-2.mid",
       "skills": [
         "five-finger-position",
         "held-bass",
         "open-fifths"
       ],
       "fingers": {
-        "right": [3, 3, 3, 3, 3, 3, 4, 3, 2, 5, 1, 2, 4, 3, 2, 1],
-        "left": [3, 1, 5, 2, 5, 2, 3, 1, 5, 1, 2, 2, 5, 1, 5, 1, 5, 1, 4, 2, 1]
+        "right": [3, 3, 3, 3, 3, 3, 4, 3, 2, 5, 1, 1],
+        "left": [3, 1, 5, 2, 5, 2, 3, 1, 5, 1, 2, 2, 5, 1, 5, 1, 5, 1]
       },
       "start": {
         "right": [65, 67, 69, 70, 72],
@@ -218,17 +218,8 @@
         {
           "bar": 10,
           "text": {
-            "en": "The left hand moves up from F to G. The right hand comes back with finger 2 on G.",
-            "de": "Die linke Hand rückt von F hinauf zu G. Die rechte Hand kommt mit Finger 2 auf dem G zurück.",
-            "es": "La mano izquierda sube de fa a sol. La mano derecha vuelve con el dedo 2 en el sol.",
-            "zh": "左手从 F 往上移到 G。右手回来了，2 指放在 G 上。",
-            "hi": "बायाँ हाथ F से ऊपर G पर जाता है। दायाँ हाथ उँगली 2 को G पर रखकर लौटता है।",
-            "ar": "تصعد اليد اليسرى من فا إلى صول. وتعود اليد اليمنى بالإصبع 2 على صول.",
-            "pt": "A mão esquerda sobe de Fá para Sol. A mão direita volta com o dedo 2 no Sol.",
-            "id": "Tangan kiri naik dari F ke G. Tangan kanan kembali dengan jari 2 di G.",
-            "bn": "বাঁ হাত F থেকে উঠে G-তে যায়। ডান হাত ফিরে আসে, 2 নম্বর আঙুল G-তে রেখে।",
-            "ru": "Левая рука переходит вверх с фа на соль. Правая рука возвращается, 2-й палец на соль.",
-            "fr": "La main gauche monte du fa au sol. La main droite revient avec le doigt 2 sur le sol."
+            "en": "The right hand comes back with the thumb on F. The left hand moves down to D and A, with fingers 5 and 1.",
+            "de": "Die rechte Hand kommt mit dem Daumen auf dem F zurück. Die linke Hand rückt hinab zu D und A, mit Finger 5 und 1."
           }
         },
         {
@@ -250,14 +241,14 @@
       ]
     },
     "rare": {
-      "file": "ours/moonlight-sonata/rare.mid",
+      "file": "ours/moonlight-sonata/rare-2.mid",
       "skills": [
         "pedal",
         "position-change"
       ],
       "fingers": {
-        "right": [3, 3, 3, 3, 3, 3, 4, 3, 2, 5, 1, 3, 3, 3, 3, 3, 3, 4, 3, 2, 5, 1, 4, 2, 1, 3],
-        "left": [5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 3, 1]
+        "right": [3, 3, 3, 3, 3, 3, 4, 3, 2, 5, 1, 3, 3, 3, 3, 3, 3, 4, 3, 2, 5, 1, 1, 3],
+        "left": [5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 3, 1]
       },
       "start": {
         "right": [65, 67, 69, 70, 72],
@@ -337,7 +328,7 @@
           },
           "hands": "both",
           "speed": 0.7,
-          "loop": [10, 19],
+          "loop": [10, 18],
           "wait": true
         },
         {
@@ -434,7 +425,7 @@
           }
         },
         {
-          "bar": 19,
+          "bar": 18,
           "text": {
             "en": "Spread the left hand over D, F and A with fingers 5, 3 and 1. The right hand plays F and A together.",
             "de": "Spann die linke Hand über D, F und A mit Finger 5, 3 und 1. Die rechte Hand spielt F und A zusammen.",
@@ -468,15 +459,15 @@
       ]
     },
     "epic": {
-      "file": "ours/moonlight-sonata/epic.mid",
+      "file": "ours/moonlight-sonata/epic-2.mid",
       "skills": [
         "broken-chords",
         "pedal",
         "thirds-and-sixths"
       ],
       "fingers": {
-        "right": [3, 3, 3, 3, 3, 3, 4, 3, 2, 5, 1, 1, 3, 1, 3, 1, 5, 1, 5, 1, 5, 1, 3, 2, 4, 1, 3, 1, 2, 1, 5, 1, 5, 2, 4, 1, 3, 1, 2, 4],
-        "left": [5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1]
+        "right": [3, 3, 3, 3, 3, 3, 4, 3, 2, 5, 1, 1, 3, 1, 3, 1, 5, 1, 5, 1, 5, 1, 3, 2, 4, 1, 3, 1, 2, 1, 5, 1, 5, 1, 2, 4],
+        "left": [5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1]
       },
       "start": {
         "right": [65, 67, 69, 70, 72],
@@ -518,7 +509,7 @@
           },
           "hands": "right",
           "speed": 0.6,
-          "loop": [10, 19],
+          "loop": [10, 17],
           "wait": true
         },
         {
@@ -637,38 +628,6 @@
       ],
       "tricky": [
         {
-          "bar": 18,
-          "text": {
-            "en": "The chord changes halfway through this bar. Change the pedal there too.",
-            "de": "Der Akkord wechselt mitten in diesem Takt. Wechsle dort auch das Pedal.",
-            "es": "El acorde cambia a mitad de este compás. Cambia también el pedal ahí.",
-            "zh": "和弦在这个小节中间变换。踏板也在那里换。",
-            "hi": "इस माप के बीच में कॉर्ड बदलता है। वहीं पेडल भी बदलें।",
-            "ar": "يتغير التآلف في منتصف هذه المازورة. غيّر الدواسة هناك أيضًا.",
-            "pt": "O acorde muda no meio deste compasso. Troque o pedal ali também.",
-            "id": "Akor berganti di tengah birama ini. Ganti pedal di situ juga.",
-            "bn": "এই বারের মাঝখানে কর্ড বদলায়। সেখানে প্যাডেলও বদলান।",
-            "ru": "На середине этого такта аккорд меняется. Там же смените педаль.",
-            "fr": "L’accord change au milieu de cette mesure. Change aussi de pédale à cet endroit."
-          }
-        },
-        {
-          "bar": 19,
-          "text": {
-            "en": "Spread the left hand over a whole octave: finger 5 on the low D, the thumb on the D above.",
-            "de": "Spann die linke Hand über eine ganze Oktave: Finger 5 auf das tiefe D, den Daumen auf das D darüber.",
-            "es": "Abre la mano izquierda sobre una octava entera: el dedo 5 en el re grave y el pulgar en el re de arriba.",
-            "zh": "左手张开一整个八度：5 指在低音 D 上，拇指在上方的 D 上。",
-            "hi": "बाएँ हाथ को पूरे ऑक्टेव पर फैलाएँ: उँगली 5 नीचे वाले D पर, अँगूठा ऊपर वाले D पर।",
-            "ar": "افرد اليد اليسرى على أوكتاف كامل: الإصبع 5 على ري المنخفضة، والإبهام على ري التي فوقها.",
-            "pt": "Abra a mão esquerda sobre uma oitava inteira: o dedo 5 no Ré grave, o polegar no Ré de cima.",
-            "id": "Bentangkan tangan kiri selebar satu oktaf penuh: jari 5 di D rendah, ibu jari di D di atasnya.",
-            "bn": "বাঁ হাত পুরো এক অক্টেভ জুড়ে ছড়িয়ে দিন: 5 নম্বর আঙুল নিচের D-তে, বুড়ো আঙুল তার উপরের D-তে।",
-            "ru": "Раскройте левую руку на целую октаву: 5-й палец на нижнем ре, первый палец на ре октавой выше.",
-            "fr": "Ouvre la main gauche sur toute une octave : le doigt 5 sur le ré grave, le pouce sur le ré au-dessus."
-          }
-        },
-        {
           "bar": 17,
           "text": {
             "en": "Spread the right hand to a sixth, with the thumb on A and the little finger on F.",
@@ -683,19 +642,33 @@
             "ru": "Раскройте правую руку на сексту: первый палец на ля, мизинец на фа.",
             "fr": "Ouvre la main droite sur une sixte, le pouce sur le la et l’auriculaire sur le fa."
           }
+        },
+        {
+          "bar": 11,
+          "text": {
+            "en": "Move the thumb down from F to C sharp, and take A with finger 5 instead of finger 3.",
+            "de": "Führ den Daumen vom F hinab zum Cis, und nimm das A mit Finger 5 statt mit Finger 3."
+          }
+        },
+        {
+          "bar": 16,
+          "text": {
+            "en": "Keep the thumb on E. Finger 2 plays G, then finger 5 reaches up to C.",
+            "de": "Lass den Daumen auf dem E. Finger 2 spielt das G, dann greift Finger 5 hinauf zum C."
+          }
         }
       ]
     },
     "legendary": {
-      "file": "ours/moonlight-sonata/legendary.mid",
+      "file": "ours/moonlight-sonata/legendary-2.mid",
       "skills": [
         "arpeggios",
         "melody-in-chords",
         "hand-crossing"
       ],
       "fingers": {
-        "right": [3, 3, 3, 3, 3, 3, 4, 3, 2, 5, 1, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 2, 3, 5],
-        "left": [5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1]
+        "right": [3, 3, 3, 3, 3, 3, 4, 3, 2, 5, 1, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 2, 3, 5],
+        "left": [5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 1, 3, 2, 1, 2, 3, 1, 2, 5, 2, 5, 2, 1, 3, 2, 1]
       },
       "start": {
         "right": [64, 66, 68, 69, 71],
@@ -756,7 +729,7 @@
           },
           "hands": "both",
           "speed": 0.5,
-          "loop": [18, 19],
+          "loop": [17, 18],
           "wait": true
         },
         {
@@ -836,8 +809,8 @@
           }
         },
         {
-          "fromBar": 19,
-          "toBar": 19,
+          "fromBar": 18,
+          "toBar": 18,
           "kind": "trick",
           "text": {
             "en": "While the right hand holds its chord, float the left hand over it like a ray of moonlight.",
@@ -856,7 +829,7 @@
       ],
       "tricky": [
         {
-          "bar": 19,
+          "bar": 18,
           "text": {
             "en": "Hold the right hand's chord, and cross the left hand over it to play G sharp, C sharp and E.",
             "de": "Halt den Akkord der rechten Hand, und kreuz die linke Hand darüber, um Gis, Cis und E zu spielen.",

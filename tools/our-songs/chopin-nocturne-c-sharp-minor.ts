@@ -1,25 +1,23 @@
 /**
- * *Nocturne in C-sharp minor*: the theme of Chopin's posthumous nocturne, in four versions of ours.
+ * *Nocturne in C-sharp minor*: the opening of Chopin's posthumous nocturne, in four versions of ours.
  *
- * The tune is the theme in the print's bars 5 to 8. The print is in 4/4, Lento con gran espressione, in
- * C-sharp minor. The tune leaves out the print's trill and grace notes. After the long C sharp in its
- * third bar, the print plays a quick dotted figure and a triplet, which the tune leaves out as a rest.
- * The hook is the tune's bars 1 and 2.
+ * The print is in 4/4, Lento con gran espressione, in C-sharp minor. Its bars 1 to 4 are a soft
+ * introduction of chords, and its theme starts in bar 5. The tune is the theme in bars 5 to 8, without
+ * the trill, the grace notes and the quick figure after the long C sharp. The hook is the tune's bars 1
+ * and 2. The print past bar 8 is not available to read, so every version plays only the print's bars 1 to 8.
  *
- * Our chords, one or two per bar, are C-sharp minor, G-sharp major with its seventh, F-sharp minor, and
- * A and E major in our own bars. Common and Rare move the song down a major third to A minor, and Epic
- * moves it down a whole step to B minor. Legendary keeps C-sharp minor. Every version closes on the home
- * minor chord.
+ * Common and Rare move the song down a major third to A minor, and Epic moves it down a whole step to B
+ * minor. Legendary keeps C-sharp minor. Every version plays the introduction, then the theme, and closes
+ * on the home minor chord.
  *
- * Common plays the tune over held open fifths and single bass notes, then eight bars of our own. It rests
- * a quarter before the tune's octave leap, so the hand has time to move. Rare plays a low note on each
- * beat and a two-note chord on the next, with the pedal held for whole bars. Its own bars add eighths and
- * a two-note chord in the right hand. Rare plays twelve bars of our own after the tune.
+ * Common plays the introduction's top notes over a held bass, then the tune over held open fifths. Rare
+ * plays the introduction in two-note chords, then the tune over a low note and a two-note chord. It plays
+ * the theme again over held triads with the print's quick figure in eighths, then the introduction again.
  *
- * Epic and Legendary fill the tune's rests with figures of ours, play eight bars of our own, then play
- * the tune again and close. Epic rolls broken chords in eighths with the pedal, and plays the tune again
- * in thirds. Legendary rolls arpeggios over two octaves in sixteenths. It plays the tune again in chords
- * of three and four notes.
+ * Epic and Legendary play the print's chords in the introduction, and the print's quick figure after the
+ * long C sharp, with its triplet. Their left hand plays the print's broken chords in eighths under the
+ * theme. They play the theme again, Epic in thirds and sixths and Legendary in chords of three and four
+ * notes. Then the introduction returns as a coda. Legendary adds a low octave to the introduction's bass.
  */
 import type { Key } from "../../src/theory/key";
 import type { OurSong } from "../make-our-songs";
@@ -36,104 +34,118 @@ const A_MINOR: Key = { tonic: 9, mode: "minor" };
 /** The tune in 4/4, in the print's own lengths. */
 const tune = "G#5:2 F#5:2 | G#5:2 C#5:2 | C#6:2 r:2 | A5:2 r:2";
 
-/** Common's right hand in A minor quarters. It rests before the octave leap, and moves in two rests. */
+/**
+ * Common's introduction in A minor quarters: the top notes of the print's bars 1 and 2. E comes a beat
+ * late, on the third beat, since a Beginner's bass holds F for half a bar and E would clash with it.
+ */
+const COMMON_INTRO_RIGHT = "A4/5:1 G4/4:1 F4/3:1 E4/2:1 | D#4/1:2 E4/2:1 r:1";
+
+/** Common's bass under the introduction: the print's bass notes, held. */
+const COMMON_INTRO_LEFT = "A2/2:4 | F2/4:2 E2/5:2";
+
+/** Common's right hand: the introduction twice, the tune, and the home note. It rests before each leap. */
 const COMMON_RIGHT = [
+  COMMON_INTRO_RIGHT,
+  COMMON_INTRO_RIGHT,
   "E5/5:2 D5/4:2 | E5/5:2 A4/1:1 r:1 | A5/5:2 r:2 | F5/3:2 r:2",
-  "A5/5:2 G5/4:1 F5/3:1 | E5/2:2 D5/1:2 | F5/3:2 E5/2:1 D5/1:1 | E5/2:4",
-  "A5/5:2 G5/4:1 F5/3:1 | E5/2:2 D5/1:1 r:1 | C5/3:2 B4/2:2 | A4/1:4",
+  "A4/1:4",
 ].join(" | ");
 
-/** Common's left hand in A minor quarters, in one place: an open fifth or one bass note, held. */
+/** Common's left hand: the introduction's bass twice, then an open fifth or one bass note, held. */
 const COMMON_LEFT = [
-  "A2+E3/5+1:2 E3/1:2 | A2+E3/5+1:4 | D3/2:4 | D3/2:2 E3/1:2",
-  "D3/2:4 | A2+E3/5+1:2 E3/1:2 | D3/2:4 | E3/1:4",
-  "D3/2:4 | E3/1:4 | A2+E3/5+1:2 E3/1:2 | A2+E3/5+1:4",
+  COMMON_INTRO_LEFT,
+  COMMON_INTRO_LEFT,
+  "A2/5:2 E3/1:2 | A2+E3/5+1:4 | D3/2:4 | D3/2:2 E3/1:2",
+  "A2+E3/5+1:4",
 ].join(" | ");
 
-/** Rare's right hand in A minor eighths: the tune, then twelve bars of our own. */
+/** Rare's introduction in A minor eighths: the print's bars 1 and 2 in two-note chords, then single notes. */
+const RARE_INTRO_RIGHT = "E4+A4/2+5:2 r:1 E4+G4/2+4:1 D4+F4/1+3:2 r:1 E4/2:1 | D#4/1:2 E4/2:2 r:4";
+
+/** Rare's left hand under the introduction: the print's chords on the beat, then its falling bass. */
+const RARE_INTRO_LEFT = "A2/4:2 C3+E3/2+1:2 A2/4:2 D3+F3/2+1:2 | A2+F3/4+1:2 G#2+B2/5+2:2 r:4";
+
+/** Rare's right hand: the introduction, the tune, the theme again with the print's quick figure, the introduction again. */
 const RARE_RIGHT = [
+  RARE_INTRO_RIGHT,
+  RARE_INTRO_RIGHT,
   "E5/5:4 D5/4:4 | E5/5:4 A4/1:4 | A5/5:4 r:4 | F5/3:4 r:4",
-  "A5/5:3 G5/4:1 F5/3:2 E5/2:2 | E5/2:4 D5/1:4 | F5/3:2 A5/5:2 G5/4:2 F5/3:2 | E5/2:6 r:2",
-  "D5+F5/1+3:4 E5/2:2 F5/3:2 | E5/2:2 A5/5:2 G5/4:2 E5/2:2 | F5/3:4 E5/2:2 D5/1:2 | E5/2:6 r:2",
-  "C5/3:4 E5/5:2 D5/4:2 | D5/4:4 B4/2:4 | C5/3:2 D5/4:2 B4/2:4 | A4+C5/1+3:8",
+  "E5/2:4 D5/1:4 | E5/2:4 A4/1:4 | E5+A5/2+5:4 A5/5:1 G5/4:1 A5/5:1 G5/4:1 | D5+F5/1+3:4 r:4",
+  RARE_INTRO_RIGHT,
+  RARE_INTRO_RIGHT,
+  "E4+A4/2+5:8",
 ].join(" | ");
 
-/** Rare's half bar in A minor eighths: a low note on the beat, then a two-note chord, in one place. */
+/** Rare's half bar in A minor eighths under the tune: a low note on the beat, then a two-note chord. */
 const PULSE: Record<string, string> = {
   a: "A2/5:2 C3+E3/3+1:2",
-  e: "E3/1:2 B2+D3/4+2:2",
+  A: "A2/5:2 C#3+E3/3+1:2",
   d: "D3/2:2 A2+D3/5+2:2",
 };
 
-/** Rare's chords, two per bar, before its last bar. */
-const RARE_CHORDS = "aeaadddeddaeddeeddaadeaaaadede";
-
-/** The tune in 4/4 sixteenths, in C-sharp minor, with a dotted figure of ours in each rest. */
-const TUNE_FILLED = [
-  "G#5/5:8 F#5/4:8 | G#5/5:8 C#5/1:8",
-  "C#6/5:8 B5/4:3 A5/3:1 F#5/1:1 G#5/2:1 A5/3:1 G#5/2:1 | A5/3:8 G#5/2:4 F#5/1:4",
+/** Rare's left hand: the introduction, the pulse under the tune, held triads under the theme again, and the close. */
+const RARE_LEFT = [
+  RARE_INTRO_LEFT,
+  RARE_INTRO_LEFT,
+  bars(PULSE, "adaaAadd"),
+  "A2+C3+E3/5+3+1:4 A2+D3/5+2:4 | A2+C3+E3/5+3+1:8 | A2+C#3+E3/5+2+1:4 A2+C3+E3/5+3+1:4 | A2+D3/5+2:8",
+  RARE_INTRO_LEFT,
+  RARE_INTRO_LEFT,
+  "A2+C3+E3/5+3+1:8",
 ].join(" | ");
 
-/** Our eight bars after the tune, in C-sharp minor sixteenths, for Epic and Legendary. */
-const OWN = [
-  "A5/5:6 G#5/4:2 F#5/3:4 E5/2:4 | F#5/3:4 A5/5:4 G#5/4:8",
-  "E5/3:6 D#5/2:2 C#5/1:4 E5/3:4 | F#5/4:6 E5/3:2 D#5/2:8",
-  "C#6/5:6 B5/4:2 A5/3:4 E5/1:4 | G#5/4:6 F#5/3:2 E5/2:4 B4/1:4",
-  "A5/5:4 F#5/3:4 B#4/1:4 D#5/2:4 | C#5/2:8 D#5/3:4 B#4/1:4",
-].join(" | ");
+/** Rare's pedal, held only through bars of one chord. */
+const RARE_PEDAL = ["r:8 | r:8 | r:8 | r:8", "r:8 | P:8 | r:8 | P:8", "r:8 | P:8 | r:8 | P:8", "r:8 | r:8 | r:8 | r:8", "P:8"].join(" | ");
 
-/** The tune's third bar again with the figure, after a chord on the long C sharp. */
-const FIGURE = "B5/4:3 A5/3:1 F#5/1:1 G#5/2:1 A5/3:1 G#5/2:1";
+/** The print's bars 1 and 2 in C-sharp minor, in 4/4 split into twelve: its chords on and off the beat. */
+const INTRO_RIGHT =
+  "E4+G#4+C#5/1+2+5:12 r:6 C#4+G#4+B4/1+3+5:6 C#4+F#4+A4/1+3+5:12 r:6 C#4+E4+G#4/1+2+4:6 | " +
+  "C#4+E4+G4/2+3+4:12 B#3+D#4+G#4/1+2+5:12 r:24";
 
-/** Epic's tune again in thirds, with a short rest before its octave leap, then the close on C-sharp minor. */
-const EPIC_AGAIN = [
-  "E5+G#5/3+5:8 D#5+F#5/2+4:8 | E5+G#5/3+5:8 C#5+E5/1+3:6 r:2",
-  `A5+C#6/3+5:8 ${FIGURE} | F#5+A5/2+4:8 G#5/4:4 F#5/3:4`,
-  "B#4+D#5/1+3:8 D#5+F#5/2+4:8 | C#5+E5+G#5/1+3+5:16",
-].join(" | ");
+/** The print's bass under its bars 1 and 2, with Legendary's low octave at the start. */
+const introLeft = (low: string): string => `${low}:12 r:6 C#3/2:6 F#3/1:12 r:6 C#3/2:6 | A2/4:12 G#2/5:12 r:24`;
 
-/** Legendary's tune again in chords of three and four notes, each wide move after a rest, then the close. */
-const LEGENDARY_AGAIN = [
-  "G#4+C#5+G#5/1+2+5:6 r:2 F#4+B#4+F#5/1+2+5:6 r:2 | G#4+E5+G#5/1+3+5:6 r:2 C#4+G#4+C#5/1+3+5:6 r:2",
-  `C#5+F#5+A5+C#6/1+2+3+5:8 ${FIGURE} | F#5+A5/2+4:8 G#5/4:4 F#5/3:2 r:2`,
-  "G#4+B#4+D#5+F#5/1+2+3+5:6 r:2 G#4+B#4+D#5+G#5/1+2+3+5:6 r:2 | C#5+E5+G#5+C#6/1+2+3+5:16",
-].join(" | ");
+/** The theme in C-sharp minor, with the print's quick figure and triplet after the long C sharp. */
+const THEME = "G#5/5:24 F#5/4:24 | G#5/5:24 C#5/1:24 | C#6/5:24 C#6/5:9 B5/4:3 C#6/5:4 B5/4:4 A5/3:4 | A5/3:24 r:24";
+
+/** The print's quick figure, after the long C sharp in the tune's third bar. */
+const FIGURE = "C#6/5:9 B5/4:3 C#6/5:4 B5/4:4 A5/3:4";
+
+/** Epic's theme again in thirds and sixths under the tune. */
+const EPIC_AGAIN =
+  "E5+G#5/3+5:24 D#5+F#5/2+4:24 | E5+G#5/3+5:18 r:6 E4+C#5/1+5:18 r:6 | " +
+  `E#5+C#6/2+5:24 ${FIGURE} | F#5+A5/2+4:24 r:24`;
+
+/** Legendary's theme again in chords of three and four notes, each wide move after a rest. */
+const LEGENDARY_AGAIN =
+  "G#4+C#5+G#5/1+2+5:18 r:6 A4+D#5+F#5/1+3+5:18 r:6 | G#4+E5+G#5/1+3+5:18 r:6 E4+G#4+C#5/1+2+5:18 r:6 | " +
+  `C#5+E#5+G#5+C#6/1+2+3+5:24 ${FIGURE} | C#5+F#5+A5/1+2+4:24 r:24`;
 
 /**
- * The chords of Epic and Legendary, two per bar, before the last bar. c is C-sharp minor, g is G-sharp
- * seventh, G is G-sharp major, f is F-sharp minor, a is A major and E is E major.
+ * The print's left hand under the theme, a half bar of eighths: the bass, then three notes rising and
+ * falling back. c is C-sharp minor, d is its chord with D sharp, and C is C-sharp major. f is F-sharp
+ * minor, and F is F-sharp minor with a rest before the next bass.
  */
-const CHORDS = "cgccfffG" +"aafGccfGaaEEfGcG" + "cgccffffgG";
-
-/** Epic's half bar in sixteenths: a broken chord in eighths, low, high, middle, high. */
 const BROKEN: Record<string, string> = {
-  c: "C#3/5:2 G#3/1:2 E3/3:2 G#3/1:2",
-  g: "G#2/5:2 F#3/1:2 B#2/4:2 D#3/2:2",
-  G: "G#2/5:2 D#3/1:2 B#2/3:2 D#3/1:2",
-  f: "F#2/5:2 C#3/1:2 A2/3:2 C#3/1:2",
-  a: "A2/5:2 E3/1:2 C#3/3:2 E3/1:2",
-  E: "E2/5:2 B2/1:2 G#2/3:2 B2/1:2",
+  c: "C#3/5:6 G#3/2:6 E4/1:6 C#4/1:6",
+  d: "C#3/5:6 A3/2:6 D#4/1:6 C#4/1:6",
+  C: "C#3/5:6 G#3/2:6 E#4/1:6 C#4/1:6",
+  f: "F#3/5:6 A3/3:6 F#4/1:6 C#4/1:6",
+  F: "F#3/5:6 A3/3:6 F#4/1:6 r:6",
 };
 
-/** The six notes of each chord over two octaves, for Legendary's arpeggios. */
-const WIDE_NOTES: Record<string, string> = {
-  c: "C#2 G#2 C#3 E3 G#3 C#4",
-  g: "G#1 D#2 G#2 B#2 D#3 F#3",
-  G: "G#1 D#2 G#2 B#2 D#3 G#3",
-  f: "F#1 C#2 F#2 A2 C#3 F#3",
-  a: "A1 E2 A2 C#3 E3 A3",
-  E: "E1 B1 E2 G#2 B2 E3",
-};
+/** The print's bars 5 to 8 of the left hand, then the same under the theme again. */
+const THEME_LEFT = `${bars(BROKEN, "cdccCcff")} | ${bars(BROKEN, "cdccCcfF")}`;
 
-/** Legendary's half bar of arpeggio in sixteenths: up two octaves, then an eighth's rest to jump back down. */
-const WIDE: Record<string, string> = {};
-for (const [chord, notes] of Object.entries(WIDE_NOTES)) {
-  const pitches = notes.split(" ");
-  const fingers = [5, 2, 1, 3, 2, 1];
-  WIDE[chord] = `${pitches.map((pitch, at) => `${pitch}/${fingers[at]}:1`).join(" ")} r:2`;
-}
+/** The pedal of Epic and Legendary: changed with each chord, and held through the last bar. */
+const PEDAL = [
+  "P:24 P:24 | P:12 P:36 | P:24 P:24 | P:12 P:36",
+  Array(8).fill("P:24 P:24").join(" | "),
+  "P:24 P:24 | P:12 P:36 | P:24 P:24 | P:12 P:36",
+  "P:48",
+].join(" | ");
 
-/** Bars of `patterns` from `chords`, such as `"cgcc"`: one letter per half bar, two per bar. */
+/** Bars of `patterns` from `chords`, such as `"cdcc"`: one letter per half bar, two per bar. */
 function bars(patterns: Record<string, string>, chords: string): string {
   const halves = [...chords].map((chord) => {
     const pattern = patterns[chord];
@@ -146,7 +158,18 @@ function bars(patterns: Record<string, string>, chords: string): string {
 }
 
 /** Each pitch of the C-sharp minor text and its pitch in B minor, a whole step down. */
-const DOWN_A_STEP: Record<string, string> = { "C#": "B", "D#": "C#", E: "D", "F#": "E", "G#": "F#", A: "G", B: "A", "B#": "A#" };
+const DOWN_A_STEP: Record<string, string> = {
+  "C#": "B",
+  "D#": "C#",
+  E: "D",
+  "E#": "D#",
+  "F#": "E",
+  G: "F",
+  "G#": "F#",
+  A: "G",
+  B: "A",
+  "B#": "A#",
+};
 
 /** `text`, written in C-sharp minor, moved down a whole step to B minor. */
 function toBMinor(text: string): string {
@@ -157,8 +180,12 @@ function toBMinor(text: string): string {
   });
 }
 
-/** The pedal of Epic and Legendary: changed at each chord, twice a bar, and held through the last bar. */
-const PEDAL = `${Array(17).fill("P:8 P:8").join(" | ")} | P:16`;
+/** The right hand of Epic or Legendary: the introduction, the theme, the theme `again`, the introduction, and `close`. */
+const twelveRight = (again: string, close: string): string => [INTRO_RIGHT, INTRO_RIGHT, THEME, again, INTRO_RIGHT, INTRO_RIGHT, close].join(" | ");
+
+/** The left hand of Epic or Legendary, with `low` as the introduction's first bass. */
+const twelveLeft = (low: string): string =>
+  [introLeft(low), introLeft(low), THEME_LEFT, introLeft(low), introLeft(low), "C#2+G#2+C#3/5+2+1:48"].join(" | ");
 
 export const chopinNocturneCSharpMinor: OurSong = {
   slug: "chopin-nocturne-c-sharp-minor",
@@ -169,7 +196,7 @@ export const chopinNocturneCSharpMinor: OurSong = {
     died: 1849,
     published: 1875,
     edition:
-      "Nocturne in C-sharp minor, B. 49, the theme in bars 5 to 8, as a typeset of the opening bars on Wikimedia Commons prints it; the nocturne was first published in 1875",
+      "Nocturne in C-sharp minor, B. 49, bars 1 to 8, as a typeset of the opening bars on Wikimedia Commons prints them; the nocturne was first published in 1875",
   },
   about:
     "Chopin wrote this nocturne in 1830, and it was first published in 1875, long after his death. " +
@@ -187,24 +214,23 @@ export const chopinNocturneCSharpMinor: OurSong = {
       denominator: 4,
       right: COMMON_RIGHT,
       left: COMMON_LEFT,
-      ownBars: [5, 6, 7, 8, 9, 10, 11],
       skills: ["five-finger-position", "held-bass", "position-change"],
       practice: [
         { text: "Play the first two bars with the right hand alone, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 2], wait: true },
-        { text: "Play bars 3 to 10 with the right hand alone. The hand starts higher, with finger 5 on the high A.", hands: "right", speed: 0.6, loop: [3, 10], wait: true },
-        { text: "Now the left hand alone. It never moves, and each finger keeps its own key.", hands: "left", speed: 0.6, loop: null, wait: true },
+        { text: "Play bars 5 to 9 with the right hand alone. The hand starts higher, with finger 5 on the high E.", hands: "right", speed: 0.6, loop: [5, 9], wait: true },
+        { text: "Now the left hand alone. It plays one low note at a time, then an open fifth.", hands: "left", speed: 0.6, loop: null, wait: true },
         { text: "Put both hands together on the first four bars, slowly.", hands: "both", speed: 0.7, loop: [1, 4], wait: true },
         { text: "Play the whole song with both hands at full speed.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
-        { fromBar: 1, toBar: 4, kind: "sound", text: "This is a night song. Play softly, and let each long note sing." },
-        { fromBar: 2, toBar: 3, kind: "trick", text: "Use the short rest after the low A to move the hand up to the high A." },
-        { fromBar: 10, toBar: 11, kind: "trick", text: "Use the rest after D to move the hand down. Finger 3 then lands on C." },
+        { fromBar: 1, toBar: 4, kind: "sound", text: "This is a night song. Play softly, and play bars 3 and 4 softer still." },
+        { fromBar: 4, toBar: 5, kind: "trick", text: "Use the rest after E to move the right hand up to the high E." },
+        { fromBar: 6, toBar: 7, kind: "trick", text: "Use the short rest after the low A to move the hand up to the high A." },
       ],
       tricky: {
-        1: "Start with finger 5 on the high E and finger 4 on D. The left hand holds A and E together.",
-        3: "The hand has moved up. Finger 5 plays the high A, and the thumb now sits on D.",
-        11: "The hand has moved back down. Finger 3 plays C, and the thumb ends on A.",
+        2: "Finger 1 plays the black key D sharp, and finger 2 plays E. The left hand steps down from F to E.",
+        4: "This is bar 2 again, more softly. Then lift the hand in the rest and move it up.",
+        5: "The hand has moved up. Finger 5 plays the high E, and finger 4 plays D. The left hand plays A, then E.",
       },
     },
     rare: {
@@ -214,26 +240,25 @@ export const chopinNocturneCSharpMinor: OurSong = {
       denominator: 4,
       steps: 2,
       right: RARE_RIGHT,
-      left: `${bars(PULSE, RARE_CHORDS)} | A2+C3+E3/5+3+1:8`,
-      pedal: "r:8 | P:8 | P:8 | r:8 | P:8 | r:8 | P:8 | P:8 | P:8 | P:8 | r:8 | P:8 | P:8 | r:8 | r:8 | P:8",
-      ownBars: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      left: RARE_LEFT,
+      pedal: RARE_PEDAL,
       skills: ["two-note-chords", "eighth-notes", "pedal"],
       practice: [
-        { text: "Play the left hand alone. A low note comes on the beat, and a two-note chord answers it.", hands: "left", speed: 0.6, loop: [1, 4], wait: true },
-        { text: "Play the right hand alone on the first four bars, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 4], wait: true },
+        { text: "Play the left hand alone. A low note comes on the beat, and a two-note chord answers it.", hands: "left", speed: 0.6, loop: [5, 8], wait: true },
+        { text: "Play the right hand's two-note chords in bars 1 and 2 alone, and let the song wait for each one.", hands: "right", speed: 0.6, loop: [1, 2], wait: true },
+        { text: "Play the quick figure in bar 11 with the right hand alone, slowly.", hands: "right", speed: 0.6, loop: [11, 12], wait: true },
         { text: "Join the hands on bars 5 to 12, slowly.", hands: "both", speed: 0.6, loop: [5, 12], wait: true },
-        { text: "Play the whole song with both hands, a little slower than written.", hands: "both", speed: 0.8, loop: null, wait: false },
-        { text: "Now play it at full speed, with the pedal.", hands: "both", speed: 1, loop: null, wait: false },
+        { text: "Now play the whole song at full speed, with the pedal.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
-        { fromBar: 2, toBar: 3, kind: "fingering", text: "The tune leaps a whole octave. The thumb plays the low A, and finger 5 the high one." },
-        { fromBar: 1, toBar: 16, kind: "sound", text: "Hold the pedal only in bars with one chord, and lift it at the next bar line." },
-        { fromBar: 12, toBar: 13, kind: "trick", text: "Use the rest after E to move the right hand down, so finger 3 lands on C." },
+        { fromBar: 1, toBar: 4, kind: "sound", text: "Play the opening chords softly, and bars 3 and 4 softer still, like an echo." },
+        { fromBar: 6, toBar: 7, kind: "fingering", text: "The tune leaps a whole octave. The thumb plays the low A, and finger 5 the high one." },
+        { fromBar: 11, toBar: 12, kind: "rhythm", text: "After the long A, play A, G, A and G evenly. Then let D and F ring." },
       ],
       tricky: {
-        1: "Finger 5 plays the high E. The left hand plays A on the beat, then C and E together.",
-        3: "Finger 5 lands on the high A after the octave leap. Watch the key, not the hand.",
-        13: "The hand has moved down in the rest. Finger 3 plays C, and finger 5 plays E.",
+        5: "The hand moves up in the rest before. Finger 5 plays the high E, and the left hand plays A, then C and E together.",
+        13: "The hand moves back down in the rest. Fingers 2 and 5 play E and A, and the left hand starts on A with finger 4.",
+        17: "Fingers 2 and 5 play E and A once more. The left hand moves finger 5 to A for the last chord.",
       },
     },
     epic: {
@@ -241,28 +266,27 @@ export const chopinNocturneCSharpMinor: OurSong = {
       bpm: 56,
       numerator: 4,
       denominator: 4,
-      steps: 4,
-      right: toBMinor([TUNE_FILLED, OWN, EPIC_AGAIN].join(" | ")),
-      left: toBMinor(`${bars(BROKEN, CHORDS)} | C#2+G#2+C#3/5+2+1:16`),
+      steps: 12,
+      right: toBMinor(twelveRight(EPIC_AGAIN, "E4+G#4+C#5/1+2+5:48")),
+      left: toBMinor(twelveLeft("C#2/5")),
       pedal: PEDAL,
-      ownBars: [5, 6, 7, 8, 9, 10, 11, 12, 17],
       skills: ["broken-chords", "pedal", "thirds-and-sixths"],
       practice: [
-        { text: "Play the left hand alone until its broken chords roll evenly, low to high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
-        { text: "Play the quick figure in bar 3 with the right hand alone, very slowly.", hands: "right", speed: 0.5, loop: [3, 3], wait: true },
-        { text: "Join the hands on the first four bars, slowly.", hands: "both", speed: 0.5, loop: [1, 4], wait: true },
-        { text: "Play the right hand's thirds alone, and press both notes of each pair as one.", hands: "right", speed: 0.6, loop: [13, 18], wait: true },
+        { text: "Play the left hand's broken chords alone until they roll evenly, low to high and back.", hands: "left", speed: 0.5, loop: [5, 8], wait: false },
+        { text: "Play the quick figure in bar 7 with the right hand alone, very slowly. Count three even notes in the triplet.", hands: "right", speed: 0.5, loop: [7, 7], wait: true },
+        { text: "Play the opening chords with both hands, slowly.", hands: "both", speed: 0.5, loop: [1, 4], wait: true },
+        { text: "Play the right hand's thirds and sixths alone, and press both notes of each pair as one.", hands: "right", speed: 0.6, loop: [9, 12], wait: true },
         { text: "Now play the whole song with both hands at full speed, with the pedal.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
-        { fromBar: 1, toBar: 18, kind: "sound", text: "Change the pedal on each new bass note, twice in every bar." },
-        { fromBar: 3, toBar: 3, kind: "rhythm", text: "The figure after the long B is ours. Play it freely, like a singer taking a breath." },
-        { fromBar: 13, toBar: 16, kind: "fingering", text: "The tune is the top note of each pair, so let the upper finger lead." },
+        { fromBar: 1, toBar: 17, kind: "sound", text: "Change the pedal with each new bass note, so the chords never blur." },
+        { fromBar: 7, toBar: 7, kind: "rhythm", text: "The figure after the long B is Chopin's own. Its last three notes are a triplet, three even notes in one beat." },
+        { fromBar: 9, toBar: 12, kind: "fingering", text: "The tune is the top note of each pair, so let the upper finger lead." },
       ],
       tricky: {
-        7: "Finger 3 holds D, then fingers 2 and 1 step down to B. The left hand keeps rolling B, F sharp and D.",
-        12: "The thumb reaches down to A sharp at the end of the bar. Then fingers 3 and 5 take the tune's first third.",
-        17: "Play A sharp and C sharp with fingers 1 and 3, then C sharp and E with 2 and 4. The left hand leads home to B minor.",
+        5: "The left hand starts its broken chords. Finger 5 plays the low B, fingers 2 and 1 climb, and the thumb slides down to B.",
+        11: "Hold the sixth with fingers 2 and 5. Then play the quick figure: B, A, then the triplet B, A, G.",
+        13: "The opening chords return. Lift the hand in each eighth rest, and land the thumb on D, then on B.",
       },
     },
     legendary: {
@@ -270,28 +294,27 @@ export const chopinNocturneCSharpMinor: OurSong = {
       bpm: 58,
       numerator: 4,
       denominator: 4,
-      steps: 4,
-      right: [TUNE_FILLED, OWN, LEGENDARY_AGAIN].join(" | "),
-      left: `${bars(WIDE, CHORDS)} | C#2+G#2+C#3/5+2+1:16`,
+      steps: 12,
+      right: twelveRight(LEGENDARY_AGAIN, "C#4+E4+G#4+C#5/1+2+3+5:48"),
+      left: twelveLeft("C#1+C#2/5+1"),
       pedal: PEDAL,
-      ownBars: [5, 6, 7, 8, 9, 10, 11, 12, 17],
-      skills: ["arpeggios", "sixteenth-notes", "melody-in-chords"],
+      skills: ["broken-chords", "octave-bass", "melody-in-chords"],
       practice: [
-        { text: "Play the left hand's arpeggios alone. Finger 3 crosses over the thumb on the way up.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },
-        { text: "Play the quick figure in bar 3 with the right hand alone, very slowly.", hands: "right", speed: 0.5, loop: [3, 3], wait: true },
-        { text: "Play the right hand's chords alone, and let the top finger sing the tune.", hands: "right", speed: 0.5, loop: [13, 18], wait: true },
+        { text: "Play the left hand's broken chords alone. The thumb plays the high note, then slides down to C sharp.", hands: "left", speed: 0.5, loop: [5, 8], wait: true },
+        { text: "Play the quick figure in bar 7 with the right hand alone, very slowly. The triplet is three even notes.", hands: "right", speed: 0.5, loop: [7, 7], wait: true },
+        { text: "Play the right hand's chords in bars 9 to 12 alone, and let the top finger sing the tune.", hands: "right", speed: 0.5, loop: [9, 12], wait: true },
         { text: "Play the whole song with both hands at three-quarter speed.", hands: "both", speed: 0.75, loop: null, wait: false },
         { text: "Now play it at full speed, and let the last chord ring.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
-        { fromBar: 1, toBar: 12, kind: "sound", text: "Let the arpeggios ripple softly, like water at night, under the singing tune." },
-        { fromBar: 1, toBar: 18, kind: "trick", text: "Use the short rest at the end of each arpeggio to jump back down to the low note." },
-        { fromBar: 13, toBar: 18, kind: "sound", text: "Play the top note of each chord a little louder than the others." },
+        { fromBar: 1, toBar: 4, kind: "trick", text: "Use the eighth rest after the low octave to jump up to C sharp." },
+        { fromBar: 5, toBar: 12, kind: "sound", text: "Let the broken chords ripple softly, like water at night, under the singing tune." },
+        { fromBar: 9, toBar: 12, kind: "sound", text: "Play the top note of each chord a little louder than the others." },
       ],
       tricky: {
-        3: "Hold the high C sharp with finger 5. Then play the figure lightly: B, A, then F sharp with the thumb.",
-        8: "The left hand climbs from the low F sharp, then from the low G sharp. Jump down in the short rest.",
-        15: "Spread the hand over four notes, from C sharp to C sharp. Then start the figure with finger 4.",
+        3: "Play softer than in bar 1. The left hand drops to the low octave on C sharp, then jumps up in the eighth rest.",
+        13: "The opening returns. The left hand plays the low octave with fingers 5 and 1, then jumps up to C sharp in the rest.",
+        15: "Play this echo very softly. Lift each chord in its eighth rest, and land the thumb on E, then on C sharp.",
       },
     },
   },
@@ -305,77 +328,77 @@ export const chopinNocturneCSharpMinor: OurSong = {
       common: {
         practice: [
           "Spiel die ersten zwei Takte nur mit der rechten Hand, und lass das Stück auf jeden Ton warten.",
-          "Spiel die Takte 3 bis 10 nur mit der rechten Hand. Die Hand beginnt höher, mit Finger 5 auf dem hohen A.",
-          "Jetzt die linke Hand allein. Sie bewegt sich nie, und jeder Finger bleibt auf seiner eigenen Taste.",
+          "Spiel die Takte 5 bis 9 nur mit der rechten Hand. Die Hand beginnt höher, mit Finger 5 auf dem hohen E.",
+          "Jetzt die linke Hand allein. Sie spielt einen tiefen Ton nach dem anderen, dann eine leere Quinte.",
           "Spiel die ersten vier Takte langsam mit beiden Händen zusammen.",
           "Spiel das ganze Stück mit beiden Händen im vollen Tempo.",
         ],
         tips: [
-          "Das ist ein Lied der Nacht. Spiel leise, und lass jeden langen Ton singen.",
+          "Das ist ein Lied der Nacht. Spiel leise, und die Takte 3 und 4 noch leiser.",
+          "Nutz die Pause nach dem E, um die rechte Hand hinauf zum hohen E zu setzen.",
           "Nutz die kurze Pause nach dem tiefen A, um die Hand hinauf zum hohen A zu setzen.",
-          "Nutz die Pause nach dem D, um die Hand nach unten zu setzen. Dann landet Finger 3 auf dem C.",
         ],
         tricky: {
-          1: "Beginn mit Finger 5 auf dem hohen E und Finger 4 auf dem D. Die linke Hand hält A und E zusammen.",
-          3: "Die Hand ist nach oben gerückt. Finger 5 spielt das hohe A, und der Daumen liegt jetzt auf dem D.",
-          11: "Die Hand ist wieder nach unten gerückt. Finger 3 spielt das C, und der Daumen endet auf dem A.",
+          2: "Finger 1 spielt die schwarze Taste Dis, und Finger 2 spielt das E. Die linke Hand geht von F hinunter zu E.",
+          4: "Das ist noch einmal Takt 2, nur leiser. Dann heb die Hand in der Pause und setz sie nach oben.",
+          5: "Die Hand ist nach oben gerückt. Finger 5 spielt das hohe E, und Finger 4 das D. Die linke Hand spielt A, dann E.",
         },
       },
       rare: {
         practice: [
           "Spiel die linke Hand allein. Auf dem Schlag kommt ein tiefer Ton, und ein Zweiklang antwortet.",
-          "Spiel die ersten vier Takte nur mit der rechten Hand, und lass das Stück auf jeden Ton warten.",
+          "Spiel die Zweiklänge der rechten Hand in Takt 1 und 2 allein, und lass das Stück auf jeden warten.",
+          "Spiel die schnelle Figur in Takt 11 langsam nur mit der rechten Hand.",
           "Spiel die Takte 5 bis 12 langsam mit beiden Händen zusammen.",
-          "Spiel das ganze Stück mit beiden Händen, etwas langsamer als notiert.",
-          "Jetzt spiel es im vollen Tempo, mit Pedal.",
+          "Jetzt spiel das ganze Stück im vollen Tempo, mit Pedal.",
         ],
         tips: [
+          "Spiel die Akkorde am Anfang leise, und die Takte 3 und 4 noch leiser, wie ein Echo.",
           "Die Melodie springt eine ganze Oktave. Der Daumen spielt das tiefe A, und Finger 5 das hohe.",
-          "Halt das Pedal nur in Takten mit einem einzigen Akkord, und heb es am nächsten Taktstrich.",
-          "Nutz die Pause nach dem E, um die rechte Hand nach unten zu setzen, sodass Finger 3 auf dem C landet.",
+          "Nach dem langen A spiel A, G, A und G gleichmäßig. Dann lass D und F klingen.",
         ],
         tricky: {
-          1: "Finger 5 spielt das hohe E. Die linke Hand spielt das A auf dem Schlag, dann C und E zusammen.",
-          3: "Nach dem Oktavsprung landet Finger 5 auf dem hohen A. Schau auf die Taste, nicht auf die Hand.",
-          13: "Die Hand ist in der Pause nach unten gerückt. Finger 3 spielt das C, und Finger 5 spielt das E.",
+          5: "Die Hand rückt in der Pause davor nach oben. Finger 5 spielt das hohe E, und die linke Hand spielt A, dann C und E zusammen.",
+          13: "Die Hand rückt in der Pause wieder nach unten. Finger 2 und 5 spielen E und A, und die linke Hand beginnt mit Finger 4 auf dem A.",
+          17: "Finger 2 und 5 spielen noch einmal E und A. Die linke Hand setzt für den letzten Akkord Finger 5 auf das A.",
         },
       },
       epic: {
         practice: [
-          "Spiel die linke Hand allein, bis ihre gebrochenen Akkorde gleichmäßig von tief nach hoch rollen.",
-          "Spiel die schnelle Figur in Takt 3 nur mit der rechten Hand, ganz langsam.",
-          "Spiel die ersten vier Takte langsam mit beiden Händen zusammen.",
-          "Spiel die Terzen der rechten Hand allein, und drück beide Töne jedes Paars wie einen an.",
+          "Spiel die gebrochenen Akkorde der linken Hand allein, bis sie gleichmäßig hinauf und zurück rollen.",
+          "Spiel die schnelle Figur in Takt 7 ganz langsam nur mit der rechten Hand. Zähl drei gleiche Töne in der Triole.",
+          "Spiel die Akkorde vom Anfang langsam mit beiden Händen.",
+          "Spiel die Terzen und Sexten der rechten Hand allein, und drück beide Töne jedes Paars wie einen an.",
           "Jetzt spiel das ganze Stück mit beiden Händen im vollen Tempo, mit Pedal.",
         ],
         tips: [
-          "Wechsle das Pedal bei jedem neuen Basston, zweimal in jedem Takt.",
-          "Die Figur nach dem langen H ist unsere eigene. Spiel sie frei, wie ein Sänger, der Atem holt.",
+          "Wechsle das Pedal bei jedem neuen Basston, damit die Akkorde nie verschwimmen.",
+          "Die Figur nach dem langen H ist Chopins eigene. Ihre letzten drei Töne sind eine Triole, drei gleiche Töne auf einem Schlag.",
           "Die Melodie ist der obere Ton jedes Paars, also lass den oberen Finger führen.",
         ],
         tricky: {
-          7: "Finger 3 hält das D, dann gehen Finger 2 und 1 hinunter zum H. Die linke Hand rollt weiter H, Fis und D.",
-          12: "Am Ende des Takts reicht der Daumen hinunter zum Ais. Dann nehmen Finger 3 und 5 die erste Terz der Melodie.",
-          17: "Spiel Ais und Cis mit Finger 1 und 3, dann Cis und E mit Finger 2 und 4. Die linke Hand führt nach h-Moll zurück.",
+          5: "Die linke Hand beginnt ihre gebrochenen Akkorde. Finger 5 spielt das tiefe H, Finger 2 und 1 steigen, und der Daumen gleitet hinunter zum H.",
+          11: "Halt die Sexte mit Finger 2 und 5. Dann spiel die schnelle Figur: H, A, dann die Triole H, A, G.",
+          13: "Die Akkorde vom Anfang kehren zurück. Heb die Hand in jeder Achtelpause, und setz den Daumen auf D, dann auf H.",
         },
       },
       legendary: {
         practice: [
-          "Spiel die Arpeggios der linken Hand allein. Auf dem Weg nach oben kreuzt Finger 3 über den Daumen.",
-          "Spiel die schnelle Figur in Takt 3 nur mit der rechten Hand, ganz langsam.",
-          "Spiel die Akkorde der rechten Hand allein, und lass den obersten Finger die Melodie singen.",
+          "Spiel die gebrochenen Akkorde der linken Hand allein. Der Daumen spielt den hohen Ton und gleitet dann hinunter zum Cis.",
+          "Spiel die schnelle Figur in Takt 7 ganz langsam nur mit der rechten Hand. Die Triole sind drei gleiche Töne.",
+          "Spiel die Akkorde der rechten Hand in den Takten 9 bis 12 allein, und lass den obersten Finger die Melodie singen.",
           "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
           "Jetzt spiel es im vollen Tempo, und lass den letzten Akkord klingen.",
         ],
         tips: [
-          "Lass die Arpeggios leise unter der singenden Melodie plätschern, wie Wasser in der Nacht.",
-          "Nutz die kurze Pause am Ende jedes Arpeggios, um zurück zum tiefen Ton zu springen.",
+          "Nutz die Achtelpause nach der tiefen Oktave, um hinauf zum Cis zu springen.",
+          "Lass die gebrochenen Akkorde leise unter der singenden Melodie plätschern, wie Wasser in der Nacht.",
           "Spiel den oberen Ton jedes Akkords etwas lauter als die anderen.",
         ],
         tricky: {
-          3: "Halt das hohe Cis mit Finger 5. Dann spiel die Figur leicht: H, A, dann Fis mit dem Daumen.",
-          8: "Die linke Hand steigt vom tiefen Fis auf, dann vom tiefen Gis. Spring in der kurzen Pause zurück nach unten.",
-          15: "Spann die Hand über vier Töne, von Cis bis Cis. Dann beginn die Figur mit Finger 4.",
+          3: "Spiel leiser als in Takt 1. Die linke Hand greift die tiefe Oktave auf Cis und springt in der Achtelpause nach oben.",
+          13: "Der Anfang kehrt zurück. Die linke Hand spielt die tiefe Oktave mit Finger 5 und 1 und springt in der Pause hinauf zum Cis.",
+          15: "Spiel dieses Echo ganz leise. Heb jeden Akkord in seiner Achtelpause, und setz den Daumen auf E, dann auf Cis.",
         },
       },
     },

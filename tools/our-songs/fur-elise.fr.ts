@@ -48,40 +48,8 @@ export const translation: Translation<GuideTranslation> = {
         14: "Le même écart qu’à la mesure 6 : le doigt 2 joue le si, et le pouce gauche monte jusqu’au sol dièse.",
       },
     },
-    epic: {
-      practice: [
-        "Joue la basse d’Alberti seule, jusqu’à ce qu’elle roule toute seule : grave, aigu, milieu, aigu.",
-        "Joue seules les tierces de la main droite, et enfonce les deux notes de chaque paire d’un seul geste.",
-        "Joue les mesures 4 à 8 à deux mains, lentement.",
-        "Joue tout le morceau à deux mains, à 75 % de la vitesse.",
-        "Maintenant, joue-le au tempo, avec la pédale.",
-      ],
-      tips: [
-        "Joue la basse d’Alberti tout en douceur, pour que la mélodie chante au-dessus.",
-        "Change de pédale à chaque barre de mesure. Relève-la au moment où sonne la nouvelle note de basse.",
-        "La mélodie est la note du haut de chaque tierce : laisse le doigt du haut mener.",
-      ],
-      tricky: {
-        20: "Lève la main après les tierces, puis pose le pouce sur le do central et l’auriculaire sur le la.",
-        28: "Le même saut qu’à la mesure 20 : le pouce sur le do central et l’auriculaire sur le la, ensemble.",
-        32: "Ouvre la main pour le dernier accord : le pouce sur do, le doigt 2 sur mi et le doigt 4 sur la.",
-      },
-    },
     legendary: {
-      practice: [
-        "Joue la basse stride seule : saute en bas pour l’octave, puis remonte pour l’accord.",
-        "Joue seuls les accords de la main droite, et laisse le doigt du haut chanter la mélodie.",
-        "Joue la deuxième moitié à deux mains, là où la mélodie monte d’une octave.",
-        "Joue tout le morceau à deux mains, à 75 % de la vitesse.",
-        "Maintenant, joue-le au tempo et laisse sonner le dernier accord.",
-      ],
-      tips: [
-        "En basse stride, regarde la note de basse et laisse la main trouver l’accord au toucher.",
-        "Dans l’aigu, le mi et le ré dièse doivent scintiller. Joue-les légers et réguliers.",
-        "Joue la note du haut de chaque accord un peu plus fort que les autres.",
-      ],
       tricky: {
-        15: "L’accord de la main gauche sur le deuxième temps n’a que mi et sol dièse. Ajoute le si sur le troisième temps.",
         20: "Lâche le do aigu, puis attrape la, do, mi et la avec les doigts 1, 2, 3 et 5.",
         28: "L’accord de quatre notes revient. Lâche d’abord le do aigu, puis pose la main sur toute l’octave.",
       },

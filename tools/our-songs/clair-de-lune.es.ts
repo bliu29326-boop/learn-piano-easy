@@ -25,7 +25,7 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         1: "Toca el sol con el pulgar, y luego salta una octava hacia arriba hasta el sol con el dedo 5.",
         5: "Tu mano baja en el silencio del compás 4. El dedo 3 cae en el la.",
-        7: "Toca el primer mi con el dedo 3, no con el pulgar. Así el dedo 5 queda libre para el la.",
+        7:"Toca el primer mi con el dedo 3, no con el pulgar. Así el dedo 5 queda libre para el la.",
       },
     },
     rare: {
@@ -67,22 +67,8 @@ export const translation: Translation<GuideTranslation> = {
       },
     },
     legendary: {
-      practice: [
-        "Toca la mano izquierda sola. El pulgar pasa por debajo y el dedo 3 cruza por encima, así que cada arpegio abarca dos octavas.",
-        "Toca solos los acordes de cuatro notas de la mano derecha, y levanta la mano entre uno y otro.",
-        "Toca el final despacio. La mano izquierda cruza por encima de la derecha para tres notas agudas.",
-        "Toca toda la canción con las dos manos juntas a tres cuartos de velocidad.",
-        "Ahora tócala a velocidad completa, y deja que el último acorde resuene.",
-      ],
-      tips: [
-        "En cada arpegio, el pulgar pasa por debajo al bajar, y el dedo 3 cruza por encima al subir.",
-        "Toca la nota de arriba de cada acorde un poco más fuerte que las demás.",
-        "Mientras la mano derecha mantiene su acorde, pasa la mano izquierda por encima con un balanceo, como quien toca una campana.",
-      ],
       tricky: {
         13: "Aquí cae un acorde en cada tiempo. Levanta un poco la mano después de cada uno, y deja que el pedal los una.",
-        17: "Mantén el acorde de la mano derecha, y cruza la mano izquierda por encima para tocar el si, el re y el sol.",
-        18: "Levanta la mano derecha de su acorde, y luego ábrela sobre el do, el mi, el sol y el do.",
       },
     },
   },

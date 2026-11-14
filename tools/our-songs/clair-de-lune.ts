@@ -8,12 +8,21 @@
  * eighth, and the print's duplet eighths last three units. The hook is its first four bars.
  *
  * D-flat major has five flats, so every version moves the tune down a semitone to C major. The tune ends on
- * the leading note, and every version adds bars that close on the home chord.
+ * the leading note.
  *
- * Common plays the tune over held bass notes and open fifths. Rare plays it twice over a root and fifth with
- * the pedal, the second time an octave up. Epic rolls close broken chords under it, then plays it in thirds.
- * Legendary rolls arpeggios over two octaves, plays the tune again in four-note chords, and crosses the left
- * hand over for its last bell notes.
+ * Every version closes with the print's bar 9, which resolves the leading note to the home chord. Its top
+ * falls from G to E, as the tune began. The print's next phrase runs to bar 14 and ends on B-flat minor,
+ * A minor in our key. That is away from home, so every version stops at bar 9. Its bass sounds on our bar
+ * line, one print eighth after the print's, as the tune's shifted bar lines need.
+ *
+ * Common plays the tune over held bass notes and open fifths, and the top of bar 9 alone. It plays that top
+ * an octave lower, so the hand stays near the tune's last note. Rare plays the tune twice over a root and fifth with the pedal, the second time an octave up, and bar 9 in thirds. Epic
+ * rolls close broken chords under the tune, then plays it in thirds. Legendary rolls arpeggios over two
+ * octaves, then plays the tune in four-note chords.
+ *
+ * In the print's bar 9, the home chord climbs in four steps, from the bass to the top. Epic and Legendary
+ * take that figure. Epic's left hand plays the low step, and its right hand climbs the other three by octaves. Legendary
+ * plays them as the catalog's Original hands them out, with the left hand crossing over the right.
  */
 import type { Key } from "../../src/theory/key";
 import type { OurSong } from "../make-our-songs";
@@ -94,6 +103,12 @@ const LEGENDARY_LEFT = [
 /** The pedal for the tune's eight bars: changed on every bar line, and three times in bar 6. */
 const PEDAL_TUNE = "P:18 | P:18 | P:18 | P:18 | P:18 | P:6 P:6 P:6 | P:18 | P:18";
 
+/**
+ * The top of the print's bar 9: G and E in thirds over the home chord, as the tune began. It starts 4
+ * eighths into the bar, after the print's low chord.
+ */
+const BAR_9_TOP = "E5+G5/3+5:6 C5+E5/1+3:8";
+
 export const clairDeLune: OurSong = {
   slug: "clair-de-lune",
   title: "Clair de lune",
@@ -118,9 +133,8 @@ export const clairDeLune: OurSong = {
       numerator: 9,
       denominator: 4,
       steps: 2,
-      ownBars: [9],
-      right: `G4/1:1 r:1 G5/5:8 E5/4:8 | ${TUNE_REST} | E4/4:6 D4/3:6 B3/1:6 | C4/2:18`,
-      left: "C3+G3/5+1:18 | D3/2:18 | C3+G3/5+1:18 | D3/2:18 | G2/5:18 | A2/4:18 | D3/1:18 | G2/5:18 | G2/5:16 r:2 | C3+G3/2+1:18",
+      right: `G4/1:1 r:1 G5/5:8 E5/4:8 | ${TUNE_REST} | r:4 G4/5:6 E4/3:8`,
+      left: "C3+G3/5+1:18 | D3/2:18 | C3+G3/5+1:18 | D3/2:18 | G2/5:18 | A2/4:18 | D3/1:18 | G2/5:16 r:2 | C3+G3/2+1:18",
       skills: ["held-bass", "open-fifths"],
       practice: [
         { text: "Play bars 1 to 4 with the right hand alone, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 4], wait: true },
@@ -146,22 +160,21 @@ export const clairDeLune: OurSong = {
       numerator: 9,
       denominator: 4,
       steps: 2,
-      right: `${RIGHT_TUNE} | ${octaveUp(RIGHT_TUNE)} | E5/4:6 D5/3:6 B4/1:6 | E4+C5/1+5:18`,
+      right: `${RIGHT_TUNE} | ${octaveUp(RIGHT_TUNE)} | r:4 ${BAR_9_TOP}`,
       left: [
         "C2/5:6 G2/1:12 | A1/5:6 E2/1:12 | C2/5:6 G2/1:12 | D2/5:6 A2/1:10 r:2",
         "G1/5:6 D2/1:12 | C2/5:6 A2/1:12 | D2/5:6 A2/1:10 r:2 | G1/5:6 D2/1:12",
         "C2/5:6 G2/1:12 | A1/5:6 E2/1:12 | C2/5:6 G2/1:12 | D2/5:6 A2/1:10 r:2",
         "G1/5:6 D2/1:12 | C2/5:6 A2/1:12 | D2/5:6 A2/1:10 r:2 | G1/5:6 D2/1:12",
-        "G1/5:6 D2/1:12 | C2/5:6 G2/1:12",
+        "C2/5:6 G2/1:12",
       ].join(" | "),
-      pedal: Array(18).fill("P:18").join(" | "),
-      ownBars: [17],
+      pedal: Array(17).fill("P:18").join(" | "),
       skills: ["pedal", "open-fifths"],
       practice: [
         { text: "Play the right hand alone on the first eight bars, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 8], wait: true },
         { text: "Play the left hand alone. The low note falls on beat 1, and the fifth above it on beat 4.", hands: "left", speed: 0.6, loop: [1, 8], wait: true },
         { text: "Join the hands on the first eight bars, slowly, with the pedal.", hands: "both", speed: 0.6, loop: [1, 8], wait: true },
-        { text: "Play the second half, where the tune comes back an octave higher.", hands: "both", speed: 0.7, loop: [9, 18], wait: true },
+        { text: "Play the second half, where the tune comes back an octave higher.", hands: "both", speed: 0.7, loop: [9, 17], wait: true },
         { text: "Play the whole song with both hands at full speed.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
@@ -191,13 +204,11 @@ export const clairDeLune: OurSong = {
         "D4+F4/1+3:2 E4+G4/2+4:2 D4+F4/1+3:6 C4+E4/1+3:8",
         "C4+E4/1+3:2 D4+F4/2+4:2 C4+E4/1+3:2 F4+A4/3+5:2 C4+E4/1+3:2 B3+D4/1+2:2 C4+E4/2+4:2 B3+D4/1+3:4",
         "A3+C4/1+3:2 B3+D4/2+4:2 A3+C4/1+3:6 G3+B3/1+2:6 r:2",
-        "D4+F4/1+3:6 E4+G4/2+4:6 D4+F4/1+3:5 r:1",
-        "E4+G4+C5/1+2+5:18",
+        `E3+G3/1+3:1 r:1 E4+G4/1+3:1 r:1 ${BAR_9_TOP}`,
       ].join(" | "),
-      left: `${EPIC_LEFT} | ${EPIC_LEFT} | ${close("G1 D2 F2 C3")} | C2+G2+C3/5+2+1:18`,
-      pedal: `${PEDAL_TUNE} | ${PEDAL_TUNE} | P:18 | P:18`,
-      markedClashBars: [10, 11, 15, 17],
-      ownBars: [17],
+      left: `${EPIC_LEFT} | ${EPIC_LEFT} | C2+G2/5+1:18`,
+      pedal: `${PEDAL_TUNE} | ${PEDAL_TUNE} | P:18`,
+      markedClashBars: [10, 11, 15],
       skills: ["broken-chords", "pedal", "thirds-and-sixths"],
       practice: [
         { text: "Play the left hand alone. Each chord rolls up and down, one note per eighth.", hands: "left", speed: 0.5, loop: [1, 8], wait: true },
@@ -235,30 +246,28 @@ export const clairDeLune: OurSong = {
         "E4+A4+C5+E5/1+2+3+5:1 r:1 F4+A4+D5+F5/1+2+3+5:1 r:1 E4+A4+C5+E5/1+2+3+5:1 r:1 A4+D5+F5+A5/1+2+3+5:1 r:1 " +
           "E4+A4+C5+E5/1+2+3+5:1 r:1 D4+F4+A4+D5/1+2+3+5:1 r:1 E4+A4+C5+E5/1+2+3+5:1 r:1 D4+F4+A4+D5/1+2+3+5:3 r:1",
         "C4+F4+G4+C5/1+2+3+5:1 r:1 D4+F4+B4+D5/1+2+3+5:1 r:1 C4+F4+G4+C5/1+2+3+5:5 r:1 B3+D4+F4+B4/1+2+3+5:5 r:3",
-        "F4+G4+B4+D5/1+2+3+5:16 r:2",
-        "C4+E4+G4+C5/1+2+3+5:18",
+        `E3+G3/1+3:2 r:2 ${BAR_9_TOP}`,
       ].join(" | "),
-      left: `${LEGENDARY_LEFT} | ${LEGENDARY_LEFT} | G1/5:1 D2/2:1 G2/1:1 B2/3:1 D3/2:1 F3/1:1 r:2 B5/3:2 D6/2:2 G6/1:4 r:2 | C2+G2+C3/5+2+1:18`,
-      pedal: `${PEDAL_TUNE} | ${PEDAL_TUNE} | P:18 | P:18`,
+      left: `${LEGENDARY_LEFT} | ${LEGENDARY_LEFT} | C2+G2/5+1:1 r:1 E4+G4/3+1:16`,
+      pedal: `${PEDAL_TUNE} | ${PEDAL_TUNE} | P:18`,
       markedClashBars: [2, 10, 14],
-      ownBars: [17],
       skills: ["arpeggios", "melody-in-chords", "hand-crossing"],
       practice: [
         { text: "Play the left hand alone. The thumb passes under and finger 3 crosses over, so each arpeggio spans two octaves.", hands: "left", speed: 0.5, loop: [1, 8], wait: true },
         { text: "Play the right hand's four-note chords alone, and lift the hand between them.", hands: "right", speed: 0.5, loop: [9, 16], wait: true },
-        { text: "Play the ending slowly. The left hand crosses over the right for three high notes.", hands: "both", speed: 0.5, loop: [17, 18], wait: true },
+        { text: "Play the last two bars slowly. In the last bar, the left hand crosses over the right.", hands: "both", speed: 0.5, loop: [16, 17], wait: true },
         { text: "Play the whole song with both hands at three-quarter speed.", hands: "both", speed: 0.75, loop: null, wait: false },
         { text: "Now play it at full speed, and let the last chord ring.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
         { fromBar: 1, toBar: 8, kind: "fingering", text: "In each arpeggio, the thumb passes under on the way down, and finger 3 crosses over on the way up." },
         { fromBar: 9, toBar: 16, kind: "sound", text: "Play the top note of each chord a little louder than the others." },
-        { fromBar: 17, toBar: 17, kind: "trick", text: "While the right hand holds its chord, swing the left hand over it like a bell ringer." },
+        { fromBar: 17, toBar: 17, kind: "trick", text: "The home chord climbs in four steps, from low C to high G. The hands take turns, like bells." },
       ],
       tricky: {
+        9: "Play G in octaves, then use the short rest to jump up to the four-note chord.",
         13: "A chord falls on every beat here. Lift the hand a little after each one, and let the pedal join them.",
-        17: "Hold the right hand's chord, and cross the left hand over it to play B, D and G.",
-        18: "Lift the right hand off its chord, then spread it over C, E, G and C.",
+        17: "The left hand plays low C and G, and the right hand E and G. Then the left hand crosses over to E and G, and the right hand jumps above it.",
       },
     },
   },
@@ -330,19 +339,19 @@ export const clairDeLune: OurSong = {
         practice: [
           "Spiel die linke Hand allein. Der Daumen geht unter, Finger 3 kreuzt darüber, und so umspannt jedes Arpeggio zwei Oktaven.",
           "Spiel die vierstimmigen Akkorde der rechten Hand allein, und heb die Hand zwischen ihnen an.",
-          "Spiel den Schluss langsam. Die linke Hand kreuzt über die rechte für drei hohe Töne.",
+          "Spiel die letzten zwei Takte langsam. Im letzten Takt kreuzt die linke Hand über die rechte.",
           "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
           "Jetzt spiel es im vollen Tempo, und lass den letzten Akkord klingen.",
         ],
         tips: [
           "In jedem Arpeggio geht der Daumen abwärts unter, und Finger 3 kreuzt aufwärts darüber.",
           "Spiel den oberen Ton jedes Akkords etwas lauter als die anderen.",
-          "Während die rechte Hand ihren Akkord hält, schwing die linke Hand darüber wie beim Glockenläuten.",
+          "Der Grundakkord steigt in vier Stufen vom tiefen C zum hohen G. Die Hände wechseln sich ab, wie Glocken.",
         ],
         tricky: {
+          9: "Spiel das G in Oktaven, dann nutz die kurze Pause für den Sprung hinauf zum vierstimmigen Akkord.",
           13: "Hier kommt auf jeden Schlag ein Akkord. Heb die Hand nach jedem ein wenig an, und lass das Pedal sie verbinden.",
-          17: "Halt den Akkord der rechten Hand, und kreuz die linke Hand darüber, um H, D und G zu spielen.",
-          18: "Heb die rechte Hand von ihrem Akkord, dann spann sie über C, E, G und C.",
+          17: "Die linke Hand spielt das tiefe C und G, die rechte E und G. Dann kreuzt die linke Hand hinüber zu E und G, und die rechte springt darüber.",
         },
       },
     },

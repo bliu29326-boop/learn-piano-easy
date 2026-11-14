@@ -47,40 +47,8 @@ export const translation: Translation<GuideTranslation> = {
         14: "La misma extensión que en el compás 6: el dedo 2 toca el si, y el pulgar izquierdo sube hasta el sol sostenido.",
       },
     },
-    epic: {
-      practice: [
-        "Toca el bajo de Alberti solo hasta que ruede por sí mismo: grave, agudo, medio, agudo.",
-        "Toca solas las dobles notas en terceras de la mano derecha, y presiona las dos notas de cada par como una sola.",
-        "Junta las manos en los compases 4 a 8, despacio.",
-        "Toca toda la canción con las dos manos juntas a tres cuartos de velocidad.",
-        "Ahora tócala a velocidad completa, con el pedal.",
-      ],
-      tips: [
-        "Mantén suave el bajo de Alberti, para que la melodía cante por encima.",
-        "Cambia el pedal en cada línea divisoria. Levántalo justo cuando suena la nueva nota del bajo.",
-        "La melodía es la nota de arriba de cada tercera, así que deja que el dedo de arriba guíe.",
-      ],
-      tricky: {
-        20: "Levanta la mano después de las terceras, y luego apoya el pulgar en el do central y el meñique en el la.",
-        28: "El mismo salto que en el compás 20: el pulgar en el do central y el meñique en el la, a la vez.",
-        32: "Abre la mano para el último acorde: el pulgar en el do, el dedo 2 en el mi y el dedo 4 en el la.",
-      },
-    },
     legendary: {
-      practice: [
-        "Toca el bajo stride solo: salta hacia abajo para la octava, y vuelve arriba para el acorde.",
-        "Toca los acordes de la mano derecha solos, y deja que el dedo de arriba cante la melodía.",
-        "Junta las manos en la segunda mitad, donde la melodía sube una octava.",
-        "Toca toda la canción con las dos manos juntas a tres cuartos de velocidad.",
-        "Ahora tócala a velocidad completa, y deja sonar el último acorde.",
-      ],
-      tips: [
-        "En el bajo stride, mira la nota del bajo y deja que la mano encuentre el acorde al tacto.",
-        "Allá arriba, el mi y el re sostenido deben brillar. Tócalos ligeros y parejos.",
-        "Toca la nota de arriba de cada acorde un poco más fuerte que las demás.",
-      ],
       tricky: {
-        15: "El acorde de la mano izquierda en el segundo tiempo tiene solo el mi y el sol sostenido. Agrega el si en el tercer tiempo.",
         20: "Levanta la mano del do agudo, y luego toma las notas la, do, mi y la con los dedos 1, 2, 3 y 5.",
         28: "Vuelve el acorde de cuatro notas. Primero suelta el do agudo, y luego apoya la mano sobre toda la octava.",
       },

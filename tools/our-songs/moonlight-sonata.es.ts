@@ -26,7 +26,6 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         2: "La mano izquierda baja del re y el la al la y el mi. El dedo 5 toma el la grave.",
         5: "La mano izquierda baja hasta el sol con el dedo 5, y el pulgar se queda en el re.",
-        10: "La mano izquierda sube de fa a sol. La mano derecha vuelve con el dedo 2 en el sol.",
       },
     },
     rare: {
@@ -45,7 +44,7 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         4: "Toca el re con el dedo 5 de la mano izquierda, y luego el fa y el la juntos con los dedos 2 y 1.",
         10: "Usa el silencio del compás 9 para subir la mano derecha una octava. El dedo 3 llega al la agudo.",
-        19: "Abre la mano izquierda sobre el re, el fa y el la con los dedos 5, 3 y 1. La mano derecha toca el fa y el la juntos.",
+        18: "Abre la mano izquierda sobre el re, el fa y el la con los dedos 5, 3 y 1. La mano derecha toca el fa y el la juntos.",
       },
     },
     epic: {
@@ -63,8 +62,6 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         17: "Abre la mano derecha a una sexta, con el pulgar en el la y el meñique en el fa.",
-        18: "El acorde cambia a mitad de este compás. Cambia también el pedal ahí.",
-        19: "Abre la mano izquierda sobre una octava entera: el dedo 5 en el re grave y el pulgar en el re de arriba.",
       },
     },
     legendary: {
@@ -83,7 +80,7 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         10: "Desde aquí la mano derecha toca octavas. El pulgar y el meñique caen juntos en los dos sol sostenido.",
         17: "La mano izquierda empieza su arpegio en un mi grave. Usa el silencio al final del compás 16 para llegar.",
-        19: "Mantén el acorde de la mano derecha, y cruza la izquierda por encima para tocar sol sostenido, do sostenido y mi.",
+        18: "Mantén el acorde de la mano derecha, y cruza la izquierda por encima para tocar sol sostenido, do sostenido y mi.",
       },
     },
   },

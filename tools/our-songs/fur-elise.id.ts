@@ -47,40 +47,8 @@ export const translation: Translation<GuideTranslation> = {
         14: "Rentangan yang sama dengan birama 6: jari 2 memainkan B, dan ibu jari kiri meraih ke atas sampai G kres.",
       },
     },
-    epic: {
-      practice: [
-        "Mainkan bas Alberti saja sampai mengalir dengan sendirinya: rendah, tinggi, tengah, tinggi.",
-        "Mainkan terts tangan kanan saja, dan tekan kedua not setiap pasangan not seperti satu not.",
-        "Gabungkan kedua tangan pada birama 4 sampai 8, pelan-pelan.",
-        "Mainkan seluruh lagu dengan kedua tangan, dengan tiga perempat kecepatan.",
-        "Sekarang mainkan dengan kecepatan penuh, dengan pedal.",
-      ],
-      tips: [
-        "Mainkan bas Alberti dengan lembut, agar melodi bernyanyi di atasnya.",
-        "Ganti pedal di setiap garis birama. Lepaskan pedal tepat saat not bas baru berbunyi.",
-        "Melodinya adalah not teratas setiap terts, jadi biarkan jari yang di atas memimpin.",
-      ],
-      tricky: {
-        20: "Angkat tangan setelah terts, lalu daratkan ibu jari di C tengah dan kelingking di A.",
-        28: "Lompatan yang sama dengan birama 20: ibu jari di C tengah dan kelingking di A, bersamaan.",
-        32: "Bentangkan tangan untuk akor terakhir: ibu jari di C, jari 2 di E, dan jari 4 di A.",
-      },
-    },
     legendary: {
-      practice: [
-        "Mainkan bas stride saja: lompat turun ke oktaf, lalu kembali naik ke akor.",
-        "Mainkan akor tangan kanan saja, dan biarkan jari teratas menyanyikan melodinya.",
-        "Gabungkan kedua tangan pada paruh kedua, tempat melodi naik satu oktaf.",
-        "Mainkan seluruh lagu dengan kedua tangan, dengan tiga perempat kecepatan.",
-        "Sekarang mainkan dengan kecepatan penuh, dan biarkan akor terakhir berbunyi panjang.",
-      ],
-      tips: [
-        "Dalam bas stride, lihat not basnya, dan biarkan tangan menemukan akor dengan rabaan.",
-        "Di nada tinggi, E dan D kres harus berkilau. Mainkan dengan ringan dan rata.",
-        "Mainkan not teratas setiap akor sedikit lebih keras daripada not lainnya.",
-      ],
       tricky: {
-        15: "Akor tangan kiri pada ketukan 2 hanya berisi E dan G kres. Tambahkan B pada ketukan 3.",
         20: "Angkat tangan dari C tinggi, lalu tekan A, C, E, dan A dengan jari 1, 2, 3, dan 5.",
         28: "Akor empat not itu kembali. Angkat dulu tangan dari C tinggi, lalu daratkan di seluruh oktaf.",
       },

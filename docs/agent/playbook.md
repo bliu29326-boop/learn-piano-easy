@@ -85,6 +85,10 @@ Traps a session paid for once, so the next one does not. **It is not a changelog
 - **An orchestral score's tutti pages can be unreadable in every reachable scan.** About 30 staves on a
   page of about 2200 pixels blur each staff space to a few pixels. Crop one tutti bar in
   `.agent-tmp/src-<slug>/full/` before a cut plans on it, and cut to the readable statements.
+- **A reviewer's note-for-note fix can break a Beginner's bass rule.** Its left hand starts only on a
+  strong beat and holds at least a half, so a print's bass on beat 2 is refused. Run
+  `bun tools/check-our-song.ts` on each fix, and keep the writer's shift where the rule refuses the
+  print, as `tools/our-songs/chopin-nocturne-c-sharp-minor.ts` does.
 - **A tune that leaps more than an octave every few bars cannot pass Beginner or Easy.** The meter
   reads those versions' tune in the right hand alone, and allows two hand moves in eight bars. Count a
   tune's leaps before briefing its writer, and cut a leaping tune to its hook phrase, as
