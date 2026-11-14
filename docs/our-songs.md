@@ -24,11 +24,11 @@ player with years of practice. The reasons are in [decision 0002](decisions/0002
   song names the file of its Original as `mythic`.
 - **The meter and the song tools name a version by its id.** The columns of the meter's table are
   Common, Rare, Epic and Legendary.
-- **A version's name is its level.** The song explorer names every song's difficulty as a level, a band
-  of the catalog difficulty. The first four levels are the four versions' bands. `LEVELS` in
-  [src/library/tags.ts](../src/library/tags.ts) owns the levels.
-- **The learner never reads the catalog difficulty.** It sorts the songs, fills a card's meter and maps
-  to a level.
+- **A version's name is its level.** The song explorer's difficulty is five chips: the four versions'
+  bands of the catalog difficulty and Original. Hard holds every difficulty from 4 up. Every catalog
+  row without a version of ours is an Original and also lies in its band. `LEVEL_TAGS` in
+  [src/library/tags.ts](../src/library/tags.ts) owns the chips ([decision 0015](decisions/0015.md)).
+- **The learner never reads the catalog difficulty.** It sorts the songs and maps to a level.
 - **The colour is the token `--c-rarity-<id>`.** The guide and the landing page draw a version in it.
   The explorer draws a version's step in its level's hue.
 - **The explorer shows a song as one card,** with a step per version and the Original as its last step.
@@ -127,10 +127,10 @@ reasons.
 - **A chord the print brackets is rolled.** One hand holds no chord wider than a tenth, so the module
   writes it from its lowest note up, a 32nd per note.
 - **The meter rates it** as the lowest version whose limits it fits, at that version's catalog difficulty.
-  Past Hard it rates 5, the level Advanced. The head comment of
+  Past Hard it rates 5. The head comment of
   [tools/song-meter.ts](../tools/song-meter.ts) owns the rule.
-- **It stays the last step of its card,** even where it rates below Hard. The level filter files it under
-  its own level.
+- **It stays the last step of its card,** even where it rates below Hard. The difficulty chips file it
+  under Original and under its own band.
 - **Its tagline says the piece is set for two hands.** A catalog Original keeps the tagline "The
   composer's own notes."
 

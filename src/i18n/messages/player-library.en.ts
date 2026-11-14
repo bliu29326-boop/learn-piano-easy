@@ -52,7 +52,7 @@ export const playerLibrary = {
     /** The name of each kind of tag, above its chips. */
     kinds: { level: "Difficulty", yours: "Yours", collection: "Collection", style: "Style", skill: "Skill", composer: "Composer" },
     /** The levels of difficulty. The first four also name the four versions of a song of ours. */
-    levels: { beginner: "Beginner", easy: "Easy", medium: "Medium", hard: "Hard", advanced: "Advanced", expert: "Expert" },
+    levels: { beginner: "Beginner", easy: "Easy", medium: "Medium", hard: "Hard" },
     styles: {
       baroque: "Baroque",
       classical: "Classical",

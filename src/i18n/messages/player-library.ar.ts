@@ -48,7 +48,7 @@ export const playerLibrary: Translation<typeof en> = {
     search: { placeholder: "البحث بالعنوان أو الملحن أو الوسم", label: "البحث في الأغاني", clear: "مسح البحث" },
     fits: "تناسب مفاتيحي",
     kinds: { level: "الصعوبة", yours: "أغانيك", collection: "المجموعة", style: "الأسلوب", skill: "المهارة", composer: "الملحن" },
-    levels: { beginner: "مبتدئ", easy: "سهل", medium: "متوسط", hard: "صعب", advanced: "متقدم", expert: "خبير" },
+    levels: { beginner: "مبتدئ", easy: "سهل", medium: "متوسط", hard: "صعب" },
     styles: {
       baroque: "باروك",
       classical: "كلاسيكي",

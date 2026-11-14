@@ -78,9 +78,10 @@ test("an_original_piece_comes_first_and_opens_in_two_hands", async ({ page }) =>
 
   await dialog.getByRole("searchbox", { name: "Search songs" }).fill("twelve bar walk");
   const card = cardOf(dialog, "Twelve-Bar Walk");
-  // A song with one version names its difficulty in a word, where a song of ours has its steps.
-  await expect(card.locator(".song-card__kicker")).toHaveText("Hard");
-  await expect(card.locator(".song-step")).toHaveCount(0);
+  // A piece with one version is its own Original, so its card's one step names it.
+  await expect(card.locator(".song-step")).toHaveCount(1);
+  await expect(card.locator(".song-step")).toHaveAccessibleName("Original");
+  await expect(card.locator(".song-card__kicker")).toHaveCount(0);
   const license = card.locator(".library-license");
   await expect(license).toHaveText("MIT");
   await expect(license).toHaveAttribute("data-tip", "Composed by the learn-piano-easy authors");
@@ -175,20 +176,20 @@ test("the_library_opens_a_song_at_each_rarity", async ({ page }) => {
   // A level chip keeps the song by its version of that level, and the card shows that version, not the one last played.
   await page.getByRole("button", { name: "Songs", exact: true }).click();
   const medium = chip(dialog, "Difficulty", "Medium");
-  const hard = chip(dialog, "Difficulty", "Hard");
-  const advanced = chip(dialog, "Difficulty", "Advanced");
+  const easy = chip(dialog, "Difficulty", "Easy");
+  const original = chip(dialog, "Difficulty", "Original");
   await expect(open).toHaveAccessibleName("Ode to Joy, Hard");
   await medium.click();
   await expect(count).toHaveText("1 song");
   await expect(open).toHaveAccessibleName("Ode to Joy, Medium");
   await expect(cards).toHaveAttribute("data-id", "catalog:ours/ode-to-joy/epic.mid");
   await expect(steps.getByRole("button", { name: "Medium", exact: true })).toHaveAttribute("aria-pressed", "true");
-  // A level none of its versions has hides the song.
+  // A level none of its versions has hides the song. Ode to Joy has no Original yet.
   await medium.click();
-  await advanced.click();
+  await original.click();
   await expect(count).toHaveText("0 songs");
   await expect(cards).toHaveCount(0);
-  // An original score is its song's last step, so its level keeps the song and the card shows the original.
+  // An original score is its song's last step, so the Original chip keeps the song and the card shows it.
   await search.fill("für elise");
   await expect(count).toHaveText("1 song");
   await expect(open).toHaveAccessibleName("Für Elise");
@@ -196,11 +197,11 @@ test("the_library_opens_a_song_at_each_rarity", async ({ page }) => {
 
   // A second level widens the result, and a song with a version at each still counts once.
   await search.fill("");
-  await expect(count).toHaveText("83 songs");
-  await hard.click();
-  await expect(count).toHaveText("182 songs");
-  await advanced.click();
-  await expect(count).toHaveText("101 songs");
+  await original.click();
+  await medium.click();
+  await expect(count).toHaveText("123 songs");
+  await easy.click();
+  await expect(count).toHaveText("139 songs");
 });
 
 test("a_song_is_one_card_and_a_step_picks_its_version", async ({ page }) => {

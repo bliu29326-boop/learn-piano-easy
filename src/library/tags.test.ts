@@ -22,10 +22,10 @@ test("a_level_is_a_band_of_the_difficulty", () => {
     "medium",
     "hard",
     "hard",
-    "advanced",
-    "advanced",
-    "expert",
-    "expert",
+    "hard",
+    "hard",
+    "hard",
+    "hard",
   ]);
 });
 
@@ -57,12 +57,21 @@ test("a_song_carries_the_tags_its_row_and_its_guide_give", () => {
     "composer:Franz Xaver Gruber",
   ]);
   const original = song("Ludwig v. Beethoven", "piano-midi/elise.mid", 5);
-  expect(songTags(original, CONTEXT)).toEqual(["level:advanced", "style:classical", "composer:Ludwig van Beethoven"]);
+  expect(songTags(original, CONTEXT)).toEqual(["level:hard", "level:original", "style:classical", "composer:Ludwig van Beethoven"]);
+});
+
+test("every_row_without_a_version_of_ours_is_an_original_beside_its_band", () => {
+  const ours = song("Edvard Grieg", "ours/morning-mood/mythic.mid", 5, { song: "morning-mood" });
+  const step = song("Edvard Grieg", "ours/morning-mood/epic.mid", 3, { song: "morning-mood", rarity: "epic" });
+  const easy = song("Friedrich Burgmüller", "piano-midi/candeur.mid", 2);
+  expect(songTags(ours, CONTEXT).slice(0, 2)).toEqual(["level:hard", "level:original"]);
+  expect(songTags(step, CONTEXT)).not.toContain("level:original");
+  expect(songTags(easy, CONTEXT).slice(0, 2)).toEqual(["level:easy", "level:original"]);
 });
 
 test("a_tag_reads_by_its_name", () => {
-  const names = (["level:advanced", "level:easy", "yours:favourite", "collection:christmas", "collection:path", "style:ragtime", "skill:waltz-bass", "composer:Erik Satie"] as TagKey[]).map(tagName);
-  expect(names).toEqual(["Advanced", "Easy", "Favourites", "Christmas", "Beginner path", "Ragtime", "Waltz bass", "Erik Satie"]);
+  const names = (["level:original", "level:easy", "yours:favourite", "collection:christmas", "collection:path", "style:ragtime", "skill:waltz-bass", "composer:Erik Satie"] as TagKey[]).map(tagName);
+  expect(names).toEqual(["Original", "Easy", "Favourites", "Christmas", "Beginner path", "Ragtime", "Waltz bass", "Erik Satie"]);
 });
 
 test("tags_of_one_kind_widen_and_kinds_narrow", () => {

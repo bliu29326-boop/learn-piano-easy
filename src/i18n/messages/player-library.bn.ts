@@ -45,7 +45,7 @@ export const playerLibrary: Translation<typeof en> = {
     search: { placeholder: "শিরোনাম, সুরকার বা ট্যাগ খুঁজুন", label: "গান খুঁজুন", clear: "খোঁজার ঘর খালি করুন" },
     fits: "আমার কিবোর্ডে আঁটে",
     kinds: { level: "কঠিনতা", yours: "আপনার", collection: "সংগ্রহ", style: "ধরন", skill: "কৌশল", composer: "সুরকার" },
-    levels: { beginner: "প্রাথমিক", easy: "সহজ", medium: "মাঝারি", hard: "কঠিন", advanced: "অভিজ্ঞ", expert: "দক্ষ" },
+    levels: { beginner: "প্রাথমিক", easy: "সহজ", medium: "মাঝারি", hard: "কঠিন" },
     styles: {
       baroque: "বারোক",
       classical: "ক্লাসিক্যাল",

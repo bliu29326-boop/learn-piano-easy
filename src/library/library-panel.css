@@ -476,7 +476,7 @@
     --tag-hue: var(--c-iris);
   }
 
-  /* A level's hue climbs from teal over iris to orchid, as the fill of a card's meter does. */
+  /* A level's hue climbs from teal over iris towards orchid. */
   .song-explorer [data-level="beginner"] {
     --tag-hue: var(--c-accent);
   }
@@ -493,15 +493,7 @@
     --tag-hue: color-mix(in oklab, var(--c-iris), var(--c-orchid));
   }
 
-  .song-explorer [data-level="advanced"] {
-    --tag-hue: var(--c-orchid);
-  }
-
-  .song-explorer [data-level="expert"] {
-    --tag-hue: var(--c-danger);
-  }
-
-  /* The original score of a song of ours is its last step, in honey. */
+  /* An Original is in honey: a song's last step, and the chip that keeps every Original. */
   .song-explorer [data-level="original"] {
     --tag-hue: var(--c-brand-text);
   }
@@ -822,27 +814,6 @@
     font-size: inherit;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-
-  /* The meter: a track whose filled part runs from teal to orchid as the level climbs. */
-  .song-card__meter {
-    flex: none;
-    width: var(--s-9);
-    height: 6px;
-    border-radius: var(--r-pill);
-    background: var(--c-line);
-  }
-
-  .song-card__meter i {
-    display: block;
-    height: 100%;
-    border-radius: var(--r-pill);
-    background: linear-gradient(to var(--side-end), var(--c-accent-vivid), var(--c-iris-vivid) 55%, var(--c-orchid-vivid));
-    clip-path: inset(0 calc(100% - var(--level) * 10%) 0 0 round var(--r-pill));
-  }
-
-  .song-card__meter i:dir(rtl) {
-    clip-path: inset(0 0 0 calc(100% - var(--level) * 10%) round var(--r-pill));
   }
 
   .song-card__length {

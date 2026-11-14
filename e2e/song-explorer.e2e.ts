@@ -183,6 +183,38 @@ test("a_tag_on_a_card_filters_by_it", async ({ page }) => {
   expect(all).toBeGreaterThan(111);
 });
 
+test("the_difficulty_has_five_chips_and_an_original_is_also_in_its_band", async ({ page }) => {
+  await page.goto("./play/");
+  const dialog = await openSongsWithSkills(page);
+  const count = dialog.locator(".library-count");
+  const chips = dialog.locator(".song-explorer__head").getByRole("group", { name: "Difficulty" }).getByRole("button");
+  await expect(chips).toHaveText([/Beginner/, /Easy/, /Medium/, /Hard/, /Original/]);
+  await expect(dialog.locator(".song-card__meter")).toHaveCount(0);
+
+  // The word finds our Moonlight Sonata and Beethoven's three movements, the first of which is its Original.
+  await dialog.getByRole("searchbox", { name: "Search songs" }).fill("moonlight");
+  await expect(count).toHaveText("3 songs");
+  await expect(cardOf(dialog, "Moonlight Sonata, Beginner")).toHaveCount(1);
+  // A movement we did not arrange is its own Original, and its one step says so.
+  const second = cardOf(dialog, "2nd Mvmt.").locator(".song-step");
+  await expect(second).toHaveCount(1);
+  await expect(second).toHaveAccessibleName("Original");
+  await expect(second).toHaveAttribute("aria-pressed", "true");
+
+  // Every one is an Original, and the card of our song opens on its Original step.
+  const original = chip(dialog, "Difficulty", "Original");
+  await original.click();
+  await expect(count).toHaveText("3 songs");
+  await expect(cardOf(dialog, "1st Mvmt.").getByRole("button", { name: "Original", exact: true })).toHaveAttribute("aria-pressed", "true");
+
+  // Hard keeps our hard version and the two movements, which lie in its band.
+  await original.click();
+  await chip(dialog, "Difficulty", "Hard").click();
+  await expect(count).toHaveText("3 songs");
+  await expect(cardOf(dialog, "Moonlight Sonata, Hard")).toHaveCount(1);
+  await expect(cardOf(dialog, "2nd Mvmt.")).toHaveCount(1);
+});
+
 test("nothing_found_shows_the_mascot_and_one_way_back", async ({ page }) => {
   await page.goto("./play/");
   const dialog = await openSongsWithSkills(page);

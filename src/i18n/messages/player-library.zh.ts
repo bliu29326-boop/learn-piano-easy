@@ -45,7 +45,7 @@ export const playerLibrary: Translation<typeof en> = {
     search: { placeholder: "搜索曲名、作曲家或标签", label: "搜索歌曲", clear: "清除搜索" },
     fits: "适合我的键盘",
     kinds: { level: "难度", yours: "你的", collection: "合集", style: "风格", skill: "技巧", composer: "作曲家" },
-    levels: { beginner: "入门", easy: "简单", medium: "中等", hard: "困难", advanced: "进阶", expert: "专家" },
+    levels: { beginner: "入门", easy: "简单", medium: "中等", hard: "困难" },
     styles: {
       baroque: "巴洛克",
       classical: "古典",

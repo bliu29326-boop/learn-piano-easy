@@ -5,15 +5,14 @@
  * The shell shows it in a dialog. The panel is built once and kept, and `shown` puts it back as the
  * learner left it. Every button runs one of the shell's `LibraryActions`, so the panel stays a view.
  *
- * Its head holds the search, the quick filter for the difficulty, "Fits my keyboard", the count and
- * the sort. A rail beside the cards holds the other tags of `tags.ts`, kind by kind. With no filter
+ * Its head holds the search, the five level chips, "Fits my keyboard", the count and the sort. A rail beside the cards holds the other tags of `tags.ts`, kind by kind. With no filter
  * on, the cards start with what the learner played, the favourites, the uploads and the next steps
  * of the beginner path. Its look is `library-panel.css`.
  *
  * Decisions, and what each costs:
- * - A song is one card and counts once, whatever its versions. A song of ours shows its versions as
- *   steps in the card's head, and its original score as the last step. The card shows one version at
- *   a time. Its title, meter, length, tags, preview and main button are that version's.
+ * - A song is one card and counts once, whatever its versions. Every catalog card shows its versions as
+ *   steps in its head: a song of ours its four and its Original, any other song its one Original. The
+ *   card shows one version at a time. Its title, length, tags, preview and main button are that version's.
  * - A card shows the version the learner picked on it, else the one last played, else the easiest. A
  *   pick lasts until the page is left. A filter narrows the choice to the versions that pass it, so
  *   a card under "Hard" opens the hard version. The steps still offer every version.
@@ -21,8 +20,8 @@
  *   until the next redraw.
  * - The star is the song's. It is on when any version is a favourite, so a star set on one version
  *   before stays. Taking it off clears every version.
- * - A card names its difficulty in words alone. The catalog's number fills the meter and sorts the
- *   cards, and the learner never reads it.
+ * - A card names its difficulty by its steps alone. The catalog's number sorts the cards, and the
+ *   learner never reads it.
  * - The view is one object: the query, the chosen tags, the sort, the scroll and how many cards are
  *   drawn. It is written to `sessionStorage` under `VIEW_KEY`, so a reload of the page keeps it too.
  * - A change of the view redraws the cards, `CHUNK` at first. A sentinel under them draws the next
@@ -82,8 +81,8 @@ import { SKILLS } from "./skills";
 import { SongMemory } from "./song-memory";
 import {
   composerOf,
+  LEVEL_TAGS,
   levelOf,
-  LEVELS,
   matchesTags,
   SETS,
   songTags,
@@ -490,7 +489,7 @@ export function createLibraryPanel(
     }
 
     const keysOf: Record<TagKind, TagKey[]> = {
-      level: LEVELS.map((id) => tagKey("level", id)),
+      level: [...LEVEL_TAGS],
       yours: YOURS.map((id) => tagKey("yours", id)),
       collection: [...COLLECTIONS, ...SETS].map((id) => tagKey("collection", id)),
       style: STYLES.map((id) => tagKey("style", id)),
@@ -614,7 +613,7 @@ export function createLibraryPanel(
   function card(item: Item, onPath = false): HTMLLIElement {
     const { song, upload, id } = item;
     const entry = song === undefined ? undefined : entryOf.get(song)!;
-    const versions = entry === undefined || entry.versions.length < 2 ? [] : entry.versions;
+    const versions = entry?.versions ?? [];
     const step = song === undefined || !onPath ? undefined : steps.get(song.file);
     // A song with versions takes its title from the first, so the card reads the same whichever shows.
     const lead = versions[0] ?? song;
@@ -639,7 +638,7 @@ export function createLibraryPanel(
       },
       children: [icon("star")],
     });
-    /** The head of the card: a step per version, or the one difficulty, or that the file is the learner's. */
+    /** The head of the card: a step per version, or that the file is the learner's. */
     const head: HTMLElement =
       versions.length > 0
         ? el("div", {
@@ -662,11 +661,7 @@ export function createLibraryPanel(
               });
             }),
           })
-        : el("span", {
-            class: "song-card__kicker",
-            attrs: song === undefined ? {} : { "data-level": levelOf(song.difficulty) },
-            children: song === undefined ? [say().yours.upload] : [el("span", { class: "tag__dot", attrs: { "aria-hidden": "true" } }), tagName(tagKey("level", levelOf(song.difficulty)))],
-          });
+        : el("span", { class: "song-card__kicker", text: say().yours.upload });
     const preview = el("button", {
       class: "song-card__preview",
       attrs: { type: "button", "data-id": id, "data-tip": say().preview.title(item.title) },
@@ -675,7 +670,7 @@ export function createLibraryPanel(
     });
     paintPreview(preview);
 
-    // A tag the query matched comes first, so the learner sees why the card is here.
+    // A tag the query matched comes first, so the learner sees why the card is here. The steps name the level.
     const shown = song === undefined ? [] : [...index.get(song)!.tags].filter((key) => tagKind(key) !== "level");
     const matched = (key: TagKey) => Number(words.some((word) => foldText(tagName(key)).includes(word)));
     shown.sort((a, b) => matched(b) - matched(a));
@@ -703,7 +698,6 @@ export function createLibraryPanel(
         el("div", {
           class: "song-card__meta",
           children: [
-            song === undefined ? null : el("span", { class: "song-card__meter", attrs: { "aria-hidden": "true", style: `--level: ${song.difficulty}` }, children: [el("i")] }),
             step === undefined ? null : el("span", { class: "song-card__step", text: say().step(step) }),
             el("span", { class: "song-card__length", attrs: { "data-id": id, "data-tip": say().lengthTitle }, text: length === undefined ? "" : formatLength(length) }),
             song === undefined ? null : el("span", { class: "library-license", attrs: { "data-tip": song.credit }, text: song.license }),

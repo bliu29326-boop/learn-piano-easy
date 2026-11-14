@@ -45,7 +45,7 @@ export const playerLibrary: typeof en = {
     search: { placeholder: "Titel, Komponist, Schlagwort", label: "Lieder suchen", clear: "Suche leeren" },
     fits: "Passt auf mein Keyboard",
     kinds: { level: "Schwierigkeit", yours: "Deins", collection: "Sammlung", style: "Stil", skill: "Technik", composer: "Komponist" },
-    levels: { beginner: "Einsteiger", easy: "Leicht", medium: "Mittel", hard: "Schwer", advanced: "Fortgeschritten", expert: "Experte" },
+    levels: { beginner: "Einsteiger", easy: "Leicht", medium: "Mittel", hard: "Schwer" },
     styles: {
       baroque: "Barock",
       classical: "Klassik",

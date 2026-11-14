@@ -44,7 +44,7 @@ export const playerLibrary: Translation<typeof en> = {
     search: { placeholder: "गाना, संगीतकार या टैग खोजें", label: "गाने खोजें", clear: "खोज हटाएँ" },
     fits: "मेरे कीबोर्ड पर फ़िट",
     kinds: { level: "कठिनाई", yours: "आपके", collection: "संग्रह", style: "शैली", skill: "तकनीक", composer: "संगीतकार" },
-    levels: { beginner: "शुरुआती", easy: "आसान", medium: "मध्यम", hard: "कठिन", advanced: "एडवांस", expert: "एक्सपर्ट" },
+    levels: { beginner: "शुरुआती", easy: "आसान", medium: "मध्यम", hard: "कठिन" },
     styles: {
       baroque: "बरोक",
       classical: "क्लासिकल",

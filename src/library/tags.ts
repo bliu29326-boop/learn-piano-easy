@@ -10,10 +10,13 @@
  *   here, its name in each catalog and its hue in `library-panel.css`.
  * - Tags of one kind widen the result and kinds narrow it. A song passes when it carries one chosen tag
  *   of every kind that has a chosen tag, so "Christmas" and "Easy" together keep the easy carols.
- * - The level is a band of the catalog's difficulty, and the only form of it the learner reads. The
- *   number stays inside the app, where it sorts the songs and fills a card's meter.
- * - The first four levels are the bands of the four versions of a song of ours, so a version's name
- *   is its level. The bands above them are wider, since the app teaches a learner's first year.
+ * - The level is the only form of a difficulty the learner reads, as five chips: the four versions of
+ *   a song of ours and the Original. The number stays inside the app, where it sorts the songs.
+ * - Every row carries the band its catalog difficulty lies in. The four bands are the versions', and
+ *   Hard holds every difficulty from 4 up, so a hard piece of the catalog is Hard too.
+ * - Every catalog row without a version of ours is an Original: a composer's score, a piece of ours
+ *   that has one version, or our Original. It carries `level:original` beside its band, so "Hard"
+ *   keeps the hard Originals and "Original" keeps them all.
  * - A composer the catalog spells in two ways is one tag, through `COMPOSER_ALIASES`. A spelling this
  *   table does not know stays a composer of its own.
  * - The style comes from the composer through `COMPOSER_STYLES`, since the catalog names no era. A
@@ -22,6 +25,7 @@
  *   `songTags` returns every other tag, which holds for as long as the catalog and the skills do.
  */
 import { t } from "../i18n/live";
+import { originalName } from "./guide";
 import { type CatalogSong, collectionName, COLLECTIONS } from "./search";
 import { skillName } from "./skills";
 
@@ -35,13 +39,16 @@ export type TagKind = (typeof TAG_KINDS)[number];
 export type TagKey = `${TagKind}:${string}`;
 
 /** The level bands, from the easiest. */
-export const LEVELS = ["beginner", "easy", "medium", "hard", "advanced", "expert"] as const;
+export const LEVELS = ["beginner", "easy", "medium", "hard"] as const;
 
 /** A level band. */
 export type Level = (typeof LEVELS)[number];
 
 /** The catalog difficulty each level after the first starts at, in the order of `LEVELS`. */
-const LEVEL_STARTS = [2, 3, 4, 5, 7] as const;
+const LEVEL_STARTS = [2, 3, 4] as const;
+
+/** The level chips, in the order the explorer shows them: the four bands, then the Original. */
+export const LEVEL_TAGS: readonly TagKey[] = [...LEVELS.map((id) => tagKey("level", id)), tagKey("level", "original")];
 
 /** The styles a composer may stand for. */
 export const STYLES = ["baroque", "classical", "romantic", "impressionist", "ragtime", "folk", "contemporary"] as const;
@@ -100,7 +107,7 @@ export function tagId(key: TagKey): string {
   return key.slice(key.indexOf(":") + 1);
 }
 
-/** The level band of the catalog difficulty `difficulty`: below 2, below 3, below 4, below 5, below 7, or above. */
+/** The level band of the catalog difficulty `difficulty`: below 2, below 3, below 4, or 4 and above. */
 export function levelOf(difficulty: number): Level {
   return LEVELS[LEVEL_STARTS.filter((start) => difficulty >= start).length]!;
 }
@@ -126,6 +133,7 @@ export interface TagContext {
 /** The tags `song` carries whatever the learner did, in the order of `TAG_KINDS`. */
 export function songTags(song: CatalogSong, context: TagContext): TagKey[] {
   const tags: TagKey[] = [tagKey("level", levelOf(song.difficulty))];
+  if (song.rarity === undefined) tags.push(tagKey("level", "original"));
   if (song.collection !== undefined) tags.push(tagKey("collection", song.collection));
   if (context.path.has(song.file)) tags.push(tagKey("collection", "path"));
   if (song.song !== undefined) tags.push(tagKey("collection", "ours"));
@@ -142,7 +150,7 @@ export function tagName(key: TagKey): string {
   const names = t().player.library.panel;
   switch (tagKind(key)) {
     case "level":
-      return names.levels[id as Level];
+      return id === "original" ? originalName() : names.levels[id as Level];
     case "yours":
       return names.yours[id as (typeof YOURS)[number]];
     case "collection":

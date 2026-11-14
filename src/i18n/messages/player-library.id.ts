@@ -45,7 +45,7 @@ export const playerLibrary: Translation<typeof en> = {
     search: { placeholder: "Cari judul, komponis, atau tag", label: "Cari lagu", clear: "Kosongkan pencarian" },
     fits: "Muat di keyboardku",
     kinds: { level: "Kesulitan", yours: "Milikmu", collection: "Koleksi", style: "Gaya", skill: "Teknik", composer: "Komponis" },
-    levels: { beginner: "Pemula", easy: "Mudah", medium: "Sedang", hard: "Sulit", advanced: "Mahir", expert: "Ahli" },
+    levels: { beginner: "Pemula", easy: "Mudah", medium: "Sedang", hard: "Sulit" },
     styles: {
       baroque: "Barok",
       classical: "Klasik",

@@ -42,7 +42,7 @@ export const playerLibrary: Translation<typeof en> = {
     search: { placeholder: "Buscar título, compositor o etiqueta", label: "Buscar canciones", clear: "Borrar la búsqueda" },
     fits: "Cabe en mi teclado",
     kinds: { level: "Dificultad", yours: "Tuyas", collection: "Colección", style: "Estilo", skill: "Técnica", composer: "Compositor" },
-    levels: { beginner: "Principiante", easy: "Fácil", medium: "Intermedio", hard: "Difícil", advanced: "Avanzado", expert: "Experto" },
+    levels: { beginner: "Principiante", easy: "Fácil", medium: "Intermedio", hard: "Difícil" },
     styles: {
       baroque: "Barroco",
       classical: "Clásico",
