@@ -29,6 +29,9 @@
 import { mkdir, readdir, rm } from "node:fs/promises";
 import { join } from "node:path";
 
+import { playerLibrary } from "../src/i18n/messages/player-library.en";
+import { partLabel } from "../src/library/parts";
+import type { PartKind } from "../src/library/search";
 import { readMidi } from "../src/midi/smf-read";
 import { songFromMidi } from "../src/midi/song";
 import { unzipEntry, zipEntries } from "../src/midi/zip";
@@ -41,10 +44,17 @@ export const ftpUrl = "https://sca.uwaterloo.ca/Mutopia/ftp/";
 /** The folder of the copied pieces, relative to `public/songs/`. */
 export const mutopiaFolder = "mutopia";
 
-/** One piece of the pick list. `dir` is its folder under `ftp/`. */
+/**
+ * One piece of the pick list. `dir` is its folder under `ftp/`. A part of its work names its `part`
+ * and `kind`, its `name`, or both, and its title is then its English `partLabel`. Any other piece
+ * names its `title`.
+ */
 export interface Pick {
   dir: string;
-  title: string;
+  title?: string;
+  part?: number;
+  kind?: PartKind;
+  name?: string;
   difficulty: number;
   /** The file to take from the piece's MIDI archive, when it ships one. */
   entry?: string;
@@ -142,11 +152,14 @@ async function copyPick(group: PickGroup, pick: Pick): Promise<Copied> {
   if (new TextDecoder().decode(bytes.subarray(0, 4)) !== "MThd") throw new Error(`${file} is not a MIDI file`);
   const problems = songFromMidi(readMidi(bytes)).problems;
   if (problems.length > 0) throw new Error(`${file}: ${JSON.stringify(problems)}`);
+  const parts = { ...(pick.part === undefined ? {} : { part: pick.part, kind: pick.kind }), ...(pick.name === undefined ? {} : { name: pick.name }) };
+  const placed = { composer: group.composer, piece: group.piece, title: pick.title ?? "", file, ...parts };
   const row = withSpan(
     {
       composer: group.composer,
       piece: group.piece,
-      title: pick.title,
+      title: pick.title ?? partLabel(placed, playerLibrary.parts),
+      ...parts,
       file,
       difficulty: pick.difficulty,
       license,

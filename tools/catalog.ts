@@ -3,7 +3,9 @@
  * that write songs read and write it through this module.
  *
  * Decisions, and what each costs:
- * - The catalog's `piece` is the work a song belongs to, or `null` for a song that stands alone.
+ * - The catalog's `piece` is the work a song belongs to, or `null` for a song that stands alone. A
+ *   part of a work carries its place as `part` and `kind`, its own `name`, or both. Its `title` is
+ *   then its English label, as `partLabel` in `src/library/parts.ts` reads it.
  * - The difficulty runs from 1 to 10 in half steps.
  * - Every row carries its `license` and its `credit`, so the library can show both without reading
  *   a license file.
@@ -19,7 +21,7 @@ import { join } from "node:path";
 
 import { songSpan } from "../src/keyboard/song-fit";
 import type { Rarity } from "../src/library/guide";
-import type { Collection } from "../src/library/search";
+import type { Collection, PartKind } from "../src/library/search";
 import type { SkillId } from "../src/library/skills";
 import { readMidi } from "../src/midi/smf-read";
 import { songFromMidi, songLength } from "../src/midi/song";
@@ -30,6 +32,12 @@ export interface CatalogSong {
   composer: string;
   piece: string | null;
   title: string;
+  /** A part's place in its work, from 1, beside `piece`. */
+  part?: number;
+  /** How a part's place reads, beside `part`. */
+  kind?: PartKind;
+  /** A part's own name, beside `piece`. */
+  name?: string;
   file: string;
   /** From 1, the easiest, to 10. */
   difficulty: number;

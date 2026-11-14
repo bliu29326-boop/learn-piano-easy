@@ -196,7 +196,7 @@ test("the_difficulty_has_five_chips_and_an_original_is_also_in_its_band", async 
   await expect(count).toHaveText("3 songs");
   await expect(cardOf(dialog, "Moonlight Sonata, Beginner")).toHaveCount(1);
   // A movement we did not arrange is its own Original, and its one step says so.
-  const second = cardOf(dialog, "2nd Mvmt.").locator(".song-step");
+  const second = cardOf(dialog, "Sonata No. 14 'Moonlight' · Movement 2").locator(".song-step");
   await expect(second).toHaveCount(1);
   await expect(second).toHaveAccessibleName("Original");
   await expect(second).toHaveAttribute("aria-pressed", "true");
@@ -205,14 +205,14 @@ test("the_difficulty_has_five_chips_and_an_original_is_also_in_its_band", async 
   const original = chip(dialog, "Difficulty", "Original");
   await original.click();
   await expect(count).toHaveText("3 songs");
-  await expect(cardOf(dialog, "1st Mvmt.").getByRole("button", { name: "Original", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(cardOf(dialog, "Sonata No. 14 'Moonlight' · Movement 1").getByRole("button", { name: "Original", exact: true })).toHaveAttribute("aria-pressed", "true");
 
   // Hard keeps our hard version and the two movements, which lie in its band.
   await original.click();
   await chip(dialog, "Difficulty", "Hard").click();
   await expect(count).toHaveText("3 songs");
   await expect(cardOf(dialog, "Moonlight Sonata, Hard")).toHaveCount(1);
-  await expect(cardOf(dialog, "2nd Mvmt.")).toHaveCount(1);
+  await expect(cardOf(dialog, "Sonata No. 14 'Moonlight' · Movement 2")).toHaveCount(1);
 });
 
 test("nothing_found_shows_the_mascot_and_one_way_back", async ({ page }) => {

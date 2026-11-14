@@ -20,6 +20,17 @@ export const playerLibrary = {
     stepTitle: (name: string, tagline: string) => `${name}: ${tagline}`,
   },
   collections: { christmas: "Christmas", film: "At the movies", sea: "Sea shanties" },
+  /** A part of a work, such as a sonata's movement, read by its place or its own name. */
+  parts: {
+    /** A part's place, by how its work counts its parts. */
+    movement: (place: number) => `Movement ${place}`,
+    number: (place: number) => `No. ${place}`,
+    variation: (place: number) => `Variation ${place}`,
+    /** A part with both: its place, then its own name. */
+    named: (place: string, name: string) => `${place}: ${name}`,
+    /** A part as one title: its work, then the part. */
+    inWork: (work: string, part: string) => `${work} · ${part}`,
+  },
   /** The skills a guide names, by the camelCase form of their id in `src/library/skills.ts`. */
   skills: {
     fiveFingerPosition: "Five-finger position",

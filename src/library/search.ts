@@ -5,8 +5,8 @@
  * Every function here is pure, so the panel only draws what they return.
  *
  * Decisions, and what each costs:
- * - A query matches when every word of it is found in the song's composer, piece, title, other
- *   titles or collection. Case and accents are ignored, so `albeniz` finds Albéniz and `stille nacht`
+ * - A query matches when every word of it is found in the song's composer, piece, title, part label in
+ *   the live locale, other titles or collection. Case and accents are ignored, so `albeniz` finds Albéniz and `stille nacht`
  *   finds Silent Night. Each song's text is folded once per search, which costs a pass over a few
  *   hundred short strings per key the learner types.
  * - A song in a collection is grouped under its collection, never under its composer, so it shows
@@ -32,13 +32,21 @@ import { collator } from "../i18n/format";
 import { liveLocale, t } from "../i18n/live";
 import type { KeyRange } from "../render/key-layout";
 import { originalName, RARITIES, type Rarity, rarityName } from "./guide";
+import { isPart, partLabel, partTitle } from "./parts";
 
 /** One song of `public/songs/catalog.json`. */
 export interface CatalogSong {
   composer: string;
-  /** The piece a movement belongs to, or null for a song that stands alone. */
+  /** The work a part belongs to, the song a version belongs to, or null for a song that stands alone. */
   piece: string | null;
+  /** The song's title in English. A part's title is its English `partLabel`. */
   title: string;
+  /** A part's place in its work, from 1, beside `piece`. It orders the work's parts. */
+  part?: number;
+  /** How a part's place reads, beside `part`. */
+  kind?: PartKind;
+  /** A part's own name, such as `Alla Turca`, beside `piece`. */
+  name?: string;
   /** The MIDI file's path, from `songs/`. */
   file: string;
   /** From 1, the easiest, to 10. */
@@ -68,6 +76,9 @@ export interface CatalogSong {
   /** The song's other titles, such as `Stille Nacht` for Silent Night, beside `song`. */
   aka?: string[];
 }
+
+/** How a part's place in its work reads: "Movement 3", "No. 3" or "Variation 3". */
+export type PartKind = "movement" | "number" | "variation";
 
 /** A collection of songs the library groups apart from their composers. */
 export type Collection = "christmas" | "film" | "sea";
@@ -135,7 +146,8 @@ export function filterSongs(songs: readonly CatalogSong[], filter: SongFilter): 
     if (words.length === 0) return true;
     const collection = song.collection === undefined ? "" : collectionName(song.collection);
     const more = filter.text?.(song) ?? "";
-    const text = foldText([song.composer, song.piece ?? "", song.title, ...(song.aka ?? []), collection, more].join(" "));
+    const label = isPart(song) ? partLabel(song) : "";
+    const text = foldText([song.composer, song.piece ?? "", song.title, label, ...(song.aka ?? []), collection, more].join(" "));
     return words.every((word) => text.includes(word));
   });
 }
@@ -188,7 +200,7 @@ export function sortSongs(songs: readonly CatalogSong[], sort: Sort, facts: Sort
   if (sort === "suggested") return [...songs];
   const rank = (song: CatalogSong) => (song.rarity === undefined ? RARITIES.length : RARITIES.indexOf(song.rarity));
   const byText = collator(liveLocale());
-  const name = (song: CatalogSong) => foldText(song.song === undefined ? song.title : (song.piece ?? song.title));
+  const name = (song: CatalogSong) => foldText(song.song === undefined ? partTitle(song) : (song.piece ?? song.title));
   /** Compares two values that may be unknown: a known one first, then by `order`. */
   const known = (a: number | undefined, b: number | undefined, order: 1 | -1) =>
     a === undefined || b === undefined ? Number(a === undefined) - Number(b === undefined) : (a - b) * order;
@@ -202,9 +214,12 @@ export function sortSongs(songs: readonly CatalogSong[], sort: Sort, facts: Sort
   return [...songs].sort(compare[sort]);
 }
 
-/** The title the learner reads for `song`: a step of a song of ours names its song and the step. */
+/**
+ * The title the learner reads for `song`: a step of a song of ours names its song and the step, and a
+ * part names its work and its place.
+ */
 export function songTitle(song: CatalogSong): string {
-  if (song.song === undefined) return song.title;
+  if (song.song === undefined) return partTitle(song);
   return `${song.piece ?? song.title}, ${song.rarity === undefined ? originalName() : rarityName(song.rarity)}`;
 }
 

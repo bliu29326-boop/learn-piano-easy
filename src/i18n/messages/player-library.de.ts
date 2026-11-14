@@ -16,6 +16,13 @@ export const playerLibrary: typeof en = {
     stepTitle: (name: string, tagline: string) => `${name}: ${tagline}`,
   },
   collections: { christmas: "Weihnachten", film: "Filmmusik", sea: "Seemannslieder" },
+  parts: {
+    movement: (place: number) => `${place}. Satz`,
+    number: (place: number) => `Nr. ${place}`,
+    variation: (place: number) => `Variation ${place}`,
+    named: (place: string, name: string) => `${place}: ${name}`,
+    inWork: (work: string, part: string) => `${work} · ${part}`,
+  },
   skills: {
     fiveFingerPosition: "Fünffingerlage",
     heldBass: "Gehaltene Bassnoten",

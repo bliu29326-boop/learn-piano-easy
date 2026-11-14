@@ -114,7 +114,7 @@ test("the_beginner_path_comes_first_and_opens_its_steps", async ({ page }) => {
   await expect(dialog.getByRole("combobox", { name: "Sort by" })).toHaveValue("difficulty");
   await expect(all.locator(".song-card__open").first()).toHaveAccessibleName("Canon in D, Beginner");
   // The cards draw a chunk at a time, so the list scrolls down until the step's card is drawn.
-  const candeur = all.getByRole("button", { name: "1. La Candeur", exact: true });
+  const candeur = all.getByRole("button", { name: "25 Easy Studies, Opus 100 · No. 1: La Candeur", exact: true });
   const scroller = dialog.locator(".song-explorer__results");
   await expect
     .poll(async () => {
@@ -138,7 +138,7 @@ test("the_beginner_path_comes_first_and_opens_its_steps", async ({ page }) => {
     })
     .toBe(1);
   await candeur.click();
-  await expect(page.getByLabel("Open song")).toHaveText("1. La Candeur");
+  await expect(page.getByLabel("Open song")).toHaveText("25 Easy Studies, Opus 100 · No. 1: La Candeur");
 
   // With no filter on, the path leads the page again. A search hides it.
   await page.getByRole("button", { name: "Songs", exact: true }).click();
