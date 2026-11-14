@@ -137,7 +137,7 @@ stage copies its pattern.
 - [x] The new tagline of our Original, in English and German. `src/i18n/messages/player-library.en.ts:15`
 - [ ] *Morning Mood*'s Original, from the best source the order above finds, with its guide in English and German. `tools/our-songs/morning-mood.ts:206`
   - [x] The source: Schirmer's 1899 piano edition of Op. 46, scanned as Internet Archive item `31761045200615`.
-  - [ ] Four subagents transcribe the print's four pages to files, one page each.
+  - [x] Four subagents transcribe the print's four pages to files, one page each.
   - [ ] A writing subagent sets the whole piece from those files, with its guide in English and German.
   - [ ] `bun tools/check-our-song.ts` accepts it, and a fresh reviewer reads it against the print.
   - [ ] `bun tools/make-our-songs.ts` writes `mythic.mid`, its row and its guide.
@@ -300,12 +300,10 @@ One writing subagent tried the whole piece and ran out of context before writing
 
 **Stage 1, the rest: Morning Mood's Original.** Files: `tools/our-songs/morning-mood.ts`. Gate: none.
 
-1. **Transcribe in four read-only subagents, one per page, side by side.** Each crops its page one system
-   at a time with `magick` and writes its bars in the notation to `.agent-tmp/src-morning-mood/page-n<N>.txt`.
-   It writes the file after each system, so a full context loses nothing. Each numbers its bars from its
-   page's first bar, and the session renumbers them. `page-n6.txt`, `page-n8.txt` and `page-n9.txt`
-   already hold pages 3, 5 and 6 with their doubtful readings. Page 3 is bars 1 to 20. The numbers "42"
-   to "87" of pages 5 and 6 are a guess. Only page n7 remains, about 21 bars.
+1. **The whole print is transcribed,** 87 bars in `.agent-tmp/src-morning-mood/page-n6.txt` to
+   `page-n9.txt`, with each page's doubtful readings. Page 3 is bars 1 to 20, and page 4 is bars 21 to 41,
+   numbered 1 to 21 in its file. Pages 5 and 6 are bars 42 to 87. If the folder is gone, transcribe again:
+   one read-only subagent per page, each writing its file after every system.
 2. **One writing subagent assembles the module** from the four files: the Original, its fingers, pedal,
    guide and German. It runs `bun tools/check-our-song.ts tools/our-songs/morning-mood.ts` until it passes.
 3. **A fresh reviewer reads it against the print,** and the session settles each finding.
