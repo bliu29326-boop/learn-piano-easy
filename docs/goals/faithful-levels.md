@@ -6,8 +6,23 @@ context: [docs/decisions/0014.md, docs/our-songs.md, tools/make-our-songs.ts, to
 stages:
   - id: 1
     title: "The rework's rules, its new files and the audit"
-    status: open
+    status: done
   - id: 2
+    title: "Batch 1: the songs with an Original of ours"
+    status: open
+  - id: 3
+    title: "Batch 2: the catalog's Originals and the slow classics"
+    status: open
+  - id: 4
+    title: "Batch 3: the orchestral and choral classics"
+    status: open
+  - id: 5
+    title: "Batch 4: the short motifs and the codas"
+    status: open
+  - id: 6
+    title: "Batch 5: the sea songs"
+    status: open
+  - id: 7
     title: "the goal is verified once, and every failure is fixed"
     status: open
     gate: true
@@ -18,7 +33,7 @@ checks:
     run: [bun, test, src/library/moved-songs.test.ts]
     tests: [a_reworked_version_moves_all_but_the_fingers]
   - id: no-bar-of-our-own
-    stage: 1
+    stage: 6
     name: no version of a public domain song plays a bar the module marks as our own
     run: [bun, test, tools/our-songs.test.ts]
     tests: [no_version_plays_a_bar_of_our_own]
@@ -56,8 +71,18 @@ inside the limits they keep.
   every locale beyond German. The English then shows until that locale's translation pass.
 - **A bar of our own is marked in its module,** so the test can find it. The songs of our own tunes are
   exempt.
-- **Batches follow the order of `original-arrangements`:** each song's Original exists before its
-  versions are reworked, so the writer can read both.
+- **The songs with an Original go first,** so the writer reads the next phrase from it. Only twelve
+  songs have one, and the user stopped the rest for their cost. Every other song is reworked from the
+  print its module's `source.edition` names, or from the printed score in its Wikipedia wikitext. The
+  writer compares each phrase note for note, as the playbook says. Waiting for the Originals would
+  stall the goal on a goal nobody runs.
+- **`REWORKED_VERSIONS` in `src/library/moved-songs.ts` is the one home of a version's revision.** The
+  app needs the list on start and never loads a module, so the writer reads the file name from it.
+- **A last bar that only holds the home chord is not a bar of our own.** It is how a version ends.
+- **Where the source has no next phrase, the version plays the tune again in another setting** or ends
+  on the home chord. Each still earns its place.
+- **The audit's open points are settled by the batch's writer:** the edges of *William Tell*'s bars,
+  *Moonlight Sonata*'s closing bars and the unread versions of *Yankee Doodle*.
 - **Writers, review and commits** work as `original-arrangements` rules: four writing subagents of two
   songs each, one fresh reviewer per batch, one commit per batch.
 - **The chain:** this goal runs after `original-arrangements` and before `urdu` and `japanese`.
@@ -72,14 +97,102 @@ the audit that lists every version to rework.
 of our own, with its bars, and each Medium or Hard whose accompaniment ignores a figure the source has.
 **Gate:** `original-arrangements` is reached.
 
-- [ ] The rules of this goal move into `docs/our-songs.md` § *The tune keeps the song recognisable* and § *Writing for the piano*. `docs/our-songs.md:67`
-- [ ] A version names its revision, and the writer writes `<id>-2.mid` for a reworked one. `tools/make-our-songs.ts:200`
-- [ ] The move of a reworked version's stored work, every key but `FINGERS_KEY`. `src/library/moved-songs.ts:27`
-- [ ] Test `a_reworked_version_moves_all_but_the_fingers`. `src/library/moved-songs.test.ts:1`
-- [ ] A module marks each bar of our own, and test `no_version_plays_a_bar_of_our_own` lists them. It stays red until the last batch. `tools/our-songs.test.ts:42`
-- [ ] The audit's batches, eight songs each, written as stages 2 onward of this goal, before the gate stage. `docs/goals/faithful-levels.md:1`
+- [x] The rules of this goal move into `docs/our-songs.md` § *The tune keeps the song recognisable* and § *Writing for the piano*. `docs/our-songs.md:67`
+- [x] `REWORKED_VERSIONS` names each reworked version, and the writer writes `<id>-2.mid` for it. `tools/make-our-songs.ts:200`
+- [x] The move of a reworked version's stored work, every key but `FINGERS_KEY`. `src/library/moved-songs.ts:27`
+- [x] Test `a_reworked_version_moves_all_but_the_fingers`. `src/library/moved-songs.test.ts:1`
+- [x] A module marks each bar of our own, and test `no_version_plays_a_bar_of_our_own` lists them. It stays red until the last batch. `tools/our-songs.test.ts:42`
+- [x] The audit's batches, eight songs each, written as stages 2 onward of this goal, before the gate stage. `docs/goals/faithful-levels.md:1`
 
-### 2. the goal is verified once, and every failure is fixed
+### What every batch does
+
+Each song of a batch reworks the versions its item names. The bars in brackets are its `ownBars`, from
+the audit. A version named for its accompaniment takes the source's figure the item names.
+
+- Each reworked version replaces its marked bars, drops its `ownBars`, and is added to
+  `REWORKED_VERSIONS` in `src/library/moved-songs.ts`.
+- Its guide follows: tips for the new tricky bars, and German for every changed text. A text whose
+  meaning changes loses its other locales.
+- Every reference to a reworked file moves to the new file: the lessons, the play modes and the landing
+  page. `rg "ours/<slug>/<id>.mid"` finds them.
+- `bun tools/make-our-songs.ts` writes the files once the meter accepts every song of the batch.
+
+### 2. Batch 1: the songs with an Original of ours
+
+**Does:** reworks the eight songs whose Original is ours. The writer reads the next phrase from it.
+**Split:** four writing subagents of two songs each, then one fresh reviewer for the batch. Writers
+build nothing, and the session runs the writer and the build once all end.
+**Gate:** stage 1 is done.
+
+- [ ] *Beethoven's Fifth*: all four (c 5-12, r e l 5-16). `tools/our-songs/beethoven-5.ts:1`
+- [ ] *Boléro*: all four (c 9-11, r e l 9-15). Epic and Legendary keep the snare rhythm throughout. `tools/our-songs/bolero.ts:1`
+- [ ] *Can-Can*: all four (c r 8-15, e l 8-16). `tools/our-songs/can-can.ts:1`
+- [ ] *Morning Mood*: all four (9-15). `tools/our-songs/morning-mood.ts:1`
+- [ ] *Swan Lake*: all four (9-16). Epic and Legendary weigh the Original's tremolo. `tools/our-songs/swan-lake.ts:1`
+- [ ] *The Sorcerer's Apprentice*: all four (11-15). `tools/our-songs/the-sorcerers-apprentice.ts:1`
+- [ ] *Vltava*: all four (c r 10-16, e l 10-17). Epic and Legendary weigh the river's eighths. `tools/our-songs/vltava.ts:1`
+- [ ] *William Tell*: all four (as marked). Epic and Legendary weigh the gallop's repeated chords. `tools/our-songs/william-tell.ts:1`
+
+### 3. Batch 2: the catalog's Originals and the slow classics
+
+**Does:** reworks the songs whose Original is the catalog's, then four slow classics.
+**Split:** as stage 2.
+**Gate:** stage 2 is done.
+
+- [ ] *Clair de Lune*: all four (c 9, r e l 17). `tools/our-songs/clair-de-lune.ts:1`
+- [ ] *Moonlight Sonata*: all four (c 10-11, r e l 18). Check the closing bars against `piano-midi/mond_1.mid` first. `tools/our-songs/moonlight-sonata.ts:1`
+- [ ] *Für Elise*: Epic and Legendary take the rising broken chords Rare already plays. No bar is ours. `tools/our-songs/fur-elise.ts:1`
+- [ ] *Funeral March*: all four (9-16). Epic and Legendary take the rocking chords. `tools/our-songs/funeral-march.ts:1`
+- [ ] *Eine kleine Nachtmusik*: all four (as marked). `tools/our-songs/eine-kleine-nachtmusik.ts:1`
+- [ ] *Air on the G String*: all four (c 9-10, r e l 17-18). `tools/our-songs/air-on-the-g-string.ts:1`
+- [ ] *Ave Maria*: all four (as marked). `tools/our-songs/ave-maria.ts:1`
+- [ ] *Nocturne in C sharp minor*: all four (as marked). `tools/our-songs/chopin-nocturne-c-sharp-minor.ts:1`
+
+### 4. Batch 3: the orchestral and choral classics
+
+**Does:** reworks eight classics with no Original. The writer reads the print the module's
+`source.edition` names, or the song's printed score in its Wikipedia wikitext.
+**Split:** as stage 2.
+**Gate:** stage 3 is done.
+
+- [ ] *Lacrimosa*: all four (as marked). `tools/our-songs/lacrimosa.ts:1`
+- [ ] *Adagietto*: all four (c 9-11, r e l 9-15). `tools/our-songs/mahler-adagietto.ts:1`
+- [ ] *Piano Concerto No. 21, Andante*: all four (c 7-8, r e l 13-15). `tools/our-songs/mozart-21-andante.ts:1`
+- [ ] *Night on Bald Mountain*: all four (as marked). `tools/our-songs/night-on-bald-mountain.ts:1`
+- [ ] *Seventh Symphony, Allegretto*: all four (c 9-11, r e l 17-19). `tools/our-songs/beethoven-7-allegretto.ts:1`
+- [ ] *Gymnopédie No. 1*: all four (c 12, r e l 12-14). `tools/our-songs/gymnopedie-1.ts:1`
+- [ ] *Hungarian Dance No. 5*: all four (as marked). `tools/our-songs/hungarian-dance-5.ts:1`
+- [ ] *Toccata in D minor*: the versions marked. `tools/our-songs/toccata-in-d-minor.ts:1`
+
+### 5. Batch 4: the short motifs and the codas
+
+**Does:** reworks six classics and two songs with a coda of ours. The source is found as in stage 4.
+**Split:** as stage 2.
+**Gate:** stage 4 is done.
+
+- [ ] *Aquarium*: all four (c r 9-15, e l 9-16). `tools/our-songs/aquarium.ts:1`
+- [ ] *Also sprach Zarathustra*: all four (c 7, r 14, e l 13-15). `tools/our-songs/also-sprach-zarathustra.ts:1`
+- [ ] *Wedding March*: all four (c r 9-15, e l 9-16). `tools/our-songs/wedding-march.ts:1`
+- [ ] *In the Hall of the Mountain King*: check Beginner's and Easy's bar 23 against the print. Mark and rework it only if it is ours. `tools/our-songs/hall-of-the-mountain-king.ts:1`
+- [ ] *Angels We Have Heard on High*: Epic and Legendary (11). `tools/our-songs/angels-we-have-heard-on-high.ts:1`
+- [ ] *Twinkle, Twinkle, Little Star*: Easy, Medium and Hard (15). `tools/our-songs/twinkle-twinkle-little-star.ts:1`
+- [ ] *Yankee Doodle*: the versions marked. `tools/our-songs/yankee-doodle.ts:1`
+- [ ] *Blow the Man Down*: all four (c r 18-20, e l 18-24). `tools/our-songs/blow-the-man-down.ts:1`
+
+### 6. Batch 5: the sea songs
+
+**Does:** reworks four sea songs. Where the print ends with the tune, a version plays the tune again in
+another setting or ends on the home chord.
+**Split:** two writing subagents of two songs each, then one fresh reviewer.
+**Gate:** stage 5 is done.
+
+- [ ] *Drunken Sailor*: all four (9-16). `tools/our-songs/drunken-sailor.ts:1`
+- [ ] *Haul Away Joe*: all four (9-16). `tools/our-songs/haul-away-joe.ts:1`
+- [ ] *Sailor's Hornpipe*: all four (10-16). `tools/our-songs/sailors-hornpipe.ts:1`
+- [ ] *Spanish Ladies*: all four (c r 10-16, e l 10-17). `tools/our-songs/spanish-ladies.ts:1`
+- [ ] Test `no_version_plays_a_bar_of_our_own` passes. `tools/our-songs.test.ts:1`
+
+### 7. the goal is verified once, and every failure is fixed
 
 - [ ] Run `looper verify` over the whole goal.
 - [ ] Fix every failure it names in one pass, never deleting or loosening a test.
@@ -89,18 +202,25 @@ of our own, with its bars, and each Medium or Hard whose accompaniment ignores a
 
 ### State
 
-The goal is written, behind `original-arrangements` on the chain. No stage has started.
-[Decision 0014](../decisions/0014.md) records its reasons.
+Stage 1 is done. The rules are in `docs/our-songs.md`, and `REWORKED_VERSIONS` drives the new files
+and the move of a learner's work. 34 modules mark their bars of our own in `ownBars`. No version is
+reworked yet, so `REWORKED_VERSIONS` is empty.
+
+The audit found 35 songs with bars of our own and three accompaniments to take from the source:
+*Boléro*, *Funeral March* and *Für Elise*. The rest are in the batches above. The tunes of 39 songs are
+whole verses or carols, so they need no rework.
 
 ### Next
 
-**Stage 1: the rework's rules, its new files and the audit.** Files: `docs/our-songs.md`,
-`tools/make-our-songs.ts`, `src/library/moved-songs.ts` and `tools/our-songs.test.ts`. Gate:
-`original-arrangements` is reached.
+**Stage 2: batch 1, the songs with an Original of ours.** Files: the eight modules the stage names,
+`src/library/moved-songs.ts:50` and their guides. Gate: stage 1 is done.
 
-Every item of stage 1 above is open.
+- [ ] Eight songs, each item of stage 2 above. `tools/our-songs/beethoven-5.ts:1`
+- [ ] `REWORKED_VERSIONS` lists every reworked version of the batch. `src/library/moved-songs.ts:50`
+- [ ] Every reference to an old file moves to its new one. `src/play-modes/modes.ts:109`
 
-Expected red: `no_version_plays_a_bar_of_our_own` until the last batch.
+Expected red: `no_version_plays_a_bar_of_our_own` until stage 6. A reworked file breaks any test that
+names it by its old path.
 
 ### Backlog
 
