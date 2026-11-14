@@ -21,12 +21,21 @@
  *
  * Legendary's octaves, chords and stride notes are played short, each with an eighth's rest after it.
  * The hand then jumps to its next shape instead of stretching.
+ *
+ * Our Original is the whole Galop, No. 28 of the operetta, as the piano part of Heugel's vocal score of
+ * 1874 prints it on its pages 287 to 291. It is in D major and 2/4, so the tune's hook sounds a fifth
+ * higher than in our versions, and `keyShift` is 7. It plays every repeat as printed, each repeated
+ * section with its first ending, then again with its second: 146 bars. The famous strain is its bars 95
+ * to 126, and the chorus's verse "Ce bal est original" is its bars 40 to 71, in G major.
  */
 import type { Key } from "../../src/theory/key";
 import type { OurSong } from "../make-our-songs";
 
 /** The tune's own key, which every version keeps. */
 const G_MAJOR: Key = { tonic: 7, mode: "major" };
+
+/** The print's key, which the Original keeps. */
+const D_MAJOR: Key = { tonic: 2, mode: "major" };
 
 /** The tune in 4/4, in quarters, which are the print's eighths: one bar per print bar. */
 const tune = "G5:4 | A5:1 C6:1 B5:1 A5:1 | D6:2 D6:2 | D6:1 E6:1 B5:1 C6:1 | A5:2 A5:2 | A5:1 C6:1 B5:1 A5:1 | G5:1 r:3";
@@ -154,6 +163,265 @@ const WIDE: Record<string, string> = {
   d: "D2/5:2 A2/2:2 D3/1:2 F#3/3:2 A3/2:2 C4/1:2 A3/2:2 r:2",
 };
 
+/** One bar of the Original in 32nds, 16 to the bar: the right hand, then the left hand. */
+type PrintBar = readonly [right: string, left: string];
+
+/** `token` played `count` times in a row. */
+function times(token: string, count: number): string {
+  return Array<string>(count).fill(token).join(" ");
+}
+
+/** The left hand's A seventh chord of the opening, an eighth long. */
+const A7 = "A2+E3+G3/5+2+1:4";
+
+/** The left hand's D major chord, an eighth long. */
+const D_CHORD = "D3+F#3+A3/5+3+1:4";
+
+/** The left hand's D major third, an eighth long. */
+const D_THIRD = "D3+F#3/3+1:4";
+
+/** The left hand's A major chord under the famous strain, an eighth long, with finger 3 on C sharp. */
+const A_CHORD = "A2+C#3+E3+A3/5+3+2+1:4";
+
+/** The same A major chord with finger 4 on C sharp, as the transcription of p290.6 onward fingers it. */
+const A_CHORD_WIDE = "A2+C#3+E3+A3/5+4+2+1:4";
+
+/** The second strain's first bar, at p287.11 and p287.15: F sharp, then D, in octaves in both hands. */
+const F_SHARP_D: PrintBar = ["F#5+F#6/1+5:8 D5+D6/1+5:8", "F#3+F#4/5+1:8 D3+D4/5+1:8"];
+
+/** The second strain's second bar, at p287.12 and p287.16: B, then A, in octaves in both hands. */
+const B_A: PrintBar = ["B4+B5/1+5:8 A4+A5/1+5:8", "B2+B3/5+1:8 A2+A3/5+1:8"];
+
+/** The bar of D major and A seventh that p287.19 and p288.1 to p288.3 repeat. */
+const D_A: PrintBar = ["F#5+D6/1+5:4 A5/3:4 G5+C#6/1+4:4 A5/2:4", "D3+F#3/3+1:8 A2+E3+G3/5+2+1:8"];
+
+/**
+ * Page 287: the Galop's opening strain on A seventh and D, repeated with two endings, then its second
+ * strain loudly in octaves, repeated with two endings.
+ */
+const PAGE_287: Record<string, PrintBar> = {
+  "287.1": ["A4/1:4 E5/4:4 E5/4:4 F#5/5:4", times(A7, 4)],
+  "287.2": ["F#5/5:1 E5/4:3 D5/3:4 D5/3:4 F#5/5:4", `${times(D_THIRD, 3)} ${D_CHORD}`],
+  "287.3": ["G5/1:4 B5/2:4 D6/5:4 B5/2:4", times("G3+B3/3+1:4", 4)],
+  "287.4": ["B5/4:4 A5/3:4 A5/3:8", times(D_CHORD, 4)],
+  "287.5": ["B5/5:4 C#5/1:4 C#5/1:4 B5/5:4", times(A7, 4)],
+  "287.6": ["A5/5:4 D5/1:4 D5/1:4 F#5/3:4", times(D_THIRD, 4)],
+  "287.7": ["G#5/4:1 F#5/3:3 E5/2:4 F#5/3:4 E5/2:4", times("E3+G#3+B3/5+3+1:4", 4)],
+  "287.8": ["F#5/3:4 E5/2:4 F#5/3:4 E5/2:4", times("A3+C#4/2+1:4", 4)],
+  "287.9": ["G5/4:1 F#5/3:3 E5/2:4 F#5/3:4 E5/2:4", times(A7, 4)],
+  "287.10": ["E5/3:4 D5/2:4 D5/2:8", `${times(D_THIRD, 2)} D3+F#3/3+1:8`],
+  "287.11": F_SHARP_D,
+  "287.12": B_A,
+  "287.13": ["A4+A5/1+5:4 A4+E5/1+3:4 A4+F#5/1+4:4 A4+G5/1+5:4", times("A2+C#3+G3/5+4+1:4", 4)],
+  "287.14": ["A4+F#5/1+5:4 A4+E5/1+4:4 A4+D5/1+3:8", `${times(D_THIRD, 2)} D3+F#3/3+1:8`],
+  "287.15": F_SHARP_D,
+  "287.16": B_A,
+  "287.17": ["E5+G#5/1+2:4 E5+A5/1+3:4 E5+B5/1+4:4 E5+C#6/1+5:4", times(A7, 4)],
+  "287.18": ["F#5+E6/1+5:4 F#5+D6/1+4:4 F#5+D6/1+4:8", `${times(D_THIRD, 2)} D3+F#3/3+1:8`],
+  "287.19": D_A,
+};
+
+/** The right hand's dotted D octaves of p288.4 to p288.7, half a bar. */
+const DOTTED = "D4+D5/1+5:6 D4+D5/1+5:2";
+
+/** The left hand's G major and D seventh of the verse: a low octave, then a chord, each a quarter. */
+const VERSE_G = "G2+G3/5+1:8 G3+B3+D4/5+3+1:8";
+const VERSE_D7 = "D2+D3/5+1:8 D3+F#3+A3+C4/5+3+2+1:8";
+
+/** The verse's right-hand bars that come back, in octaves: A C B A, D D, D E B C, A A. */
+const ACBA = "A4+A5/1+5:4 C5+C6/1+5:4 B4+B5/1+5:4 A4+A5/1+5:4";
+const DD = "D5+D6/1+5:8 D5+D6/1+5:8";
+const DEBC = "D5+D6/1+5:4 E5+E6/1+5:4 B4+B5/1+5:4 C5+C6/1+5:4";
+const AA = "A4+A5/1+5:8 A4+A5/1+5:8";
+
+/**
+ * Page 288: four bars on D lead to the verse "Ce bal est original" in G major, the tune in octaves, which
+ * the chorus sings with the piano's lower notes. It repeats with two endings. Then the opening strain
+ * returns. Bars p288.4 to p288.7 hold D in dotted octaves.
+ */
+const PAGE_288: Record<string, PrintBar> = {
+  "288.1": D_A,
+  "288.2": D_A,
+  "288.3": D_A,
+  "288.4": [`F#5+D6/2+5:6 D4+D5/1+5:2 ${DOTTED}`, "D3+F#3/3+1:6 D3/1:2 D3/1:6 D3/1:2"],
+  "288.5": [`${DOTTED} ${DOTTED}`, times("D3/1:6 D3/1:2", 2)],
+  "288.6": [`${DOTTED} ${DOTTED}`, times("D3/1:6 D3/1:2", 2)],
+  "288.7": [`${DOTTED} ${DOTTED}`, times("D3/1:6 D3/1:2", 2)],
+  "288.8": ["G4+G5/1+5:16", VERSE_G],
+  "288.9": [ACBA, VERSE_D7],
+  "288.10": [DD, VERSE_G],
+  "288.11": [DEBC, VERSE_G],
+  "288.12": [AA, VERSE_D7],
+  "288.13": [ACBA, VERSE_D7],
+  "288.14": ["G4+G5/1+5:4 G5+G6/1+5:4 F#5+F#6/1+5:4 E5+E6/1+5:4", VERSE_G],
+  "288.15": ["D5+D6/1+5:4 C5+C6/1+5:4 B4+B5/1+5:4 A4+A5/1+5:4", VERSE_D7],
+  "288.16": ["G4+G5/1+5:16", VERSE_G],
+  "288.17": [ACBA, VERSE_D7],
+  "288.18": [DD, VERSE_G],
+  "288.19": [DEBC, VERSE_G],
+  "288.20": [AA, VERSE_D7],
+  "288.21": [ACBA, VERSE_D7],
+  "288.22": ["G4+G5/1+5:4 D5+D6/1+5:4 A4+A5/1+5:4 B4+B5/1+5:4", "G3+B3/3+1:8 D3+F#3+C4/5+3+1:8"],
+  "288.23": ["G4+G5/1+5:8 D4+D5/1+5:8", "G3+B3/3+1:8 r:8"],
+  "288.24": ["G4+G5/1+5:8 G4+B4+D5+G5/1+2+3+5:8", VERSE_G],
+  // p288.25 and p288.26 are engraved as p287.1 and p287.2, with the grace F sharp before bar 26's E.
+  "288.25": ["A4/1:4 E5/4:4 E5/4:4 F#5/5:4", times(A7, 4)],
+  "288.26": ["F#5/5:1 E5/4:3 D5/3:4 D5/3:4 F#5/5:4", `${times(D_THIRD, 3)} ${D_CHORD}`],
+  "288.27": ["G5/1:4 B5/3:4 D6/5:4 B5/3:4", times("G3+B3/3+1:4", 4)],
+  "288.28": ["B5/3:4 A5/2:4 A5/2:8", times(D_CHORD, 4)],
+  "288.29": ["B5/5:4 C#5/1:4 C#5/1:4 B5/5:4", times(A7, 4)],
+};
+
+/** The right hand's B and A of p289.8 to p289.11, then of p289.12 to p289.14 in another fingering. */
+const B_A_A = "B5/4:4 A5/3:4 A5/3:8";
+const B_A_A_HIGH = "B5/5:4 A5/4:4 A5/4:8";
+
+/** The left hand's A seventh chord of p289.15 to p289.18, an eighth long. */
+const A7_FULL = "A3+C#4+E4+G4/5+3+2+1:4";
+
+/**
+ * Page 289: the opening strain ends, and the left hand climbs in chords under a repeated B and A, louder
+ * and louder. Then the famous strain begins in octaves, with the whole chorus.
+ */
+const PAGE_289: Record<string, PrintBar> = {
+  "289.1": ["A5/5:4 D5/1:4 D5/1:4 F#5/3:4", times(D_THIRD, 4)],
+  "289.2": ["G#5/4:1 F#5/3:3 E5/2:4 F#5/3:4 E5/2:4", times("E3+G#3+D4/5+3+1:4", 4)],
+  "289.3": ["G5/4:1 F#5/3:3 E5/2:4 F#5/3:4 E5/2:4", times("A3+C#4/2+1:4", 4)],
+  "289.4": ["A4/1:4 E5/4:4 E5/4:4 F#5/5:4", times(A7, 4)],
+  "289.5": ["F#5/4:1 E5/3:3 D5/2:4 D5/2:4 F#5/4:4", `${times(D_THIRD, 3)} ${D_CHORD}`],
+  "289.6": ["G5/1:4 B5/2:4 D6/4:4 B5/2:4", times("G3+B3/2+1:4", 4)],
+  "289.7": ["B5/4:4 A5/3:4 A5/3:8", times(D_CHORD, 4)],
+  "289.8": [B_A_A, times("A3+C#4+E4/5+3+1:4", 4)],
+  "289.9": [B_A_A, times("A3+D4+F4/5+2+1:4", 4)],
+  "289.10": [B_A_A, times("A3+D#4+F#4/5+2+1:4", 4)],
+  "289.11": [B_A_A, times("A3+E4+G4/5+2+1:4", 4)],
+  "289.12": [B_A_A_HIGH, times("A3+C#4+E4/5+3+1:4", 4)],
+  "289.13": [B_A_A_HIGH, times("A3+D4+F4/5+2+1:4", 4)],
+  "289.14": [B_A_A_HIGH, times("A3+D#4+F#4/5+2+1:4", 4)],
+  "289.15": ["B5/5:4 A5/4:4 B5/5:4 A5/4:4", times(A7_FULL, 4)],
+  "289.16": ["B5/5:4 A5/4:4 B5/5:4 A5/4:4", times(A7_FULL, 4)],
+  "289.17": ["B5/5:4 A5/4:4 B5/5:4 A5/4:4", times(A7_FULL, 4)],
+  // The chorus's pickup, a quarter's A4 into the famous strain, is added under the piano's B5 and A5.
+  // The notation strikes it with each of them, so it sounds as two eighths instead of one quarter.
+  "289.18": ["B5/5:4 A5/4:4 A4+B5/1+5:4 A4+A5/1+4:4", times(A7_FULL, 4)],
+  "289.19": ["D5+D6/1+5:16", `D4+F#4/2+1:4 ${times(D_CHORD, 3)}`],
+  "289.20": ["E5+E6/1+5:4 G5+G6/1+5:4 F#5+F#6/1+5:4 E5+E6/1+5:4", times(A_CHORD, 4)],
+  "289.21": ["A5+A6/1+5:8 A5+A6/1+5:8", times(D_CHORD, 4)],
+  "289.22": ["A5+A6/1+5:4 B5+B6/1+5:4 F#5+F#6/1+5:4 G5+G6/1+5:4", times(D_CHORD, 4)],
+};
+
+/** The famous strain's E G F# E in octaves, as p289.20 and page 290 play it. */
+const EGFE = "E5+E6/1+5:4 G5+G6/1+5:4 F#5+F#6/1+5:4 E5+E6/1+5:4";
+
+/**
+ * Page 290: the famous strain goes on an octave higher than printed, under the print's 8va line, and
+ * repeats with two endings. The second ending turns to B minor and G major.
+ */
+const PAGE_290: Record<string, PrintBar> = {
+  "290.1": ["E5+E6/1+5:8 E5+E6/1+5:8", times(A_CHORD, 4)],
+  "290.2": [EGFE, times(A_CHORD, 4)],
+  "290.3": ["D5+D6/1+5:4 D6+D7/1+5:4 C#6+C#7/1+5:4 B5+B6/1+5:4", times(D_CHORD, 4)],
+  "290.4": ["A5+A6/1+5:4 G5+G6/1+5:4 F#5+F#6/1+5:4 E5+E6/1+5:4", times(A_CHORD, 4)],
+  "290.5": ["D5+D6/1+5:16", times(D_CHORD, 4)],
+  "290.6": [EGFE, times(A_CHORD_WIDE, 4)],
+  "290.7": ["A5+A6/1+5:8 A5+A6/1+5:8", times(D_CHORD, 4)],
+  "290.8": ["A5+A6/1+5:4 B5+B6/1+5:4 F#5+F#6/1+5:4 G5+G6/1+5:4", times(D_CHORD, 4)],
+  "290.9": ["E5+E6/1+5:8 E5+E6/1+5:8", times(A_CHORD_WIDE, 4)],
+  "290.10": [EGFE, times(A_CHORD_WIDE, 4)],
+  "290.11": ["D5+D6/1+5:4 A5+A6/1+5:4 E5+E6/1+5:4 F#5+F#6/1+5:4", `${times(D_CHORD, 2)} ${times(A_CHORD_WIDE, 2)}`],
+  "290.12": ["D5+D6/1+5:8 A4+A5/1+5:8", times(D_CHORD, 4)],
+  "290.13": ["D5+D6/1+5:8 A4+D5/1+4:8", "D3+D4/5+1:8 D3+D4/5+1:8"],
+  "290.14": ["A4+E5/1+4:8 A4+D5+F#5/1+3+5:8", "C#3+C#4/5+1:8 C3+C4/5+1:8"],
+  // The chorus sings G5 here for a dotted quarter and an eighth, and the piano's right hand does not.
+  // The G5 is added to each of the hand's four chords, so it sounds with each instead of held.
+  "290.15": [
+    "D5+F#5+G5+A5/1+2+4+5:4 G4+D5+G5/1+3+5:4 G4+C#5+G5/1+3+5:4 G4+B4+G5/1+2+5:4",
+    "B2+B3/5+1:4 B2+B3/5+1:4 G2+G3/5+1:4 G2+G3/5+1:4",
+  ],
+};
+
+/** The left hand's tremolo of p291.10 to p291.13 on D major, in sixteenths. */
+const TREMOLO = times("D3+F#3/5+3:2 A3/1:2", 4);
+
+/** The left hand's D major chord of the closing bars, a quarter, then a quarter's rest. */
+const LAST_LEFT = "D3+F#3+A3+D4/5+3+2+1:8 r:8";
+
+/** Page 291: the strain's last turn, the tune on D major over a tremolo, and the closing chords. */
+const PAGE_291: Record<string, PrintBar> = {
+  "291.1": ["G4+A4/1+2:4 A4+G5/1+5:4 A4+F#5/1+4:4 A4+E5/1+3:4", `A2+A3/5+1:4 ${times("A2+C#3+A3/5+3+1:4", 3)}`],
+  "291.2": ["F#4+D5/1+5:8 F#4+D5/1+5:8", "D3+F#3+A3/5+3+1:8 D3+D4/5+1:8"],
+  "291.3": ["A4+E5/1+4:8 A4+D5+F#5/1+3+5:8", "C#3+C#4/5+1:8 C3+C4/5+1:8"],
+  "291.4": ["D5+F#5+A5/1+3+5:4 G4+D5+G5/1+3+5:4 G4+C#5/1+4:4 G4+B4/1+3:4", "B2+B3/5+1:4 B2+B3/5+1:4 G2+G3/5+1:4 G2+G3/5+1:4"],
+  "291.5": ["G4+A4/1+2:4 A4+G5/1+5:4 A4+F#5/1+4:4 A4+E5/1+3:4", "A2+A3/5+1:4 A2+E3+A3/5+2+1:4 A2+D3+A3/5+3+1:4 A2+E3+A3/5+2+1:4"],
+  "291.6": ["A4+D5/1+4:4 A4+A5/1+5:4 A4+E5/1+3:4 A4+F#5/1+4:4", `${times(D_CHORD, 2)} ${times(A_CHORD_WIDE, 2)}`],
+  "291.7": ["A4+D5/1+4:4 A4+A5/1+5:4 A4+E5/1+3:4 A4+F#5/1+4:4", `${times(D_CHORD, 2)} ${times(A_CHORD_WIDE, 2)}`],
+  "291.8": ["A4+D5/1+4:4 A4+A5/1+5:4 A4+E5/1+3:4 A4+F#5/1+4:4", `${times(D_CHORD, 2)} ${times(A_CHORD_WIDE, 2)}`],
+  "291.9": ["A4+D5/1+4:4 A4+A5/1+5:4 A4+E5/1+3:4 A4+F#5/1+4:4", `${times(D_CHORD, 2)} ${times(A_CHORD_WIDE, 2)}`],
+  "291.10": ["A4+D5/1+5:16", TREMOLO],
+  "291.11": ["F#5+F#6/1+5:8 D5+D6/1+5:8", TREMOLO],
+  "291.12": ["A5+A6/1+5:8 D5+D6/1+5:8", TREMOLO],
+  "291.13": ["F#5/2:8 A5/4:8", TREMOLO],
+  "291.14": ["D6/5:8 r:8", "D3+F#3+A3/5+3+1:8 r:8"],
+  "291.15": ["D5+F#5+A5+D6/1+2+3+5:8 r:8", LAST_LEFT],
+  "291.16": ["D5+F#5+A5/1+3+5:8 r:8", LAST_LEFT],
+  "291.17": ["F#5+A5+D6+F#6/1+2+3+5:8 r:8", LAST_LEFT],
+  "291.18": [times("F#5+A5+D6/1+3+5:2 D5/1:2", 4), times("D3+F#3+A3/5+3+2:2 D4/1:2", 4)],
+  "291.19": ["F#5+A5+D6/1+3+5:8 r:8", "D3+F#3+A3/5+3+1:8 r:8"],
+};
+
+/** The print's bars by page and bar on the page, such as `"289.19"`. */
+const PRINT_BARS: Record<string, PrintBar> = { ...PAGE_287, ...PAGE_288, ...PAGE_289, ...PAGE_290, ...PAGE_291 };
+
+/**
+ * The print's pedal, which it never marks: ours holds through the tremolos on D major alone, at p291.10
+ * to p291.13 and p291.18, where the harmony holds still. Every other bar keeps it up.
+ */
+const PEDAL: Record<string, string> = {
+  "291.10": "P:16~",
+  "291.11": "P:16~",
+  "291.12": "P:16~",
+  "291.13": "P:16",
+  "291.18": "P:16",
+  "291.19": "P:8 r:8",
+};
+
+/** The bars `from` to `to` of the print's page `page`. */
+function run(page: number, from: number, to: number): string[] {
+  return Array.from({ length: to - from + 1 }, (_, at) => `${page}.${from + at}`);
+}
+
+/** The body of the famous strain's repeat, p289.19 to p290.10. */
+const STRAIN = [...run(289, 19, 22), ...run(290, 1, 10)];
+
+/**
+ * The 146 bars the Original plays, with every repeat as printed:
+ * - bars 1 to 16: the opening strain, p287.1 to p287.8, then p287.1 to p287.6 and its second ending.
+ * - bars 17 to 32: the loud second strain, p287.11 to p287.18, then p287.11 to p287.17 and p287.19.
+ * - bars 33 to 39: p288.1 to p288.7, D and A, then the dotted octaves on D from bar 36.
+ * - bars 40 to 71: the verse, p288.8 to p288.23, then p288.8 to p288.22 and p288.24.
+ * - bars 72 to 94: the opening strain again and the climb, p288.25 to p289.18.
+ * - bars 95 to 126: the famous strain, p289.19 to p290.12, then p289.19 to p290.10 and p290.13 to p290.14.
+ * - bars 127 to 146: the close, p290.15 and p291.1 to p291.19.
+ */
+const PLAYED = [
+  ...run(287, 1, 8), ...run(287, 1, 6), ...run(287, 9, 10),
+  ...run(287, 11, 18), ...run(287, 11, 17), "287.19",
+  ...run(288, 1, 7),
+  ...run(288, 8, 23), ...run(288, 8, 22), "288.24",
+  ...run(288, 25, 29), ...run(289, 1, 18),
+  ...STRAIN, ...run(290, 11, 12), ...STRAIN, ...run(290, 13, 14),
+  "290.15", ...run(291, 1, 19),
+];
+
+/** One line of the Original: the right hand, the left hand or the pedal of each played bar, in order. */
+function printLine(part: 0 | 1 | 2): string {
+  return PLAYED.map((name) => {
+    const bar = PRINT_BARS[name];
+    if (bar === undefined) throw new Error(`Can-can's Original has no bar p${name}`);
+    return part === 2 ? (PEDAL[name] ?? "r:16") : bar[part];
+  }).join(" | ");
+}
+
 export const canCan: OurSong = {
   slug: "can-can",
   title: "Can-can",
@@ -170,7 +438,42 @@ export const canCan: OurSong = {
     "In the 1890s the Paris cabarets the Moulin Rouge and the Folies Bergère took it up to accompany the can-can. " +
     "The 2001 film Moulin Rouge! uses it in its score.",
   funFact: "Its tune shares its main notes with two far slower songs of the same act, yet sounds nothing like them.",
-  mythic: null,
+  mythic: {
+    key: D_MAJOR,
+    bpm: 120,
+    numerator: 2,
+    denominator: 4,
+    steps: 8,
+    right: printLine(0),
+    left: printLine(1),
+    pedal: printLine(2),
+    source: {
+      edition:
+        "Orphée aux Enfers, No. 28, the Galop infernal, in the piano part of Heugel's vocal score, Paris, arranger not named, scanned as Internet Archive item orpheauxenfers00offe, printed pages 287 to 291",
+      printed: 1874,
+      keyShift: 7,
+    },
+    skills: ["melody-in-chords", "octave-bass", "dotted-rhythm"],
+    practice: [
+      { text: "Play bars 1 to 16 slowly with the right hand alone. Play each grace note lightly, and let the next note follow at once.", hands: "right", speed: 0.6, loop: [1, 16], wait: true },
+      { text: "Play the verse, bars 40 to 71, with the right hand alone. Keep fingers 1 and 5 firm on the octaves, and bounce from the wrist.", hands: "right", speed: 0.5, loop: [40, 71], wait: true },
+      { text: "Play bars 40 to 71 with the left hand alone. On each beat it jumps from a low octave up to a chord.", hands: "left", speed: 0.5, loop: [40, 71], wait: true },
+      { text: "Play the famous strain, bars 95 to 126, with both hands at three-quarter speed.", hands: "both", speed: 0.75, loop: [95, 126], wait: false },
+      { text: "Play the whole Galop with both hands at full speed.", hands: "both", speed: 1, loop: null, wait: false },
+    ],
+    tips: [
+      { fromBar: 1, toBar: 16, kind: "rhythm", text: "Each grace note takes a 32nd from the note after it. Play it lightly, and keep the beat steady." },
+      { fromBar: 17, toBar: 32, kind: "sound", text: "The second strain is loud, with octaves in the right hand. Play each octave from the wrist." },
+      { fromBar: 36, toBar: 39, kind: "rhythm", text: "The octaves on D are long, then short. Keep each short one quick and light." },
+      { fromBar: 84, toBar: 94, kind: "sound", text: "The left hand climbs through new chords under a repeated B and A. Grow louder towards bar 95." },
+      { fromBar: 95, toBar: 126, kind: "sound", text: "The famous strain sounds high, in octaves. Let the top note of each octave ring out." },
+    ],
+    tricky: {
+      41: "The right hand plays A, C, B and A in octaves with fingers 1 and 5. The left hand jumps from a low D octave to a four-note chord.",
+      49: "This bar repeats bar 41. Keep the octaves even, and land the four notes of the left hand's chord together.",
+      57: "Bar 41 comes back in the verse's repeat. Move the left hand early from the low D octave up to its chord.",
+    },
+  },
   collection: "film",
   tune: { text: tune, numerator: 4, denominator: 4, key: G_MAJOR, hookBars: [1, 7] },
   versions: {
@@ -370,6 +673,27 @@ export const canCan: OurSong = {
           21: "Spiel A, D und A mit Finger 1, 2 und 5. Spring in der Pause davor vom hohen C zurück.",
           23: "Nach dem Akkord steigt der Lauf vom D aus. Auf dem G geht der Daumen unter.",
         },
+      },
+    },
+    original: {
+      practice: [
+        "Spiel die Takte 1 bis 16 langsam nur mit der rechten Hand. Spiel jeden Vorschlag leicht, und lass den nächsten Ton sofort folgen.",
+        "Spiel die Strophe, Takt 40 bis 71, nur mit der rechten Hand. Halt Finger 1 und 5 auf den Oktaven fest, und federe aus dem Handgelenk.",
+        "Spiel die Takte 40 bis 71 nur mit der linken Hand. Auf jedem Schlag springt sie von einer tiefen Oktave hinauf zu einem Akkord.",
+        "Spiel die berühmte Melodie, Takt 95 bis 126, mit beiden Händen in Dreiviertel-Tempo.",
+        "Spiel den ganzen Galopp mit beiden Händen im vollen Tempo.",
+      ],
+      tips: [
+        "Jeder Vorschlag nimmt dem Ton danach ein Zweiunddreißigstel. Spiel ihn leicht, und halt den Schlag gleichmäßig.",
+        "Der zweite Teil ist laut, mit Oktaven in der rechten Hand. Spiel jede Oktave aus dem Handgelenk.",
+        "Die Oktaven auf D sind lang, dann kurz. Spiel jede kurze schnell und leicht.",
+        "Die linke Hand steigt unter einem wiederholten H und A durch neue Akkorde. Werde bis Takt 95 immer lauter.",
+        "Die berühmte Melodie klingt hoch, in Oktaven. Lass den oberen Ton jeder Oktave klingen.",
+      ],
+      tricky: {
+        41: "Die rechte Hand spielt A, C, H und A in Oktaven mit Finger 1 und 5. Die linke Hand springt von einer tiefen D-Oktave zu einem Vierklang.",
+        49: "Dieser Takt wiederholt Takt 41. Spiel die Oktaven gleichmäßig, und schlag die vier Töne des Akkords der linken Hand zusammen an.",
+        57: "Takt 41 kehrt in der Wiederholung der Strophe zurück. Bewege die linke Hand früh von der tiefen D-Oktave hinauf zu ihrem Akkord.",
       },
     },
   },

@@ -5106,6 +5106,7 @@
       "held-bass",
       "open-fifths"
     ],
+    "mythic": "ours/william-tell/mythic.mid",
     "collection": "film",
     "aka": [
       "William Tell",
@@ -5131,6 +5132,7 @@
       "two-note-chords",
       "triads"
     ],
+    "mythic": "ours/william-tell/mythic.mid",
     "collection": "film",
     "aka": [
       "William Tell",
@@ -5157,6 +5159,7 @@
       "pedal",
       "thirds-and-sixths"
     ],
+    "mythic": "ours/william-tell/mythic.mid",
     "collection": "film",
     "aka": [
       "William Tell",
@@ -5183,6 +5186,33 @@
       "octave-bass",
       "melody-in-chords"
     ],
+    "mythic": "ours/william-tell/mythic.mid",
+    "collection": "film",
+    "aka": [
+      "William Tell",
+      "Guillaume Tell",
+      "Wilhelm Tell",
+      "March of the Swiss Soldiers"
+    ]
+  },
+  {
+    "composer": "Gioachino Rossini",
+    "piece": "William Tell Overture",
+    "title": "Original",
+    "file": "ours/william-tell/mythic.mid",
+    "difficulty": 5,
+    "license": "MIT",
+    "credit": "Arranged by the learn-piano-easy authors",
+    "low": 40,
+    "high": 95,
+    "seconds": 199,
+    "song": "william-tell",
+    "skills": [
+      "sixteenth-notes",
+      "thirds-and-sixths",
+      "melody-in-chords"
+    ],
+    "mythic": "ours/william-tell/mythic.mid",
     "collection": "film",
     "aka": [
       "William Tell",
@@ -5208,6 +5238,7 @@
       "five-finger-position",
       "held-bass"
     ],
+    "mythic": "ours/swan-lake/mythic.mid",
     "collection": "film",
     "aka": [
       "Schwanensee",
@@ -5233,6 +5264,7 @@
       "two-note-chords",
       "waltz-bass"
     ],
+    "mythic": "ours/swan-lake/mythic.mid",
     "collection": "film",
     "aka": [
       "Schwanensee",
@@ -5259,6 +5291,7 @@
       "pedal",
       "thirds-and-sixths"
     ],
+    "mythic": "ours/swan-lake/mythic.mid",
     "collection": "film",
     "aka": [
       "Schwanensee",
@@ -5285,6 +5318,33 @@
       "arpeggios",
       "melody-in-chords"
     ],
+    "mythic": "ours/swan-lake/mythic.mid",
+    "collection": "film",
+    "aka": [
+      "Schwanensee",
+      "Le Lac des cygnes",
+      "Swan Lake theme",
+      "Op. 20"
+    ]
+  },
+  {
+    "composer": "Pyotr Ilyich Tchaikovsky",
+    "piece": "Swan Lake",
+    "title": "Original",
+    "file": "ours/swan-lake/mythic.mid",
+    "difficulty": 5,
+    "license": "MIT",
+    "credit": "Arranged by the learn-piano-easy authors",
+    "low": 30,
+    "high": 90,
+    "seconds": 231,
+    "song": "swan-lake",
+    "skills": [
+      "left-hand-melody",
+      "melody-in-chords",
+      "octave-bass"
+    ],
+    "mythic": "ours/swan-lake/mythic.mid",
     "collection": "film",
     "aka": [
       "Schwanensee",
@@ -6258,6 +6318,7 @@
       "held-bass",
       "open-fifths"
     ],
+    "mythic": "ours/can-can/mythic.mid",
     "collection": "film",
     "aka": [
       "Can-Can",
@@ -6285,6 +6346,7 @@
       "two-note-chords",
       "triads"
     ],
+    "mythic": "ours/can-can/mythic.mid",
     "collection": "film",
     "aka": [
       "Can-Can",
@@ -6313,6 +6375,7 @@
       "thumb-under",
       "pedal"
     ],
+    "mythic": "ours/can-can/mythic.mid",
     "collection": "film",
     "aka": [
       "Can-Can",
@@ -6341,6 +6404,35 @@
       "arpeggios",
       "melody-in-chords"
     ],
+    "mythic": "ours/can-can/mythic.mid",
+    "collection": "film",
+    "aka": [
+      "Can-Can",
+      "Cancan",
+      "Galop infernal",
+      "Infernal Galop",
+      "Orpheus in the Underworld",
+      "Orphée aux Enfers"
+    ]
+  },
+  {
+    "composer": "Jacques Offenbach",
+    "piece": "Can-can",
+    "title": "Original",
+    "file": "ours/can-can/mythic.mid",
+    "difficulty": 5,
+    "license": "MIT",
+    "credit": "Arranged by the learn-piano-easy authors",
+    "low": 38,
+    "high": 98,
+    "seconds": 145,
+    "song": "can-can",
+    "skills": [
+      "melody-in-chords",
+      "octave-bass",
+      "dotted-rhythm"
+    ],
+    "mythic": "ours/can-can/mythic.mid",
     "collection": "film",
     "aka": [
       "Can-Can",

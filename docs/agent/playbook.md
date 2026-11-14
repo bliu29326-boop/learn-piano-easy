@@ -115,6 +115,9 @@ Traps a session paid for once, so the next one does not. **It is not a changelog
 - **Commons can refuse a scan's original file with an HTML error page saved as `.jpg`.** Its retries
   fail for many minutes. Ask `imageinfo` with `iiurlwidth=4000` and fetch its `thumburl`, which serves a
   3840-pixel copy. Check each fetch with `file`.
+- **Helpers that crop in one folder overwrite each other's crops.** Each one names its crops `c1.png` or
+  `z.png`, so a helper reads another's crop as its own bar. Have each helper prefix its crops with the
+  name of the transcription file it writes, such as `page-n303-b-c1.png`.
 - **A song module checked in a tree with uncommitted meter edits may fail at HEAD.** `tools/check-our-song.ts`
   reads the tree's `tools/song-meter.ts`, and the writer rewrites every catalog row. Check, write and
   build in a detached worktree under `.agent-tmp/`, after `bun install --frozen-lockfile` there. Add

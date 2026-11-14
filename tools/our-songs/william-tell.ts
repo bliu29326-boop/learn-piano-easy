@@ -1,5 +1,6 @@
 /**
- * *William Tell Overture*: the first phrase of the finale of Rossini's overture, in four versions of ours.
+ * *William Tell Overture*: the first phrase of the finale of Rossini's overture, in four versions of ours,
+ * and the whole finale as our Original.
  *
  * The tune is the top voice of Louis Niedermeyer's piano reduction. The print is in 2/4 and E major, with
  * sixteenths. The tune writes every sixteenth as a quarter, so each print bar is a bar of 4/2. Bar 1
@@ -19,6 +20,19 @@
  *
  * The sixths, the octaves, the chords and the stride are played short, each with an eighth's rest
  * after it. The hand then jumps to its next shape instead of stretching.
+ *
+ * The Original is the whole finale in Niedermeyer's reduction, printed pages 6 to 10: 252 bars of 2/4 in
+ * E major, at the print's quarter of 152. A unit is a 32nd, 16 to the bar. Its bars are numbered 1 to
+ * 252 in order, and each page's table names the print's page bar beside each section. Where the print
+ * writes a doubled sharp, the notation names the white key it sounds, so F double sharp is G.
+ *
+ * A tie over a bar line is the notation's `~`, so the note sounds once. Bars 15 to 17 hold a B major
+ * chord so, and bars 90 and 91 a C sharp. The left chord of bars 174, 178, 198 and 202 is tied into
+ * the next bar's first eighth.
+ *
+ * The print marks no pedal, so the pedal is ours. It holds a bar at a time, only where the harmony holds
+ * the whole bar. Those bars are the tremolo of bars 167 to 173, the E major figure of bars 236 to 239,
+ * and the last bar.
  */
 import type { Key } from "../../src/theory/key";
 import type { OurSong } from "../make-our-songs";
@@ -191,6 +205,386 @@ function halfBarPedal(count: number): string {
   return Array(count).fill("P:8 P:8").join(" | ");
 }
 
+/**
+ * One bar of the Original in 32nds, 16 to the bar: the right hand, the left hand and the pedal. A bar
+ * without a pedal keeps it up.
+ */
+type PrintBar = readonly [right: string, left: string, pedal?: string];
+
+/** A bar of the Original: its notes, or the number of the earlier bar it repeats note for note. */
+type OriginalBar = PrintBar | number;
+
+/** The left hand's chords in four voices: E major, B major and B seventh, and C sharp minor. */
+const E4V = "E3+G#3+B3+E4/5+3+2+1";
+const B4V = "B2+D#3+F#3+B3/5+3+2+1";
+const B7 = "B2+D#3+F#3+A3/5+3+2+1";
+const CS4V = "C#3+E3+G#3+C#4/5+3+2+1";
+
+/** The trumpet's rhythm on one note or chord: an eighth and two 16ths, twice. */
+function gallop(notes: string): string {
+  return `${notes}:4 ${notes}:2 ${notes}:2 ${notes}:4 ${notes}:2 ${notes}:2`;
+}
+
+/** `text` written `count` times, joined by spaces, as a tremolo repeats its pair. */
+function times(text: string, count: number): string {
+  return Array(count).fill(text).join(" ");
+}
+
+/**
+ * Printed page 6, bars 1 to 59: the print's page bars 1 to 59.
+ * - Bars 1 to 17: the trumpet's call on B over a G major chord, then over E major, to a held B major chord.
+ * - Bars 18 to 25: the galop's tune softly, on a repeated B under the left hand's E major.
+ * - Bars 26 to 35: the tune loudly in octaves, an 8va line in bars 32 to 34.
+ * - Bars 36 to 49: the C sharp minor answer in thirds and octaves, played twice.
+ * - Bars 50 to 59: the bridge of rising bass steps, then the tune softly again.
+ */
+const PAGE_6: Record<number, OriginalBar> = {
+  1: ["B4/3:8 r:4 B4/3:2 B4/3:2", "G2+B2+D3+G3/5+3+2+1:4 r:4 r:8"],
+  2: ["B4/3:8 r:4 B4/3:2 B4/3:2", "r:16"],
+  3: ["B4/3:4 G#4/2:4 E4/1:4 G#4/2:4", "r:16"],
+  4: ["B4/3:4 G#4/2:4 B4/3:4 E5/5:4", "r:16"],
+  5: ["B4/3:4 G#4/2:4 E4/1:4 G#4/2:4", "E4/3:8 r:4 E4/3:2 E4/3:2"],
+  6: ["B4/3:4 G#4/2:4 B4/3:4 E5/5:4", "E4/3:8 r:4 E4+G#4/3+1:2 E4+G#4/3+1:2"],
+  7: ["B4/3:8 r:4 B4/3:2 B4/3:2", "E4+G#4/3+1:4 B3+F#4/5+1:4 G#3+E4/5+1:4 B3+F#4/5+1:4"],
+  8: ["B4/3:8 r:4 B4/3:2 B4/3:2", "E4+G#4/3+1:4 G#4+B4/3+1:4 F#4+A4/3+1:4 E4+G#4/3+1:4"],
+  9: ["B4/3:8 r:4 B4/3:2 B4/3:2", "B3+F#4/5+1:4 E4+G#4/3+1:4 B3+F#4/5+1:4 F#4+A4/3+1:4"],
+  10: ["B4/3:8 r:4 B4/3:2 B4/3:2", "E4+G#4/3+1:4 B3+F#4/5+1:4 G#3+E4/5+1:4 E4+G#4/3+1:4"],
+  11: ["B4/3:4 B4/3:2 B4/3:2 B4/3:4 B4/3:4", "B3+D#4+F#4/5+3+1:4 B3+D#4+F#4/5+3+1:2 B3+D#4+F#4/5+3+1:2 B3+D#4+F#4/5+3+1:4 B3+D#4+F#4/5+3+1:4"],
+  12: 11,
+  13: 11,
+  14: 11,
+  // The print ties this chord over bars 16 and 17, to bar 17's first eighth.
+  15: ["B4/3:16~", "B3+D#4+F#4/5+3+1:16~"],
+  16: ["B4:16~", "B3+D#4+F#4:16~"],
+  17: ["B4:4 r:4 r:8", "B3+D#4+F#4:4 r:4 r:8"],
+  // Bar 18: the tune, pianissimo.
+  18: ["r:8 r:4 B3/2:2 B3/2:2", "r:8 r:4 E3+G#3/3+1:2 E3+G#3/3+1:2"],
+  19: [gallop("B3/2"), gallop("E3+G#3/3+1")],
+  20: ["B3+E4/1+4:4 B3+F#4/1+5:4 B3+G#4/1+5:4 B3/1:2 B3/1:2", "E3+G#3/3+1:4 E3+G#3/3+1:4 E3+G#3/3+1:4 E3+G#3/3+1:2 E3+G#3/3+1:2"],
+  21: ["B3/1:4 B3/1:2 B3/1:2 B3+E4/1+4:4 B3+G#4/1+5:2 B3+G#4/1+5:2", gallop("E3+G#3/3+1")],
+  22: ["B3+F#4/1+5:4 B3+D#4/1+3:4 B3/1:4 B3/1:2 B3/1:2", "B2+D#3+F#3/5+3+1:4 B2+D#3+F#3/5+3+1:4 B2+D#3+F#3/5+3+1:4 E3+G#3/3+1:2 E3+G#3/3+1:2"],
+  23: [gallop("B3/1"), gallop("E3+G#3/3+1")],
+  24: ["B3+E4/1+4:4 B3+F#4/1+5:4 B3+G#4/1+5:4 E4/3:2 G#4/4:2", "E3+G#3/3+1:4 E3+G#3/3+1:4 E3+G#3/3+1:4 E3+G#3+B3/5+3+1:2 E3+G#3+B3/5+3+1:2"],
+  25: ["B4/3:10 A4/2:2 G#4/2:2 F#4/1:2", gallop(B7)],
+  // Bar 26: the tune fortissimo, in octaves.
+  26: ["E4/3:4 B3+G#4/1+5:4 B3+E4/1+4:4 B4+B5/1+5:2 B4+B5/1+5:2", `E3+G#3/3+1:4 E3+G#3/3+1:4 E3+G#3/3+1:4 ${E4V}:2 ${E4V}:2`],
+  27: [gallop("B4+B5/1+5"), gallop(E4V)],
+  28: ["E5+E6/1+5:4 F#5+F#6/1+5:4 G#5+G#6/1+5:4 B4+B5/1+5:2 B4+B5/1+5:2", `${E4V}:4 ${E4V}:4 ${E4V}:4 ${E4V}:2 ${E4V}:2`],
+  29: ["B4+B5/1+5:4 B4+B5/1+5:2 B4+B5/1+5:2 E5+E6/1+5:4 G#5+G#6/1+5:2 G#5+G#6/1+5:2", gallop(E4V)],
+  30: ["F#5+F#6/1+5:4 D#5+D#6/1+5:4 B4+B5/1+5:4 B4+B5/1+5:2 B4+B5/1+5:2", `${B4V}:4 ${B4V}:4 ${B4V}:4 ${E4V}:2 ${E4V}:2`],
+  31: 27,
+  32: ["E5+E6/1+5:4 F#5+F#6/1+5:4 G#5+G#6/1+5:4 E6/4:2 G#6/5:2", `${E4V}:4 ${E4V}:4 ${E4V}:4 E3+G#3+B3/5+3+1:2 E3+G#3+B3/5+3+1:2`],
+  33: ["B5+B6/1+5:10 A6/4:2 G#6/3:2 F#6/2:2", gallop(B7)],
+  34: ["E6/3:4 B5+G#6/1+5:4 B5+E6/1+5:4 E5+G#5/1+3:2 E5+G#5/1+3:2", `E3+G#3/3+1:4 ${E4V}:4 ${E4V}:4 ${CS4V}:2 ${CS4V}:2`],
+  35: [gallop("E5+G#5/1+3"), gallop(CS4V)],
+  // Bar 36: the C sharp minor answer.
+  36: ["E5+G#5/1+3:4 C#5+C#6/1+5:4 E5+G#5/1+3:4 C#5+C#6/1+5:4", `${CS4V}:4 r:4 ${CS4V}:4 r:4`],
+  37: ["E5+G#5/1+3:4 C#5+C#6/1+5:4 E5+G#5/1+3:4 D#5+F#5/1+3:4", `${CS4V}:4 r:4 G#2+G#3/5+1:4 r:4`],
+  38: ["C#5+E5/1+3:4 B#4+D#5/1+3:4 C#5/2:4 E5+G#5/1+3:2 E5+G#5/1+3:2", `C#3+G#3/5+1:4 C#3+F#3+A3/5+3+1:4 C#3+E3+G#3/5+3+1:4 ${CS4V}:2 ${CS4V}:2`],
+  39: 35,
+  40: 36,
+  41: ["E5+G#5/1+3:4 C#5+C#6/1+5:4 F#5+B5/1+5:4 E5+A#5/1+5:4", `${CS4V}:4 r:4 F#3+D#4/5+1:4 F#3+C#4/5+1:4`],
+  // The natural on G3 holds to the bar's end, so the last two chords take G natural.
+  42: ["D#5+B5/1+5:4 E5+A#5/1+5:4 D#5+B5/1+5:4 E5+G#5/1+3:2 E5+G#5/1+3:2", "B2+B3/5+1:4 B2+G3/5+1:4 B2+F#3/5+1:4 C#3+E3+G3+C#4/5+3+2+1:2 C#3+E3+G3+C#4/5+3+2+1:2"],
+  43: 35,
+  44: 36,
+  45: 37,
+  46: 38,
+  47: 35,
+  48: 36,
+  49: 41,
+  // Bar 50: the bridge.
+  50: ["D#5+B5/1+5:4 B4/2:2 B4/2:2 B4/2:4 B3+F#4/1+5:2 B3+F#4/1+5:2", "B2+B3/5+1:4 r:4 r:8"],
+  51: ["B3+F#4/1+5:4 B3+F#4/1+5:2 B3+F#4/1+5:2 B3+F#4/1+5:4 E4+G#4/1+3:4", "r:16"],
+  52: ["F#4+A4/1+3:4 B3+F#4/1+5:8 F#4+A4/1+3:4", "r:4 B2/5:4 C#3/4:4 D#3/3:4"],
+  53: ["E4+G#4/1+3:4 E4/1:8 E4+G#4/1+3:4", "E3/5:4 F#3/4:4 G#3/3:4 A3/2:4"],
+  54: ["D#4+F#4/1+3:4 D#4+F#4/1+3:4 D#4+F#4/1+3:4 B4+F#5/1+5:2 B4+F#5/1+5:2", "B3/3:4 B2+B3/5+1:4 B2+B3/5+1:4 B3+F#4/5+1:2 B3+F#4/5+1:2"],
+  55: ["B4+F#5/1+5:4 B4+F#5/1+5:2 B4+F#5/1+5:2 B4+F#5/1+5:4 E5+G#5/1+3:4", "B3+F#4/5+1:4 B3+F#4/5+1:2 B3+F#4/5+1:2 B3+F#4/5+1:4 E4+G#4/3+1:4"],
+  56: ["F#5+A5/1+3:4 B4+F#5/1+5:8 F#5+A5/1+3:4", "F#4+A4/3+1:4 B2/5:4 C#3/4:4 D#3/3:4"],
+  57: ["E5+G#5/1+3:4 G#4+E5/1+5:8 E5+G#5/1+3:4", "E3/5:4 F#3/4:4 G#3/3:4 A3/2:4"],
+  58: ["D#5+F#5/1+3:4 B4/2:2 B4/2:2 B4/2:4 B3/1:2 B3/1:2", "B3/3:4 r:4 r:4 E3+G#3/3+1:2 E3+G#3/3+1:2"],
+  59: 23,
+};
+
+/**
+ * Printed page 7, bars 60 to 111: the print's page bars 7.1 to 7.52.
+ * - Bars 60 to 75: the tune softly, then in octaves to a run of seven 32nds in bar 74 (7.15).
+ * - Bars 76 to 89 (7.17 to 7.30): broken octaves over a left-hand tremolo, then 16ths that climb to the top.
+ * - Bars 90 to 104 (7.31 to 7.45): the C sharp minor answer in 16ths, and a chromatic turn.
+ * - Bars 105 to 111 (7.46 to 7.52): the 16ths again, an octave lower.
+ */
+const PAGE_7: Record<number, OriginalBar> = {
+  60: ["B3+E4/1+3:4 B3+F#4/1+4:4 B3+G#4/1+5:4 B3/1:2 B3/1:2", "E3+G#3/5+3:4 E3+G#3/5+3:4 E3+G#3/5+3:4 E3+G#3/5+3:2 E3+G#3/5+3:2"],
+  61: ["B3/1:4 B3/1:2 B3/1:2 B3+E4/1+3:4 B3+G#4/1+5:2 B3+G#4/1+5:2", gallop("E3+G#3/5+3")],
+  62: ["B3+F#4/1+4:4 B3+D#4/1+3:4 B3/1:4 B3/1:2 B3/1:2", "B2+D#3+F#3/5+3+1:4 B2+D#3+F#3/5+3+1:4 B2+D#3+F#3/5+3+1:4 E3+G#3/5+3:2 E3+G#3/5+3:2"],
+  63: [gallop("B3/1"), gallop("E3+G#3/5+3")],
+  64: ["B3+E4/1+3:4 B3+F#4/1+4:4 B3+G#4/1+5:4 E4/1:2 G#4/3:2", "E3+G#3/5+3:4 E3+G#3/5+3:4 E3+G#3/5+3:4 E3+G#3+B3/5+3+1:2 E3+G#3+B3/5+3+1:2"],
+  65: ["B4/4:10 A4/3:2 G#4/2:2 F#4/1:2", gallop(B7)],
+  66: ["E4/1:4 B3+G#4/1+5:4 B3+E4/1+3:4 B4+B5/1+5:2 B4+B5/1+5:2", `E3+G#3/5+3:4 E3+G#3/5+3:4 E3+G#3/5+3:4 ${E4V}:2 ${E4V}:2`],
+  67: 27,
+  68: 28,
+  69: 29,
+  70: 30,
+  71: 27,
+  72: ["E5+E6/1+5:4 F#5+F#6/1+5:4 G#5+G#6/1+5:4 E6/5:2 G#6/5:2", `${E4V}:4 ${E4V}:4 ${E4V}:4 E3+G#3+B3/5+3+1:2 E3+G#3+B3/5+3+1:2`],
+  73: 33,
+  // The print's run of seven 32nds stands over the left hand's last eighth rest. It starts three 32nds
+  // early, so the third chord is a 32nd long.
+  74: ["E6/1:4 B5+G#6/1+5:4 B5+E6/1+5:1 E5/1:1 F#5/2:1 G#5/3:1 A5/1:1 B5/2:1 C#6/3:1 D#6/4:1", `E3+G#3/5+3:4 ${E4V}:4 ${E4V}:4 r:4`],
+  75: ["E6/1:4 E5+E6/1+5:2 E5+E6/1+5:2 E5+E6/1+5:4 E5+E6/1+5:4", `${E4V}:4 ${E4V}:4 ${E4V}:4 ${E4V}:4`],
+  // Bar 76 (7.17): broken octaves over a tremolo.
+  76: ["G#5/1:2 G#6/5:2 G#5/1:2 G#6/5:2 G#5/1:2 G#6/5:2 F#5/1:2 F#6/5:2", times("B#3/1:2 E3/5:2", 4)],
+  77: ["E5/1:2 E6/5:2 D#5/1:2 D#6/5:2 E5/1:2 E6/5:2 C#5/1:2 C#6/5:2", "C#4/1:2 E3/5:2 B#3/1:2 E3/5:2 C#4/1:2 E3/5:2 A3/1:2 E3/5:2"],
+  78: ["B5/1:2 C#6/2:2 B5/1:2 C#6/2:2 B5/1:2 C#6/2:2 D#6/3:2 E6/4:2", `E3+G#3/5+3:4 r:4 ${E4V}:4 r:4`],
+  79: ["A5/1:2 B5/2:2 A5/1:2 B5/2:2 A5/1:2 B5/2:2 C#6/3:2 D#6/4:2", `${B4V}:4 r:4 ${B4V}:4 r:4`],
+  80: ["G#5/1:2 A5/2:2 G#5/1:2 A5/2:2 G#5/1:2 A5/2:2 B5/3:2 C#6/4:2", "E3+G#3+B3/5+3+1:4 r:4 E3+G#3+B3/5+3+1:4 r:4"],
+  81: [times("F#5/1:2 G#5/2:2", 4), "A2+C#3+E3+F#3/5+3+2+1:4 r:4 A2+C#3+E3+F#3/5+3+2+1:4 r:4"],
+  82: ["F#5/3:2 G#5/4:2 F#5/3:2 D#5/2:2 B4/1:2 B5/1:2 C#6/2:2 D#6/3:2", "B2+D#3+F#3/5+3+1:4 r:4 r:8"],
+  83: 75,
+  84: 76,
+  85: 77,
+  86: 78,
+  87: 79,
+  88: 80,
+  89: ["F#5/1:2 G#5/2:2 F#5/1:2 G#5/2:2 F#5/1:2 A5/3:2 G#5/2:2 F#5/1:2", "A2+C#3+E3+F#3/5+3+2+1:4 r:4 B2+D#3+A3/5+3+1:4 r:4"],
+  // Bar 90 (7.31): the C sharp minor answer in 16ths. The print ties the C sharp into bar 91.
+  90: ["E5/2:4 r:4 C#5/1:8~", "E3+G#3/5+3:4 r:4 r:8"],
+  91: ["C#5:2 B#4/2:2 C#5/3:2 B#4/2:2 D#5/4:2 C#5/3:2 B4/2:2 A4/1:2", `${CS4V}:4 r:4 F#3+A3+C#4/5+2+1:4 r:4`],
+  92: ["C#5/4:2 B4/3:2 G#4/2:2 E4/1:2 E4/1:2 E4/1:2 E4/1:2 E4/1:2", `${CS4V}:4 r:4 r:4 C#3+E3+G#3/5+3+1:4`],
+  93: ["G#4/4:2 F#4/3:2 D#4/2:2 B3/1:2 B3/1:2 B3/1:2 B3/1:2 B3/1:2", "G#2+B#2+D#3+G#3/5+3+2+1:4 r:4 r:4 G#2+B#2+D#3/5+3+1:4"],
+  94: ["G#3/1:2 C#4/2:2 E4/3:2 G#4/4:2 C#5/4:2 C#5/4:2 C#5/4:2 C#5/4:2", "C#3+E3/5+3:4 r:4 r:8"],
+  95: ["C#5/3:2 B#4/2:2 C#5/3:2 B#4/2:2 D#5/4:2 C#5/3:2 B4/2:2 A4/1:2", `${CS4V}:4 r:4 F#3+A3+C#4/5+2+1:4 r:4`],
+  96: 92,
+  97: 93,
+  98: ["G#3/1:2 C#4/2:2 E4/3:2 G#4/4:2 C#5/4:2 E5/5:2 D#5/4:2 C#5/3:2", "E3+G#3/5+3:4 r:4 r:8"],
+  99: ["D#5/4:2 B#4/3:2 G#4/2:2 G#4/2:2 G#4/1:2 G#5/5:2 E5/3:2 C#5/2:2", "G#3+B#3+D#4/5+3+1:4 r:4 r:4 G#3+C#4+E4/5+3+1:4"],
+  100: 99,
+  // Bar 101 (7.42): the print's F double sharp is written G.
+  101: ["D#5/5:2 B#4/4:2 G#4/2:2 G#4/2:2 A#4/3:2 G4/2:2 D#4/1:2 D#4/1:2", "G#3+B#3+D#4/5+3+1:4 r:4 D#3+G3+C#4/5+3+1:4 r:4"],
+  102: ["G#4/3:2 G4/2:2 G#4/3:2 G4/2:2 G#4/3:2 A4/4:2 G#4/3:2 F#4/2:2", "G#3+B3/3+1:4 r:4 r:8"],
+  103: ["E4/3:2 B3/1:2 A#3/1:2 B3/1:2 E4/3:2 B3/1:2 F#4/4:2 B3/1:2", "E3+G#3/3+1:4 r:4 G#2+E3/5+1:4 B2+F#3/5+1:4"],
+  104: ["G#4/3:2 E4/2:2 D#4/1:2 E4/2:2 G#4/3:2 E4/2:2 A4/4:2 F#4/3:2", "E3+G#3/3+1:4 r:4 E3+G#3/3+1:4 E3+F#3+A3/3+2+1:4"],
+  // Bar 105 (7.46): the 16ths an octave lower.
+  105: ["B4/1:2 G#5/5:2 F#5/4:2 E5/3:2 D#5/2:2 F#5/4:2 E5/3:2 C#5/1:2", "E3+G#3+B3/5+3+1:4 r:4 r:4 E3+G3+A#3+C#4/5+4+2+1:4"],
+  106: ["B4/1:2 C#5/2:2 B4/1:2 C#5/2:2 D#5/3:2 E5/4:2 F#5/5:2 G#5/5:2", "E3+G#3+B3/5+3+1:4 r:4 E3+G#3+B3/5+3+1:4 r:4"],
+  107: ["A4/1:2 B4/2:2 A4/1:2 B4/2:2 C#5/1:2 D#5/2:2 E5/3:2 F#5/4:2", `${B4V}:4 r:4 ${B4V}:4 r:4`],
+  108: ["G#4/1:2 A4/2:2 G#4/1:2 A4/2:2 B4/1:2 C#5/2:2 D#5/3:2 E5/4:2", "E3+G#3+B3/5+3+1:4 r:4 E3+G#3+B3/5+3+1:4 r:4"],
+  109: [times("F#4/1:2 G#4/2:2", 4), "A2+C#3+E3+F#3/5+3+2+1:4 r:4 A2+C#3+E3+F#3/5+3+2+1:4 r:4"],
+  110: ["F#4/3:2 G#4/4:2 F#4/3:2 D#4/2:2 B3/1:2 B#3/1:2 C#4/2:2 D#4/3:2", "B2+D#3+F#3/5+3+1:4 r:4 r:8"],
+  111: 103,
+};
+
+/**
+ * Printed page 8, bars 112 to 160: the print's page bars 8.1 to 8.49.
+ * - Bars 112 to 133 (8.1 to 8.22): the 16ths climb again, with the broken octaves and tremolo twice.
+ * - Bars 134 to 149 (8.23 to 8.38): the C sharp minor answer, always fortissimo.
+ * - Bars 150 to 157 (8.39 to 8.46): a soft shake of B, A sharp and C sharp over the left hand's chords.
+ * - Bars 158 to 160 (8.47 to 8.49): the tune softly again.
+ */
+const PAGE_8: Record<number, OriginalBar> = {
+  112: ["G#4/4:2 E4/2:2 D#4/1:2 E4/2:2 G#4/4:2 E4/2:2 A4/5:2 F#4/3:2", "E3+G#3/5+3:4 r:4 E3+G#3/5+3:4 E3+F#3+A3/5+4+2:4"],
+  113: ["B4/3:2 G#5/5:2 F#5/4:2 E5/3:2 D#5/2:2 F#5/4:2 E5/3:2 C#5/2:2", "E3+G#3+B3/5+3+1:4 r:4 r:4 E3+G3+A#3+C#4/5+4+2+1:4"],
+  114: ["B4/2:2 C#5/3:2 B4/2:2 C#5/3:2 D#5/2:2 E5/3:2 F#5/4:2 G#5/5:2", "E3+G#3+B3/5+3+1:4 r:4 E3+G#3+B3/5+3+1:4 r:4"],
+  115: ["B4/2:2 C#5/3:2 B4/2:2 C#5/3:2 D#5/2:2 E5/3:2 F#5/4:2 G#5/5:2", "B2+D#3+F#3+A3/5+4+2+1:4 r:4 B2+D#3+F#3+A3/5+4+2+1:4 r:4"],
+  116: ["G#4/2:2 A4/3:2 G#4/2:2 A4/3:2 B4/2:2 C#5/3:2 D#5/4:2 E5/5:2", "E3+G#3+B3/5+3+1:4 r:4 E3+G#3+B3/5+3+1:4 r:4"],
+  117: ["F#4/1:2 C#5/5:2 B#4/4:2 C#5/5:2 D#5/5:2 C#5/4:2 A4/2:2 F#4/1:2", "A2+E3+F#3/5+2+1:4 r:4 B2+D#3+A3/5+3+1:4 r:4"],
+  118: ["D#4/1:2 E5/1:2 F#5/2:2 G#5/3:2 A5/4:2 B5/5:2 C#6/5:2 D#6/5:2", "E3+G#3/5+3:4 r:4 r:8"],
+  119: ["E6/5:4 E5+E6/1+5:2 E5+E6/1+5:2 E5+E6/1+5:4 E5+E6/1+5:4", `${E4V}:4 ${E4V}:4 ${E4V}:4 ${E4V}:4`],
+  120: ["G#5/1:2 G#6/5:2 G#5/1:2 G#6/5:2 G#5/1:2 G#6/5:2 F#5/1:2 F#6/5:2", times("B#3/2:2 E3/5:2", 4)],
+  121: ["E5/1:2 E6/5:2 D#5/1:2 D#6/5:2 E5/1:2 E6/5:2 C#5/1:2 C#6/5:2", "C#4/1:2 E3/5:2 B#3/2:2 E3/5:2 C#4/1:2 E3/5:2 A3/2:2 E3/5:2"],
+  122: ["B5/3:2 C#6/4:2 B5/3:2 C#6/4:2 B5/3:2 C#6/4:2 D#6/5:2 E6/5:2", `E3+G#3/5+3:4 r:4 ${E4V}:4 r:4`],
+  // Bars 123 and 131 are the same music. The left chord's top is B3, as bar 131's reading at 400% has it.
+  123: ["A5/2:2 B5/3:2 A5/2:2 B5/3:2 A5/2:2 B5/3:2 C#6/4:2 D#6/5:2", "B2+D#3+F#3+B3/5+4+2+1:4 r:4 B2+D#3+F#3+B3/5+4+2+1:4 r:4"],
+  124: ["G#5/2:2 A5/3:2 G#5/2:2 A5/3:2 G#5/2:2 A5/3:2 B5/4:2 C#6/5:2", "E3+G#3+B3/5+3+1:4 r:4 E3+G#3+B3/5+3+1:4 r:4"],
+  125: [times("F#5/2:2 G#5/3:2", 4), "A2+C#3+E3+F#3/5+3+2+1:4 r:4 A2+C#3+E3+F#3/5+3+2+1:4 r:4"],
+  126: ["F#5/3:2 G#5/4:2 F#5/3:2 D#5/2:2 B4/1:2 B5/3:2 C#6/4:2 D#6/5:2", "B2+D#3+F#3/5+3+1:4 r:4 r:8"],
+  127: 119,
+  128: 120,
+  129: 121,
+  130: 122,
+  131: ["A5/2:2 B5/3:2 A5/2:2 B5/3:2 A5/2:2 B5/3:2 C#6/4:2 D#6/5:2", `${B4V}:4 r:4 ${B4V}:4 r:4`],
+  132: 124,
+  133: ["F#5/2:2 G#5/3:2 F#5/2:2 G#5/3:2 F#5/2:2 A5/4:2 G#5/3:2 F#5/2:2", "A2+C#3+E3+F#3/5+3+2+1:4 r:4 B2+D#3+A3/5+3+1:4 r:4"],
+  // Bar 134 (8.23): the C sharp minor answer, sempre fortissimo.
+  134: ["E5/1:4 B4/1:4 E5/2:4 E5+G#5/2+4:2 E5+G#5/2+4:2", "E3+G#3+B3/5+3+1:4 E3+G#3+B3/5+3+1:4 E3+G#3+B3/5+3+1:4 C#3+E3+G#3+C#4/5+4+2+1:2 C#3+E3+G#3+C#4/5+4+2+1:2"],
+  135: [gallop("E5+G#5/2+4"), gallop("C#3+E3+G#3+C#4/5+4+2+1")],
+  136: ["E5+G#5/2+4:4 C#5+C#6/1+5:4 E5+G#5/2+4:4 C#5+C#6/1+5:4", "C#3+E3+G#3+C#4/5+4+2+1:4 r:4 C#3+E3+G#3+C#4/5+4+2+1:4 r:4"],
+  137: ["E5+G#5/2+4:4 C#5+C#6/1+5:4 E5+G#5/2+4:4 D#5+F#5/2+4:4", "C#3+E3+G#3+C#4/5+4+2+1:4 r:4 G#2+G#3/5+1:4 r:4"],
+  138: ["C#5+E5/1+3:4 B#4+D#5/1+3:4 C#5/1:4 E5+G#5/2+4:2 E5+G#5/2+4:2", "C#3+G#3/5+1:4 C#3+F#3+A3/5+2+1:4 C#3+E3+G#3/5+3+1:4 C#3+E3+G#3+C#4/5+4+2+1:2 C#3+E3+G#3+C#4/5+4+2+1:2"],
+  139: 135,
+  140: 136,
+  141: ["E5+G#5/2+4:4 C#5+C#6/1+5:4 F#5+B5/2+5:4 E5+A#5/1+4:4", "C#3+E3+G#3+C#4/5+4+2+1:4 r:4 F#3+D#4/5+1:4 F#3+C#4/5+1:4"],
+  // The natural on G3 holds to the bar's end, as in bar 42.
+  142: ["D#5+B5/1+5:4 E5+A#5/1+4:4 D#5+B5/1+5:4 E5+G#5/2+4:2 E5+G#5/2+4:2", "B2+B3/5+1:4 B2+G3/5+2:4 B2+F#3/5+2:4 C#3+E3+G3+C#4/5+4+2+1:2 C#3+E3+G3+C#4/5+4+2+1:2"],
+  143: 135,
+  144: 136,
+  145: ["E5+G#5/2+4:4 C#5+C#6/1+5:4 E5+G#5/2+4:4 D#5+F#5/1+3:4", "C#3+E3+G#3+C#4/5+4+2+1:4 r:4 G#2+G#3/5+1:4 r:4"],
+  146: ["C#5+E5/1+3:4 B#4+D#5/1+2:4 C#5/1:4 E5+G#5/2+4:2 E5+G#5/2+4:2", "C#3+G#3/5+1:4 C#3+F#3+A3/5+2+1:4 C#3+E3+G#3/5+3+1:4 C#3+E3+G#3+C#4/5+4+2+1:2 C#3+E3+G#3+C#4/5+4+2+1:2"],
+  147: 135,
+  148: 136,
+  149: 141,
+  // Bar 150 (8.39): the soft shake over B.
+  150: ["D#5+B5/1+4:2 A#5/3:2 C#6/5:2 A#5/3:2 B5/4:2 A#5/3:2 C#6/5:2 A#5/3:2", "B2+B3/5+1:4 r:4 r:4 B3+F#4/5+1:2 B3+F#4/5+1:2"],
+  151: [times("B5/4:2 A#5/3:2 C#6/5:2 A#5/3:2", 2), "B3+F#4/5+1:4 B3+F#4/5+1:2 B3+F#4/5+1:2 B3+F#4/5+1:4 E4+G#4/2+1:4"],
+  152: [times("B5/4:2 A#5/3:2 C#6/5:2 A#5/3:2", 2), "F#4+A4/2+1:4 B3+F#4/5+1:8 F#4+A4/2+1:4"],
+  153: [times("B5/4:2 A#5/3:2 C#6/5:2 A#5/3:2", 2), "E4+G#4/2+1:4 G#3+E4/5+1:8 E4+G#4/2+1:4"],
+  154: [times("B5/4:2 A#5/3:2 C#6/5:2 A#5/3:2", 2), "B3+F#4/5+1:4 B2+B3/5+1:4 B2+B3/5+1:4 B3+F#4/5+1:2 B3+F#4/5+1:2"],
+  155: 151,
+  156: 152,
+  157: 153,
+  // Bar 158 (8.47): the tune, pianissimo.
+  158: ["B5/5:4 B4/1:2 B4/1:2 B4/1:4 B3/1:2 B3/1:2", "B3+F#4/5+1:4 r:4 r:4 E3+G#3/3+1:2 E3+G#3/3+1:2"],
+  159: 23,
+  160: ["B3+E4/1+3:4 B3+F#4/1+4:4 B3+G#4/1+5:4 B3/1:2 B3/1:2", "E3+G#3/3+1:4 E3+G#3/3+1:4 E3+G#3/3+1:4 E3+G#3/3+1:2 E3+G#3/3+1:2"],
+};
+
+/** The left hand's tremolo of `chord` and `note`, in 16ths for the whole bar. */
+function tremolo(chord: string, note: string): string {
+  return times(`${chord}:2 ${note}:2`, 4);
+}
+
+/**
+ * Printed page 9, bars 161 to 206: the print's page bars 9.1 to 9.46.
+ * - Bars 161 to 166 (9.1 to 9.6): the tune's end.
+ * - Bars 167 to 173 (9.7 to 9.13): the tune in octaves over a left-hand tremolo, fortissimo.
+ * - Bars 174 to 181 (9.14 to 9.21): scales that climb to a high third, over a climbing bass.
+ * - Bars 182 to 197 (9.22 to 9.37): broken octaves over C major, E major, C sharp and C, then falling octaves.
+ * - Bars 198 to 206 (9.38 to 9.46): the climbing scales again.
+ */
+const PAGE_9: Record<number, OriginalBar> = {
+  161: ["B3/1:4 B3/1:2 B3/1:2 B3+E4/1+5:4 B3+G#4/1+5:2 B3+G#4/1+5:2", gallop("E3+G#3/5+3")],
+  162: ["B3+F#4/1+5:4 B3+D#4/1+3:4 B3/1:4 B3/1:2 B3/1:2", "B2+D#3+F#3/5+3+1:4 B2+D#3+F#3/5+3+1:4 B2+D#3+F#3/5+3+1:4 E3+G#3/5+3:2 E3+G#3/5+3:2"],
+  163: 63,
+  164: ["B3+E4/1+5:4 B3+F#4/1+5:4 B3+G#4/1+5:4 E4/2:2 G#4/4:2", "E3+G#3/5+3:4 E3+G#3/5+3:4 E3+G#3/5+3:4 E3+G#3+B3/5+3+1:2 E3+G#3+B3/5+3+1:2"],
+  165: 65,
+  166: ["E4/2:8 r:4 B4+B5/1+5:2 B4+B5/1+5:2", "E3+G#3/5+3:4 E3+G#3/5+3:4 E3+G#3/5+3:4 r:4"],
+  // Bar 167 (9.7): the tune in octaves over a tremolo, with a pedal of ours.
+  167: [gallop("B4+B5/1+5"), tremolo("E2+G#2+B2/5+3+1", "E3/1"), "P:16"],
+  168: ["E5+E6/1+5:4 F#5+F#6/1+5:4 G#5+G#6/1+5:4 B4+B5/1+5:2 B4+B5/1+5:2", tremolo("E2+G#2+B2/5+3+1", "E3/1"), "P:16"],
+  169: ["B4+B5/1+5:4 B4+B5/1+5:2 B4+B5/1+5:2 E5+E6/1+5:4 G#5+G#6/1+5:2 G#5+G#6/1+5:2", tremolo("E2+G#2+B2/5+3+1", "E3/1"), "P:16"],
+  170: ["F#5+F#6/1+5:4 D#5+D#6/1+5:4 B4+B5/1+5:4 B4+B5/1+5:2 B4+B5/1+5:2", tremolo("B2+D#3+F#3/5+3+1", "B3/1"), "P:16"],
+  171: 167,
+  172: ["E5+E6/1+5:4 F#5+F#6/1+5:4 G#5+G#6/1+5:4 E5/1:2 G#5/3:2", tremolo("E2+G#2+B2/5+3+1", "E3/1"), "P:16"],
+  173: ["B5/5:10 A5/4:2 G#5/3:2 F#5/2:2", tremolo("B2+D#3+F#3/5+3+1", "A3/1"), "P:16"],
+  // Bar 174 (9.14): the climbing scales. The print ties the left chord into the next bar's first eighth.
+  174: ["E5/1:2 F#5/2:2 G#5/3:2 A5/4:2 G#5/1:2 A5/2:2 B5/3:2 C#6/5:2", `E3+G#3/5+3:6 ${E4V}:2 ${E4V}:8~`],
+  175: ["B5/1:2 C#6/2:2 D#6/3:2 E6/4:2 D#6/1:2 E6/2:2 F#6/3:2 G#6/5:2", `${E4V}:4 B3/1:4 G#3/3:4 E3/5:4`],
+  176: [times("F#6+A6/3+5:2 A5/1:2", 4), "B2/5:4 C3/4:4 C#3/3:4 D3/2:4"],
+  177: [times("F#6+A6/3+5:2 A5/1:2", 4), "D3/3:4 F#3/2:4 B3/1:4 B2/5:4"],
+  178: ["E5/1:2 F#5/2:2 G#5/3:2 A5/4:2 G#5/1:2 A5/2:2 B5/3:2 C#6/5:2", `E3/5:6 ${E4V}:2 ${E4V}:8~`],
+  179: 175,
+  180: 176,
+  181: [times("F#6+A6/3+5:2 A5/1:2", 4), "D#3/3:4 F#3/2:4 B3/1:4 B2/5:4"],
+  // Bar 182 (9.22): broken octaves over moving chords.
+  182: ["r:2 G#5/1:2 G#6/5:2 G#5/1:2 r:2 D#5/1:2 D#6/5:2 D#5/1:2", "E3+G#3+B3/5+3+1:4 r:4 G#2+B#2+D#3+G#3/5+4+2+1:4 r:4"],
+  183: ["r:2 E5/1:2 E6/5:2 E5/1:2 r:2 A5/1:2 A6/5:2 A5/1:2", "C#3+E3+G#3/5+3+1:4 r:4 B2+D#3+F#3+B3/5+4+2+1:4 r:4"],
+  184: 182,
+  185: 183,
+  186: ["r:2 G5/1:2 G6/5:2 G5/1:2 G6/5:2 G5/1:2 G6/5:2 G5/1:2", "E3+G3+C4/5+3+1:4 E3+G3+C4/5+3+1:4 E3+G3+C4/5+3+1:4 E3+G3+C4/5+3+1:4"],
+  187: ["G6/5:2 G5/1:2 E6/4:2 G5/1:2 C6/2:2 G5/1:2 E6/4:2 G5/1:2", "E3+G3+C4/5+3+1:4 r:4 r:8"],
+  188: [times("G#6/5:2 G#5/1:2", 4), "E3+G#3+B3/5+3+1:4 E3+G#3+B3/5+3+1:4 E3+G#3+B3/5+3+1:4 E3+G#3+B3/5+3+1:4"],
+  189: ["G#6/5:2 G#5/1:2 E6/4:2 G#5/1:2 B5/2:2 G#5/1:2 E6/4:2 G#5/1:2", "E3+G#3+B3/5+3+1:4 r:4 r:8"],
+  190: [times("G#6/5:2 G#5/1:2", 4), "C#3+E#3+B3/5+3+1:4 C#3+E#3+B3/5+3+1:4 C#3+E#3+B3/5+3+1:4 C#3+E#3+B3/5+3+1:4"],
+  191: ["G#6/5:2 G#5/1:2 E#6/4:2 G#5/1:2 C#6/2:2 G#5/1:2 E#6/4:2 G#5/1:2", "C#3+E#3+B3/5+3+1:4 r:4 r:8"],
+  192: [times("A#6/5:2 A#5/1:2", 4), "C3+E3+G3/5+3+1:4 C3+E3+G3/5+3+1:4 C3+E3+G3/5+3+1:4 C3+E3+G3/5+3+1:4"],
+  // The print gives this bar's first high A no sign. A natural would clash with the A#5 after it, and the
+  // matching bars repeat the bar before's top note, so the missing sharp is a misprint.
+  193: ["A#6/5:2 A#5/1:2 G6/4:2 A#5/1:2 E6/2:2 A#5/1:2 G6/4:2 A#5/1:2", "C3+E3+G3/5+3+1:4 r:4 r:8"],
+  194: ["B6/5:4 A#5/1:2 A#6/5:2 A5/1:2 A6/5:2 G#5/1:2 G#6/5:2", tremolo("B2+E3+G#3/5+3+1", "B3/1")],
+  195: ["F#5/1:2 F#6/5:2 E5/1:2 E6/5:2 D#5/1:2 D#6/5:2 C#5/1:2 C#6/5:2", tremolo("B2+E3+G#3/5+3+1", "B3/1")],
+  196: ["B4/1:2 B5/5:2 A#4/1:2 A#5/5:2 A4/1:2 A5/5:2 G#4/1:2 G#5/5:2", tremolo("B2+D#3+F#3/5+3+1", "B3/1")],
+  197: ["F#4/1:2 F#5/5:2 E4/1:2 E5/5:2 D#4/1:2 D#5/5:2 F#4/1:2 F#5/5:2", tremolo("B2+D#3+F#3/5+3+1", "B3/1")],
+  // Bar 198 (9.38): the climbing scales again.
+  198: 174,
+  199: 175,
+  200: 176,
+  201: 181,
+  202: 178,
+  203: 175,
+  204: 176,
+  205: 181,
+  206: 182,
+};
+
+/**
+ * Printed page 10, bars 207 to 252: the print's page bars 10.1 to 10.46, the end.
+ * - Bars 207 to 221 (10.1 to 10.15): the broken octaves and the falling octaves once more.
+ * - Bars 222 to 229 (10.16 to 10.23): the tune's last call, rising octaves, and a bar of rest.
+ * - Bars 230 to 235 (10.24 to 10.29): a chromatic scale up, then a shake of E and D sharp over E and B.
+ * - Bars 236 to 252 (10.30 to 10.46): the coda on E major, falling through its chord to the last chord.
+ */
+const PAGE_10: Record<number, OriginalBar> = {
+  // Bars 207 to 209 (p10.1 to p10.3) are engraved as p9.23, p9.22 and p9.23.
+  207: 183,
+  208: 182,
+  209: 183,
+  210: ["r:2 G5/2:2 G6/5:2 G5/2:2 G6/5:2 G5/2:2 G6/5:2 G5/2:2", "E3+G3+C4/5+2+1:4 E3+G3+C4/5+2+1:4 E3+G3+C4/5+2+1:4 E3+G3+C4/5+2+1:4"],
+  211: ["G6/5:2 G5/2:2 E6/4:2 G5/2:2 C6/4:2 G5/2:2 E6/4:2 G5/2:2", "E3+G3+C4/5+2+1:4 r:4 r:8"],
+  212: [times("G#6/5:2 G#5/2:2", 4), "E3+G#3+B3/5+2+1:4 E3+G#3+B3/5+2+1:4 E3+G#3+B3/5+2+1:4 E3+G#3+B3/5+2+1:4"],
+  213: ["G#6/5:2 G#5/1:2 E6/4:2 G#5/1:2 B5/3:2 G#5/1:2 E6/4:2 G#5/1:2", "E3+G#3+B3/5+2+1:4 r:4 r:8"],
+  214: 190,
+  215: ["G#6/5:2 G#5/1:2 E#6/4:2 G#5/1:2 C#6/5:2 G#5/1:2 E#6/4:2 G#5/1:2", "C#3+E#3+B3/5+3+1:4 r:4 r:8"],
+  216: 192,
+  // The print gives this bar's first high A no sign, a misprint as in bar 193.
+  217: ["A#6/5:2 A#5/1:2 G6/5:2 A#5/1:2 E6/4:2 A#5/1:2 G6/5:2 A#5/1:2", "C3+E3+G3/5+3+1:4 r:4 r:8"],
+  218: ["B6/5:4 A#5/1:2 A#6/5:2 A5/1:2 A6/5:2 G#5/1:2 G#6/5:2", tremolo("B2+E3+G#3/5+2+1", "B3/1")],
+  219: ["F#5/1:2 F#6/5:2 E5/1:2 E6/5:2 D#5/1:2 D#6/5:2 C#5/1:2 C#6/5:2", tremolo("B2+E3+G#3/5+2+1", "B3/1")],
+  220: 196,
+  221: 197,
+  // Bar 222 (10.16): the tune's last call.
+  222: ["E5/2:2 D#5/1:2 E5/2:2 D#5/1:2 E5/2:4 B4+B5/1+5:2 B4+B5/1+5:2", "E3+G#3+B3/5+2+1:4 r:4 r:4 B3/1:2 B3/1:2"],
+  223: [gallop("B4+B5/1+5"), gallop("B3/1")],
+  224: ["E5+E6/1+5:4 F#5+F#6/1+5:4 G#5+G#6/1+5:4 B4+B5/1+5:2 B4+B5/1+5:2", "E4/1:4 F#4/2:4 G#4/3:4 B3/1:2 B3/1:2"],
+  225: 223,
+  226: ["G#5+G#6/1+5:4 A5+A6/1+5:4 B5+B6/1+5:4 r:4", "G#4/3:4 A4/2:4 B4/1:4 r:4"],
+  227: ["E5+E6/1+5:4 F#5+F#6/1+5:4 G#5+G#6/1+5:4 r:4", "E4/3:4 F#4/2:4 G#4/1:4 r:4"],
+  228: ["G#4+G#5/1+5:4 A4+A5/1+5:4 B4+B5/1+5:4 r:4", "G#3/3:4 A3/2:4 B3/1:4 r:4"],
+  229: ["r:16", "r:16"],
+  // Bar 230 (10.24): the chromatic scale.
+  230: ["B4/1:2 B#4/2:2 C#5/3:2 D5/1:2 D#5/3:2 E5/1:2 E#5/2:2 F#5/3:2", tremolo("B2+D#3+F#3/5+3+1", "B3/1")],
+  231: ["G5/1:2 G#5/3:2 A5/1:2 A#5/3:2 B5/1:2 B#5/2:2 C#6/3:2 D#6/4:2", tremolo("B2+D#3+F#3/5+3+1", "B3/1")],
+  232: [times("E6/5:2 D#6/4:2 F#6/5:2 D#6/4:2", 2), "E3+G#3/5+1:4 B2+A3/5+1:4 E3+G#3/5+1:4 B2+A3/5+1:4"],
+  233: [times("E6/5:2 D#6/4:2 F#6/5:2 D#6/4:2", 2), "E3+G#3/3+1:4 B2+A3/5+1:4 E3+G#3/3+1:4 B2+A3/5+1:4"],
+  234: 233,
+  235: 233,
+  // Bar 236 (10.30): the coda, with a pedal of ours over its E major figure.
+  236: ["E6/5:4 E6/5:2 E5/1:2 E6/5:2 E5/1:2 E6/5:2 E5/1:2", "E3+G#3/3+1:4 r:4 E3+G#3+B3/5+2+1:2 E4/1:2 E3+G#3+B3/5+2+1:2 E4/1:2", "P:16"],
+  237: ["E6/5:4 B5/4:2 B4/1:2 B5/4:2 B4/1:2 B5/4:2 B4/1:2", tremolo("E3+G#3+B3/5+2+1", "E4/1"), "P:16"],
+  238: ["B5/4:4 G#5/3:2 G#4/1:2 G#5/3:2 G#4/1:2 G#5/3:2 G#4/1:2", tremolo("E3+G#3+B3/5+2+1", "E4/1"), "P:16"],
+  239: ["G#5/4:4 E5/2:2 B4/1:2 E5/2:2 B4/1:2 E5/2:2 B4/1:2", tremolo("E3+G#3+B3/5+2+1", "E4/1"), "P:16"],
+  240: ["E5/3:4 E5/3:2 E5/3:2 E5/3:4 E5/3:4", "E3+G#3+B3/5+2+1:4 E3+E4/5+1:4 E3+E4/5+1:4 E3+E4/5+1:4"],
+  241: ["E5/3:4 B4/1:2 B4/1:2 B4/1:4 B4/1:4", "E3+E4/5+1:4 B2+B3/5+1:4 B2+B3/5+1:4 B2+B3/5+1:4"],
+  242: ["B4/3:4 G#4/1:2 G#4/1:2 G#4/1:4 G#4/1:4", "B2+B3/5+1:4 G#2+G#3/5+1:4 G#2+G#3/5+1:4 G#2+G#3/5+1:4"],
+  243: ["G#4/3:4 E4/1:2 E4/1:2 E4/1:4 E4/1:4", "G#2+G#3/5+1:4 E2+E3/5+1:4 E2+E3/5+1:4 E2+E3/5+1:4"],
+  244: ["E4/3:4 B3/1:4 E4/3:4 B3/1:4", "E2+E3/5+1:4 B2/5:4 E3/3:4 B2/5:4"],
+  245: ["G#4/3:4 E4/1:4 B4/4:4 G#4/3:4", "G#3/3:4 E3/5:4 B3/1:4 G#3/3:4"],
+  246: ["E5/3:4 B4/1:4 E5/3:4 B4/1:4", "E3+E4/5+1:4 B2/5:4 E3/3:4 B2/5:4"],
+  247: ["G#5/4:4 E5/3:4 B5/5:4 G#5/4:4", "G#3/3:4 E3/5:4 B3/1:4 G#3/3:4"],
+  248: ["E6/5:8 r:4 E5+G#5+E6/1+2+5:2 E5+G#5+E6/1+2+5:2", "E4/1:8 r:4 E4/1:2 E4/1:2"],
+  249: [times("E5+G#5+E6/1+2+5:4", 4), "E4/1:4 B3/2:4 G#3/3:4 B3/2:4"],
+  250: ["E5+G#5+E6/1+2+5:8 r:6 E5+G#5+E6/1+2+5:2", "E3/3:8 r:6 E3+B3+E4/5+2+1:2"],
+  251: ["E5+G#5+E6/1+2+5:4 r:4 r:6 G#3+E4/1+5:2", "E3+B3+E4/5+2+1:4 r:4 r:6 E2+B2+E3/5+2+1:2"],
+  252: ["G#3+E4/1+5:16", "E2+B2+E3/5+2+1:16", "P:16"],
+};
+
+/** The Original's bars, by their number from 1. */
+const PRINT_BARS: Record<number, OriginalBar> = { ...PAGE_6, ...PAGE_7, ...PAGE_8, ...PAGE_9, ...PAGE_10 };
+
+/** The number of the Original's bars: the whole finale. */
+const PRINT_BAR_COUNT = 252;
+
+/** Bar `at` of the Original, with a repeated bar read from the bar it repeats. */
+function printBar(at: number): PrintBar {
+  const bar = PRINT_BARS[at];
+  if (bar === undefined) throw new Error(`William Tell's Original has no bar ${at}`);
+  return typeof bar === "number" ? printBar(bar) : bar;
+}
+
+/** One line of the Original: `part` of each bar, in the print's order. */
+function printLine(part: 0 | 1 | 2): string {
+  return Array.from({ length: PRINT_BAR_COUNT }, (_, at) => printBar(at + 1)[part] ?? "r:16").join(" | ");
+}
+
 export const williamTell: OurSong = {
   slug: "william-tell",
   title: "William Tell Overture",
@@ -207,7 +601,41 @@ export const williamTell: OurSong = {
     "Its overture ends with a fast galop, often called the March of the Swiss Soldiers. " +
     "That finale became the theme music of The Lone Ranger on radio, television and film.",
   funFact: "Some writers have defined an intellectual as a man who can listen to the William Tell Overture without thinking of the Lone Ranger.",
-  mythic: null,
+  mythic: {
+    key: E_MAJOR,
+    bpm: 152,
+    numerator: 2,
+    denominator: 4,
+    steps: 8,
+    right: printLine(0),
+    left: printLine(1),
+    pedal: printLine(2),
+    source: {
+      edition:
+        "William Tell Overture, the finale, in Louis Niedermeyer's two-hand piano reduction, printed by E. Troupenas in Paris as plate 329, Gallica's scan btv1b90674594 on Wikimedia Commons, printed pages 6 to 10",
+      printed: 1830,
+    },
+    skills: ["sixteenth-notes", "thirds-and-sixths", "melody-in-chords"],
+    practice: [
+      { text: "Play bars 18 to 25 slowly with the right hand alone. This is the galop's tune, over a repeated B.", hands: "right", speed: 0.5, loop: [18, 25], wait: true },
+      { text: "Play bars 26 to 35 with the right hand alone. Keep the hand open in an octave, and let it bounce from key to key.", hands: "right", speed: 0.5, loop: [26, 35], wait: true },
+      { text: "Play bars 36 to 49 with the left hand alone. It jumps between full chords in C sharp minor.", hands: "left", speed: 0.5, loop: [36, 49], wait: true },
+      { text: "Play the 16ths of bars 112 to 126 with the right hand alone. Keep every note short and even.", hands: "right", speed: 0.5, loop: [112, 126], wait: false },
+      { text: "Play the whole finale with both hands at full speed.", hands: "both", speed: 1, loop: null, wait: false },
+    ],
+    tips: [
+      { fromBar: 1, toBar: 17, kind: "sound", text: "The opening sounds like trumpets. Play the repeated B crisply, and hold the B major chord of bar 15 through bar 16, into bar 17." },
+      { fromBar: 18, toBar: 25, kind: "rhythm", text: "Say \"long, short, short\" as you play. Each beat is an eighth and two 16ths, like a galloping horse." },
+      { fromBar: 76, toBar: 77, kind: "fingering", text: "In the broken octaves, the thumb takes the low note and finger 5 the high one. Let the wrist rock between them." },
+      { fromBar: 167, toBar: 173, kind: "sound", text: "The left hand shakes between a low chord and one note above it. Keep it light, so the octaves on top ring out." },
+      { fromBar: 236, toBar: 252, kind: "sound", text: "The coda stays on E major to the end. Keep the beat steady as the notes fall, and let the last chord ring." },
+    ],
+    tricky: {
+      210: "The right hand jumps between G and the G an octave higher, with fingers 2 and 5. The left hand repeats a C major chord, whose G and C are white keys.",
+      212: "The right hand shakes between two G sharps an octave apart, with fingers 5 and 2. The left hand plays an E major chord on every eighth.",
+      224: "Both hands climb through E, F sharp and G sharp, the right in octaves. Then the right hand drops to the octave on B, and the left hand to B.",
+    },
+  },
   collection: "film",
   tune: { text: tune, numerator: 4, denominator: 2, steps: 2, key: E_MAJOR, hookBars: [1, 5] },
   versions: {
@@ -447,6 +875,27 @@ export const williamTell: OurSong = {
           21: "Die Akkorde steigen hinab. Lass Finger 5 auf dem oberen Ton, und lass die Hand federn.",
           22: "Der Daumen bleibt auf dem A. Finger 2, 3 und 5 wandern von Cis, E und A zu H, Dis und Fis.",
         },
+      },
+    },
+    original: {
+      practice: [
+        "Spiel die Takte 18 bis 25 langsam nur mit der rechten Hand. Das ist die Melodie des Galopps, über einem wiederholten H.",
+        "Spiel die Takte 26 bis 35 nur mit der rechten Hand. Halt die Hand in einer Oktave offen, und lass sie von Taste zu Taste federn.",
+        "Spiel die Takte 36 bis 49 nur mit der linken Hand. Sie springt zwischen vollen Akkorden in cis-Moll.",
+        "Spiel die Sechzehntel der Takte 112 bis 126 nur mit der rechten Hand. Spiel jeden Ton kurz und gleichmäßig.",
+        "Spiel das ganze Finale mit beiden Händen im vollen Tempo.",
+      ],
+      tips: [
+        "Der Anfang klingt wie Trompeten. Spiel das wiederholte H knapp, und halte den H-Dur-Akkord von Takt 15 durch Takt 16 bis in Takt 17.",
+        "Sag beim Spielen \"lang, kurz, kurz\". Jeder Schlag ist ein Achtel und zwei Sechzehntel, wie ein galoppierendes Pferd.",
+        "Bei den gebrochenen Oktaven nimmt der Daumen den tiefen Ton und Finger 5 den hohen. Lass das Handgelenk zwischen ihnen schaukeln.",
+        "Die linke Hand wechselt schnell zwischen einem tiefen Akkord und einem Ton darüber. Spiel sie leicht, damit die Oktaven oben klingen.",
+        "Die Coda bleibt bis zum Schluss in E-Dur. Halt den Schlag gleichmäßig, während die Töne fallen, und lass den letzten Akkord klingen.",
+      ],
+      tricky: {
+        210: "Die rechte Hand springt mit Finger 2 und 5 zwischen G und dem G eine Oktave höher. Die linke Hand wiederholt einen C-Dur-Akkord, dessen G und C weiße Tasten sind.",
+        212: "Die rechte Hand wechselt mit Finger 5 und 2 zwischen zwei Gis im Oktavabstand. Die linke Hand spielt auf jedem Achtel einen E-Dur-Akkord.",
+        224: "Beide Hände steigen über E, Fis und Gis, die rechte in Oktaven. Dann fällt die rechte Hand zur Oktave auf H und die linke zum H.",
       },
     },
   },

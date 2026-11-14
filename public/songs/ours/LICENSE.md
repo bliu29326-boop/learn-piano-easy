@@ -296,11 +296,13 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `william-tell/rare.mid` | William Tell Overture, Easy | Gioachino Rossini | MIT |
 | `william-tell/epic.mid` | William Tell Overture, Medium | Gioachino Rossini | MIT |
 | `william-tell/legendary.mid` | William Tell Overture, Hard | Gioachino Rossini | MIT |
+| `william-tell/mythic.mid` | William Tell Overture, Original | Gioachino Rossini | MIT |
 | `william-tell/guide.json` | William Tell Overture, the guide | | MIT |
 | `swan-lake/common.mid` | Swan Lake, Beginner | Pyotr Ilyich Tchaikovsky | MIT |
 | `swan-lake/rare.mid` | Swan Lake, Easy | Pyotr Ilyich Tchaikovsky | MIT |
 | `swan-lake/epic.mid` | Swan Lake, Medium | Pyotr Ilyich Tchaikovsky | MIT |
 | `swan-lake/legendary.mid` | Swan Lake, Hard | Pyotr Ilyich Tchaikovsky | MIT |
+| `swan-lake/mythic.mid` | Swan Lake, Original | Pyotr Ilyich Tchaikovsky | MIT |
 | `swan-lake/guide.json` | Swan Lake, the guide | | MIT |
 | `night-on-bald-mountain/common.mid` | Night on Bald Mountain, Beginner | Modest Mussorgsky | MIT |
 | `night-on-bald-mountain/rare.mid` | Night on Bald Mountain, Easy | Modest Mussorgsky | MIT |
@@ -352,6 +354,7 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `can-can/rare.mid` | Can-can, Easy | Jacques Offenbach | MIT |
 | `can-can/epic.mid` | Can-can, Medium | Jacques Offenbach | MIT |
 | `can-can/legendary.mid` | Can-can, Hard | Jacques Offenbach | MIT |
+| `can-can/mythic.mid` | Can-can, Original | Jacques Offenbach | MIT |
 | `can-can/guide.json` | Can-can, the guide | | MIT |
 | `vltava/common.mid` | Vltava, Beginner | Bedřich Smetana | MIT |
 | `vltava/rare.mid` | Vltava, Easy | Bedřich Smetana | MIT |

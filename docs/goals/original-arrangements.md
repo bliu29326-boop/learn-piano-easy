@@ -135,8 +135,10 @@ own, which follows the piece and keeps no limit of the four versions.
   Library of Congress or HathiTrust's public domain scans. IMSLP stays refused.
 - **No allowed library serves *Night on Bald Mountain*'s print to an agent.** Gallica and the Library of
   Congress answer with a Cloudflare challenge. HathiTrust and the Russian State Library refuse it in
-  `robots.txt`. The Archive's 1946 Muzgiz score fails the meter's 95-year rule. Decision d8 asks the user,
-  and stage 2 builds the other seven Originals meanwhile.
+  `robots.txt`. The Archive's 1946 Muzgiz score fails the meter's 95-year rule.
+- ***Night on Bald Mountain* gets no Original for now** (the user's answer to d8). Its four versions
+  stay, and `mythic` stays null. A later goal looks for a print again. Stage 10's test
+  `every_song_of_ours_has_an_original` names it as the one song still waiting for a print.
 - **Among two-hand reductions, the plainest faithful one wins** over a virtuoso transcription such as
   Liszt's, since a learner plays it. A four-hand print or a score comes only when no two-hand print exists.
 
@@ -172,7 +174,7 @@ stage copies its pattern.
 
 ### 2. Originals: the orchestral showpieces
 
-**Does:** the Originals of eight orchestral pieces, each a reduction of the full score or of a period
+**Does:** the Originals of seven orchestral pieces, each a reduction of the full score or of a period
 piano version.
 **Split:** four writing subagents, side by side, two songs each, as one item below each. One fresh
 reviewer then reads the batch against its sources.
@@ -200,7 +202,7 @@ reviewer then reads the batch against its sources.
       1874 vocal score, Archive item `orpheauxenfers00offe`, pages 279 to 300, is unchecked.
     - *Swan Lake*: a full score of No. 10, plate "B.B. 59", Archive item
       `imslp-lake-ballet-op20-tchaikovsky-pyotr`, its publisher and year unread. Commons is unsearched.
-  - [ ] *Night on Bald Mountain*'s print, from a library the standing decisions allow. Decision d8 waits.
+  - [x] *Night on Bald Mountain*'s print: none is reachable, and it gets no Original for now, by d8.
   - [x] *Swan Lake* and *Can-Can*: their prints are confirmed or replaced, as the handoff says.
     - *Swan Lake*: Kashkin's two-hand piano score, Jurgenson, Moscow, plate 2950, Paris agent Mackar,
       no year printed. Gallica's scan `bpt6k1913424b` is on Commons as 172 images. Act II No. 1, the
@@ -210,14 +212,19 @@ reviewer then reads the batch against its sources.
       printed pages 287 to 291, which are images n302 to n306 in `full/`. It is in D major and 2/4,
       about 105 bars, set whole. The famous strain enters at "Chœur général" on page 289.
 - [ ] Each fetched page is transcribed to `page-n<N>.txt` beside it.
-  - [ ] *William Tell*'s finale, pages n10 to n14.
+  - [x] *William Tell*'s finale, pages n10 to n14.
     - [x] Pages n10 and n14 are whole, from the 3840-pixel scans in `full/`.
-    - [ ] Page n11 from bar p7.42, n12 from p8.13 and n13 from p9.21.
+    - [x] Page n11 from bar p7.42, n12 from p8.13 and n13 from p9.21.
+  - [x] *Swan Lake*, pages 64 to 66, and *Can-Can*, pages 287 to 291.
   - [ ] *The Sorcerer's Apprentice*, *Vltava*, *Beethoven's Fifth* and *Boléro*, each in its cut.
 - [ ] *Beethoven's Fifth* and *Boléro*. `tools/our-songs/beethoven-5.ts:208`, `tools/our-songs/bolero.ts:229`
-- [ ] *Can-Can* and *Swan Lake*. `tools/our-songs/can-can.ts:173`, `tools/our-songs/swan-lake.ts:184`
+- [x] *Can-Can* and *Swan Lake*. `tools/our-songs/can-can.ts:173`, `tools/our-songs/swan-lake.ts:184`
+  - [x] *Swan Lake*: 70 bars, set whole, and its review is settled.
+  - [x] *Can-Can*: 146 played bars with every repeat, `keyShift` 7, and its review is settled.
 - [ ] *William Tell* and *Vltava*. `tools/our-songs/william-tell.ts:210`, `tools/our-songs/vltava.ts:174`
-- [ ] *Night on Bald Mountain* and *The Sorcerer's Apprentice*. `tools/our-songs/night-on-bald-mountain.ts:197`, `tools/our-songs/the-sorcerers-apprentice.ts:109`
+  - [x] *William Tell*: 252 bars, set whole, and its review is settled.
+  - [ ] *Vltava*.
+- [ ] *The Sorcerer's Apprentice*. *Night on Bald Mountain* waits for a print, by d8. `tools/our-songs/the-sorcerers-apprentice.ts:109`
 - [ ] The review's every finding is settled.
 - [ ] `bun tools/make-our-songs.ts` writes the batch, and the build is green.
 
@@ -338,33 +345,31 @@ its first print with accompaniment, or a songbook's setting printed before 1931.
 
 ### State
 
-Stage 1 is done: *Morning Mood* holds the first Original, in `tools/our-songs/morning-mood.ts`.
-Stage 2 has its prints, which its first checkpoint lists, and William Tell's first transcriptions. These
-are in `.agent-tmp/src-william-tell/page-n<N>.txt`, one unit a 32nd. No module has changed yet.
+Stage 2's first batch is committed: *William Tell*, *Swan Lake* and *Can-Can* hold their Originals,
+each reviewed against its print. The user may listen to these three. *Night on Bald Mountain* gets no
+Original for now, by the user's answer to d8.
 
-- n10 is bars 1 to 59, and n14 is bars p10.1 to p10.46, both whole.
-- n11 holds p7.1 to p7.41, n12 holds p8.1 to p8.12, and n13 holds p9.1 to p9.20.
-- n10's bar 42 is wrong: the printed natural on G3 holds to the bar's end, so its last two chords take G.
-- `lowres-guesses/` holds a failed first pass from 1920-pixel scans, and is never a source.
+- The notation ties a note across a bar line with `~`, in `tools/song-notation.ts`.
+- An Original's `source.keyShift` names a print in another key than the tune, as *Can-Can*'s D does.
+- Three prints are left, plus *Vltava*: *The Sorcerer's Apprentice*, *Beethoven's Fifth* and *Boléro*.
+  Their pages sit in `.agent-tmp/src-<slug>/` at about 2000 pixels, too small to read.
 
-Every page is read from a 3840-pixel copy in `full/`, and a helper finishes about two systems. The briefs
-are `.agent-tmp/brief-s2-transcribe.md` and `.agent-tmp/brief-s2-sources.md`.
+The briefs are in `.agent-tmp/`: `brief-s2-sources.md`, `brief-s2-transcribe.md` and
+`brief-s2-write.md`. The writer's brief now names the tie and the triplet unit, `steps: 24`.
 
 ### Next
 
-**Stage 2: the orchestral showpieces.** Files: the eight modules stage 2 names. Gate: met.
+**Stage 2: the orchestral showpieces.** Files: `tools/our-songs/vltava.ts`, `beethoven-5.ts`,
+`bolero.ts` and `the-sorcerers-apprentice.ts`. Gate: met.
 
-1. **Finish William Tell's transcription:** one helper each for n11 from p7.42, n12 systems 2 to 4 from
-   p8.13, n12 systems 5 to 7, and n13 systems 4 to 7 from p9.21. Name their systems in the prompt.
-2. **Settle three prints:** search Commons for *Swan Lake*'s piano score, check Heugel's *Can-Can*
-   against our G major strain, and find *Night on Bald Mountain* in Gallica, the Library of Congress or
-   HathiTrust.
-3. **Fetch every other print at about 4000 pixels,** then transcribe it, two systems per helper. A
-   four-hand or score page is reduced as the brief says.
-4. **Four writing subagents assemble two songs each,** from the transcriptions alone. Each brief names its
-   ceiling and the Morning Mood module as the pattern, with `rolledWide` for bracketed chords.
-5. **A fresh reviewer reads the batch against its sources,** and the session settles each finding.
-6. Run `bun tools/make-our-songs.ts` and the build, then commit the batch.
+1. **Fetch the four prints' cut pages at about 4000 pixels** into `.agent-tmp/src-<slug>/full/`, with one
+   source helper. Commons serves 3840 pixels by `iiurlwidth=4000`, and the Archive serves its native size.
+2. **Transcribe them, two systems per helper.** Name each helper's systems by number in its prompt. A
+   split by halves left page 288 of *Can-Can* to chance. A score or four-hand page is reduced as the brief says.
+3. **One writer per song,** from the transcriptions alone, with `brief-s2-write.md`.
+4. **One fresh reviewer per song,** given the doubtful readings to settle at a zoom. A misprint the
+   harmony proves, such as a missing sharp that clashes, is set right and named in a comment.
+5. Run `bun tools/make-our-songs.ts` and the build, then commit the batch, and close stage 2.
 
 Expected red: none.
 
