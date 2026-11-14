@@ -13,7 +13,7 @@ import { loadEveryLocale } from "../src/i18n/all-catalogs";
 import { rowOf } from "../src/i18n/locale";
 import { allPages, lessonPages, pageAt, pageTitle, REPO_URL } from "../src/site/routes";
 import { checkLayout, LOCALES, pastSetup, THEMES, WIDTHS } from "./layout-check";
-import { saveParts } from "./save-parts";
+import { openParts } from "./save-parts";
 
 test.beforeAll(loadEveryLocale);
 
@@ -180,7 +180,7 @@ test("the_landing_page_loads_no_player_code", async ({ page }) => {
 test("every_route_reloads_offline", async ({ page, context }) => {
   test.setTimeout(120_000);
   // A first visit saves the site's core alone, and the player and Learn Piano are saved when opened.
-  await saveParts(page, ["Just Play Piano", "Learn Piano"]);
+  await openParts(page, ["player", "learn"]);
   await context.setOffline(true);
   const errors = watchErrors(page);
   for (const site of allPages()) {

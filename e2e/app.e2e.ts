@@ -6,7 +6,7 @@ import { extname, join } from "node:path";
 import { expect, test, type Page } from "@playwright/test";
 import { GROUP_INDEX, type GroupIndex } from "../src/pwa/cache-groups";
 import { contentHash } from "../src/pwa/current";
-import { saveParts } from "./save-parts";
+import { openParts } from "./save-parts";
 
 /** Collects every uncaught error and console error the page reports from now on. */
 function watchErrors(page: Page): string[] {
@@ -93,30 +93,55 @@ const TYPES: Record<string, string> = {
 /** The line the next version adds to `app.css`. */
 const NEXT_CSS = "\n/* The next version. */\n";
 
+/** The player's file that a stale next version renames, which no code loads, and its new name. */
+const RENAMED = { from: "/models/LICENSE.md", to: "/models/LICENSE-next.md" };
+
+/** How long the server holds back the renamed file, so the install of the next version shows its bar. */
+const RENAMED_DELAY = 1_500;
+
 /**
  * A server of this run's build that the test can move to a next version. Playwright never sees the
- * request for a worker's script, so only a server can change it. The next version changes `app.css`
- * alone, and its `sw.js` names the new version and the stylesheet's new hash. The server is the test's
- * own, so no other test's browser finds the update. `fetched` lists the paths asked for since the
- * start, or since `next` once it has run. `index` is the run's index of the cache groups.
+ * request for a worker's script, so only a server can change it. The next version changes `app.css`,
+ * and its `sw.js` names the new version and the stylesheet's new hash. The server is the test's own, so
+ * no other test's browser finds the update. `fetched` lists the paths asked for since the start, or
+ * since `next` once it has run. `index` is the run's index of the cache groups.
+ *
+ * `next({ stale: true })` also renames a file of the player, as a new build renames a chunk. The old
+ * name then answers 404, so a page of the old version finds itself stale. The next version's index and
+ * worker list the new name, and the worker the index's new hash.
  */
 async function updatableSite() {
   const dist = join(".agent-tmp/e2e/runs", process.env.E2E_RUN!, "dist");
-  const index = JSON.parse(await readFile(join(dist, GROUP_INDEX), "utf8")) as GroupIndex;
+  const indexText = await readFile(join(dist, GROUP_INDEX), "utf8");
+  const index = JSON.parse(indexText) as GroupIndex;
   const css = await readFile(join(dist, "app.css"), "utf8");
   const oldCss = index.groups.app.hashes[index.groups.app.files.indexOf("./app.css")]!;
   const newCss = await contentHash(new TextEncoder().encode(css + NEXT_CSS));
   const newVersion = await contentHash(new TextEncoder().encode(`next ${index.version}`));
+  const staleIndex = indexText.replaceAll(`.${RENAMED.from}`, `.${RENAMED.to}`).replaceAll(oldCss, newCss).replaceAll(index.version, newVersion);
+  const oldIndexHash = await contentHash(new TextEncoder().encode(indexText));
+  const staleIndexHash = await contentHash(new TextEncoder().encode(staleIndex));
   let next = false;
+  let stale = false;
   const fetched: string[] = [];
   const server = createServer(async (request, response) => {
     let path = decodeURIComponent(new URL(request.url!, "http://localhost").pathname);
     fetched.push(path);
     if (path.endsWith("/")) path += "index.html";
+    if (stale && path === RENAMED.from) {
+      response.writeHead(404).end();
+      return;
+    }
+    if (stale && path === RENAMED.to) {
+      await new Promise((resolve) => setTimeout(resolve, RENAMED_DELAY));
+      path = RENAMED.from;
+    }
     try {
       let body: Buffer | string = await readFile(join(dist, path));
       if (next && path === "/app.css") body = css + NEXT_CSS;
       if (next && path === "/sw.js") body = body.toString().replaceAll(oldCss, newCss).replaceAll(index.version, newVersion);
+      if (stale && path === "/sw.js") body = body.toString().replaceAll(`.${RENAMED.from}`, `.${RENAMED.to}`).replaceAll(oldIndexHash, staleIndexHash);
+      if (stale && path === `/${GROUP_INDEX}`) body = staleIndex;
       const type = TYPES[extname(path)] ?? "application/octet-stream";
       response.writeHead(200, { "content-type": type, "cache-control": "no-cache" }).end(body);
     } catch {
@@ -126,8 +151,9 @@ async function updatableSite() {
   await new Promise<void>((resolve) => server.listen(0, "localhost", resolve));
   return {
     url: `http://localhost:${(server.address() as AddressInfo).port}/`,
-    next: () => {
+    next: (options: { stale?: boolean } = {}) => {
       next = true;
+      stale = options.stale ?? false;
       fetched.length = 0;
     },
     fetched,
@@ -184,6 +210,25 @@ test("the_offer_of_a_new_version_stays_until_the_learner_answers_it", async ({ p
   }
 });
 
+test("a_stale_page_gets_the_newest_version_and_opens_the_player_in_it", async ({ page }) => {
+  test.setTimeout(120_000);
+  const site = await updatableSite();
+  try {
+    await page.goto(site.url);
+    await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+    site.next({ stale: true });
+    // The player's files of this version are gone from the server, so the page installs the next one.
+    await page.locator("[data-top-bar]").getByRole("link", { name: "Just Play Piano" }).click();
+    await expect(page.getByRole("progressbar", { name: "Getting the newest version" })).toBeVisible({ timeout: 30_000 });
+    // The page reloads into the next version, whose install saved the player, so it opens at once.
+    await expect(page.locator(".stage canvas")).toBeVisible({ timeout: 60_000 });
+    expect(await page.evaluate(() => fetch("./app.css").then((r) => r.text()))).toContain(NEXT_CSS);
+    expect(site.fetched).toContain(RENAMED.to);
+  } finally {
+    site.close();
+  }
+});
+
 test("a_first_visit_to_the_landing_page_fetches_and_caches_no_part_of_the_shell", async ({ page }) => {
   const site = await updatableSite();
   try {
@@ -207,7 +252,7 @@ test("a_first_visit_to_the_landing_page_fetches_and_caches_no_part_of_the_shell"
 });
 
 test("app_reloads_offline_from_the_service_worker", async ({ page, context }) => {
-  await saveParts(page, ["Just Play Piano"]);
+  await openParts(page, ["player"]);
   await context.setOffline(true);
   const errors = watchErrors(page);
   await page.reload();

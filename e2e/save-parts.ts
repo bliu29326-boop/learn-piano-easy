@@ -1,25 +1,23 @@
 /**
- * Saves parts of the site for offline use through the player's *Offline files* dialog, as a learner
- * would. A first visit saves only the site's core, so a test that goes offline into the player or Learn
- * Piano saves those parts first.
+ * Saves parts of the site for offline use by opening their views, as a learner would. A first visit saves
+ * only the site's core, and a part's view saves the part, and every part it needs, before it opens. A
+ * test that goes offline into the player or Learn Piano opens those views first.
  */
 import { expect, type Page } from "@playwright/test";
 
-/** The labels of the parts the dialog saves, as its headings name them. */
-export type PartLabel = "Just Play Piano" | "Learn Piano";
+/** A part of the site, by the view that opens it: the player, or Learn Piano's map. */
+export type PartView = "player" | "learn";
 
-/** Opens the player, waits for the worker, and saves each of `parts` in the dialog, which it then closes. */
-export async function saveParts(page: Page, parts: readonly PartLabel[]): Promise<void> {
-  await page.goto("./play/");
-  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
-  await page.getByRole("button", { name: "Settings" }).click();
-  await page.getByRole("button", { name: "Manage offline files" }).click();
-  const dialog = page.getByRole("dialog", { name: "Offline files" });
-  for (const label of parts) {
-    const group = dialog.locator(".cache-group").filter({ has: page.getByRole("heading", { name: label, exact: true }) });
-    await group.getByRole("button", { name: `Save ${label}` }).click();
-    await expect(group.getByRole("status")).toContainText("all saved", { timeout: 60_000 });
+/** Opens the view of each of `parts`, and then waits for the worker, so a reload offline finds them. */
+export async function openParts(page: Page, parts: readonly PartView[]): Promise<void> {
+  for (const part of parts) {
+    if (part === "player") {
+      await page.goto("./play/");
+      await expect(page.locator(".stage canvas")).toBeVisible();
+    } else {
+      await page.goto("./learn/");
+      await expect(page.locator(".map__node").first()).toBeVisible();
+    }
   }
-  await page.keyboard.press("Escape");
-  await expect(dialog).toHaveCount(0);
+  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
 }
