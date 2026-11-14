@@ -1,8 +1,9 @@
 /**
- * The guide panel: how to play the open version of a song of ours, and the practice steps one click
- * applies. It also names the step after a beaten version, which the shell offers in a toast.
+ * The guide panel: how to play the open step of a song of ours, and the practice steps one click
+ * applies. A step is one of the song's four versions, or its Original where the Original is ours. It
+ * also names the step after a beaten version, which the shell offers in a toast.
  *
- * The panel shows the version's difficulty and tagline, the song's story and fun fact, the version's
+ * The panel shows the step's name and tagline, the song's story and fun fact, the version's
  * skills, its practice plan, its tips by bar and its tricky spots.
  *
  * The panel's own labels come from the live locale's catalog when it is built. The guide's own prose,
@@ -21,13 +22,28 @@
  *   wait mode. The button sits in the panel, beside the spot's text, and its mark on the lanes only
  *   points the learner there. A DOM button is reachable by keyboard and screen reader, and a sprite on
  *   the lanes is not.
- * - The step after a version is the next version of the same song, then the song's original score.
- *   The hardest version of a song without an original has none, and the offer only congratulates.
+ * - The step after a version is the next version of the same song, then the song's Original, the
+ *   catalog's score or ours. The hardest version of a song without an Original has none, and the offer
+ *   only congratulates. The Original is the last step, so it has none either.
  */
 import { liveLocale, t } from "../i18n/live";
 import type { SettingsStore } from "../settings/store";
 import { button, el } from "../ui/dom";
-import { type Guide, type GuideText, originalName, type PracticeStep, RARITIES, type Rarity, rarityName, rarityTagline, readGuide, textIn } from "./guide";
+import {
+  type Guide,
+  type GuideStep,
+  type GuideText,
+  originalName,
+  type PracticeStep,
+  RARITIES,
+  type Rarity,
+  rarityName,
+  readGuide,
+  stepName,
+  stepTagline,
+  textIn,
+  versionOf,
+} from "./guide";
 import type { CatalogSong } from "./search";
 import { skillName } from "./skills";
 import "./guide-panel.css";
@@ -63,14 +79,24 @@ export function guidePath(file: string): string {
   return `${file.slice(0, file.lastIndexOf("/") + 1)}guide.json`;
 }
 
-/** The guide of the version `row` names, or undefined when it has none, or it fails to load or check. */
+/**
+ * The step of a song of ours that `row` is: its version's id, or `mythic` for our Original, whose row
+ * names its own file as `mythic`. Any other row is none.
+ */
+export function stepOf(row: CatalogSong): GuideStep | undefined {
+  if (row.song === undefined) return undefined;
+  return row.rarity ?? (row.mythic === row.file ? "mythic" : undefined);
+}
+
+/** The guide of the step `row` names, or undefined when it has none, or it fails to load or check. */
 export async function loadGuide(row: CatalogSong): Promise<Guide | undefined> {
-  if (row.song === undefined || row.rarity === undefined) return undefined;
+  const step = stepOf(row);
+  if (step === undefined) return undefined;
   try {
     const response = await fetch(`./songs/${guidePath(row.file)}`);
     if (!response.ok) return undefined;
     const guide = readGuide(await response.json());
-    return guide?.song === row.song ? guide : undefined;
+    return guide !== undefined && guide.song === row.song && versionOf(guide, step) !== undefined ? guide : undefined;
   } catch {
     return undefined;
   }
@@ -114,13 +140,13 @@ export function loopBar(bar: number, settings: Pick<SettingsStore, "set">): void
   settings.set("enableLoop", true);
 }
 
-/** The panel of `guide` for its version at `rarity`, its buttons running `actions`. */
-export function createGuidePanel(guide: Guide, rarity: Rarity, actions: GuideActions): HTMLElement {
+/** The panel of `guide` for its step `step`, its buttons running `actions`. The guide holds that step. */
+export function createGuidePanel(guide: Guide, step: GuideStep, actions: GuideActions): HTMLElement {
   const { apply, loop } = actions;
   const m = t().player.library.guide;
   const locale = liveLocale();
   const say = (text: GuideText) => textIn(text, locale);
-  const version = guide.versions[rarity];
+  const version = versionOf(guide, step)!;
   const steps = version.practice.map((step, index) =>
     el("li", {
       class: "guide-step",
@@ -155,8 +181,8 @@ export function createGuidePanel(guide: Guide, rarity: Rarity, actions: GuideAct
       el("p", {
         class: "guide-rarity",
         children: [
-          el("span", { class: "library-rarity", attrs: { "data-rarity": rarity }, text: rarityName(rarity) }),
-          ` ${rarityTagline(rarity)}`,
+          el("span", { class: "library-rarity", attrs: { "data-rarity": step }, text: stepName(step) }),
+          ` ${stepTagline(step)}`,
         ],
       }),
       section("about", m.headings.about, el("p", { text: say(guide.about) }), el("p", { class: "guide-composer", text: guide.composer })),

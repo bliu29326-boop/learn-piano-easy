@@ -1,11 +1,16 @@
 /**
  * Our songs: writes each song of `tools/our-songs/` as four MIDI files and a guide in
  * `public/songs/ours/<slug>/`, the folder's `LICENSE.md`, and four rows per song in
- * `public/songs/catalog.json`. [docs/our-songs.md](../docs/our-songs.md) holds the rules a song follows.
+ * `public/songs/catalog.json`. A song whose Original is ours gets a fifth file, `mythic.mid`, and a fifth
+ * row. [docs/our-songs.md](../docs/our-songs.md) holds the rules a song follows.
  *
  * A song module exports an `OurSong`: its source, its tune with the hook, its four versions in the
- * notation of `tools/song-notation.ts`, and the text of its guide. The writer measures every version with
- * `tools/song-meter.ts` and refuses the whole run on any problem `songProblems` names.
+ * notation of `tools/song-notation.ts`, its Original, and the text of its guide. The writer measures every
+ * step with `tools/song-meter.ts` and refuses the whole run on any problem `songProblems` names.
+ *
+ * Our Original is an `OurVersion` with its own `source`, the print it follows. Its row carries no
+ * `rarity`, and every row of the song names its file as `mythic`. Its guide is the guide's `original`, and
+ * its German is the German block's `original`, in the shape of a version's.
  *
  * A guide's text is English beside each field, and German in the song's `de` block, which
  * `tools/our-songs/silent-night.ts` shows. A translator adds that block and changes no other line:
@@ -57,7 +62,8 @@ import { writeMidi } from "../src/midi/smf-write";
 import { songFromMidi } from "../src/midi/song";
 import { LOCALE_TABLE, type LocaleCode } from "../src/i18n/locale-table";
 import type { Translation } from "../src/i18n/translation";
-import { RARITIES, RARITY_NAMES, type Guide, type GuideText, type PracticeStep, type Rarity, type Tip, type VersionGuide } from "../src/library/guide";
+import { playerLibrary } from "../src/i18n/messages/player-library.en";
+import { RARITIES, RARITY_NAMES, type Guide, type GuideStep, type GuideText, type PracticeStep, type Rarity, type Tip, type VersionGuide } from "../src/library/guide";
 import type { Collection } from "../src/library/search";
 import type { SkillId } from "../src/library/skills";
 import type { Finger, Hand } from "../src/theory/fingering";
@@ -73,6 +79,8 @@ import {
   matchTune,
   measure,
   meterOfNotation,
+  originalDifficulty,
+  originalTuneProblems,
   trickySpots,
   tuneOf,
   type MeterSong,
@@ -216,6 +224,24 @@ export interface OurVersion {
   tricky: Record<number, string>;
 }
 
+/** The public domain print an Original of ours follows. */
+export interface OriginalSource {
+  /** The edition: what it prints, who printed it, and where its scan is. */
+  edition: string;
+  /** The year the edition was printed. */
+  printed: number;
+  /** The bars, from 1, that a cut's last cadence adds and the source lacks. There are at most two. */
+  addedBars?: number[];
+}
+
+/** Our Original of a song: the piece set for two hands, with the guide of a version. */
+export interface OurOriginal extends OurVersion {
+  source: OriginalSource;
+}
+
+/** The most bars an Original of ours may add for a cut's last cadence. */
+export const MOST_ADDED_BARS = 2;
+
 /** One locale's text of one version's guide, in the shape of its English text. */
 export interface VersionTranslation {
   /** One text per practice step, in the order of `practice`. */
@@ -231,6 +257,8 @@ export interface GuideTranslation {
   about: string;
   funFact: string;
   versions: Record<Rarity, VersionTranslation>;
+  /** The text of the Original's guide, where the Original is ours. */
+  original?: VersionTranslation;
 }
 
 /** The translations of a song's guide beyond German, by locale, as its `<slug>.<locale>.ts` files hold them. */
@@ -244,8 +272,11 @@ export interface OurSong {
   source: OurSource;
   about: string;
   funFact: string;
-  /** The catalog file of the original score, rated above Legendary, or null. */
-  mythic: string | null;
+  /**
+   * The song's Original, its last step: the catalog file of the composer's own piano score, our setting
+   * of the piece, or null for a tune of our own.
+   */
+  mythic: string | OurOriginal | null;
   /** The collection the library groups the song in, such as `christmas`, or none. */
   collection?: Collection;
   /** The song's other titles, which the library's search matches, such as `Stille Nacht`. */
@@ -340,25 +371,54 @@ export const ourSongs: readonly OurSong[] = [
   lastHorizon,
 ];
 
-/** The version `rarity` of `song` as a song of the notation. */
-export function versionNotation(song: OurSong, rarity: Rarity): TwoHandSong {
-  const { markedClashBars: _clashes, skills: _skills, practice: _practice, tips: _tips, tricky: _tricky, ...notes } = song.versions[rarity];
-  return { title: `${song.title}, ${RARITY_NAMES[rarity]}`, file: `${rarity}.mid`, difficulty: 0, ...notes };
+/** The Original of `song` where it is ours, or undefined for a catalog score or none. */
+export function ourOriginal(song: OurSong): OurOriginal | undefined {
+  return typeof song.mythic === "object" && song.mythic !== null ? song.mythic : undefined;
 }
 
-/** The MIDI file of the version `rarity` of `song`. */
-export function versionBytes(song: OurSong, rarity: Rarity): Uint8Array {
-  return writeMidi(twoHandMidi(versionNotation(song, rarity)));
+/** Every step of `song` that is ours: its four versions, then its Original where that is ours. */
+export function stepsOf(song: OurSong): GuideStep[] {
+  return ourOriginal(song) === undefined ? [...RARITIES] : [...RARITIES, "mythic"];
 }
 
-/** The meter's view of the version `rarity` of `song`. */
-export function versionMeter(song: OurSong, rarity: Rarity): MeterSong {
-  return meterOfNotation(versionNotation(song, rarity), song.versions[rarity].markedClashBars ?? []);
+/** The step `step` of `song`. An Original that is not ours is an error. */
+function stepVersion(song: OurSong, step: GuideStep): OurVersion | OurOriginal {
+  if (step !== "mythic") return song.versions[step];
+  const original = ourOriginal(song);
+  if (original === undefined) throw new Error(`${song.title}: its Original is not ours`);
+  return original;
 }
 
-/** The catalog file of the version `rarity` of `song`, from `songs/`. */
-function versionFile(song: OurSong, rarity: Rarity): string {
-  return `${oursFolder}/${song.slug}/${rarity}.mid`;
+/** The English name of `step`, which the catalog's titles and the files carry whatever the live locale. */
+function stepEnglishName(step: GuideStep): string {
+  return step === "mythic" ? playerLibrary.rarity.originalName : RARITY_NAMES[step];
+}
+
+/** The step `step` of `song` as a song of the notation. */
+export function versionNotation(song: OurSong, step: GuideStep): TwoHandSong {
+  const own: OurVersion & { source?: OriginalSource } = stepVersion(song, step);
+  const { markedClashBars: _clashes, skills: _skills, practice: _practice, tips: _tips, tricky: _tricky, source: _source, ...notes } = own;
+  return { title: `${song.title}, ${stepEnglishName(step)}`, file: `${step}.mid`, difficulty: 0, ...notes };
+}
+
+/** The MIDI file of the step `step` of `song`. */
+export function versionBytes(song: OurSong, step: GuideStep): Uint8Array {
+  return writeMidi(twoHandMidi(versionNotation(song, step)));
+}
+
+/** The meter's view of the step `step` of `song`. */
+export function versionMeter(song: OurSong, step: GuideStep): MeterSong {
+  return meterOfNotation(versionNotation(song, step), stepVersion(song, step).markedClashBars ?? []);
+}
+
+/** The catalog file of the step `step` of `song`, from `songs/`. */
+function versionFile(song: OurSong, step: GuideStep): string {
+  return `${oursFolder}/${song.slug}/${step}.mid`;
+}
+
+/** The catalog file of `song`'s Original, ours or the catalog's, or null. */
+function mythicFile(song: OurSong): string | null {
+  return ourOriginal(song) === undefined ? (song.mythic as string | null) : versionFile(song, "mythic");
 }
 
 /**
@@ -384,9 +444,36 @@ export function versionProblems(song: OurSong, rarity: Rarity): string[] {
   }
   const { tune } = song;
   problems.push(...matchTune(meter, tuneOf(tune.text, tune, tune.key, tune.hookBars), rarity).problems);
-  problems.push(...fingerProblems(meter));
+  problems.push(...fingerProblems(meter), ...guideProblems(song, rarity, meter));
+  return problems.map((problem) => `${where}: ${problem}`);
+}
+
+/**
+ * What our Original of `song` breaks: its print's years, a cut's added bars, its hook, its fingers, or a
+ * bar its guide names. It keeps no limit of the four versions.
+ */
+export function originalProblems(song: OurSong, year = new Date().getFullYear()): string[] {
+  const original = ourOriginal(song);
+  if (original === undefined) return [];
+  const meter = versionMeter(song, "mythic");
+  const { tune } = song;
+  const { printed, addedBars = [] } = original.source;
+  const problems: string[] = [];
+  if (printed + 95 >= year) problems.push(`its edition of ${printed} is not public domain in ${year}`);
+  if (addedBars.length > MOST_ADDED_BARS) problems.push(`it adds ${addedBars.length} bars, past ${MOST_ADDED_BARS}`);
   const bars = barCount(meter);
-  const version = song.versions[rarity];
+  for (const bar of addedBars) if (bar < 1 || bar > bars) problems.push(`its added bar ${bar} lies outside its ${bars} bars`);
+  problems.push(...originalTuneProblems(meter, tuneOf(tune.text, tune, tune.key, tune.hookBars)));
+  problems.push(...fingerProblems(meter), ...guideProblems(song, "mythic", meter));
+  if (song.de !== undefined && song.de.original === undefined) problems.push("its guide has no German");
+  return problems.map((problem) => `${song.title}, ${stepEnglishName("mythic")}: ${problem}`);
+}
+
+/** What the guide of the step `step` of `song`, measured as `meter`, breaks: a bar it names, or its German. */
+function guideProblems(song: OurSong, step: GuideStep, meter: MeterSong): string[] {
+  const problems: string[] = [];
+  const bars = barCount(meter);
+  const version = stepVersion(song, step);
   const named = [
     ...version.tips.map((tip) => [tip.fromBar, tip.toBar]),
     ...version.practice.flatMap((step) => (step.loop === null ? [] : [step.loop])),
@@ -396,20 +483,20 @@ export function versionProblems(song: OurSong, rarity: Rarity): string[] {
   const spots = trickySpots(meter).map((spot) => spot.bar).sort((a, b) => a - b);
   const written = Object.keys(version.tricky).map(Number).sort((a, b) => a - b);
   if (spots.join() !== written.join()) problems.push(`its tricky spots are bars ${spots.join(", ")}, and the tips name bars ${written.join(", ")}`);
-  const german = song.de?.versions[rarity];
+  const german = step === "mythic" ? song.de?.original : song.de?.versions[step];
   if (german !== undefined) {
     if (german.practice.length !== version.practice.length) problems.push(`it has ${version.practice.length} practice steps, and ${german.practice.length} in German`);
     if (german.tips.length !== version.tips.length) problems.push(`it has ${version.tips.length} tips, and ${german.tips.length} in German`);
     const germanBars = Object.keys(german.tricky).map(Number).sort((a, b) => a - b);
     if (germanBars.join() !== written.join()) problems.push(`its tricky tips name bars ${written.join(", ")}, and in German bars ${germanBars.join(", ")}`);
   }
-  return problems.map((problem) => `${where}: ${problem}`);
+  return problems;
 }
 
-/** What `song` breaks in `year`: its source, or any of its versions. */
+/** What `song` breaks in `year`: its source, any of its versions, or its Original of ours. */
 export function songProblems(song: OurSong, year = new Date().getFullYear()): string[] {
   const problems = isPublicDomain(song.source, year) ? [] : [`${song.title}: its tune is not public domain in ${year}`];
-  return [...problems, ...RARITIES.flatMap((rarity) => versionProblems(song, rarity))];
+  return [...problems, ...RARITIES.flatMap((rarity) => versionProblems(song, rarity)), ...originalProblems(song, year)];
 }
 
 /** The key under each finger of `notes` at their start, until a finger takes a second key. */
@@ -461,11 +548,11 @@ export async function guideTranslationsOf(slug: string): Promise<GuideTranslatio
   return found;
 }
 
-/** The guide of the version `rarity` of `song`, with the texts of `translations`. */
-function versionGuide(song: OurSong, rarity: Rarity, translations: readonly [LocaleCode, Translation<GuideTranslation>][]): VersionGuide {
-  const notation = versionNotation(song, rarity);
+/** The guide of the step `step` of `song`, with the texts of `translations`. */
+function versionGuide(song: OurSong, step: GuideStep, translations: readonly [LocaleCode, Translation<GuideTranslation>][]): VersionGuide {
+  const notation = versionNotation(song, step);
   const written = writtenFingers(notation);
-  const file = songFromMidi(readMidi(versionBytes(song, rarity)));
+  const file = songFromMidi(readMidi(versionBytes(song, step)));
   const fingersOf = (track: number, hand: Hand): Finger[] =>
     (file.tracks[track]?.notes ?? []).map((note) => {
       const finger = written[hand].get(fingerKey(note.startTick, note.pitch));
@@ -473,16 +560,16 @@ function versionGuide(song: OurSong, rarity: Rarity, translations: readonly [Loc
       return finger;
     });
   const parsed = parseSong(notation);
-  const version = song.versions[rarity];
-  const own = (translation: Translation<GuideTranslation>) => translation.versions?.[rarity];
+  const version = stepVersion(song, step);
+  const own = (translation: Translation<GuideTranslation>) => (step === "mythic" ? translation.original : translation.versions?.[step]);
   return {
-    file: versionFile(song, rarity),
+    file: versionFile(song, step),
     skills: version.skills,
     fingers: { right: fingersOf(0, "right"), left: fingersOf(1, "left") },
     start: { right: startOf(parsed.right), left: startOf(parsed.left) },
     practice: version.practice.map((step, at) => ({ ...step, text: guideTextOf(step.text, translations, (t) => sameLength(own(t)?.practice, version.practice.length)?.[at]) })),
     tips: version.tips.map((tip, at) => ({ ...tip, text: guideTextOf(tip.text, translations, (t) => sameLength(own(t)?.tips, version.tips.length)?.[at]) })),
-    tricky: trickySpots(versionMeter(song, rarity)).map(({ bar }) => ({ bar, text: guideTextOf(version.tricky[bar]!, translations, (t) => own(t)?.tricky?.[bar]) })),
+    tricky: trickySpots(versionMeter(song, step)).map(({ bar }) => ({ bar, text: guideTextOf(version.tricky[bar]!, translations, (t) => own(t)?.tricky?.[bar]) })),
   };
 }
 
@@ -495,8 +582,9 @@ export function guideOf(song: OurSong, others: GuideTranslations = {}): Guide {
     composer: song.source.composer,
     about: guideTextOf(song.about, translations, (t) => t.about),
     funFact: guideTextOf(song.funFact, translations, (t) => t.funFact),
-    mythic: song.mythic,
+    mythic: mythicFile(song),
     versions: Object.fromEntries(RARITIES.map((rarity) => [rarity, versionGuide(song, rarity, translations)])) as Record<Rarity, VersionGuide>,
+    ...(ourOriginal(song) === undefined ? {} : { original: versionGuide(song, "mythic", translations) }),
   };
 }
 
@@ -506,20 +594,22 @@ export function guideText(guide: Guide): string {
   return `${text}\n`;
 }
 
-/** The four catalog rows of `song`. */
+/** The catalog rows of `song`: one per version, then one for its Original of ours. That row has no `rarity`. */
 export function rowsOf(song: OurSong): CatalogSong[] {
-  return RARITIES.map((rarity) => {
+  const mythic = mythicFile(song);
+  return stepsOf(song).map((step) => {
+    const measures = measure(versionMeter(song, step));
     const row = {
       composer: song.source.composer,
       piece: song.title,
-      title: RARITY_NAMES[rarity],
-      file: versionFile(song, rarity),
-      difficulty: catalogDifficulty(measure(versionMeter(song, rarity)), rarity),
+      title: stepEnglishName(step),
+      file: versionFile(song, step),
+      difficulty: step === "mythic" ? originalDifficulty(measures) : catalogDifficulty(measures, step),
       license: oursLicense,
       credit: oursCredit,
     };
-    const ours: CatalogSong = { ...withSpan(row, versionBytes(song, rarity)), song: song.slug, rarity, skills: [...song.versions[rarity].skills] };
-    if (song.mythic !== null) ours.mythic = song.mythic;
+    const ours: CatalogSong = { ...withSpan(row, versionBytes(song, step)), song: song.slug, ...(step === "mythic" ? {} : { rarity: step }), skills: [...stepVersion(song, step).skills] };
+    if (mythic !== null) ours.mythic = mythic;
     if (song.collection !== undefined) ours.collection = song.collection;
     if (song.aka !== undefined) ours.aka = song.aka;
     return ours;
@@ -529,7 +619,7 @@ export function rowsOf(song: OurSong): CatalogSong[] {
 /** The text of the folder's `LICENSE.md` for `songs`. */
 export function licenseText(songs: readonly OurSong[]): string {
   const rows = songs.flatMap((song) => [
-    ...RARITIES.map((rarity) => `| \`${song.slug}/${rarity}.mid\` | ${song.title}, ${RARITY_NAMES[rarity]} | ${song.source.composer} | MIT |`),
+    ...stepsOf(song).map((step) => `| \`${song.slug}/${step}.mid\` | ${song.title}, ${stepEnglishName(step)} | ${song.source.composer} | MIT |`),
     `| \`${song.slug}/guide.json\` | ${song.title}, the guide | | MIT |`,
   ]);
   return `# Our songs
@@ -553,7 +643,7 @@ export async function makeOurSongs(songs: readonly OurSong[] = ourSongs): Promis
   for (const song of songs) {
     const dir = join(songsDir, oursFolder, song.slug);
     await mkdir(dir, { recursive: true });
-    for (const rarity of RARITIES) await Bun.write(join(dir, `${rarity}.mid`), versionBytes(song, rarity));
+    for (const step of stepsOf(song)) await Bun.write(join(dir, `${step}.mid`), versionBytes(song, step));
     await Bun.write(join(dir, "guide.json"), guideText(guideOf(song, await guideTranslationsOf(song.slug))));
     rows.push(...rowsOf(song));
   }

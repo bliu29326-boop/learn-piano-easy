@@ -60,7 +60,7 @@ import { mascot } from "../ui/components/mascot";
 import { el } from "../ui/dom";
 import { icon } from "../ui/icons/icons";
 import { beginnerPath } from "./beginner-path";
-import { originalName, originalTagline, rarityName, rarityTagline } from "./guide";
+import { originalName, originalTagline, ourOriginalTagline, rarityName, rarityTagline } from "./guide";
 import { loadGuide } from "./guide-panel";
 import { createMeasurer, createPreviewer } from "./preview";
 import {
@@ -647,7 +647,7 @@ export function createLibraryPanel(
             attrs: { role: "group", "aria-label": say().kinds.level },
             children: versions.map((row) => {
               const name = row.rarity === undefined ? originalName() : rarityName(row.rarity);
-              const tagline = row.rarity === undefined ? originalTagline() : rarityTagline(row.rarity);
+              const tagline = row.rarity !== undefined ? rarityTagline(row.rarity) : row.song !== undefined ? ourOriginalTagline() : originalTagline();
               return el("button", {
                 class: "song-step",
                 attrs: {

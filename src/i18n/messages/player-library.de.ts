@@ -12,6 +12,7 @@ export const playerLibrary: typeof en = {
     },
     originalName: "Original",
     originalTagline: "Die Noten des Komponisten selbst.",
+    ourOriginalTagline: "Das Stück, wie seine Partitur es hat, gesetzt für zwei Hände.",
     stepTitle: (name: string, tagline: string) => `${name}: ${tagline}`,
   },
   collections: { christmas: "Weihnachten", film: "Filmmusik", sea: "Seemannslieder" },

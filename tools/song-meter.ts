@@ -1,6 +1,7 @@
 /**
  * The meter: measures a piano piece against the limits of the four rarities of our songs, says which
  * rarity it fits and whether it earns its own, finds the song's hook in it, and names its tricky spots.
+ * It also rates an Original of ours, which keeps none of the limits.
  * [docs/our-songs.md](../docs/our-songs.md) holds the rest of the rules a song of ours follows.
  *
  * A piece is measured as a `MeterSong`: each hand's notes with a finger on each, the pedal, the keys and
@@ -95,6 +96,14 @@
  * - A fingering is refused for a note without a written finger, or for a move between two fingers
  *   past their practical span. A move after a rest of an eighth or more is a jump, such as a stride
  *   bass, so it is never a stretch, and the leap limit bounds it instead.
+ *
+ * An Original of ours, the piece set for two hands, keeps no limit of the table:
+ * - Its catalog difficulty is that of the lowest rarity whose every limit it keeps. Past Legendary it
+ *   is `ORIGINAL_PAST_LEGENDARY`, 5, which the library calls Advanced. It need not earn a rarity.
+ * - It keeps the fingering checks of a hand: a finger on every note, and no move past its practical span.
+ * - `originalTuneProblems` finds its hook note for note in the tune's own key, anywhere in the piece.
+ *   The module may write the tune in longer notes, so the hook may play at a quarter to four times its
+ *   written lengths.
  *
  * `bun tools/song-meter.ts <file.mid>…` prints each file's measures and the rarity it fits.
  */
@@ -623,6 +632,15 @@ export function catalogDifficulty(measures: Readonly<Record<string, number>>, ra
   return at + 1 + (measures[limit.name]! > middle ? 0.5 : 0);
 }
 
+/** The catalog difficulty past Legendary, which an Original of ours takes when it fits no rarity. */
+export const ORIGINAL_PAST_LEGENDARY = 5;
+
+/** The catalog difficulty of an Original of ours: as the lowest rarity it fits, else past Legendary. */
+export function originalDifficulty(measures: Readonly<Record<string, number>>): number {
+  const lowest = RARITIES.find((rarity) => breaksOf(measures, rarity).length === 0);
+  return lowest === undefined ? ORIGINAL_PAST_LEGENDARY : catalogDifficulty(measures, lowest);
+}
+
 /** A song's tune: its notes in ticks of `TICKS_PER_BEAT` to the quarter, its key, and its hook's span. */
 export interface Tune {
   notes: { pitch: number; tick: number }[];
@@ -739,6 +757,30 @@ export function matchTune(song: MeterSong, tune: Tune, rarity: Rarity): TuneMatc
   const needed = rarity === "common" ? 0.9 : 1;
   if (score < needed - 1e-9) problems.push(`the version plays ${Math.round(score * 100)}% of the tune, under ${needed * 100}%`);
   return { hookTick: Math.round(found.tick / scale), shift: found.shift, score, problems };
+}
+
+/** How much faster or slower an Original may write the tune than the module's `tune` does. */
+const ORIGINAL_SCALES = [0.25, 0.5, 1, 2, 4] as const;
+
+/**
+ * What an Original of ours breaks of `tune`: its hook must play note for note in the tune's own key, in
+ * either hand's top voice, anywhere in the piece. It may sound an octave away, and write the tune's
+ * values at a quarter to four times their length, since the module may write the tune in longer notes.
+ */
+export function originalTuneProblems(song: MeterSong, tune: Tune): string[] {
+  const hook = tune.notes.filter((note) => note.tick >= tune.hook.fromTick && note.tick < tune.hook.toTick);
+  const first = hook[0];
+  if (first === undefined) return ["the tune has no hook"];
+  const voices = (["right", "left"] as const).map((hand) => topVoice(song, song.hands[hand]));
+  for (const voice of voices) {
+    for (const [tick, pitch] of voice) {
+      const shift = pitch - first.pitch;
+      if (shift % 12 !== 0) continue;
+      const plays = (scale: number) => hook.every((note) => voice.get(tick + (note.tick - first.tick) * scale) === note.pitch + shift);
+      if (ORIGINAL_SCALES.some(plays)) return [];
+    }
+  }
+  return ["the hook is lost, or plays outside the tune's own key"];
 }
 
 /** A tricky spot: a bar, from 1, and its fingering cost over both hands. */

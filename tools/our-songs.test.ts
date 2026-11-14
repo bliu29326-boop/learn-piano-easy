@@ -1,13 +1,30 @@
 import { join } from "node:path";
 
-import { RARITIES, readGuide, textIn, type Guide, type GuideText } from "../src/library/guide";
+import { readGuide, textIn, versionOf, type Guide, type GuideText } from "../src/library/guide";
 import { filterSongs, groupSongs, NO_FILTER } from "../src/library/search";
 import { readMidi } from "../src/midi/smf-read";
 import { songFromMidi, songLength } from "../src/midi/song";
 import { expect, test } from "../src/testing";
 import { readCatalog, songsDir } from "./catalog";
-import { guideOf, guideText, guideTranslationsOf, isPublicDomain, licenseText, ourSongs, oursFolder, rowsOf, songProblems, versionBytes, versionMeter } from "./make-our-songs";
-import { trickySpots } from "./song-meter";
+import {
+  guideOf,
+  guideText,
+  guideTranslationsOf,
+  isPublicDomain,
+  licenseText,
+  originalProblems,
+  ourOriginal,
+  ourSongs,
+  oursFolder,
+  rowsOf,
+  songProblems,
+  stepsOf,
+  versionBytes,
+  versionMeter,
+  type OurOriginal,
+  type OurSong,
+} from "./make-our-songs";
+import { measure, ORIGINAL_PAST_LEGENDARY, originalDifficulty, trickySpots } from "./song-meter";
 
 /** The catalog difficulty each rarity's versions take, from its lowest to its highest. */
 const BANDS = { common: [1, 1.5], rare: [2, 2.5], epic: [3, 3.5], legendary: [4, 4.5] } as const;
@@ -44,7 +61,9 @@ test("every_song_of_ours_earns_its_rarities", () => {
   for (const song of ourSongs) {
     expect({ song: song.slug, problems: songProblems(song) }).toEqual({ song: song.slug, problems: [] });
     for (const row of rowsOf(song)) {
-      const [low, high] = BANDS[row.rarity!];
+      // Our Original keeps no band, and `every_original_of_ours_keeps_its_hook_and_a_hand` rates it.
+      if (row.rarity === undefined) continue;
+      const [low, high] = BANDS[row.rarity];
       expect({ file: row.file, inBand: row.difficulty >= low && row.difficulty <= high }).toEqual({ file: row.file, inBand: true });
     }
   }
@@ -54,6 +73,38 @@ test("every_song_of_ours_earns_its_rarities", () => {
   expect(isPublicDomain({ ...source, published: 1931 }, 2026)).toBe(false);
   expect(isPublicDomain({ ...source, died: 1956 }, 2026)).toBe(false);
   expect(isPublicDomain({ ...source, died: null }, 2026)).toBe(true);
+}, 60_000);
+
+test("every_original_of_ours_keeps_its_hook_and_a_hand", () => {
+  const ours = ourSongs.filter((song) => ourOriginal(song) !== undefined);
+  expect(ours.some((song) => song.slug === "morning-mood")).toBe(true);
+  for (const song of ours) {
+    expect({ song: song.slug, problems: originalProblems(song) }).toEqual({ song: song.slug, problems: [] });
+    // The meter rates it as the lowest rarity it fits, or past Legendary, and every row names its file.
+    const rows = rowsOf(song);
+    const row = rows.at(-1)!;
+    expect({ song: song.slug, rarity: row.rarity, file: row.file }).toEqual({ song: song.slug, rarity: undefined, file: `${oursFolder}/${song.slug}/mythic.mid` });
+    expect({ song: song.slug, difficulty: row.difficulty }).toEqual({ song: song.slug, difficulty: originalDifficulty(measure(versionMeter(song, "mythic"))) });
+    expect({ song: song.slug, mythic: rows.every((other) => other.mythic === row.file) }).toEqual({ song: song.slug, mythic: true });
+  }
+  // A version that keeps the tune's key passes as an Original, and each broken rule is named.
+  const song = ourSongs.find((one) => one.slug === "silent-night")!;
+  const as = (original: OurOriginal): OurSong => ({ ...song, de: undefined, mythic: original });
+  const good: OurOriginal = { ...song.versions.legendary, source: { edition: "A print", printed: 1900 } };
+  expect(originalProblems(as(good), 2026)).toEqual([]);
+  expect(originalDifficulty({ ...measure(versionMeter(song, "legendary")), "starts per second, one hand": 99 })).toBe(ORIGINAL_PAST_LEGENDARY);
+  const named = (original: OurOriginal) => originalProblems(as(original), 2026).join("\n");
+  expect(named({ ...good, source: { edition: "A print", printed: 1950 } })).toContain("not public domain");
+  expect(named({ ...good, source: { edition: "A print", printed: 1900, addedBars: [1, 2, 3] } })).toContain("adds 3 bars");
+  expect(named({ ...good, right: good.right.replace(/\/\d+(?=:)/, "") })).toContain("has no finger");
+  // A semitone up, every note spelled with sharps: the hook then plays outside the tune's key.
+  const names = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+  const moved = (text: string) =>
+    text.replace(/\b([A-G])([#b]?)(\d)(?=[/:+])/g, (_, letter: string, accidental: string, octave: string) => {
+      const pitch = 12 * (Number(octave) + 1) + names.indexOf(letter) + (accidental === "#" ? 1 : accidental === "b" ? -1 : 0) + 1;
+      return `${names[pitch % 12]}${Math.floor(pitch / 12) - 1}`;
+    });
+  expect(named({ ...good, right: moved(good.right), left: moved(good.left) })).toContain("the hook is lost");
 }, 60_000);
 
 /** The slugs of every Christmas song of ours that is or will be written, by the goal `christmas-songs`. */
@@ -151,7 +202,8 @@ test("every_catalog_song_names_its_length_and_our_versions_their_skills", async 
     }
     // A version of ours names the skills its guide names, in the guide's order.
     if (!guides.has(row.song)) guides.set(row.song, readGuide(await storedGuide(row.song))!);
-    const version = guides.get(row.song)!.versions[row.rarity!];
+    const guide = guides.get(row.song)!;
+    const version = row.rarity === undefined ? guide.original! : guide.versions[row.rarity];
     expect({ file: row.file, skills: row.skills }).toEqual({ file: row.file, skills: version.skills });
   }
 }, 60_000);
@@ -216,7 +268,7 @@ test("a_song_is_found_by_another_title", async () => {
   for (const song of named) {
     for (const title of song.aka!) {
       const found = filterSongs(catalog, { ...NO_FILTER, query: title }).filter((row) => row.song === song.slug);
-      expect({ title, versions: found.length }).toEqual({ title, versions: RARITIES.length });
+      expect({ title, versions: found.length }).toEqual({ title, versions: stepsOf(song).length });
     }
   }
 });
@@ -235,11 +287,11 @@ test("every_guide_is_complete", async () => {
     const counts = [sentences(guide.about.en).length, ...(guide.about.de === undefined ? [] : [germanSentences(guide.about.de).length])];
     expect({ song: song.slug, counts, fit: counts.every((count) => count >= 2 && count <= 4) }).toEqual({ song: song.slug, counts, fit: true });
     const texts: GuideText[] = [guide.about, guide.funFact];
-    for (const rarity of RARITIES) {
-      const version = guide.versions[rarity];
-      const where = `${song.slug}, ${rarity}`;
+    for (const step of stepsOf(song)) {
+      const version = versionOf(guide, step)!;
+      const where = `${song.slug}, ${step}`;
       // A finger for every note of each hand's track, in file order.
-      const file = songFromMidi(readMidi(versionBytes(song, rarity)));
+      const file = songFromMidi(readMidi(versionBytes(song, step)));
       expect({ where, right: version.fingers.right.length, left: version.fingers.left.length }).toEqual({
         where,
         right: file.tracks[0]!.notes.length,
@@ -250,7 +302,7 @@ test("every_guide_is_complete", async () => {
         expect({ where, hand, starts: version.start[hand].some((key) => key !== null) }).toEqual({ where, hand, starts: true });
       }
       expect({ where, tips: version.tips.length > 0 }).toEqual({ where, tips: true });
-      const spots = trickySpots(versionMeter(song, rarity)).map((spot) => spot.bar);
+      const spots = trickySpots(versionMeter(song, step)).map((spot) => spot.bar);
       expect({ where, tricky: version.tricky.map((spot) => spot.bar) }).toEqual({ where, tricky: spots });
       texts.push(...version.practice.map((step) => step.text), ...version.tips.map((tip) => tip.text), ...version.tricky.map((spot) => spot.text));
     }
@@ -270,6 +322,10 @@ test("every_guide_is_complete", async () => {
   expect(readGuide(unknownSkill)).toBeUndefined();
   const noPlan = { ...good, versions: { ...good.versions, epic: { ...good.versions.epic, practice: [] } } };
   expect(readGuide(noPlan)).toBeUndefined();
+  // An Original's guide reads only as a whole version's guide, beside the file it guides.
+  expect(readGuide({ ...good, mythic: "ours/x/mythic.mid", original: good.versions.common })).toBeDefined();
+  expect(readGuide({ ...good, mythic: "ours/x/mythic.mid", original: { ...good.versions.common, practice: [] } })).toBeUndefined();
+  expect(readGuide({ ...good, mythic: null, original: good.versions.common })).toBeUndefined();
   expect(readGuide({ ...good, about: { en: "" } })).toBeUndefined();
   expect(readGuide({ ...good, about: "A story in one language." })).toBeUndefined();
   expect(readGuide({ ...good, funFact: { en: "A fact.", de: " " } })).toBeUndefined();
@@ -310,10 +366,10 @@ test("the_files_match_their_source", async () => {
   const catalog = await readCatalog();
   for (const song of ourSongs) {
     const dir = join(songsDir, oursFolder, song.slug);
-    for (const rarity of RARITIES) {
-      const stored = new Uint8Array(await Bun.file(join(dir, `${rarity}.mid`)).arrayBuffer());
-      expect({ file: `${song.slug}/${rarity}.mid`, same: Buffer.from(stored).equals(Buffer.from(versionBytes(song, rarity))) }).toEqual({
-        file: `${song.slug}/${rarity}.mid`,
+    for (const step of stepsOf(song)) {
+      const stored = new Uint8Array(await Bun.file(join(dir, `${step}.mid`)).arrayBuffer());
+      expect({ file: `${song.slug}/${step}.mid`, same: Buffer.from(stored).equals(Buffer.from(versionBytes(song, step))) }).toEqual({
+        file: `${song.slug}/${step}.mid`,
         same: true,
       });
     }

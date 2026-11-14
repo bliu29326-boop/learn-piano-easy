@@ -31,7 +31,7 @@ import { LOCALE_TABLE, type LocaleCode } from "../src/i18n/locale-table";
 import { en } from "../src/i18n/messages/en";
 import { COURSE } from "../src/learn/course";
 import type { Lesson } from "../src/learn/model";
-import { guideTranslationsOf, ourSongs, type OurSong } from "./make-our-songs";
+import { guideTranslationsOf, ourOriginal, ourSongs, type OurSong, type OurVersion } from "./make-our-songs";
 
 const ROOT = join(import.meta.dir, "..");
 
@@ -374,10 +374,10 @@ async function lessonUnits(): Promise<Unit[]> {
 
 /** The English text of `song`'s guide, in the shape of `GuideTranslation`. */
 function guideEnglish(song: OurSong): object {
-  const versions = Object.fromEntries(
-    Object.entries(song.versions).map(([rarity, version]) => [rarity, { practice: version.practice.map((step) => step.text), tips: version.tips.map((tip) => tip.text), tricky: version.tricky }]),
-  );
-  return { about: song.about, funFact: song.funFact, versions };
+  const textsOfVersion = (version: OurVersion) => ({ practice: version.practice.map((step) => step.text), tips: version.tips.map((tip) => tip.text), tricky: version.tricky });
+  const versions = Object.fromEntries(Object.entries(song.versions).map(([rarity, version]) => [rarity, textsOfVersion(version)]));
+  const original = ourOriginal(song);
+  return { about: song.about, funFact: song.funFact, versions, ...(original === undefined ? {} : { original: textsOfVersion(original) }) };
 }
 
 /** Our songs' units: one per song's guide, German from the song's module and every other locale from its file. */

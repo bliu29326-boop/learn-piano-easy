@@ -2,12 +2,15 @@
  * The guide of a song of ours: how to play each of its four versions. `tools/make-our-songs.ts` writes
  * it as `public/songs/ours/<slug>/guide.json`, and the app reads it through `readGuide`.
  *
- * One guide serves the song's four versions. The song's story and fun fact are shared, and each version
- * has its own skills, fingers, start position, practice plan, tips and tricky spots.
+ * One guide serves the song's four versions and its Original, where the Original is ours. The song's
+ * story and fun fact are shared, and each step has its own skills, fingers, start position, practice
+ * plan, tips and tricky spots.
  *
  * A version's `Rarity` is its id, which its file and its catalog row carry. The learner never reads
  * it. They read the version's name, which is its difficulty: Beginner, Easy, Medium or Hard. The
- * original score, where the catalog holds one, is the song's last step and is named Original.
+ * song's last step is named Original, and its id is `mythic`. It is the catalog's own score where the
+ * catalog holds one, and our setting of the piece for two hands otherwise. Only ours has a guide, in
+ * `original`.
  *
  * The names and taglines come from the live locale's catalog. The catalog's titles keep the English
  * names, since `tools/make-our-songs.ts` writes them once for every locale.
@@ -45,6 +48,9 @@ export const RARITIES = ["common", "rare", "epic", "legendary"] as const;
 /** The id of a version of ours. */
 export type Rarity = (typeof RARITIES)[number];
 
+/** A step of a song of ours: one of its four versions, or `mythic`, its Original. */
+export type GuideStep = Rarity | "mythic";
+
 /** The level each version sits at, which names it. The meter keeps a version's difficulty inside that level. */
 export const RARITY_LEVELS = { common: "beginner", rare: "easy", epic: "medium", legendary: "hard" } as const satisfies Record<Rarity, string>;
 
@@ -71,9 +77,24 @@ export function originalName(): string {
   return t().player.library.rarity.originalName;
 }
 
-/** The tagline of a song's original score, in the live locale. */
+/** The tagline of a song's original score from the catalog, in the live locale. */
 export function originalTagline(): string {
   return t().player.library.rarity.originalTagline;
+}
+
+/** The tagline of an Original we set for two hands, in the live locale. */
+export function ourOriginalTagline(): string {
+  return t().player.library.rarity.ourOriginalTagline;
+}
+
+/** The name the learner reads for `step`, in the live locale. */
+export function stepName(step: GuideStep): string {
+  return step === "mythic" ? originalName() : rarityName(step);
+}
+
+/** The tagline the learner reads for `step` of a song of ours, in the live locale. */
+export function stepTagline(step: GuideStep): string {
+  return step === "mythic" ? ourOriginalTagline() : rarityTagline(step);
 }
 
 /** The slowest speed a practice step sets, as a share of full speed. */
@@ -144,9 +165,16 @@ export interface Guide {
   /** Where the tune comes from, in two to four sentences. */
   about: GuideText;
   funFact: GuideText;
-  /** The catalog file of the original score, the song's last step, or null. */
+  /** The catalog file of the song's Original, its last step, or null. */
   mythic: string | null;
   versions: Record<Rarity, VersionGuide>;
+  /** The guide of the Original, where the Original is ours. A catalog score has none. */
+  original?: VersionGuide;
+}
+
+/** The guide of `step` in `guide`, or undefined for an Original that is not ours. */
+export function versionOf(guide: Guide, step: GuideStep): VersionGuide | undefined {
+  return step === "mythic" ? guide.original : guide.versions[step];
 }
 
 /** Whether `value` is a plain object. */
@@ -226,5 +254,6 @@ export function readGuide(raw: unknown): Guide | undefined {
   if (!isGuideText(raw.about) || !isGuideText(raw.funFact) || !(raw.mythic === null || isText(raw.mythic))) return undefined;
   const versions = raw.versions;
   if (!isRecord(versions) || !RARITIES.every((rarity) => isVersion(versions[rarity]))) return undefined;
+  if (raw.original !== undefined && (raw.mythic === null || !isVersion(raw.original))) return undefined;
   return raw as unknown as Guide;
 }

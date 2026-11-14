@@ -10,9 +10,12 @@ export const playerLibrary = {
       epic: "Broken chords, thumb crossings and the pedal.",
       legendary: "Both hands busy, fast and independent.",
     },
-    /** The name of a song's last step: the original score, which is not ours. */
+    /** The name of a song's last step: the original score, or our setting of the whole piece. */
     originalName: "Original",
+    /** The tagline of an Original from the catalog: the composer's own piano score. */
     originalTagline: "The composer's own notes.",
+    /** The tagline of an Original of ours: the piece as its score has it, arranged by us for two hands. */
+    ourOriginalTagline: "The piece as its score has it, set for two hands.",
     /** A step's hover text on a card: its name, then what it asks. */
     stepTitle: (name: string, tagline: string) => `${name}: ${tagline}`,
   },

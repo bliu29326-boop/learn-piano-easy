@@ -106,9 +106,9 @@ import { attachNoteScroll } from "../input/note-scroll";
 import { attachScoring } from "../input/scoring";
 import { attachWaitMode } from "../input/wait-mode";
 import { createRangeControl } from "../keyboard/range-control";
-import type { Guide } from "../library/guide";
+import { type Guide, versionOf } from "../library/guide";
 import { guideFingers, pianoGuide } from "../library/guide-on-piano";
-import { applyStep, createGuidePanel, levelUpOf, loadGuide, loopBar, stepSummary } from "../library/guide-panel";
+import { applyStep, createGuidePanel, levelUpOf, loadGuide, loopBar, stepOf, stepSummary } from "../library/guide-panel";
 import { createLibraryPanel, type LibraryActions } from "../library/library-panel";
 import { moveStoredSongs } from "../library/moved-songs";
 import { createSongOpener, loadCatalog, songIdOf } from "../library/open-song";
@@ -338,8 +338,10 @@ export function createShell(root: HTMLElement, settings: SettingsStore, bar: Pla
   let current: { row: CatalogSong | undefined; guide: Guide | undefined } = { row: undefined, guide: undefined };
   const openGuide = () => {
     const { row, guide } = current;
-    if (row?.rarity === undefined || guide === undefined) return;
-    const panel = createGuidePanel(guide, row.rarity, {
+    if (row === undefined || guide === undefined) return;
+    const step = stepOf(row);
+    if (step === undefined) return;
+    const panel = createGuidePanel(guide, step, {
       apply: (step, index) => {
         applyStep(step, { settings, transport });
         shell.closeDialog();
@@ -358,7 +360,8 @@ export function createShell(root: HTMLElement, settings: SettingsStore, bar: Pla
   const showGuide = () => {
     const { row, guide } = current;
     const song = transport.song;
-    const version = row?.rarity === undefined ? undefined : guide?.versions[row.rarity];
+    const step = row === undefined ? undefined : stepOf(row);
+    const version = step === undefined || guide === undefined ? undefined : versionOf(guide, step);
     scene.setGuide(version === undefined || song === undefined ? undefined : pianoGuide(song, version, transport.transpose));
   };
   /**
@@ -373,11 +376,12 @@ export function createShell(root: HTMLElement, settings: SettingsStore, bar: Pla
     showGuide();
     if (row?.song === undefined) return;
     void loadGuide(row).then((guide) => {
-      if (current.row !== row || guide === undefined || row.rarity === undefined) return;
+      const version = guide === undefined ? undefined : versionOf(guide, stepOf(row)!);
+      if (current.row !== row || version === undefined) return;
       current = { row, guide };
       bar.showGuide(true);
       const song = transport.song;
-      if (song !== undefined) fingering.guide(id, guideFingers(song, guide.versions[row.rarity]));
+      if (song !== undefined) fingering.guide(id, guideFingers(song, version));
       showGuide();
     });
   };
@@ -593,7 +597,7 @@ export function createShell(root: HTMLElement, settings: SettingsStore, bar: Pla
         if (reached >= request.accuracy) songHandoff.end({ accuracy: reached });
         return;
       }
-      if (plain && beats(take) && row?.rarity !== undefined) offerLevelUp(row);
+      if (plain && beats(take) && row !== undefined && stepOf(row) !== undefined) offerLevelUp(row);
     },
   });
   attachGameMode(transport, input, settings, scene, stage);

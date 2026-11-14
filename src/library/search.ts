@@ -31,7 +31,7 @@
 import { collator } from "../i18n/format";
 import { liveLocale, t } from "../i18n/live";
 import type { KeyRange } from "../render/key-layout";
-import { RARITIES, type Rarity, rarityName } from "./guide";
+import { originalName, RARITIES, type Rarity, rarityName } from "./guide";
 
 /** One song of `public/songs/catalog.json`. */
 export interface CatalogSong {
@@ -56,9 +56,12 @@ export interface CatalogSong {
   skills?: string[];
   /** The slug of the song of ours this row is a version of, or none for any other song. */
   song?: string;
-  /** The id of the version, beside `song`. */
+  /** The id of the version, beside `song`. Our Original has none. */
   rarity?: Rarity;
-  /** The catalog file of the song's original score, its last step, beside `song` when it has one. */
+  /**
+   * The catalog file of the song's Original, its last step, beside `song` when it has one. An Original of
+   * ours names its own file, so it is the row of `song` without a `rarity`.
+   */
   mythic?: string;
   /** The collection the song belongs to, such as `christmas`, beside `song`. */
   collection?: Collection;
@@ -185,7 +188,7 @@ export function sortSongs(songs: readonly CatalogSong[], sort: Sort, facts: Sort
   if (sort === "suggested") return [...songs];
   const rank = (song: CatalogSong) => (song.rarity === undefined ? RARITIES.length : RARITIES.indexOf(song.rarity));
   const byText = collator(liveLocale());
-  const name = (song: CatalogSong) => foldText(song.rarity === undefined ? song.title : (song.piece ?? song.title));
+  const name = (song: CatalogSong) => foldText(song.song === undefined ? song.title : (song.piece ?? song.title));
   /** Compares two values that may be unknown: a known one first, then by `order`. */
   const known = (a: number | undefined, b: number | undefined, order: 1 | -1) =>
     a === undefined || b === undefined ? Number(a === undefined) - Number(b === undefined) : (a - b) * order;
@@ -199,9 +202,10 @@ export function sortSongs(songs: readonly CatalogSong[], sort: Sort, facts: Sort
   return [...songs].sort(compare[sort]);
 }
 
-/** The title the learner reads for `song`: a version of ours names its song and its difficulty. */
+/** The title the learner reads for `song`: a step of a song of ours names its song and the step. */
 export function songTitle(song: CatalogSong): string {
-  return song.rarity === undefined ? song.title : `${song.piece ?? song.title}, ${rarityName(song.rarity)}`;
+  if (song.song === undefined) return song.title;
+  return `${song.piece ?? song.title}, ${song.rarity === undefined ? originalName() : rarityName(song.rarity)}`;
 }
 
 /** One song as the explorer shows it: its versions from the easiest, with its original score last. */
