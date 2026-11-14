@@ -7,16 +7,21 @@
  *   with the C names, until a click, as decision 0008 says. The picture is a WebP per scheme in
  *   `public/images/landing/`, which `tools/landing-pictures.ts` makes. It loads lazily, in a box of the
  *   view's own shape, so neither its arrival nor the swap moves anything.
- * - **The picture is a button.** Its click loads the view's chunk with `import()`, so the landing page
+ * - **The picture is a button.** Its click loads the view's chunk through `openPart`, so the landing page
  *   loads no three.js before it. The view then takes the picture's place, and focus moves to it.
- * - **The keys sound** through `src/landing/touch-sound.ts`. The click already wakes the sound, so the
- *   first key pressed sounds at once.
+ * - **A download shows over the picture,** in a Loading card: the player's code, then the sound set, as
+ *   `src/audio/sound-download.ts` says. Offline, the card says so, and its button tries again.
+ * - **The keys sound** through `src/landing/touch-sound.ts`. The view's arrival wakes the sound, so the
+ *   first key pressed sounds once the sound set is in.
  * - **The ways** stand one above another, each a row of its tile and its words. From 1024 pixels the
  *   small piano stands beside them, and below them under that.
  */
+import { followSoundDownload } from "../audio/sound-download";
 import { messagesOf, type Locale } from "../i18n/locale";
+import { openPart } from "../pwa/part-loader";
 import type { KeyRange } from "../render/key-layout";
 import type { SettingsStore } from "../settings/store";
+import { loading } from "../ui/components/loading";
 import { section } from "../ui/components/section";
 import { el } from "../ui/dom";
 import { icon, type IconName } from "../ui/icons/icons";
@@ -87,22 +92,26 @@ function smallPiano(t: ReturnType<typeof messagesOf>["landing"]["devices"], sett
     attrs: { type: "button", "aria-label": t.start },
     children: [picture("light"), picture("dark"), cue],
   });
+  const card = loading({ place: "over" });
+  const soundCard = loading({ place: "over" });
+  const stage = el("div", { class: "landing-devices__stage", children: [start, card.element, soundCard.element] });
   const sound = touchSound(settings);
+  let shown = false;
+  const sounds = followSoundDownload(soundCard, () => shown);
   start.addEventListener("click", () => {
     if (start.getAttribute("aria-busy") === "true") return;
     start.setAttribute("aria-busy", "true");
-    void sound.start();
-    import("../render/piano-keys").then(
-      ({ pianoKeys }) => {
-        const piano = pianoKeys();
-        piano.show({ label: t.piano, range: DEVICES_RANGE, names: "c", onPress: sound.press, onRelease: sound.release });
-        piano.element.tabIndex = -1;
-        start.replaceWith(piano.element);
-        piano.element.focus({ preventScroll: true });
-      },
-      // A chunk that fails to load leaves the button, so a later click tries again.
-      () => start.removeAttribute("aria-busy"),
-    );
+    void openPart("player", () => import("../render/piano-keys"), card).then(({ pianoKeys }) => {
+      // The page has had the click, so the browser lets the sound wake now.
+      sound.start().catch(() => undefined);
+      const piano = pianoKeys();
+      piano.show({ label: t.piano, range: DEVICES_RANGE, names: "c", onPress: sound.press, onRelease: sound.release });
+      piano.element.tabIndex = -1;
+      start.replaceWith(piano.element);
+      piano.element.focus({ preventScroll: true });
+      shown = true;
+      sounds.sync();
+    });
   });
-  return start;
+  return stage;
 }

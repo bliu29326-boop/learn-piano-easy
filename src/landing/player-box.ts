@@ -7,8 +7,11 @@
  *   the site's theme, and pans and zooms it slowly. It loads lazily and at low priority, in a box of
  *   fixed shape, so nothing shifts when it arrives.
  * - **One click starts it,** on the picture or on the box's play button. The click loads the embed's
- *   chunk with `import()`, so the landing page loads no player code before it. The embed then wakes the
- *   sound and plays. The button is busy until the chunk is in.
+ *   chunk through `openPart`, so the landing page loads no player code before it. The embed then wakes
+ *   the sound and plays. The button is busy until the chunk is in.
+ * - **A download shows in the box,** in a Loading card over the picture: the player's code on the first
+ *   click, then the sound set, as `src/audio/sound-download.ts` says. The picture stays until the player
+ *   is in. Offline, the card says so, and its button tries again.
  * - **The button then stops and plays again.** Once started, the box shows the player, whose keys play
  *   when pressed, and a click on it is the player's own.
  * - **Only one landing player runs at a time.** Starting a box disposes the running one, which shows its
@@ -25,8 +28,11 @@ import "./player-box.css";
 import type { EmbeddedPlayer } from "../app/embed";
 import type { KeyRange } from "../render/key-layout";
 import type { TrackLook } from "../render/scene";
+import { followSoundDownload } from "../audio/sound-download";
+import { openPart } from "../pwa/part-loader";
 import type { SettingsStore } from "../settings/store";
 import { button } from "../ui/components/button";
+import { loading } from "../ui/components/loading";
 import { el } from "../ui/dom";
 import { icon } from "../ui/icons/icons";
 import { signal } from "../ui/signal";
@@ -91,10 +97,12 @@ export function playerBox(options: PlayerBoxOptions): PlayerBox {
     });
   const cue = el("span", { class: "player-box__cue", attrs: { "aria-hidden": "true" }, children: [icon("play")] });
   const pictures = { light: image("light"), dark: image("dark") };
+  const card = loading({ place: "over" });
+  const sound = loading({ place: "over" });
   const element = el("div", {
     class: "player-box",
     attrs: { "data-state": "picture" },
-    children: [pictures.light, pictures.dark, cue],
+    children: [pictures.light, pictures.dark, cue, card.element, sound.element],
   });
 
   let embed: Promise<EmbeddedPlayer> | undefined;
@@ -133,36 +141,44 @@ export function playerBox(options: PlayerBoxOptions): PlayerBox {
       busy.set(false);
       show();
       element.dataset.state = "picture";
+      card.clear();
+      sounds.sync();
       void old?.then((player) => player.dispose());
     },
   };
+  const sounds = followSoundDownload(sound, () => running === self && playing && element.dataset.state === "player");
 
   function start() {
     if (running !== self) running?.reset();
     running = self;
     playing = true;
     show();
-    element.dataset.state = "player";
     if (embed === undefined) {
       busy.set(true);
-      embed = import("../app/embed").then(({ embedPlayer }) => {
+      // The picture stays under the download's card until the player is in.
+      element.dataset.state = "loading";
+      const mine: Promise<EmbeddedPlayer> = openPart("player", () => import("../app/embed"), card).then(({ embedPlayer }) => {
         const { range, tracks, site } = options;
         loaded = current.song;
         const player = embedPlayer(element, { song: loaded, range, ...(tracks === undefined ? {} : { tracks: tracks() }), loop: true, site });
         if (!visible) player.run(false);
+        if (embed === mine) element.dataset.state = "player";
         return player;
       });
+      embed = mine;
       withEmbed(() => busy.set(false));
-    }
+    } else if (element.dataset.state !== "loading") element.dataset.state = "player";
     // The click's activation still holds once the chunk is in, so the sound may wake then.
     withEmbed((player) => {
       if (playing && visible) player.play();
+      sounds.sync();
     });
   }
 
   function stop() {
     playing = false;
     show();
+    sounds.sync();
     withEmbed((player) => player.stop());
   }
 

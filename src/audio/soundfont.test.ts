@@ -49,6 +49,15 @@ test("a_failed_decode_is_tried_again", async () => {
   expect(await font.sample(60)).toBe("ok");
 });
 
+test("loading_a_sound_set_reports_the_bytes_read_with_the_declared_length", async () => {
+  const body = JSON.stringify({ C4: "AQID", A4: "AQID" });
+  const reports: [number, number | undefined][] = [];
+  const fetcher = async () => new Response(body, { headers: { "content-length": String(body.length) } });
+  const font = await loadSoundfont(fakeDecoder(), fetcher, (bytes, declared) => reports.push([bytes, declared]));
+  expect(font.notes).toEqual([60, 69]);
+  expect(reports.at(-1)).toEqual([body.length, body.length]);
+});
+
 test("the_shipped_sound_set_plays_every_piano_key_within_a_semitone", async () => {
   const fetcher = async (url: string) => new Response(Bun.file(join(import.meta.dir, "../../public", url)));
   const font = await loadSoundfont(fakeDecoder(), fetcher);

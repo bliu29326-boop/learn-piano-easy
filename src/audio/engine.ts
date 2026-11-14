@@ -15,6 +15,7 @@
  * - The sound set loads on the first `resume`, never at start-up. A visitor who never plays downloads
  *   none, and an offline start fetches nothing. The first notes stay silent until the set is ready.
  * - A sound set that fails to load calls `onFontError`, and `ready` still resolves.
+ * - Its download is reported to `sound-download.ts`, whose hosts show it, unless the cache holds it.
  * - A gain change glides over `GAIN_GLIDE` seconds, so a slider never clicks.
  * - The `scheduler` plays a song on the song's sampler, by the song clock the transport hands in. The
  *   `metronome` is one of its parts, and feeds the bus directly, so the song volume leaves it alone.
@@ -32,7 +33,8 @@ import { envelopeFromSettings } from "./envelope";
 import { Metronome, type MetronomeOptions } from "./metronome";
 import { Sampler, type SamplerOptions } from "./sampler";
 import { Scheduler, type ScheduleOptions, type SongTimeline } from "./scheduler";
-import { loadSoundfont } from "./soundfont";
+import { soundReporter } from "./sound-download";
+import { loadSoundfont, SOUNDFONT_URL } from "./soundfont";
 
 /** The time constant, in seconds, of a gain change. */
 export const GAIN_GLIDE = 0.015;
@@ -228,14 +230,18 @@ export class AudioEngine {
     };
   }
 
-  /** Loads the sound set into both samplers. */
+  /** Loads the sound set into both samplers, and reports its download unless the cache holds it. */
   async #loadFont(): Promise<void> {
     let font;
+    const reporter = await soundReporter(SOUNDFONT_URL);
     try {
-      font = await loadSoundfont(this.context);
+      reporter?.progress(0, undefined);
+      font = await loadSoundfont(this.context, fetch, reporter?.progress);
     } catch (error) {
       this.onFontError?.(error);
       return;
+    } finally {
+      reporter?.done();
     }
     this.song.font = font;
     this.input.font = font;

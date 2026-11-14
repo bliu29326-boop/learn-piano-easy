@@ -76,8 +76,13 @@
     margin-inline-start: 0.1em;
   }
 
-  .player-box[data-state="player"] > :not(canvas) {
+  .player-box[data-state="player"] > :not(canvas, .loading),
+  .player-box[data-state="loading"] > .player-box__cue {
     visibility: hidden;
+  }
+
+  .player-box[data-state="loading"] {
+    cursor: progress;
   }
 
   @media (prefers-reduced-motion: no-preference) {

@@ -120,7 +120,8 @@ below say how each is used.
 - **A big download shows a progress bar.** Whatever the learner waits on that downloads more than a
   little, such as a part of the app, the sound set or a group of offline files, shows the Progress
   component. It names what loads and how much of it has arrived. It never waits silently or behind a
-  bare spinner. A download the cache already holds shows no bar.
+  bare spinner. A download the cache already holds shows no bar. The Loading component holds the bar,
+  and its head comment says where each host places it.
 
 ## The components
 
@@ -137,6 +138,7 @@ every component in every state.
 | Chip | [src/ui/components/chip.ts](../src/ui/components/chip.ts) |
 | Badge medal | [src/ui/components/badge-medal.ts](../src/ui/components/badge-medal.ts) |
 | Progress | [src/ui/components/progress.ts](../src/ui/components/progress.ts) |
+| Loading | [src/ui/components/loading.ts](../src/ui/components/loading.ts) |
 | XP counter | [src/ui/components/xp-counter.ts](../src/ui/components/xp-counter.ts) |
 | Tabs and segmented control | [src/ui/components/tabs.ts](../src/ui/components/tabs.ts) |
 | Toggle, slider, select, text field | [src/ui/controls.ts](../src/ui/controls.ts) |

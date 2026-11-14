@@ -33,6 +33,7 @@ import { dialogSection } from "./gallery/dialog";
 import { emptyStateSection } from "./gallery/empty-state";
 import { iconButtonSection } from "./gallery/icon-button";
 import { linkSection } from "./gallery/link";
+import { loadingSection } from "./gallery/loading";
 import { group, section, specimen, textFor, type Locale, type CompleteLocale } from "./gallery/parts";
 import { pianoKeysSection } from "./gallery/piano-keys";
 import { progressSection } from "./gallery/progress";
@@ -187,6 +188,7 @@ const SECTIONS: ((locale: Locale, settings: SettingsStore) => HTMLElement)[] = [
   emptyStateSection,
   skeletonSection,
   progressSection,
+  loadingSection,
   xpCounterSection,
   badgeMedalSection,
   tabsSection,

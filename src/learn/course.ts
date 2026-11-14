@@ -4,6 +4,8 @@
  * Decisions, and what each costs:
  * - A world joins the course by one entry here, and its lessons stay in their own chunk until a page
  *   of *Learn Piano* loads it. A page outside the course then costs only the worlds' titles.
+ * - A world's chunk loads through `openPart` of `src/pwa/part-loader.ts`, which makes Learn Piano
+ *   available offline first. A page of the course has done so already, so it loads at once.
  * - Every world's `load` adds the skip test of `src/learn/skip-test.ts`, so the map, a lesson's page
  *   and the build all see the same one.
  * - A world loads its lessons once, and each locale's texts once, so a lesson's texts gain a locale in
@@ -12,6 +14,7 @@
  */
 import { isPseudoLocale, loadLocale, type Locale } from "../i18n/locale";
 import { pseudoTree } from "../i18n/pseudo";
+import { openPart } from "../pwa/part-loader";
 import { lessonKey } from "./lesson-run";
 import { type Lesson, mergeTexts, type World, type WorldLessons } from "./model";
 import { translateSkipTest, withSkipTest } from "./skip-test";
@@ -55,14 +58,14 @@ export async function loadCourseTexts(locale: Locale): Promise<void> {
 
 /** Every world of the course, in order. */
 export const COURSE: readonly World[] = [
-  world({ id: "meet-the-piano", title: { en: "Meet the piano", de: "Das Klavier kennenlernen", es: "Conoce el piano", zh: "认识钢琴", hi: "पियानो से पहचान", ar: "التعرف على البيانو", pt: "Conheça o piano", id: "Kenali piano", bn: "পিয়ানোর সঙ্গে পরিচয়", ru: "Знакомство с фортепиано", fr: "Découvrir le piano" }, accent: "violet" }, async () => (await import("./lessons/meet-the-piano/index")).meetThePiano),
-  world({ id: "first-melodies", title: { en: "First melodies", de: "Erste Melodien", es: "Primeras melodías", zh: "初识旋律", hi: "पहली धुनें", ar: "الألحان الأولى", pt: "Primeiras melodias", id: "Melodi pertama", bn: "প্রথম সুর", ru: "Первые мелодии", fr: "Premières mélodies" }, accent: "teal" }, async () => (await import("./lessons/first-melodies/index")).firstMelodies),
-  world({ id: "rhythm", title: { en: "Rhythm", de: "Rhythmus", es: "Ritmo", zh: "节奏", hi: "लय", ar: "الإيقاع", pt: "Ritmo", id: "Ritme", bn: "ছন্দ", ru: "Ритм", fr: "Rythme" }, accent: "amber" }, async () => (await import("./lessons/rhythm/index")).rhythm),
-  world({ id: "reading-music", title: { en: "Reading music", de: "Noten lesen", es: "Leer partituras", zh: "识谱", hi: "नोट पढ़ना", ar: "قراءة النوتة", pt: "Leitura de partitura", id: "Membaca not", bn: "স্বরলিপি পড়া", ru: "Чтение нот", fr: "Lire la musique" }, accent: "sky" }, async () => (await import("./lessons/reading-music/index")).readingMusic),
-  world({ id: "both-hands", title: { en: "Both hands", de: "Beide Hände", es: "Las dos manos", zh: "双手合奏", hi: "दोनों हाथ", ar: "اليدان معًا", pt: "As duas mãos", id: "Kedua tangan", bn: "দুই হাতে", ru: "Две руки", fr: "Les deux mains" }, accent: "coral" }, async () => (await import("./lessons/both-hands/index")).bothHands),
-  world({ id: "scales-and-keys", title: { en: "Scales and keys", de: "Tonleitern und Tonarten", es: "Escalas y tonalidades", zh: "音阶与调", hi: "स्केल", ar: "السلالم", pt: "Escalas e tonalidades", id: "Tangga nada dan nada dasar", bn: "স্কেল", ru: "Гаммы и тональности", fr: "Gammes et tonalités" }, accent: "lime" }, async () => (await import("./lessons/scales-and-keys/index")).scalesAndKeys),
-  world({ id: "chords", title: { en: "Chords", de: "Akkorde", es: "Acordes", zh: "和弦", hi: "कॉर्ड", ar: "التآلفات", pt: "Acordes", id: "Akor", bn: "কর্ড", ru: "Аккорды", fr: "Accords" }, accent: "rose" }, async () => (await import("./lessons/chords/index")).chords),
-  world({ id: "expression", title: { en: "Expression", de: "Ausdruck", es: "Expresión", zh: "音乐表现", hi: "भाव से बजाना", ar: "التعبير", pt: "Expressão", id: "Ekspresi", bn: "ভাব দিয়ে বাজানো", ru: "Выразительность", fr: "Expression" }, accent: "indigo" }, async () => (await import("./lessons/expression/index")).expression),
+  world({ id: "meet-the-piano", title: { en: "Meet the piano", de: "Das Klavier kennenlernen", es: "Conoce el piano", zh: "认识钢琴", hi: "पियानो से पहचान", ar: "التعرف على البيانو", pt: "Conheça o piano", id: "Kenali piano", bn: "পিয়ানোর সঙ্গে পরিচয়", ru: "Знакомство с фортепиано", fr: "Découvrir le piano" }, accent: "violet" }, async () => (await openPart("learn", () => import("./lessons/meet-the-piano/index"))).meetThePiano),
+  world({ id: "first-melodies", title: { en: "First melodies", de: "Erste Melodien", es: "Primeras melodías", zh: "初识旋律", hi: "पहली धुनें", ar: "الألحان الأولى", pt: "Primeiras melodias", id: "Melodi pertama", bn: "প্রথম সুর", ru: "Первые мелодии", fr: "Premières mélodies" }, accent: "teal" }, async () => (await openPart("learn", () => import("./lessons/first-melodies/index"))).firstMelodies),
+  world({ id: "rhythm", title: { en: "Rhythm", de: "Rhythmus", es: "Ritmo", zh: "节奏", hi: "लय", ar: "الإيقاع", pt: "Ritmo", id: "Ritme", bn: "ছন্দ", ru: "Ритм", fr: "Rythme" }, accent: "amber" }, async () => (await openPart("learn", () => import("./lessons/rhythm/index"))).rhythm),
+  world({ id: "reading-music", title: { en: "Reading music", de: "Noten lesen", es: "Leer partituras", zh: "识谱", hi: "नोट पढ़ना", ar: "قراءة النوتة", pt: "Leitura de partitura", id: "Membaca not", bn: "স্বরলিপি পড়া", ru: "Чтение нот", fr: "Lire la musique" }, accent: "sky" }, async () => (await openPart("learn", () => import("./lessons/reading-music/index"))).readingMusic),
+  world({ id: "both-hands", title: { en: "Both hands", de: "Beide Hände", es: "Las dos manos", zh: "双手合奏", hi: "दोनों हाथ", ar: "اليدان معًا", pt: "As duas mãos", id: "Kedua tangan", bn: "দুই হাতে", ru: "Две руки", fr: "Les deux mains" }, accent: "coral" }, async () => (await openPart("learn", () => import("./lessons/both-hands/index"))).bothHands),
+  world({ id: "scales-and-keys", title: { en: "Scales and keys", de: "Tonleitern und Tonarten", es: "Escalas y tonalidades", zh: "音阶与调", hi: "स्केल", ar: "السلالم", pt: "Escalas e tonalidades", id: "Tangga nada dan nada dasar", bn: "স্কেল", ru: "Гаммы и тональности", fr: "Gammes et tonalités" }, accent: "lime" }, async () => (await openPart("learn", () => import("./lessons/scales-and-keys/index"))).scalesAndKeys),
+  world({ id: "chords", title: { en: "Chords", de: "Akkorde", es: "Acordes", zh: "和弦", hi: "कॉर्ड", ar: "التآلفات", pt: "Acordes", id: "Akor", bn: "কর্ড", ru: "Аккорды", fr: "Accords" }, accent: "rose" }, async () => (await openPart("learn", () => import("./lessons/chords/index"))).chords),
+  world({ id: "expression", title: { en: "Expression", de: "Ausdruck", es: "Expresión", zh: "音乐表现", hi: "भाव से बजाना", ar: "التعبير", pt: "Expressão", id: "Ekspresi", bn: "ভাব দিয়ে বাজানো", ru: "Выразительность", fr: "Expression" }, accent: "indigo" }, async () => (await openPart("learn", () => import("./lessons/expression/index"))).expression),
 ];
 
 /**

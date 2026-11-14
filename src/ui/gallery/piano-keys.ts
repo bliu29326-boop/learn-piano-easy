@@ -8,6 +8,7 @@
  */
 import type { EmbeddedPlayer } from "../../app/embed";
 import { HERO_RANGE, HERO_SONG } from "../../landing/songs";
+import { openPart } from "../../pwa/part-loader";
 import type { KeyRange } from "../../render/key-layout";
 import { pianoKeys, type PianoKeysOptions } from "../../render/piano-keys";
 import type { SettingsStore } from "../../settings/store";
@@ -148,7 +149,7 @@ function embedSpecimen(settings: SettingsStore, start: string, stop: string): HT
     onClick() {
       playing = !playing;
       toggle.querySelector(".btn__label")!.textContent = playing ? stop : start;
-      player ??= import("../../app/embed").then(({ embedPlayer }) =>
+      player ??= openPart("player", () => import("../../app/embed")).then(({ embedPlayer }) =>
         embedPlayer(box, { song: HERO_SONG, range: HERO_RANGE, loop: true, site: settings }),
       );
       // The page holds the click's activation by then, so the sound may still wake.

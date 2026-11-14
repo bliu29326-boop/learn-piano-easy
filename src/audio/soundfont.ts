@@ -16,7 +16,10 @@
  * - A note the set lacks plays from the nearest note it has, and `nearest` says which. The sampler
  *   shifts the pitch by the difference.
  * - The URL is relative, so the app loads its sounds from any base path.
+ * - The set is a big download, so its body is read as a stream and its bytes are counted as they arrive.
+ *   `sound-download.ts` shows them.
  */
+import { declaredLength, readBody } from "../pwa/read-body";
 
 /** Decodes an encoded audio file. An `AudioContext` is one, with `S` as `AudioBuffer`. */
 export interface SampleDecoder<S> {
@@ -85,12 +88,18 @@ export class Soundfont<S> {
   }
 }
 
-/** Fetches the sound set and returns it, ready to decode with `decoder`. */
+/**
+ * Fetches the sound set and returns it, ready to decode with `decoder`. It reads the body as a stream,
+ * and `onProgress` hears the bytes read after each chunk, with the response's `Content-Length` if any.
+ */
 export async function loadSoundfont<S>(
   decoder: SampleDecoder<S>,
   fetcher: (url: string) => Promise<Response> = fetch,
+  onProgress?: (bytes: number, declared: number | undefined) => void,
 ): Promise<Soundfont<S>> {
   const res = await fetcher(SOUNDFONT_URL);
   if (!res.ok) throw new Error(`${SOUNDFONT_URL}: HTTP ${res.status}`);
-  return new Soundfont((await res.json()) as Record<string, string>, decoder);
+  const declared = declaredLength(res);
+  const bytes = await readBody(res, onProgress === undefined ? undefined : (read) => onProgress(read, declared));
+  return new Soundfont(JSON.parse(new TextDecoder().decode(bytes)) as Record<string, string>, decoder);
 }

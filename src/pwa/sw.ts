@@ -20,6 +20,10 @@
  *   that way, so they store a fresh copy rather than the cached one.
  * - **An update waits.** A new worker installs beside the old one, the page offers a reload, and the
  *   page's `skip-waiting` message activates it. Activation drops every older shell cache.
+ * - **An install tells every page how far it has come,** as an `InstallProgress` message: the files and
+ *   bytes done, and in total. A page that waits for the newest version shows it as a bar. A copied file
+ *   counts as done at once. The message goes out at most every `PROGRESS_EVERY` milliseconds, and once
+ *   at the end.
  *
  * Paths are resolved against the worker's scope, so the app works at a domain root or under a sub-path.
  */
@@ -34,20 +38,26 @@ interface FetchEvent extends ExtendableEvent {
 }
 interface WorkerScope {
   readonly registration: { readonly scope: string };
-  readonly clients: { claim(): Promise<void> };
+  readonly clients: {
+    claim(): Promise<void>;
+    matchAll(options: { includeUncontrolled: boolean; type: "window" }): Promise<readonly { postMessage(message: unknown): void }[]>;
+  };
   skipWaiting(): Promise<void>;
   addEventListener(type: "install" | "activate", listener: (event: ExtendableEvent) => void): void;
   addEventListener(type: "fetch", listener: (event: FetchEvent) => void): void;
   addEventListener(type: "message", listener: (event: MessageEvent) => void): void;
 }
 
-import { CONTENT_CACHE, groupOf, inShell, PARTS, PARTS_CACHE, partMark, shellCacheName, type ShellGroupId } from "./cache-groups";
+import { CONTENT_CACHE, groupOf, inShell, INSTALL_PROGRESS, PARTS, PARTS_CACHE, partMark, shellCacheName, type InstallProgress, type ShellGroupId } from "./cache-groups";
 import { inParallel, isCurrent } from "./current";
 import { ranged } from "./ranged";
 
-/** Each shell group's file URLs, relative to the scope, each with its content hash. */
-declare const __SHELL__: Record<ShellGroupId, Record<string, string>>;
+/** Each shell group's file URLs, relative to the scope, each with its content hash and its bytes. */
+declare const __SHELL__: Record<ShellGroupId, Record<string, [hash: string, bytes: number]>>;
 declare const __VERSION__: string;
+
+/** The fewest milliseconds between two progress messages of an install. */
+const PROGRESS_EVERY = 100;
 
 /**
  * How many shell files the install checks or fetches at once. A first visit fetches the whole core, and
@@ -60,11 +70,16 @@ const SHELL_CACHE = shellCacheName(__VERSION__);
 const scope = new URL(worker.registration.scope);
 
 /** The files this install fills: the core's, and those of each part the page marked. */
-async function installFiles(): Promise<[string, string][]> {
+async function installFiles(): Promise<[string, [string, number]][]> {
   const marks = await caches.open(PARTS_CACHE);
   const marked = new Set((await marks.keys()).map((request) => request.url));
   const groups: ShellGroupId[] = ["app", ...PARTS.filter((part) => marked.has(partMark(part, scope.href)))];
   return groups.flatMap((group) => Object.entries(__SHELL__[group]));
+}
+
+/** Posts `progress` to every page of the scope, controlled or not. */
+async function tell(progress: InstallProgress): Promise<void> {
+  for (const client of await worker.clients.matchAll({ includeUncontrolled: true, type: "window" })) client.postMessage(progress);
 }
 
 /**
@@ -78,18 +93,32 @@ async function installShell(): Promise<void> {
   const cache = await caches.open(SHELL_CACHE);
   const older = (await caches.keys()).filter((name) => name.startsWith("shell-") && name !== SHELL_CACHE);
   const sources = [cache, ...(await Promise.all(older.map((name) => caches.open(name))))];
-  await inParallel(await installFiles(), PARALLEL, async ([path, hash]) => {
+  const files = await installFiles();
+  const progress: InstallProgress = { type: INSTALL_PROGRESS, files: 0, totalFiles: files.length, bytes: 0, totalBytes: 0 };
+  for (const [, [, bytes]] of files) progress.totalBytes += bytes;
+  let told = 0;
+  const done = (bytes: number) => {
+    progress.files++;
+    progress.bytes += bytes;
+    if (Date.now() - told < PROGRESS_EVERY) return;
+    told = Date.now();
+    void tell({ ...progress });
+  };
+  await inParallel(files, PARALLEL, async ([path, [hash, bytes]]) => {
     const url = new URL(path, scope).href;
     for (const [i, source] of sources.entries()) {
       const hit = await source.match(url);
       if (hit === undefined || !(await isCurrent(hit, hash))) continue;
       if (i > 0) await cache.put(url, hit);
+      done(bytes);
       return;
     }
     const response = await fetch(new Request(url, { cache: "no-cache" }));
     if (!response.ok) throw new Error(`The shell file ${path} answered ${response.status}.`);
     await cache.put(url, response);
+    done(bytes);
   });
+  await tell({ ...progress });
 }
 
 worker.addEventListener("install", (event) => {

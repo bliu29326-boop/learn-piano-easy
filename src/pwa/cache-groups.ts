@@ -165,6 +165,22 @@ export function partMark(part: PartId, root: string): string {
   return new URL(`__parts/${part}`, root).href;
 }
 
+/** The `type` of the message a worker's install posts to the pages as it goes. */
+export const INSTALL_PROGRESS = "install-progress";
+
+/** How far a worker's install has come: the message it posts to every page of its scope. */
+export interface InstallProgress {
+  type: typeof INSTALL_PROGRESS;
+  /** The files the install holds so far, copied or fetched. */
+  files: number;
+  /** The files the install fills. */
+  totalFiles: number;
+  /** The bytes of the files it holds so far. */
+  bytes: number;
+  /** The bytes of every file it fills. */
+  totalBytes: number;
+}
+
 /** A group's entry in `cache-groups.json`. */
 export interface GroupFiles {
   /** The file URLs, relative to the app's root as `./path`. */

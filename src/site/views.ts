@@ -29,6 +29,11 @@
  *
  * A lesson's view is `src/learn/lesson-view.ts`, a chunk of its own like the player's. Each lesson's
  * page has its own view, which asks before the learner leaves a running lesson.
+ *
+ * The player, the gallery and Learn Piano's pages are parts of the shell, which the first visit does not
+ * cache. Each loads its code through `openPart` of `src/pwa/part-loader.ts`, whose Loading card takes the
+ * room the view will fill. The player's covers the window, and the others fill the page. The player and
+ * a lesson also float the sound set's card over their view, as `src/audio/sound-download.ts` says.
  */
 import { aboutPage } from "../app/about";
 import { playerBar } from "../app/player-bar";
@@ -36,8 +41,11 @@ import type { Shell } from "../app/shell";
 import { messagesOf, type Locale } from "../i18n/locale";
 import { landingView } from "../landing/landing";
 import { barSlot } from "../learn/game/bar-slot";
+import { followSoundDownload } from "../audio/sound-download";
 import { modesView } from "../play-modes/modes-view";
+import { openPart } from "../pwa/part-loader";
 import type { SettingsStore } from "../settings/store";
+import { loading, type Loading } from "../ui/components/loading";
 import { el } from "../ui/dom";
 import type { Route } from "./routes";
 
@@ -74,19 +82,26 @@ function page(title: string, content: Node[]): HTMLElement {
 function learnSlot(locale: Locale, settings: SettingsStore): { element: HTMLElement; refresh(): void } {
   const slot = barSlot(locale, settings);
   const element = el("div", { class: "site-bar__learn", children: [slot.element] });
-  return { element, refresh: () => void slot.refresh() };
+  // The standing reads the course's worlds, which load with Learn Piano. While it cannot load, the slot
+  // keeps its empty look, and the page's view refreshes the slot once it is in.
+  return { element, refresh: () => void slot.refresh().catch(() => undefined) };
 }
 
-/** A page of *Learn Piano* whose code `load` makes on its first show, with the top bar's slot. */
-function learnView(locale: Locale, context: ViewContext, load: (refreshSlot: () => void) => Promise<View>): View {
-  const element = el("div", { class: "learn-page" });
+/**
+ * A page of *Learn Piano* whose code `load` makes on its first show, with the top bar's slot. `load`
+ * shows its download in the card it gets, which fills the page's room until the view takes it.
+ */
+function learnView(locale: Locale, context: ViewContext, load: (refreshSlot: () => void, card: Loading) => Promise<View>): View {
+  const card = loading({ place: "fill", locale });
+  const element = el("div", { class: "learn-page", children: [card.element] });
   const slot = learnSlot(locale, context.settings);
   let view: View | undefined;
   let showing = false;
-  void load(slot.refresh).then((made) => {
+  void load(slot.refresh, card).then((made) => {
     view = made;
     element.replaceChildren(view.element);
     if (showing) view.shown?.(locale);
+    slot.refresh();
   });
   return {
     element,
@@ -152,8 +167,9 @@ function sponsorView(locale: Locale): View {
 
 /** The gallery, whose code loads when its page opens. */
 function galleryPage(locale: Locale, settings: SettingsStore): View {
-  const element = el("div", { class: "gallery-page" });
-  void import("../ui/gallery").then((module) => element.append(module.galleryView(locale, settings)));
+  const card = loading({ place: "fill", locale });
+  const element = el("div", { class: "gallery-page", children: [card.element] });
+  void openPart("player", () => import("../ui/gallery"), card).then((module) => element.replaceChildren(module.galleryView(locale, settings)));
   return { element };
 }
 
@@ -161,11 +177,14 @@ function galleryPage(locale: Locale, settings: SettingsStore): View {
 function playerView(settings: SettingsStore): View {
   const heading = el("h1", { class: "visually-hidden" });
   const app = el("div", { class: "player-view__app" });
-  const element = el("div", { class: "player-view", children: [heading, app] });
+  const card = loading({ place: "cover" });
+  const sound = loading({ place: "over" });
+  const element = el("div", { class: "player-view", children: [heading, app, card.element, sound.element] });
   const bar = playerBar();
   let shell: Shell | undefined;
-  let loading = false;
+  let started = false;
   let showing = false;
+  const sounds = followSoundDownload(sound, () => showing && shell !== undefined);
   return {
     element,
     actions: bar.slot,
@@ -175,30 +194,38 @@ function playerView(settings: SettingsStore): View {
       showing = true;
       heading.textContent = messagesOf(locale).pages.play.title;
       shell?.run(true);
-      if (loading) return;
-      loading = true;
-      void import("../app/shell").then((player) => {
+      sounds.sync();
+      if (started) return;
+      started = true;
+      void openPart("player", () => import("../app/shell"), card).then((player) => {
         shell = player.createShell(app, settings, bar);
         shell.run(showing);
+        sounds.sync();
       });
     },
     hidden() {
       showing = false;
       shell?.run(false);
+      sounds.sync();
     },
   };
 }
 
-/** A lesson's view, whose code and lessons load on its first show. */
+/** A lesson's view, whose code and lessons load on its first show, with a card for each download. */
 function lessonPage(at: { world: string; lesson: string }, locale: Locale, context: ViewContext): View {
-  const element = el("div", { class: "lesson-page" });
+  const card = loading({ place: "fill", locale });
+  const sound = loading({ place: "over", locale });
+  const element = el("div", { class: "lesson-page", children: [card.element] });
   const slot = learnSlot(locale, context.settings);
   let view: View | undefined;
   let showing = false;
-  const loading = import("../learn/lesson-view").then((module) => {
+  const sounds = followSoundDownload(sound, () => showing && view !== undefined);
+  const loaded = openPart("learn", () => import("../learn/lesson-view"), card).then((module) => {
     view = module.lessonPage(at, locale, context, slot.refresh);
-    element.replaceChildren(view.element);
+    element.replaceChildren(view.element, sound.element);
     if (showing) view.shown?.(locale);
+    slot.refresh();
+    sounds.sync();
   });
   return {
     element,
@@ -207,12 +234,14 @@ function lessonPage(at: { world: string; lesson: string }, locale: Locale, conte
       showing = true;
       slot.refresh();
       view?.shown?.(shownIn);
+      sounds.sync();
     },
     hidden() {
       showing = false;
       view?.hidden?.();
+      sounds.sync();
     },
-    mayLeave: () => loading.then(() => view?.mayLeave?.() ?? true),
+    mayLeave: () => loaded.then(() => view?.mayLeave?.() ?? true),
   };
 }
 
@@ -224,9 +253,13 @@ export function makeView(route: Route, locale: Locale, context: ViewContext): Vi
     case "home":
       return landingView(locale, context);
     case "learn":
-      return learnView(locale, context, (refresh) => import("../learn/map-view").then((module) => module.mapPage(locale, context, refresh)));
+      return learnView(locale, context, (refresh, card) =>
+        openPart("learn", () => import("../learn/map-view"), card).then((module) => module.mapPage(locale, context, refresh)),
+      );
     case "profile":
-      return learnView(locale, context, (refresh) => import("../learn/profile-view").then((module) => module.profilePage(locale, context, refresh)));
+      return learnView(locale, context, (refresh, card) =>
+        openPart("learn", () => import("../learn/profile-view"), card).then((module) => module.profilePage(locale, context, refresh)),
+      );
     case "play":
       return playerView(context.settings);
     case "modes":

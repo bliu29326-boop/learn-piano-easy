@@ -287,6 +287,12 @@
     border-radius: var(--r-control);
   }
 
+  /* The picture, and then the piano, under the cards of their downloads. */
+  .landing-devices__stage {
+    position: relative;
+    min-width: 0;
+  }
+
   .landing-devices__start {
     position: relative;
     display: block;

@@ -103,6 +103,8 @@ export const playerShell = {
     /** A group's status: its size, its file count and how much of it is saved. */
     status: (size: string, total: number, state: string) => `${size}, ${files(total)}, ${state}.`,
     saving: (done: number, total: number) => `Saving ${formatNumber("en", done)} of ${files(total)}…`,
+    /** The bar's label while a group saves, by the group's label. */
+    savingGroup: (label: string) => `Saving ${label}`,
     failed: (n: number) => `${files(n)} could not be saved.`,
     /** A part of the site could not be saved, since a file failed to download. */
     partOffline: "It could not be saved. Check the connection and try again.",
@@ -118,6 +120,22 @@ export const playerShell = {
   update: {
     ready: "A new version is ready.",
     reload: "Reload",
+  },
+  /** A big download the learner waits on: a part of the site, the newest version or the piano sounds. */
+  download: {
+    /** What loads, by its label, such as "Just Play Piano" or "Piano sounds". */
+    loading: (label: string) => `Loading ${label}`,
+    /** How much has arrived, in megabytes, such as "1.2 of 1.5 MB". */
+    amount: (done: number, total: number) => `${tenths(done)} of ${tenths(total)} MB`,
+    /** The piano's sound set downloads before the first note sounds. */
+    sounds: "Loading the piano sounds",
+    /** The page runs an older version, whose files the server no longer has, so it fetches the newest. */
+    newest: "Getting the newest version",
+    /** A part of the site cannot open, since its first download needs the network. */
+    offline: (label: string) => `${label} needs the internet the first time it opens. Connect and try again.`,
+    /** A part of the site cannot open, since the server answers with neither its files nor a newer version. */
+    failed: (label: string) => `${label} could not load. Try again later.`,
+    retry: "Retry",
   },
   scene: {
     /** The canvas's accessible name before the piano is placed. */

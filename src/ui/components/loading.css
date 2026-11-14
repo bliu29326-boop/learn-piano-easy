@@ -1,0 +1,106 @@
+/*
+ * Loading's styles. `src/ui/components/loading.ts` is the home of how a loading card behaves and where
+ * it stands.
+ *
+ * The card is a raised surface of a set width, centred in the room its place gives it. The amount under
+ * the bar is soft text with tabular figures, so the numbers never shift sideways. The card fades in
+ * after a short pause, so a quick download never flashes. With reduced motion it shows at once.
+ */
+@layer components {
+  /* One column no wider than the room, so the card's `max-width` holds on a phone. */
+  .loading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    place-items: center;
+    box-sizing: border-box;
+    min-width: 0;
+    padding: var(--s-4);
+  }
+
+  .loading[hidden] {
+    display: none;
+  }
+
+  .loading[data-place="cover"] {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: var(--c-bg);
+  }
+
+  .loading[data-place="fill"] {
+    width: 100%;
+    min-height: inherit;
+  }
+
+  .loading[data-place="over"] {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .loading[data-place="inline"] {
+    place-items: stretch;
+    padding: 0;
+  }
+
+  .loading__card {
+    display: grid;
+    gap: var(--s-3);
+    box-sizing: border-box;
+    width: calc(var(--s-12) * 4);
+    max-width: 100%;
+    min-width: 0;
+    padding: var(--s-4) var(--s-5);
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-card);
+    background: var(--c-surface-1);
+    box-shadow: var(--e-rim), var(--e-2);
+    color: var(--c-text);
+    pointer-events: auto;
+  }
+
+  /* A bar over a view holds no button, so a click on it reaches the view, such as a key it covers. */
+  .loading[data-place="over"][data-state="progress"] .loading__card {
+    pointer-events: none;
+  }
+
+  .loading[data-place="inline"] .loading__card {
+    width: auto;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+  }
+
+  .loading[data-state="message"] .loading__card {
+    justify-items: start;
+  }
+
+  .loading__amount,
+  .loading__message {
+    margin: 0;
+    font-size: var(--t-sm);
+    overflow-wrap: anywhere;
+  }
+
+  /* An amount not yet known keeps its line, so the card keeps its height when the amount arrives. */
+  .loading__amount {
+    min-height: 1lh;
+    color: var(--c-text-soft);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .loading:not([data-place="inline"]) .loading__card {
+      animation: loading-in var(--m-medium) var(--ease-standard) 150ms backwards;
+    }
+  }
+
+  @keyframes loading-in {
+    from {
+      opacity: 0;
+    }
+  }
+}

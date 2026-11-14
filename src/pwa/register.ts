@@ -2,8 +2,9 @@
  * Registers the service worker, offers a reload when an update has installed, and then keeps the groups
  * the learner chose saved offline, as `cache-manager.ts` says.
  *
- * The page reloads only after the learner accepts the offer. The first worker of a first visit takes
- * control of the open page without a reload.
+ * The page reloads only after an update is accepted through `applyUpdate` of `update.ts`: by the
+ * learner, through the offer, or by `updateToNewest` there. The first worker of a first visit takes
+ * control of the open page without a reload. While `updateToNewest` runs, the page offers no reload.
  *
  * A development build registers no worker and removes any left from a preview, so live reload always
  * shows the newest code. The worker's URL and scope are relative to the page's `<base>`, the site's root.
@@ -11,6 +12,9 @@
 import { t } from "../i18n/live";
 import type { SettingsStore } from "../settings/store";
 import { keepGroupsOffline } from "./cache-manager";
+import { applyUpdate, updateAccepted, updateRunning } from "./update";
+
+export { applyUpdate };
 
 /** What the worker's messages are shown through: the site's toasts. */
 export interface Notifier {
@@ -24,24 +28,19 @@ export function registerServiceWorker(shell: Notifier, settings: SettingsStore):
     return;
   }
 
-  // Only an update the learner accepted reloads the page. The first worker also takes control, through
+  // Only an accepted update reloads the page. The first worker also takes control, through
   // `clients.claim`, and a reload then would throw away whatever the learner has started.
-  let accepted = false;
   let reloading = false;
   navigator.serviceWorker.addEventListener("controllerchange", () => {
-    if (!accepted || reloading) return;
+    if (!updateAccepted() || reloading) return;
     reloading = true;
     location.reload();
   });
 
-  const offer = (worker: ServiceWorker) =>
-    shell.toast(t().player.shell.update.ready, {
-      label: t().player.shell.update.reload,
-      run: () => {
-        accepted = true;
-        worker.postMessage("skip-waiting");
-      },
-    });
+  const offer = (worker: ServiceWorker) => {
+    if (updateRunning()) return;
+    shell.toast(t().player.shell.update.ready, { label: t().player.shell.update.reload, run: () => applyUpdate(worker) });
+  };
 
   window.addEventListener("load", async () => {
     try {

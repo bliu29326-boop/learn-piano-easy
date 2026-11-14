@@ -101,6 +101,7 @@ export const playerShell: typeof en = {
     someSaved: (count, total) => `${formatNumber("de", count)} von ${files(total)} gespeichert`,
     status: (size, total, state) => `${size}, ${files(total)}, ${state}.`,
     saving: (done, total) => `${formatNumber("de", done)} von ${files(total)} werden gespeichert…`,
+    savingGroup: (label) => `${label} wird gespeichert`,
     failed: (n) => `${files(n)} ${plural("de", n, { one: "ließ", other: "ließen" })} sich nicht speichern.`,
     partOffline: "Das ließ sich nicht speichern. Prüf die Verbindung und versuch es noch einmal.",
     partStale: "Eine neue Version der Website ist da. Lade die Seite neu und speichere dann noch einmal.",
@@ -114,6 +115,15 @@ export const playerShell: typeof en = {
   update: {
     ready: "Eine neue Version ist bereit.",
     reload: "Neu laden",
+  },
+  download: {
+    loading: (label) => `${label} wird geladen`,
+    amount: (done, total) => `${tenths(done)} von ${tenths(total)} MB`,
+    sounds: "Die Klavierklänge werden geladen",
+    newest: "Die neueste Version wird geladen",
+    offline: (label) => `${label} braucht beim ersten Öffnen das Internet. Verbinde dich und versuch es noch einmal.`,
+    failed: (label) => `${label} ließ sich nicht laden. Versuch es später noch einmal.`,
+    retry: "Erneut versuchen",
   },
   scene: {
     piano: "Klavier",

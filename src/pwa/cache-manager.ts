@@ -8,7 +8,10 @@
  *   stays until its fresh copy arrives, so a failed fetch never leaves a group emptier than before.
  * - The core group is precached by every install, so it has no setting.
  * - A part of the shell is saved through `ensureParts` of `parts.ts`, which marks it, so every install
- *   keeps it. Removing a part drops its mark and its files. A part has no setting, since its mark keeps it.
+ *   keeps it. Saving a part saves the parts it needs too. Removing a part drops its mark and its files,
+ *   and those of every part that needs it, so Learn Piano goes with the player. Each section touched
+ *   shows its new status. A part has no setting, since its mark keeps it.
+ * - A save shows its bytes in a Loading card of `src/ui/components/loading.ts`, under the status.
  * - `autoCacheSongs` and `autoCacheSounds` keep their group offline: turning one on caches the group.
  * - The last version the page started is kept in `localStorage`. A start on a new version is an update.
  *   An update fetches again only the cached files whose bytes no longer hash to the index's hash, and a
@@ -23,10 +26,12 @@
  */
 import { liveLocale, t } from "../i18n/live";
 import type { SettingsStore } from "../settings/store";
+import { loading } from "../ui/components/loading";
 import { button, el } from "../ui/dom";
 import { toggleControl } from "../ui/controls";
-import { cacheNameOf, GROUP_IDS, loadGroupIndex, PARTS, type GroupId, type GroupIndex, type PartId } from "./cache-groups";
+import { cacheNameOf, GROUP_IDS, loadGroupIndex, PARTS, withNeeds, type GroupId, type GroupIndex, type PartId } from "./cache-groups";
 import { inParallel, isCurrent } from "./current";
+import { showProgress } from "./download-progress";
 import { ensureParts, unmarkPart } from "./parts";
 import "../settings/panel.css";
 import "./cache-manager.css";
@@ -74,7 +79,8 @@ export async function cachedCount(index: GroupIndex, group: GroupId): Promise<nu
   return index.groups[group].files.filter((file) => held.has(absolute(file))).length;
 }
 
-type Progress = (done: number, total: number) => void;
+/** How far a fill has come: the files done and in total, and their bytes done and in total. */
+type Progress = (done: number, total: number, bytes: number, totalBytes: number) => void;
 
 /**
  * Which of a group's files a fill fetches: `missing` those not cached, and `changed` those cached whose
@@ -97,7 +103,7 @@ export function cacheGroup(index: GroupIndex, group: GroupId, fetching: Fetching
   let run = running.get(group);
   if (run === undefined) {
     const listeners = new Set<Progress>();
-    const done = fill(index, group, fetching, (n, total) => listeners.forEach((l) => l(n, total)));
+    const done = fill(index, group, fetching, (...progress) => listeners.forEach((l) => l(...progress)));
     run = { done, listeners };
     running.set(group, run);
     void done.finally(() => running.delete(group));
@@ -109,21 +115,23 @@ export function cacheGroup(index: GroupIndex, group: GroupId, fetching: Fetching
 async function fill(index: GroupIndex, group: GroupId, fetching: Fetching, progress: Progress): Promise<number> {
   const cache = await caches.open(cacheNameOf(group, index.version));
   const held = new Set((await cache.keys()).map((request) => request.url));
-  const { files, hashes } = index.groups[group];
-  const entries = files.map((file, i) => ({ url: absolute(file), hash: hashes[i] ?? "" }));
-  const urls: string[] = [];
-  await inParallel(entries, PARALLEL, async ({ url, hash }) => {
-    if (!held.has(url)) {
-      if (fetching.missing) urls.push(url);
+  const { files, hashes, sizes } = index.groups[group];
+  const entries = files.map((file, i) => ({ url: absolute(file), hash: hashes[i] ?? "", size: sizes[i] ?? 0 }));
+  const wanted: typeof entries = [];
+  await inParallel(entries, PARALLEL, async (entry) => {
+    if (!held.has(entry.url)) {
+      if (fetching.missing) wanted.push(entry);
       return;
     }
     if (!fetching.changed) return;
-    const hit = await cache.match(url);
-    if (hit === undefined || !(await isCurrent(hit, hash))) urls.push(url);
+    const hit = await cache.match(entry.url);
+    if (hit === undefined || !(await isCurrent(hit, entry.hash))) wanted.push(entry);
   });
+  const totalBytes = wanted.reduce((sum, entry) => sum + entry.size, 0);
   let done = 0;
+  let bytes = 0;
   let failed = 0;
-  await inParallel(urls, PARALLEL, async (url) => {
+  await inParallel(wanted, PARALLEL, async ({ url, size }) => {
     try {
       const response = await fetch(url, { cache: "reload" });
       if (response.ok) await cache.put(url, response);
@@ -131,7 +139,8 @@ async function fill(index: GroupIndex, group: GroupId, fetching: Fetching, progr
     } catch {
       failed++;
     }
-    progress(++done, urls.length);
+    bytes += size;
+    progress(++done, wanted.length, bytes, totalBytes);
   });
   return failed;
 }
@@ -195,16 +204,24 @@ export function createCacheManager(settings: SettingsStore): HTMLElement {
       body.replaceChildren(el("p", { text: say.unreadable }));
       return;
     }
-    body.replaceChildren(el("p", { text: say.intro }), ...GROUP_IDS.map((id) => groupSection(settings, index, id)));
+    // Each section's status, by its group, so a change to one part shows in the parts it touches.
+    const shows = new Map<GroupId, () => Promise<void>>();
+    body.replaceChildren(el("p", { text: say.intro }), ...GROUP_IDS.map((id) => groupSection(settings, index, id, shows)));
   });
   return body;
 }
 
-function groupSection(settings: SettingsStore, index: GroupIndex, id: GroupId): HTMLElement {
+/** The parts that need `part`, which go when it goes. */
+function dependentsOf(part: PartId): PartId[] {
+  return PARTS.filter((other) => other !== part && withNeeds([other]).includes(part));
+}
+
+function groupSection(settings: SettingsStore, index: GroupIndex, id: GroupId, shows: Map<GroupId, () => Promise<void>>): HTMLElement {
   const say = t().player.shell.cache;
   const { label, description } = textsOf(id);
   const { files, bytes } = index.groups[id];
   const status = el("p", { class: "cache-status", attrs: { role: "status" } });
+  const card = loading({ place: "inline", locale: liveLocale() });
   let busy = false;
 
   const show = async () => {
@@ -213,14 +230,18 @@ function groupSection(settings: SettingsStore, index: GroupIndex, id: GroupId): 
     status.textContent = say.status(formatBytes(bytes), files.length, state);
     save.textContent = count === files.length ? say.saveAgain : say.save;
   };
+  shows.set(id, show);
+  /** Shows again the status of each group of `ids`, this one's too. */
+  const showAll = (ids: readonly GroupId[]) => Promise.all(ids.map((other) => shows.get(other)?.()));
 
-  const work = async (task: () => Promise<string | undefined>) => {
+  const work = async (task: () => Promise<string | undefined>, touched: readonly GroupId[] = [id]) => {
     if (busy) return;
     busy = true;
     save.disabled = remove.disabled = true;
     try {
       const message = await task();
-      await show();
+      card.clear();
+      await showAll(touched);
       if (message !== undefined) status.textContent += ` ${message}`;
     } finally {
       busy = false;
@@ -228,28 +249,44 @@ function groupSection(settings: SettingsStore, index: GroupIndex, id: GroupId): 
     }
   };
 
+  const saving = say.savingGroup(label);
   const fillAndShow = (fetching: Fetching) =>
     void work(async () => {
-      const failed = await cacheGroup(index, id, fetching, (done, total) => {
+      const failed = await cacheGroup(index, id, fetching, (done, total, bytesDone, totalBytes) => {
         status.textContent = say.saving(done, total);
+        showProgress(card, saving, { bytes: bytesDone, totalBytes });
       });
       return failed > 0 ? say.failed(failed) : undefined;
     });
-  // A part fills whole and marks itself, and a file in a version's shell cache is current already.
+  // A part fills whole with the parts it needs and marks each, and a file in a version's shell cache is
+  // current already.
   const savePart = (part: PartId) =>
     void work(async () => {
       const result = await ensureParts([part], (progress) => {
         status.textContent = say.saving(progress.files, progress.totalFiles);
+        showProgress(card, saving, progress);
       });
       return result === "offline" ? say.partOffline : result === "stale" ? say.partStale : undefined;
-    });
+    }, withNeeds([part]));
+  // A part goes with every part that needs it, since none of those opens without it.
+  const removePart = (part: PartId) => {
+    const gone = [part, ...dependentsOf(part)];
+    void work(async () => {
+      for (const other of gone) {
+        await unmarkPart(other);
+        await clearGroup(index, other);
+      }
+      return undefined;
+    }, gone);
+  };
   const save = button(say.save, () => (isPart(id) ? savePart(id) : fillAndShow({ missing: true, changed: true })));
   const remove = button(say.remove, () =>
-    void work(async () => {
-      if (isPart(id)) await unmarkPart(id);
-      await clearGroup(index, id);
-      return undefined;
-    }),
+    isPart(id)
+      ? removePart(id)
+      : void work(async () => {
+          await clearGroup(index, id);
+          return undefined;
+        }),
   );
   save.setAttribute("aria-label", say.saveGroup(label));
   remove.setAttribute("aria-label", say.removeGroup(label));
@@ -258,6 +295,7 @@ function groupSection(settings: SettingsStore, index: GroupIndex, id: GroupId): 
     el("h3", { text: label }),
     el("p", { text: description }),
     status,
+    card.element,
     el("div", { class: "cache-buttons", children: [save, remove] }),
   ];
   if (id === "songs" || id === "sounds") {

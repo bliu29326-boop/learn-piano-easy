@@ -460,14 +460,15 @@ export async function build(options: BuildOptions): Promise<BuildResult> {
   const index = groupIndex(version, files, chunks);
   const indexText = JSON.stringify(index);
   await Bun.write(join(outDir, GROUP_INDEX), indexText);
-  // The worker's shell groups: each file's URL with its content hash, the index too in the core.
+  // The worker's shell groups: each file's URL with its content hash and bytes, the index too in the core.
   const shell = Object.fromEntries(
     SHELL_GROUPS.map((id) => {
-      const { files: urls, hashes } = index.groups[id];
-      return [id, Object.fromEntries(urls.map((url, i) => [url, hashes[i] ?? ""]))];
+      const { files: urls, hashes, sizes } = index.groups[id];
+      return [id, Object.fromEntries(urls.map((url, i) => [url, [hashes[i] ?? "", sizes[i] ?? 0]]))];
     }),
-  ) as Record<ShellGroupId, Record<string, string>>;
-  shell.app[`./${GROUP_INDEX}`] = await contentHash(new TextEncoder().encode(indexText));
+  ) as Record<ShellGroupId, Record<string, [string, number]>>;
+  const indexBytes = new TextEncoder().encode(indexText);
+  shell.app[`./${GROUP_INDEX}`] = [await contentHash(indexBytes), indexBytes.length];
 
   const worker = await Bun.build({
     entrypoints: [join(root, "src/pwa/sw.ts")],

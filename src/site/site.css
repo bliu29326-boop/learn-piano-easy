@@ -81,6 +81,16 @@
     inset: 0;
   }
 
+  /* The player's loading cards lie over the window, as its scene does. */
+  .player-view > .loading {
+    position: fixed;
+  }
+
+  /* A lesson's sound card floats over the lesson. */
+  .lesson-page {
+    position: relative;
+  }
+
   /* Files dragged over any page outline the window, to say a drop opens them in the player. */
   #app.drop-target::after {
     content: "";
