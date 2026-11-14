@@ -233,6 +233,11 @@ export interface OriginalSource {
   printed: number;
   /** The bars, from 1, that a cut's last cadence adds and the source lacks. There are at most two. */
   addedBars?: number[];
+  /**
+   * The semitones from the tune's key to the print's key, where the print sets the piece in another key
+   * than our versions, as Heugel's *Can-Can* in D does against our G. It is 0 where the keys agree.
+   */
+  keyShift?: number;
 }
 
 /** Our Original of a song: the piece set for two hands, with the guide of a version. */
@@ -458,13 +463,13 @@ export function originalProblems(song: OurSong, year = new Date().getFullYear())
   if (original === undefined) return [];
   const meter = versionMeter(song, "mythic");
   const { tune } = song;
-  const { printed, addedBars = [] } = original.source;
+  const { printed, addedBars = [], keyShift = 0 } = original.source;
   const problems: string[] = [];
   if (printed + 95 >= year) problems.push(`its edition of ${printed} is not public domain in ${year}`);
   if (addedBars.length > MOST_ADDED_BARS) problems.push(`it adds ${addedBars.length} bars, past ${MOST_ADDED_BARS}`);
   const bars = barCount(meter);
   for (const bar of addedBars) if (bar < 1 || bar > bars) problems.push(`its added bar ${bar} lies outside its ${bars} bars`);
-  problems.push(...originalTuneProblems(meter, tuneOf(tune.text, tune, tune.key, tune.hookBars)));
+  problems.push(...originalTuneProblems(meter, tuneOf(tune.text, tune, tune.key, tune.hookBars), keyShift));
   problems.push(...originalFingerProblems(meter), ...guideProblems(song, "mythic", meter));
   if (song.de !== undefined && song.de.original === undefined) problems.push("its guide has no German");
   return problems.map((problem) => `${song.title}, ${stepEnglishName("mythic")}: ${problem}`);

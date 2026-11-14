@@ -106,6 +106,9 @@ test("every_original_of_ours_keeps_its_hook_and_a_hand", () => {
       return `${names[pitch % 12]}${Math.floor(pitch / 12) - 1}`;
     });
   expect(named({ ...good, right: moved(good.right), left: moved(good.left) })).toContain("the hook is lost");
+  // A print a semitone up names that move as `keyShift`, and the hook is found in the print's key.
+  const shifted = { ...good, right: moved(good.right), left: moved(good.left), source: { ...good.source, keyShift: 1 } };
+  expect(named(shifted)).not.toContain("the hook is lost");
 }, 60_000);
 
 /** The slugs of every Christmas song of ours that is or will be written, by the goal `christmas-songs`. */

@@ -90,7 +90,10 @@ own, which follows the piece and keeps no limit of the four versions.
 - **The meter rates it** as the lowest version whose limits it fits, at that version's catalog
   difficulty. Past Hard it rates 5, which is Advanced. The meter's head comment owns this rule.
 - **It keeps the meter's checks of a hand:** a finger on every note, the practical span, and the hook
-  note for note in the tune's own key. It keeps no limit of the four versions.
+  note for note in the print's key. It keeps no limit of the four versions.
+- **An Original keeps its print's key, even where our versions moved the tune.** Its source names the
+  move as `keyShift`, in semitones, and `originalTuneProblems` in `tools/song-meter.ts` finds the hook
+  there. *Can-Can* follows Heugel's D major against our G, so its `keyShift` is 7. Many carols move too.
 - **The Original stays last on the card,** even where it rates below Hard. The level filter files it
   under its own level.
 - **Its guide has the same parts as a version's guide,** written in English and German. Its tricky
@@ -129,8 +132,11 @@ own, which follows the piece and keeps no limit of the four versions.
 - **Two kept sections join with no bar of our own.** The next section starts as the print has it, even
   where the key changes. A join bar would be a bar of ours, which the rules allow only as the last cadence.
 - **A print may come from any public library whose `robots.txt` admits agents,** such as Gallica, the
-  Library of Congress or HathiTrust's public domain scans. The Internet Archive and Commons hold no print
-  of *Night on Bald Mountain*. IMSLP stays refused.
+  Library of Congress or HathiTrust's public domain scans. IMSLP stays refused.
+- **No allowed library serves *Night on Bald Mountain*'s print to an agent.** Gallica and the Library of
+  Congress answer with a Cloudflare challenge. HathiTrust and the Russian State Library refuse it in
+  `robots.txt`. The Archive's 1946 Muzgiz score fails the meter's 95-year rule. Decision d8 asks the user,
+  and stage 2 builds the other seven Originals meanwhile.
 - **Among two-hand reductions, the plainest faithful one wins** over a virtuoso transcription such as
   Liszt's, since a learner plays it. A four-hand print or a score comes only when no two-hand print exists.
 
@@ -194,8 +200,15 @@ reviewer then reads the batch against its sources.
       1874 vocal score, Archive item `orpheauxenfers00offe`, pages 279 to 300, is unchecked.
     - *Swan Lake*: a full score of No. 10, plate "B.B. 59", Archive item
       `imslp-lake-ballet-op20-tchaikovsky-pyotr`, its publisher and year unread. Commons is unsearched.
-  - [ ] *Night on Bald Mountain*'s print, from a library the standing decisions allow.
-  - [ ] *Swan Lake* and *Can-Can*: their prints are confirmed or replaced, as the handoff says.
+  - [ ] *Night on Bald Mountain*'s print, from a library the standing decisions allow. Decision d8 waits.
+  - [x] *Swan Lake* and *Can-Can*: their prints are confirmed or replaced, as the handoff says.
+    - *Swan Lake*: Kashkin's two-hand piano score, Jurgenson, Moscow, plate 2950, Paris agent Mackar,
+      no year printed. Gallica's scan `bpt6k1913424b` is on Commons as 172 images. Act II No. 1, the
+      Scene, is printed pages 64 to 66, images 68 to 70, in B minor and common time, about 70 bars, set
+      whole. The files are `piano-n68.jpg` to `piano-n70.jpg`, at 3840 pixels.
+    - *Can-Can*: Heugel's 1874 vocal score, Archive item `orpheauxenfers00offe`, No. 28 Galop infernal,
+      printed pages 287 to 291, which are images n302 to n306 in `full/`. It is in D major and 2/4,
+      about 105 bars, set whole. The famous strain enters at "Chœur général" on page 289.
 - [ ] Each fetched page is transcribed to `page-n<N>.txt` beside it.
   - [ ] *William Tell*'s finale, pages n10 to n14.
     - [x] Pages n10 and n14 are whole, from the 3840-pixel scans in `full/`.

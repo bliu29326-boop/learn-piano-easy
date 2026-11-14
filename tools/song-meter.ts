@@ -102,7 +102,7 @@
  *   is `ORIGINAL_PAST_LEGENDARY`, 5, which the library calls Advanced. It need not earn a rarity.
  * - `originalFingerProblems` checks its hands: a finger on every note, and no chord past a hand's
  *   practical span. A move between two moments is a jump, as the print's own leaps are, so it is no stretch.
- * - `originalTuneProblems` finds its hook note for note in the tune's own key, anywhere in the piece.
+ * - `originalTuneProblems` finds its hook note for note in the print's key, anywhere in the piece.
  *   The module may write the tune in longer notes, so the hook may play at a quarter to four times its
  *   written lengths.
  *
@@ -764,11 +764,12 @@ export function matchTune(song: MeterSong, tune: Tune, rarity: Rarity): TuneMatc
 const ORIGINAL_SCALES = [0.25, 0.5, 1, 2, 4] as const;
 
 /**
- * What an Original of ours breaks of `tune`: its hook must play note for note in the tune's own key, in
- * either hand's top voice, anywhere in the piece. It may sound an octave away, and write the tune's
- * values at a quarter to four times their length, since the module may write the tune in longer notes.
+ * What an Original of ours breaks of `tune`: its hook must play note for note in the print's key, in
+ * either hand's top voice, anywhere in the piece. The print's key is the tune's own key moved by
+ * `keyShift` semitones, which is 0 where the two agree. The hook may sound an octave away, and write the
+ * tune's values at a quarter to four times their length, since the module may write the tune in longer notes.
  */
-export function originalTuneProblems(song: MeterSong, tune: Tune): string[] {
+export function originalTuneProblems(song: MeterSong, tune: Tune, keyShift = 0): string[] {
   const hook = tune.notes.filter((note) => note.tick >= tune.hook.fromTick && note.tick < tune.hook.toTick);
   const first = hook[0];
   if (first === undefined) return ["the tune has no hook"];
@@ -776,12 +777,12 @@ export function originalTuneProblems(song: MeterSong, tune: Tune): string[] {
   for (const voice of voices) {
     for (const [tick, pitch] of voice) {
       const shift = pitch - first.pitch;
-      if (shift % 12 !== 0) continue;
+      if ((((shift - keyShift) % 12) + 12) % 12 !== 0) continue;
       const plays = (scale: number) => hook.every((note) => voice.get(tick + (note.tick - first.tick) * scale) === note.pitch + shift);
       if (ORIGINAL_SCALES.some(plays)) return [];
     }
   }
-  return ["the hook is lost, or plays outside the tune's own key"];
+  return ["the hook is lost, or plays outside the print's key"];
 }
 
 /** A tricky spot: a bar, from 1, and its fingering cost over both hands. */

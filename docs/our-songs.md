@@ -123,7 +123,8 @@ reasons.
   them in `addedBars`.
 - **It keeps no limit of the four versions.** It keeps the checks of a hand: a finger on every note, and
   no chord past the practical span. A move between two chords is a jump, as the print's own leaps are.
-  It plays the hook note for note in the tune's own key.
+  It plays the hook note for note in the print's key. Where that differs from the tune's key, the
+  module names the move in semitones as `keyShift`.
 - **A chord the print brackets is rolled.** One hand holds no chord wider than a tenth, so the module
   writes it from its lowest note up, a 32nd per note.
 - **The meter rates it** as the lowest version whose limits it fits, at that version's catalog difficulty.
