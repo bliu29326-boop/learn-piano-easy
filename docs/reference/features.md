@@ -125,7 +125,9 @@ Ours takes its songs from four sources: our own arrangements, piano-midi.de, Mut
 pieces. `public/songs/catalog.json` lists every song with its license and credit. Our arrangements
 follow [our-songs.md](../our-songs.md). Each comes in four versions from Beginner to Hard. Every song of
 ours whose tune is not our own ends on its Original, the whole piece set for two hands. The library groups
-some of them as collections: Christmas, film music and sea shanties. Ours keeps everything the learner has in one backup file, as
+some of them as collections: Christmas, film music and sea shanties. Ours lists the songs as rows,
+each with its title and its composer. The parts of a work, such as a sonata's movements, fold into
+one row of the work, which opens to show them. Ours keeps everything the learner has in one backup file, as
 [design.md](../design.md) § *The learner's data* says.
 
 The library is `song-library` and `more-songs`, settings are `settings`, and PDF export is

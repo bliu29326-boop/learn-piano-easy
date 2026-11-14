@@ -15,7 +15,10 @@
  * - "Fits my keyboard" keeps a song whose lowest and highest note both lie inside the learner's range.
  *   A song without `low` and `high`, such as an upload, is kept, because its fit is not known yet.
  * - `songEntries` makes one entry of the versions of a song of ours, and of the original score they
- *   name. The explorer shows an entry as one card, so the original leaves its composer's own pieces.
+ *   name. The explorer shows an entry as one row, so the original leaves its composer's own pieces.
+ * - `workEntries` folds the parts of a work into one entry, at the place its first part takes in the
+ *   sort. A work with a single part in the result shows that part alone, so a search that finds one
+ *   movement opens nothing.
  * - The groups keep the catalog's order, so a composer's pieces read as the catalog lists them.
  * - A collection's name and a version's name come from the live locale, so the search finds a
  *   collection by the name the learner reads.
@@ -26,7 +29,7 @@
  * - `sortSongs` is stable and falls back to the given order. A song whose length or last play is not
  *   known sorts after every song whose is.
  *
- * The song explorer draws cards and never groups, so `groupSongs` serves the check of our songs alone.
+ * The song explorer draws rows and folds only works, so `groupSongs` serves the check of our songs alone.
  */
 import { collator } from "../i18n/format";
 import { liveLocale, t } from "../i18n/live";
@@ -253,6 +256,49 @@ export function songEntries(songs: readonly CatalogSong[]): SongEntry[] {
   for (const entry of entries.values()) entry.versions.sort((a, b) => rank(a) - rank(b));
   for (const original of originals) entries.get(owners.get(original.file)!)!.versions.push(original);
   return [...entries.values()];
+}
+
+/** One row of the explorer's result: a work and its parts, or a song that stands alone. */
+export interface WorkEntry {
+  /** The work's composer and name, or the song's file for a song that stands alone. */
+  key: string;
+  /** The work's name, or null for a song that stands alone. */
+  work: string | null;
+  /** The work's parts in the work's order, or the one song that stands alone. */
+  songs: CatalogSong[];
+}
+
+/**
+ * `songs` as one entry per work, each at the place of its first part, and one per other song. A work's
+ * parts follow `order`, the catalog's place of each. A work with one part in `songs` is that part alone.
+ * A part that `alone` names stands alone too, such as the Original of a song of ours.
+ */
+export function workEntries(
+  songs: readonly CatalogSong[],
+  order: (song: CatalogSong) => number,
+  alone: (song: CatalogSong) => boolean = () => false,
+): WorkEntry[] {
+  const works = new Map<string, WorkEntry>();
+  const entries: WorkEntry[] = [];
+  for (const song of songs) {
+    if (!isPart(song) || alone(song)) {
+      entries.push({ key: song.file, work: null, songs: [song] });
+      continue;
+    }
+    const key = `${song.composer}\n${song.piece}`;
+    const work = works.get(key);
+    if (work !== undefined) work.songs.push(song);
+    else {
+      const entry = { key, work: song.piece, songs: [song] };
+      works.set(key, entry);
+      entries.push(entry);
+    }
+  }
+  return entries.map((entry) => {
+    if (entry.work === null) return entry;
+    if (entry.songs.length === 1) return { key: entry.songs[0]!.file, work: null, songs: entry.songs };
+    return { ...entry, songs: entry.songs.sort((a, b) => order(a) - order(b)) };
+  });
 }
 
 /** Whether every note of `song` lies inside `range`. A song of unknown span fits. */

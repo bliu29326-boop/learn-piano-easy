@@ -1,5 +1,5 @@
 import { expect, test } from "../testing";
-import { type CatalogSong, filterSongs, groupSongs, highlightRanges, NO_FILTER, queryWords, songEntries, songTitle, sortSongs } from "./search";
+import { type CatalogSong, filterSongs, groupSongs, highlightRanges, NO_FILTER, queryWords, songEntries, songTitle, sortSongs, workEntries } from "./search";
 
 function song(composer: string, title: string, difficulty: number, low = 48, high = 72, piece: string | null = null): CatalogSong {
   return { composer, piece, title, file: `${title}.mid`, difficulty, license: "MIT", credit: "Us", low, high };
@@ -78,6 +78,22 @@ test("the_versions_of_a_song_and_its_original_score_are_one_entry", () => {
   expect(entries[4]!.versions.map(songTitle)).toEqual(["Ode to Joy, Beginner", "Ode to Joy, Easy", "Ode to Joy, the score"]);
   expect(entries[0]!.versions).toEqual([SONGS[0]!]);
   expect(songTitle(SONGS[0]!)).toBe("Prélude Andantino");
+});
+
+test("the_parts_of_a_work_fold_into_one_entry_at_its_first_part", () => {
+  const part = (title: string, n: number, piece = "Sonata No. 1"): CatalogSong => ({ ...song("Joseph Haydn", title, 5, 48, 72, piece), part: n, kind: "movement" });
+  const [one, two, three] = [part("Movement 1", 1), part("Movement 2", 2), part("Movement 3", 3)];
+  const lone = part("Movement 2", 2, "Sonata No. 2");
+  const catalog = [one!, two!, three!, lone, ...SONGS];
+  const order = (entry: CatalogSong) => catalog.indexOf(entry);
+  // The work stands where its first part does in the sort, and its parts keep the catalog's order.
+  const entries = workEntries([SONGS[2]!, three!, SONGS[0]!, one!, lone, two!], order);
+  expect(entries.map((entry) => entry.work)).toEqual([null, "Sonata No. 1", null, null]);
+  expect(titles(entries[1]!.songs)).toEqual(["Movement 1", "Movement 2", "Movement 3"]);
+  // A work with one part in the result, and a part the caller keeps alone, stand alone.
+  expect(entries[3]!.songs).toEqual([lone]);
+  expect(entries[3]!.key).toBe(lone.file);
+  expect(workEntries([one!, two!], order, (entry) => entry === one).map((entry) => entry.songs.length)).toEqual([1, 1]);
 });
 
 test("songs_group_by_composer_then_piece_in_catalog_order", () => {

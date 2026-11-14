@@ -1,4 +1,7 @@
-/** The song explorer in a real browser: its tags, preview, stars and arrow keys work, and it reopens as the learner left it. */
+/**
+ * The song explorer in a real browser: its tags, preview, stars, works and arrow keys work, and it
+ * reopens as the learner left it.
+ */
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
 /** Opens the song explorer and returns its dialog. */
@@ -108,7 +111,8 @@ test("the_scroll_and_the_sort_come_back_after_a_close", async ({ page }) => {
   await easy.click();
   await sort.selectOption("title");
   await expect(dialog.locator(".library-count")).toHaveText("96 songs");
-  await expect(dialog.locator(".song-row")).toHaveCount(48);
+  // A chunk is 48 songs or works, and a work's parts draw with it.
+  await expect(dialog.getByRole("region", { name: "Results" }).locator(".song-list > li")).toHaveCount(48);
 
   // The explorer notes the scroll on the scroll event, so the test waits for that event.
   const top = await dialog.locator(".song-explorer__results").evaluate(
@@ -231,6 +235,57 @@ test("nothing_found_shows_the_mascot_and_one_way_back", async ({ page }) => {
   await expect(count).toHaveText(all!);
   await expect(empty).toHaveCount(0);
   await expect(dialog.getByRole("region", { name: "All songs" }).locator(".song-row").first()).toBeVisible();
+});
+
+test("a_work_opens_to_show_its_parts", async ({ page }) => {
+  await page.goto("./play/");
+  const dialog = await openSongsWithSkills(page);
+  const search = dialog.getByRole("searchbox", { name: "Search songs" });
+  const work = dialog.locator(".song-work").filter({ has: page.getByRole("button", { name: "Sonata No. 11 (KV 331) 'Alla Turca'", exact: true }) });
+  const toggle = work.locator(".song-work__toggle");
+  const parts = work.locator(".song-work__parts .song-row");
+
+  // With no filter on, the work is one closed row, drawn once the list scrolls down to it.
+  const scroller = dialog.locator(".song-explorer__results");
+  await expect
+    .poll(async () => {
+      await scroller.evaluate((node) => node.scrollTo(0, node.scrollHeight));
+      return work.count();
+    })
+    .toBe(1);
+  await expect(work.locator(".song-row__by")).toHaveText("Wolfgang A. Mozart");
+  await expect(work.locator(".song-work__count")).toHaveText("3 parts");
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  await expect(parts).toHaveCount(0);
+
+  // A click opens it, and each part reads its label alone while its button names the whole title.
+  await toggle.click();
+  await expect(toggle).toHaveAttribute("aria-expanded", "true");
+  await expect(parts.locator(".song-row__title")).toHaveText(["Movement 1", "Movement 2", "Movement 3: Alla Turca"]);
+  await expect(parts.locator(".song-row__by")).toHaveCount(0);
+  await expect(parts.nth(2).locator(".song-row__open")).toHaveAccessibleName("Sonata No. 11 (KV 331) 'Alla Turca' · Movement 3: Alla Turca");
+
+  // Down enters the parts, Left on a part closes the work and goes to its row, and Right opens it again.
+  await expect(toggle).toBeFocused();
+  await page.keyboard.press("ArrowDown");
+  await expect(parts.nth(0).locator(".song-row__open")).toBeFocused();
+  await page.keyboard.press("ArrowLeft");
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  await expect(toggle).toBeFocused();
+  await page.keyboard.press("ArrowRight");
+  await expect(toggle).toHaveAttribute("aria-expanded", "true");
+  await expect(parts).toHaveCount(3);
+
+  // A query opens the work it matches, and a work with one matching part shows that part alone.
+  await search.fill("alla turca");
+  await expect(toggle).toHaveAttribute("aria-expanded", "true");
+  await expect(parts).toHaveCount(3);
+  await search.fill("kv 331 movement 2");
+  await expect(dialog.locator(".library-count")).toHaveText("1 song");
+  await expect(work).toHaveCount(0);
+  await expect(rowOf(dialog, "Sonata No. 11 (KV 331) 'Alla Turca' · Movement 2").locator(".song-row__title")).toHaveText(
+    "Sonata No. 11 (KV 331) 'Alla Turca' · Movement 2",
+  );
 });
 
 test("the_arrow_keys_move_through_the_rows_and_enter_opens", async ({ page }) => {

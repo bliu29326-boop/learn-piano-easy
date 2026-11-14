@@ -98,6 +98,7 @@ export const playerLibrary: typeof en = {
     favourite: { label: "Favorit", title: (title: string) => `Favorit: ${title}` },
     lengthTitle: "Länge",
     lengthLicense: (license: string, credit: string) => `Länge · ${license} · ${credit}`,
+    workParts: (n: number) => `${formatNumber("de", n)} ${plural("de", n, { one: "Teil", other: "Teile" })}`,
     empty: { title: "Kein Lied passt", message: "Versuch ein anderes Wort, oder nimm einen Filter heraus." },
     own: {
       heading: "Deine Lieder",

@@ -604,8 +604,9 @@
     color: var(--c-text);
   }
 
-  /* The hairline above every row but the first. */
-  .song-row + .song-row::before {
+  /* The hairline above every row but the first, a work's rows included. */
+  :is(.song-row, .song-work) + :is(.song-row, .song-work)::before,
+  .song-work__parts > .song-row:first-child::before {
     content: "";
     position: absolute;
     inset: -1px var(--s-3) auto;
@@ -640,6 +641,57 @@
     border-radius: inherit;
     background: transparent;
     -webkit-tap-highlight-color: transparent;
+  }
+
+  /* A work: its own row, then its parts under it, indented, as one item of the list. */
+  .song-work {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* A work's row keeps its count and chevron beside its text, on a phone too. */
+  .song-row.song-work__row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .song-work__row .song-row__tools {
+    grid-area: 1 / 2;
+  }
+
+  .song-work__parts {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    margin: 0;
+    padding: 0;
+    padding-inline-start: var(--s-6);
+    list-style: none;
+  }
+
+  .song-work__parts .song-row__title {
+    font-size: var(--t-sm);
+  }
+
+  .song-work__count {
+    color: var(--c-text-soft);
+    font-size: var(--t-sm);
+    white-space: nowrap;
+  }
+
+  /* The chevron points along the line while the work is closed, and down once it is open. */
+  .song-work__chevron {
+    display: inline-flex;
+    color: var(--c-text-soft);
+    transform: rotate(-90deg);
+    transition: transform var(--m-small) var(--ease-standard);
+  }
+
+  .song-work__chevron:dir(rtl) {
+    transform: rotate(90deg);
+  }
+
+  .song-work__row:has([aria-expanded="true"]) .song-work__chevron {
+    transform: none;
   }
 
   /* The tools keep to one line: the path's step, the steps, the length and an upload's buttons. */

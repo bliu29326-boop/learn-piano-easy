@@ -12,7 +12,13 @@
  *
  * Decisions, and what each costs:
  * - A row reads the song's title on its first line and its composer on its second. A part of a work
- *   reads as its work and its label, such as "Sonata No. 14 · Movement 2".
+ *   reads as its work and its label, such as "Sonata No. 14 · Movement 2", where it stands alone.
+ * - The parts of a work in the result fold into one row of the work, which names how many it holds.
+ *   It stands where its first part would, and opens to show its parts under it, each by its label.
+ *   With no filter on a work starts closed, and under a filter or a query it starts open. What the
+ *   learner opens or closes lasts until the next change of the view. A part's main button keeps its
+ *   whole title as its name, so a screen reader hears the work too.
+ * - The open song's work opens when `shown` or the head's button brings its row into view.
  * - A song is one row and counts once, whatever its versions. Every catalog row shows its versions as
  *   steps: a song of ours its four and its Original, any other song its one Original. The row shows
  *   one version at a time. Its length, preview and main button are that version's.
@@ -29,7 +35,7 @@
  *   hover text, so the row keeps one line of tools.
  * - The view is one object: the query, the chosen tags, the sort, the scroll and how many rows are
  *   drawn. It is written to `sessionStorage` under `VIEW_KEY`, so a reload of the page keeps it too.
- * - A change of the view redraws the rows, `CHUNK` at first. A sentinel under them draws the next
+ * - A change of the view redraws the rows, `CHUNK` songs or works at first. A sentinel under them draws the next
  *   chunk as it comes near, so a keystroke builds a screen of rows and never the whole catalog.
  * - `shown` draws as many rows as were drawn before, then restores the scroll. It then brings the
  *   open song's row into view when the filters keep it, drawing up to it first.
@@ -39,7 +45,9 @@
  * - A row's main button is a layer over the whole row, named by the song's title, and it opens the
  *   song. Its focus ring is then the row's. The steps, the length, the preview and the star sit above
  *   it. Their names leave the song's title out, so the title names one button alone.
- * - The up and down arrows move between the rows, and from the search field the down arrow enters them.
+ * - The up and down arrows move between the rows, an open work's parts included, and from the search
+ *   field the down arrow enters them. Right opens a work and Left closes it, mirrored in a
+ *   right-to-left locale. Left on a part closes its work and goes to the work's row.
  * - A star and a preview change their buttons in place. The lead sections follow at the next redraw,
  *   so no row moves under the pointer.
  * - A song's length and a version's skills come from its catalog row, written by the song tools. A
@@ -65,7 +73,7 @@ import { icon } from "../ui/icons/icons";
 import { beginnerPath } from "./beginner-path";
 import { originalName, originalTagline, ourOriginalTagline, rarityName, rarityTagline } from "./guide";
 import { loadGuide } from "./guide-panel";
-import { partTitle } from "./parts";
+import { partLabel, partTitle } from "./parts";
 import { createMeasurer, createPreviewer } from "./preview";
 import {
   type CatalogSong,
@@ -81,6 +89,8 @@ import {
   songEntries,
   songTitle,
   sortSongs,
+  type WorkEntry,
+  workEntries,
 } from "./search";
 import { SKILLS } from "./skills";
 import { SongMemory } from "./song-memory";
@@ -256,9 +266,16 @@ export function createLibraryPanel(
   /** Each file's step on the beginner path, from 1, and how many songs the path holds. */
   let steps = new Map<string, number>();
   let pathSongs = 0;
-  /** The result the rows are drawn from, as the version each song shows, and how many of them are drawn. */
+  /** Each catalog row's place in the catalog, which orders a work's parts. */
+  let order = new Map<CatalogSong, number>();
+  /** The result as the version each song shows, the works it folds into, and how many works are drawn. */
   let result: CatalogSong[] = [];
+  let works: WorkEntry[] = [];
   let drawn = 0;
+  /** Whether the result is drawn with no filter on, so its works start closed. */
+  let plain = true;
+  /** The works the learner opened or closed against how the result starts them, by key, until the next redraw. */
+  const flipped = new Set<string>();
   let words: string[] = [];
   let list = el("ul", { class: "song-list" });
   /** The filter buttons of the head and the rail, by tag, so a redraw sets which are pressed. */
@@ -469,6 +486,7 @@ export function createLibraryPanel(
     const path = beginnerPath(songs);
     steps = new Map(path.map((song, i) => [song.file, i + 1]));
     entries = songEntries(songs);
+    order = new Map(songs.map((song, i) => [song, i]));
     entryOf = new Map(entries.flatMap((entry) => entry.versions.map((song) => [song, entry] as const)));
     pathSongs = new Set(path.map((song) => entryOf.get(song))).size;
     const listed = new Map(songs.flatMap((song) => (song.skills === undefined ? [] : [[song.file, song.skills] as const])));
@@ -600,6 +618,7 @@ export function createLibraryPanel(
     picks.set(entry.key, row.file);
     const at = result.findIndex((song) => entryOf.get(song) === entry);
     if (at !== -1) result[at] = row;
+    for (const work of works) work.songs = work.songs.map((song) => (entryOf.get(song) === entry ? row : song));
     for (const node of results.querySelectorAll<HTMLElement>(".song-row")) {
       if (node.dataset.song !== entry.key) continue;
       const next = rowOf(byId.get(idOf(row))!, node.closest('[data-section="path"]') !== null);
@@ -609,8 +628,11 @@ export function createLibraryPanel(
     }
   }
 
-  /** The row of `item`. With `onPath`, the row shows the version's place on the beginner path. */
-  function rowOf(item: Item, onPath = false): HTMLLIElement {
+  /**
+   * The row of `item`. With `onPath`, the row shows the version's place on the beginner path. With
+   * `inWork`, the row is a part under its work's row, so it reads its label alone and no composer.
+   */
+  function rowOf(item: Item, onPath = false, inWork = false): HTMLLIElement {
     const { song, upload, id } = item;
     const entry = song === undefined ? undefined : entryOf.get(song)!;
     const versions = entry?.versions ?? [];
@@ -618,7 +640,8 @@ export function createLibraryPanel(
     // A song with versions takes its title from the first, so the row reads the same whichever shows.
     // A part reads as its work and its label.
     const lead = versions[0] ?? song;
-    const title = lead === undefined ? item.title : lead.rarity === undefined ? partTitle(lead) : (lead.piece ?? lead.title);
+    const title =
+      lead === undefined ? item.title : inWork ? partLabel(lead) : lead.rarity === undefined ? partTitle(lead) : (lead.piece ?? lead.title);
     const by = lead === undefined ? upload!.name : composerOf(lead.composer);
     const length = lengthOf(id);
     const ids = versionIds(item);
@@ -684,7 +707,7 @@ export function createLibraryPanel(
           class: "song-row__text",
           children: [
             el("span", { class: "song-row__title library-title", children: marked(title, words) }),
-            el("span", { class: "song-row__by", children: marked(by, words) }),
+            inWork ? null : el("span", { class: "song-row__by", children: marked(by, words) }),
           ],
         }),
         el("div", {
@@ -709,6 +732,61 @@ export function createLibraryPanel(
     return node;
   }
 
+  /** Whether `work` shows its parts: a work starts closed with no filter on and open under one. */
+  const isOpen = (work: WorkEntry): boolean => (plain ? flipped.has(work.key) : !flipped.has(work.key));
+
+  /** The row of the entry `work`: a song alone, or a work's row with its parts under it when it is open. */
+  function workOf(work: WorkEntry): HTMLLIElement {
+    if (work.work === null) return rowOf(byId.get(idOf(work.songs[0]!))!);
+    const open = isOpen(work);
+    const holdsCurrent = work.songs.some((song) => idOf(song) === current);
+    const name = work.work;
+    const node = el("li", {
+      class: "song-work",
+      attrs: { "data-work": work.key },
+      children: [
+        el("div", {
+          class: "song-row song-work__row",
+          attrs: holdsCurrent && !open ? { "aria-current": "true" } : {},
+          children: [
+            el("button", {
+              class: "song-row__open song-work__toggle",
+              attrs: { type: "button", "aria-label": name, "aria-expanded": String(open) },
+              on: { click: () => setOpen(work, !open)?.querySelector<HTMLElement>(".song-work__toggle")!.focus({ preventScroll: true }) },
+            }),
+            el("div", {
+              class: "song-row__text",
+              children: [
+                el("span", { class: "song-row__title library-title", children: marked(name, words) }),
+                el("span", { class: "song-row__by", children: marked(composerOf(work.songs[0]!.composer), words) }),
+              ],
+            }),
+            el("div", {
+              class: "song-row__tools",
+              children: [el("span", { class: "song-work__count", text: say().workParts(work.songs.length) }), el("span", { class: "song-work__chevron", children: [icon("chevron-down")] })],
+            }),
+          ],
+        }),
+        open ? el("ul", { class: "song-work__parts", children: work.songs.map((song) => rowOf(byId.get(idOf(song))!, false, true)) }) : null,
+      ],
+    });
+    return node;
+  }
+
+  /** Opens or closes `work`, and draws its drawn row anew in place. Returns the new row, if the work is drawn. */
+  function setOpen(work: WorkEntry, open: boolean): HTMLLIElement | undefined {
+    if (isOpen(work) !== open) {
+      if (flipped.has(work.key)) flipped.delete(work.key);
+      else flipped.add(work.key);
+    }
+    const node = [...results.querySelectorAll<HTMLElement>(".song-work")].find((one) => one.dataset.work === work.key);
+    if (node === undefined) return undefined;
+    for (const row of node.querySelectorAll(".song-row")) seen?.unobserve(row);
+    const next = workOf(work);
+    node.replaceWith(next);
+    return next;
+  }
+
   /** A section named by `name`, with its rows in a list and an optional line and action in its head. */
   function section(kind: string, name: string, rows: Node[], extra: (Node | null)[] = []): HTMLElement {
     return el("section", {
@@ -721,13 +799,13 @@ export function createLibraryPanel(
     });
   }
 
-  /** Draws the next `n` rows of the result, and hides the sentinel once all are drawn. */
+  /** Draws the next `n` works of the result, and hides the sentinel once all are drawn. */
   function more(n: number): void {
-    const next = result.slice(drawn, drawn + n);
-    list.append(...next.map((song) => rowOf(byId.get(idOf(song))!)));
+    const next = works.slice(drawn, drawn + n);
+    list.append(...next.map(workOf));
     drawn += next.length;
     view.shown = Math.max(CHUNK, drawn);
-    sentinel.hidden = drawn >= result.length;
+    sentinel.hidden = drawn >= works.length;
     // Watching anew makes the observer report a sentinel that is still near, so the next chunk follows.
     reach?.unobserve(sentinel);
     if (!sentinel.hidden) reach?.observe(sentinel);
@@ -741,6 +819,7 @@ export function createLibraryPanel(
   function redraw(): void {
     view.scroll = 0;
     view.shown = CHUNK;
+    flipped.clear();
     draw(false);
   }
 
@@ -759,11 +838,13 @@ export function createLibraryPanel(
     });
     const length = (song: CatalogSong) => song.seconds ?? memory.length(idOf(song));
     result = sortSongs(passing, view.sort, { length, played: (song) => playedAt(byId.get(idOf(song))!) });
+    // An Original that a song of ours names shows on that song's row, never under its work.
+    works = workEntries(result, (song) => order.get(song) ?? 0, (song) => entryOf.get(song)!.versions.length > 1);
     if (view.sort === "length") for (const song of result) if (length(song) === undefined) measurer.want(idOf(song), () => fetchSong(song.file));
     const own = uploads
       .map((upload) => byId.get(upload.id)!)
       .filter((item) => words.every((word) => foldText(item.upload!.name).includes(word)) && matchesTags((key) => has(item, key), view.tags));
-    const plain = words.length === 0 && view.tags.length === 0 && !view.fits;
+    plain = words.length === 0 && view.tags.length === 0 && !view.fits;
     count.textContent = m.count(result.length);
     syncFilters();
 
@@ -857,10 +938,13 @@ export function createLibraryPanel(
     };
     const find = () => [...results.querySelectorAll<HTMLElement>(".song-row")].filter((node) => node.dataset.id === current);
     let nodes = find();
-    // A row of the song that shows already wins. Otherwise its row in the result is drawn, and the nearest one is taken.
+    // A row of the song that shows already wins. Otherwise its row in the result is drawn, its work
+    // opened, and the nearest one is taken.
     if (!nodes.some((node) => away(node) === 0)) {
-      const at = result.findIndex((song) => idOf(song) === current);
+      const at = works.findIndex((work) => work.songs.some((song) => idOf(song) === current));
       if (at >= drawn) more(at + 1 - drawn);
+      const work = works[at];
+      if (work !== undefined && work.work !== null && !isOpen(work)) setOpen(work, true);
       nodes = find();
     }
     const node = nodes.sort((a, b) => away(a) - away(b))[0];
@@ -886,10 +970,32 @@ export function createLibraryPanel(
   results.addEventListener("scroll", () => {
     if (element.isConnected) view.scroll = results.scrollTop;
   });
+  /**
+   * The arrow towards the end of a line, Right in a left-to-right locale, opens the work of the focused
+   * row. The other one closes it, and from a part's row it goes to the work's row.
+   */
+  function turnWork(from: HTMLElement, key: string): boolean {
+    const box = from.closest<HTMLElement>(".song-work");
+    const work = box === null ? undefined : works.find((one) => one.key === box.dataset.work);
+    if (work === undefined) return false;
+    const forward = getComputedStyle(results).direction === "rtl" ? "ArrowLeft" : "ArrowRight";
+    const onWork = from.classList.contains("song-work__toggle");
+    if (key === forward && !onWork) return false;
+    const next = key === forward || isOpen(work) ? setOpen(work, key === forward) : box;
+    next?.querySelector<HTMLElement>(".song-work__toggle")!.focus();
+    return true;
+  }
+
   // The up and down arrows move between the rows, and up from the first row returns to the search.
+  // Right and Left open and close a work.
   results.addEventListener("keydown", (event) => {
     const from = (event.target as HTMLElement).closest<HTMLElement>(".song-row__open");
-    if (from === null || (event.key !== "ArrowUp" && event.key !== "ArrowDown")) return;
+    if (from === null) return;
+    if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+      if (turnWork(from, event.key)) event.preventDefault();
+      return;
+    }
+    if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
     const opens = [...results.querySelectorAll<HTMLElement>(".song-row__open")];
     const to = opens[opens.indexOf(from) + (event.key === "ArrowDown" ? 1 : -1)];
     event.preventDefault();

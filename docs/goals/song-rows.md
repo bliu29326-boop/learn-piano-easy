@@ -12,7 +12,7 @@ stages:
     status: done
   - id: 3
     title: "A work's parts open from its row"
-    status: open
+    status: done
   - id: 4
     title: "the goal is verified once, and every failure is fixed"
     status: open
@@ -63,6 +63,14 @@ faster as rows, and a work's parts read best together under it.
   a work starts closed, and the learner opens it.
 - **The arrow keys move between rows,** an open work's parts included. Right opens a work, and Left
   closes it. Stage 2 keeps Up and Down alone, and stage 3 adds Right and Left.
+- **A work with one part in the result shows that part alone,** reading its work and its label. A
+  search that finds one movement then opens nothing.
+- **An Original that a song of ours names stays on that song's row,** never under its work. *Moonlight
+  Sonata*'s first movement is one, so its work shows the other two movements.
+- **What the learner opens or closes lasts until the next change of the view.** A pick, a star or a
+  locale change keeps it. The open song's work opens when its row is brought into view.
+- **Right and Left mirror in a right-to-left locale.** Left on a part closes its work and goes to the
+  work's row, as a tree does. A chunk counts songs and works, so an open work draws with its parts.
 - **On a phone the preview and the star stay beside the text.** The steps and the length take the
   second line, since five touch-sized steps and the four tools never fit one line of 360 pixels.
 - **The length's tooltip reads "Length · license · credit"** under the new key `lengthLicense`. The
@@ -104,11 +112,11 @@ faster as rows, and a work's parts read best together under it.
 
 **Does:** a work with parts is one row that opens to show them.
 
-- [ ] `workEntries` groups the entries of a work's parts, after the sort and the filter. `src/library/search.ts:211`
-- [ ] The work's row, its count of parts and its open state. `src/library/library-panel.ts:613`
-- [ ] The arrow keys, Right and Left. `src/library/library-panel.ts:900`
-- [ ] Test `a_work_opens_to_show_its_parts`. `e2e/song-explorer.e2e.ts:1`
-- [ ] The feature list names the rows and the works. `docs/reference/features.md:1`
+- [x] `workEntries` groups the entries of a work's parts, after the sort and the filter. `src/library/search.ts:211`
+- [x] The work's row, its count of parts and its open state. `src/library/library-panel.ts:613`
+- [x] The arrow keys, Right and Left. `src/library/library-panel.ts:900`
+- [x] Test `a_work_opens_to_show_its_parts`. `e2e/song-explorer.e2e.ts:1`
+- [x] The feature list names the rows and the works. `docs/reference/features.md:1`
 
 ### 4. the goal is verified once, and every failure is fixed
 
@@ -120,26 +128,23 @@ faster as rows, and a work's parts read best together under it.
 
 ### State
 
-Stages 1 and 2 are committed on `main`. The explorer lists songs as rows: the title, then the
-composer, with the steps, the length, the preview and the star at the right. A part reads as its work
-and its label, such as "Sonata No. 14 'Moonlight' · Movement 2". Each part is still its own row.
-The rows show no tags, and the length's tooltip names the license and the credit.
+Stages 1 to 3 are committed on `main`. The explorer lists songs as rows, and the parts of a work fold
+into one row of the work, with its composer and a count such as "3 parts". It starts closed with no
+filter on and open under one. Its parts sit indented under it, each reading its label alone, while
+their main button keeps the whole title. Right and Left open and close a work. The new unit test
+`the_parts_of_a_work_fold_into_one_entry_at_its_first_part` and the e2e test
+`a_work_opens_to_show_its_parts` each passed once by name.
 
 ### Next
 
-**Stage 3: a work's parts open from its row.** Files: `src/library/search.ts`,
-`src/library/library-panel.ts`, `src/library/library-panel.css`, `e2e/song-explorer.e2e.ts` and
-`docs/reference/features.md`. Gate: stage 2 is committed.
+**Stage 4: the goal is verified once.** Run `looper verify`, fix every failure in one pass, and run
+it again. Gate: stage 3 is committed.
 
-1. `workEntries` groups the sorted result's parts by work, at the place of its first part. `src/library/search.ts:237`
-2. The work's row: its name, its composer and a count of parts, closed with no filter on. `src/library/library-panel.ts:613`
-3. The parts sit under the work's row, indented, each reading its label alone. `src/library/library-panel.css:1`
-4. Right opens a work, and Left closes it. Up and Down already move row by row. `src/library/library-panel.ts:889`
-5. Test `a_work_opens_to_show_its_parts`, and the feature list. `e2e/song-explorer.e2e.ts:1`, `docs/reference/features.md:1`
-
-Expected red, until the gate stage runs them: the e2e tests in `e2e/library.e2e.ts`,
-`e2e/song-explorer.e2e.ts`, `e2e/play.e2e.ts` and `e2e/transport.e2e.ts` that this stage changed have not
-run. Stage 3 may turn red the ones that find a part by its full title, since a closed work hides it.
+Expected red, since no full run has seen them since stage 2: the e2e tests of `e2e/library.e2e.ts`,
+`e2e/song-explorer.e2e.ts`, `e2e/play.e2e.ts` and `e2e/transport.e2e.ts`. The likeliest is
+`the_scroll_and_the_sort_come_back_after_a_close`, which now counts the Results list's items
+(`e2e/song-explorer.e2e.ts:111`). A test that finds a part with no filter on can miss it in its closed
+work. `e2e/transport.e2e.ts:210` clicks the first `.song-row__open`, which may now be a work's row.
 
 ### Backlog
 

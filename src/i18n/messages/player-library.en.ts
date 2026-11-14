@@ -111,6 +111,8 @@ export const playerLibrary = {
     lengthTitle: "Length",
     /** The hover text of a catalog song's length: the word, then the song's license and who made its file. */
     lengthLicense: (license: string, credit: string) => `Length · ${license} · ${credit}`,
+    /** How many parts of a work its row holds, beside the work's name. */
+    workParts: (n: number) => `${formatNumber("en", n)} ${plural("en", n, { one: "part", other: "parts" })}`,
     empty: { title: "No song matches", message: "Try another word, or take a filter off." },
     own: {
       heading: "Your songs",
