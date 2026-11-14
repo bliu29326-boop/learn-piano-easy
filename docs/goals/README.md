@@ -1,6 +1,6 @@
 ---
 looper: 1
-chain: [original-arrangements, faithful-levels, urdu, japanese]
+chain: [original-arrangements, song-rows, faithful-levels, urdu, japanese]
 floor:
   - id: build-output
     name: "the build writes the page, the bundle and the service worker"
@@ -611,14 +611,15 @@ floor:
 
 # Goals
 
-The chain holds 4 goal(s). `original-arrangements` is live.
+The chain holds 5 goal(s). `original-arrangements` is live.
 
 | # | Goal | Reached when | Stages |
 |---|---|---|---|
 | 1 | [`original-arrangements`](original-arrangements.md) **live** | The first eight songs end on an Original that sounds like the piece, and the tools that set the rest at a fifth of the tokens are ready. | 1 ✓ The Original's plumbing and Morning Mood · 2 ✓ Originals: the orchestral showpieces · 3 ✓ A page is read by the system, and its bars are set by a command · **4 the goal is verified once, and every failure is fixed** |
-| 2 | [`faithful-levels`](faithful-levels.md) | The four versions of every song of ours play the source's real phrases instead of bars of our own, and Medium and Hard use its own accompaniment where the limits allow. | **1 The rework's rules, its new files and the audit** · 2 the goal is verified once, and every failure is fixed |
-| 3 | [`urdu`](urdu.md) | Every text of the site, the course and the song guides reads in Urdu as if a native teacher wrote it, and the Urdu site ships. | **1 The Urdu style guide and glossary** · 2 The site and the player in Urdu · 3 The course in Urdu · 4 The song guides in Urdu, from a to m · 5 The song guides in Urdu, from n to z · 6 The Urdu site ships · 7 the goal is verified once, and every failure is fixed |
-| 4 | [`japanese`](japanese.md) | Every text of the site, the course and the song guides reads in Japanese as if a native teacher wrote it, and the Japanese site ships. | **1 The Japanese style guide and glossary** · 2 The site and the player in Japanese · 3 The course in Japanese · 4 The song guides in Japanese, from a to m · 5 The song guides in Japanese, from n to z · 6 The Japanese site ships · 7 the goal is verified once, and every failure is fixed |
+| 2 | [`song-rows`](song-rows.md) | The song explorer lists songs as rows that read work, part and composer, and a work's parts open from one row. | 1 ✓ The catalog names each part of a work · **2 The explorer lists songs as rows** · 3 A work's parts open from its row · 4 the goal is verified once, and every failure is fixed |
+| 3 | [`faithful-levels`](faithful-levels.md) | The four versions of every song of ours play the source's real phrases instead of bars of our own, and Medium and Hard use its own accompaniment where the limits allow. | **1 The rework's rules, its new files and the audit** · 2 the goal is verified once, and every failure is fixed |
+| 4 | [`urdu`](urdu.md) | Every text of the site, the course and the song guides reads in Urdu as if a native teacher wrote it, and the Urdu site ships. | **1 The Urdu style guide and glossary** · 2 The site and the player in Urdu · 3 The course in Urdu · 4 The song guides in Urdu, from a to m · 5 The song guides in Urdu, from n to z · 6 The Urdu site ships · 7 the goal is verified once, and every failure is fixed |
+| 5 | [`japanese`](japanese.md) | Every text of the site, the course and the song guides reads in Japanese as if a native teacher wrote it, and the Japanese site ships. | **1 The Japanese style guide and glossary** · 2 The site and the player in Japanese · 3 The course in Japanese · 4 The song guides in Japanese, from a to m · 5 The song guides in Japanese, from n to z · 6 The Japanese site ships · 7 the goal is verified once, and every failure is fixed |
 
 The floor holds 121 check(s) carried from reached goals; every goal keeps them green.
 The format is `docs/goal-format.md`.
