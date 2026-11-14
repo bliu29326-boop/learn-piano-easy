@@ -6,10 +6,13 @@
  * `"E4:1 D4:1 | C4:2"` is E4 for one unit, D4 for one unit, then C4 for two. A unit is the beat of the
  * song's time signature, so an eighth in 6/8, split into the song's `steps`. `C4+E4+G4:2` is a chord,
  * `r` is a rest, and `|` ends a bar. A finger follows a slash: `E4/3:1` is E4 with finger 3. A chord
- * takes one finger per pitch in the same order, as in `C3+G3/5+1:4`.
+ * takes one finger per pitch in the same order, as in `C3+G3/5+1:4`. A length ending in `~` ties the
+ * token to the next one of its line, even across a bar line: `C4:2~ | C4:2` sounds one C4 four units
+ * long, with the first token's fingers.
  *
  * The pedal is a third line in the same notation. `P:4` holds it down for four units and `r:4` keeps it
- * up. Two `P` tokens in a row lift and press it again between them, as a pedal change does.
+ * up. Two `P` tokens in a row lift and press it again between them, as a pedal change does, and a tied
+ * `P:4~` holds it down into the next token.
  *
  * Decisions, and what each costs:
  * - Every bar must fill its time signature exactly, or the run throws. A typo in a melody never ships.
@@ -106,7 +109,9 @@ export interface PedalSpan {
 
 /**
  * The tokens of a line in the notation, each read by `read` from its name and its finger text, with
- * `unit` ticks per unit. Throws on a token that is not one, or a bar that does not fill.
+ * `unit` ticks per unit. A token whose length ends in `~` is tied: the next token, which must name the
+ * same pitches by `same`, only lengthens it. Throws on a token that is not one, a tie to another
+ * token or to nothing, or a bar that does not fill.
  */
 function parseLine<T>(
   text: string,
@@ -114,23 +119,34 @@ function parseLine<T>(
   unitsPerBar: number,
   what: string,
   read: (name: string, fingerText: string | undefined, where: string) => T,
+  same: (a: T, b: T) => boolean,
 ): { value: T; tick: number; ticks: number }[] {
   const out: { value: T; tick: number; ticks: number }[] = [];
   let tick = 0;
+  let tied = false;
+  let where = what;
   text.split("|").forEach((bar, index) => {
     let units = 0;
-    const where = `${what}, bar ${index + 1}`;
+    where = `${what}, bar ${index + 1}`;
     for (const token of bar.trim().split(/\s+/)) {
-      const [head, length] = token.split(":");
+      const [head, rawLength = ""] = token.split(":");
       const [name, fingerText] = (head ?? "").split("/");
+      const length = rawLength.endsWith("~") ? rawLength.slice(0, -1) : rawLength;
       const count = Number(length);
       if (!name || !Number.isInteger(count) || count <= 0) throw new Error(`${where}: "${token}" is not a note`);
-      out.push({ value: read(name, fingerText, where), tick, ticks: count * unit });
+      const value = read(name, fingerText, where);
+      const last = out.at(-1);
+      if (tied && last !== undefined) {
+        if (!same(last.value, value)) throw new Error(`${where}: "${token}" is tied from other pitches`);
+        last.ticks += count * unit;
+      } else out.push({ value, tick, ticks: count * unit });
+      tied = length !== rawLength;
       tick += count * unit;
       units += count;
     }
     if (units !== unitsPerBar) throw new Error(`${where} holds ${units} units, not ${unitsPerBar}`);
   });
+  if (tied) throw new Error(`${where}: its last token is tied to nothing`);
   return out;
 }
 
@@ -139,7 +155,7 @@ export function parseHand(text: string, unit: number, unitsPerBar: number, what:
   return parseLine(text, unit, unitsPerBar, what, (name, fingerText, where) => {
     const pitches = name === "r" ? [] : name.split("+").map(pitchOf);
     return { pitches, fingers: fingersOf(fingerText, pitches.length, where) };
-  }).map(({ value, tick, ticks }) => ({ ...value, tick, ticks }));
+  }, (a, b) => a.pitches.join("+") === b.pitches.join("+")).map(({ value, tick, ticks }) => ({ ...value, tick, ticks }));
 }
 
 /** The spans of a pedal line, with `unit` ticks per unit. Throws on a token other than `P` or `r`. */
@@ -147,7 +163,7 @@ export function parsePedal(text: string, unit: number, unitsPerBar: number, what
   return parseLine(text, unit, unitsPerBar, what, (name, fingerText, where) => {
     if ((name !== "P" && name !== "r") || fingerText !== undefined) throw new Error(`${where}: "${name}" is not P or r`);
     return name === "P";
-  }).map(({ value, tick, ticks }) => ({ down: value, tick, ticks }));
+  }, (a, b) => a === b).map(({ value, tick, ticks }) => ({ down: value, tick, ticks }));
 }
 
 /** A meta event of `type` with its raw `data` and its decoded `fields`. */
