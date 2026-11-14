@@ -112,6 +112,9 @@ reasons.
 - **A tune of our own has no Original.** *Black Flag Jig*, *Last Horizon* and *Neon Chase* end on Hard.
 - **Its source is a public domain print.** The composer's own piano version comes first. A piano
   reduction printed before 1931 comes next, then the full score.
+- **A text encoding of such a print is read before its scan.** It names the print it follows, and its file
+  is public domain or CC-BY. A CC-BY encoding is credited in the folder's `LICENSE.md` and in
+  [THIRD-PARTY-NOTICES.md](../THIRD-PARTY-NOTICES.md).
 - **A modern arrangement, a recording or a catalog MIDI is never a source.** The module records the
   edition and the year it was printed.
 - **It follows its source** in form, key, meter, tempo, harmony, voicing, pedal and accompaniment. A
