@@ -597,6 +597,7 @@ export const swanLake: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 2,
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       right: toAMinor(`${TUNE_RIGHT} | ${OWN} | B4/1:8`),
       left: toAMinor(COMMON_LEFT),
       skills: ["five-finger-position", "held-bass"],
@@ -624,6 +625,7 @@ export const swanLake: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 2,
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       right: toAMinor(`${TUNE_RIGHT} | ${OWN} | B4+D5/1+3:8`),
       left: toAMinor(`${bars(PULSE, "bbbbeebhbbbbeefb")} | ${bars(PULSE, "eebbeeffbbefbf")} | B2+D3+F#3/5+3+1:8`),
       skills: ["two-note-chords", "waltz-bass"],
@@ -655,6 +657,7 @@ export const swanLake: OurSong = {
       left: `${bars(ALBERTI, `${TUNE_CHORDS}${OWN_CHORDS}${TUNE_CHORDS.slice(0, -1)}`)} B2+D3+F#3/5+3+1:8`,
       pedal: Array(24).fill("P:8 P:8").join(" | "),
       markedClashBars: [3, 7, 19, 23],
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       skills: ["alberti-bass", "pedal", "thirds-and-sixths"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
@@ -684,6 +687,7 @@ export const swanLake: OurSong = {
       left: [bars(STRIDE, TUNE_CHORDS), bars(WIDE, OWN_CHORDS), `${bars(STRIDE, TUNE_CHORDS.slice(0, -1))} B1+F#2+B2/5+2+1:8`].join(" | "),
       pedal: Array(24).fill("P:8 P:8").join(" | "),
       markedClashBars: [3, 4, 7, 8, 19, 20, 23, 24],
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       skills: ["octave-bass", "arpeggios", "melody-in-chords"],
       practice: [
         { text: "Play the left hand alone: an octave on the beat, then a chord, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },

@@ -724,6 +724,7 @@ export const beethoven5: OurSong = {
       denominator: 4,
       right: toAMinor(`${TUNE_QUARTERS} | ${COMMON_OWN}`),
       left: toAMinor(bars(HELD, `${TUNE_CHORDS}cgafcagc`, 1)),
+      ownBars: [5, 6, 7, 8, 9, 10, 11, 12],
       skills: ["five-finger-position", "held-bass"],
       practice: [
         { text: "Play the first four bars with the right hand alone, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 4], wait: true },
@@ -749,6 +750,7 @@ export const beethoven5: OurSong = {
       numerator: 4,
       denominator: 4,
       steps: 2,
+      ownBars: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
       right: toAMinor(`${TUNE_EIGHTHS} | ${RARE_OWN}`),
       left: toAMinor(`${bars(PULSE, `${TUNE_CHORDS}${OWN_CHORDS}`, 1)} | C4/1:8`),
       skills: ["eighth-notes", "two-note-chords"],
@@ -779,6 +781,7 @@ export const beethoven5: OurSong = {
       right: `${TUNE_OCTAVES_EIGHTHS} | ${EPIC_OWN}`,
       left: `${bars(ALBERTI, `${TUNE_CHORDS}${OWN_CHORDS}`, 1)} | C2+G2+C3/5+2+1:8`,
       pedal: repeat("P:8", 16),
+      ownBars: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
       skills: ["alberti-bass", "thumb-under", "pedal"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
@@ -812,6 +815,7 @@ export const beethoven5: OurSong = {
         "C2+G2+C3/5+2+1:16",
       ].join(" | "),
       pedal: repeat("P:8 P:8", 21),
+      ownBars: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
       skills: ["melody-in-chords", "stride", "arpeggios"],
       practice: [
         { text: "Play the left hand alone: an octave on the beat, then a chord, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },

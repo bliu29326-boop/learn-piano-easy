@@ -182,6 +182,7 @@ export const blowTheManDown: OurSong = {
       numerator: 6,
       denominator: 4,
       steps: 2,
+      ownBars: [18, 19, 20],
       right: `${TUNE_G} | ${OWN_COMMON}`,
       left: COMMON_LEFT,
       skills: ["five-finger-position", "open-fifths", "dotted-rhythm"],
@@ -209,6 +210,7 @@ export const blowTheManDown: OurSong = {
       numerator: 6,
       denominator: 4,
       steps: 2,
+      ownBars: [18, 19, 20],
       right: `${TUNE_G_CHORDS} | ${OWN_RARE}`,
       left: `r:12 | ${bars(LILT, `${TUNE_CHORDS}${OWN_CHORDS_SHORT}`)} | G2+B2+D3/5+3+1:12`,
       skills: ["two-note-chords", "triads", "eighth-notes"],
@@ -239,6 +241,7 @@ export const blowTheManDown: OurSong = {
       right: [TUNE_E, OWN_E, "G4+Bb4+Eb5/1+2+5:12"].join(" | "),
       left: `r:12 | ${bars(BROKEN, `${TUNE_CHORDS}${OWN_CHORDS}`)} | Eb3+G3+Bb3/5+3+1:12`,
       pedal: PEDAL,
+      ownBars: [18, 19, 20, 21, 22, 23, 24],
       skills: ["broken-chords", "thumb-under", "pedal"],
       practice: [
         { text: "Play the left hand alone until the broken chords roll by themselves.", hands: "left", speed: 0.5, loop: [2, 9], wait: false },
@@ -267,6 +270,7 @@ export const blowTheManDown: OurSong = {
       right: [TUNE_E_CHORDS, OWN_E, "Eb4+G4+Bb4+Eb5/1+2+3+5:12"].join(" | "),
       left: ["r:12", bars(STRIDE, TUNE_CHORDS), bars(ARPEGGIO, OWN_CHORDS), "Eb1+Eb2/5+1:12"].join(" | "),
       pedal: PEDAL,
+      ownBars: [18, 19, 20, 21, 22, 23, 24],
       skills: ["octave-bass", "arpeggios", "melody-in-chords"],
       practice: [
         { text: "Play the left hand alone: an octave on the beat, then a chord twice, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [2, 9], wait: true },

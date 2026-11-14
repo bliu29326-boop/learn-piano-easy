@@ -181,6 +181,7 @@ export const sailorsHornpipe: OurSong = {
       numerator: 2,
       denominator: 2,
       steps: 4,
+      ownBars: [10, 11, 12, 13, 14, 15, 16],
       right: `${TUNE_LIFTED} | ${COMMON_OWN}`,
       left: ["r:8", wholeBars(HELD, "ggg"), "G2+D3/5+1:4 D3/1:4", wholeBars(HELD, "dddd"), wholeBars(HELD, OWN_CHORDS.slice(0, -1) + "g")].join(" | "),
       skills: ["five-finger-position", "open-fifths"],
@@ -208,6 +209,7 @@ export const sailorsHornpipe: OurSong = {
       numerator: 2,
       denominator: 2,
       steps: 4,
+      ownBars: [10, 11, 12, 13, 14, 15, 16],
       right: `${TUNE_STRAIGHT} | ${RARE_OWN}`,
       left: ["r:8", wholeBars(BASS_AND_CHORD, "ggg"), "G2/5:4 D3/1:4", wholeBars(BASS_AND_CHORD, "dddd"), wholeBars(BASS_AND_CHORD, "gcgdgd"), "G2+B2+D3/5+3+1:8"].join(" | "),
       skills: ["eighth-notes", "two-note-chords"],
@@ -238,6 +240,7 @@ export const sailorsHornpipe: OurSong = {
       right: [TUNE_STRAIGHT, OWN_EIGHTHS, "D5/1:2 E5/2:1 F#5/3:1 A5/5:2 F#5/3:1 E5/2:1", "B4+D5+G5/1+2+5:8"].join(" | "),
       left: EPIC_LEFT,
       pedal: `r:8 | P:8 | P:8 | P:8 | P:4 P:4 | ${Array<string>(11).fill("P:8").join(" | ")} | P:8`,
+      ownBars: [10, 11, 12, 13, 14, 15, 16],
       skills: ["broken-chords", "pedal", "thumb-under"],
       practice: [
         { text: "Play the left hand alone until the broken chords flow by themselves.", hands: "left", speed: 0.5, loop: [2, 9], wait: false },
@@ -272,6 +275,7 @@ export const sailorsHornpipe: OurSong = {
         "G1+G2/5+1:8",
       ].join(" | "),
       pedal: `r:8 | ${Array<string>(23).fill("P:4 P:4").join(" | ")} | P:8`,
+      ownBars: [10, 11, 12, 13, 14, 15, 16],
       skills: ["octave-bass", "arpeggios", "melody-in-chords"],
       practice: [
         { text: "Play the left hand alone: an octave on the beat, then a chord, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [2, 9], wait: true },

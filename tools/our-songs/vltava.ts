@@ -583,6 +583,7 @@ export const vltava: OurSong = {
       numerator: 6,
       denominator: 4,
       steps: 2,
+      ownBars: [10, 11, 12, 13, 14, 15, 16],
       right: `${TUNE_STILL} | ${OWN_COMMON} | E5/1:12`,
       left: COMMON_LEFT,
       skills: ["five-finger-position", "open-fifths"],
@@ -610,6 +611,7 @@ export const vltava: OurSong = {
       numerator: 6,
       denominator: 4,
       steps: 2,
+      ownBars: [10, 11, 12, 13, 14, 15, 16],
       right: `${TUNE_STILL} | ${OWN_RARE} | E5+G5/1+3:12`,
       left: `r:12 | ${bars(LILT, TUNE_CHORDS)} | ${bars(LILT, OWN_CHORDS.slice(0, -2))} | E3+B3/5+2:12`,
       skills: ["two-note-chords", "eighth-notes"],
@@ -640,6 +642,7 @@ export const vltava: OurSong = {
       right: [TUNE_UNDER, OWN_EIGHTHS, EPIC_TUNE_AGAIN].join(" | "),
       left: `r:12 | ${bars(BROKEN, `${TUNE_CHORDS}${OWN_CHORDS}${TUNE_CHORDS.slice(0, -2)}`)} | E3+G3+B3/5+3+1:12`,
       pedal: PEDAL,
+      ownBars: [10, 11, 12, 13, 14, 15, 16, 17],
       skills: ["broken-chords", "pedal", "thirds-and-sixths"],
       practice: [
         { text: "Play the left hand alone until the broken chords flow by themselves.", hands: "left", speed: 0.5, loop: [2, 5], wait: false },
@@ -675,6 +678,7 @@ export const vltava: OurSong = {
       ].join(" | "),
       pedal: PEDAL,
       markedClashBars: [2, 18, 23],
+      ownBars: [10, 11, 12, 13, 14, 15, 16, 17],
       skills: ["octave-bass", "arpeggios", "melody-in-chords"],
       practice: [
         { text: "Play the left hand alone: an octave on the beat, then a chord twice, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [2, 5], wait: true },

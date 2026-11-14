@@ -104,6 +104,7 @@ export const eineKleineNachtmusik: OurSong = {
         "D3/1:4 | D3/1:4 | D3/1:4 | D3/1:4",
         "G2+D3/5+1:4 | G2+D3/5+1:4 | D3/1:4 | G2+D3/5+1:4",
       ].join(" | "),
+      ownBars: [9, 10, 11, 12, 13, 14, 15],
       skills: ["held-bass", "open-fifths"],
       practice: [
         { text: "Play bars 1 to 4 with the right hand alone, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 4], wait: true },
@@ -129,6 +130,7 @@ export const eineKleineNachtmusik: OurSong = {
       numerator: 4,
       denominator: 4,
       steps: 2,
+      ownBars: [9, 10, 11, 12, 13, 14, 15],
       right: `${TUNE_EIGHTHS} | ${ANSWER_EIGHTHS} | G5/1:8`,
       left: `${bars(ROOT_FIFTH, CHORDS)} | G2+D3/5+1:8`,
       skills: ["eighth-notes", "position-change"],
@@ -167,6 +169,7 @@ export const eineKleineNachtmusik: OurSong = {
       ].join(" | "),
       left: `${bars(ALBERTI, "ggggddddggggdddd")} | ${bars(ALBERTI, "ddddggd")} | G2+B2+D3/5+3+1:8`,
       pedal: Array(24).fill("P:8").join(" | "),
+      ownBars: [17, 18, 19, 20, 21, 22, 23],
       skills: ["alberti-bass", "thirds-and-sixths", "pedal"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 8], wait: false },
@@ -192,6 +195,7 @@ export const eineKleineNachtmusik: OurSong = {
       numerator: 4,
       denominator: 4,
       steps: 4,
+      ownBars: [9, 10, 11, 12, 13, 14, 15],
       right: [
         "G4+G5/1+5:6 r:6 D4+D5/1+5:2 r:2 | G4+G5/1+5:6 r:6 D4+D5/1+5:2 r:2",
         "G4+G5/1+5:2 r:2 D4+D5/1+5:2 r:2 G4+G5/1+5:2 r:2 B4+B5/1+5:2 r:2 | D5+D6/1+5:8 r:8",

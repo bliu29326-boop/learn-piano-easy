@@ -160,6 +160,7 @@ export const lacrimosa: OurSong = {
       numerator: 6,
       denominator: 4,
       steps: 2,
+      ownBars: [5, 6, 7, 8, 13, 14, 15],
       right: [
         COMMON_TUNE,
         "D5/3:4 E5/4:2 F5/5:6 | E5/4:4 D5/3:2 C#5/2:6 | D5/3:4 F5/5:2 E5/4:4 D5/3:2 | C#5/2:4 E5/4:2 A4/1:6",
@@ -198,6 +199,7 @@ export const lacrimosa: OurSong = {
       denominator: 4,
       right: [TUNE_RIGHT, OWN_A, TUNE_RIGHT, OWN_B, "F5/5:2 E5/4:1 D5/3:3 | E5/4:2 C#5/2:1 A4/1:3 | D5/3:6"].join(" | "),
       left: `${bars(PULSE, `${TUNE_CHORDS}${OWN_A_CHORDS}${TUNE_CHORDS}${OWN_B_CHORDS}ddaa`)} | A2+D3+F3/4+2+1:6`,
+      ownBars: [5, 6, 7, 8, 9, 10, 11, 12, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26],
       skills: ["two-note-chords", "waltz-bass"],
       practice: [
         { text: "Play the first four bars with the right hand alone, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 4], wait: true },
@@ -235,6 +237,7 @@ export const lacrimosa: OurSong = {
       left: `${bars(BROKEN, `${BIG_CHORDS}z`)} | D2+A2+D3/5+2+1:12`,
       pedal: [...Array(30).fill("P:6 P:6"), "P:12"].join(" | "),
       markedClashBars: [3, 15, 27],
+      ownBars: [5, 6, 7, 8, 9, 10, 11, 12, 17, 18, 19, 20, 21, 22, 23, 24, 29, 30],
       skills: ["broken-chords", "pedal", "thirds-and-sixths"],
       practice: [
         { text: "Play the left hand alone. Each beat starts on the bass note, then rocks between two higher notes.", hands: "left", speed: 0.5, loop: [1, 12], wait: true },
@@ -272,6 +275,7 @@ export const lacrimosa: OurSong = {
       left: `${bars(OCTAVE, `${BIG_CHORDS}7`)} | D2+A2+D3/5+2+1:12`,
       pedal: [...Array(30).fill("P:6 P:6"), "P:12"].join(" | "),
       markedClashBars: [3, 15, 27],
+      ownBars: [5, 6, 7, 8, 9, 10, 11, 12, 17, 18, 19, 20, 21, 22, 23, 24, 29, 30],
       skills: ["octave-bass", "melody-in-chords"],
       practice: [
         { text: "Play the left hand alone: the octave, two quick notes, then a short rest to jump.", hands: "left", speed: 0.5, loop: [1, 12], wait: true },

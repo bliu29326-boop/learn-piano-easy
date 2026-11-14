@@ -97,6 +97,7 @@ export const hungarianDance5: OurSong = {
       numerator: 2,
       denominator: 1,
       steps: 4,
+      ownBars: [7],
       right: `${TUNE_A} | ${TUNE_A_CLOSE} | A4/3:8`,
       left: "A2+E3/5+1:8 | A2+E3/5+1:8 | E3/1:8 | A2+E3/5+1:8 | A2+E3/5+1:8 | A2+E3/5+1:8 | E3/1:8 | A2+E3/5+1:8",
       skills: ["five-finger-position", "held-bass", "open-fifths"],
@@ -124,6 +125,7 @@ export const hungarianDance5: OurSong = {
       numerator: 2,
       denominator: 1,
       steps: 4,
+      ownBars: [9, 10, 11, 12, 15],
       right: [
         TUNE_A.replace("A4/3:8", "A4/3:7 r:1"),
         octaveUp(TUNE_A),
@@ -165,6 +167,7 @@ export const hungarianDance5: OurSong = {
       ].join(" | "),
       left: [halfBars(ALBERTI, "ii ii VV ii ii ii VV ii"), halfBars(ALBERTI, "ff ii VV ii ii ii VV"), "F#2+C#3+F#3/5+2+1:8"].join(" | "),
       pedal: Array(16).fill("P:8").join(" | "),
+      ownBars: [9, 10, 11, 12],
       skills: ["alberti-bass", "thirds-and-sixths", "pedal"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
@@ -190,6 +193,7 @@ export const hungarianDance5: OurSong = {
       numerator: 2,
       denominator: 1,
       steps: 8,
+      ownBars: [9, 10, 11, 12],
       right: [
         "C#4+C#5/1+5:11 r:1 F#4+F#5/1+5:3 r:1 | A4+A5/1+5:11 r:1 F#4+F#5/1+5:3 r:1",
         "E#4+E#5/1+5:11 r:1 F#4+F#5/1+5:1 r:1 G#4+G#5/1+5:1 r:1 | F#4+F#5/1+5:15 r:1",

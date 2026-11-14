@@ -192,6 +192,7 @@ export const aquarium: OurSong = {
       denominator: 4,
       right: `${TUNE_RIGHT} | ${OWN} | A4/1:4`,
       left: bars(HOLD, `${COMMON_TUNE_CHORDS}${OWN_CHORDS}`, 1),
+      ownBars: [9, 10, 11, 12, 13, 14, 15],
       skills: ["five-finger-position", "held-bass"],
       practice: [
         { text: "Play the first four bars with the right hand alone, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 4], wait: true },
@@ -218,6 +219,7 @@ export const aquarium: OurSong = {
       denominator: 4,
       right: `${TUNE_RIGHT} | ${OWN} | A4+C5/1+3:4`,
       left: bars(TURNS, `${RARE_TUNE_CHORDS}${OWN_CHORDS.slice(0, -1)}t`, 1),
+      ownBars: [9, 10, 11, 12, 13, 14, 15],
       skills: ["triads", "two-note-chords"],
       practice: [
         { text: "Play the left hand alone. It steps between a low note and a higher one, on every beat.", hands: "left", speed: 0.6, loop: [1, 4], wait: true },
@@ -247,6 +249,7 @@ export const aquarium: OurSong = {
       left: `${bars(ALBERTI, `${TUNE_CHORDS}${OWN_CHORDS_RICH}${TUNE_CHORDS}`, 1)} | A2+C3+E3/5+3+1:8`,
       pedal: Array(25).fill("P:8").join(" | "),
       markedClashBars: [6, 7, 10, 22, 23],
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       skills: ["alberti-bass", "pedal", "thirds-and-sixths"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
@@ -281,6 +284,7 @@ export const aquarium: OurSong = {
       ].join(" | "),
       pedal: Array(25).fill("P:8 P:8").join(" | "),
       markedClashBars: [15],
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       skills: ["octave-bass", "arpeggios", "melody-in-chords"],
       practice: [
         { text: "Play the left hand alone: an octave on the beat, then a chord, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },

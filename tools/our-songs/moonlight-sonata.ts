@@ -118,6 +118,7 @@ export const moonlightSonata: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 2,
+      ownBars: [10, 11],
       right: `${RIGHT_QUARTERS} | G4/2:4 Bb4/4:4 | A4/3:4 G4/2:4 | F4/1:8`,
       left: [
         "D3+A3/3+1:8 | A2+E3/5+2:8 | A2+E3/5+2:8 | D3+A3/3+1:8",
@@ -158,6 +159,7 @@ export const moonlightSonata: OurSong = {
         "A2/5:4 C3+F3/2+1:4 | G2/5:2 D3+G3/2+1:2 A2/5:2 E3+G3/2+1:1 r:1 | D3+F3+A3/5+3+1:8",
       ].join(" | "),
       pedal: Array(19).fill("P:8").join(" | "),
+      ownBars: [18],
       skills: ["pedal", "position-change"],
       practice: [
         { text: "Play the right hand alone on the first eight bars, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 8], wait: true },
@@ -203,6 +205,7 @@ export const moonlightSonata: OurSong = {
         "D2+A2+D3/5+2+1:24",
       ].join(" | "),
       pedal: [...Array(17).fill(PEDAL_BAR), "P:12 P:12", PEDAL_BAR].join(" | "),
+      ownBars: [18],
       skills: ["broken-chords", "pedal", "thirds-and-sixths"],
       practice: [
         { text: "Play the left hand alone. Each chord rolls up in threes, low, middle, high.", hands: "left", speed: 0.5, loop: [1, 9], wait: true },
@@ -248,6 +251,7 @@ export const moonlightSonata: OurSong = {
         "D2+A2+D3/5+2+1:9 r:3 A5/3:3 D6/2:3 F6/1:6",
       ].join(" | ")),
       pedal: [...Array(17).fill(PEDAL_BAR), "P:12 P:12", PEDAL_BAR].join(" | "),
+      ownBars: [18],
       skills: ["arpeggios", "melody-in-chords", "hand-crossing"],
       practice: [
         { text: "Play the left hand alone. The thumb passes under and finger 3 crosses over, so each arpeggio spans two octaves.", hands: "left", speed: 0.5, loop: [1, 9], wait: true },

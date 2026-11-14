@@ -199,6 +199,7 @@ export const aveMaria: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 4,
+      ownBars: [5, 6, 7],
       right: [TUNE_RIGHT, COMMON_OWN, TUNE_RIGHT, "C5/3:16"].join(" | "),
       left: [
         "C3/1:8 A2/3:8 | G2/4:16 | A2/3:16 | F2/5:8 G2/4:8",
@@ -231,6 +232,7 @@ export const aveMaria: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 4,
+      ownBars: [5, 6, 7, 8, 13, 14, 15],
       right: [TUNE_RIGHT, RARE_OWN_A, TUNE_RIGHT, RARE_OWN_B].join(" | "),
       left: [RARE_TUNE_LEFT, RARE_LEFT_A, RARE_TUNE_LEFT, RARE_LEFT_B].join(" | "),
       skills: ["two-note-chords", "eighth-notes"],
@@ -269,6 +271,7 @@ export const aveMaria: OurSong = {
         ].join(" | "),
       ),
       pedal: pedal(15),
+      ownBars: [5, 6, 7, 8, 13, 14, 15],
       skills: ["broken-chords", "pedal", "thirds-and-sixths"],
       practice: [
         { text: "Play the left hand alone. Each half bar rolls up from the bass note and back down.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
@@ -316,6 +319,7 @@ export const aveMaria: OurSong = {
         ].join(" | "),
       ),
       pedal: pedal(20),
+      ownBars: [5, 6, 7, 8, 13, 14, 15, 16],
       skills: ["octave-bass", "melody-in-chords", "pedal"],
       practice: [
         { text: "Play the left hand alone: the octave, four quick notes, then a short rest to jump.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },

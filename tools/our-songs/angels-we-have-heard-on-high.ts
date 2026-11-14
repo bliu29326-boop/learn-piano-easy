@@ -259,6 +259,7 @@ export const angelsWeHaveHeardOnHigh: OurSong = {
         "C3+E3+G3/5+3+1:32",
       ].join(" | "),
       pedal: pedalLine(8),
+      ownBars: [11],
       skills: ["alberti-bass", "broken-chords", "pedal"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
@@ -297,6 +298,7 @@ export const angelsWeHaveHeardOnHigh: OurSong = {
         "C2+G2+C3/5+2+1:64",
       ].join(" | "),
       pedal: pedalLine(16),
+      ownBars: [11],
       skills: ["stride", "octave-bass", "sixteenth-notes"],
       practice: [
         { text: "Play the stride bass alone: jump down for the low octave, then back up for the chord.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },

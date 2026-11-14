@@ -190,6 +190,7 @@ export const weddingMarch: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 4,
+      ownBars: [9, 10, 11, 12, 13, 14, 15],
       right: `${TUNE_RIGHT} | ${inEighths(COMMON_OWN)}`,
       left: inEighths(COMMON_LEFT),
       skills: ["position-change", "held-bass", "open-fifths"],
@@ -217,6 +218,7 @@ export const weddingMarch: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 4,
+      ownBars: [9, 10, 11, 12, 13, 14, 15],
       right: `${TUNE_RIGHT} | ${RARE_OWN}`,
       left: rareLeft(),
       skills: ["triads", "two-note-chords", "eighth-notes"],
@@ -247,6 +249,7 @@ export const weddingMarch: OurSong = {
       right: [TUNE_RIGHT, OWN_EIGHTHS, EPIC_TUNE_AGAIN].join(" | "),
       left: `${bars(ALBERTI, `${TUNE_CHORDS}${OWN_CHORDS}${TUNE_CHORDS.slice(0, -2)}`)} | ${LAST_LEFT}`,
       pedal: PEDAL,
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       skills: ["alberti-bass", "thumb-under", "thirds-and-sixths"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
@@ -275,6 +278,7 @@ export const weddingMarch: OurSong = {
       right: [TUNE_OCTAVES, OWN_EIGHTHS, LEGENDARY_TUNE_AGAIN].join(" | "),
       left: [bars(STRIDE, TUNE_CHORDS), bars(WIDE, OWN_CHORDS), `${bars(STRIDE, TUNE_CHORDS.slice(0, -2))} | ${LAST_LEFT}`].join(" | "),
       pedal: PEDAL,
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       skills: ["octave-bass", "arpeggios", "melody-in-chords"],
       practice: [
         { text: "Play the left hand alone: an octave on the beat, then a chord, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },

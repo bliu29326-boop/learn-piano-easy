@@ -190,6 +190,7 @@ export const drunkenSailor: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 2,
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       right: `${TUNE} | ${OWN_COMMON}`,
       left: COMMON_LEFT,
       skills: ["five-finger-position", "held-bass"],
@@ -217,6 +218,7 @@ export const drunkenSailor: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 4,
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       right: `${doubled(TUNE)} | ${OWN_RARE}`,
       left: `${bars(OOM_PAH, TUNE_CHORDS)} | ${bars(OOM_PAH, RARE_OWN_CHORDS)} | ${EPIC_LAST_LEFT}`,
       skills: ["triads", "two-note-chords", "eighth-notes"],
@@ -247,6 +249,7 @@ export const drunkenSailor: OurSong = {
       right: [doubled(TUNE), OWN_EIGHTHS, EPIC_TUNE_AGAIN].join(" | "),
       left: `${bars(ALBERTI, `${TUNE_CHORDS}${OWN_CHORDS}${TUNE_CHORDS.slice(0, -2)}`)} | ${EPIC_LAST_LEFT}`,
       pedal: PEDAL,
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       skills: ["alberti-bass", "thumb-under", "pedal"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
@@ -275,6 +278,7 @@ export const drunkenSailor: OurSong = {
       right: [TUNE_OCTAVES, OWN_EIGHTHS, LEGENDARY_TUNE_AGAIN].join(" | "),
       left: [bars(TOLL, TUNE_CHORDS), bars(WIDE, OWN_CHORDS), `${bars(TOLL, TUNE_CHORDS.slice(0, -2))} | ${LEGENDARY_LAST_LEFT}`].join(" | "),
       pedal: PEDAL,
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       skills: ["octave-bass", "arpeggios", "melody-in-chords"],
       practice: [
         { text: "Play the left hand alone: an octave on the beat, then a chord, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },

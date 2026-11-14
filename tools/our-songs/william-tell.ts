@@ -645,6 +645,7 @@ export const williamTell: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 4,
+      ownBars: [6, 7, 8, 14, 15],
       right: [
         COMMON_HEAD,
         COMMON_BODY,
@@ -679,6 +680,7 @@ export const williamTell: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 2,
+      ownBars: [6, 7, 8, 14, 15, 16, 22, 23],
       right: [
         RARE_HEAD,
         RARE_BODY,
@@ -730,6 +732,7 @@ export const williamTell: OurSong = {
       ].join(" | "),
       left: `${bars(ALBERTI, `${BIG_CHORDS}ifi7`)} | A2+E3+A3/5+2+1:16`,
       pedal: `${halfBarPedal(23)} | P:16`,
+      ownBars: [6, 7, 8, 14, 15, 16, 22, 23],
       skills: ["alberti-bass", "pedal", "thirds-and-sixths"],
       practice: [
         { text: "Play the left hand alone. Each half bar rocks from the low note to the two notes above.", hands: "left", speed: 0.5, loop: [1, 5], wait: true },
@@ -773,6 +776,7 @@ export const williamTell: OurSong = {
       ].join(" | "),
       left: `${bars(STRIDE, `${BIG_CHORDS}f7i7`)} | E2+B2+E3/5+2+1:16`,
       pedal: `${halfBarPedal(23)} | P:16`,
+      ownBars: [6, 7, 8, 14, 15, 16, 22, 23],
       skills: ["stride", "octave-bass", "melody-in-chords"],
       practice: [
         { text: "Play the left hand alone: a low octave, a chord, another octave, a chord.", hands: "left", speed: 0.5, loop: [1, 5], wait: true },

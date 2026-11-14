@@ -471,6 +471,7 @@ export const morningMood: OurSong = {
       numerator: 6,
       denominator: 4,
       steps: 1,
+      ownBars: [9, 10, 11, 12, 13, 14, 15],
       right: moved(`${TUNE_RIGHT} | ${OWN} | E5/1:6`, -16),
       left: COMMON_LEFT,
       skills: ["five-finger-position", "open-fifths"],
@@ -498,6 +499,7 @@ export const morningMood: OurSong = {
       numerator: 6,
       denominator: 4,
       steps: 1,
+      ownBars: [9, 10, 11, 12, 13, 14, 15],
       right: moved(`${TUNE_RIGHT} | ${OWN} | E5+G#5/1+3:6`, -9),
       left: `${bars(WALTZ, "gggggggggggggdgg")} | ${bars(WALTZ, "ccggggddccggdd")} | G2+B2+D3/5+3+1:6`,
       skills: ["waltz-bass", "two-note-chords"],
@@ -528,6 +530,7 @@ export const morningMood: OurSong = {
       right: moved([inEighths(TUNE_RIGHT), OWN_EIGHTHS, EPIC_TUNE_AGAIN].join(" | "), -2),
       left: moved(EPIC_LEFT, -2),
       pedal: PEDAL,
+      ownBars: [9, 10, 11, 12, 13, 14, 15],
       skills: ["alberti-bass", "pedal", "thirds-and-sixths"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
@@ -556,6 +559,7 @@ export const morningMood: OurSong = {
       right: [inEighths(TUNE_RIGHT), OWN_EIGHTHS, LEGENDARY_TUNE_AGAIN].join(" | "),
       left: LEGENDARY_LEFT,
       pedal: PEDAL,
+      ownBars: [9, 10, 11, 12, 13, 14, 15],
       skills: ["octave-bass", "arpeggios", "melody-in-chords"],
       practice: [
         { text: "Play the left hand alone: an octave on the beat, then a chord twice, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },

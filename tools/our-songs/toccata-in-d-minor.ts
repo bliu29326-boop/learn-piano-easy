@@ -85,6 +85,7 @@ export const toccataInDMinor: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 2,
+      ownBars: [10, 11],
       right: [
         "A5/5:8 | r:2 G5/5:1 F5/4:1 E5/3:1 D5/2:1 C#5/1:2 | D5/2:4 r:4",
         "A4/5:8 | r:2 E4/3:2 F4/4:2 C#4/1:2 | D4/2:4 r:4",
@@ -138,6 +139,7 @@ export const toccataInDMinor: OurSong = {
         "D3+F3+A3/4+2+1:8 C#3+E3+A3/5+3+1:6 r:2 | D2+A2/5+1:16",
       ].join(" | "),
       pedal: [...Array(6).fill("r:16"), ...Array(10).fill("P:16")].join(" | "),
+      ownBars: [10, 11, 12, 13, 14, 15],
       skills: ["triads", "pedal"],
       practice: [
         { text: "Play the right hand alone on the first six bars, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 6], wait: true },
@@ -206,6 +208,7 @@ export const toccataInDMinor: OurSong = {
         2,
       ),
       pedal: [...Array(6).fill("r:64"), ...Array(7).fill("P:64"), "P:32 P:32", "P:32 P:32", "P:64"].join(" | "),
+      ownBars: [11, 12, 13, 14, 15],
       skills: ["alberti-bass", "left-hand-melody", "sixteenth-notes"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
@@ -275,6 +278,7 @@ export const toccataInDMinor: OurSong = {
         2,
       ),
       pedal: [...Array(6).fill("r:64"), ...Array(7).fill("P:64"), "P:32 P:32", "P:32 P:32", "P:64"].join(" | "),
+      ownBars: [11, 12, 13, 14, 15],
       skills: ["arpeggios", "octave-bass", "stride"],
       practice: [
         { text: "Play the right hand's octaves alone on the first six bars. Keep the hand open, thumb and little finger ready.", hands: "right", speed: 0.5, loop: [1, 6], wait: true },

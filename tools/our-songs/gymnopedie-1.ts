@@ -98,6 +98,7 @@ export const gymnopedie1: OurSong = {
       numerator: 3,
       denominator: 4,
       steps: 2,
+      ownBars: [12],
       right: `${INTRO_EIGHTHS} | ${COMMON_PHRASE} | G4/1:6 | ${COMMON_PHRASE} | D5/4:4 B4/2:2 | C5/3:6`,
       left: [
         COMMON_F, COMMON_C, COMMON_F, COMMON_C,
@@ -142,6 +143,7 @@ export const gymnopedie1: OurSong = {
         "G3/4:1 B3+F4/2+1:1 r:1", "C3/5:1 G3+C4/2+1:2", "C3+G3/5+2:3",
       ].join(" | "),
       pedal: Array(16).fill("P:3").join(" | "),
+      ownBars: [12, 13, 14],
       skills: ["waltz-bass", "pedal"],
       practice: [
         { text: "Play the left hand alone. A low note comes on beat 1, and two notes together on beat 2.", hands: "left", speed: 0.6, loop: [1, 4], wait: true },
@@ -187,6 +189,7 @@ export const gymnopedie1: OurSong = {
       ].join(" | "),
       pedal: Array(16).fill("P:6").join(" | "),
       markedClashBars: [7, 9, 11, 13, 15],
+      ownBars: [12, 13, 14],
       skills: ["waltz-bass", "thirds-and-sixths", "pedal"],
       practice: [
         { text: "Play the left hand alone. Jump from the low note up to the chord in the short rest.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },
@@ -232,6 +235,7 @@ export const gymnopedie1: OurSong = {
       ].join(" | "),
       pedal: Array(16).fill("P:6").join(" | "),
       markedClashBars: [7, 10, 11, 12, 13],
+      ownBars: [12, 13, 14],
       skills: ["octave-bass", "melody-in-chords", "pedal"],
       practice: [
         { text: "Play the left hand alone. Jump from the low octave up to the chord in the short rest.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },

@@ -205,6 +205,7 @@ export const nightOnBaldMountain: OurSong = {
       denominator: 4,
       right: [TUNE_RIGHT, COMMON_OWN, TUNE_RIGHT, "F4/3:2 E4/2:2 | D4/1:4"].join(" | "),
       left: [bars(HELD, "AAAADDDD", 1), bars(HELD, "gbgada", 1), bars(HELD, "AAAADDDD", 1), "D3/1:2 A2/4:2 | A2+D3/4+1:4"].join(" | "),
+      ownBars: [9, 10, 11, 12, 13, 14, 23],
       skills: ["five-finger-position", "held-bass", "position-change"],
       practice: [
         { text: "Play the first four bars with the right hand alone, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 4], wait: true },
@@ -230,6 +231,7 @@ export const nightOnBaldMountain: OurSong = {
       numerator: 4,
       denominator: 4,
       steps: 2,
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16, 25, 26, 27, 28, 29, 30, 31],
       right: [scaled(TUNE_RIGHT, 2), OWN_A, scaled(TUNE_RIGHT, 2), OWN_B, "D4+A4/1+5:8"].join(" | "),
       left: bars(PULSE, `AAAADDDD${OWN_A_CHORDS}AAAADDDD${OWN_B_CHORDS}`, 1),
       skills: ["two-note-chords", "eighth-notes"],
@@ -260,6 +262,7 @@ export const nightOnBaldMountain: OurSong = {
       right: [TUNE_RUN_EIGHTHS, OWN_A_BIG, octaveUp(TUNE_RUN_EIGHTHS), OWN_B_BIG, "D4+F4+A4/1+3+5:8"].join(" | "),
       left: `${bars(BROKEN, `${TUNE_HALVES}${OWN_A_HALVES}${TUNE_HALVES}${OWN_B_HALVES}`, 2)} | D2+A2+D3/5+2+1:8`,
       pedal: pedal(8),
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16, 25, 26, 27, 28, 29, 30, 31],
       skills: ["alberti-bass", "thumb-under", "pedal"],
       practice: [
         { text: "Play the left hand alone. Under the tune it jumps between two notes an octave apart.", hands: "left", speed: 0.5, loop: [1, 8], wait: true },
@@ -288,6 +291,7 @@ export const nightOnBaldMountain: OurSong = {
       right: [TUNE_RUN_SIXTEENTHS, scaled(OWN_A_BIG, 2), TUNE_OCTAVES, scaled(OWN_B_BIG, 2), "D4+F4+A4+D5/1+2+3+5:16"].join(" | "),
       left: `${bars(OCTAVE, `${TUNE_HALVES}${OWN_A_HALVES}${TUNE_HALVES}${OWN_B_HALVES}`, 2)} | D2+A2+D3/5+2+1:16`,
       pedal: pedal(16),
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16, 25, 26, 27, 28, 29, 30, 31],
       skills: ["sixteenth-notes", "octave-bass", "melody-in-chords"],
       practice: [
         { text: "Play the run in bars 4 and 5 with the right hand alone, very slowly.", hands: "right", speed: 0.4, loop: [4, 5], wait: true },

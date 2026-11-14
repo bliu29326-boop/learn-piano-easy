@@ -758,6 +758,7 @@ export const theSorcerersApprentice: OurSong = {
         "B4/4:1 G#4/2:1 E4/1:1 | A4/3:2 r:1 | D5/5:2 r:1 | C5/4:1 B4/3:1 A4/2:1 | B4/3:2 G#4/1:1 | A4/2:3",
       ].join(" | "),
       left: bars(HELD, "aeeaaeaaeaeadaea"),
+      ownBars: [11, 12, 13, 14, 15],
       skills: ["held-bass", "position-change"],
       practice: [
         { text: "Play the first three bars with the right hand alone, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 3], wait: true },
@@ -783,6 +784,7 @@ export const theSorcerersApprentice: OurSong = {
       numerator: 3,
       denominator: 4,
       steps: 2,
+      ownBars: [11, 12, 13, 14, 15],
       right: [
         inEighths(TUNE_A_MINOR),
         "B4/4:2 A4/3:1 G#4/2:1 B4/4:2 | C5/5:2 A4/3:2 E4/1:2 | A4+C5/2+4:4 r:2 | B4/3:1 A4/2:1 G#4/1:2 B4/3:2",
@@ -814,6 +816,7 @@ export const theSorcerersApprentice: OurSong = {
       numerator: 3,
       denominator: 4,
       steps: 2,
+      ownBars: [11, 12, 13, 14, 15],
       right: [
         inEighths(
           [
@@ -850,6 +853,7 @@ export const theSorcerersApprentice: OurSong = {
       numerator: 3,
       denominator: 4,
       steps: 4,
+      ownBars: [11, 12, 13, 14, 15],
       right: [
         "F4/1:8 r:4 | C5/5:8 r:4 | C4/1:4 D4/2:4 E4/3:4",
         `${PLUCK_FA} | ${PLUCK_FA} | ${PLUCK_TURN} | ${PLUCK_FA} | ${PLUCK_FA} | ${PLUCK_TURN} | ${PLUCK_FA}`,

@@ -118,6 +118,7 @@ export const clairDeLune: OurSong = {
       numerator: 9,
       denominator: 4,
       steps: 2,
+      ownBars: [9],
       right: `G4/1:1 r:1 G5/5:8 E5/4:8 | ${TUNE_REST} | E4/4:6 D4/3:6 B3/1:6 | C4/2:18`,
       left: "C3+G3/5+1:18 | D3/2:18 | C3+G3/5+1:18 | D3/2:18 | G2/5:18 | A2/4:18 | D3/1:18 | G2/5:18 | G2/5:16 r:2 | C3+G3/2+1:18",
       skills: ["held-bass", "open-fifths"],
@@ -154,6 +155,7 @@ export const clairDeLune: OurSong = {
         "G1/5:6 D2/1:12 | C2/5:6 G2/1:12",
       ].join(" | "),
       pedal: Array(18).fill("P:18").join(" | "),
+      ownBars: [17],
       skills: ["pedal", "open-fifths"],
       practice: [
         { text: "Play the right hand alone on the first eight bars, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 8], wait: true },
@@ -195,6 +197,7 @@ export const clairDeLune: OurSong = {
       left: `${EPIC_LEFT} | ${EPIC_LEFT} | ${close("G1 D2 F2 C3")} | C2+G2+C3/5+2+1:18`,
       pedal: `${PEDAL_TUNE} | ${PEDAL_TUNE} | P:18 | P:18`,
       markedClashBars: [10, 11, 15, 17],
+      ownBars: [17],
       skills: ["broken-chords", "pedal", "thirds-and-sixths"],
       practice: [
         { text: "Play the left hand alone. Each chord rolls up and down, one note per eighth.", hands: "left", speed: 0.5, loop: [1, 8], wait: true },
@@ -238,6 +241,7 @@ export const clairDeLune: OurSong = {
       left: `${LEGENDARY_LEFT} | ${LEGENDARY_LEFT} | G1/5:1 D2/2:1 G2/1:1 B2/3:1 D3/2:1 F3/1:1 r:2 B5/3:2 D6/2:2 G6/1:4 r:2 | C2+G2+C3/5+2+1:18`,
       pedal: `${PEDAL_TUNE} | ${PEDAL_TUNE} | P:18 | P:18`,
       markedClashBars: [2, 10, 14],
+      ownBars: [17],
       skills: ["arpeggios", "melody-in-chords", "hand-crossing"],
       practice: [
         { text: "Play the left hand alone. The thumb passes under and finger 3 crosses over, so each arpeggio spans two octaves.", hands: "left", speed: 0.5, loop: [1, 8], wait: true },

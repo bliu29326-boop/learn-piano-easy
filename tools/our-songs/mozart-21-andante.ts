@@ -107,6 +107,7 @@ export const mozart21Andante: OurSong = {
       numerator: 4,
       denominator: 1,
       steps: 8,
+      ownBars: [7, 8],
       right: [
         "F5/2:14 C5/1:1 r:1 A5/5:14 F5/1:2 | C6/4:24 D6/5:2 C6/4:2 Bb5/3:2 A5/2:2 | F#5/1:8 G5/2:8 r:16",
         "C5/1:16 E5/2:8 G5/3:8 | Bb5/3:16 Bb5/3:4 D6/5:4 C6/4:4 Bb5/3:4 | G#5/2:4 A5/3:4 A5/3:8 r:16",
@@ -142,6 +143,7 @@ export const mozart21Andante: OurSong = {
       numerator: 4,
       denominator: 1,
       steps: 4,
+      ownBars: [13, 14, 15],
       right: `${RIGHT_QUARTERS} | ${RIGHT_QUARTERS} | C6/5:6 A5/3:2 F5/1:8 | Bb5/4:8 G5/2:4 F5/1:4 | G5/2:8 Bb5/4:4 G5/2:4 | F5+A5/1+3:16`,
       left: [
         `${RARE_F} | ${RARE_F} | ${RARE_C} | ${RARE_C} | ${RARE_C} | ${RARE_F}`,
@@ -182,6 +184,7 @@ export const mozart21Andante: OurSong = {
         [rolling("F3 A3 C4"), rolling("Bb2 D3 F3"), rolling("C3 E3 Bb3"), "F3+A3+C4/5+3+1:48"].join(" | "),
       ].join(" | "),
       pedal: pedalBars(16),
+      ownBars: [13, 14, 15],
       skills: ["broken-chords", "pedal", "thirds-and-sixths"],
       practice: [
         { text: "Play the left hand alone. Each chord rolls up in threes: low, middle, high.", hands: "left", speed: 0.5, loop: [1, 6], wait: true },
@@ -233,6 +236,7 @@ export const mozart21Andante: OurSong = {
         [wide("F1 C2 F2 A2 C3 F3"), wide("Bb1 F2 Bb2 D3 F3 Bb3"), wide("C2 G2 C3 E3 G3 Bb3"), "F1+F2/5+1:48"].join(" | "),
       ].join(" | "),
       pedal: pedalBars(16),
+      ownBars: [13, 14, 15],
       skills: ["octave-bass", "arpeggios", "thirds-and-sixths"],
       practice: [
         { text: "Play the left hand alone on bars 1 to 6. Jump down for the low octave, then back up for the chords.", hands: "left", speed: 0.5, loop: [1, 6], wait: true },

@@ -168,6 +168,7 @@ export const airOnTheGString: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 4,
+      ownBars: [9, 10],
       right: COMMON_RIGHT,
       left: [
         "C3/1:8 B2/2:8 | A2/3:8 G2/4:8 | A2/3:8 D3/1:8 | G2/4:8 F2/5:8",
@@ -199,6 +200,7 @@ export const airOnTheGString: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 4,
+      ownBars: [17, 18],
       right: [
         RARE_TUNE,
         RARE_TUNE,
@@ -247,6 +249,7 @@ export const airOnTheGString: OurSong = {
       ),
       pedal: [PEDAL_TUNE, PEDAL_TUNE, PEDAL_END].join(" | "),
       markedClashBars: [3, 11],
+      ownBars: [17, 18],
       skills: ["alberti-bass", "pedal", "thirds-and-sixths"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 8], wait: false },
@@ -285,6 +288,7 @@ export const airOnTheGString: OurSong = {
       ),
       pedal: [PEDAL_TUNE, PEDAL_TUNE, PEDAL_END].join(" | "),
       markedClashBars: [3, 11],
+      ownBars: [17, 18],
       skills: ["octave-bass", "melody-in-chords", "pedal"],
       practice: [
         { text: "Play the left hand alone. It leaps from each bass note up to its octave and back.", hands: "left", speed: 0.5, loop: [1, 8], wait: false },

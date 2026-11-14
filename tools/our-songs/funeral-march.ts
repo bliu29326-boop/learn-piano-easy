@@ -195,6 +195,7 @@ export const funeralMarch: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 2,
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       right: `${TUNE_D} | ${COMMON_OWN}`,
       left: COMMON_LEFT,
       skills: ["five-finger-position", "held-bass", "dotted-rhythm"],
@@ -222,6 +223,7 @@ export const funeralMarch: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 4,
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       right: [TUNE_D.replace(/:(\d+)/g, (_, units: string) => `:${2 * Number(units)}`), RARE_OWN].join(" | "),
       left: rareLeft(),
       skills: ["triads", "two-note-chords", "eighth-notes"],
@@ -252,6 +254,7 @@ export const funeralMarch: OurSong = {
       right: [TUNE_C, OWN_C, EPIC_TUNE_AGAIN].join(" | "),
       left: `${bars(ALBERTI, `${TUNE_CHORDS}${OWN_CHORDS}${TUNE_CHORDS.slice(0, -2)}`)} | ${LAST_LEFT}`,
       pedal: PEDAL,
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       skills: ["alberti-bass", "thumb-under", "pedal"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
@@ -280,6 +283,7 @@ export const funeralMarch: OurSong = {
       right: [TUNE_OCTAVES, OWN_C, LEGENDARY_TUNE_AGAIN].join(" | "),
       left: [bars(TOLL, TUNE_CHORDS), bars(WIDE, OWN_CHORDS), `${bars(TOLL, TUNE_CHORDS.slice(0, -2))} | ${LAST_LEFT}`].join(" | "),
       pedal: PEDAL,
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       skills: ["octave-bass", "arpeggios", "melody-in-chords"],
       practice: [
         { text: "Play the left hand alone: an octave on the beat, then a chord, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },

@@ -110,6 +110,7 @@ export const twinkleTwinkleLittleStar: OurSong = {
       numerator: 4,
       denominator: 4,
       steps: 2,
+      ownBars: [15],
       right: [
         "C4/1:2 C4/1:2 G4/4:2 G4/4:2 | A4/5:2 A4/5:2 G4/4:4 | F4/4:2 F4/4:2 E4/3:2 E4/3:2 | D4/2:2 D4/2:1 E4/3:1 C4/1:4",
         "G4/5:2 G4/5:2 F4/4:2 F4/4:1 G4/5:1 | E4/3:2 E4/3:2 D4/2:4 | G4/5:2 G4/5:2 F4/4:1 E4/3:1 F4/4:2 | E4/3:2 E4/3:2 D4/2:4",
@@ -156,6 +157,7 @@ export const twinkleTwinkleLittleStar: OurSong = {
       ].join(" | "),
       left: `${halfBars(ALBERTI, "CC FC FC GC CF CG CF CG CC FC FC GC FC FC CG")} | C3+E3+G3/5+3+1:8`,
       pedal: "P:4 P:4 | ".repeat(15) + "P:8",
+      ownBars: [15],
       skills: ["alberti-bass", "pedal", "thumb-under"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
@@ -203,6 +205,7 @@ export const twinkleTwinkleLittleStar: OurSong = {
         "C2+G2+C3/5+2+1:16",
       ].join(" | "),
       pedal: "P:8 P:8 | ".repeat(15) + "P:16",
+      ownBars: [15],
       skills: ["stride", "sixteenth-notes", "melody-in-chords"],
       practice: [
         { text: "Play the stride bass alone: jump down for the octave, then back up for the chord.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },

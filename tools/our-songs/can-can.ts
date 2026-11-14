@@ -484,6 +484,7 @@ export const canCan: OurSong = {
       denominator: 4,
       right: `${TUNE_LOW} | ${COMMON_OWN}`,
       left: `${bars(HELD, `${TUNE_CHORDS}gg${OWN_CHORDS.slice(0, -2)}`).replace(/(\S+):2 \1:2/g, "$1:4")} | G2+D3/5+1:4`,
+      ownBars: [8, 9, 10, 11, 12, 13, 14, 15],
       skills: ["five-finger-position", "held-bass", "open-fifths"],
       practice: [
         { text: "Play the first seven bars with the right hand alone, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 7], wait: true },
@@ -510,6 +511,7 @@ export const canCan: OurSong = {
       denominator: 4,
       right: `${TUNE_LOW} | ${RARE_OWN}`,
       left: `${bars(PULSE, `${TUNE_CHORDS}gg${OWN_CHORDS.slice(0, -2)}`)} | G2+B2+D3/5+3+1:4`,
+      ownBars: [8, 9, 10, 11, 12, 13, 14, 15],
       skills: ["two-note-chords", "triads"],
       practice: [
         { text: "Play the left hand alone. A bass note comes on the beat, and a two-note chord answers it.", hands: "left", speed: 0.6, loop: [1, 7], wait: true },
@@ -538,6 +540,7 @@ export const canCan: OurSong = {
       right: [scaled(TUNE_LOW, 2), EPIC_OWN, EPIC_AGAIN].join(" | "),
       left: `${bars(ALBERTI, `${TUNE_CHORDS}gg${OWN_CHORDS}${TUNE_CHORDS.slice(0, -1)}d`)} | G2+B2+D3/5+3+1:8`,
       pedal: ["P:8", "P:8", "P:8", "P:4 P:4", ...Array(18).fill("P:8"), "P:4 P:4", "P:8"].join(" | "),
+      ownBars: [8, 9, 10, 11, 12, 13, 14, 15, 16],
       skills: ["alberti-bass", "thumb-under", "pedal"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 7], wait: false },
@@ -571,6 +574,7 @@ export const canCan: OurSong = {
         "G1+D2+G2/5+2+1:16",
       ].join(" | "),
       pedal: [...Array(8).fill("r:16"), ...Array(8).fill("P:16"), ...Array(7).fill("r:16"), "P:16"].join(" | "),
+      ownBars: [8, 9, 10, 11, 12, 13, 14, 15, 16],
       skills: ["octave-bass", "arpeggios", "melody-in-chords"],
       practice: [
         { text: "Play the left hand alone: an octave on the beat, then a chord, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [1, 7], wait: true },

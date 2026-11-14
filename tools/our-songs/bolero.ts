@@ -447,6 +447,7 @@ export const bolero: OurSong = {
       numerator: 3,
       denominator: 1,
       steps: 4,
+      ownBars: [9, 10, 11],
       right: `${COMMON_TUNE} | ${COMMON_OWN}`,
       left: bars(HELD, "CCCGGCGcFagE"),
       skills: ["five-finger-position", "open-fifths", "held-bass"],
@@ -474,6 +475,7 @@ export const bolero: OurSong = {
       numerator: 3,
       denominator: 1,
       steps: 8,
+      ownBars: [9, 10, 11, 12, 13, 14, 15],
       right: `${scaled(TUNE_RIGHT, 2)} | ${RARE_OWN}`,
       left: bars(ROOT_FIFTH, "CCCGGCGefcagfcgE"),
       skills: ["waltz-bass", "eighth-notes", "position-change"],
@@ -504,6 +506,7 @@ export const bolero: OurSong = {
       right: [scaled(TUNE_RIGHT, 6), scaled(EPIC_OWN.join(" | "), 3), scaled(EPIC_AGAIN, 6), "E4+G4+C5/1+2+5:72"].join(" | "),
       left: [bars(BOLERO, TUNE_CHORDS), bars(ALBERTI, OWN_CHORDS), bars(BOLERO, TUNE_CHORDS), "C2+G2+C3/5+2+1:72"].join(" | "),
       pedal: PEDAL,
+      ownBars: [9, 10, 11, 12, 13, 14, 15],
       skills: ["alberti-bass", "thumb-under", "thirds-and-sixths"],
       practice: [
         { text: "Play the left hand alone. A long note comes first, then three quick notes, like a snare drum.", hands: "left", speed: 0.5, loop: [1, 2], wait: false },
@@ -532,6 +535,7 @@ export const bolero: OurSong = {
       right: [scaled(TUNE_RIGHT, 6), scaled(LEGENDARY_OWN.join(" | "), 3), LEGENDARY_AGAIN, "C4+E4+G4+C5/1+2+3+5:72"].join(" | "),
       left: [bars(BOLERO_OCTAVES, TUNE_CHORDS), bars(STRIDE, OWN_CHORDS), bars(BOLERO_OCTAVES, TUNE_CHORDS), "C1+C2/5+1:72"].join(" | "),
       pedal: PEDAL,
+      ownBars: [9, 10, 11, 12, 13, 14, 15],
       skills: ["stride", "octave-bass", "melody-in-chords"],
       practice: [
         { text: "Play the left hand alone on the first two bars. Land each octave firmly, then play the quick notes lightly.", hands: "left", speed: 0.5, loop: [1, 2], wait: false },

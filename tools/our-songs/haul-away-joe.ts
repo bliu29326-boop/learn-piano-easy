@@ -190,6 +190,7 @@ export const haulAwayJoe: OurSong = {
       numerator: 6,
       denominator: 4,
       steps: 2,
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       right: `${SOLO} | ${CHORUS} | ${OWN_COMMON}`,
       left: bars(HELD, `${TUNE_CHORDS}${OWN_CHORDS}`),
       skills: ["five-finger-position", "open-fifths"],
@@ -217,6 +218,7 @@ export const haulAwayJoe: OurSong = {
       numerator: 6,
       denominator: 4,
       steps: 2,
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       right: `${SOLO} | ${CHORUS_RARE} | ${OWN_RARE}`,
       left: `${bars(LILT, `${TUNE_CHORDS}${OWN_CHORDS.slice(0, -2)}`)} | D3+A3/5+1:12`,
       skills: ["two-note-chords", "eighth-notes"],
@@ -247,6 +249,7 @@ export const haulAwayJoe: OurSong = {
       right: [SOLO, CHORUS, OWN_EIGHTHS, EPIC_TUNE_AGAIN].join(" | "),
       left: `${bars(BROKEN, `${TUNE_CHORDS}${OWN_CHORDS}${TUNE_CHORDS.slice(0, -2)}`)} | D3+F3+A3/5+2+1:12`,
       pedal: PEDAL,
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       skills: ["broken-chords", "thumb-under", "thirds-and-sixths"],
       practice: [
         { text: "Play the left hand alone until the broken chords flow by themselves.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
@@ -280,6 +283,7 @@ export const haulAwayJoe: OurSong = {
         "D2+A2+D3/5+2+1:12",
       ].join(" | "),
       pedal: PEDAL,
+      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
       skills: ["octave-bass", "arpeggios", "melody-in-chords"],
       practice: [
         { text: "Play the left hand alone: an octave on the beat, then a chord twice, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },

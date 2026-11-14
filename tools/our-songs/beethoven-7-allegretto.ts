@@ -113,6 +113,7 @@ export const beethoven7Allegretto: OurSong = {
         "A2+E3/4+1:4 | G2+C3/5+2:4 | G2/5:4 | C3/2:4",
         "C3/2:4 | A2+E3/4+1:4 | B2+E3/3+1:4 | A2+E3/4+1:4",
       ].join(" | "),
+      ownBars: [9, 10, 11],
       skills: ["five-finger-position", "held-bass", "open-fifths"],
       practice: [
         { text: "Play bars 1 to 4 with the right hand alone. Your thumb plays every E.", hands: "right", speed: 0.6, loop: [1, 4], wait: true },
@@ -154,6 +155,7 @@ export const beethoven7Allegretto: OurSong = {
         "G2+C3+E3/5+3+1:4 | A2+C3+E3/4+2+1:4 | G#2+B2+E3/5+3+1:4 | A2+C3+E3/4+2+1:4",
       ].join(" | "),
       pedal: Array(20).fill("P:4").join(" | "),
+      ownBars: [17, 18, 19],
       skills: ["triads", "pedal", "two-note-chords"],
       practice: [
         { text: 'Play the right hand alone on the first eight bars, and count "long, short, short".', hands: "right", speed: 0.6, loop: [1, 8], wait: true },
@@ -200,6 +202,7 @@ export const beethoven7Allegretto: OurSong = {
         "A2+E3+A3/5+2+1:8",
       ].join(" | "),
       pedal: `${PEDAL_TUNE} | ${PEDAL_TUNE} | ${PEDAL_CLOSE}`,
+      ownBars: [17, 18, 19],
       skills: ["alberti-bass", "thirds-and-sixths", "pedal"],
       practice: [
         { text: "Play the left hand alone until the broken chords roll by themselves: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 8], wait: false },
@@ -250,6 +253,7 @@ export const beethoven7Allegretto: OurSong = {
         "A1+E2+A2/5+2+1:3 r:1 E1+B1+E2/5+2+1:3 r:1 | A1+E2+A2/5+2+1:8",
       ].join(" | "),
       pedal: `${PEDAL_TUNE} | ${PEDAL_TUNE} | ${PEDAL_CLOSE}`,
+      ownBars: [17, 18, 19],
       skills: ["melody-in-chords", "octave-bass", "arpeggios"],
       practice: [
         { text: "Play the right hand's chords alone, and let the top finger sing the tune.", hands: "right", speed: 0.5, loop: [9, 16], wait: true },

@@ -62,6 +62,7 @@ export const alsoSprachZarathustra: OurSong = {
         "C3+G3/5+1:4 | C3+G3/5+1:4 | C3+G3/5+1:4 | C3+G3/5+1:4",
         "C3+G3/5+1:4 | C3+G3/5+1:4 | G2+D3/5+1:4 | C3+G3/5+1:4",
       ].join(" | "),
+      ownBars: [7],
       skills: ["open-fifths", "position-change"],
       practice: [
         { text: "Play the first two bars with the right hand alone, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 2], wait: true },
@@ -87,6 +88,7 @@ export const alsoSprachZarathustra: OurSong = {
       numerator: 4,
       denominator: 4,
       steps: 2,
+      ownBars: [14],
       right: [
         "r:8 | r:8",
         "C4/1:4 G4/1:4 | C5/2:4 E5/5:2 Eb5/4:1 r:1 | r:4 G4/1:4 | C5/2:4 Eb5/4:2 E5/5:2",
@@ -141,6 +143,7 @@ export const alsoSprachZarathustra: OurSong = {
         "F2/5:1 C3/2:1 F3/1:1 C3/2:1 E2/5:1 G2/3:1 C3/1:1 G2/3:1 | G2/5:1 D3/2:1 G3/1:1 D3/2:1 G2/5:1 D3/2:1 G3/1:1 r:1 | C2+C3/5+1:7 r:1 | C1+C2/5+1:8",
       ].join(" | "),
       pedal: "P:8 | P:8 | P:8 | P:8 | P:8 | P:8 | r:8 | r:8 | P:8 | P:8 | P:8 | P:8 | P:4 P:4 | P:8 | P:8 | P:8",
+      ownBars: [13, 14, 15],
       skills: ["broken-chords", "pedal", "thirds-and-sixths"],
       practice: [
         { text: "Play the left hand's broken chords alone, in bars 9 to 12: low C, G, C and G.", hands: "left", speed: 0.5, loop: [9, 12], wait: false },
@@ -184,6 +187,7 @@ export const alsoSprachZarathustra: OurSong = {
         "G1+G2/5+1:3 r:1 G1+G2/5+1:3 r:1 | C1+C2/5+1:8",
       ].join(" | "),
       pedal: "P:8 | P:8 | P:8 | P:8 | P:8 | P:8 | r:8 | r:8 | P:8 | P:8 | P:8 | P:8 | P:8 | P:4 P:2 P:2 | P:4 P:4 | P:8",
+      ownBars: [13, 14, 15],
       skills: ["octave-bass", "melody-in-chords", "pedal"],
       practice: [
         { text: "Play the right hand's octaves alone, in bars 9 to 12. Keep the hand's shape and move the whole arm.", hands: "right", speed: 0.5, loop: [9, 12], wait: true },

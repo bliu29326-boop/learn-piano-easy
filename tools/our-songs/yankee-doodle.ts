@@ -152,6 +152,7 @@ export const yankeeDoodle: OurSong = {
       left: `${halfBars(ALBERTI, "GG GD GG GD GG CG DD GG CC CG DD GG CC CG DD G")} G2+B2+D3/5+3+1:4`,
       pedal: "P:8 | P:4 P:4 | P:8 | P:4 P:4 | P:8 | P:4 P:4 | P:8 | P:8 | P:8 | P:4 P:4 | P:8 | P:8 | P:8 | P:4 P:4 | P:8 | P:8",
       markedClashBars: [6, 13, 14],
+      ownBars: [8],
       skills: ["alberti-bass", "thumb-under", "thirds-and-sixths"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },

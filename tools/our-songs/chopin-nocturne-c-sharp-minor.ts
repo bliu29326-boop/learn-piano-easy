@@ -187,6 +187,7 @@ export const chopinNocturneCSharpMinor: OurSong = {
       denominator: 4,
       right: COMMON_RIGHT,
       left: COMMON_LEFT,
+      ownBars: [5, 6, 7, 8, 9, 10, 11],
       skills: ["five-finger-position", "held-bass", "position-change"],
       practice: [
         { text: "Play the first two bars with the right hand alone, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 2], wait: true },
@@ -215,6 +216,7 @@ export const chopinNocturneCSharpMinor: OurSong = {
       right: RARE_RIGHT,
       left: `${bars(PULSE, RARE_CHORDS)} | A2+C3+E3/5+3+1:8`,
       pedal: "r:8 | P:8 | P:8 | r:8 | P:8 | r:8 | P:8 | P:8 | P:8 | P:8 | r:8 | P:8 | P:8 | r:8 | r:8 | P:8",
+      ownBars: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
       skills: ["two-note-chords", "eighth-notes", "pedal"],
       practice: [
         { text: "Play the left hand alone. A low note comes on the beat, and a two-note chord answers it.", hands: "left", speed: 0.6, loop: [1, 4], wait: true },
@@ -243,6 +245,7 @@ export const chopinNocturneCSharpMinor: OurSong = {
       right: toBMinor([TUNE_FILLED, OWN, EPIC_AGAIN].join(" | ")),
       left: toBMinor(`${bars(BROKEN, CHORDS)} | C#2+G#2+C#3/5+2+1:16`),
       pedal: PEDAL,
+      ownBars: [5, 6, 7, 8, 9, 10, 11, 12, 17],
       skills: ["broken-chords", "pedal", "thirds-and-sixths"],
       practice: [
         { text: "Play the left hand alone until its broken chords roll evenly, low to high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
@@ -271,6 +274,7 @@ export const chopinNocturneCSharpMinor: OurSong = {
       right: [TUNE_FILLED, OWN, LEGENDARY_AGAIN].join(" | "),
       left: `${bars(WIDE, CHORDS)} | C#2+G#2+C#3/5+2+1:16`,
       pedal: PEDAL,
+      ownBars: [5, 6, 7, 8, 9, 10, 11, 12, 17],
       skills: ["arpeggios", "sixteenth-notes", "melody-in-chords"],
       practice: [
         { text: "Play the left hand's arpeggios alone. Finger 3 crosses over the thumb on the way up.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },

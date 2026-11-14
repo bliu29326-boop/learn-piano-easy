@@ -218,6 +218,7 @@ export const mahlerAdagietto: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 2,
+      ownBars: [9, 10, 11],
       right: `${TUNE_RIGHT} | ${COMMON_CLOSE}`,
       left: COMMON_LEFT,
       skills: ["five-finger-position", "held-bass", "open-fifths"],
@@ -245,6 +246,7 @@ export const mahlerAdagietto: OurSong = {
       numerator: 4,
       denominator: 2,
       steps: 2,
+      ownBars: [9, 10, 11, 12, 13, 14, 15],
       right: `${TUNE_RIGHT} | ${OWN}`
         .replace("D5/5:3 C5/4:1 Bb4/3:2 A4/2:2", "Bb4+D5/3+5:3 C5/4:1 Bb4/3:2 A4/2:2")
         .replace("C5/4:4 A4/2:2", "A4+C5/2+4:4 A4/2:2"),
@@ -277,6 +279,7 @@ export const mahlerAdagietto: OurSong = {
       right: [inEighths(TUNE_RIGHT), OWN_EIGHTHS, EPIC_AGAIN].join(" | "),
       left: `${bars(ALBERTI, `${TUNE_CHORDS}${OWN_CHORDS}${TUNE_CHORDS}`)} | F2+C3+F3/5+2+1:16`,
       pedal: PEDAL,
+      ownBars: [9, 10, 11, 12, 13, 14, 15],
       skills: ["alberti-bass", "pedal", "thirds-and-sixths"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
@@ -305,6 +308,7 @@ export const mahlerAdagietto: OurSong = {
       right: [inEighths(TUNE_RIGHT), OWN_EIGHTHS, LEGENDARY_AGAIN].join(" | "),
       left: [bars(STRIDE, TUNE_CHORDS), bars(WIDE, OWN_CHORDS), bars(STRIDE, TUNE_CHORDS), "F1+C2+F2/5+2+1:16"].join(" | "),
       pedal: PEDAL,
+      ownBars: [9, 10, 11, 12, 13, 14, 15],
       skills: ["octave-bass", "arpeggios", "melody-in-chords"],
       practice: [
         { text: "Play the left hand alone: an octave on the beat, then a chord, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },

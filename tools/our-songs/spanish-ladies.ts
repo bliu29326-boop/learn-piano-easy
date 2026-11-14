@@ -195,6 +195,7 @@ export const spanishLadies: OurSong = {
       numerator: 3,
       denominator: 2,
       steps: 4,
+      ownBars: [10, 11, 12, 13, 14, 15, 16],
       right: `${TUNE_STILL} | ${OWN_COMMON}`,
       left: ["r:12", bars(HELD, TUNE_CHORDS), bars(HELD, OWN_CHORDS)].join(" | "),
       skills: ["five-finger-position", "open-fifths"],
@@ -222,6 +223,7 @@ export const spanishLadies: OurSong = {
       numerator: 3,
       denominator: 2,
       steps: 4,
+      ownBars: [10, 11, 12, 13, 14, 15, 16],
       right: `${TUNE_STILL} | ${OWN_RARE}`,
       left: ["r:12", bars(WALTZ, TUNE_CHORDS), bars(WALTZ, OWN_CHORDS.slice(0, -1)), "E3+G3+B3/5+3+1:12"].join(" | "),
       skills: ["waltz-bass", "two-note-chords", "eighth-notes"],
@@ -252,6 +254,7 @@ export const spanishLadies: OurSong = {
       right: [TUNE_REACH, OWN_EIGHTHS, EPIC_TUNE_AGAIN].join(" | "),
       left: ["r:12", bars(ALBERTI, `${TUNE_CHORDS}${OWN_EIGHTH_CHORDS}${TUNE_CHORDS}`), "E2+B2+E3/5+2+1:12"].join(" | "),
       pedal: PEDAL,
+      ownBars: [10, 11, 12, 13, 14, 15, 16, 17],
       skills: ["alberti-bass", "thumb-under", "thirds-and-sixths"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [2, 5], wait: false },
@@ -286,6 +289,7 @@ export const spanishLadies: OurSong = {
         "E1+E2/5+1:12",
       ].join(" | "),
       pedal: PEDAL,
+      ownBars: [10, 11, 12, 13, 14, 15, 16, 17],
       skills: ["stride", "arpeggios", "melody-in-chords"],
       practice: [
         { text: "Play the left hand alone: an octave on the first beat, then a chord twice, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [2, 5], wait: true },
