@@ -386,7 +386,8 @@ const BROOM: PrintBar[] = [
   ...Array<PrintBar>(4).fill(REST),
   ...Array<PrintBar>(6).fill(LOW_F_ANSWERED),
   vif("r:24 Ab3+C4+F4/1+2+4:12", "F2+Ab2+F3/5+3+1:24 r:12"),
-  // Bar 258: the left hand plays the tune's C alone. No hand spans it with the low F and A flat, which are left out.
+  // Bar 258: the left hand plays the tune's C4 alone and leaves out the print's low F and A flat. That keeps
+  // the C4 a note of one hand, where the meter's hook check finds the tune.
   vif("r:24 Ab3+F4/1+4:12", "C4/1:24 r:12"),
   vif("r:24 G3+Bb3+C4/1+2+4:12", "F2+Bb2+C3/5+3+2:12 D3/2:12 E3/1:12"),
   vif("r:12 r:12 C4+F4/2+5:12", "F2+Ab2+F3/5+4+1:12 r:12 Ab3/1:12"),
@@ -503,13 +504,20 @@ const SIXTHS_UP = vif(
   "Bb4+Gb5+Bb5/1+3+5:6 Cb5+Ab5+Cb6/1+3+5:6 Db5+Bb5+Db6/1+3+5:6 Eb5+Cb6+Eb6/1+3+5:6 Fb5+Db6+Fb6/1+3+5:12",
   "Fb4/2:24 Ab4/1:12",
 );
-const E_FLAT_CALL = vif("Eb5+Eb6/1+5:12 r:12 Eb6+Eb7/1+5:12", "Eb2+Eb3/5+1:12 Db4+Eb4+Ab4/3+2+1:12 Db4+Eb4+Bb4/4+3+1:12");
+const E_FLAT_CALL = vif(
+  "Eb5+Eb6/1+5:12 r:12 Eb6+Eb7/1+5:12",
+  "Eb2+Eb3+Db4+Eb4+G4/5+1+3+2+1:12 Db4+Eb4+Ab4/3+2+1:12 Db4+Eb4+Bb4/4+3+1:12",
+);
 const G_FLAT_CALL = vif("C4+Gb4+C5/1+2+5:12 C5+Gb5/1+5:12 Gb4+C5/1+5:12", "Ab2+Ab3/5+1:12 Ab3+C4+Gb4/5+3+1:12 Ab3+Eb4/5+1:12");
 /**
- * The augmented chord's bar. Here, and in each `E_FLAT_CALL`, the print sets a third layer that no hand can
- * take, so bars 365, 367, 371 and 373 leave it out.
+ * The augmented chord's bar. Here, and in each `E_FLAT_CALL`, the print brackets a third layer to the left
+ * hand's low E flat octave on beat 1: B3+Eb4+G4 here, Db4+Eb4+G4 there. No hand holds all five notes, so
+ * `rolledWide` rolls them from Eb2 up in bars 365, 367, 371 and 373.
  */
-const AUGMENTED = vif("Eb5+G5+Eb6/1+2+5:12 G5+B5+G6/1+2+5:12 F5+B5+F6/1+2+5:12", "Eb2+Eb3/5+1:12 r:12 Eb3+G3+B3/5+3+1:12");
+const AUGMENTED = vif(
+  "Eb5+G5+Eb6/1+2+5:12 G5+B5+G6/1+2+5:12 F5+B5+F6/1+2+5:12",
+  "Eb2+Eb3+B3+Eb4+G4/5+1+3+2+1:12 r:12 Eb3+G3+B3/5+3+1:12",
+);
 
 /**
  * Printed page 5 and two bars of page 6: chords slide down over a low C, then the tune runs high in the

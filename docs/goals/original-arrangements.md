@@ -1,7 +1,7 @@
 ---
 looper: 1
 title: Original arrangements
-summary: "Every song of ours whose tune is not our own ends on an Original that sounds like the piece: our own setting of its form, key, harmony and accompaniment for two hands."
+summary: "The first eight songs end on an Original that sounds like the piece, and the tools that set the rest at a fifth of the tokens are ready."
 context: [docs/decisions/0014.md, docs/our-songs.md, tools/make-our-songs.ts, tools/song-meter.ts, tools/our-songs/morning-mood.ts, src/library/guide.ts, src/library/guide-panel.ts]
 stages:
   - id: 1
@@ -9,42 +9,18 @@ stages:
     status: done
   - id: 2
     title: "Originals: the orchestral showpieces"
-    status: open
+    status: done
   - id: 3
     title: "A page is read by the system, and its bars are set by a command"
     status: open
   - id: 4
-    title: "Originals: the slow and solemn pieces"
-    status: open
-  - id: 5
-    title: "Originals: the calm classics"
-    status: open
-  - id: 6
-    title: "Originals: dances, waltzes and the first shanties"
-    status: open
-  - id: 7
-    title: "Originals: the last shanties and the grand carols"
-    status: open
-  - id: 8
-    title: "Originals: the English carols, first half"
-    status: open
-  - id: 9
-    title: "Originals: the English carols, second half"
-    status: open
-  - id: 10
-    title: "Originals: the German carols"
-    status: open
-  - id: 11
-    title: "Originals: the last carols and the children's songs"
-    status: open
-  - id: 12
     title: "the goal is verified once, and every failure is fixed"
     status: open
     gate: true
 checks:
   - id: original-keeps-source
     stage: 1
-    name: every Original of ours keeps its hook, a finger on every note and a hand's span, and is rated by the meter
+    name: "every Original of ours keeps its hook, a finger on every note and a hand's span, and is rated by the meter"
     run: [bun, test, tools/our-songs.test.ts]
     tests: [every_original_of_ours_keeps_its_hook_and_a_hand]
   - id: original-guide
@@ -52,11 +28,11 @@ checks:
     name: the Original step of a song of ours plays our arrangement and shows its guide
     run: [bun, x, playwright, test, e2e/guide.e2e.ts]
     tests: [the_original_of_ours_shows_its_guide]
-  - id: every-song-has-an-original
-    stage: 11
-    name: every song of ours whose tune is not our own has an Original
-    run: [bun, test, tools/our-songs.test.ts]
-    tests: [every_song_of_ours_has_an_original]
+  - id: original-tools
+    stage: 3
+    name: "the crop script finds every system, and the command keeps every bar and refuses a short hand"
+    run: [bun, test, tools/crop-systems.test.ts, tools/original-from-pages.test.ts]
+    tests: [crop_systems_finds_every_system, original_from_pages_keeps_every_bar_and_refuses_a_short_hand]
 ---
 
 # Original arrangements
@@ -106,8 +82,10 @@ own, which follows the piece and keeps no limit of the four versions.
   spots are the bars the meter names. Every other locale shows the English until a translation pass.
 - **Its tagline is a new text,** because "The composer's own notes." is false for our arrangement. It
   says the piece is set for two hands. The catalog originals keep their tagline.
+- **This goal sets no further song** (the user's call, for the tokens). It closes stage 2's songs and
+  builds stage 3's tools. A later goal sets the other Originals with them.
 - **An Original keeps its whole length.** The user refused a cap on bars. The cost is cut per bar
-  instead, by the three rules after the next one, which stage 3 builds and every later stage follows.
+  instead, by the three rules after the next one, which stage 3 builds.
 - **Stage 2 spent about 50M tokens a song, 73% of it on transcribers.** Its 90 transcribers each read
   about 30 crops over 39 turns, and every turn re-read every image in its context. The writers spent
   15%, at a 166k peak.
@@ -126,9 +104,8 @@ own, which follows the piece and keeps no limit of the four versions.
 - **One commit per batch,** once `bun tools/make-our-songs.ts` and the build are green.
 - **The user's listening review is never waited on.** Each batch's handoff names its songs, and a later
   session fixes what the user files.
-- **Lanes:** stage 1 comes first, since every batch builds on its plumbing. Stage 3 builds the tools that
-  stages 4 to 11 use. Stages 2 and 4 to 11 touch disjoint song modules but share the catalog and the
-  license file that the writer rewrites. Every stage runs in order.
+- **Lanes:** stage 2's last fixes, stage 3's two tools and its brief file touch disjoint files. Four
+  writers build them side by side, and the session builds once they all end.
 - **The chain:** this goal runs before `faithful-levels`, `urdu` and `japanese`. The translation goals
   then translate each new guide once.
 - **Our Original's row has no `rarity`.** It names its own file as `mythic`, which is how `stepOf` in
@@ -155,8 +132,7 @@ own, which follows the piece and keeps no limit of the four versions.
   Congress answer with a Cloudflare challenge. HathiTrust and the Russian State Library refuse it in
   `robots.txt`. The Archive's 1946 Muzgiz score fails the meter's 95-year rule.
 - ***Night on Bald Mountain* gets no Original for now** (the user's answer to d8). Its four versions
-  stay, and `mythic` stays null. A later goal looks for a print again. Stage 11's test
-  `every_song_of_ours_has_an_original` names it as the one song still waiting for a print.
+  stay, and `mythic` stays null. A later goal looks for a print again.
 - **Among two-hand reductions, the plainest faithful one wins** over a virtuoso transcription such as
   Liszt's, since a learner plays it. A four-hand print or a score comes only when no two-hand print exists.
 - **A virtuoso two-hand print still beats a four-hand print,** so *Beethoven's Fifth* follows Liszt.
@@ -272,9 +248,9 @@ reviewer then reads the batch against its sources.
 - [x] *William Tell* and *Vltava*. `tools/our-songs/william-tell.ts:210`, `tools/our-songs/vltava.ts:174`
   - [x] *William Tell*: 252 bars, set whole, and its review is settled.
   - [x] *Vltava*: 174 played bars, 1 to 79 then 333 to 427, and its review is settled.
-- [ ] *The Sorcerer's Apprentice*. *Night on Bald Mountain* waits for a print, by d8. `tools/our-songs/the-sorcerers-apprentice.ts:109`
-- [ ] The review's every finding is settled.
-- [ ] `bun tools/make-our-songs.ts` writes the batch, and the build is green.
+- [x] *The Sorcerer's Apprentice*. *Night on Bald Mountain* waits for a print, by d8. `tools/our-songs/the-sorcerers-apprentice.ts:109`
+- [x] The review's every finding is settled.
+- [x] `bun tools/make-our-songs.ts` writes the batch, and the build is green.
 
 ### 3. A page is read by the system, and its bars are set by a command
 
@@ -290,118 +266,7 @@ pieces whole, at a target of a fifth of stage 2's tokens a song.
 - [ ] `docs/our-songs.md` § *How a song is made* says how an Original is made with the two tools. `docs/our-songs.md:189`
 - [ ] Both tools pass `bun run build`, and the session commits the stage.
 
-### 4. Originals: the slow and solemn pieces
-
-**Does:** the Originals of eight slow pieces.
-**Split:** a read-only subagent finds each print, or its text encoding first. Each page is cut by
-`tools/crop-systems.ts`, and one transcriber per system runs, eight side by side. `tools/original-from-pages.ts`
-sets the bars. Then one writing subagent per two songs writes the cut and the guide, and one fresh
-reviewer reads the flagged bars, all as `docs/agent/originals.md` says.
-**Gate:** stage 3 is committed.
-
-- [ ] *Funeral March* and *Wedding March*. `tools/our-songs/funeral-march.ts:188`, `tools/our-songs/wedding-march.ts:183`
-- [ ] *Lacrimosa* and *Mahler's Adagietto*. `tools/our-songs/lacrimosa.ts:153`, `tools/our-songs/mahler-adagietto.ts:211`
-- [ ] *Mozart's 21st, Andante* and *Toccata in D minor*. `tools/our-songs/mozart-21-andante.ts:100`, `tools/our-songs/toccata-in-d-minor.ts:78`
-- [ ] *Chopin's Nocturne in C-sharp minor* and *Aquarium*. `tools/our-songs/chopin-nocturne-c-sharp-minor.ts:179`, `tools/our-songs/aquarium.ts:184`
-- [ ] The review's every finding is settled.
-- [ ] `bun tools/make-our-songs.ts` writes the batch, and the build is green.
-
-### 5. Originals: the calm classics
-
-**Does:** the Originals of eight calm classics.
-**Split:** as stage 4.
-**Gate:** stage 4 is committed.
-
-- [ ] *Air on the G String* and *Also sprach Zarathustra*. `tools/our-songs/air-on-the-g-string.ts:161`, `tools/our-songs/also-sprach-zarathustra.ts:49`
-- [ ] *Ave Maria* and *Beethoven's Seventh, Allegretto*. `tools/our-songs/ave-maria.ts:192`, `tools/our-songs/beethoven-7-allegretto.ts:101`
-- [ ] *Canon in D* and *Dies irae*. `tools/our-songs/canon-in-d.ts:96`, `tools/our-songs/dies-irae.ts:89`
-- [ ] *Eine kleine Nachtmusik* and *Gymnopédie No. 1*. `tools/our-songs/eine-kleine-nachtmusik.ts:87`, `tools/our-songs/gymnopedie-1.ts:91`
-- [ ] The review's every finding is settled.
-- [ ] `bun tools/make-our-songs.ts` writes the batch, and the build is green.
-
-### 6. Originals: dances, waltzes and the first shanties
-
-**Does:** the Originals of six dances and two shanties.
-**Split:** as stage 4.
-**Gate:** stage 5 is committed.
-
-- [ ] *Habanera* and *In the Hall of the Mountain King*. `tools/our-songs/habanera.ts:85`, `tools/our-songs/hall-of-the-mountain-king.ts:104`
-- [ ] *Handel's Sarabande* and *Hungarian Dance No. 5*. `tools/our-songs/handel-sarabande.ts:118`, `tools/our-songs/hungarian-dance-5.ts:89`
-- [ ] *Ode to Joy* and *The Blue Danube*. `tools/our-songs/ode-to-joy.ts:59`, `tools/our-songs/the-blue-danube.ts:325`
-- [ ] *Blow the Man Down* and *Drunken Sailor*. `tools/our-songs/blow-the-man-down.ts:175`, `tools/our-songs/drunken-sailor.ts:183`
-- [ ] The review's every finding is settled.
-- [ ] `bun tools/make-our-songs.ts` writes the batch, and the build is green.
-
-### 7. Originals: the last shanties and the grand carols
-
-**Does:** the Originals of three shanties and five carols. A carol's source is its first print with
-accompaniment, or a hymnal's setting printed before 1931. A text encoding of that print is read before its
-scan, as a standing decision says.
-**Split:** as stage 4.
-**Gate:** stage 6 is committed.
-
-- [ ] *Haul Away Joe* and *Sailor's Hornpipe*. `tools/our-songs/haul-away-joe.ts:183`, `tools/our-songs/sailors-hornpipe.ts:174`
-- [ ] *Spanish Ladies* and *Carol of the Bells*. `tools/our-songs/spanish-ladies.ts:188`, `tools/our-songs/carol-of-the-bells.ts:167`
-- [ ] *O Holy Night* and *Joy to the World*. `tools/our-songs/o-holy-night.ts:229`, `tools/our-songs/joy-to-the-world.ts:99`
-- [ ] *Hark! The Herald Angels Sing* and *O Come, All Ye Faithful*. `tools/our-songs/hark-the-herald-angels-sing.ts:145`, `tools/our-songs/o-come-all-ye-faithful.ts:113`
-- [ ] The review's every finding is settled.
-- [ ] `bun tools/make-our-songs.ts` writes the batch, and the build is green.
-
-### 8. Originals: the English carols, first half
-
-**Does:** the Originals of eight carols, sourced as stage 7 says.
-**Split:** as stage 4.
-**Gate:** stage 7 is committed.
-
-- [ ] *Silent Night* and *O Christmas Tree*. `tools/our-songs/silent-night.ts:122`, `tools/our-songs/o-christmas-tree.ts:136`
-- [ ] *It Came Upon the Midnight Clear* and *Deck the Halls*. `tools/our-songs/it-came-upon-the-midnight-clear.ts:149`, `tools/our-songs/deck-the-halls.ts:95`
-- [ ] *Angels We Have Heard on High* and *Away in a Manger*. `tools/our-songs/angels-we-have-heard-on-high.ts:179`, `tools/our-songs/away-in-a-manger.ts:168`
-- [ ] *Ding Dong Merrily on High* and *God Rest Ye Merry, Gentlemen*. `tools/our-songs/ding-dong-merrily-on-high.ts:184`, `tools/our-songs/god-rest-ye-merry-gentlemen.ts:119`
-- [ ] The review's every finding is settled.
-- [ ] `bun tools/make-our-songs.ts` writes the batch, and the build is green.
-
-### 9. Originals: the English carols, second half
-
-**Does:** the Originals of eight carols, sourced as stage 7 says.
-**Split:** as stage 4.
-**Gate:** stage 8 is committed.
-
-- [ ] *Good King Wenceslas* and *Jingle Bells*. `tools/our-songs/good-king-wenceslas.ts:237`, `tools/our-songs/jingle-bells.ts:83`
-- [ ] *Jolly Old Saint Nicholas* and *O Little Town of Bethlehem*. `tools/our-songs/jolly-old-saint-nicholas.ts:166`, `tools/our-songs/o-little-town-of-bethlehem.ts:179`
-- [ ] *The First Noel* and *The Twelve Days of Christmas*. `tools/our-songs/the-first-noel.ts:184`, `tools/our-songs/the-twelve-days-of-christmas.ts:202`
-- [ ] *Up on the Housetop* and *We Three Kings*. `tools/our-songs/up-on-the-housetop.ts:171`, `tools/our-songs/we-three-kings.ts:173`
-- [ ] The review's every finding is settled.
-- [ ] `bun tools/make-our-songs.ts` writes the batch, and the build is green.
-
-### 10. Originals: the German carols
-
-**Does:** the Originals of eight German carols, sourced as stage 7 says.
-**Split:** as stage 4.
-**Gate:** stage 9 is committed.
-
-- [ ] *Alle Jahre wieder* and *Es ist ein Ros entsprungen*. `tools/our-songs/alle-jahre-wieder.ts:152`, `tools/our-songs/es-ist-ein-ros-entsprungen.ts:181`
-- [ ] *Ihr Kinderlein, kommet* and *Kling, Glöckchen*. `tools/our-songs/ihr-kinderlein-kommet.ts:155`, `tools/our-songs/kling-gloeckchen.ts:145`
-- [ ] *Kommet, ihr Hirten* and *Leise rieselt der Schnee*. `tools/our-songs/kommet-ihr-hirten.ts:204`, `tools/our-songs/leise-rieselt-der-schnee.ts:166`
-- [ ] *Morgen, Kinder, wird's was geben* and *O du fröhliche*. `tools/our-songs/morgen-kinder.ts:194`, `tools/our-songs/o-du-froehliche.ts:190`
-- [ ] The review's every finding is settled.
-- [ ] `bun tools/make-our-songs.ts` writes the batch, and the build is green.
-
-### 11. Originals: the last carols and the children's songs
-
-**Does:** the last eight Originals, and the test that no song lacks one. A children's song's source is
-its first print with accompaniment, or a songbook's setting printed before 1931.
-**Split:** as stage 4.
-**Gate:** stage 10 is committed.
-
-- [ ] *Süßer die Glocken nie klingen* and *Tochter Zion*. `tools/our-songs/suesser-die-glocken.ts:168`, `tools/our-songs/tochter-zion.ts:199`
-- [ ] *Mary Had a Little Lamb* and *Twinkle, Twinkle, Little Star*. `tools/our-songs/mary-had-a-little-lamb.ts:54`, `tools/our-songs/twinkle-twinkle-little-star.ts:71`
-- [ ] *Old MacDonald Had a Farm* and *Row, Row, Row Your Boat*. `tools/our-songs/old-macdonald-had-a-farm.ts:62`, `tools/our-songs/row-row-row-your-boat.ts:72`
-- [ ] *Happy Birthday* and *Yankee Doodle*. `tools/our-songs/happy-birthday.ts:105`, `tools/our-songs/yankee-doodle.ts:81`
-- [ ] The review's every finding is settled.
-- [ ] Test `every_song_of_ours_has_an_original`: each song has a catalog original or ours, except the three tunes of our own. `tools/our-songs.test.ts:42`
-- [ ] `bun tools/make-our-songs.ts` writes the batch, and the build is green.
-
-### 12. the goal is verified once, and every failure is fixed
+### 4. the goal is verified once, and every failure is fixed
 
 - [ ] Run `looper verify` over the whole goal.
 - [ ] Fix every failure it names in one pass, never deleting or loosening a test.
