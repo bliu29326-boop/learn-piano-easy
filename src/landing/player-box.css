@@ -7,7 +7,9 @@
  * - **The picture pans and zooms slowly,** to and fro on a loop of 20 seconds, so it never looks frozen.
  *   Only `transform` moves, and with reduced motion it holds still.
  * - **A round play cue** stands on the picture, and grows a little under the pointer.
- * - **Once the player runs,** the picture and the cue hide, and the player's canvas fills the box.
+ * - **While the player's code loads,** the cue hides and the download's card stands on the picture.
+ * - **Once the player runs,** the picture and the cue hide, and the player's canvas fills the box. A
+ *   loading card stays, so the sound set's download shows over the player.
  */
 @layer pages {
   .player-box {
