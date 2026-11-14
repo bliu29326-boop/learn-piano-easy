@@ -313,6 +313,7 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `the-sorcerers-apprentice/rare.mid` | The Sorcerer's Apprentice, Easy | Paul Dukas | MIT |
 | `the-sorcerers-apprentice/epic.mid` | The Sorcerer's Apprentice, Medium | Paul Dukas | MIT |
 | `the-sorcerers-apprentice/legendary.mid` | The Sorcerer's Apprentice, Hard | Paul Dukas | MIT |
+| `the-sorcerers-apprentice/mythic.mid` | The Sorcerer's Apprentice, Original | Paul Dukas | MIT |
 | `the-sorcerers-apprentice/guide.json` | The Sorcerer's Apprentice, the guide | | MIT |
 | `ave-maria/common.mid` | Ave Maria, Beginner | Franz Schubert | MIT |
 | `ave-maria/rare.mid` | Ave Maria, Easy | Franz Schubert | MIT |
@@ -334,6 +335,7 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `beethoven-5/rare.mid` | Symphony No. 5, Easy | Ludwig van Beethoven | MIT |
 | `beethoven-5/epic.mid` | Symphony No. 5, Medium | Ludwig van Beethoven | MIT |
 | `beethoven-5/legendary.mid` | Symphony No. 5, Hard | Ludwig van Beethoven | MIT |
+| `beethoven-5/mythic.mid` | Symphony No. 5, Original | Ludwig van Beethoven | MIT |
 | `beethoven-5/guide.json` | Symphony No. 5, the guide | | MIT |
 | `chopin-nocturne-c-sharp-minor/common.mid` | Nocturne in C-sharp minor, Beginner | Frédéric Chopin | MIT |
 | `chopin-nocturne-c-sharp-minor/rare.mid` | Nocturne in C-sharp minor, Easy | Frédéric Chopin | MIT |

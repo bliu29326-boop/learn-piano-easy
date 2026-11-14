@@ -5469,6 +5469,7 @@
       "held-bass",
       "position-change"
     ],
+    "mythic": "ours/the-sorcerers-apprentice/mythic.mid",
     "collection": "film",
     "aka": [
       "L'Apprenti sorcier",
@@ -5493,6 +5494,7 @@
       "waltz-bass",
       "eighth-notes"
     ],
+    "mythic": "ours/the-sorcerers-apprentice/mythic.mid",
     "collection": "film",
     "aka": [
       "L'Apprenti sorcier",
@@ -5517,6 +5519,7 @@
       "broken-chords",
       "thirds-and-sixths"
     ],
+    "mythic": "ours/the-sorcerers-apprentice/mythic.mid",
     "collection": "film",
     "aka": [
       "L'Apprenti sorcier",
@@ -5541,6 +5544,32 @@
       "octave-bass",
       "sixteenth-notes"
     ],
+    "mythic": "ours/the-sorcerers-apprentice/mythic.mid",
+    "collection": "film",
+    "aka": [
+      "L'Apprenti sorcier",
+      "Der Zauberlehrling",
+      "Sorcerer's Apprentice"
+    ]
+  },
+  {
+    "composer": "Paul Dukas",
+    "piece": "The Sorcerer's Apprentice",
+    "title": "Original",
+    "file": "ours/the-sorcerers-apprentice/mythic.mid",
+    "difficulty": 5,
+    "license": "MIT",
+    "credit": "Arranged by the learn-piano-easy authors",
+    "low": 24,
+    "high": 103,
+    "seconds": 318,
+    "song": "the-sorcerers-apprentice",
+    "skills": [
+      "left-hand-melody",
+      "melody-in-chords",
+      "sixteenth-notes"
+    ],
+    "mythic": "ours/the-sorcerers-apprentice/mythic.mid",
     "collection": "film",
     "aka": [
       "L'Apprenti sorcier",
@@ -5900,6 +5929,7 @@
       "five-finger-position",
       "held-bass"
     ],
+    "mythic": "ours/beethoven-5/mythic.mid",
     "collection": "film",
     "aka": [
       "Beethoven's Fifth",
@@ -5925,6 +5955,7 @@
       "eighth-notes",
       "two-note-chords"
     ],
+    "mythic": "ours/beethoven-5/mythic.mid",
     "collection": "film",
     "aka": [
       "Beethoven's Fifth",
@@ -5951,6 +5982,7 @@
       "thumb-under",
       "pedal"
     ],
+    "mythic": "ours/beethoven-5/mythic.mid",
     "collection": "film",
     "aka": [
       "Beethoven's Fifth",
@@ -5977,6 +6009,33 @@
       "stride",
       "arpeggios"
     ],
+    "mythic": "ours/beethoven-5/mythic.mid",
+    "collection": "film",
+    "aka": [
+      "Beethoven's Fifth",
+      "Fifth Symphony",
+      "Op. 67",
+      "Schicksalssinfonie"
+    ]
+  },
+  {
+    "composer": "Ludwig van Beethoven",
+    "piece": "Symphony No. 5",
+    "title": "Original",
+    "file": "ours/beethoven-5/mythic.mid",
+    "difficulty": 5,
+    "license": "MIT",
+    "credit": "Arranged by the learn-piano-easy authors",
+    "low": 26,
+    "high": 100,
+    "seconds": 212,
+    "song": "beethoven-5",
+    "skills": [
+      "octave-bass",
+      "melody-in-chords",
+      "position-change"
+    ],
+    "mythic": "ours/beethoven-5/mythic.mid",
     "collection": "film",
     "aka": [
       "Beethoven's Fifth",

@@ -150,6 +150,14 @@ own, which follows the piece and keeps no limit of the four versions.
   It still plays about five minutes at one tempo, since a further cut would lose one of those two.
 - **An Original may hold a hook note that the tune strikes twice,** where the print ties it.
   `originalTuneProblems` in `tools/song-meter.ts` accepts it, so no version's notes change for a tie.
+- ***The Sorcerer's Apprentice* cuts after the second bar of printed page 6,** not after page 4. Page 4
+  ends on an open dominant in mid-phrase. The phrase winds down at page 6's second bar, before
+  "léger et détaché". The cost is page 5 and two more bars, about 40 seconds.
+- **A print that changes tempo keeps every note's real length on one grid.** An `OurOriginal` has one
+  meter and one tempo. *The Sorcerer's Apprentice* sits on the Vif's 3/8 bar, so a 9/8 Assez lent bar
+  spans 10 grid bars. The cost is that the app's bar lines and the guide's bar numbers are the grid's.
+- **A cadenza that overruns its bar fills whole extra bars at its printed lengths.** *Beethoven's
+  Fifth* sets the oboe's cadenza as four 2/4 bars after the fermata bar, since every bar fills its meter.
 
 ## Stages
 
@@ -227,19 +235,19 @@ reviewer then reads the batch against its sources.
     - *Can-Can*: Heugel's 1874 vocal score, Archive item `orpheauxenfers00offe`, No. 28 Galop infernal,
       printed pages 287 to 291, which are images n302 to n306 in `full/`. It is in D major and 2/4,
       about 105 bars, set whole. The famous strain enters at "Chœur général" on page 289.
-- [ ] Each fetched page is transcribed to `page-n<N>.txt` beside it.
+- [x] Each fetched page is transcribed to `page-n<N>.txt` beside it.
   - [x] *William Tell*'s finale, pages n10 to n14.
     - [x] Pages n10 and n14 are whole, from the 3840-pixel scans in `full/`.
     - [x] Page n11 from bar p7.42, n12 from p8.13 and n13 from p9.21.
   - [x] *Swan Lake*, pages 64 to 66, and *Can-Can*, pages 287 to 291.
-  - [ ] *The Sorcerer's Apprentice*, *Vltava*, *Beethoven's Fifth* and *Boléro*, each in its cut.
+  - [x] *The Sorcerer's Apprentice*, *Vltava*, *Beethoven's Fifth* and *Boléro*, each in its cut.
     - [x] *Boléro*, bars 1 to 76, in `page-n1-2.txt` to `page-n9.txt`.
     - [x] *Vltava*, bars 1 to 79 and 333 to 427, in `page-n8-10.txt` to `page-n109-111.txt`.
-    - [ ] *The Sorcerer's Apprentice*, images n8 to n11 and n31 to n32.
-    - [ ] *Beethoven's Fifth*, images n0 to n2 and n5 to n9.
-- [ ] *Beethoven's Fifth* and *Boléro*. `tools/our-songs/beethoven-5.ts:208`, `tools/our-songs/bolero.ts:229`
+    - [x] *The Sorcerer's Apprentice*, images n8 to n12, two bars of n13, then n31 to n32.
+    - [x] *Beethoven's Fifth*, images n0 to n2 and n5 to n9.
+- [x] *Beethoven's Fifth* and *Boléro*. `tools/our-songs/beethoven-5.ts:208`, `tools/our-songs/bolero.ts:229`
   - [x] *Boléro*: bars 1 to 76 and one closing C major chord of ours, and its review is settled.
-  - [ ] *Beethoven's Fifth*.
+  - [x] *Beethoven's Fifth*: 382 bars, the exposition once, then bar 248 to the end, and its review is settled.
 - [x] *Can-Can* and *Swan Lake*. `tools/our-songs/can-can.ts:173`, `tools/our-songs/swan-lake.ts:184`
   - [x] *Swan Lake*: 70 bars, set whole, and its review is settled.
   - [x] *Can-Can*: 146 played bars with every repeat, `keyShift` 7, and its review is settled.
@@ -367,34 +375,31 @@ its first print with accompaniment, or a songbook's setting printed before 1931.
 
 ### State
 
-Stage 2's second batch is committed: *Boléro* and *Vltava* hold their Originals, each reviewed against
-its scan. The user may listen to these two. Five of stage 2's seven songs are done.
+Stage 2's last batch is committed. Both songs hold their Originals, and the meter accepts each.
+*Beethoven's Fifth* is reviewed and settled. *The Sorcerer's Apprentice* has four review findings open.
+The user may listen to *Beethoven's Fifth* now.
 
-- *Boléro* plays its first four statements, bars 1 to 76, and a closing chord of ours. Its tutti
-  pages are unreadable in every reachable scan.
-- *Vltava* plays bars 1 to 79, then 333 to 427, without the repeat, in about five minutes.
-- The meter now accepts a held hook note where the tune strikes the same pitch twice.
-- Two prints are left, both for two hands, fetched at 4000 pixels into `.agent-tmp/src-<slug>/full/`.
-  - *The Sorcerer's Apprentice*: Staub's 1908 transcription, images n8 to n11 and n31 to n32.
-  - *Beethoven's Fifth*: Liszt's transcription, images n0 to n2 and n5 to n9.
-
-The briefs are in `.agent-tmp/`: `brief-s2-transcribe.md`, `brief-s2-score.md` for a full score, and
-`brief-s2-write.md`. The writer's brief now forbids any edit of the tune or the four versions.
+- *Beethoven's Fifth* plays 382 bars in about 212 seconds. They are the exposition once, then bar 248
+  (n5.s1.7, the motto) to the end. The recapitulation prints 253 bars, since Liszt omits one rest bar.
+- *The Sorcerer's Apprentice* plays 594 grid bars in about 318 seconds. The print's pages 1 to 5 and
+  two bars of page 6 come first, then pages 24 and 25.
+- Two literal readings stand where the reviewer suspects an engraver's slip. They are Fb6 at n8.s1.2,
+  grid bar 18, and LH Bb3 at n9.s6.2, grid bar 221. The user's ear may settle them.
+- The transcriptions stay in `.agent-tmp/src-<slug>/page-*.txt`, labelled `n<image>.s<system>.<k>`.
 
 ### Next
 
-**Stage 2: the last two showpieces.** Files: `tools/our-songs/the-sorcerers-apprentice.ts` and
-`tools/our-songs/beethoven-5.ts`. Gate: met.
+**Stage 2: settle the Dukas review, then close the stage.** File:
+`tools/our-songs/the-sorcerers-apprentice.ts`. Gate: met.
 
-1. **Transcribe both cuts, about two systems per helper.** Name each helper's systems by number.
-   - *Dukas*: no bar numbers are printed, so each helper counts from the page's first system.
-     The cut is pages 1 to 4, then 24 to 25. Check that page 4 ends a section; else move the join.
-   - *Beethoven*: Liszt's bars are unnumbered too. Bar 248 is the 8th bar of image n5's first system.
-     Follow the main staves, never the ossia. The cut is bars 1 to 124, then 248 to 502.
-2. **One writer per song,** from the transcriptions alone, with `brief-s2-write.md`.
-3. **One fresh reviewer per song,** given the doubtful readings to settle at a zoom.
-4. Read each module's `git diff` for removed lines, so no tune or version changed.
-5. Run `bun tools/make-our-songs.ts` and the build, then commit the batch, and close stage 2.
+1. **Roll the bracketed left-hand chords instead of dropping them,** as `rolledWide` does. They are
+   `E_FLAT_CALL` at line 506 (grid bars 367 and 373), and the n12.s4.6 and s5.5 bars (grid 365 and 371).
+   Each adds Db4+Eb4+G4 or B3+Eb4+G4 over the left hand's Eb2+Eb3. The comment near line 509 then changes.
+2. **Fix n10.s2.8's comment (grid bar 258).** F2+Ab2 is dropped so the meter's hook check finds the
+   tune's C4 in one hand, not for the span the comment claims.
+3. Run `bun tools/check-our-song.ts tools/our-songs/the-sorcerers-apprentice.ts`, then
+   `bun tools/make-our-songs.ts` and the build. Commit, tick the stage's last items, and set stage 2 done.
+4. Then stage 3, as its `### 3.` section plans it.
 
 Expected red: none.
 
