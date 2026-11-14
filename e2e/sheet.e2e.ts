@@ -1,11 +1,11 @@
 /** The sheet music in a real browser: the learner turns it on, reads its measures, and picks its staves. */
 import { expect, test, type Page } from "@playwright/test";
 
-/** Opens the catalog song titled `title` through the Songs dialog. */
-async function openSong(page: Page, title: string): Promise<void> {
+/** Opens the catalog song titled `title`, which `query` finds, through the Songs dialog. */
+async function openSong(page: Page, query: string, title: string): Promise<void> {
   await page.getByRole("button", { name: "Songs", exact: true }).click();
   const songs = page.getByRole("dialog", { name: "Songs" });
-  await songs.getByRole("searchbox", { name: "Search songs" }).fill(title);
+  await songs.getByRole("searchbox", { name: "Search songs" }).fill(query);
   await songs.getByRole("button", { name: title }).click();
   await expect(page.getByLabel("Open song")).toHaveText(title);
 }
@@ -26,7 +26,7 @@ async function stavesShown(page: Page): Promise<string[]> {
 
 test("the_sheet_shows_the_song_in_measures", async ({ page }) => {
   await page.goto("./play/");
-  await openSong(page, "Tango Andantino");
+  await openSong(page, "albeniz tango", "Opus 165 'España' · Tango");
   const sheet = page.getByRole("region", { name: "Sheet music" });
   await expect(sheet).toBeHidden();
 

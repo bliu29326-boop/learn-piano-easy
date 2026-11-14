@@ -1,18 +1,21 @@
 /** The tracks panel in a real browser: the learner sets up a song's tracks, and the setup stays with the song. */
 import { expect, test, type Page } from "@playwright/test";
 
-/** Opens the catalog song titled `title` through the Songs dialog. */
-async function openSong(page: Page, title: string): Promise<void> {
+/** The tango of Albéniz's *España*, as a part reads on its own. */
+const TANGO = "Opus 165 'España' · Tango";
+
+/** Opens the catalog song titled `title`, which `query` finds, through the Songs dialog. */
+async function openSong(page: Page, query: string, title: string): Promise<void> {
   await page.getByRole("button", { name: "Songs", exact: true }).click();
   const songs = page.getByRole("dialog", { name: "Songs" });
-  await songs.getByRole("searchbox", { name: "Search songs" }).fill(title);
+  await songs.getByRole("searchbox", { name: "Search songs" }).fill(query);
   await songs.getByRole("button", { name: title }).click();
   await expect(page.getByLabel("Open song")).toHaveText(title);
 }
 
 test("a_track_setup_stays_with_its_song", async ({ page }) => {
   await page.goto("./play/");
-  await openSong(page, "Tango Andantino");
+  await openSong(page, "albeniz tango", TANGO);
 
   await page.getByRole("button", { name: "Tracks", exact: true }).click();
   const dialog = page.getByRole("dialog", { name: "Tracks" });
@@ -23,7 +26,7 @@ test("a_track_setup_stays_with_its_song", async ({ page }) => {
 
   // After a reload the song reopens with its setup.
   await page.reload();
-  await expect(page.getByLabel("Open song")).toHaveText("Tango Andantino");
+  await expect(page.getByLabel("Open song")).toHaveText(TANGO);
   await page.getByRole("button", { name: "Tracks", exact: true }).click();
   const kept = dialog.getByRole("region").first();
   await expect(kept.getByRole("switch", { name: /^Mute / })).toBeChecked();
@@ -32,7 +35,7 @@ test("a_track_setup_stays_with_its_song", async ({ page }) => {
 
   // Another song opens with the defaults.
   await page.keyboard.press("Escape");
-  await openSong(page, "Prélude Andantino");
+  await openSong(page, "albeniz prelude", "Opus 165 'España' · Prélude");
   await page.getByRole("button", { name: "Tracks", exact: true }).click();
   const other = dialog.getByRole("region").first();
   await expect(other.getByRole("switch", { name: /^Mute / })).not.toBeChecked();
@@ -41,7 +44,7 @@ test("a_track_setup_stays_with_its_song", async ({ page }) => {
 
 test("a_key_set_by_the_learner_stays_with_its_song", async ({ page }) => {
   await page.goto("./play/");
-  await openSong(page, "Tango Andantino");
+  await openSong(page, "albeniz tango", TANGO);
   await page.getByRole("button", { name: "Tracks", exact: true }).click();
   const dialog = page.getByRole("dialog", { name: "Tracks" });
   const key = dialog.getByRole("combobox", { name: "Key of the song" });
@@ -50,7 +53,7 @@ test("a_key_set_by_the_learner_stays_with_its_song", async ({ page }) => {
   await key.selectOption({ label: "B♭ major" });
 
   await page.reload();
-  await expect(page.getByLabel("Open song")).toHaveText("Tango Andantino");
+  await expect(page.getByLabel("Open song")).toHaveText(TANGO);
   await page.getByRole("button", { name: "Tracks", exact: true }).click();
   await expect(dialog.getByRole("combobox", { name: "Key of the song" })).toHaveValue("10-major");
 });

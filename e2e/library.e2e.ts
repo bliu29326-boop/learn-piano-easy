@@ -26,13 +26,13 @@ test("a_searched_song_opens_and_reopens_on_start", async ({ page }) => {
   const dialog = page.getByRole("dialog", { name: "Songs" });
   await dialog.getByRole("searchbox", { name: "Search songs" }).fill("albeniz tango");
   await expect(dialog.getByText("1 song", { exact: true })).toBeVisible();
-  await dialog.getByRole("button", { name: "Tango Andantino" }).click();
+  await dialog.getByRole("button", { name: "Opus 165 'España' · Tango" }).click();
 
   await expect(dialog).toBeHidden();
-  await expect(title).toHaveText("Tango Andantino");
+  await expect(title).toHaveText("Opus 165 'España' · Tango");
 
   await page.reload();
-  await expect(page.getByLabel("Open song")).toHaveText("Tango Andantino");
+  await expect(page.getByLabel("Open song")).toHaveText("Opus 165 'España' · Tango");
 });
 
 test("a_moved_beginner_tune_reopens_as_its_beginner_version_in_two_hands", async ({ page }) => {
@@ -386,8 +386,8 @@ test("a_song_wider_than_the_keyboard_offers_to_fold_its_notes", async ({ page })
   await page.goto("./play/");
   await page.getByRole("button", { name: "Songs", exact: true }).click();
   const dialog = page.getByRole("dialog", { name: "Songs" });
-  await dialog.getByRole("searchbox", { name: "Search songs" }).fill("tango andantino");
-  await dialog.getByRole("button", { name: "Tango Andantino" }).click();
+  await dialog.getByRole("searchbox", { name: "Search songs" }).fill("albeniz tango");
+  await dialog.getByRole("button", { name: "Opus 165 'España' · Tango" }).click();
 
   const toast = page.getByRole("status").filter({ hasText: "notes outside your keyboard" });
   await toast.getByRole("button", { name: "Move them onto your keys" }).click();
@@ -408,7 +408,7 @@ test("fits_my_keyboard_hides_songs_wider_than_the_keys", async ({ page }) => {
   await dialog.getByRole("switch", { name: "Fits my keyboard" }).check();
   await expect(count).not.toHaveText(`${all} songs`);
   // Albéniz's Tango reaches A1, below C2.
-  await dialog.getByRole("searchbox", { name: "Search songs" }).fill("tango andantino");
+  await dialog.getByRole("searchbox", { name: "Search songs" }).fill("albeniz tango");
   await expect(count).toHaveText("0 songs");
 
   await dialog.getByRole("switch", { name: "Fits my keyboard" }).uncheck();

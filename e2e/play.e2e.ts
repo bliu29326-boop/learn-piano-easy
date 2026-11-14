@@ -120,8 +120,8 @@ test("the_player_keeps_its_song_across_a_visit_to_learn", async ({ page }) => {
   await page.getByRole("button", { name: "Songs", exact: true }).click();
   const dialog = page.getByRole("dialog", { name: "Songs" });
   await dialog.getByRole("searchbox", { name: "Search songs" }).fill("albeniz tango");
-  await dialog.getByRole("button", { name: "Tango Andantino" }).click();
-  await expect(title).toHaveText("Tango Andantino");
+  await dialog.getByRole("button", { name: "Opus 165 'España' · Tango" }).click();
+  await expect(title).toHaveText("Opus 165 'España' · Tango");
 
   // The player's bar has no site links, so the way to Learn Piano leads through the home page.
   await bar(page).getByRole("link", { name: "Learn Piano Easy" }).click();
@@ -133,7 +133,7 @@ test("the_player_keeps_its_song_across_a_visit_to_learn", async ({ page }) => {
 
   await nav.getByRole("link", { name: "Just Play Piano" }).click();
   await expect(page).toHaveURL(/\/play\/$/);
-  await expect(page.getByLabel("Open song")).toHaveText("Tango Andantino");
+  await expect(page.getByLabel("Open song")).toHaveText("Opus 165 'España' · Tango");
   await expect(page.locator(".stage canvas")).toBeVisible();
 });
 

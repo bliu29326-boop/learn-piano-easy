@@ -21,5 +21,5 @@ test("the_beginner_path_climbs_from_our_songs_to_clementi_and_burgmuller", async
   expect(path.every((song, i) => i === 0 || path[i - 1]!.difficulty <= song.difficulty)).toBe(true);
   // A sonatina's movements keep their order on the path.
   const clementi = path.filter((song) => song.composer === "Muzio Clementi").map((song) => song.title);
-  expect(clementi).toEqual(["1. Allegro", "2. Andante", "3. Vivace"]);
+  expect(clementi).toEqual(["Movement 1: Allegro", "Movement 2: Andante", "Movement 3: Vivace"]);
 });

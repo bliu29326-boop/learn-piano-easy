@@ -143,8 +143,8 @@ test("a_star_makes_a_favourite_that_leads_the_page_and_filters", async ({ page }
   await page.goto("./play/");
   const dialog = await openSongsWithSkills(page);
   const search = dialog.getByRole("searchbox", { name: "Search songs" });
-  await search.fill("tango andantino");
-  const star = rowOf(dialog, "Tango Andantino").getByRole("button", { name: "Favourite", exact: true });
+  await search.fill("albeniz tango");
+  const star = rowOf(dialog, "Opus 165 'España' · Tango").getByRole("button", { name: "Favourite", exact: true });
   await expect(star).toHaveAttribute("aria-pressed", "false");
   await star.click();
   await expect(star).toHaveAttribute("aria-pressed", "true");
@@ -156,7 +156,7 @@ test("a_star_makes_a_favourite_that_leads_the_page_and_filters", async ({ page }
   await openSongs(page);
   const favourites = dialog.getByRole("region", { name: "Favourites" });
   await expect(favourites.locator(".song-row")).toHaveCount(1);
-  await expect(rowOf(favourites, "Tango Andantino").getByRole("button", { name: "Favourite", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(rowOf(favourites, "Opus 165 'España' · Tango").getByRole("button", { name: "Favourite", exact: true })).toHaveAttribute("aria-pressed", "true");
   await expect(dialog.locator(".song-row").first()).toHaveAttribute("data-id", "catalog:piano-midi/alb_esp2.mid");
 
   // The chip keeps the favourites alone, each once.
@@ -164,7 +164,7 @@ test("a_star_makes_a_favourite_that_leads_the_page_and_filters", async ({ page }
   await expect(dialog.locator(".library-count")).toHaveText("1 song");
   await expect(favourites).toHaveCount(0);
   await expect(dialog.locator(".song-row")).toHaveCount(1);
-  await expect(rowOf(dialog.getByRole("region", { name: "Results" }), "Tango Andantino")).toHaveCount(1);
+  await expect(rowOf(dialog.getByRole("region", { name: "Results" }), "Opus 165 'España' · Tango")).toHaveCount(1);
 });
 
 test("a_tag_in_the_rail_filters_by_it_and_a_row_shows_no_tags", async ({ page }) => {

@@ -15,7 +15,7 @@ stages:
     status: done
   - id: 4
     title: "the goal is verified once, and every failure is fixed"
-    status: open
+    status: done
     gate: true
 checks:
   - id: parts-named
@@ -120,31 +120,24 @@ faster as rows, and a work's parts read best together under it.
 
 ### 4. the goal is verified once, and every failure is fixed
 
-- [ ] Run `looper verify` over the whole goal.
-- [ ] Fix every failure it names in one pass, never deleting or loosening a test.
-- [ ] Run `looper verify` once more, and it is green.
+- [x] Run `looper verify` over the whole goal.
+- [x] Fix every failure it names in one pass, never deleting or loosening a test.
+- [x] Run `looper verify` once more, and it is green.
 
 ## Handoff
 
 ### State
 
-Stages 1 to 3 are committed on `main`. The explorer lists songs as rows, and the parts of a work fold
-into one row of the work, with its composer and a count such as "3 parts". It starts closed with no
-filter on and open under one. Its parts sit indented under it, each reading its label alone, while
-their main button keeps the whole title. Right and Left open and close a work. The new unit test
-`the_parts_of_a_work_fold_into_one_entry_at_its_first_part` and the e2e test
-`a_work_opens_to_show_its_parts` each passed once by name.
+All four stages are committed on `main`, and `looper verify` is green over the whole goal. The gate
+fixed one unit test and eight e2e tests, all for the titles stage 1 renamed. The Clementi path test
+reads "Movement 1: Allegro". The e2e tests open Albéniz's tango as "Opus 165 'España' · Tango", found
+by the query "albeniz tango". The `openSong` helpers of `e2e/tracks.e2e.ts` and `e2e/sheet.e2e.ts`
+take a query beside the title.
 
 ### Next
 
-**Stage 4: the goal is verified once.** Run `looper verify`, fix every failure in one pass, and run
-it again. Gate: stage 3 is committed.
-
-Expected red, since no full run has seen them since stage 2: the e2e tests of `e2e/library.e2e.ts`,
-`e2e/song-explorer.e2e.ts`, `e2e/play.e2e.ts` and `e2e/transport.e2e.ts`. The likeliest is
-`the_scroll_and_the_sort_come_back_after_a_close`, which now counts the Results list's items
-(`e2e/song-explorer.e2e.ts:111`). A test that finds a part with no filter on can miss it in its closed
-work. `e2e/transport.e2e.ts:210` clicks the first `.song-row__open`, which may now be a work's row.
+**The goal is reached.** Harvest it into `docs/findings.md` § `song-rows`, move its check into the
+floor, and delete this file. Then `faithful-levels` is the live goal. No test is expected to go red.
 
 ### Backlog
 
