@@ -78,6 +78,19 @@
     justify-items: start;
   }
 
+  /*
+   * The percentage keeps one width on the label's line, so the label wraps the same from 0 to 100 %. A
+   * centred card that grew a line would move.
+   */
+  .loading .progress__head {
+    flex-wrap: nowrap;
+  }
+
+  .loading .progress__value {
+    min-width: 5ch;
+    text-align: end;
+  }
+
   .loading__amount,
   .loading__message {
     margin: 0;
