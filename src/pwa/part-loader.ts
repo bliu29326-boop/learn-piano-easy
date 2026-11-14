@@ -5,8 +5,10 @@
  * and `part-loader.test.ts` fails on any other. The build's guard in `tools/build.ts` catches a part's
  * code that reaches the core without a root. This one catches a root imported without its loader.
  *
- * - **It ensures, then imports.** `ensureParts` of `parts.ts` fills the part and every part it needs.
- *   The import then loads from the cache, or from the network in a development build.
+ * - **It ensures, then imports.** `ensureParts` of `parts.ts` fills the part and every part it needs,
+ *   in its `view` scope. The import then loads from the cache, or from the network in a development
+ *   build. Once the view is open, a quiet second call fills the route pages, its `all` scope. Learn
+ *   Piano's pages are most of its bytes, and the learner never waits for them.
  * - **Its host shows the download** in a Loading card of `src/ui/components/loading.ts`. The bar names
  *   the part asked for and counts the bytes of every part it fetches. A part the cache holds shows none.
  * - **Offline, the card says the part needs the internet the first time,** with a button that tries the
@@ -24,12 +26,12 @@ import { t } from "../i18n/live";
 import type { Loading } from "../ui/components/loading";
 import type { InstallProgress, PartId } from "./cache-groups";
 import { showProgress } from "./download-progress";
-import { ensureParts, type PartsProgress, type PartsResult } from "./parts";
+import { ensureParts, type PartsProgress, type PartsResult, type PartsScope } from "./parts";
 import { updateToNewest } from "./update";
 
 /** The steps a load takes, which a test replaces. */
 export interface PartSteps {
-  ensure(ids: readonly PartId[], onProgress: (progress: PartsProgress) => void): Promise<PartsResult>;
+  ensure(ids: readonly PartId[], onProgress: (progress: PartsProgress) => void, scope: PartsScope): Promise<PartsResult>;
   update(onProgress: (progress: InstallProgress) => void): Promise<"offline" | "none">;
 }
 
@@ -45,12 +47,14 @@ function say() {
 export function openPart<T>(part: PartId, load: () => Promise<T>, shown?: Loading, steps: PartSteps = PAGE_STEPS): Promise<T> {
   const label = () => t().player.shell.cache.groups[part].label;
   const attempt = async (): Promise<T> => {
-    const result = await steps.ensure([part], (progress) => showProgress(shown, say().loading(label()), progress));
+    const result = await steps.ensure([part], (progress) => showProgress(shown, say().loading(label()), progress), "view");
     let failure: "offline" | "failed";
     if (result === "ready" || result === "cached") {
       try {
         const module = await load();
         shown?.clear();
+        // The route pages fill once the view is open, and a failure waits for the next open.
+        if (shown !== undefined) void steps.ensure([part], () => undefined, "all");
         return module;
       } catch {
         failure = "offline";

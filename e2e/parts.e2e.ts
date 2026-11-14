@@ -48,10 +48,15 @@ function shellPaths(page: Page): Promise<string[]> {
   });
 }
 
-/** Expects every file of `parts` in a shell cache of the page. */
+/** Expects every file of `parts` in a shell cache of the page soon. The route pages fill after the view opens. */
 async function expectSaved(page: Page, parts: readonly PartId[]): Promise<void> {
-  const held = new Set(await shellPaths(page));
-  expect([...(await partPaths(parts))].filter((path) => !held.has(path))).toEqual([]);
+  const paths = [...(await partPaths(parts))];
+  await expect
+    .poll(async () => {
+      const held = new Set(await shellPaths(page));
+      return paths.filter((path) => !held.has(path)).length;
+    }, { timeout: 60_000 })
+    .toBe(0);
 }
 
 test("a_first_open_of_the_player_shows_its_download_then_the_player_and_saves_it", async ({ page }) => {

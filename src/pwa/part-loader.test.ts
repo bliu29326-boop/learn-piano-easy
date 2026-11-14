@@ -23,12 +23,13 @@ function recorder() {
 }
 
 /** Steps whose ensure answers each of `results` in turn, reporting `progress` first, and whose update answers `update`. */
-function steps(results: PartsResult[], progress: PartsProgress[] = [], update: "offline" | "none" = "none"): PartSteps & { asked: PartId[][] } {
-  const asked: PartId[][] = [];
+function steps(results: PartsResult[], progress: PartsProgress[] = [], update: "offline" | "none" = "none"): PartSteps & { asked: string[] } {
+  const asked: string[] = [];
   return {
     asked,
-    ensure: async (ids, onProgress) => {
-      asked.push([...ids]);
+    ensure: async (ids, onProgress, scope) => {
+      asked.push(`${ids.join()} ${scope}`);
+      if (scope === "all") return "ready";
       progress.forEach(onProgress);
       return results.shift() ?? "ready";
     },
@@ -55,7 +56,8 @@ test("a_download_shows_its_label_and_megabytes_then_clears_once_imported", async
     { files: 1, totalFiles: 2, bytes: 0.5 * MB, totalBytes: 2 * MB },
   ]);
   await openPart("learn", async () => "module", card, fill);
-  expect(fill.asked).toEqual([["learn"]]);
+  // The view waits for its code alone, and the route pages fill once it is open.
+  expect(fill.asked).toEqual(["learn view", "learn all"]);
   expect(shown).toEqual([
     { label: "Loading Learn Piano", amount: "0.0 of 2.0 MB", value: 0 },
     { label: "Loading Learn Piano", amount: "0.5 of 2.0 MB", value: 0.25 },
@@ -71,7 +73,7 @@ test("offline_shows_the_message_and_retry_loads_the_part", async () => {
   expect(shown).toEqual([{ message: "Just Play Piano needs the internet the first time it opens. Connect and try again." }]);
   retry();
   expect(await loading).toBe("module");
-  expect(fill.asked.length).toBe(2);
+  expect(fill.asked).toEqual(["player view", "player view", "player all"]);
 });
 
 test("a_failed_import_shows_the_offline_message", async () => {

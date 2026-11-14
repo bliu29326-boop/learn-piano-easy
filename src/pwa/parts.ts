@@ -2,9 +2,13 @@
  * The shell's parts on the page: `ensureParts` makes the parts a view needs available offline before the
  * view loads their code. `cache-groups.ts` says what each part holds.
  *
- * The contract of `ensureParts(ids, onProgress)`:
+ * The contract of `ensureParts(ids, onProgress, scope)`:
  * - It resolves once every part of `ids`, and every part each needs by `PART_NEEDS`, is in the shell
  *   cache of the version the page runs: the version `cache-groups.json` names. It never rejects.
+ * - `scope` `view` fills only what a view opens with: every file but the route pages, the `index.html`
+ *   of each of Learn Piano's routes in each locale. Those are most of Learn Piano's files and bytes, and
+ *   only an offline reload of a route reads one. The worker answers a missing one with the root page,
+ *   which shows the same route. `all`, the default, fills every file, and its `cached` means all of them.
  * - It writes each part's mark before it fetches, so every later install keeps the part. An install
  *   that a fill cut short finishes it.
  * - It fetches only the files that cache misses. A file in a version's cache is that version's, since
@@ -36,6 +40,12 @@
 import { loadGroupIndex, PARTS_CACHE, partMark, shellCacheName, withNeeds, type PartId } from "./cache-groups";
 import { contentHash, inParallel } from "./current";
 import { readBody } from "./read-body";
+
+/** Which files of the parts `ensureParts` fills, as its head comment says. */
+export type PartsScope = "view" | "all";
+
+/** The end of a route page's URL. A part's other files are scripts, styles, models and data. */
+const ROUTE_PAGE = "/index.html";
 
 /** How `ensureParts` ended, as its head comment says. */
 export type PartsResult = "ready" | "cached" | "offline" | "stale";
@@ -106,7 +116,11 @@ function fetchOnce(cache: Cache, url: string, hash: string, onBytes: (bytes: num
 }
 
 /** Makes the parts `ids` available offline, as the head comment's contract says. */
-export async function ensureParts(ids: readonly PartId[], onProgress?: (progress: PartsProgress) => void): Promise<PartsResult> {
+export async function ensureParts(
+  ids: readonly PartId[],
+  onProgress?: (progress: PartsProgress) => void,
+  scope: PartsScope = "all",
+): Promise<PartsResult> {
   if (!partsCached()) return "ready";
   const index = await loadGroupIndex();
   if (index === undefined) return "offline";
@@ -122,7 +136,7 @@ export async function ensureParts(ids: readonly PartId[], onProgress?: (progress
         const { files, hashes, sizes } = index.groups[id];
         return files.map((file, i) => ({ url: new URL(file, root).href, hash: hashes[i] ?? "", size: sizes[i] ?? 0 }));
       })
-      .filter((file) => !held.has(file.url));
+      .filter((file) => !held.has(file.url) && (scope === "all" || !file.url.endsWith(ROUTE_PAGE)));
     if (wanted.length === 0) return "cached";
 
     const progress: PartsProgress = { files: 0, totalFiles: wanted.length, bytes: 0, totalBytes: 0 };
