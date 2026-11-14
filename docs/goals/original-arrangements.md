@@ -303,7 +303,8 @@ One writing subagent tried the whole piece and ran out of context before writing
 1. **Transcribe in four read-only subagents, one per page, side by side.** Each crops its page one system
    at a time with `magick` and writes its bars in the notation to `.agent-tmp/src-morning-mood/page-n<N>.txt`.
    It writes the file after each system, so a full context loses nothing. Each numbers its bars from its
-   page's first bar, and the session renumbers them.
+   page's first bar, and the session renumbers them. `page-n9.txt` already holds the last page, bars
+   "60" to "87", with its doubtful readings. Its numbers are a guess, and other helpers may still add files.
 2. **One writing subagent assembles the module** from the four files: the Original, its fingers, pedal,
    guide and German. It runs `bun tools/check-our-song.ts tools/our-songs/morning-mood.ts` until it passes.
 3. **A fresh reviewer reads it against the print,** and the session settles each finding.
