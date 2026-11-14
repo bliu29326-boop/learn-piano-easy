@@ -6,6 +6,8 @@
  * learner, through the offer, or by `updateToNewest` there. The first worker of a first visit takes
  * control of the open page without a reload. While `updateToNewest` runs, the page offers no reload.
  *
+ * The worker registers once the page has loaded, at once when the call comes after that.
+ *
  * A development build registers no worker and removes any left from a preview, so live reload always
  * shows the newest code. The worker's URL and scope are relative to the page's `<base>`, the site's root.
  */
@@ -42,7 +44,7 @@ export function registerServiceWorker(shell: Notifier, settings: SettingsStore):
     shell.toast(t().player.shell.update.ready, { label: t().player.shell.update.reload, run: () => applyUpdate(worker) });
   };
 
-  window.addEventListener("load", async () => {
+  const register = async () => {
     try {
       const registration = await navigator.serviceWorker.register("./sw.js", { scope: "./" });
       void keepGroupsOffline(settings, (message) => shell.toast(message));
@@ -56,5 +58,8 @@ export function registerServiceWorker(shell: Notifier, settings: SettingsStore):
     } catch (error) {
       console.error("The service worker failed to register, so the app will not work offline.", error);
     }
-  });
+  };
+  // The site may call this after awaiting its locale, when the page has already loaded.
+  if (document.readyState === "complete") void register();
+  else window.addEventListener("load", () => void register(), { once: true });
 }
