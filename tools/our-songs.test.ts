@@ -1,6 +1,6 @@
 import { join } from "node:path";
 
-import { readGuide, textIn, versionOf, type Guide, type GuideText } from "../src/library/guide";
+import { RARITIES, readGuide, textIn, versionOf, type Guide, type GuideText } from "../src/library/guide";
 import { filterSongs, groupSongs, NO_FILTER } from "../src/library/search";
 import { readMidi } from "../src/midi/smf-read";
 import { songFromMidi, songLength } from "../src/midi/song";
@@ -74,6 +74,17 @@ test("every_song_of_ours_earns_its_rarities", () => {
   expect(isPublicDomain({ ...source, died: 1956 }, 2026)).toBe(false);
   expect(isPublicDomain({ ...source, died: null }, 2026)).toBe(true);
 }, 60_000);
+
+test("no_version_plays_a_bar_of_our_own", () => {
+  // A tune of our own is ours throughout, so only the songs of a public domain source count.
+  const own = ourSongs
+    .filter((song) => song.source.own !== true)
+    .flatMap((song) => RARITIES.flatMap((rarity) => {
+      const bars = song.versions[rarity].ownBars ?? [];
+      return bars.length === 0 ? [] : [`${song.slug}/${rarity}: bars ${bars.join(", ")}`];
+    }));
+  expect(own).toEqual([]);
+});
 
 test("every_original_of_ours_keeps_its_hook_and_a_hand", () => {
   const ours = ourSongs.filter((song) => ourOriginal(song) !== undefined);

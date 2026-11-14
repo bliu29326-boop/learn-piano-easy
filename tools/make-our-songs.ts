@@ -8,6 +8,10 @@
  * notation of `tools/song-notation.ts`, its Original, and the text of its guide. The writer measures every
  * step with `tools/song-meter.ts` and refuses the whole run on any problem `songProblems` names.
  *
+ * A version whose notes a rework changed is written to `<id>-2.mid` instead, and its old file is deleted.
+ * `REWORKED_VERSIONS` in `src/library/moved-songs.ts` names each, since the app moves a learner's work
+ * by that list. A version marks its bars of our own in `ownBars` until a rework replaces them.
+ *
  * Our Original is an `OurVersion` with its own `source`, the print it follows. Its row carries no
  * `rarity`, and every row of the song names its file as `mythic`. Its guide is the guide's `original`, and
  * its German is the German block's `original`, in the shape of a version's.
@@ -54,7 +58,7 @@
  * `bun tools/make-our-songs.ts`. It needs no network, and the app never runs it. `tools/check-our-song.ts`
  * checks one module alone and writes nothing.
  */
-import { mkdir } from "node:fs/promises";
+import { mkdir, rm } from "node:fs/promises";
 import { join } from "node:path";
 
 import { readMidi } from "../src/midi/smf-read";
@@ -64,6 +68,7 @@ import { LOCALE_TABLE, type LocaleCode } from "../src/i18n/locale-table";
 import type { Translation } from "../src/i18n/translation";
 import { playerLibrary } from "../src/i18n/messages/player-library.en";
 import { FEWEST_STEPS, MOST_STEPS, RARITIES, RARITY_NAMES, type Guide, type GuideStep, type GuideText, type PracticeStep, type Rarity, type Tip, type VersionGuide } from "../src/library/guide";
+import { versionFileName } from "../src/library/moved-songs";
 import type { Collection } from "../src/library/search";
 import type { SkillId } from "../src/library/skills";
 import type { Finger, Hand } from "../src/theory/fingering";
@@ -218,6 +223,11 @@ export interface OurVersion {
   pedal?: string;
   /** The bars, from 1, where the hands clash on purpose. */
   markedClashBars?: number[];
+  /**
+   * The bars, from 1, whose melody is our own rather than the source's. A rework replaces each with the
+   * source's next real phrase, and `no_version_plays_a_bar_of_our_own` lists every one left.
+   */
+  ownBars?: number[];
   skills: SkillId[];
   practice: Written<PracticeStep>[];
   tips: Written<Tip>[];
@@ -403,8 +413,8 @@ function stepEnglishName(step: GuideStep): string {
 /** The step `step` of `song` as a song of the notation. */
 export function versionNotation(song: OurSong, step: GuideStep): TwoHandSong {
   const own: OurVersion & { source?: OriginalSource } = stepVersion(song, step);
-  const { markedClashBars: _clashes, skills: _skills, practice: _practice, tips: _tips, tricky: _tricky, source: _source, ...notes } = own;
-  return { title: `${song.title}, ${stepEnglishName(step)}`, file: `${step}.mid`, difficulty: 0, ...notes };
+  const { markedClashBars: _clashes, ownBars: _own, skills: _skills, practice: _practice, tips: _tips, tricky: _tricky, source: _source, ...notes } = own;
+  return { title: `${song.title}, ${stepEnglishName(step)}`, file: stepFileName(song, step), difficulty: 0, ...notes };
 }
 
 /** The MIDI file of the step `step` of `song`. */
@@ -417,9 +427,14 @@ export function versionMeter(song: OurSong, step: GuideStep): MeterSong {
   return meterOfNotation(versionNotation(song, step), stepVersion(song, step).markedClashBars ?? []);
 }
 
+/** The file name of the step `step` of `song` in its folder: `<id>-2.mid` for a reworked version, else `<id>.mid`. */
+function stepFileName(song: OurSong, step: GuideStep): string {
+  return step === "mythic" ? "mythic.mid" : versionFileName(song.slug, step);
+}
+
 /** The catalog file of the step `step` of `song`, from `songs/`. */
 function versionFile(song: OurSong, step: GuideStep): string {
-  return `${oursFolder}/${song.slug}/${step}.mid`;
+  return `${oursFolder}/${song.slug}/${stepFileName(song, step)}`;
 }
 
 /** The catalog file of `song`'s Original, ours or the catalog's, or null. */
@@ -451,6 +466,9 @@ export function versionProblems(song: OurSong, rarity: Rarity): string[] {
   const { tune } = song;
   problems.push(...matchTune(meter, tuneOf(tune.text, tune, tune.key, tune.hookBars), rarity).problems);
   problems.push(...fingerProblems(meter), ...guideProblems(song, rarity, meter));
+  const bars = barCount(meter);
+  const strayOwn = (song.versions[rarity].ownBars ?? []).filter((bar) => !Number.isInteger(bar) || bar < 1 || bar > bars);
+  if (strayOwn.length > 0) problems.push(`marks bars ${strayOwn.join(", ")} as our own, outside its ${bars} bars`);
   return problems.map((problem) => `${where}: ${problem}`);
 }
 
@@ -627,7 +645,7 @@ export function rowsOf(song: OurSong): CatalogSong[] {
 /** The text of the folder's `LICENSE.md` for `songs`. */
 export function licenseText(songs: readonly OurSong[]): string {
   const rows = songs.flatMap((song) => [
-    ...stepsOf(song).map((step) => `| \`${song.slug}/${step}.mid\` | ${song.title}, ${stepEnglishName(step)} | ${song.source.composer} | MIT |`),
+    ...stepsOf(song).map((step) => `| \`${song.slug}/${stepFileName(song, step)}\` | ${song.title}, ${stepEnglishName(step)} | ${song.source.composer} | MIT |`),
     `| \`${song.slug}/guide.json\` | ${song.title}, the guide | | MIT |`,
   ]);
   return `# Our songs
@@ -651,7 +669,12 @@ export async function makeOurSongs(songs: readonly OurSong[] = ourSongs): Promis
   for (const song of songs) {
     const dir = join(songsDir, oursFolder, song.slug);
     await mkdir(dir, { recursive: true });
-    for (const step of stepsOf(song)) await Bun.write(join(dir, `${step}.mid`), versionBytes(song, step));
+    for (const step of stepsOf(song)) {
+      const name = stepFileName(song, step);
+      await Bun.write(join(dir, name), versionBytes(song, step));
+      // A reworked version's old file leaves the folder, as its row leaves the catalog.
+      if (name !== `${step}.mid`) await rm(join(dir, `${step}.mid`), { force: true });
+    }
     await Bun.write(join(dir, "guide.json"), guideText(guideOf(song, await guideTranslationsOf(song.slug))));
     rows.push(...rowsOf(song));
   }
