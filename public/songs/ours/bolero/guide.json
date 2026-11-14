@@ -28,7 +28,7 @@
     "ru": "Впервые Равель сыграл мелодию одним пальцем своему другу Gustave Samazeuilh и спросил, не кажется ли она настойчивой.",
     "fr": "Ravel a d’abord joué la mélodie d’un seul doigt à son ami Gustave Samazeuilh. Il lui a demandé si elle avait quelque chose d’insistant."
   },
-  "mythic": null,
+  "mythic": "ours/bolero/mythic.mid",
   "versions": {
     "common": {
       "file": "ours/bolero/common.mid",
@@ -906,5 +906,134 @@
         }
       ]
     }
+  },
+  "original": {
+    "file": "ours/bolero/mythic.mid",
+    "skills": [
+      "sixteenth-notes",
+      "left-hand-melody",
+      "position-change"
+    ],
+    "fingers": {
+      "right": [3, 2, 3, 4, 3, 2, 1, 3, 3, 1, 3, 2, 3, 4, 3, 1, 2, 3, 2, 1, 1, 2, 1, 2, 3, 2, 3, 4, 3, 2, 1, 3, 2, 3, 2, 1, 1, 2, 3, 4, 1, 4, 5, 4, 3, 2, 3, 4, 5, 4, 3, 4, 3, 2, 4, 3, 2, 1, 1, 1, 1, 2, 4, 2, 3, 1, 1, 1, 1, 1, 3, 4, 2, 3, 1, 2, 2, 1, 2, 2, 2, 1, 2, 5, 3, 4, 2, 1, 2, 1, 2, 2, 1, 2, 3, 4, 5, 4, 3, 2, 1, 3, 2, 1, 3, 3, 2, 1, 3, 3, 3, 3, 2, 1, 3, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 3, 4, 3, 2, 1, 3, 3, 1, 3, 2, 3, 4, 3, 1, 2, 3, 2, 1, 1, 2, 1, 2, 3, 2, 3, 4, 3, 2, 1, 3, 2, 3, 2, 1, 1, 2, 3, 4, 1, 4, 5, 4, 3, 2, 3, 4, 5, 4, 3, 4, 3, 2, 4, 3, 2, 1, 1, 1, 1, 2, 4, 2, 3, 1, 1, 1, 1, 1, 3, 4, 2, 3, 1, 2, 2, 1, 2, 2, 2, 1, 2, 5, 3, 4, 2, 1, 2, 1, 2, 2, 1, 2, 3, 4, 5, 4, 3, 2, 1, 5, 3, 2, 1, 3, 3, 2, 1, 3, 3, 3, 3, 2, 1, 3, 3, 2, 1, 3, 2, 1, 3, 2, 1, 4, 3, 2, 1, 4, 5, 3, 2, 4, 3, 2, 4, 3, 4, 3, 2, 3, 2, 1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 3, 5, 4, 3, 4, 3, 2, 1, 3, 2, 1, 1, 2, 1, 2, 3, 4, 5, 3, 4, 2, 3, 4, 3, 2, 1, 2, 1, 2, 3, 4, 3, 2, 4, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 3, 1, 5, 4, 3, 2, 5, 4, 3, 2, 4, 3, 2, 4, 3, 2, 1, 5, 4, 3, 2, 1, 5, 4, 3, 2, 4, 4, 1, 5, 4, 3, 2, 1, 5, 4, 3, 2, 4, 3, 2, 4, 3, 2, 3, 3, 2, 1, 3, 3, 2, 1, 3, 3, 3, 3, 2, 1, 3, 3, 2, 1, 3, 2, 1, 3, 2, 1, 4, 3, 2, 1, 4, 5, 3, 2, 4, 3, 2, 4, 3, 4, 3, 2, 1, 3, 2, 3, 2, 3, 4, 3, 4, 3, 2, 4, 3, 2, 4, 3, 2, 4, 3, 2, 5, 4, 3, 2, 1, 3, 2, 1, 2, 1, 2, 3, 4, 5, 3, 4, 2, 3, 4, 3, 2, 1, 2, 1, 2, 3, 4, 3, 2, 4, 3, 2, 1, 3, 2, 1, 2, 3, 2, 1, 3, 2, 3, 1, 1, 2, 1, 3, 2, 1, 1, 3, 2, 1, 1, 3, 2, 1, 1, 1, 1, 3, 2, 1, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 1, 2, 3, 5],
+      "left": [5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 1, 5, 1, 1, 5, 1, 5, 1, 1, 5, 1, 1, 5, 1, 1, 5, 1, 5, 1, 5, 1, 5, 1, 1, 5, 1, 1, 5, 1, 5, 1, 1, 5, 1, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 1, 5, 1, 5, 1, 5, 1, 5, 1, 1, 5, 1, 1, 5, 1, 5, 1, 5, 1, 5, 1, 1, 5, 1, 1, 5, 1, 1, 5, 4, 1, 5, 1, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 1, 5, 4, 1, 5, 1, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 2, 1, 2, 3, 2, 3, 2, 4, 4, 3, 4, 2, 3, 4, 5, 1, 5, 4, 1, 5, 1, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 1, 5, 1, 3, 2, 1, 1, 3, 2, 1, 5, 4, 1, 3, 2, 1, 3, 2, 5, 3, 1, 1, 5, 1, 5, 3, 1, 1, 5, 1, 1, 5, 2, 1]
+    },
+    "start": {
+      "right": [69, 71, 72, 74, null],
+      "left": [55, null, null, null, 48]
+    },
+    "practice": [
+      {
+        "text": {
+          "en": "Play bars 1 to 8 with the left hand alone. It plucks the same three chords in every bar, like the strings.",
+          "de": "Spiel die Takte 1 bis 8 nur mit der linken Hand. Sie zupft in jedem Takt dieselben drei Akkorde, wie die Streicher."
+        },
+        "hands": "left",
+        "speed": 0.6,
+        "loop": [1, 8],
+        "wait": true
+      },
+      {
+        "text": {
+          "en": "Play the flute's tune in bars 5 to 20 with the right hand alone. Hold each long note for its full length.",
+          "de": "Spiel die Melodie der Flöte in den Takten 5 bis 20 nur mit der rechten Hand. Halte jeden langen Ton für seine volle Länge."
+        },
+        "hands": "right",
+        "speed": 0.6,
+        "loop": [5, 20],
+        "wait": true
+      },
+      {
+        "text": {
+          "en": "Play bars 23 to 30 with the left hand alone. Between its chords it plays the drum rhythm on G, with quick triplets.",
+          "de": "Spiel die Takte 23 bis 30 nur mit der linken Hand. Zwischen ihren Akkorden spielt sie den Trommelrhythmus auf G, mit schnellen Triolen."
+        },
+        "hands": "left",
+        "speed": 0.5,
+        "loop": [23, 30],
+        "wait": false
+      },
+      {
+        "text": {
+          "en": "Play bars 51 to 58 slowly with both hands. The left hand takes the tune in bar 53, and the right hand takes the drum rhythm.",
+          "de": "Spiel die Takte 51 bis 58 langsam mit beiden Händen. Die linke Hand übernimmt in Takt 53 die Melodie, und die rechte Hand den Trommelrhythmus."
+        },
+        "hands": "both",
+        "speed": 0.5,
+        "loop": [51, 58],
+        "wait": true
+      },
+      {
+        "text": {
+          "en": "Play the whole piece with both hands at full speed. Keep it soft and steady, and never hurry.",
+          "de": "Spiel das ganze Stück mit beiden Händen im vollen Tempo. Bleib leise und gleichmäßig, und werde nie schneller."
+        },
+        "hands": "both",
+        "speed": 1,
+        "loop": null,
+        "wait": false
+      }
+    ],
+    "tips": [
+      {
+        "fromBar": 1,
+        "toBar": 4,
+        "kind": "rhythm",
+        "text": {
+          "en": "The piece starts with plucked chords alone. Count three slow beats, and keep them perfectly even.",
+          "de": "Das Stück beginnt nur mit gezupften Akkorden. Zähl drei langsame Schläge, und halte sie ganz gleichmäßig."
+        }
+      },
+      {
+        "fromBar": 23,
+        "toBar": 38,
+        "kind": "rhythm",
+        "text": {
+          "en": "The left hand now adds the drum rhythm. Play its three quick notes lightly, so the tune stays on top.",
+          "de": "Die linke Hand spielt jetzt auch den Trommelrhythmus. Spiel ihre drei schnellen Töne leicht, damit die Melodie oben bleibt."
+        }
+      },
+      {
+        "fromBar": 41,
+        "toBar": 52,
+        "kind": "sound",
+        "text": {
+          "en": "The second tune bends with B flat and D flat. Let these notes sound a little sad.",
+          "de": "Die zweite Melodie biegt sich mit B und Des. Lass diese Töne ein wenig traurig klingen."
+        }
+      },
+      {
+        "fromBar": 53,
+        "toBar": 57,
+        "kind": "trick",
+        "text": {
+          "en": "The tune falls below middle C here, so the left hand takes it. The right hand plays the drum rhythm above.",
+          "de": "Hier fällt die Melodie unter das mittlere C, also übernimmt sie die linke Hand. Die rechte Hand spielt darüber den Trommelrhythmus."
+        }
+      }
+    ],
+    "tricky": [
+      {
+        "bar": 62,
+        "text": {
+          "en": "After the long E, the right hand jumps up to B flat. Play B flat, C and D flat with fingers 2, 3 and 4.",
+          "de": "Nach dem langen E springt die rechte Hand hinauf zum B. Spiel B, C und Des mit Finger 2, 3 und 4."
+        }
+      },
+      {
+        "bar": 25,
+        "text": {
+          "en": "The right thumb plays E, then fingers 2 and 3 play F and G. Hold the G to the end, while the left hand plays the drum rhythm.",
+          "de": "Der rechte Daumen spielt das E, dann spielen Finger 2 und 3 das F und das G. Halte das G bis zum Ende, während die linke Hand den Trommelrhythmus spielt."
+        }
+      },
+      {
+        "bar": 51,
+        "text": {
+          "en": "Four quick notes end on a long C. Then the thumb plays the low B flat, just above the left hand's G.",
+          "de": "Vier schnelle Töne enden auf einem langen C. Dann spielt der Daumen das tiefe B, knapp über dem G der linken Hand."
+        }
+      }
+    ]
   }
 }

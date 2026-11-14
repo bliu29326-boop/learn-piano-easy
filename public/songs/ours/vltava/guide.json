@@ -28,7 +28,7 @@
     "ru": "Её знаменитая мелодия — переработка напева La Mantovana. Его приписывают итальянскому тенору эпохи Возрождения, которого звали Giuseppe Cenci.",
     "fr": "Sa célèbre mélodie est une adaptation de La Mantovana, un air attribué au ténor italien de la Renaissance Giuseppe Cenci."
   },
-  "mythic": null,
+  "mythic": "ours/vltava/mythic.mid",
   "versions": {
     "common": {
       "file": "ours/vltava/common.mid",
@@ -904,5 +904,143 @@
         }
       ]
     }
+  },
+  "original": {
+    "file": "ours/vltava/mythic.mid",
+    "skills": [
+      "sixteenth-notes",
+      "broken-chords",
+      "melody-in-chords"
+    ],
+    "fingers": {
+      "right": [1, 2, 3, 2, 3, 4, 5, 1, 2, 3, 2, 3, 4, 5, 1, 2, 3, 2, 3, 4, 1, 2, 3, 2, 3, 4, 2, 3, 4, 3, 2, 1, 4, 3, 2, 3, 2, 1, 1, 2, 3, 2, 3, 4, 1, 2, 3, 2, 3, 4, 2, 3, 4, 3, 2, 1, 4, 3, 2, 3, 2, 1, 1, 2, 3, 2, 3, 4, 1, 2, 3, 2, 3, 4, 1, 2, 3, 2, 3, 4, 1, 2, 3, 2, 3, 4, 1, 2, 3, 2, 3, 4, 1, 2, 3, 2, 3, 4, 1, 2, 3, 2, 3, 4, 1, 2, 3, 2, 3, 4, 1, 5, 1, 2, 1, 2, 3, 1, 2, 3, 2, 3, 4, 1, 5, 2, 3, 2, 3, 4, 1, 2, 3, 2, 3, 4, 1, 5, 1, 2, 1, 2, 3, 1, 2, 3, 4, 5, 3, 2, 3, 4, 3, 2, 1, 1, 2, 3, 2, 1, 1, 1, 2, 3, 2, 1, 1, 4, 3, 2, 3, 2, 1, 1, 5, 2, 5, 1, 4, 2, 5, 1, 4, 2, 4, 1, 3, 1, 3, 1, 4, 1, 3, 1, 4, 1, 5, 1, 5, 1, 4, 1, 4, 1, 4, 1, 4, 1, 3, 1, 3, 1, 3, 1, 4, 1, 3, 1, 4, 1, 5, 1, 5, 1, 2, 1, 3, 1, 2, 1, 1, 4, 1, 4, 1, 5, 1, 4, 1, 4, 1, 5, 5, 1, 5, 1, 2, 1, 3, 1, 2, 1, 1, 4, 1, 4, 1, 5, 1, 4, 1, 4, 1, 5, 5, 1, 5, 1, 3, 1, 2, 1, 5, 1, 2, 1, 3, 1, 2, 5, 1, 5, 1, 5, 1, 5, 1, 5, 5, 1, 5, 1, 3, 1, 2, 1, 5, 1, 2, 1, 3, 1, 2, 5, 1, 5, 1, 5, 1, 5, 1, 5, 5, 1, 5, 1, 2, 1, 3, 1, 2, 1, 1, 4, 1, 3, 1, 5, 1, 5, 1, 5, 1, 5, 5, 1, 5, 1, 2, 1, 3, 1, 2, 1, 1, 4, 1, 3, 1, 5, 1, 5, 1, 5, 1, 4, 5, 1, 5, 1, 4, 1, 4, 1, 4, 1, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 4, 1, 5, 1, 5, 1, 2, 5, 1, 1, 3, 1, 2, 1, 2, 1, 3, 1, 3, 5, 1, 5, 1, 4, 1, 4, 1, 4, 1, 5, 1, 5, 2, 1, 3, 2, 4, 1, 5, 4, 3, 2, 3, 5, 1, 5, 2, 1, 3, 2, 4, 1, 5, 4, 3, 2, 3, 5, 1, 4, 2, 5, 1, 4, 2, 5, 1, 4, 1, 3, 1, 4, 2, 5, 1, 5, 2, 5, 1, 3, 2, 5, 1, 5, 1, 4, 1, 4, 2, 5, 1, 4, 1, 4, 1, 4, 1, 4, 2, 5, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 2, 5, 1, 4, 1, 4, 2, 5, 2, 5, 1, 4, 1, 3, 2, 5, 1, 5, 1, 4, 1, 4, 2, 5, 1, 4, 1, 4, 1, 4, 1, 4, 2, 5, 1, 4, 1, 4, 1, 4, 1, 5, 1, 5, 2, 5, 1, 4, 1, 3, 1, 4, 2, 5, 1, 4, 1, 3, 1, 4, 2, 5, 1, 4, 1, 5, 1, 5, 1, 5, 2, 4, 1, 3, 2, 1, 4, 2, 1, 2, 1, 3, 2, 4, 1, 5, 1, 5, 2, 5, 1, 4, 1, 3, 1, 4, 2, 5, 1, 4, 1, 3, 1, 4, 2, 5, 1, 4, 1, 5, 1, 5, 2, 5, 1, 4, 1, 3, 2, 3, 2, 4, 1, 3, 2, 4, 1, 3, 2, 1, 1, 1, 1, 5, 1, 5, 2, 4, 3, 5, 2, 5, 2, 5, 2, 5, 1, 5, 1, 5, 2, 5, 2, 5, 3, 5, 3, 5, 3, 5, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 1, 3, 1, 1, 4, 2, 5, 1, 3, 2, 4, 3, 5, 3, 5, 3, 5, 1, 5, 1, 5, 3, 5, 3, 5, 3, 5, 3, 5, 3, 5, 2, 4, 3, 5, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 1, 3, 1, 1, 2, 3, 4, 5, 2, 3, 4, 5, 5, 2, 4, 4, 1, 1, 2, 3, 4, 1, 2, 3, 4, 5, 2, 4, 4, 2, 4, 2, 4, 1, 3, 2, 4, 1, 5, 3, 2, 4, 2, 4, 1, 3, 2, 4, 1, 5, 1, 3, 1, 3, 1, 5, 1, 3, 1, 3, 1, 5, 2, 4, 2, 1, 1, 2, 2, 3, 4, 3, 2, 3, 1, 5, 1, 4, 1, 3, 1, 4, 1, 5, 1, 4, 1, 5, 1, 4, 1, 3, 1, 4, 1, 3, 1, 2, 1, 5, 1, 5, 1, 5, 1, 4, 1, 3, 1, 2, 1, 5, 1, 4, 1, 3, 1, 2, 5, 1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 5, 4, 4, 4, 4, 1, 2, 1, 3, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 1, 3, 2, 4, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 1, 3, 2, 4, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 5, 1, 3, 5, 1, 2, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 2, 4, 2, 4, 1, 3, 2, 4, 1, 3, 1, 3, 1, 3, 2, 4, 1, 3, 1, 3, 1, 3, 2, 4, 3, 5, 3, 5, 1, 3, 2, 4, 3, 5, 3, 5, 2, 3, 4, 4, 5, 2, 4, 4, 3, 4, 4, 2, 3, 4, 4, 2, 3, 4, 4, 5, 5, 5, 1, 4, 5, 3, 5, 2, 4, 1, 4, 5, 3, 5, 1, 3, 5, 1, 2, 5, 1, 3, 5, 1, 2, 5, 1, 3, 5, 1, 2, 5, 1, 2, 5, 1, 5, 1, 2, 5, 1, 3, 5, 1, 2, 3, 5, 1, 2, 5, 1, 3, 5, 1, 5, 1, 3, 5, 1, 2, 5, 1, 2, 3, 5, 1, 2, 5, 1, 3, 5, 1, 5, 1, 3, 5, 1, 2, 5, 1, 2, 3, 5, 1, 2, 5, 1, 3, 5, 1, 5, 1, 2, 3, 5, 1, 3, 5, 1, 2, 3, 5, 1, 3, 5, 1, 2, 3, 5, 1, 3, 5, 1, 2, 3, 1, 2, 4, 5, 4, 2, 4, 2, 1, 1, 2, 3, 1, 2, 4, 5, 4, 2, 1, 3, 2, 5, 3, 2, 1, 3, 1, 1, 2, 3, 1, 2, 4, 5, 4, 2, 1, 3, 1, 5, 4, 3, 2, 1, 1, 1, 2, 3, 1, 2, 4, 5, 4, 2, 4, 2, 1, 5, 4, 3, 2, 1, 1, 1, 2, 3, 1, 2, 4, 1, 2, 3, 4, 5, 4, 5, 4, 2, 1, 3, 1, 1, 5, 1, 4, 2, 5, 1, 4, 1, 4, 1, 4, 2, 4, 2, 5, 1, 3, 1, 4, 1, 5, 1, 5, 2, 5, 1, 5, 1, 5, 1, 4, 2, 5, 1, 5, 1, 5, 1, 4, 2, 5, 1, 5, 1, 5, 2, 2, 3, 1, 4, 2, 5, 1, 4, 2, 5, 1, 5, 1, 5, 1, 4, 2, 5, 1, 5, 1, 5, 2, 5, 1, 5, 1, 5, 1, 4, 2, 5, 1, 5, 1, 5, 1, 4, 2, 5, 1, 5, 1, 5, 2, 2, 3, 1, 4, 2, 5, 1, 4, 2, 5, 1, 5, 1, 5, 1, 4, 2, 5, 1, 5, 1, 5, 2, 5, 1, 5, 1, 5, 1, 4, 2, 5, 1, 5, 1, 5, 1, 4, 2, 5, 1, 5, 1, 5, 2, 2, 3, 1, 4, 2, 5, 1, 4, 2, 5, 1, 5, 1, 5, 1, 4, 2, 5, 1, 5, 1, 5, 2, 5, 1, 2, 5, 1, 2, 5],
+      "left": [5, 5, 3, 1, 5, 5, 3, 1, 5, 5, 5, 1, 5, 3, 5, 5, 1, 5, 3, 5, 1, 5, 5, 3, 1, 5, 5, 3, 1, 5, 3, 1, 5, 4, 2, 1, 5, 3, 1, 5, 1, 5, 3, 1, 4, 2, 5, 3, 1, 1, 1, 4, 2, 5, 3, 1, 1, 1, 5, 3, 1, 1, 1, 1, 5, 1, 1, 1, 1, 5, 1, 1, 1, 5, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 3, 4, 5, 5, 1, 3, 2, 3, 2, 1, 4, 3, 2, 3, 2, 1, 3, 2, 1, 2, 3, 4, 2, 3, 4, 3, 4, 5, 5, 1, 3, 2, 3, 2, 1, 4, 3, 2, 3, 2, 1, 3, 2, 1, 2, 3, 4, 2, 3, 4, 3, 4, 5, 5, 1, 3, 2, 3, 2, 1, 2, 1, 2, 3, 4, 5, 5, 1, 3, 2, 3, 2, 1, 2, 1, 2, 3, 4, 5, 5, 1, 3, 2, 3, 2, 1, 4, 1, 4, 5, 4, 5, 5, 1, 3, 2, 3, 2, 1, 1, 1, 2, 3, 4, 5, 5, 1, 4, 2, 4, 2, 1, 1, 2, 3, 5, 5, 1, 4, 2, 4, 2, 1, 1, 2, 3, 5, 5, 1, 4, 2, 4, 2, 1, 1, 2, 3, 5, 5, 1, 4, 2, 4, 2, 1, 1, 2, 3, 5, 5, 1, 4, 2, 4, 2, 1, 1, 2, 3, 5, 5, 1, 4, 2, 4, 2, 1, 1, 2, 3, 5, 5, 1, 4, 2, 4, 2, 1, 1, 2, 3, 5, 5, 1, 4, 2, 4, 2, 1, 1, 2, 3, 5, 5, 1, 4, 2, 4, 2, 1, 1, 2, 3, 5, 5, 1, 3, 2, 3, 2, 1, 1, 2, 3, 5, 5, 1, 3, 2, 3, 2, 1, 1, 2, 3, 5, 5, 1, 3, 2, 3, 2, 1, 1, 2, 3, 5, 5, 1, 3, 1, 3, 2, 1, 1, 2, 3, 5, 5, 1, 3, 1, 3, 2, 1, 1, 2, 3, 5, 5, 1, 3, 1, 3, 2, 1, 1, 2, 3, 5, 5, 4, 3, 1, 3, 2, 1, 1, 2, 3, 5, 5, 4, 3, 1, 3, 2, 1, 1, 2, 3, 5, 5, 1, 3, 1, 3, 2, 1, 1, 2, 3, 5, 5, 1, 3, 1, 3, 2, 1, 1, 2, 3, 5, 5, 1, 3, 1, 3, 2, 1, 1, 2, 3, 5, 5, 4, 3, 1, 3, 2, 1, 1, 2, 3, 5, 5, 4, 3, 1, 3, 2, 1, 1, 2, 3, 5, 5, 4, 3, 1, 3, 2, 1, 1, 2, 3, 5, 5, 4, 3, 1, 3, 2, 1, 1, 2, 3, 5, 5, 4, 3, 1, 3, 2, 1, 1, 2, 3, 5, 5, 4, 3, 1, 3, 2, 1, 2, 1, 2, 3, 4, 3, 5, 1, 1, 2, 3, 2, 1, 2, 5, 1, 1, 1, 2, 3, 2, 5, 1, 5, 3, 4, 2, 5, 3, 4, 2, 5, 3, 4, 2, 5, 3, 4, 2, 5, 3, 4, 2, 5, 3, 4, 2, 5, 1, 3, 2, 3, 2, 1, 3, 1, 2, 3, 4, 5, 5, 1, 3, 2, 3, 2, 1, 3, 1, 2, 3, 4, 5, 5, 4, 3, 4, 3, 1, 5, 2, 1, 2, 3, 4, 5, 5, 4, 3, 4, 3, 2, 2, 1, 2, 3, 4, 5, 5, 1, 3, 2, 3, 2, 1, 5, 2, 1, 2, 3, 4, 5, 5, 4, 3, 4, 3, 2, 2, 1, 2, 3, 4, 5, 5, 4, 3, 4, 3, 1, 5, 2, 1, 2, 3, 4, 5, 5, 2, 1, 1, 2, 5, 5, 2, 1, 1, 2, 5, 5, 2, 1, 1, 2, 5, 5, 2, 1, 1, 2, 5, 5, 2, 1, 1, 2, 5, 5, 2, 1, 1, 2, 5, 5, 3, 1, 1, 3, 5, 5, 3, 1, 1, 3, 5, 5, 3, 1, 1, 3, 5, 5, 3, 1, 1, 3, 5, 5, 2, 1, 1, 2, 5, 5, 3, 1, 1, 3, 5, 5, 3, 1, 1, 3, 5, 5, 3, 1, 1, 3, 5, 5, 3, 1, 5, 4, 2, 5, 4, 2, 5, 3, 1, 5, 3, 1, 1, 3, 5, 5, 2, 1, 1, 2, 5, 5, 2, 1, 1, 2, 5, 5, 1, 3, 1, 1, 3, 5, 5, 1, 3, 1, 1, 3, 5, 5, 1, 3, 1, 1, 2, 4, 5, 1, 3, 1, 5, 1, 2, 4, 5, 4, 2, 1, 5, 1, 2, 4, 5, 3, 2, 1, 5, 1, 2, 5, 3, 2, 1, 1, 2, 5, 5, 2, 1, 2, 5, 3, 1, 3, 5, 1, 5, 1, 5, 2, 1, 2, 5, 3, 1, 3, 5, 1, 5, 1, 5, 3, 1, 3, 5, 3, 1, 3, 5, 2, 4, 2, 5, 2, 1, 2, 5, 3, 1, 3, 5, 2, 4, 2, 5, 3, 1, 3, 5, 3, 1, 3, 5, 1, 2, 1, 2, 5, 1, 1, 5, 1, 1, 5, 1, 1, 5, 1, 1, 5, 1, 1, 5, 1, 1, 5, 1, 1, 5, 1, 1, 5, 1, 1, 5, 1, 1, 5, 1, 1, 5, 1, 1, 5, 1, 1, 5, 1, 1, 5, 1, 1, 1, 5, 5, 1, 1, 1, 5, 5, 1, 1, 5, 5, 1, 1, 1, 5, 5, 1, 1, 1, 5, 5, 1, 1, 5, 5, 1, 1, 1, 5, 5, 1, 1, 1, 5, 5, 1, 1, 5, 5, 1, 1, 5, 5, 1, 1, 5, 5, 1, 1, 5, 5, 1, 1, 5, 5, 1, 1, 5, 5, 2, 1, 2, 5, 2, 1, 2, 5, 2, 1, 2, 5, 2, 1, 2, 5, 2, 1, 2, 5, 2, 1, 2, 5, 2, 1, 2, 5, 2, 1, 2, 5, 2, 1, 2, 5, 2, 1, 2, 5, 5, 2, 1, 2, 5, 5, 2, 1, 2, 5, 5, 1, 3, 1, 3, 5, 5, 3, 1, 3, 5, 5, 3, 1, 3, 5, 5, 1, 3, 1, 3, 5, 5, 3, 1, 3, 5, 5, 3, 1, 3, 5, 5, 3, 1, 3, 5, 5, 3, 1, 3, 5, 5, 3, 1, 3, 5, 5, 3, 1, 3, 5, 5, 3, 1, 3, 5, 5, 3, 1, 3, 5, 5, 3, 1, 3, 5, 5, 3, 1, 3, 5, 5, 3, 1, 1, 3, 5, 5, 1, 5, 1]
+    },
+    "start": {
+      "right": [64, 66, 67, 69, 71],
+      "left": [59, null, 55, null, 52]
+    },
+    "practice": [
+      {
+        "text": {
+          "en": "Play bars 1 to 8 slowly with the right hand alone. Keep the flutes' sixteenths light and even.",
+          "de": "Spiel die Takte 1 bis 8 langsam nur mit der rechten Hand. Halt die Sechzehntel der Flöten leicht und gleichmäßig."
+        },
+        "hands": "right",
+        "speed": 0.5,
+        "loop": [1, 8],
+        "wait": true
+      },
+      {
+        "text": {
+          "en": "Play bars 40 to 55 with the left hand alone. Strike the low bass with the first sixteenth, then let the figure run.",
+          "de": "Spiel die Takte 40 bis 55 nur mit der linken Hand. Schlag den tiefen Basston mit dem ersten Sechzehntel an, und lass dann die Figur laufen."
+        },
+        "hands": "left",
+        "speed": 0.5,
+        "loop": [40, 55],
+        "wait": false
+      },
+      {
+        "text": {
+          "en": "Play the river theme, bars 40 to 55, with both hands at half speed.",
+          "de": "Spiel das Flussthema, die Takte 40 bis 55, mit beiden Händen im halben Tempo."
+        },
+        "hands": "both",
+        "speed": 0.5,
+        "loop": [40, 55],
+        "wait": false
+      },
+      {
+        "text": {
+          "en": "Play bars 106 to 120 with both hands, slowly. Hold each loud chord over the left hand's four even notes.",
+          "de": "Spiel die Takte 106 bis 120 langsam mit beiden Händen. Halt jeden lauten Akkord über den vier gleichmäßigen Tönen der linken Hand."
+        },
+        "hands": "both",
+        "speed": 0.6,
+        "loop": [106, 120],
+        "wait": false
+      },
+      {
+        "text": {
+          "en": "Play the whole piece with both hands at full speed, with the pedal from bar 80.",
+          "de": "Spiel das ganze Stück mit beiden Händen im vollen Tempo, mit Pedal ab Takt 80."
+        },
+        "hands": "both",
+        "speed": 1,
+        "loop": null,
+        "wait": false
+      }
+    ],
+    "tips": [
+      {
+        "fromBar": 1,
+        "toBar": 39,
+        "kind": "sound",
+        "text": {
+          "en": "The river starts as a thin spring. Keep the sixteenths soft, and the left hand's notes short.",
+          "de": "Der Fluss beginnt als dünne Quelle. Spiel die Sechzehntel leise und die Töne der linken Hand kurz."
+        }
+      },
+      {
+        "fromBar": 40,
+        "toBar": 79,
+        "kind": "rhythm",
+        "text": {
+          "en": "The tune sings on top, and the sixteenths flow under it. Strike the low bass together with the first sixteenth.",
+          "de": "Die Melodie singt oben, und die Sechzehntel fließen darunter. Schlag den tiefen Basston zusammen mit dem ersten Sechzehntel an."
+        }
+      },
+      {
+        "fromBar": 80,
+        "toBar": 105,
+        "kind": "sound",
+        "text": {
+          "en": "The river returns in E major and very loud. Let the tune's thirds ring over the broken chords.",
+          "de": "Der Fluss kehrt in E-Dur und sehr laut zurück. Lass die Terzen der Melodie über den gebrochenen Akkorden klingen."
+        }
+      },
+      {
+        "fromBar": 106,
+        "toBar": 120,
+        "kind": "rhythm",
+        "text": {
+          "en": "Here the left hand plays four even notes in each bar, two to a beat. Count them before you join the hands.",
+          "de": "Hier spielt die linke Hand vier gleichmäßige Töne in jedem Takt, zwei auf jeden Schlag. Zähl sie, bevor du die Hände zusammennimmst."
+        }
+      },
+      {
+        "fromBar": 154,
+        "toBar": 174,
+        "kind": "sound",
+        "text": {
+          "en": "The arpeggios fade to almost nothing. Then two loud chords end the piece.",
+          "de": "Die Arpeggios verklingen fast ganz. Dann beenden zwei laute Akkorde das Stück."
+        }
+      }
+    ],
+    "tricky": [
+      {
+        "bar": 70,
+        "text": {
+          "en": "The tune rests, and the right hand takes the running sixteenths up to A. The left hand plays a low B, then turns around the B below middle C.",
+          "de": "Die Melodie pausiert, und die rechte Hand übernimmt die laufenden Sechzehntel bis hinauf zum A. Die linke Hand spielt ein tiefes H und kreist dann um das H unter dem mittleren C."
+        }
+      },
+      {
+        "bar": 42,
+        "text": {
+          "en": "The high C sounds twice, loud, with E under it. The left hand strikes a low C octave, then runs up to C and back to D.",
+          "de": "Das hohe C klingt zweimal laut, mit dem E darunter. Die linke Hand schlägt eine tiefe C-Oktave an, läuft dann hinauf zum C und zurück zum D."
+        }
+      },
+      {
+        "bar": 59,
+        "text": {
+          "en": "Hold the high B, then jump the right hand down to the E above middle C. That E starts the next phrase.",
+          "de": "Halt das hohe H, und spring dann mit der rechten Hand hinunter zum E über dem mittleren C. Dieses E beginnt die nächste Phrase."
+        }
+      }
+    ]
   }
 }

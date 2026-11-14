@@ -1,5 +1,6 @@
 /**
- * *Boléro*: the first flute solo of Ravel's piece for orchestra, in four versions of ours.
+ * *Boléro*: the first flute solo of Ravel's piece for orchestra, in four versions of ours, and our
+ * Original of its first 76 bars.
  *
  * The tune is the flute's solo in bars 5 to 12 of the full score. The print is in 3/4 with sixteenths,
  * and the tune writes every sixteenth as a quarter, so each print bar is a bar of 3/1. Ties inside a bar
@@ -17,6 +18,11 @@
  * plays the tune again with a sixth or a chord under its long notes. Legendary plays the bolero rhythm
  * in bass octaves, runs of eighths over a stride bass, and the tune again in octaves. It ends on a
  * four-note chord.
+ *
+ * The Original reduces Durand's full score for two hands in 3/4, in 24ths of a quarter. The right hand
+ * plays each tune, and the bolero rhythm on G4 where no tune sounds. The left hand plays the strings'
+ * plucked chords, and from bar 23 the rhythm on G3 between them. Bars 53 to 57 swap the hands, since the
+ * tune falls below middle C there.
  */
 import type { Key } from "../../src/theory/key";
 import type { OurSong } from "../make-our-songs";
@@ -210,6 +216,172 @@ const OWN_CHORDS = "FCaGFCGC";
 /** Epic's and Legendary's pedal: up under the tune, down for each bar of our own and for the last chord. */
 const PEDAL = [...Array(8).fill("r:72"), ...Array(8).fill("P:72"), ...Array(8).fill("r:72"), "P:72"].join(" | ");
 
+/** One bar of the Original in 24ths of a quarter, 72 to the bar: the right hand and the left hand. */
+type PrintBar = readonly [right: string, left: string];
+
+/** The Original's bars in the print. Bar 77 is our closing chord. */
+const PRINT_LENGTH = 76;
+
+/** The bolero rhythm on G4, as the flute plays it, in odd and in even bars. */
+const RHYTHM_ODD = "G4/3:12 G4/3:4 G4/2:4 G4/1:4 G4/3:12 G4/3:4 G4/2:4 G4/1:4 G4/3:12 G4/3:12";
+const RHYTHM_EVEN = "G4/3:12 G4/3:4 G4/2:4 G4/1:4 G4/3:12 G4/3:4 G4/2:4 G4/1:4 G4/3:4 G4/2:4 G4/1:4 G4/3:4 G4/2:4 G4/1:4";
+
+/** The strings' plucked chords of bars 1 to 20, in odd and in even bars, the viola's G3 and G4 on beat 2. */
+const OPENING_ODD = "C3+G3/5+1:24 G3+G4/5+1:24 G2+G3/5+1:24";
+const OPENING_EVEN = "C3+G3/5+1:24 G3+G4/5+1:24 G2+G3/5+1:12 G3/1:12";
+
+/** The plucked chords from bar 21 under the right hand's bolero rhythm. Beat 2 leaves G4 to the right hand. */
+const PLUCKED_ODD = "C3+G3/5+1:24 G3/1:24 G2+C3+G3/5+4+1:24";
+const PLUCKED_EVEN = "C3+G3/5+1:24 G3/1:24 G2+C3+G3/5+4+1:12 G3/1:12";
+
+/**
+ * The left hand under a tune from bar 23: the plucked chords on the beats, and the flute's bolero rhythm
+ * an octave down on G3 between them, so no hand plays it twice.
+ */
+const DRUM_ODD = "C3+G3/5+1:12 G3/3:4 G3/2:4 G3/1:4 G3/1:12 G3/3:4 G3/2:4 G3/1:4 G2+C3+G3/5+4+1:12 G3/1:12";
+const DRUM_EVEN = "C3+G3/5+1:12 G3/3:4 G3/2:4 G3/1:4 G3/1:12 G3/3:4 G3/2:4 G3/1:4 G2+C3+G3/5+4+1:4 G3/3:4 G3/2:4 G3/1:4 G3/3:4 G3/2:4";
+
+/**
+ * The A theme, as the flute plays it in bars 5 to 20 and the clarinet in bars 23 to 38. Both statements
+ * take the clarinet's reading and fingers, so bars 9 and 27 hold G4 into their first 16th.
+ */
+const A_THEME = [
+  "C5/3:36 B4/2:6 C5/3:6 D5/4:6 C5/3:6 B4/2:6 A4/1:6",
+  "C5/3:12 C5/3:6 A4/1:6 C5/3:36 B4/2:6 C5/3:6",
+  "A4/4:6 G4/3:6 E4/1:6 F4/2:6 G4/3:48~",
+  "G4/3:6 F4/2:6 E4/1:6 D4/1:6 E4/2:6 F4/1:6 G4/2:6 A4/3:6 G4/2:24~",
+  "G4/2:30 A4/3:6 B4/4:6 A4/3:6 G4/2:6 F4/1:6 E4/3:6 D4/2:6",
+  "E4/3:6 D4/2:6 C4/1:24 C4/1:6 D4/2:6 E4/3:12 F4/4:12",
+  "D4/1:24 G4/4:48~",
+  "G4/4:60 r:12",
+  "D5/5:42 C5/4:6 B4/3:6 A4/2:6 B4/3:6 C5/4:6",
+  "D5/5:6 C5/4:6 B4/3:18 C5/4:6 B4/3:6 A4/2:6 C5/4:6 B4/3:6 A4/2:6 F4/1:6~",
+  "F4/1:12 F4/1:6 F4/1:6 F4/1:12 A4/2:12 C5/4:6 A4/2:6 B4/3:6 G4/1:6",
+  "F4/1:12 F4/1:6 F4/1:6 F4/1:12 A4/3:12 B4/4:6 G4/2:6 A4/3:6 F4/1:6",
+  "D4/2:12 D4/2:6 C4/1:6 D4/2:36 D4/2:6 D4/2:6",
+  "D4/1:12 F4/2:12 A4/5:6 F4/3:6 G4/4:6 E4/2:6 D4/1:12 D4/2:6 C4/1:6",
+  "D4/2:36 D4/2:6 C4/1:6 D4/2:12 E4/3:6 F4/4:6",
+  "G4/5:54 F4/4:6 E4/3:6 D4/2:6",
+];
+
+/** The bassoon's B theme in bars 41 to 52, where it still lies above the left hand's G3. */
+const B_THEME_LOW = [
+  "Bb4/4:30 A4/3:6 G4/2:6 F4/1:6 Bb4/4:6 C5/5:6 A4/3:6 G4/2:6",
+  "Bb4/4:12 A4/3:6 G4/2:6 Bb4/4:24 A4/3:6 Bb4/4:6 A4/3:6 G4/2:6~",
+  "G4/4:30 F4/3:6 E4/2:6 D4/1:6 E4/2:24~",
+  "E4/2:24 r:12 Bb4/3:12 C5/4:12 Db5/5:12~",
+  "Db5/5:12 Db5/5:24 Db5/5:12 Db5/5:12 Db5/5:12",
+  "Db5/5:8 Db5/5:8 Db5/5:8 Db5/5:12 C5/4:6 Bb4/3:6 Db5/5:12 C5/4:6 Bb4/3:6",
+  "Db5/4:6 C5/3:6 Bb4/2:6 Ab4/1:6 G4/3:6 F4/2:6 E4/1:36~",
+  "E4/1:60 r:12",
+  "D4/1:36 E4/2:12 D4/1:6 E4/2:6 F4/3:12~",
+  "F4/3:24 G4/4:12 Ab4/5:12 F4/3:8 G4/4:8 E4/2:8",
+  "D4/3:6 E4/4:6 D4/3:6 C4/2:18 Bb3/1:36~",
+  "Bb3/1:6 C4/2:6 Bb3/1:6 C4/2:6 D4/3:6 E4/4:6 D4/3:6 C4/2:6 D4/4:6 C4/3:6 Bb3/2:6 Ab3/1:6",
+];
+
+/**
+ * Bars 53 to 57, where the B theme falls below middle C. The right hand plays it to the breath in bar 53,
+ * and the left hand takes it from the F below, down to C. The right hand then plays the flute's rhythm on
+ * G4 and the viola's G3 under it, where the tune leaves G3 free. The print turns the bassoon to the bass
+ * clef at the breath, so its last notes read as the E-flat clarinet's in bars 71 to 75, an octave down.
+ */
+const B_THEME_FALL: Record<number, PrintBar> = {
+  53: ["Bb3/3:6 Ab3/2:6 G3/1:24 G4/3:4 G4/2:4 G4/1:4 G4/3:12 G4/3:12", "C3+G3/5+1:12 r:24 F3/2:36~"],
+  54: [
+    "G3+G4/1+5:12 G4/4:4 G4/3:4 G4/2:4 G4/5:12 G4/4:4 G4/3:4 G4/2:4 G4/4:4 G4/3:4 G4/2:4 G4/4:4 G4/3:4 G4/2:4",
+    "F3/2:30 G3/1:6 F3/2:6 Eb3/3:30~",
+  ],
+  55: [
+    "G3+G4/1+5:12 G4/4:4 G4/3:4 G4/2:4 G3+G4/1+5:12 G4/4:4 G4/3:4 G4/2:4 G4/4:12 G4/4:12",
+    "Eb3/3:24 F3/2:6 Eb3/3:6 F3/2:6 Db3/4:30~",
+  ],
+  56: [
+    "G3+G4/1+5:12 G4/4:4 G4/3:4 G4/2:4 G3+G4/1+5:12 G4/4:4 G4/3:4 G4/2:4 G4/4:4 G4/3:4 G4/2:4 G4/4:4 G4/3:4 G4/2:4",
+    "Db3/4:30 Db3/4:6 Eb3/3:6 Db3/4:6 F3/2:6 Eb3/3:6 Db3/4:6 C3/5:6~",
+  ],
+  57: [RHYTHM_ODD, "C3/5:24 G3/1:24 G2+C3+G3/5+4+1:24"],
+};
+
+/** The E-flat clarinet's B theme in bars 59 to 74, as it sounds, a minor third above the written notes. */
+const B_THEME_HIGH = [
+  "Bb5/4:30 A5/3:6 G5/2:6 F5/1:6 Bb5/4:6 C6/5:6 A5/3:6 G5/2:6",
+  "Bb5/4:12 A5/3:6 G5/2:6 Bb5/4:24 A5/3:6 Bb5/4:6 A5/3:6 G5/2:6~",
+  "G5/2:30 F5/1:6 E5/3:6 D5/2:6 E5/3:24~",
+  "E5/3:24 r:12 Bb5/2:12 C6/3:12 Db6/4:12~",
+  "Db6/4:12 Db6/3:24 Db6/4:12 Db6/3:12 Db6/2:12",
+  "Db6/4:8 Db6/3:8 Db6/2:8 Db6/4:12 C6/3:6 Bb5/2:6 Db6/4:12 C6/3:6 Bb5/2:6",
+  "Db6/5:6 C6/4:6 Bb5/3:6 Ab5/2:6 G5/1:6 F5/3:6 E5/2:36~",
+  "E5/2:60 r:12",
+  "D5/1:36 E5/2:12 D5/1:6 E5/2:6 F5/3:12~",
+  "F5/3:24 G5/4:12 Ab5/5:12 F5/3:8 G5/4:8 E5/2:8",
+  "D5/3:6 E5/4:6 D5/3:6 C5/2:18 Bb4/1:36~",
+  "Bb4/1:6 C5/2:6 Bb4/1:6 C5/2:6 D5/3:6 E5/4:6 D5/3:6 C5/2:6 D5/4:6 C5/3:6 Bb4/2:6 Ab4/1:6",
+  "Bb4/3:6 Ab4/2:6 G4/1:24 F4/2:36~",
+  "F4/2:30 G4/3:6 F4/2:6 Eb4/1:30~",
+  "Eb4/1:24 F4/3:6 Eb4/2:6 F4/3:6 Db4/1:30~",
+  "Db4/1:30 Db4/1:6 Eb4/2:6 Db4/1:6 F4/3:6 Eb4/2:6 Db4/1:6 C4/1:6~",
+];
+
+/**
+ * Bars 75 and 76: the bolero rhythm alone, with the cellos' new E3 and the violas' C4 in the left hand.
+ * The tune's last C4 is held from bar 74, so the flute's G4 joins on the second eighth.
+ */
+const CLOSE: Record<number, PrintBar> = {
+  75: ["C4/1:12 G4/3:4 G4/2:4 G4/1:4 G4/1:12 G4/3:4 G4/2:4 G4/1:4 G4/1:12 G4/1:12", "C3+E3+G3/5+3+1:24 C4/1:24 G2+G3/5+1:24"],
+  76: [
+    "G4/1:12 G4/3:4 G4/2:4 G4/1:4 G4/1:12 G4/3:4 G4/2:4 G4/1:4 G4/3:4 G4/2:4 G4/1:4 G4/3:4 G4/2:4 G4/1:4",
+    "C3+E3+G3/5+3+1:24 C4/1:24 G2+G3/5+1:12 G3/1:12",
+  ],
+};
+
+/** Our closing bar after the cut: a held C major chord. */
+const LAST_BAR: PrintBar = ["C4+E4+G4+C5/1+2+3+5:72", "C2+G2+C3/5+2+1:72"];
+
+/** Whether the right hand's bar `text` sounds `name` between the units `from` and `to`. */
+function sounds(text: string, name: string, from: number, to: number): boolean {
+  let at = 0;
+  for (const token of text.split(" ")) {
+    const [head = "", length = ""] = token.split(":");
+    const end = at + Number.parseInt(length, 10);
+    if ((head.split("/")[0] ?? "").split("+").includes(name) && at < to && end > from) return true;
+    at = end;
+  }
+  return false;
+}
+
+/** The plucked chords of bars 1 to 20 under `right`. The viola's G4 drops where the tune sounds G4 on beat 2. */
+function opening(bar: number, right: string): string {
+  const chords = bar % 2 === 0 ? OPENING_EVEN : OPENING_ODD;
+  return sounds(right, "G4", 24, 48) ? chords.replace("G3+G4/5+1:24", "G3/1:24") : chords;
+}
+
+/** Bar `bar` of the print, from 1 to 76. */
+function printBar(bar: number): PrintBar {
+  const even = bar % 2 === 0;
+  const fall = B_THEME_FALL[bar] ?? CLOSE[bar];
+  if (fall !== undefined) return fall;
+  if (bar <= 4) return ["r:72", opening(bar, "r:72")];
+  if (bar <= 20) return [A_THEME[bar - 5]!, opening(bar, A_THEME[bar - 5]!)];
+  if (bar === 21) return ["C4/1:12 G4/3:4 G4/2:4 G4/1:4 G4/3:12 G4/3:4 G4/2:4 G4/1:4 G4/3:12 G4/3:12", PLUCKED_ODD];
+  if (bar === 39) return ["C4+G4/1+5:12 G4/3:4 G4/2:4 G4/1:4 G4/3:12 G4/3:4 G4/2:4 G4/1:4 G4/3:12 G4/3:12", PLUCKED_ODD];
+  if (bar === 22 || bar === 40 || bar === 58) return [RHYTHM_EVEN, PLUCKED_EVEN];
+  const drum = even ? DRUM_EVEN : DRUM_ODD;
+  if (bar <= 38) return [A_THEME[bar - 23]!, drum];
+  if (bar <= 52) return [B_THEME_LOW[bar - 41]!, drum];
+  if (bar <= 74) return [B_THEME_HIGH[bar - 59]!, drum];
+  throw new Error(`Boléro's Original has no bar ${bar}`);
+}
+
+/** One hand of the Original: `part` of each print bar in order, then our closing bar. */
+function printLine(part: 0 | 1): string {
+  const bars = Array.from({ length: PRINT_LENGTH }, (_, at) => printBar(at + 1)[part]);
+  return [...bars, LAST_BAR[part]].join(" | ");
+}
+
+/** The Original's pedal: none under the plucked bars, and down through our closing chord. */
+const ORIGINAL_PEDAL = [...Array(PRINT_LENGTH).fill("r:72"), "P:72"].join(" | ");
+
 export const bolero: OurSong = {
   slug: "bolero",
   title: "Boléro",
@@ -226,7 +398,46 @@ export const bolero: OurSong = {
     "Two melodies take turns over one snare drum rhythm, which grows from soft to loud. " +
     "The 1979 film 10 featured it prominently, and its sales soared.",
   funFact: "Ravel first played the melody with one finger to his friend Gustave Samazeuilh, and asked whether it had an insistent quality.",
-  mythic: null,
+  /**
+   * Our Original keeps bars 1 to 76 of the 340: the first four statements, each closing on two bars of the
+   * rhythm alone. The later statements are left out, because the scan of the tutti pages is unreadable.
+   * Bar 77 is ours, a held C major chord. The score has no pedal; ours holds only that chord.
+   */
+  mythic: {
+    key: C_MAJOR,
+    bpm: 72,
+    numerator: 3,
+    denominator: 4,
+    steps: 24,
+    right: printLine(0),
+    left: printLine(1),
+    pedal: ORIGINAL_PEDAL,
+    source: {
+      edition:
+        "Ravel, Boléro, full score, Durand & Cie, Paris, plate D. & F. 11 839, bars 1 to 76, printed pages 1 to 9, reduced for two hands; scanned as Internet Archive item imslp-104723-pmlp-03667-ravel-bolero-cropped",
+      printed: 1929,
+      addedBars: [77],
+    },
+    skills: ["sixteenth-notes", "left-hand-melody", "position-change"],
+    practice: [
+      { text: "Play bars 1 to 8 with the left hand alone. It plucks the same three chords in every bar, like the strings.", hands: "left", speed: 0.6, loop: [1, 8], wait: true },
+      { text: "Play the flute's tune in bars 5 to 20 with the right hand alone. Hold each long note for its full length.", hands: "right", speed: 0.6, loop: [5, 20], wait: true },
+      { text: "Play bars 23 to 30 with the left hand alone. Between its chords it plays the drum rhythm on G, with quick triplets.", hands: "left", speed: 0.5, loop: [23, 30], wait: false },
+      { text: "Play bars 51 to 58 slowly with both hands. The left hand takes the tune in bar 53, and the right hand takes the drum rhythm.", hands: "both", speed: 0.5, loop: [51, 58], wait: true },
+      { text: "Play the whole piece with both hands at full speed. Keep it soft and steady, and never hurry.", hands: "both", speed: 1, loop: null, wait: false },
+    ],
+    tips: [
+      { fromBar: 1, toBar: 4, kind: "rhythm", text: "The piece starts with plucked chords alone. Count three slow beats, and keep them perfectly even." },
+      { fromBar: 23, toBar: 38, kind: "rhythm", text: "The left hand now adds the drum rhythm. Play its three quick notes lightly, so the tune stays on top." },
+      { fromBar: 41, toBar: 52, kind: "sound", text: "The second tune bends with B flat and D flat. Let these notes sound a little sad." },
+      { fromBar: 53, toBar: 57, kind: "trick", text: "The tune falls below middle C here, so the left hand takes it. The right hand plays the drum rhythm above." },
+    ],
+    tricky: {
+      25: "The right thumb plays E, then fingers 2 and 3 play F and G. Hold the G to the end, while the left hand plays the drum rhythm.",
+      51: "Four quick notes end on a long C. Then the thumb plays the low B flat, just above the left hand's G.",
+      62: "After the long E, the right hand jumps up to B flat. Play B flat, C and D flat with fingers 2, 3 and 4.",
+    },
+  },
   collection: "film",
   tune: { text: tune, numerator: 3, denominator: 1, steps: 4, key: C_MAJOR, hookBars: [1, 4] },
   versions: {
@@ -423,6 +634,26 @@ export const bolero: OurSong = {
           15: "Führ den Daumen unter zum G, und steig hinauf zum D. Die linke Hand springt zwischen G und seinem Akkord.",
           17: "Die Oktaven beginnen. Öffne die Hand, mit dem Daumen auf dem C und dem kleinen Finger auf dem C darüber.",
         },
+      },
+    },
+    original: {
+      practice: [
+        "Spiel die Takte 1 bis 8 nur mit der linken Hand. Sie zupft in jedem Takt dieselben drei Akkorde, wie die Streicher.",
+        "Spiel die Melodie der Flöte in den Takten 5 bis 20 nur mit der rechten Hand. Halte jeden langen Ton für seine volle Länge.",
+        "Spiel die Takte 23 bis 30 nur mit der linken Hand. Zwischen ihren Akkorden spielt sie den Trommelrhythmus auf G, mit schnellen Triolen.",
+        "Spiel die Takte 51 bis 58 langsam mit beiden Händen. Die linke Hand übernimmt in Takt 53 die Melodie, und die rechte Hand den Trommelrhythmus.",
+        "Spiel das ganze Stück mit beiden Händen im vollen Tempo. Bleib leise und gleichmäßig, und werde nie schneller.",
+      ],
+      tips: [
+        "Das Stück beginnt nur mit gezupften Akkorden. Zähl drei langsame Schläge, und halte sie ganz gleichmäßig.",
+        "Die linke Hand spielt jetzt auch den Trommelrhythmus. Spiel ihre drei schnellen Töne leicht, damit die Melodie oben bleibt.",
+        "Die zweite Melodie biegt sich mit B und Des. Lass diese Töne ein wenig traurig klingen.",
+        "Hier fällt die Melodie unter das mittlere C, also übernimmt sie die linke Hand. Die rechte Hand spielt darüber den Trommelrhythmus.",
+      ],
+      tricky: {
+        25: "Der rechte Daumen spielt das E, dann spielen Finger 2 und 3 das F und das G. Halte das G bis zum Ende, während die linke Hand den Trommelrhythmus spielt.",
+        51: "Vier schnelle Töne enden auf einem langen C. Dann spielt der Daumen das tiefe B, knapp über dem G der linken Hand.",
+        62: "Nach dem langen E springt die rechte Hand hinauf zum B. Spiel B, C und Des mit Finger 2, 3 und 4.",
       },
     },
   },

@@ -323,6 +323,7 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `bolero/rare.mid` | Boléro, Easy | Maurice Ravel | MIT |
 | `bolero/epic.mid` | Boléro, Medium | Maurice Ravel | MIT |
 | `bolero/legendary.mid` | Boléro, Hard | Maurice Ravel | MIT |
+| `bolero/mythic.mid` | Boléro, Original | Maurice Ravel | MIT |
 | `bolero/guide.json` | Boléro, the guide | | MIT |
 | `funeral-march/common.mid` | Funeral March, Beginner | Frédéric Chopin | MIT |
 | `funeral-march/rare.mid` | Funeral March, Easy | Frédéric Chopin | MIT |
@@ -360,6 +361,7 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `vltava/rare.mid` | Vltava, Easy | Bedřich Smetana | MIT |
 | `vltava/epic.mid` | Vltava, Medium | Bedřich Smetana | MIT |
 | `vltava/legendary.mid` | Vltava, Hard | Bedřich Smetana | MIT |
+| `vltava/mythic.mid` | Vltava, Original | Bedřich Smetana | MIT |
 | `vltava/guide.json` | Vltava, the guide | | MIT |
 | `aquarium/common.mid` | Aquarium, Beginner | Camille Saint-Saëns | MIT |
 | `aquarium/rare.mid` | Aquarium, Easy | Camille Saint-Saëns | MIT |

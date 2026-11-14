@@ -141,6 +141,15 @@ own, which follows the piece and keeps no limit of the four versions.
   `every_song_of_ours_has_an_original` names it as the one song still waiting for a print.
 - **Among two-hand reductions, the plainest faithful one wins** over a virtuoso transcription such as
   Liszt's, since a learner plays it. A four-hand print or a score comes only when no two-hand print exists.
+- **A virtuoso two-hand print still beats a four-hand print,** so *Beethoven's Fifth* follows Liszt.
+  Liszt's text is reduced only where a chord is past a hand's span, and the module names each such bar.
+- **A cut keeps only pages a transcriber can read.** A pitch is never guessed, so a blurred section is
+  left out, and the cut takes the best-known readable sections. *Boléro* keeps its first four statements.
+- **A long piece drops a printed repeat before it drops a best-known section.** *Vltava* skips the
+  repeat of bars 55 to 79, so it keeps both the flutes' source and the E major return.
+  It still plays about five minutes at one tempo, since a further cut would lose one of those two.
+- **An Original may hold a hook note that the tune strikes twice,** where the print ties it.
+  `originalTuneProblems` in `tools/song-meter.ts` accepts it, so no version's notes change for a tie.
 
 ## Stages
 
@@ -180,22 +189,29 @@ piano version.
 reviewer then reads the batch against its sources.
 **Gate:** `tools/our-songs/morning-mood.ts` holds an Original, and `the_original_of_ours_shows_its_guide` passes.
 
-- [ ] Each piece's print is found and its pages fetched to `.agent-tmp/src-<slug>/`.
+- [x] Each piece's print is found and its pages fetched to `.agent-tmp/src-<slug>/`.
   - [x] Six prints are found and fetched, at about 2000 pixels, each named here.
     - *William Tell*: Niedermeyer's two-hand reduction, Troupenas, Paris, 1829 to 1830, Gallica's scan on
       Commons as `Guillaume Tell, ouverture réduite pour le piano … par L. Niedermeyer - btv1b90674594 (<N> of 96).jpg`.
       The finale is images 10 to 14, printed pages 6 to 10, set whole, in 2/4 and E major at 152.
-    - *The Sorcerer's Apprentice*: Dukas's own two-piano version, Durand, plate D. & F. 5314, Archive item
-      `imslp-sorcier-dukas-paul`. PDF pages 1 to 18 are the first piano and 19 to 35 the second, aligned
-      by rehearsal numbers. The cut keeps the start to rehearsal 10, then 31 to the end. Its first end is unchecked.
-    - *Vltava*: Eulenburg's 1914 full score, plate E.E. 3642, Archive item `mavlastvltavno20000unse`, where
-      printed page p is image n(p+7). The cut is bars 1 to 79, then a closing cadence before the hunt.
-      It may add the E major return from bar 237, if a section ends there.
-    - *Beethoven's Fifth*: Czerny's four-hand version, Kistner, Archive item `sinfoniano5op6700beet`, with
-      Secondo and Primo on facing pages. The cut is bars 1 to 124, then the coda from about bar 374.
-      Commons was not searched for a two-hand print.
-    - *Boléro*: Durand's 1929 full score, plate D. & F. 11 839, Archive item
-      `imslp-104723-pmlp-03667-ravel-bolero-cropped`. The cut is bars 1 to about 40, then about 306 to 340.
+    - *William Tell*'s print is the one this goal keeps. The other four were replaced or recut, below.
+  - [x] A search for a two-hand print of the last four, and their cut pages at native size in `full/`.
+    - *The Sorcerer's Apprentice*: Victor Staub's two-hand transcription, Durand, ©1908, plate
+      D. & F. 7134, Archive item `afm6655.0001.001.umich.edu`. Printed page p is image n(p+7).
+      It is in F minor, Assez lent in 9/8, then Vif in 3/8. No bar or rehearsal number is printed.
+      The cut is pages 1 to 4, then 24 to 25, at 4000 pixels. Its first end needs the writer's check.
+    - *Vltava*: no two-hand print is reachable, so Eulenburg's 1914 full score stays, plate E.E. 3642,
+      Archive item `mavlastvltavno20000unse`. Printed page p is image n(p+7), one system a page.
+      The cut is bars 1 to 79, pages 1 to 18, then the E major return, bars 333 to 427 on pages 87 to 104.
+    - *Beethoven's Fifth*: Liszt's two-hand transcription, Archive item `SymphonyNo.5Op.67_833`, file
+      `SymphonyNo.5Op.67-Piano.pdf`. No plain two-hand set is reachable, and a two-hand print beats Czerny's four hands.
+      The scan's title page is lost, but Liszt's notes date from 1865, so the arrangement is public domain.
+      It is in 2/4 at a half note of 108. Its main staves are followed, never its ossia staves.
+      The cut is bars 1 to 124, then 248 to 502, on images n0 to n2 and n5 to n9.
+    - *Boléro*: no two-hand print is reachable, so Durand's 1929 full score stays, plate D. & F. 11 839,
+      Archive item `imslp-104723-pmlp-03667-ravel-bolero-cropped`. Printed page p is image n(p).
+      The cut is bars 1 to 76, pages 1 to 8: the A theme twice, then the B theme twice.
+      The tutti pages 55 to 66 are too blurred to read in every reachable scan, so the climax is left out.
   - [x] *Can-Can* and *Swan Lake* have candidate prints, which need a check.
     - *Can-Can*: Bote & Bock's vocal score of the Galop, plate 10779, Archive item
       `imslp-aux-enfers-offenbach-jacques`, in D major with no date read. Our strain is in G. Heugel's
@@ -217,13 +233,19 @@ reviewer then reads the batch against its sources.
     - [x] Page n11 from bar p7.42, n12 from p8.13 and n13 from p9.21.
   - [x] *Swan Lake*, pages 64 to 66, and *Can-Can*, pages 287 to 291.
   - [ ] *The Sorcerer's Apprentice*, *Vltava*, *Beethoven's Fifth* and *Boléro*, each in its cut.
+    - [x] *Boléro*, bars 1 to 76, in `page-n1-2.txt` to `page-n9.txt`.
+    - [x] *Vltava*, bars 1 to 79 and 333 to 427, in `page-n8-10.txt` to `page-n109-111.txt`.
+    - [ ] *The Sorcerer's Apprentice*, images n8 to n11 and n31 to n32.
+    - [ ] *Beethoven's Fifth*, images n0 to n2 and n5 to n9.
 - [ ] *Beethoven's Fifth* and *Boléro*. `tools/our-songs/beethoven-5.ts:208`, `tools/our-songs/bolero.ts:229`
+  - [x] *Boléro*: bars 1 to 76 and one closing C major chord of ours, and its review is settled.
+  - [ ] *Beethoven's Fifth*.
 - [x] *Can-Can* and *Swan Lake*. `tools/our-songs/can-can.ts:173`, `tools/our-songs/swan-lake.ts:184`
   - [x] *Swan Lake*: 70 bars, set whole, and its review is settled.
   - [x] *Can-Can*: 146 played bars with every repeat, `keyShift` 7, and its review is settled.
-- [ ] *William Tell* and *Vltava*. `tools/our-songs/william-tell.ts:210`, `tools/our-songs/vltava.ts:174`
+- [x] *William Tell* and *Vltava*. `tools/our-songs/william-tell.ts:210`, `tools/our-songs/vltava.ts:174`
   - [x] *William Tell*: 252 bars, set whole, and its review is settled.
-  - [ ] *Vltava*.
+  - [x] *Vltava*: 174 played bars, 1 to 79 then 333 to 427, and its review is settled.
 - [ ] *The Sorcerer's Apprentice*. *Night on Bald Mountain* waits for a print, by d8. `tools/our-songs/the-sorcerers-apprentice.ts:109`
 - [ ] The review's every finding is settled.
 - [ ] `bun tools/make-our-songs.ts` writes the batch, and the build is green.
@@ -345,30 +367,33 @@ its first print with accompaniment, or a songbook's setting printed before 1931.
 
 ### State
 
-Stage 2's first batch is committed: *William Tell*, *Swan Lake* and *Can-Can* hold their Originals,
-each reviewed against its print. The user may listen to these three. *Night on Bald Mountain* gets no
-Original for now, by the user's answer to d8.
+Stage 2's second batch is committed: *Boléro* and *Vltava* hold their Originals, each reviewed against
+its scan. The user may listen to these two. Five of stage 2's seven songs are done.
 
-- The notation ties a note across a bar line with `~`, in `tools/song-notation.ts`.
-- An Original's `source.keyShift` names a print in another key than the tune, as *Can-Can*'s D does.
-- Three prints are left, plus *Vltava*: *The Sorcerer's Apprentice*, *Beethoven's Fifth* and *Boléro*.
-  Their pages sit in `.agent-tmp/src-<slug>/` at about 2000 pixels, too small to read.
+- *Boléro* plays its first four statements, bars 1 to 76, and a closing chord of ours. Its tutti
+  pages are unreadable in every reachable scan.
+- *Vltava* plays bars 1 to 79, then 333 to 427, without the repeat, in about five minutes.
+- The meter now accepts a held hook note where the tune strikes the same pitch twice.
+- Two prints are left, both for two hands, fetched at 4000 pixels into `.agent-tmp/src-<slug>/full/`.
+  - *The Sorcerer's Apprentice*: Staub's 1908 transcription, images n8 to n11 and n31 to n32.
+  - *Beethoven's Fifth*: Liszt's transcription, images n0 to n2 and n5 to n9.
 
-The briefs are in `.agent-tmp/`: `brief-s2-sources.md`, `brief-s2-transcribe.md` and
-`brief-s2-write.md`. The writer's brief now names the tie and the triplet unit, `steps: 24`.
+The briefs are in `.agent-tmp/`: `brief-s2-transcribe.md`, `brief-s2-score.md` for a full score, and
+`brief-s2-write.md`. The writer's brief now forbids any edit of the tune or the four versions.
 
 ### Next
 
-**Stage 2: the orchestral showpieces.** Files: `tools/our-songs/vltava.ts`, `beethoven-5.ts`,
-`bolero.ts` and `the-sorcerers-apprentice.ts`. Gate: met.
+**Stage 2: the last two showpieces.** Files: `tools/our-songs/the-sorcerers-apprentice.ts` and
+`tools/our-songs/beethoven-5.ts`. Gate: met.
 
-1. **Fetch the four prints' cut pages at about 4000 pixels** into `.agent-tmp/src-<slug>/full/`, with one
-   source helper. Commons serves 3840 pixels by `iiurlwidth=4000`, and the Archive serves its native size.
-2. **Transcribe them, two systems per helper.** Name each helper's systems by number in its prompt. A
-   split by halves left page 288 of *Can-Can* to chance. A score or four-hand page is reduced as the brief says.
-3. **One writer per song,** from the transcriptions alone, with `brief-s2-write.md`.
-4. **One fresh reviewer per song,** given the doubtful readings to settle at a zoom. A misprint the
-   harmony proves, such as a missing sharp that clashes, is set right and named in a comment.
+1. **Transcribe both cuts, about two systems per helper.** Name each helper's systems by number.
+   - *Dukas*: no bar numbers are printed, so each helper counts from the page's first system.
+     The cut is pages 1 to 4, then 24 to 25. Check that page 4 ends a section; else move the join.
+   - *Beethoven*: Liszt's bars are unnumbered too. Bar 248 is the 8th bar of image n5's first system.
+     Follow the main staves, never the ossia. The cut is bars 1 to 124, then 248 to 502.
+2. **One writer per song,** from the transcriptions alone, with `brief-s2-write.md`.
+3. **One fresh reviewer per song,** given the doubtful readings to settle at a zoom.
+4. Read each module's `git diff` for removed lines, so no tune or version changed.
 5. Run `bun tools/make-our-songs.ts` and the build, then commit the batch, and close stage 2.
 
 Expected red: none.

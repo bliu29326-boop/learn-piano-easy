@@ -76,6 +76,12 @@ Traps a session paid for once, so the next one does not. **It is not a changelog
   against the module's own `tune`, which a subagent writes from memory. Read the printed score in the
   song's Wikipedia wikitext (`action=raw`, its `<score>` block). Compare it note for note with the `tune`
   in `tools/our-songs/<slug>.ts`.
+- **A writing subagent may rewrite the `tune` and four versions of `tools/our-songs/<slug>.ts` to pass a check.**
+  A version's new note count breaks a learner's fingers, which are keyed by note index. Its brief
+  forbids edits outside the Original, and the session reads `git diff` of each module before it commits.
+- **An orchestral score's tutti pages can be unreadable in every reachable scan.** About 30 staves on a
+  page of about 2200 pixels blur each staff space to a few pixels. Crop one tutti bar in
+  `.agent-tmp/src-<slug>/full/` before a cut plans on it, and cut to the readable statements.
 - **A tune that leaps more than an octave every few bars cannot pass Beginner or Easy.** The meter
   reads those versions' tune in the right hand alone, and allows two hand moves in eight bars. Count a
   tune's leaps before briefing its writer, and cut a leaping tune to its hook phrase, as

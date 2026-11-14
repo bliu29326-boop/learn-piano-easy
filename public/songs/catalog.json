@@ -5668,6 +5668,7 @@
       "open-fifths",
       "held-bass"
     ],
+    "mythic": "ours/bolero/mythic.mid",
     "collection": "film",
     "aka": [
       "Bolero",
@@ -5693,6 +5694,7 @@
       "eighth-notes",
       "position-change"
     ],
+    "mythic": "ours/bolero/mythic.mid",
     "collection": "film",
     "aka": [
       "Bolero",
@@ -5718,6 +5720,7 @@
       "thumb-under",
       "thirds-and-sixths"
     ],
+    "mythic": "ours/bolero/mythic.mid",
     "collection": "film",
     "aka": [
       "Bolero",
@@ -5743,6 +5746,32 @@
       "octave-bass",
       "melody-in-chords"
     ],
+    "mythic": "ours/bolero/mythic.mid",
+    "collection": "film",
+    "aka": [
+      "Bolero",
+      "Ravel's Boléro",
+      "Ravel Bolero"
+    ]
+  },
+  {
+    "composer": "Maurice Ravel",
+    "piece": "Boléro",
+    "title": "Original",
+    "file": "ours/bolero/mythic.mid",
+    "difficulty": 5,
+    "license": "MIT",
+    "credit": "Arranged by the learn-piano-easy authors",
+    "low": 36,
+    "high": 85,
+    "seconds": 192,
+    "song": "bolero",
+    "skills": [
+      "sixteenth-notes",
+      "left-hand-melody",
+      "position-change"
+    ],
+    "mythic": "ours/bolero/mythic.mid",
     "collection": "film",
     "aka": [
       "Bolero",
@@ -6460,6 +6489,7 @@
       "five-finger-position",
       "open-fifths"
     ],
+    "mythic": "ours/vltava/mythic.mid",
     "collection": "film",
     "aka": [
       "Die Moldau",
@@ -6485,6 +6515,7 @@
       "two-note-chords",
       "eighth-notes"
     ],
+    "mythic": "ours/vltava/mythic.mid",
     "collection": "film",
     "aka": [
       "Die Moldau",
@@ -6511,6 +6542,7 @@
       "pedal",
       "thirds-and-sixths"
     ],
+    "mythic": "ours/vltava/mythic.mid",
     "collection": "film",
     "aka": [
       "Die Moldau",
@@ -6537,6 +6569,33 @@
       "arpeggios",
       "melody-in-chords"
     ],
+    "mythic": "ours/vltava/mythic.mid",
+    "collection": "film",
+    "aka": [
+      "Die Moldau",
+      "The Moldau",
+      "Má vlast",
+      "Moldau"
+    ]
+  },
+  {
+    "composer": "Bedřich Smetana",
+    "piece": "Vltava",
+    "title": "Original",
+    "file": "ours/vltava/mythic.mid",
+    "difficulty": 5,
+    "license": "MIT",
+    "credit": "Arranged by the learn-piano-easy authors",
+    "low": 28,
+    "high": 95,
+    "seconds": 315,
+    "song": "vltava",
+    "skills": [
+      "sixteenth-notes",
+      "broken-chords",
+      "melody-in-chords"
+    ],
+    "mythic": "ours/vltava/mythic.mid",
     "collection": "film",
     "aka": [
       "Die Moldau",
