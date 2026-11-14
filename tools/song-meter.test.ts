@@ -10,6 +10,7 @@ import {
   measure,
   meterOfFile,
   meterOfNotation,
+  originalTuneProblems,
   raritiesFit,
   trickySpots,
   tuneOf,
@@ -135,6 +136,15 @@ test("a_lost_hook_is_refused", () => {
   const common90 = matchTune(meterOfNotation(merged), tune, "common");
   expect([common90.problems, +common90.score.toFixed(3)]).toEqual([[], 1]);
   expect(matchTune(meterOfNotation(merged), tune, "rare").problems).toEqual(["the version plays 92% of the tune, under 100%"]);
+});
+
+test("an_original_may_hold_a_repeated_hook_note", () => {
+  const tune = tuneOf("E4:1 D4:1 C4:1 D4:1 | E4:1 E4:1 E4:2 | D4:1 D4:1 D4:2 | E4:1 G4:1 G4:2", common, { tonic: 0, mode: "major" }, [1, 2]);
+  const original = (right: string) => originalTuneProblems(meterOfNotation(variant({ right, left: "C3:4 | C3:4" })), tune);
+  // The print ties the second E4 to the first, so it is held and never struck again.
+  expect(original("E4:1 D4:1 C4:1 D4:1 | E4:2 E4:2")).toEqual([]);
+  // A held note that is not a repeat still loses the hook.
+  expect(original("E4:1 D4:1 C4:2 | E4:1 E4:1 E4:2")).toEqual(["the hook is lost, or plays outside the print's key"]);
 });
 
 test("the_costliest_bars_are_the_tricky_spots", () => {

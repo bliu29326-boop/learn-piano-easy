@@ -768,6 +768,8 @@ const ORIGINAL_SCALES = [0.25, 0.5, 1, 2, 4] as const;
  * either hand's top voice, anywhere in the piece. The print's key is the tune's own key moved by
  * `keyShift` semitones, which is 0 where the two agree. The hook may sound an octave away, and write the
  * tune's values at a quarter to four times their length, since the module may write the tune in longer notes.
+ * A hook note that strikes its previous note's pitch again may be held instead, where the print ties it,
+ * so long as no other note starts in that voice there.
  */
 export function originalTuneProblems(song: MeterSong, tune: Tune, keyShift = 0): string[] {
   const hook = tune.notes.filter((note) => note.tick >= tune.hook.fromTick && note.tick < tune.hook.toTick);
@@ -778,7 +780,12 @@ export function originalTuneProblems(song: MeterSong, tune: Tune, keyShift = 0):
     for (const [tick, pitch] of voice) {
       const shift = pitch - first.pitch;
       if ((((shift - keyShift) % 12) + 12) % 12 !== 0) continue;
-      const plays = (scale: number) => hook.every((note) => voice.get(tick + (note.tick - first.tick) * scale) === note.pitch + shift);
+      const plays = (scale: number) =>
+        hook.every((note, at) => {
+          const struck = voice.get(tick + (note.tick - first.tick) * scale);
+          if (struck === note.pitch + shift) return true;
+          return struck === undefined && at > 0 && hook[at - 1]!.pitch === note.pitch;
+        });
       if (ORIGINAL_SCALES.some(plays)) return [];
     }
   }
