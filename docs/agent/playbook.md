@@ -109,6 +109,12 @@ Traps a session paid for once, so the next one does not. **It is not a changelog
 - **An Internet Archive PDF on Commons shows blank staves once its images are pulled out.** Its colour
   layer is JPEG 2000 without ink, and the notes sit in a JBIG2 layer nothing here decodes. Fetch each
   page as `archive.org/download/<item>/page/n<N>.jpg` instead.
+- **A transcriber given a scan about 2000 pixels wide guesses its pitches from the harmony.** Staff lines
+  and note heads blur at that size, and four helpers handed back invented notes. Fetch about 4000 pixels,
+  and have each helper crop half a system at that size before a writer sets `tools/our-songs/<slug>.ts`.
+- **Commons can refuse a scan's original file with an HTML error page saved as `.jpg`.** Its retries
+  fail for many minutes. Ask `imageinfo` with `iiurlwidth=4000` and fetch its `thumburl`, which serves a
+  3840-pixel copy. Check each fetch with `file`.
 - **A song module checked in a tree with uncommitted meter edits may fail at HEAD.** `tools/check-our-song.ts`
   reads the tree's `tools/song-meter.ts`, and the writer rewrites every catalog row. Check, write and
   build in a detached worktree under `.agent-tmp/`, after `bun install --frozen-lockfile` there. Add

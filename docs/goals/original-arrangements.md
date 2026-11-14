@@ -126,6 +126,13 @@ own, which follows the piece and keeps no limit of the four versions.
   own the bounds, and the writer's `guideProblems` checks them, so the app never refuses a guide.
 - **A writer's brief names its context ceiling and forbids page images.** It reads the transcription
   files alone, since the first writer ran out of context on the scans.
+- **Two kept sections join with no bar of our own.** The next section starts as the print has it, even
+  where the key changes. A join bar would be a bar of ours, which the rules allow only as the last cadence.
+- **A print may come from any public library whose `robots.txt` admits agents,** such as Gallica, the
+  Library of Congress or HathiTrust's public domain scans. The Internet Archive and Commons hold no print
+  of *Night on Bald Mountain*. IMSLP stays refused.
+- **Among two-hand reductions, the plainest faithful one wins** over a virtuoso transcription such as
+  Liszt's, since a learner plays it. A four-hand print or a score comes only when no two-hand print exists.
 
 ## Stages
 
@@ -165,6 +172,35 @@ piano version.
 reviewer then reads the batch against its sources.
 **Gate:** `tools/our-songs/morning-mood.ts` holds an Original, and `the_original_of_ours_shows_its_guide` passes.
 
+- [ ] Each piece's print is found and its pages fetched to `.agent-tmp/src-<slug>/`.
+  - [x] Six prints are found and fetched, at about 2000 pixels, each named here.
+    - *William Tell*: Niedermeyer's two-hand reduction, Troupenas, Paris, 1829 to 1830, Gallica's scan on
+      Commons as `Guillaume Tell, ouverture réduite pour le piano … par L. Niedermeyer - btv1b90674594 (<N> of 96).jpg`.
+      The finale is images 10 to 14, printed pages 6 to 10, set whole, in 2/4 and E major at 152.
+    - *The Sorcerer's Apprentice*: Dukas's own two-piano version, Durand, plate D. & F. 5314, Archive item
+      `imslp-sorcier-dukas-paul`. PDF pages 1 to 18 are the first piano and 19 to 35 the second, aligned
+      by rehearsal numbers. The cut keeps the start to rehearsal 10, then 31 to the end. Its first end is unchecked.
+    - *Vltava*: Eulenburg's 1914 full score, plate E.E. 3642, Archive item `mavlastvltavno20000unse`, where
+      printed page p is image n(p+7). The cut is bars 1 to 79, then a closing cadence before the hunt.
+      It may add the E major return from bar 237, if a section ends there.
+    - *Beethoven's Fifth*: Czerny's four-hand version, Kistner, Archive item `sinfoniano5op6700beet`, with
+      Secondo and Primo on facing pages. The cut is bars 1 to 124, then the coda from about bar 374.
+      Commons was not searched for a two-hand print.
+    - *Boléro*: Durand's 1929 full score, plate D. & F. 11 839, Archive item
+      `imslp-104723-pmlp-03667-ravel-bolero-cropped`. The cut is bars 1 to about 40, then about 306 to 340.
+  - [x] *Can-Can* and *Swan Lake* have candidate prints, which need a check.
+    - *Can-Can*: Bote & Bock's vocal score of the Galop, plate 10779, Archive item
+      `imslp-aux-enfers-offenbach-jacques`, in D major with no date read. Our strain is in G. Heugel's
+      1874 vocal score, Archive item `orpheauxenfers00offe`, pages 279 to 300, is unchecked.
+    - *Swan Lake*: a full score of No. 10, plate "B.B. 59", Archive item
+      `imslp-lake-ballet-op20-tchaikovsky-pyotr`, its publisher and year unread. Commons is unsearched.
+  - [ ] *Night on Bald Mountain*'s print, from a library the standing decisions allow.
+  - [ ] *Swan Lake* and *Can-Can*: their prints are confirmed or replaced, as the handoff says.
+- [ ] Each fetched page is transcribed to `page-n<N>.txt` beside it.
+  - [ ] *William Tell*'s finale, pages n10 to n14.
+    - [x] Pages n10 and n14 are whole, from the 3840-pixel scans in `full/`.
+    - [ ] Page n11 from bar p7.42, n12 from p8.13 and n13 from p9.21.
+  - [ ] *The Sorcerer's Apprentice*, *Vltava*, *Beethoven's Fifth* and *Boléro*, each in its cut.
 - [ ] *Beethoven's Fifth* and *Boléro*. `tools/our-songs/beethoven-5.ts:208`, `tools/our-songs/bolero.ts:229`
 - [ ] *Can-Can* and *Swan Lake*. `tools/our-songs/can-can.ts:173`, `tools/our-songs/swan-lake.ts:184`
 - [ ] *William Tell* and *Vltava*. `tools/our-songs/william-tell.ts:210`, `tools/our-songs/vltava.ts:174`
@@ -289,33 +325,33 @@ its first print with accompaniment, or a songbook's setting printed before 1931.
 
 ### State
 
-Stage 1 is done. *Morning Mood* holds the first Original: all 87 bars of Schirmer's 1899 print, in the
-records `OPENING` to `RETURN` of `tools/our-songs/morning-mood.ts`. It rates 5, plays 173 seconds, and its
-tricky bars are 74, 75 and 85. A reviewer read it against the print and found no drift in tune or bass.
-Its readings of bars 49 and 55 were settled on the scan, as augmented chords.
+Stage 1 is done: *Morning Mood* holds the first Original, in `tools/our-songs/morning-mood.ts`.
+Stage 2 has its prints, which its first checkpoint lists, and William Tell's first transcriptions. These
+are in `.agent-tmp/src-william-tell/page-n<N>.txt`, one unit a 32nd. No module has changed yet.
 
-The pilot changed two checks, now in the standing decisions. An Original's span check reads each chord,
-and a guide's practice steps are checked against `FEWEST_STEPS` to `MOST_STEPS` by the writer.
+- n10 is bars 1 to 59, and n14 is bars p10.1 to p10.46, both whole.
+- n11 holds p7.1 to p7.41, n12 holds p8.1 to p8.12, and n13 holds p9.1 to p9.20.
+- n10's bar 42 is wrong: the printed natural on G3 holds to the bar's end, so its last two chords take G.
+- `lowres-guesses/` holds a failed first pass from 1920-pixel scans, and is never a source.
 
-The pattern a batch copies, as the pilot found it:
-
-- Each page goes to a read-only transcriber, who writes a file in the module's notation. It writes after
-  every system, so a lost context keeps its work.
-- One writer per song assembles from those files alone, as one bar per record entry.
-- `bpm` counts quarters: 6/8 at dotted quarter 60 is `bpm: 90`, with `steps: 4` for a 32nd per unit.
-- A grace that has no time before it takes its time from the note before, as bar 2 does.
+Every page is read from a 3840-pixel copy in `full/`, and a helper finishes about two systems. The briefs
+are `.agent-tmp/brief-s2-transcribe.md` and `.agent-tmp/brief-s2-sources.md`.
 
 ### Next
 
 **Stage 2: the orchestral showpieces.** Files: the eight modules stage 2 names. Gate: met.
 
-1. **Find each piece's source** by the order in the standing decisions, on archive.org or Wikimedia Commons.
-2. **Transcribe each source's pages,** one read-only subagent per page or two, each writing its file
-   under `.agent-tmp/src-<slug>/`.
-3. **Four writing subagents assemble two songs each,** from the transcriptions alone. Each brief names its
+1. **Finish William Tell's transcription:** one helper each for n11 from p7.42, n12 systems 2 to 4 from
+   p8.13, n12 systems 5 to 7, and n13 systems 4 to 7 from p9.21. Name their systems in the prompt.
+2. **Settle three prints:** search Commons for *Swan Lake*'s piano score, check Heugel's *Can-Can*
+   against our G major strain, and find *Night on Bald Mountain* in Gallica, the Library of Congress or
+   HathiTrust.
+3. **Fetch every other print at about 4000 pixels,** then transcribe it, two systems per helper. A
+   four-hand or score page is reduced as the brief says.
+4. **Four writing subagents assemble two songs each,** from the transcriptions alone. Each brief names its
    ceiling and the Morning Mood module as the pattern, with `rolledWide` for bracketed chords.
-4. **A fresh reviewer reads the batch against its sources,** and the session settles each finding.
-5. Run `bun tools/make-our-songs.ts` and the build, then commit the batch.
+5. **A fresh reviewer reads the batch against its sources,** and the session settles each finding.
+6. Run `bun tools/make-our-songs.ts` and the build, then commit the batch.
 
 Expected red: none.
 
