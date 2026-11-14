@@ -121,8 +121,11 @@ reasons.
   best-known sections in their order, cut where a section ends, and closes on the home chord.
 - **It adds no bar of our own.** A cut's last cadence may add at most two bars, and the module names
   them in `addedBars`.
-- **It keeps no limit of the four versions.** It keeps the checks of a hand: a finger on every note and
-  the practical span. It plays the hook note for note in the tune's own key.
+- **It keeps no limit of the four versions.** It keeps the checks of a hand: a finger on every note, and
+  no chord past the practical span. A move between two chords is a jump, as the print's own leaps are.
+  It plays the hook note for note in the tune's own key.
+- **A chord the print brackets is rolled.** One hand holds no chord wider than a tenth, so the module
+  writes it from its lowest note up, a 32nd per note.
 - **The meter rates it** as the lowest version whose limits it fits, at that version's catalog difficulty.
   Past Hard it rates 5, the level Advanced. The head comment of
   [tools/song-meter.ts](../tools/song-meter.ts) owns the rule.

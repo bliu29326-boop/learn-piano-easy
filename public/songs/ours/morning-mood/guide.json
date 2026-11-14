@@ -28,7 +28,7 @@
     "ru": "Музыка рисует восход солнца в марокканской пустыне, а не над норвежским фьордом, как думает большинство слушателей.",
     "fr": "La musique peint un lever de soleil dans le désert marocain, et non sur un fjord norvégien, comme l’imaginent la plupart des auditeurs."
   },
-  "mythic": null,
+  "mythic": "ours/morning-mood/mythic.mid",
   "versions": {
     "common": {
       "file": "ours/morning-mood/common.mid",
@@ -904,5 +904,134 @@
         }
       ]
     }
+  },
+  "original": {
+    "file": "ours/morning-mood/mythic.mid",
+    "skills": [
+      "melody-in-chords",
+      "arpeggios",
+      "sixteenth-notes"
+    ],
+    "fingers": {
+      "right": [5, 3, 2, 1, 2, 3, 5, 3, 4, 3, 2, 1, 2, 3, 2, 3, 4, 5, 2, 4, 1, 5, 2, 5, 1, 5, 4, 3, 2, 1, 2, 5, 4, 3, 2, 3, 4, 1, 2, 5, 3, 4, 3, 2, 1, 2, 3, 2, 3, 2, 3, 1, 4, 2, 4, 1, 4, 2, 4, 1, 5, 4, 3, 2, 5, 3, 2, 1, 2, 3, 5, 3, 4, 3, 2, 1, 2, 3, 2, 3, 2, 3, 4, 2, 4, 1, 5, 2, 5, 1, 5, 4, 3, 2, 1, 2, 5, 4, 3, 2, 3, 4, 1, 2, 5, 4, 5, 4, 2, 1, 2, 3, 2, 3, 2, 3, 1, 4, 2, 4, 1, 2, 5, 3, 5, 1, 2, 5, 4, 3, 2, 1, 5, 4, 3, 2, 3, 4, 3, 4, 1, 2, 5, 4, 3, 2, 3, 4, 3, 4, 1, 5, 4, 2, 1, 2, 5, 4, 2, 1, 5, 4, 2, 1, 2, 5, 4, 1, 1, 2, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 2, 5, 4, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 3, 4, 5, 3, 5, 1, 2, 5, 3, 5, 1, 2, 5, 5, 4, 3, 1, 2, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 2, 5, 4, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 3, 4, 5, 3, 5, 1, 2, 5, 3, 5, 4, 5, 1, 4, 3, 5, 1, 2, 5, 4, 5, 4, 5, 1, 5, 3, 5, 1, 2, 5, 3, 5, 1, 5, 4, 3, 1, 2, 3, 5, 4, 2, 1, 2, 4, 5, 3, 2, 1, 2, 4, 5, 3, 2, 1, 2, 3, 3, 5, 1, 2, 5, 1, 2, 5, 1, 2, 5, 1, 1, 5, 4, 3, 1, 2, 3, 2, 5, 1, 1, 5, 4, 3, 1, 2, 3, 2, 5, 1, 4, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 4, 2, 1, 2, 3, 5, 1, 4, 2, 1, 2, 4, 5, 1, 5, 4, 3, 1, 2, 3, 5, 4, 2, 1, 2, 4, 5, 3, 2, 1, 2, 4, 5, 3, 2, 1, 2, 3, 2, 5, 1, 2, 5, 1, 2, 5, 1, 2, 5, 1, 1, 5, 3, 2, 1, 2, 3, 2, 5, 1, 1, 5, 3, 2, 1, 2, 3, 2, 5, 1, 4, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 5, 4, 2, 1, 2, 4, 5, 1, 4, 2, 1, 2, 4, 5, 1, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 4, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 3, 2, 1, 2, 3, 1, 5, 3, 2, 1, 2, 3, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 3, 2, 1, 2, 3, 1, 5, 4, 2, 1, 2, 4, 1, 5, 4, 2, 1, 2, 4, 1, 5, 3, 2, 1, 2, 3, 1, 5, 3, 2, 1, 2, 4, 1, 5, 3, 2, 1, 2, 3, 1, 5, 3, 2, 1, 2, 4, 1, 5, 3, 2, 1, 2, 3, 1, 5, 3, 2, 1, 2, 3, 1, 5, 3, 2, 1, 2, 3, 1, 5, 3, 2, 1, 2, 3, 2, 3, 1, 3, 2, 4, 5, 2, 3, 1, 2, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 3, 4, 1, 3, 4, 3, 4, 3, 4, 3, 4, 3, 2, 3, 1, 3, 4, 3, 4, 3, 4, 3, 4, 3, 2, 3, 1, 3, 4, 3, 4, 3, 4, 3, 4, 3, 2, 3, 1, 3, 4, 3, 4, 3, 4, 3, 4, 3, 2, 3, 1, 4, 2, 4, 5, 2, 3, 1, 2, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 3, 4, 1, 3, 4, 3, 4, 3, 4, 3, 4, 3, 2, 3, 1, 3, 4, 3, 4, 3, 4, 3, 4, 3, 2, 3, 1, 2, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 3, 4, 1, 3, 4, 3, 4, 3, 4, 3, 4, 3, 2, 3, 1, 2, 4, 5, 4, 5, 4, 5, 4, 5, 4, 3, 4, 1, 3, 4, 3, 4, 3, 4, 3, 4, 3, 2, 3, 1, 2, 4, 5, 4, 5, 4, 5, 4, 5, 4, 3, 4, 1, 2, 3, 5, 1, 2, 3, 4, 1, 2, 3, 5, 5, 3, 2, 1, 2, 3, 5, 3, 2, 1, 2, 3, 2, 3, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 5],
+      "left": [5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 2, 3, 4, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 2, 3, 4, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 3, 1, 2, 3, 4, 5, 2, 1, 5, 2, 1, 5, 3, 1, 5, 2, 1, 5, 2, 1, 2, 3, 4, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 3, 1, 5, 2, 1, 5, 1, 5, 1, 5, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 2, 1, 5, 3, 2, 1, 5, 2, 1, 5, 3, 2, 1, 5, 2, 1, 5, 2, 1, 2, 4, 2, 4, 2, 4, 5, 3, 1, 2, 2, 1, 5, 2, 1, 5, 3, 2, 1, 5, 2, 1, 5, 3, 2, 1, 5, 2, 1, 5, 4, 2, 1, 5, 2, 1, 2, 4, 2, 4, 2, 4, 5, 4, 1, 2, 2, 1, 5, 2, 1, 5, 3, 2, 1, 5, 2, 1, 5, 3, 2, 1, 5, 2, 1, 5, 4, 2, 1, 5, 2, 1, 2, 4, 2, 4, 2, 4, 4, 2, 1, 4, 2, 1, 5, 5, 1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 3, 2, 3, 2, 5, 3, 2, 1, 2, 1, 5, 3, 2, 1, 2, 1, 5, 3, 2, 1, 5, 2, 1, 4, 2, 1, 5, 5, 1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 3, 2, 3, 2, 5, 3, 2, 1, 2, 1, 5, 3, 2, 1, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 2, 1, 5, 2, 1, 3, 1, 5, 1, 5, 2, 1, 3, 2, 1, 4, 5, 4, 1, 5, 2, 1, 5, 2, 3, 1, 3, 1, 5, 2, 3, 1, 3, 1, 5, 2, 3, 1, 3, 1, 5, 2, 3, 1, 3, 2, 1, 4, 5, 4, 1, 5, 2, 1, 5, 2, 3, 1, 3, 1, 5, 2, 3, 1, 5, 4, 1, 5, 2, 1, 5, 2, 3, 1, 5, 4, 1, 5, 2, 1, 5, 2, 3, 1, 5, 4, 1, 5, 1, 5, 1, 5, 1, 5, 3, 1, 2, 3, 2, 1, 2, 3, 2, 1, 1, 2, 3, 2, 1, 2, 1, 5, 2, 1, 2, 5, 3, 2, 1, 5, 2, 1, 3, 2, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5]
+    },
+    "start": {
+      "right": [76, 78, 80, 81, 83],
+      "left": [68, 59, null, null, 52]
+    },
+    "practice": [
+      {
+        "text": {
+          "en": "Play bars 1 to 8 slowly with the right hand alone. Let the song wait for each note, and keep the tune soft.",
+          "de": "Spiel die Takte 1 bis 8 langsam nur mit der rechten Hand. Lass das Stück auf jeden Ton warten, und spiel die Melodie leise."
+        },
+        "hands": "right",
+        "speed": 0.6,
+        "loop": [1, 8],
+        "wait": true
+      },
+      {
+        "text": {
+          "en": "Play bars 30 to 39 with the left hand alone. In the loud bars it plays a low chord, then reaches up for two quick notes.",
+          "de": "Spiel die Takte 30 bis 39 nur mit der linken Hand. In den lauten Takten spielt sie einen tiefen Akkord und greift dann hinauf zu zwei schnellen Tönen."
+        },
+        "hands": "left",
+        "speed": 0.5,
+        "loop": [30, 39],
+        "wait": true
+      },
+      {
+        "text": {
+          "en": "Play bars 30 to 36 with the right hand alone. Keep the sixteenths even, and the soft chords between them quiet.",
+          "de": "Spiel die Takte 30 bis 36 nur mit der rechten Hand. Spiel die Sechzehntel gleichmäßig und die leisen Akkorde dazwischen ruhig."
+        },
+        "hands": "right",
+        "speed": 0.5,
+        "loop": [30, 36],
+        "wait": true
+      },
+      {
+        "text": {
+          "en": "Play the trills of bars 67 to 75 with the right hand alone. Start slowly, and keep the two fingers light.",
+          "de": "Spiel die Triller der Takte 67 bis 75 nur mit der rechten Hand. Fang langsam an, und halt die beiden Finger leicht."
+        },
+        "hands": "right",
+        "speed": 0.5,
+        "loop": [67, 75],
+        "wait": false
+      },
+      {
+        "text": {
+          "en": "Play the whole piece with both hands at full speed, with the pedal.",
+          "de": "Spiel das ganze Stück mit beiden Händen im vollen Tempo, mit Pedal."
+        },
+        "hands": "both",
+        "speed": 1,
+        "loop": null,
+        "wait": false
+      }
+    ],
+    "tips": [
+      {
+        "fromBar": 1,
+        "toBar": 20,
+        "kind": "sound",
+        "text": {
+          "en": "The tune paints a sunrise. Play it softly, and change the pedal where the left hand's chord changes.",
+          "de": "Die Melodie malt einen Sonnenaufgang. Spiel sie leise, und wechsle das Pedal, wo der Akkord der linken Hand wechselt."
+        }
+      },
+      {
+        "fromBar": 2,
+        "toBar": 3,
+        "kind": "rhythm",
+        "text": {
+          "en": "The tune has quick grace notes in bars 2 and 3. Play them lightly, so the beat stays steady.",
+          "de": "Die Melodie hat schnelle Vorschläge in den Takten 2 und 3. Spiel sie leicht, damit der Schlag gleichmäßig bleibt."
+        }
+      },
+      {
+        "fromBar": 21,
+        "toBar": 29,
+        "kind": "sound",
+        "text": {
+          "en": "The tune returns loudly in octaves. Let the top note of each octave sing.",
+          "de": "Die Melodie kehrt laut in Oktaven zurück. Lass den oberen Ton jeder Oktave singen."
+        }
+      },
+      {
+        "fromBar": 30,
+        "toBar": 43,
+        "kind": "sound",
+        "text": {
+          "en": "Loud sixteenths and soft chords take turns here. Make each change from loud to soft sudden.",
+          "de": "Hier wechseln laute Sechzehntel und leise Akkorde einander ab. Wechsle jedes Mal plötzlich von laut zu leise."
+        }
+      }
+    ],
+    "tricky": [
+      {
+        "bar": 74,
+        "text": {
+          "en": "The trill on B lasts half a bar. Then the hand moves down to a chord, and trills on D sharp. The left hand jumps down to a B seventh chord.",
+          "de": "Der Triller auf H dauert einen halben Takt. Dann geht die Hand hinunter zu einem Akkord und trillert auf Dis. Die linke Hand springt hinunter zu einem H-Septakkord."
+        }
+      },
+      {
+        "bar": 75,
+        "text": {
+          "en": "This bar repeats bar 74. Move the hand early, so the second trill starts right at the half bar.",
+          "de": "Dieser Takt wiederholt Takt 74. Bewege die Hand früh, damit der zweite Triller genau in der Mitte des Takts beginnt."
+        }
+      },
+      {
+        "bar": 85,
+        "text": {
+          "en": "The left hand rolls an E major chord over two octaves, up to the E above middle C. Then it shakes between two low E's an octave apart.",
+          "de": "Die linke Hand bricht einen E-Dur-Akkord über zwei Oktaven, hinauf zum E über dem mittleren C. Dann wechselt sie schnell zwischen zwei tiefen E im Oktavabstand."
+        }
+      }
+    ]
   }
 }

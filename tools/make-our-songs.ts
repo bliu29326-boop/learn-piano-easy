@@ -63,7 +63,7 @@ import { songFromMidi } from "../src/midi/song";
 import { LOCALE_TABLE, type LocaleCode } from "../src/i18n/locale-table";
 import type { Translation } from "../src/i18n/translation";
 import { playerLibrary } from "../src/i18n/messages/player-library.en";
-import { RARITIES, RARITY_NAMES, type Guide, type GuideStep, type GuideText, type PracticeStep, type Rarity, type Tip, type VersionGuide } from "../src/library/guide";
+import { FEWEST_STEPS, MOST_STEPS, RARITIES, RARITY_NAMES, type Guide, type GuideStep, type GuideText, type PracticeStep, type Rarity, type Tip, type VersionGuide } from "../src/library/guide";
 import type { Collection } from "../src/library/search";
 import type { SkillId } from "../src/library/skills";
 import type { Finger, Hand } from "../src/theory/fingering";
@@ -80,6 +80,7 @@ import {
   measure,
   meterOfNotation,
   originalDifficulty,
+  originalFingerProblems,
   originalTuneProblems,
   trickySpots,
   tuneOf,
@@ -464,7 +465,7 @@ export function originalProblems(song: OurSong, year = new Date().getFullYear())
   const bars = barCount(meter);
   for (const bar of addedBars) if (bar < 1 || bar > bars) problems.push(`its added bar ${bar} lies outside its ${bars} bars`);
   problems.push(...originalTuneProblems(meter, tuneOf(tune.text, tune, tune.key, tune.hookBars)));
-  problems.push(...fingerProblems(meter), ...guideProblems(song, "mythic", meter));
+  problems.push(...originalFingerProblems(meter), ...guideProblems(song, "mythic", meter));
   if (song.de !== undefined && song.de.original === undefined) problems.push("its guide has no German");
   return problems.map((problem) => `${song.title}, ${stepEnglishName("mythic")}: ${problem}`);
 }
@@ -480,6 +481,8 @@ function guideProblems(song: OurSong, step: GuideStep, meter: MeterSong): string
     ...Object.keys(version.tricky).map((bar) => [Number(bar), Number(bar)]),
   ];
   for (const [from, to] of named) if (to! > bars || from! < 1) problems.push(`bars ${from} to ${to} lie outside its ${bars} bars`);
+  const steps = version.practice.length;
+  if (steps < FEWEST_STEPS || steps > MOST_STEPS) problems.push(`it has ${steps} practice steps, outside ${FEWEST_STEPS} to ${MOST_STEPS}`);
   const spots = trickySpots(meter).map((spot) => spot.bar).sort((a, b) => a - b);
   const written = Object.keys(version.tricky).map(Number).sort((a, b) => a - b);
   if (spots.join() !== written.join()) problems.push(`its tricky spots are bars ${spots.join(", ")}, and the tips name bars ${written.join(", ")}`);

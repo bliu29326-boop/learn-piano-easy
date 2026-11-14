@@ -6021,6 +6021,7 @@
       "five-finger-position",
       "open-fifths"
     ],
+    "mythic": "ours/morning-mood/mythic.mid",
     "collection": "film",
     "aka": [
       "Morgenstemning",
@@ -6046,6 +6047,7 @@
       "waltz-bass",
       "two-note-chords"
     ],
+    "mythic": "ours/morning-mood/mythic.mid",
     "collection": "film",
     "aka": [
       "Morgenstemning",
@@ -6072,6 +6074,7 @@
       "pedal",
       "thirds-and-sixths"
     ],
+    "mythic": "ours/morning-mood/mythic.mid",
     "collection": "film",
     "aka": [
       "Morgenstemning",
@@ -6098,6 +6101,33 @@
       "arpeggios",
       "melody-in-chords"
     ],
+    "mythic": "ours/morning-mood/mythic.mid",
+    "collection": "film",
+    "aka": [
+      "Morgenstemning",
+      "Morgenstimmung",
+      "Morning",
+      "Peer Gynt Suite No. 1"
+    ]
+  },
+  {
+    "composer": "Edvard Grieg",
+    "piece": "Morning Mood",
+    "title": "Original",
+    "file": "ours/morning-mood/mythic.mid",
+    "difficulty": 5,
+    "license": "MIT",
+    "credit": "Arranged by the learn-piano-easy authors",
+    "low": 28,
+    "high": 92,
+    "seconds": 173,
+    "song": "morning-mood",
+    "skills": [
+      "melody-in-chords",
+      "arpeggios",
+      "sixteenth-notes"
+    ],
+    "mythic": "ours/morning-mood/mythic.mid",
     "collection": "film",
     "aka": [
       "Morgenstemning",

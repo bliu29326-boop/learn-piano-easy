@@ -100,7 +100,8 @@
  * An Original of ours, the piece set for two hands, keeps no limit of the table:
  * - Its catalog difficulty is that of the lowest rarity whose every limit it keeps. Past Legendary it
  *   is `ORIGINAL_PAST_LEGENDARY`, 5, which the library calls Advanced. It need not earn a rarity.
- * - It keeps the fingering checks of a hand: a finger on every note, and no move past its practical span.
+ * - `originalFingerProblems` checks its hands: a finger on every note, and no chord past a hand's
+ *   practical span. A move between two moments is a jump, as the print's own leaps are, so it is no stretch.
  * - `originalTuneProblems` finds its hook note for note in the tune's own key, anywhere in the piece.
  *   The module may write the tune in longer notes, so the hook may play at a quarter to four times its
  *   written lengths.
@@ -827,6 +828,27 @@ export function fingerProblems(song: MeterSong): string[] {
       );
       if (past) problems.push(`${hand} hand, bar ${bar}: a move stretches past its practical span`);
     });
+  }
+  return problems;
+}
+
+/**
+ * What the fingering of an Original of ours breaks: a note without a written finger, or a chord one hand
+ * cannot hold. A move between two moments is a jump, as the print's own leaps are, so it is never a stretch.
+ */
+export function originalFingerProblems(song: MeterSong): string[] {
+  const problems: string[] = [];
+  for (const hand of ["right", "left"] as const) {
+    for (const moment of momentsOf(song.hands[hand])) {
+      const bar = barOf(song, moment.tick) + 1;
+      for (const note of moment.notes) if (!note.written) problems.push(`${hand} hand, bar ${bar}: pitch ${note.pitch} has no finger`);
+      const past = moment.notes.some((from) =>
+        moment.notes.some(
+          (to) => from.finger !== undefined && to.finger !== undefined && from.finger < to.finger && handMove(hand, from.finger, from.pitch, to.finger, to.pitch).pastPractical,
+        ),
+      );
+      if (past) problems.push(`${hand} hand, bar ${bar}: a chord stretches past its practical span`);
+    }
   }
   return problems;
 }

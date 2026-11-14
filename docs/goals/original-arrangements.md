@@ -6,7 +6,7 @@ context: [docs/decisions/0014.md, docs/our-songs.md, tools/make-our-songs.ts, to
 stages:
   - id: 1
     title: "The Original's plumbing and Morning Mood"
-    status: open
+    status: done
   - id: 2
     title: "Originals: the orchestral showpieces"
     status: open
@@ -116,6 +116,16 @@ own, which follows the piece and keeps no limit of the four versions.
   `robots.txt` refuses its downloads to every agent. A writer reads the page images of
   `archive.org/download/<item>/page/n<N>.jpg`.
 - **`check-our-song.ts` takes the module's path,** as `bun tools/check-our-song.ts tools/our-songs/<slug>.ts`.
+- **An Original's span check reads each chord, not each move.** `originalFingerProblems` in
+  `tools/song-meter.ts` refuses a chord one hand cannot hold. A move between two moments is a jump, since
+  a print leaps without rests. The move check refused 97 of Morning Mood's bars, every one of them the
+  print's own. The cost is that a fast leap no hand makes goes uncaught, and the reviewer reads for it.
+- **A chord the print brackets is rolled from its lowest note,** a 32nd per note, as `rolledWide` in
+  `tools/our-songs/morning-mood.ts` does past 15 semitones. Later modules copy the helper.
+- **A guide plans 3 to 5 practice steps.** `FEWEST_STEPS` and `MOST_STEPS` in `src/library/guide.ts`
+  own the bounds, and the writer's `guideProblems` checks them, so the app never refuses a guide.
+- **A writer's brief names its context ceiling and forbids page images.** It reads the transcription
+  files alone, since the first writer ran out of context on the scans.
 
 ## Stages
 
@@ -135,17 +145,17 @@ stage copies its pattern.
 - [x] `guide.json` carries the Original's version guide, and `readGuide` accepts it. `src/library/guide.ts:148`
 - [x] The guide panel shows our Original's guide when its row is open. The level-up offer leads to it as before. `src/library/guide-panel.ts:87`
 - [x] The new tagline of our Original, in English and German. `src/i18n/messages/player-library.en.ts:15`
-- [ ] *Morning Mood*'s Original, from the best source the order above finds, with its guide in English and German. `tools/our-songs/morning-mood.ts:206`
+- [x] *Morning Mood*'s Original, from the best source the order above finds, with its guide in English and German. `tools/our-songs/morning-mood.ts:206`
   - [x] The source: Schirmer's 1899 piano edition of Op. 46, scanned as Internet Archive item `31761045200615`.
   - [x] Four subagents transcribe the print's four pages to files, one page each.
-  - [ ] A writing subagent sets the whole piece from those files, with its guide in English and German.
-  - [ ] `bun tools/check-our-song.ts` accepts it, and a fresh reviewer reads it against the print.
-  - [ ] `bun tools/make-our-songs.ts` writes `mythic.mid`, its row and its guide.
-- [ ] Test `every_original_of_ours_keeps_its_hook_and_a_hand`. `tools/our-songs.test.ts:42`
-- [ ] Test `the_original_of_ours_shows_its_guide`: *Morning Mood*'s Original step opens our file and its guide. `e2e/guide.e2e.ts:1`
+  - [x] A writing subagent sets the whole piece from those files, with its guide in English and German.
+  - [x] `bun tools/check-our-song.ts` accepts it, and a fresh reviewer reads it against the print.
+  - [x] `bun tools/make-our-songs.ts` writes `mythic.mid`, its row and its guide.
+- [x] Test `every_original_of_ours_keeps_its_hook_and_a_hand`. `tools/our-songs.test.ts:42`
+- [x] Test `the_original_of_ours_shows_its_guide`: *Morning Mood*'s Original step opens our file and its guide. `e2e/guide.e2e.ts:1`
 - [x] The rules of decision 0014 move into `docs/our-songs.md`: the Original's row, its rules, its guide and how it is made. `docs/our-songs.md:19`
 - [x] The feature list says every song ends on its Original. `docs/reference/features.md:1`
-- [ ] Look at *Morning Mood*'s card and the Original's guide with `bun run shot`, on a phone and a desktop.
+- [x] Look at *Morning Mood*'s card and the Original's guide with `bun run shot`, on a phone and a desktop.
 
 ### 2. Originals: the orchestral showpieces
 
@@ -279,39 +289,35 @@ its first print with accompaniment, or a songbook's setting printed before 1931.
 
 ### State
 
-The Original's plumbing has landed. `OurSong.mythic` takes an `OurOriginal`, and `originalProblems` in
-`tools/make-our-songs.ts` checks it. The meter's `originalDifficulty` rates it. The guide's `original`,
-`stepOf`, the shell and the library show it. The docs and both tests are written.
+Stage 1 is done. *Morning Mood* holds the first Original: all 87 bars of Schirmer's 1899 print, in the
+records `OPENING` to `RETURN` of `tools/our-songs/morning-mood.ts`. It rates 5, plays 173 seconds, and its
+tricky bars are 74, 75 and 85. A reviewer read it against the print and found no drift in tune or bass.
+Its readings of bars 49 and 55 were settled on the scan, as augmented chords.
 
-*Morning Mood* has no Original yet. Its source is Schirmer's piano edition of 1899, edited by Louis
-Oesterle, Internet Archive item `31761045200615`. Printed pages 3 to 6 hold the whole piece. They are
-`.agent-tmp/src-morning-mood/n6.jpg` to `n9.jpg`, refetched from
-`https://archive.org/download/31761045200615/page/n<N>.jpg` if missing.
+The pilot changed two checks, now in the standing decisions. An Original's span check reads each chord,
+and a guide's practice steps are checked against `FEWEST_STEPS` to `MOST_STEPS` by the writer.
 
-One writing subagent tried the whole piece and ran out of context before writing a note. Its findings:
+The pattern a batch copies, as the pilot found it:
 
-- `bpm: 90, numerator: 6, denominator: 8, steps: 4` gives dotted quarter = 60 with a 32nd per unit.
-- A hand's line holds one chord at a time, so it carries no second voice. A note held under moving notes
-  is cut at the next onset and left to the pedal.
-- Page 4 has a left-hand chord with a sharp at the ff bar. Its "molto" crescendo bars give treble
-  sixteenths to the left hand.
+- Each page goes to a read-only transcriber, who writes a file in the module's notation. It writes after
+  every system, so a lost context keeps its work.
+- One writer per song assembles from those files alone, as one bar per record entry.
+- `bpm` counts quarters: 6/8 at dotted quarter 60 is `bpm: 90`, with `steps: 4` for a 32nd per unit.
+- A grace that has no time before it takes its time from the note before, as bar 2 does.
 
 ### Next
 
-**Stage 1, the rest: Morning Mood's Original.** Files: `tools/our-songs/morning-mood.ts`. Gate: none.
+**Stage 2: the orchestral showpieces.** Files: the eight modules stage 2 names. Gate: met.
 
-1. **The whole print is transcribed,** 87 bars in `.agent-tmp/src-morning-mood/page-n6.txt` to
-   `page-n9.txt`, with each page's doubtful readings. Page 3 is bars 1 to 20, and page 4 is bars 21 to 41,
-   numbered 1 to 21 in its file. Pages 5 and 6 are bars 42 to 87. If the folder is gone, transcribe again:
-   one read-only subagent per page, each writing its file after every system.
-2. **One writing subagent assembles the module** from the four files: the Original, its fingers, pedal,
-   guide and German. It runs `bun tools/check-our-song.ts tools/our-songs/morning-mood.ts` until it passes.
-3. **A fresh reviewer reads it against the print,** and the session settles each finding.
-4. Run `bun tools/make-our-songs.ts`, the build, and the two tests by name. Then take the shots on a phone and
-   a desktop. `tools/shot.ts` has no fill step, so type the search with `--eval`.
+1. **Find each piece's source** by the order in the standing decisions, on archive.org or Wikimedia Commons.
+2. **Transcribe each source's pages,** one read-only subagent per page or two, each writing its file
+   under `.agent-tmp/src-<slug>/`.
+3. **Four writing subagents assemble two songs each,** from the transcriptions alone. Each brief names its
+   ceiling and the Morning Mood module as the pattern, with `rolledWide` for bracketed chords.
+4. **A fresh reviewer reads the batch against its sources,** and the session settles each finding.
+5. Run `bun tools/make-our-songs.ts` and the build, then commit the batch.
 
-Expected red: `every_original_of_ours_keeps_its_hook_and_a_hand` and `the_original_of_ours_shows_its_guide`,
-until *Morning Mood* holds an Original.
+Expected red: none.
 
 ### Backlog
 

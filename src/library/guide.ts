@@ -245,8 +245,14 @@ function isVersion(value: unknown): value is VersionGuide {
   if (!isPerHand(value.fingers, (list) => isList(list, isFinger))) return false;
   const isStartKey = (item: unknown): item is number | null => item === null || isPitch(item);
   if (!isPerHand(value.start, (list) => isList(list, isStartKey, 5, 5))) return false;
-  return isList(value.practice, isStep, 3, 5) && isList(value.tips, isTip) && isList(value.tricky, isTricky);
+  return isList(value.practice, isStep, FEWEST_STEPS, MOST_STEPS) && isList(value.tips, isTip) && isList(value.tricky, isTricky);
 }
+
+/** The fewest practice steps a version's guide plans. */
+export const FEWEST_STEPS = 3;
+
+/** The most practice steps a version's guide plans. */
+export const MOST_STEPS = 5;
 
 /** `raw` as a guide, or undefined when any field of it is missing or malformed. */
 export function readGuide(raw: unknown): Guide | undefined {

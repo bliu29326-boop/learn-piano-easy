@@ -341,6 +341,7 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `morning-mood/rare.mid` | Morning Mood, Easy | Edvard Grieg | MIT |
 | `morning-mood/epic.mid` | Morning Mood, Medium | Edvard Grieg | MIT |
 | `morning-mood/legendary.mid` | Morning Mood, Hard | Edvard Grieg | MIT |
+| `morning-mood/mythic.mid` | Morning Mood, Original | Edvard Grieg | MIT |
 | `morning-mood/guide.json` | Morning Mood, the guide | | MIT |
 | `wedding-march/common.mid` | Wedding March, Beginner | Felix Mendelssohn | MIT |
 | `wedding-march/rare.mid` | Wedding March, Easy | Felix Mendelssohn | MIT |

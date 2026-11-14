@@ -46,6 +46,9 @@ Traps a session paid for once, so the next one does not. **It is not a changelog
 - **A `tools/shot.ts` shot with no `--wait` can show a page half blank.** The home, modes, learn and
   player pages fade their sections in, and the shot lands before they end. Pass `--wait 2500` before
   you call a blank region a flaw.
+- **A `--click Guide` of `tools/shot.ts` times out on a phone.** The player bar hides the button's label
+  there, and its accessible name is not "Guide". Click it in an `--eval` that finds the button whose
+  text is the label, such as "Anleitung" in German.
 - **A goal check is red with "test … did not run and pass" while every test passes.** Bun's reporter
   omits `(pass)` lines when an AI agent runs it. Import `test` from `src/testing.ts`, never from
   `bun:test`, because it prints the line itself.
