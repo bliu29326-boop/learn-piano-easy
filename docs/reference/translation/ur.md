@@ -314,6 +314,19 @@ of a work, *download*, *loading*, *retry*, *website*, *internet* and *connection
 | the Original (a song's last version) | اوریجنل | the app's own term |
 | a section named by an imperative, mid-sentence | `"بس پیانو بجائیں" والے حصے میں` | so the name never reads as a verb |
 | a guide's stock practice steps | see *A guide's recurring steps* below | the guides' own forms, one per English step |
+| dialog (a window over the page) | ونڈو | everyday word. `ڈائیلاگ` reads as a film's lines |
+| About (a page, a heading); About an app | تعارف; `… کے بارے میں` | everyday words, unsourced |
+| input, output; MIDI device | ان پٹ, آؤٹ پٹ; `MIDI` آلہ | the terms of audio apps; follows *device* |
+| data; account; sync | ڈیٹا; اکاؤنٹ; سنک | everyday words |
+| round (of a quiz or a drill) | راؤنڈ | the word of games |
+| setup; default | سیٹ اپ; ڈیفالٹ | the terms of apps |
+| channel; marker | چینل; مارکر | the terms of MIDI apps |
+| expert (the button, the tools) | ماہر; ماہرانہ ٹولز | everyday word |
+| recording; background track | ریکارڈنگ; بیک گراؤنڈ ٹریک | everyday words |
+| composer; arrangement; collection; style | کمپوزر; ارینجمنٹ; مجموعہ; انداز | everyday words |
+| course; map; stats; tab | کورس; نقشہ; اعداد و شمار; ٹیب | the course's own terms |
+| On, Off, Auto | آن, آف, خودکار | the terms of apps |
+| sponsor; sponsorship | اسپانسر; اسپانسرشپ | everyday words |
 
 ### Which "play" is which
 

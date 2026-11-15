@@ -16,11 +16,12 @@ import { hi } from "./messages/hi";
 import { id } from "./messages/id";
 import { pt } from "./messages/pt";
 import { ru } from "./messages/ru";
+import { ur } from "./messages/ur";
 import { zh } from "./messages/zh";
 import { withEnglish, type Translation } from "./translation";
 
 /** Each locale's catalog as its files hold it, before English fills its gaps. */
-export const CATALOGS: Partial<Record<LocaleCode, Translation<Messages>>> & { en: Messages; de: Messages } = { en, de, es, zh, hi, ar, pt, id, bn, ru, fr };
+export const CATALOGS: Partial<Record<LocaleCode, Translation<Messages>>> & { en: Messages; de: Messages } = { en, de, es, zh, hi, ar, pt, id, bn, ru, fr, ur };
 
 /** The catalog of `locale` as a page of it reads it, its gaps filled with English. */
 export function catalogOf(locale: LocaleCode): Messages {

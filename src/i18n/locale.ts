@@ -52,6 +52,7 @@ const CATALOG_CHUNKS: Partial<Record<LocaleCode, () => Promise<Translation<Messa
   bn: () => import("./messages/bn").then((module) => module.bn),
   ru: () => import("./messages/ru").then((module) => module.ru),
   fr: () => import("./messages/fr").then((module) => module.fr),
+  ur: () => import("./messages/ur").then((module) => module.ur),
   "en-XA": async () => pseudoTree(en, "en-XA"),
   "ar-XB": async () => pseudoTree(en, "ar-XB"),
 };
