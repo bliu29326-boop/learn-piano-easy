@@ -6,9 +6,9 @@ export const translation: Translation<GuideTranslation> = {
   about:
     "Mozart a terminé cette sérénade pour cordes à Vienne en 1787. " +
     "Elle n’a été publiée qu’en 1827, plus de trente ans après sa mort. " +
-    "Dans le film « Amadeus » (1984), le vieux Salieri la joue, et un prêtre reconnaît l’air tout de suite.",
+    "Dans le film « Amadeus » (1984), le vieux Salieri la joue, et un prêtre reconnaît l’air tout de suite.",
   funFact:
-    "Le titre allemand signifie « une petite sérénade ». " +
+    "Le titre allemand signifie « une petite sérénade ». " +
     "Mozart l’a inscrit lui-même dans le catalogue de ses œuvres.",
   versions: {
     common: {
@@ -30,17 +30,17 @@ export const translation: Translation<GuideTranslation> = {
     },
     epic: {
       practice: [
-        "Joue la basse d’Alberti seule, jusqu’à ce qu’elle roule toute seule : grave, aigu, milieu, aigu.",
+        "Joue la basse d’Alberti seule, jusqu’à ce qu’elle roule toute seule : grave, aigu, milieu, aigu.",
         "Joue seules les tierces et les sixtes de la main droite, et enfonce les deux notes de chaque paire d’un seul geste.",
         "Joue les huit premières mesures à deux mains, lentement.",
-        "Joue tout le morceau à deux mains, à 75 % de la vitesse.",
+        "Joue tout le morceau à deux mains, à 75 % de la vitesse.",
         "Maintenant, joue-le au tempo, avec la pédale.",
       ],
     },
     legendary: {
       tricky: {
         2: "Quitte l’octave de sol, puis saute vers le bas sur l’octave de ré. Garde la main ouverte.",
-        3: "Quatre octaves à la suite : sol, ré, sol et si. Lève un peu la main après chacune.",
+        3: "Quatre octaves à la suite : sol, ré, sol et si. Lève un peu la main après chacune.",
       },
     },
   },

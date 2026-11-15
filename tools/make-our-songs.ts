@@ -428,7 +428,7 @@ export function versionMeter(song: OurSong, step: GuideStep): MeterSong {
 }
 
 /** The file name of the step `step` of `song` in its folder: `<id>-2.mid` for a reworked version, else `<id>.mid`. */
-function stepFileName(song: OurSong, step: GuideStep): string {
+export function stepFileName(song: OurSong, step: GuideStep): string {
   return step === "mythic" ? "mythic.mid" : versionFileName(song.slug, step);
 }
 

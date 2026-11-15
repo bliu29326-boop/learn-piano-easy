@@ -11,7 +11,7 @@
  * first visit and the profile set it.
  *
  * The `legendary` badge, which the learner reads as "Hard song", is for the Hard version of our songs.
- * It reads the take history of `src/input/history.ts`, through the keys of `legendary-keys.ts`. The
+ * It reads the take history of `src/input/history.ts`, through the keys of `legendary-keys.ts`, the former keys too. The
  * player saves a take only at the end of a song or of its loop, so every take there was played to an
  * end. The history keeps no record of a loop, so a looped section of a Hard version earns the badge
  * too.
@@ -22,7 +22,7 @@ import { bossesOf, loadCourse, type LoadedWorld } from "../course";
 import type { ProgressEvent } from "../progress/event";
 import { openProgress, type ProgressStore } from "../progress/store";
 import { type EarnedBadge, earnedBadges, type StepFact, stepFacts } from "./badges";
-import { LEGENDARY_KEYS } from "./legendary-keys";
+import { FORMER_LEGENDARY_KEYS, LEGENDARY_KEYS } from "./legendary-keys";
 import { DAILY_GOALS, DEFAULT_DAILY_GOAL, type Streak, streakOf } from "./streak";
 import { courseMap, type CourseMap } from "./unlock";
 import { type LevelProgress, levelOf, tallyXp, type XpTally } from "./xp";
@@ -50,7 +50,8 @@ export function dailyGoalOf(settings: SettingsStore): number {
 
 /** When each take of a Hard version of our songs in `history` ended, in ms since the epoch. */
 async function legendaryTakes(history: HistoryStore): Promise<number[]> {
-  const lists = await Promise.all([...LEGENDARY_KEYS.values()].map((key) => history.list(key).catch(() => [])));
+  const keys = [...LEGENDARY_KEYS.values(), ...FORMER_LEGENDARY_KEYS.values()];
+  const lists = await Promise.all(keys.map((key) => history.list(key).catch(() => [])));
   return lists.flat().map((take) => take.date);
 }
 

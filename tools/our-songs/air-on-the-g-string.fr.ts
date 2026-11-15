@@ -6,9 +6,9 @@ export const translation: Translation<GuideTranslation> = {
   about:
     "Bach a écrit cet air comme mouvement lent de sa troisième Suite pour orchestre. " +
     "En 1871, le violoniste August Wilhelmj l’a arrangé pour qu’un violon joue toute la mélodie sur sa corde la plus grave, la corde de sol. " +
-    "Le film « Seven » (1995) le fait entendre pendant que deux détectives examinent des photos de scènes de crime.",
+    "Le film « Seven » (1995) le fait entendre pendant que deux détectives examinent des photos de scènes de crime.",
   funFact:
-    "Wilhelmj a écrit « auf der G-Saite », sur la corde de sol, au-dessus de la partie de violon. " +
+    "Wilhelmj a écrit « auf der G-Saite », sur la corde de sol, au-dessus de la partie de violon. " +
     "C’est de là que vient le surnom du morceau.",
   versions: {
     common: {
@@ -32,7 +32,7 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         6: "Après le silence, le doigt 5 prend le mi. Puis les doigts 2 et 1 jouent si bémol et la.",
-        14: "Le même geste qu’à la mesure 6 : le doigt 5 sur le mi, puis si bémol avec le doigt 2.",
+        14: "Le même geste qu’à la mesure 6 : le doigt 5 sur le mi, puis si bémol avec le doigt 2.",
         19: "La main droite joue do et mi ensemble. La main gauche s’ouvre sur do, mi et sol avec les doigts 5, 3 et 1.",
       },
     },

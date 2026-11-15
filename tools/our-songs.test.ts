@@ -18,6 +18,7 @@ import {
   oursFolder,
   rowsOf,
   songProblems,
+  stepFileName,
   stepsOf,
   versionBytes,
   versionMeter,
@@ -382,9 +383,10 @@ test("the_files_match_their_source", async () => {
   for (const song of ourSongs) {
     const dir = join(songsDir, oursFolder, song.slug);
     for (const step of stepsOf(song)) {
-      const stored = new Uint8Array(await Bun.file(join(dir, `${step}.mid`)).arrayBuffer());
-      expect({ file: `${song.slug}/${step}.mid`, same: Buffer.from(stored).equals(Buffer.from(versionBytes(song, step))) }).toEqual({
-        file: `${song.slug}/${step}.mid`,
+      const name = stepFileName(song, step);
+      const stored = new Uint8Array(await Bun.file(join(dir, name)).arrayBuffer());
+      expect({ file: `${song.slug}/${name}`, same: Buffer.from(stored).equals(Buffer.from(versionBytes(song, step))) }).toEqual({
+        file: `${song.slug}/${name}`,
         same: true,
       });
     }

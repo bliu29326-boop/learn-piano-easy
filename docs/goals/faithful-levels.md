@@ -24,7 +24,7 @@ stages:
     status: done
   - id: 7
     title: "the goal is verified once, and every failure is fixed"
-    status: open
+    status: done
     gate: true
 checks:
   - id: rework-keeps-work
@@ -45,7 +45,7 @@ checks:
 
 [Decision 0014](../decisions/0014.md) gives every song an Original that sounds like the piece. The four
 versions still sound less like it than they could. Many of them play the tune and then bars of our own.
-Each level's accompaniment comes from a list per level, such as an Alberti bass, even where the piece
+Each level's accompaniment comes from a list per level, such as an Alberti bass. It does so even where the piece
 has its own figure that a level could play. This goal brings the four versions closer to the source,
 inside the limits they keep.
 
@@ -83,8 +83,8 @@ inside the limits they keep.
   on the home chord. Each still earns its place.
 - **A source whose next phrase no public domain print shows counts as having none.** The versions then
   repeat the print's readable bars, as *Nocturne in C sharp minor* repeats its bars 1 to 8.
-- **The audit's open points are settled by the batch's writer:** the edges of *William Tell*'s bars,
-  *Moonlight Sonata*'s closing bars and the unread versions of *Yankee Doodle*.
+- **The batch's writer settles the audit's open points:** *William Tell*'s bar edges, *Moonlight
+  Sonata*'s last bars and *Yankee Doodle*'s unread versions.
 - **A print's chord that clashes with the tune past a version's limit gives way** to the print's next
   chord, a half bar early. *Can-Can*'s bar 4 takes D7 under the tune's C for that reason.
 - **Writers, review and commits** work as `original-arrangements` rules: two fresh reviewers of four
@@ -102,10 +102,10 @@ inside the limits they keep.
 
 ### 1. The rework's rules, its new files and the audit
 
-**Does:** the rules, the move of a learner's work to a reworked file, the test for bars of our own, and
-the audit that lists every version to rework.
+**Does:** the rules, the move of a learner's work to a reworked file and the test for bars of our own.
+It also writes the audit that lists every version to rework.
 **Split:** a read-only `reader` subagent audits every song module. It lists each version that plays a bar
-of our own, with its bars, and each Medium or Hard whose accompaniment ignores a figure the source has.
+of our own, with its bars. It also lists each Medium or Hard whose accompaniment ignores the source's figure.
 **Gate:** `original-arrangements` is reached.
 
 - [x] The rules of this goal move into `docs/our-songs.md` § *The tune keeps the song recognisable* and § *Writing for the piano*. `docs/our-songs.md:67`
@@ -206,50 +206,41 @@ another setting or ends on the home chord.
 
 ### 7. the goal is verified once, and every failure is fixed
 
-- [ ] Run `looper verify` over the whole goal.
-- [ ] Fix every failure it names in one pass, never deleting or loosening a test.
-- [ ] Run `looper verify` once more, and it is green.
+- [x] Run `looper verify` over the whole goal.
+- [x] Fix every failure it names in one pass, never deleting or loosening a test.
+- [x] Run `looper verify` once more, and it is green.
 
 ## Handoff
 
 ### State
 
-Stages 1 to 6 are done. Batch 5 reworked all 16 versions of the four sea songs. Each is in
-`REWORKED_VERSIONS` with its `<id>-2.mid` file, and no code names an old file. No module marks a bar
-of our own any more, and test `no_version_plays_a_bar_of_our_own` passes. A fresh reviewer compared
-the new bars with each print. Its must-fix is fixed: *Haul Away Joe*'s Medium and Hard bars 10 to 12
-take the print's E under G. The meter accepts every module, `bun x tsc` is clean, and the build is green.
+Every stage is done, and the goal is reached. `looper verify` is green, e2e included, and both
+acceptance checks pass. The gate fixed four failures:
 
-- *Drunken Sailor*'s print has a chorus after the verse. Every version plays it as bars 9 to 16, and
-  Medium and Hard take its figure: a bass on the beat, then the chord three times.
-- *Haul Away Joe*'s print is the verse alone. Bars 9 to 16 play it again, and Medium and Hard take
-  the print's own left hand. Legendary marks its B under C in bars 2 and 10 as a clash.
-- *Sailor's Hornpipe* plays print bars 5 to 8 as bars 10 to 17. The print is one line, so the chords
-  there are ours.
-- *Spanish Ladies* plays the verse's second half, print bars 9 to 16, as bars 10 to 17. Medium and
-  Hard take the print's root and fifth there. Beginner's C major in bar 14 holds E and G alone, since
-  its limits refuse a C.
+- Test `the_files_match_their_source` read `<id>.mid` alone. It now reads each step's file through
+  `stepFileName`, which `tools/make-our-songs.ts` exports.
+- The `legendary` badge's keys named the old Hard files. `LEGENDARY_KEYS` holds the current files'
+  keys, and `FORMER_LEGENDARY_KEYS` keeps the old ones. A badge earned on old notes stays earned.
+- Batch 2's writer had turned the narrow no-break spaces of two French guides and one Russian guide
+  into plain spaces. Two Arabic guides lost their isolate escapes too. Each line is restored from the
+  file before the batches, and the guides are written again.
 
 ### Next
 
-**Stage 7: the gate.** Files: whatever `looper verify` names. Gate: stage 6 is done.
+Harvest the goal into `docs/findings.md` § `faithful-levels`, move its checks into the floor, and
+delete its file. `docs/goals/faithful-levels.md:1`
 
-- [ ] Run `looper verify` over the whole goal. `docs/goals/faithful-levels.md:209`
-- [ ] Fix every failure it names in one pass, never deleting or loosening a test. `docs/goals/faithful-levels.md:210`
-- [ ] Run `looper verify` once more, and it is green. `docs/goals/faithful-levels.md:211`
-
-No test is expected to go red. Tests that read a version's file name or a guide's bar numbers are the
-likeliest to fail, if any do. `src/library/moved-songs.test.ts:1`, `tools/our-songs.test.ts:1`
+No test is expected to go red.
 
 Optional from the reviews:
 
 - *Spanish Ladies*' tune bars 4, 5, 8 and 9 and Medium's and Hard's chorus bars 18 to 25 keep our
   chords. The print has B minor, G and D where they have G, C and B major. `tools/our-songs/spanish-ladies.ts:1`
 - *Spanish Ladies*' Medium and Hard chorus could take the print's rocking root, fifth and octave.
-- *Haul Away Joe*'s Beginner and Easy keep C, G and C under bars 2, 3 and 6, where the print has A
-  minor, E minor and A minor. Easy's bar 7 plays G major where the print has G minor over B flat.
-- *Drunken Sailor*'s Beginner and Easy keep their own chords under bars 6, 7, 14 and 15, where the
-  print walks A minor, G, F and D minor.
+- *Haul Away Joe*'s Beginner and Easy keep C, G and C under bars 2, 3 and 6. The print has A minor,
+  E minor and A minor there. Easy's bar 7 plays G major where the print has G minor over B flat.
+- *Drunken Sailor*'s Beginner and Easy keep their own chords under bars 6, 7, 14 and 15. The print
+  walks A minor, G, F and D minor there.
 - *Sailor's Hornpipe*'s Legendary bar 21 sounds G on top over the left hand's F sharp.
 
 

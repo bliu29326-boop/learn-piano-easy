@@ -13,7 +13,7 @@
     "id": "Mozart menyelesaikan serenade untuk alat musik gesek ini di Wina pada 1787. Karya ini baru diterbitkan pada 1827, lebih dari tiga puluh tahun setelah ia wafat. Dalam film Amadeus (1984), Salieri tua memainkannya, dan seorang pastor langsung mengenali melodinya.",
     "bn": "মোৎসার্ট তারযন্ত্রের জন্য এই সেরেনাডটি শেষ করেন ১৭৮৭ সালে, ভিয়েনায়। এটি প্রকাশিত হয় কেবল ১৮২৭ সালে, তাঁর মৃত্যুর তিরিশ বছরেরও বেশি পরে। Amadeus (১৯৮৪) সিনেমায় বৃদ্ধ Salieri এটি বাজান, আর একজন পাদরি সঙ্গে সঙ্গে সুরটি চিনে ফেলেন।",
     "ru": "Моцарт закончил эту серенаду для струнных в Вене в 1787 году. Издали её только в 1827 году, больше чем через тридцать лет после его смерти. В фильме «Амадей» (1984) старый Сальери играет её, и священник сразу узнаёт мелодию.",
-    "fr": "Mozart a terminé cette sérénade pour cordes à Vienne en 1787. Elle n’a été publiée qu’en 1827, plus de trente ans après sa mort. Dans le film « Amadeus » (1984), le vieux Salieri la joue, et un prêtre reconnaît l’air tout de suite."
+    "fr": "Mozart a terminé cette sérénade pour cordes à Vienne en 1787. Elle n’a été publiée qu’en 1827, plus de trente ans après sa mort. Dans le film « Amadeus » (1984), le vieux Salieri la joue, et un prêtre reconnaît l’air tout de suite."
   },
   "funFact": {
     "en": "The title means \"a little serenade\", and Mozart wrote it into his own list of his works.",
@@ -26,7 +26,7 @@
     "id": "Judulnya berarti “sebuah serenade kecil”, dan Mozart sendiri mencatatnya dalam daftar karyanya.",
     "bn": "নামটির অর্থ “একটি ছোট্ট সেরেনাড”, আর মোৎসার্ট নিজেই এটি তাঁর রচনার তালিকায় লিখে রাখেন।",
     "ru": "Немецкое название Eine kleine Nachtmusik значит «маленькая серенада». Моцарт сам вписал его в свой список сочинений.",
-    "fr": "Le titre allemand signifie « une petite sérénade ». Mozart l’a inscrit lui-même dans le catalogue de ses œuvres."
+    "fr": "Le titre allemand signifie « une petite sérénade ». Mozart l’a inscrit lui-même dans le catalogue de ses œuvres."
   },
   "mythic": null,
   "versions": {
@@ -359,7 +359,7 @@
             "id": "Mainkan bas Alberti saja sampai mengalir dengan sendirinya: rendah, tinggi, tengah, tinggi.",
             "bn": "আলবের্তি বেস আলাদা করে বাজান, যতক্ষণ না সেটি নিজে থেকে গড়িয়ে চলে: নিচের, উপরের, মাঝের, উপরের।",
             "ru": "Сыграйте альбертиевы басы отдельно, пока они не покатятся сами: нижняя, верхняя, средняя, верхняя.",
-            "fr": "Joue la basse d’Alberti seule, jusqu’à ce qu’elle roule toute seule : grave, aigu, milieu, aigu."
+            "fr": "Joue la basse d’Alberti seule, jusqu’à ce qu’elle roule toute seule : grave, aigu, milieu, aigu."
           },
           "hands": "left",
           "speed": 0.5,
@@ -415,8 +415,8 @@
             "pt": "Toque a música inteira com as duas mãos, a três quartos da velocidade.",
             "id": "Mainkan seluruh lagu dengan kedua tangan, dengan tiga perempat kecepatan.",
             "bn": "দুই হাতে পুরো গানটি তিন-চতুর্থাংশ গতিতে বাজান।",
-            "ru": "Сыграйте всю песню двумя руками на скорости 75 %.",
-            "fr": "Joue tout le morceau à deux mains, à 75 % de la vitesse."
+            "ru": "Сыграйте всю песню двумя руками на скорости 75 %.",
+            "fr": "Joue tout le morceau à deux mains, à 75 % de la vitesse."
           },
           "hands": "both",
           "speed": 0.75,
@@ -605,7 +605,7 @@
             "id": "Empat oktaf berturut-turut: G, D, G, dan B. Angkat tanganmu sedikit setelah setiap oktaf.",
             "bn": "পরপর চারটি অক্টেভ: G, D, G আর B। প্রতিটির পরে হাত একটু তুলুন।",
             "ru": "Четыре октавы подряд: соль, ре, соль и си. Слегка поднимайте руку после каждой.",
-            "fr": "Quatre octaves à la suite : sol, ré, sol et si. Lève un peu la main après chacune."
+            "fr": "Quatre octaves à la suite : sol, ré, sol et si. Lève un peu la main après chacune."
           }
         },
         {
