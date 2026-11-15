@@ -18,7 +18,7 @@ stages:
     status: done
   - id: 5
     title: "The song guides in Japanese, from n to z"
-    status: open
+    status: done
   - id: 6
     title: The Japanese site ships
     status: open
@@ -149,9 +149,15 @@ most eight guides each work side by side, and one fresh reviewer per batch revie
 **Split:** as stage 4.
 **Gate:** stage 4's guides are stamped.
 
-- [ ] One `tools/our-songs/<slug>.ja.ts` per slug from `neon-chase` to `yankee-doodle`. `tools/our-songs/o-christmas-tree.ja.ts:1`
-- [ ] Each batch reviewed blind, and every finding settled.
-- [ ] `bun tools/make-our-songs.ts` writes the guides, and `bun run i18n stamp ja` stamps them. `public/songs/ours/o-christmas-tree/guide.json:1`
+- [x] One `tools/our-songs/<slug>.ja.ts` per slug from `neon-chase` to `yankee-doodle`. `tools/our-songs/o-christmas-tree.ja.ts:1`
+  - [x] The 29 work lists are written.
+  - [x] Four writers have written their batches.
+- [x] Each batch reviewed blind, and every finding settled.
+  - [x] Two reviewers per batch have reported.
+  - [x] Every finding is settled, and the stock-step drift is grepped.
+- [x] `bun tools/make-our-songs.ts` writes the guides, and `bun run i18n stamp ja` stamps them. `public/songs/ours/o-christmas-tree/guide.json:1`
+  - [x] The rules test and `tsc` pass.
+  - [x] The guides are written, and the 29 slugs are stamped.
 
 ### 6. The Japanese site ships
 
@@ -179,46 +185,50 @@ address or mark that drifts between files.
 
 ### State
 
-Stages 1 to 4 are done. Every catalog section, every lesson and the 51 guides from
-`air-on-the-g-string` to `mozart-21-andante` have their `.ja.ts`, reviewed blind and stamped in
-`src/i18n/stamps/ja.json`. `public/songs/ours/*/guide.json` carries their `ja` texts.
-`src/i18n/translation-rules.test.ts` and `tsc` pass, and the build is green.
+Stages 1 to 5 are done. Every catalog section, every lesson and all 80 guides have their `.ja.ts`.
+Each was reviewed blind and is stamped in `src/i18n/stamps/ja.json`. `public/songs/ours/*/guide.json`
+carries their `ja` texts. `src/i18n/translation-rules.test.ts` and `tsc` pass, and the build is green.
 
-The guide review had 7 *wrong* findings, 30 *unnatural* and 27 *nit*, and every one is settled. Each
-*wrong* was a name, a stock step or one verb, checked against the English by the session, so no batch
-had a second round. Two names were confirmed in Japanese Wikipedia: トワノ・アルボ and 『オルケゾグラフィ』.
+Stage 5's review had 3 *wrong* findings, 22 *unnatural* and 15 *nit*, and every one is settled. The
+session checked each *wrong* against the English, so no batch had a second round. Each stage-5 guide
+already used the settled "wait for each note" step. One pedal step dropped `今度は`, as the glossary
+stock form says.
 
-The writers drifted on the step "let the song wait for each note" in four wordings. The session settled
-it as `…を右手だけで弾きましょう。曲は1音ずつ待ってくれます。` in every file. The glossary's stock-step
-row now holds it, with `今度はもとの速さで弾きましょう。`, and a numbered verse is `1番`, `2番`.
+`ABC` joined the Japanese kept words in `src/i18n/typography.ts`, for 「ABCの歌」. The other Latin
+titles the writers kept pass the rules test as they stand.
 
-`J` joined the kept single letters of `src/i18n/typography.ts`, for a middle initial such as
-ウィリアム・J・カークパトリック. Every other Latin title the writers kept was already a kept word.
+Stage 5 left these unconfirmed for stage 6's read:
+- the names デイヴィス・ギルバート and オールド・マクドゥーガル;
+- the tune 「セント・ルイス」;
+- the work 「牧人ひつじを」 for *The First Noel*;
+- the terms リフレイン, which one writer used beside サビ, 分散オクターブ and 分散したオクターブ;
+- the chord names レを根音とする和音 and ミを根音とする和音.
 
-Titles left in English for want of a settled Japanese name: 「Away in a Manger」 (まぶねのなかに was
-unconfirmed), 「God Rest Ye Merry, Gentlemen」, 「Es ist ein Ros entsprungen」. 主和音 stands for "home
-chord", and ケーレル・ベーラ for Béla Kéler, both unconfirmed.
+Earlier stages left these titles in English for want of a settled Japanese name: 「Away in a Manger」,
+「God Rest Ye Merry, Gentlemen」 and 「Es ist ein Ros entsprungen」. 主和音 for "home chord" and
+ケーレル・ベーラ for Béla Kéler are unconfirmed.
 
 The page look waits for stage 6, since no page serves `ja` until it ships.
 
 ### Next
 
-**Stage 5: the guides from n to z,** 29 slugs from `neon-chase` to `yankee-doodle`. The item's
-"from `o-christmas-tree`" is now fixed to `neon-chase`.
+**Stage 6: the Japanese site ships.**
 
-- The briefs that worked are `.agent-tmp/ja-guide-writer-brief.md` and
-  `.agent-tmp/ja-guide-reviewer-brief.md`. Add the settled "wait for each note" form to the writer's
-  stock steps before sending it.
-- Run `bun tools/i18n.ts work ja guide/<slug>` per slug first.
-- Four writers of 7 or 8 guides each, side by side. Each `.es.ts` may be partial, so a writer takes the
-  shape from the work list, as this stage's writers did.
-- Two `reader` reviewers per batch, sent as soon as that batch's writer ends.
-- Grep the batch for `曲が1音ずつ\|曲に1音ずつ\|今度はもとの速さで、ペダル` and settle any drift.
-- Then `bun test src/i18n/translation-rules.test.ts`, `bun tools/make-our-songs.ts`, and
-  `bun tools/i18n.ts stamp ja guide/<slug>` per slug.
-- Stage 6's consistency read adds the course's new terms (空虚5度, 第1転回形, 間（かん）, 指越え) and the
-  boss form `ボス：「エリーゼのために」を両手で` to the glossary. It also checks the unconfirmed titles and
-  names above.
+- **The gate is red first.** `bun tools/i18n.ts status ja` lists 23 catalog texts missing, all added
+  since stage 2:
+  - `player-settings`: 16
+  - `player-bar`: 4
+  - `site`: 2
+  - `learn-lesson`: 1
+
+  Translate them with `bun tools/i18n.ts work ja catalog/<section>`, review them, and stamp them.
+- Then the consistency read: one fresh `reader` over every Japanese file against
+  `docs/reference/translation/ja.md`. It lists each drifting term, address or mark.
+- That read adds the course's new terms to the glossary: 空虚5度, 第1転回形, 間（かん）, 指越え. It also
+  adds the boss form `ボス：「エリーゼのために」を両手で`, plus the guides' トリル, トレモロ, 3連符 and 輪唱.
+- It checks every unconfirmed name and title under *State*.
+- Then `ja` ships in `src/i18n/locale.ts:18` and its chunk joins `CATALOG_CHUNKS`. The stage's other
+  items follow in order.
 
 Expected red: `a_page_loads_only_its_own_catalog` in `src/i18n/i18n.test.ts:77`. It expects
 `catalogOf("ja").footer` to equal the English, and `ja.ts` now translates the footer. Stage 6 rewrites
