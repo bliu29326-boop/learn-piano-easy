@@ -225,6 +225,9 @@ of a work, *download*, *loading*, *retry*, *website*, *internet* and *connection
 | march, hymn, lullaby, nocturne | مارچ, کلیسائی گیت, لوری, نوکٹرن | WP *لوری*; RK *لوری*. `حمد` praises God in Islam and `بھجن` names a Hindu song, so neither is a hymn |
 | aria, tone poem, hornpipe, galop | آریا, ٹون پوئم, ہارن پائپ, گیلپ | unsourced, the European terms |
 | folk tune; counter-melody | لوک دھن; ساتھ چلتی دوسری دھن | WP *لوک موسیقی*; follow `دھن` |
+| triplet; grace note; trill | ٹرپلٹ; گریس نوٹ; ٹرل | unsourced, the English terms the guides share |
+| the strings (of an orchestra); plucked | تار والے ساز; تار چھیڑنے جیسا | the guides' own terms. `تاروں والے` is not used |
+| a song's home chord; a quick run | گانے کا بنیادی کورڈ; تیز نوٹوں کی لڑی | the guides' own terms |
 | attack, decay, sustain, release | اٹیک, ڈیکے, سسٹین, ریلیز | the terms of synthesizers |
 
 ### The interface glossary
@@ -444,8 +447,9 @@ The lessons repeat these lines. Each English line has one Urdu text in every wor
 - **The note letters and chord symbols,** as § 7 says.
 - **A song title stays in Latin letters,** without quotes. A title is data shared by every locale, and
   the library searches it. Pakistani readers meet English titles in Latin letters every day.
-- **A composer with an Urdu Wikipedia article takes its spelling:** `بیتھوون`, `موزارٹ`, `باخ`. A Latin
-  name in every line reads foreign.
+- **A composer with an Urdu Wikipedia article takes its spelling:** `بیتھوون`, `موزارٹ`, `باخ`, `شوپن`,
+  `شوبرٹ` and `ہینڈل`. A Latin name in every line reads foreign. Every other composer stays in Latin
+  letters and in the kept list.
 - **Every other person's name stays in Latin letters,** since a guessed spelling would mislead.
 - **A city or a country Urdu news names takes its everyday Urdu spelling,** such as `ویانا` or `پیرس`.
   A small town stays in Latin letters, such as Hexham or Olomouc.
