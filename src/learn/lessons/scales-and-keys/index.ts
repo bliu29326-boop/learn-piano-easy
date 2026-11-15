@@ -25,6 +25,7 @@ export const scalesAndKeys: WorldLessons = {
     bn: () => import("./texts.bn").then((module) => module.texts),
     ru: () => import("./texts.ru").then((module) => module.texts),
     fr: () => import("./texts.fr").then((module) => module.texts),
+    ur: () => import("./texts.ur").then((module) => module.texts),
   },
   skipPicks: scalesAndKeysSkipPicks,
 };
