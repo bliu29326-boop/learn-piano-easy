@@ -26,6 +26,7 @@ export const chords: WorldLessons = {
     ru: () => import("./texts.ru").then((module) => module.texts),
     fr: () => import("./texts.fr").then((module) => module.texts),
     ur: () => import("./texts.ur").then((module) => module.texts),
+    ja: () => import("./texts.ja").then((module) => module.texts),
   },
   skipPicks: chordsSkipPicks,
 };
