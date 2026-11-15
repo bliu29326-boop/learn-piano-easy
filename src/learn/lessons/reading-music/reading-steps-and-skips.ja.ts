@@ -3,7 +3,7 @@ import type { Translation } from "../../../i18n/translation";
 import type { ReadingStepsAndSkipsTexts } from "./reading-steps-and-skips.en";
 
 export const readingStepsAndSkipsJa: Translation<ReadingStepsAndSkipsTexts> = {
-  title: "となりと1つとびを読む",
+  title: "となりと1つとばしを読む",
   steps: {
     "moves-demo": {
       text: "聴きましょう。はじめは音がとなりへ進んで上がり、次に1つとばして上がります。五線の上では、それぞれの動きに見た目のちがいがあります。",

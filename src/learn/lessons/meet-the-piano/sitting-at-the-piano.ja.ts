@@ -39,7 +39,7 @@ export const sittingAtThePianoJa: Translation<SittingAtThePianoTexts> = {
       text: "ピアノの前の座り方として、よいのはどれですか？",
       answers: [
         "椅子のいちばん奥に座り、指を平らにする",
-        "椅子の前のほうに、真ん中のドの正面で座る。腕は水平、指は丸める",
+        "椅子の前のほうに真ん中のドの正面で座り、腕は水平、指は丸める",
         "低く座り、腕を上にのばして鍵盤に届かせる",
       ],
     },

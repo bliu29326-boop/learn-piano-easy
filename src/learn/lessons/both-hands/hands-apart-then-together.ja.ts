@@ -13,7 +13,7 @@ export const handsApartThenTogetherJa: Translation<HandsApartThenTogetherTexts> 
     },
     "first-step-quiz": {
       text: "両手で弾く新しい曲を始めます。最初に何を練習しますか？",
-      answers: ["片手ずつ", "両手一緒に、もとの速さで", "左手だけ。右手はずっと弾かない"],
+      answers: ["片手ずつ", "両手一緒に、もとの速さで", "左手だけで、右手はずっと弾かない"],
     },
     "right-alone": {
       text: "まずは右手から。真ん中のドから始めて、ド・レ・ミ・レ・ドと弾きましょう。",

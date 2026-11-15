@@ -43,7 +43,7 @@ export const loudAndSoftJa: Translation<LoudAndSoftTexts> = {
       answers: ["弱く弾く", "強く弾く", "速く弾く", "ゆっくり弾く"],
     },
     "mezzo-marks": {
-      text: "その間にも、2つの記号があります。mp（メゾピアノ）は「少し弱く」、mf（メゾフォルテ）は「少し強く」という意味です。",
+      text: "そのあいだにも、2つの記号があります。mp（メゾピアノ）は「少し弱く」、mf（メゾフォルテ）は「少し強く」という意味です。",
     },
     "softest-to-loudest": {
       text: "いちばん弱い記号からいちばん強い記号へ、正しく並んでいるのはどれですか？",
@@ -60,7 +60,7 @@ export const loudAndSoftJa: Translation<LoudAndSoftTexts> = {
       points: [
         "鍵盤が下りる速さで、音の強さが決まります。",
         "pは「弱く」、fは「強く」という意味です。",
-        "mpとmfは、その間の強さです。",
+        "mpとmfは、そのあいだの強さです。",
       ],
     },
   },
