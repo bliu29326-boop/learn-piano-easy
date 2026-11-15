@@ -384,5 +384,29 @@ export const TYPOGRAPHY: Record<LanguageCode, Typography> = {
       },
     ],
   },
-  ja: { kept: [], marks: [] },
+  ja: {
+    kept: [...KEPT_IN_OWN_SCRIPT],
+    marks: [
+      { says: "A comma is 、, and a Latin comma stands only inside a number", mustNot: /(?<!\d),|,(?!\d)/ },
+      { says: "A sentence ends with 。, and an ASCII period stands only inside a number", mustNot: /(?<!\d)\.|\.(?!\d)/ },
+      { says: "A question, an exclamation and a colon are full width: ？！：", mustNot: /[?!:;]/ },
+      { says: "A quote stands in 「」, with 『』 inside, never in straight or curly quotes or « »", mustNot: /["“”«»]/ },
+      { says: "Parentheses are full width: （）", mustNot: /[()]/ },
+      { says: "A range of numbers takes ～, never a hyphen or the wave dash 〜", mustNot: /\d\s?[-–]\s?\d|〜/ },
+      { says: "Latin letters and digits are half width, and katakana is full width", mustNot: /[Ａ-Ｚａ-ｚ０-９｡-ﾟ]/ },
+      {
+        says: "No space stands between two Japanese characters, nor between one and a Latin letter or a digit",
+        mustNot:
+          /[\p{scx=Han}\p{scx=Hira}\p{scx=Kana}][ 　]+[\p{scx=Han}\p{scx=Hira}\p{scx=Kana}A-Za-z0-9]|[A-Za-z0-9][ 　]+[\p{scx=Han}\p{scx=Hira}\p{scx=Kana}]/u,
+      },
+      { says: "No space stands beside a full-width mark", mustNot: /\s[、。！？：「」『』（）・～…]|[、。！？：「」『』（）・～]\s/ },
+      { says: "A percent sign follows its number with no space, as Intl writes it", mustNot: /\d\s%/ },
+      { says: "The learner is never named: no あなた", mustNot: /あなた|貴方/ },
+      { says: "A sentence is です・ます, never plain だ or である", mustNot: /である|(?<![また])だ[。！？]/u },
+      {
+        says: "A loanword in -er, -or or -ar ends in ー, as Microsoft writes it",
+        mustNot: /(?:ブラウザ|フォルダ|ユーザ|コンピュータ|プレーヤ|イコライザ|スライダ|マーカ|カウンタ|パラメータ|モニタ|メーカ|スピーカ|ヘッダ)(?!ー)|プレイヤー/u,
+      },
+    ],
+  },
 };

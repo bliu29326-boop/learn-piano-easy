@@ -6,7 +6,7 @@ context: [docs/agent/translation.md, docs/decisions/0012.md, docs/goals/many-loc
 stages:
   - id: 1
     title: The Japanese style guide and glossary
-    status: open
+    status: done
   - id: 2
     title: The site and the player in Japanese
     status: open
@@ -57,9 +57,8 @@ characters need Japanese fonts, which draw them differently from Chinese fonts. 
 - **The variety is standard Japanese.** `Intl` uses `ja`.
 - **A sentence uses です・ます.** A label or a button is a short noun or a plain verb, such as 設定 or 開く.
 - **The learner is never named.** あなた is never used, since Japanese leaves the learner out.
-- **Notes are ドレミ in katakana:** ド レ ミ ファ ソ ラ シ. The guide settles the key names. They are
-  Japanese letter names, such as ハ長調 and イ短調, or Western letters, such as Cメジャー.
-  The default is ハ長調, as Japanese schools teach it.
+- **Notes are ドレミ in katakana:** ド レ ミ ファ ソ ラ シ. A key takes the Japanese letter names, such
+  as ハ長調, イ短調 and 嬰ヘ短調, as schools teach them. A chord symbol stays Latin: `Cコード`, `G7`.
 - **The marks:** `。`, `、` and `「」` for quotes, all full-width. Latin letters and digits stay
   half-width. No space goes between Japanese characters.
 - **A katakana loanword takes the long vowel mark ー,** as Microsoft's Japanese style guide sets it:
@@ -70,7 +69,10 @@ characters need Japanese fonts, which draw them differently from Chinese fonts. 
   Japanese shape. `word-break: auto-phrase` applies, and no text is italic.
 - **Japanese runs shorter than English.** The layout risk is a line that breaks inside a word, and the
   look check covers it.
-- **The kept words:** *Learn Piano Easy*, *MIDI*, the song titles and the composers' names.
+- **The kept words:** *Learn Piano Easy*, *MIDI* and the library's song titles. The style guide changed
+  the composers' names to katakana, such as ベートーヴェン, since no Japanese teacher writes them in Latin.
+- **A range of numbers takes `～` (U+FF5E),** never the wave dash `〜`, which some Windows fonts draw
+  differently. No space stands beside a Latin word or a digit: `MIDIキーボード`, `3曲`.
 - **Lanes:** stage 1 comes first. Stages 2 to 5 touch disjoint files, but each follows the glossary
   stage 1 writes, so they run in order. Stage 6 needs all of them.
 
@@ -85,12 +87,12 @@ catalogs, lessons and guides, with a count. `web-fetch` subagents, sent together
 report what each settles.
 **Gate:** `tools/i18n.ts` and `src/i18n/typography.ts` exist.
 
-- [ ] The term list: every music and interface term the English uses more than once. `docs/reference/translation/ja.md:1`
-- [ ] Microsoft's Japanese style guide: the address, the marks and the interface terms. `docs/reference/translation/ja.md:1`
-- [ ] Japanese Wikipedia's music articles and Japanese piano methods: each music term with two sources. `docs/reference/translation/ja.md:1`
-- [ ] Every section of the style guide, with calibration texts from every kind of text. `docs/reference/translation/ja.md:1`
-- [ ] The Japanese entry of the rule table: script, kept words and the patterns of the marks. `src/i18n/typography.ts:1`
-- [ ] The Japanese row of the locale table, confirmed or changed with its reason. `src/i18n/locale.ts:18`
+- [x] The term list: every music and interface term the English uses more than once. `docs/reference/translation/ja.md:1`
+- [x] Microsoft's Japanese style guide: the address, the marks and the interface terms. `docs/reference/translation/ja.md:1`
+- [x] Japanese Wikipedia's music articles and Japanese piano methods: each music term with two sources. `docs/reference/translation/ja.md:1`
+- [x] Every section of the style guide, with calibration texts from every kind of text. `docs/reference/translation/ja.md:1`
+- [x] The Japanese entry of the rule table: script, kept words and the patterns of the marks. `src/i18n/typography.ts:1`
+- [x] The Japanese row of the locale table, confirmed or changed with its reason. `src/i18n/locale.ts:18`
 
 ### 2. The site and the player in Japanese
 
@@ -168,12 +170,28 @@ address or mark that drifts between files.
 
 ### State
 
-The goal is written, behind `urdu` on the chain. No stage has started.
+Stage 1 is done. `docs/reference/translation/ja.md` holds every section of the method, and the `ja` entry
+of `src/i18n/typography.ts` holds its kept words and thirteen mark rules. The locale row of
+`src/i18n/locale-table.ts:61` is confirmed unchanged: `ja`, `solfege`, `japanese`, not shipped.
+
+The music terms were checked against Japanese Wikipedia through its API. Microsoft's guide, the systems'
+interfaces and Japanese piano methods were not read online. The guide's § 12 and *Open* say which rows
+rest on them.
+
+`src/ui/base.css` already sets `line-break: strict`, `word-break: auto-phrase` and no italic for `ja`.
+`src/ui/tokens.css:221` already names the Japanese fonts. `src/theory/note-names.ts:61` already writes ドレミ.
 
 ### Next
 
-**Stage 1: the Japanese style guide and glossary.** Files: `docs/reference/translation/ja.md`,
-`src/i18n/typography.ts` and `src/i18n/locale.ts`. Gate: `urdu` is reached.
+**Stage 2: the site and the player in Japanese.** Files: `src/i18n/messages/*.ja.ts`, created per
+section, and `src/i18n/stamps/ja.json`. Gate: `docs/reference/translation/ja.md` exists.
+
+- Run `bun tools/i18n.ts status ja`, then `work ja <unit>` per catalog section, as the method's steps say.
+- Three writers side by side, then three blind reviewers. Each brief carries the whole style guide.
+- A key in `src/i18n/messages/player-settings.ja.ts` writes ハ長調 from a tonic letter. It maps C D E F G
+  A B to ハ ニ ホ ヘ ト イ ロ, with 嬰 or 変 before it. The `solfege()` helper of the `es` file is the shape.
+- Add test `japanese_texts_keep_their_rules` to `src/i18n/translation-rules.test.ts`, as the other
+  locales' tests do. Import `test` from `src/testing.ts`.
 
 Expected red: none.
 
