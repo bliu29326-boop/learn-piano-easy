@@ -56,6 +56,9 @@ Traps a session paid for once, so the next one does not. **It is not a changelog
 - **A `tools/shot.ts` shot with no `--wait` can show a page half blank.** The home, modes, learn and
   player pages fade their sections in, and the shot lands before they end. Pass `--wait 2500` before
   you call a blank region a flaw.
+- **A `--full` shot of a long phone page is too small to read.** Read scales a tall PNG down, so a
+  line break inside a word goes unseen. Take viewport shots instead, scrolling with `--eval` and
+  `window.scrollTo` between each `--shot`.
 - **A `--click Guide` of `tools/shot.ts` times out on a phone.** The player bar hides the button's label
   there, and its accessible name is not "Guide". Click it in an `--eval` that finds the button whose
   text is the label, such as "Anleitung" in German.
