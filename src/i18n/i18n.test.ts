@@ -67,14 +67,17 @@ async function staticGraph(entry: string): Promise<Set<string>> {
 }
 
 test("a_page_loads_only_its_own_catalog", async () => {
-  // A locale's catalog is read only once its chunk has loaded.
-  expect(() => messagesOf("ja")).toThrow();
+  // A locale's catalog is read only once its chunk has loaded. `all-catalogs` loads every shipped
+  // locale, so the pseudo-locale is the one left to load.
+  expect(() => messagesOf("en-XA")).toThrow();
+  await loadLocale("en-XA");
+  expect(shape(messagesOf("en-XA"))).toEqual(shape(en));
   await loadLocale("ja");
-  expect(messagesOf("ja").siteName).toBe(en.siteName);
-  // A locale without a catalog of its own reads English in every text.
+  // The loaded catalog reads the locale's own texts, and English in each text it leaves out.
   expect(shape(messagesOf("ja"))).toEqual(shape(en));
-  expect(messagesOf("ja").pages.learn.title).toBe(en.pages.learn.title);
-  expect(catalogOf("ja").footer).toEqual(en.footer);
+  expect(messagesOf("ja").pages.learn.title).toBe(catalogOf("ja").pages.learn.title);
+  expect(messagesOf("ja").pages.learn.title).not.toBe(en.pages.learn.title);
+  expect(messagesOf("ja").siteName).toBe(en.siteName);
   // The site's script reaches the English catalog by static imports, and no other locale's.
   const graph = await staticGraph(join(import.meta.dir, "../main.ts"));
   expect(graph.has("src/i18n/messages/en.ts")).toBe(true);
@@ -140,9 +143,10 @@ test("plurals_and_numbers_follow_the_locale", () => {
 test("the_first_visit_takes_the_browser_language", () => {
   // With no choice stored, an English page moves to the first site locale the browser names.
   expect(chooseLocale("en", "auto", ["de-AT", "en-US"])).toBe("de");
-  expect(chooseLocale("en", "auto", ["ja-JP", "de"])).toBe("de");
+  expect(chooseLocale("en", "auto", ["ko-KR", "de"])).toBe("de");
   expect(chooseLocale("en", "auto", ["en-GB", "de-DE"])).toBe("en");
-  expect(chooseLocale("en", "auto", ["ja-JP"])).toBe("en");
+  expect(chooseLocale("en", "auto", ["ko-KR"])).toBe("en");
+  expect(chooseLocale("en", "auto", ["ja-JP"])).toBe("ja");
   expect(chooseLocale("en", "auto", ["fr-CA", "de"])).toBe("fr");
   expect(chooseLocale("en", "auto", [])).toBe("en");
   // A German page was reached on purpose, so it stays.
@@ -166,8 +170,9 @@ test("the_first_visit_takes_the_browser_language", () => {
   expect(localeOfPath("ru/play/")).toBe("ru");
   expect(localeOfPath("fr/play/")).toBe("fr");
   expect(localeOfPath("ur/play/")).toBe("ur");
-  // A locale that has not shipped has no pages, so its folder is no locale's.
-  expect(localeOfPath("ja/play/")).toBe("en");
+  expect(localeOfPath("ja/play/")).toBe("ja");
+  // A folder no locale owns belongs to the default locale.
+  expect(localeOfPath("ko/play/")).toBe("en");
   expect(pathInLocale("de/play/", "en")).toBe("play/");
   expect(pathInLocale("learn/profile/", "de")).toBe("de/learn/profile/");
   expect(pathInLocale("de/", "de")).toBe("de/");

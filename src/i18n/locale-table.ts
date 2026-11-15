@@ -58,7 +58,7 @@ export const LOCALE_TABLE = [
   { code: "ru", english: "Russian", endonym: "Русский", lang: "ru", intl: "ru", dir: "ltr", ogLocale: "ru_RU", naming: "solfege", alphabet: "cyrillic", shipped: true, complete: false },
   { code: "fr", english: "French", endonym: "Français", lang: "fr", intl: "fr", dir: "ltr", ogLocale: "fr_FR", naming: "solfege", alphabet: "latin", shipped: true, complete: false },
   { code: "ur", english: "Urdu", endonym: "اردو", lang: "ur", intl: "ur-PK", dir: "rtl", ogLocale: "ur_PK", naming: "letters", alphabet: "arabic", shipped: true, complete: false },
-  { code: "ja", english: "Japanese", endonym: "日本語", lang: "ja", intl: "ja", dir: "ltr", ogLocale: "ja_JP", naming: "solfege", alphabet: "japanese", shipped: false, complete: false },
+  { code: "ja", english: "Japanese", endonym: "日本語", lang: "ja", intl: "ja", dir: "ltr", ogLocale: "ja_JP", naming: "solfege", alphabet: "japanese", shipped: true, complete: false },
 ] as const satisfies readonly LocaleRow[];
 
 /**
