@@ -137,12 +137,12 @@ keys* with *First melodies*. Five fresh reviewers then review the five batches b
 most eight guides each work side by side, and one fresh reviewer per batch reviews it blind.
 **Gate:** stage 3's worlds are stamped.
 
-- [ ] One `tools/our-songs/<slug>.ur.ts` per slug from `air-on-the-g-string` to `mozart-21-andante`. `tools/our-songs/air-on-the-g-string.ur.ts:1`
+- [x] One `tools/our-songs/<slug>.ur.ts` per slug from `air-on-the-g-string` to `mozart-21-andante`. `tools/our-songs/air-on-the-g-string.ur.ts:1`
   - [x] Seven writers, side by side, each with an alphabetical run of seven or eight guides.
   - [x] `bun x tsc` and `urdu_texts_keep_their_rules` pass on the 51 files.
-- [ ] Each batch reviewed blind, and every finding settled.
-  - [ ] Two fresh reviewers per batch read it blind, four guides each.
-  - [ ] Settlers apply every finding, and each batch with a *wrong* finding is read again.
+- [x] Each batch reviewed blind, and every finding settled.
+  - [x] Two fresh reviewers per batch read it blind, four guides each.
+  - [x] Settlers apply every finding, and each batch with a *wrong* finding is read again.
 - [ ] `bun tools/make-our-songs.ts` writes the guides, and `bun run i18n stamp ur` stamps them. `public/songs/ours/alle-jahre-wieder/guide.json:1`
   - [ ] No missing space before a join, and no raw isolate or no-break space in the files.
 

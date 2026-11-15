@@ -5,8 +5,8 @@ import type { GuideTranslation } from "../make-our-songs";
 
 export const translation: Translation<GuideTranslation> = {
   about:
-    `یہ کیرل ${isolate("Branle de l'Official")} نام کی رقص کی ایک دھن سے شروع ہوا۔ ` +
-    `یہ 1589 میں ${isolate("Orchésographie")} میں چھپا، جو فرانسیسی پادری ${isolate("Thoinot Arbeau")} کی رقص کے بارے میں کتاب ہے۔ ` +
+    `اس کیرل کی ابتدا ${isolate("Branle de l'Official")} نام کے ایک رقص کی دھن سے ہوئی۔ ` +
+    `یہ دھن 1589 میں ${isolate("Orchésographie")} میں چھپی، جو فرانسیسی پادری ${isolate("Thoinot Arbeau")} کی رقص پر لکھی گئی کتاب ہے۔ ` +
     `انگریز کمپوزر ${isolate("George Ratcliffe Woodward")} نے اس کیرل کے بول لکھے، اور یہ 1924 میں شائع ہوا۔ ` +
     `${isolate("Charles Wood")} نے اس کی ہارمنی لکھی۔`,
   funFact: `${isolate("Thoinot Arbeau")} ایک قلمی نام تھا۔ اس کے پیچھے اصل شخص ${isolate("Jehan Tabourot")} تھے۔`,
@@ -101,7 +101,7 @@ export const translation: Translation<GuideTranslation> = {
         9:
           `${isolate("C")}، ${isolate("D")}، ${isolate("B")} اور ${isolate("A")} کے آکٹیو جلدی جلدی آتے ہیں۔ ` +
           "ہاتھ کو آکٹیو کی شکل میں رکھیں اور اسے کلائی سے حرکت دیں۔",
-        11: "شروع والا حصہ آکٹیو میں واپس آتا ہے۔ جب نیچے آرپیجیو چل رہے ہوں، انہیں یکساں رکھیں۔",
+        11: "شروع والا حصہ آکٹیو میں واپس آتا ہے۔ جب نیچے آرپیجیو چل رہے ہوں، تو آکٹیو یکساں رکھیں۔",
         14:
           `تیز نوٹوں کی لڑی جھول کر نیچے ${isolate("B")} تک آتی ہے، ` +
           `جبکہ اس کے نیچے بایاں ہاتھ پہلے ${isolate("C")} کا اور پھر ${isolate("G")} کا آرپیجیو چڑھتا ہے۔`,

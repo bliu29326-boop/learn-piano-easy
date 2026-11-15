@@ -17,9 +17,9 @@ Traps a session paid for once, so the next one does not. **It is not a changelog
   its isolates, though `src/i18n/messages/*.ar.ts` writes them as escapes. A typed backslash escape
   turns raw too, and a doubled backslash stays doubled. Write the backslash itself as the escape
   `u005C` behind a backslash, followed by `u2068`. Then Grep the file for a raw U+2068.
-- **An Edit whose new text ends in a space before `" +` drops that space.** Two guide sentences then
-  run together, and a locale's rules test may not catch it. Type the space as a backslash and `u0020`,
-  then Grep every `tools/our-songs/*.<locale>.ts` you touched for `[^ ]" \+$` before you stamp.
+- **An Edit whose new text ends in a space drops that space.** Before `" +`, two guide sentences then
+  run together. Inside a text, the next word then touches a `۔` or `:`. Type the space as a backslash
+  and `u0020`. Then Grep every `tools/our-songs/*.<locale>.ts` you touched for `[^ ]["`] \+$` before you stamp.
 - **A no-break space typed as itself in Write or Edit can land as an ASCII space.** The rules test
   then fails on `%` or a unit. Type a backslash, then `u00A0`, which the tools write raw. Then Grep each
   file under `src/i18n/messages/` for a digit or `}` followed by an ASCII space and `%`.

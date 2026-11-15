@@ -84,7 +84,7 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         2:
-          "بایاں ہاتھ ایک مختصر ریسٹ تک انتظار کرتا ہے، " +
+          "بایاں ہاتھ ایک مختصر ریسٹ کے دوران انتظار کرتا ہے، " +
           `پھر ${isolate("C")}، ${isolate("G")} اور ${isolate("C")} پر اوپر چڑھتا ہے۔ ` +
           `دائیں ہاتھ کا انگوٹھا دوسرا ${isolate("F")} بجاتا ہے۔`,
         16:

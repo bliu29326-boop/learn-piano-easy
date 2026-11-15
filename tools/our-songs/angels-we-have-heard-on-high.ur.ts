@@ -8,8 +8,8 @@ export const translation: Translation<GuideTranslation> = {
     `${isolate("Angels We Have Heard on High")} فرانس کا ایک روایتی کیرل ہے۔ ` +
     `فرانسیسی میں اس کا نام ${isolate("Les Anges dans nos campagnes")} ہے، جس کا مطلب ہے "ہمارے دیہات کے فرشتے"۔ ` +
     `بول اور نوٹوں کے ساتھ اس کی سب سے پرانی معلوم اشاعت 1842 کی ہے، جو ${isolate("Louis Lambillotte")} کے ایک مجموعے میں ہے۔ ` +
-    `انگریزی بول 1862 میں ${isolate("James Chadwick")} نے آزاد ترجمے کی صورت میں لکھے، ` +
-    `جو ${isolate("Hexham")} اور ${isolate("Newcastle")} کے رومن کیتھولک بشپ تھے۔`,
+    `انگریزی بول ${isolate("Hexham")} اور ${isolate("Newcastle")} کے رومن کیتھولک بشپ ` +
+    `${isolate("James Chadwick")} نے 1862 میں آزاد ترجمے کی صورت میں لکھے۔`,
   funFact:
     `مکھڑے ${isolate("Gloria in excelsis Deo")} میں ${isolate("Gloria")} کا ${isolate("o")} ` +
     "نوٹوں کی ایک لمبی لڑی پر کھینچا جاتا ہے، جو اوپر چڑھتی اور نیچے اترتی ہے۔",
@@ -54,7 +54,7 @@ export const translation: Translation<GuideTranslation> = {
         6:
           `انگلی 2 ${isolate("D")} بجاتی ہے، پھر انگوٹھا پھیل کر نیچے والے ${isolate("G")} تک پہنچتا ہے، ` +
           `جبکہ بایاں ہاتھ ${isolate("D")} اور ${isolate("F")} دبائے رکھتا ہے۔`,
-        9: "وہی نوٹ جو میژر 6 میں ہیں۔ دایاں ہاتھ ساکن رکھیں اور انگوٹھے کو نیچے تک پہنچنے دیں۔",
+        9: "وہی نوٹ جو میژر 6 میں ہیں۔ دایاں ہاتھ اپنی جگہ پر رکھیں اور انگوٹھے کو نیچے تک پہنچنے دیں۔",
         17: "میژر 6 ایک بار پھر، اب دوسری بار والے حصے میں۔ دھن کے نیچے کورڈ ہلکے سے بجائیں۔",
       },
     },

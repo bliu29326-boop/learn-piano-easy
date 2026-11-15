@@ -373,6 +373,7 @@ export const TYPOGRAPHY: Record<LanguageCode, Typography> = {
       { says: "ۓ is written as ئے", mustNot: /ۓ/ },
       { says: "A polite imperative of a stem in ا takes ئیں: دبائیں", mustNot: /ایں(?![\p{L}\p{M}])/u },
       { says: "A range between digits takes words, never a dash", mustNot: /\d\s?[-–—]\s?\d/ },
+      { says: "A space parts an isolated run from the word beside it", mustNot: /\p{L}\u2068|\u2069\p{L}/u },
       {
         says: "The learner is آپ, never تم or تو",
         mustNot: /(?<![\p{L}\p{M}])(?:تم|تمہیں|تمہارا|تمہاری|تمہارے|تجھے|تجھ|تیرا|تیری|تیرے)(?![\p{L}\p{M}])/u,

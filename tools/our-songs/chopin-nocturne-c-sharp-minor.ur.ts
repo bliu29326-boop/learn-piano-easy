@@ -6,7 +6,7 @@ import type { GuideTranslation } from "../make-our-songs";
 export const translation: Translation<GuideTranslation> = {
   about:
     "شوپن نے یہ نوکٹرن 1830 میں لکھا، اور یہ ان کی وفات کے بہت بعد 1875 میں پہلی بار شائع ہوا۔ " +
-    `انہوں نے اسے اپنی بہن ${isolate("Ludwika")} کو بھیجا، تاکہ وہ ان کے دوسرے پیانو کنسرٹو سے پہلے اس پر مشق کریں۔ ` +
+    `انہوں نے اسے اپنی بہن ${isolate("Ludwika")} کو بھیجا، تاکہ وہ ان کے دوسرے پیانو کنسرٹو سے پہلے اس کی مشق کریں۔ ` +
     `فلم ${isolate("The Pianist")} میں یہ بجایا جاتا ہے، اور فلم کے ساؤنڈ ٹریک البم کا آغاز اسی سے ہوتا ہے۔`,
   funFact:
     `1939 میں پیانو نواز ${isolate("Władysław Szpilman")} اسے پولش ریڈیو پر براہ راست بجا رہے تھے، ` +

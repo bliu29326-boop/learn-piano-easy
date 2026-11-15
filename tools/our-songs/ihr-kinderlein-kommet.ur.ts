@@ -7,7 +7,7 @@ export const translation: Translation<GuideTranslation> = {
   about:
     `جرمن عنوان ${isolate("Ihr Kinderlein, kommet")} کا مطلب ہے "ننھے بچو، آ جائیں"۔ ` +
     `اس کے بول پادری ${isolate("Christoph von Schmid")} نے لکھے، اور اپنی نظم کا نام "چرنی کے پاس بچے" رکھا۔ ` +
-    `${isolate("Johann Abraham Peter Schulz")} نے یہ دھن 1794 میں ${isolate("Wilhelm Gottlieb Becker")} کی بہار کے بارے میں ایک نظم کے لیے لکھی۔ ` +
+    `${isolate("Johann Abraham Peter Schulz")} نے یہ دھن 1794 میں بہار کے بارے میں ${isolate("Wilhelm Gottlieb Becker")} کی ایک نظم کے لیے لکھی۔ ` +
     `بعد میں ${isolate("Schmid")} کے بول بہار کی اسی دھن پر گائے جانے لگے، اور دونوں مل کر کرسمس کا گیت بن گئے۔`,
   funFact:
     `${isolate("Christoph von Schmid")} نے بچوں کے لیے کہانیاں بھی لکھیں، ` +
@@ -84,7 +84,7 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tips: [
         "اسٹرائیڈ بیس میں نیچے والے آکٹیو پر نظر رکھیں، اور ہاتھ کو کورڈ چھو کر ڈھونڈنے دیں۔",
-        `لمبے ${isolate("E")} کے بعد چھوٹے نوٹوں کا گروپ ایک ہلکی سی اچھال ہے۔ اسے دھن سے بھی ہلکے سے بجائیں۔`,
+        `لمبے ${isolate("E")} کے بعد چھوٹے نوٹوں کا گروپ ایک ہلکا سا اچھال ہے۔ اسے دھن سے زیادہ ہلکے سے بجائیں۔`,
         "انگوٹھے اور چھوٹی انگلی کے بیچ ایک آکٹیو کا فاصلہ رکھیں، اور کلائی کو ہلکا سا اچھلنے دیں۔",
       ],
       tricky: {

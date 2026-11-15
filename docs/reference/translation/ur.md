@@ -527,6 +527,7 @@ with each kept word written as `X`.
 | `ۓ` is written as `ئے`. | `ۓ` |
 | A polite imperative of a stem in `ا` takes `ئیں`: `دبائیں`. | `ایں(?![\p{L}\p{M}])` |
 | A range between digits takes words, never a dash. | `\d\s?[-–—]\s?\d` |
+| A space parts an isolated run from the word beside it. | `\p{L}\u2068\|\u2069\p{L}` |
 | The learner is `آپ`, never `تم` or `تو`. | `تم`, `تمہارا`, `تجھے`, `تیرا` and their forms, as whole words |
 | An instruction is the polite imperative in `یں`. | `کرو`, `دباؤ`, `بجاؤ`, `کیجیے`, `دبائیے` and their kin, as whole words |
 

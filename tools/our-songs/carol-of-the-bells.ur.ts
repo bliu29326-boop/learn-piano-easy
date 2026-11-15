@@ -10,7 +10,7 @@ export const translation: Translation<GuideTranslation> = {
     `یہ پہلی بار دسمبر 1916 میں کیف میں گایا گیا۔ ` +
     `بعد میں ${isolate("Peter J. Wilhousky")} نے اسے انگریزی گیت ${isolate("Carol of the Bells")} بنا دیا۔`,
   funFact:
-    `${isolate("Wilhousky")} نے اسے گھنٹیوں کے بارے میں بول دیے، ` +
+    `${isolate("Wilhousky")} نے اس کے لیے گھنٹیوں کے بارے میں بول لکھے، ` +
     "کیونکہ اس کی دھن انہیں ہاتھ سے بجنے والی گھنٹیوں کی یاد دلاتی تھی۔",
   versions: {
     common: {
@@ -41,7 +41,7 @@ export const translation: Translation<GuideTranslation> = {
         "اب اسے پوری رفتار پر بجائیں۔",
       ],
       tips: [
-        `بایاں ہاتھ ${isolate("C")} چھوڑ دیتا ہے، تاکہ وہ دھن کے ${isolate("B")} سے کبھی نہ ٹکرائے۔`,
+        `بایاں ہاتھ ${isolate("C")} نہیں بجاتا، تاکہ یہ نوٹ دھن کے ${isolate("B")} سے کبھی نہ ٹکرائے۔`,
         `آخری ${isolate("A")} انگلی 3 سے بجائیں۔ پھر انگوٹھا نیچے والے ${isolate("E")} کے لیے آزاد رہتا ہے۔`,
         `${isolate("G")} شارپ مختصر بجائیں، ہاتھ اٹھائیں، اور انگوٹھا ${isolate("A")} پر رکھیں۔`,
       ],
