@@ -36,7 +36,7 @@ export const learnLesson: Translation<typeof en> = {
     play: "سنیں",
     playAgain: "دوبارہ سنیں",
     skip: "چھوڑیں",
-    piano: "مثال بجاتا ہوا پیانو",
+    piano: "مثال سنانے والا پیانو",
     playing: "بج رہا ہے",
     slow: "آہستہ رفتار",
     side: "سائیڈ ویو",
@@ -62,7 +62,7 @@ export const learnLesson: Translation<typeof en> = {
     hintChord: (...notes: string[]) =>
       `اب ${notes.slice(0, -1).map(isolate).join("، ")}${notes.length > 1 ? " اور " : ""}${isolate(notes.at(-1) ?? "")} ایک ساتھ بجائیں۔`,
     expression: {
-      "too-loud": "کلید صحیح ہے، لیکن آواز بہت زور سے ہے۔ اسے ہلکے سے بجائیں۔",
+      "too-loud": "کلید صحیح ہے، لیکن بہت زور سے بجی۔ اسے ہلکے سے بجائیں۔",
       "too-soft": "کلید صحیح ہے، لیکن آواز بہت ہلکی ہے۔ اسے زور سے بجائیں۔",
       "pedal-up": "کلید صحیح ہے۔ اسے بجاتے وقت پیڈل دبائے رکھیں۔",
       "pedal-down": "کلید صحیح ہے۔ اسے بجانے سے پہلے پیڈل چھوڑیں۔",
@@ -88,7 +88,7 @@ export const learnLesson: Translation<typeof en> = {
     wrongKey: "یہ کوئی اور کلید ہے۔ دوبارہ کوشش کریں۔",
     hintName: "نمایاں نام صحیح ہے۔",
     hintKey: "نمایاں کلید ہی صحیح ہے۔",
-    again: "کچھ جواب ابھی صحیح نہیں ہوئے۔ یہ سب ایک بار پھر آئیں گے۔",
+    again: "کچھ جواب ابھی صحیح نہیں تھے۔ چلیں، انہیں ایک بار پھر آزمائیں۔",
   },
   rhythmTap: {
     start: "شروع کریں",
@@ -102,13 +102,13 @@ export const learnLesson: Translation<typeof en> = {
     phrasePiano: "کلیدیں۔ دھن کا ٹکڑا ٹک کے ساتھ ساتھ وقت پر بجائیں۔",
     shortNotes: (hits: number, notes: number) =>
       `${num(notes)} میں سے ${num(hits)} ${plural("ur", hits, { one: "نوٹ وقت پر بجا", other: "نوٹ وقت پر بجے" })}۔ دوبارہ کوشش کریں۔`,
-    restSounded: "ریسٹ کے دوران ایک کلید بج گئی۔ انگلی اٹھائیں اور وہاں خاموشی رکھیں۔",
+    restSounded: "ریسٹ کے دوران ایک کلید بج گئی۔ انگلی اٹھائیں، اور ریسٹ میں کچھ نہ بجائیں۔",
     phraseHint: "ہر نوٹ اس کے ٹک پر بجائیں، اور ریسٹ سے پہلے انگلی کلید سے اٹھا لیں۔ نقطے بیٹ پر چمکتے ہیں۔",
     pattern: {
       taps: (countIn: number, taps: number) => `${num(countIn)} بیٹ گنیں۔ پھر ${num(taps)} بیٹ پر کلید دبائیں۔`,
       phrase: (countIn: number, ...parts: string[]) =>
         `${num(countIn)} بیٹ گنیں۔ پھر ترتیب سے بجائیں${parts.length > 0 ? `: ${parts.map(isolate).join("، ")}` : ""}۔`,
-      held: (note: string, beats: number) => `${isolate(note)} کو ${num(beats)} بیٹ تک دبائے رکھیں`,
+      held: (note: string, beats: number) => `${isolate(note)}، ${num(beats)} بیٹ تک دبا کر`,
       rest: (beats: number) => (beats === 1 ? "ریسٹ" : `${num(beats)} بیٹ کا ریسٹ`),
     },
   },

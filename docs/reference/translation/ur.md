@@ -83,6 +83,9 @@ gender-neutral wording.
   Microsoft § 3.1 avoids `مرد`, `عورت`, `لڑکا` and `لڑکی`.
 - **The teacher has no gender either.** It never says `گا`, `گی`, `گیا` or `گئی` of itself. `میں یہاں ہوں`
   and an infinitive carry none.
+- **A description of the teacher in the third person agrees with `بن مانس`,** a masculine noun, as
+  `بن مانس جو جیکٹ پہنے ہوئے ہے`. The grammar asks it, and the teacher still never speaks of itself.
+- **A mode's or a badge's name never names a person,** such as `رکھوالا`, since it may read as the learner.
 - **A composer named in a guide takes the gender of the person,** since a guide states facts.
 
 ## 5. Terms
@@ -314,7 +317,10 @@ of a work, *download*, *loading*, *retry*, *website*, *internet* and *connection
 | the Original (a song's last version) | اوریجنل | the app's own term |
 | a section named by an imperative, mid-sentence | `"بس پیانو بجائیں" والے حصے میں` | so the name never reads as a verb |
 | a guide's stock practice steps | see *A guide's recurring steps* below | the guides' own forms, one per English step |
-| dialog (a window over the page) | ونڈو | everyday word. `ڈائیلاگ` reads as a film's lines |
+| dialog (a window over the page) | ونڈو, feminine: `ونڈو بند ہو جاتی ہے` | everyday word. `ڈائیلاگ` reads as a film's lines |
+| view (of the camera); hover the pointer | ویو; پوائنٹر رکھنا | `منظر` blurs with `پس منظر`, and `ماؤس` leaves out touch |
+| music (in running text); a small step (in general) | موسیقی; قدم | `میوزک` stands only in `شیٹ میوزک`. `مرحلہ` names only a numbered step of a lesson or a guide |
+| steady tempo; power-saving mode; example songs | یکساں ٹیمپو; بجلی بچانے والا موڈ; ایپ میں شامل گانے | `ٹھہرا ہوا` reads as stalled |
 | About (a page, a heading); About an app | تعارف; `… کے بارے میں` | everyday words, unsourced |
 | input, output; MIDI device | ان پٹ, آؤٹ پٹ; `MIDI` آلہ | the terms of audio apps; follows *device* |
 | data; account; sync | ڈیٹا; اکاؤنٹ; سنک | everyday words |
@@ -327,6 +333,15 @@ of a work, *download*, *loading*, *retry*, *website*, *internet* and *connection
 | course; map; stats; tab | کورس; نقشہ; اعداد و شمار; ٹیب | the course's own terms |
 | On, Off, Auto | آن, آف, خودکار | the terms of apps |
 | sponsor; sponsorship | اسپانسر; اسپانسرشپ | everyday words |
+| teacher (the mascot) | پیانو ٹیچر | the word of music schools. `استاد` reads as a master of a gharana |
+| is visible, shows | نظر آنا: `نوٹ پر نام نظر آتا ہے` | `دکھنا` leans Hindi; `دکھانا` stays for a setting that shows a thing |
+| history (of takes); profile | ہسٹری; پروفائل, masculine: `آپ کا پروفائل` | the terms of apps. `تاریخ` is a date |
+| drag (of particles); a numeric value; effects | مزاحمت; ویلیو; ایفیکٹس | `رکاوٹ` is an obstacle, and `قدر` also reads as worth |
+| Contemporary (a style) | جدید | `عصری` reads formal |
+| split at middle C | مڈل `C` پر تقسیم | "at" takes `پر` |
+| unbind a computer key | ہٹائیں | `صاف کریں` wipes a field |
+| settings, tracks (a plural heading or count) | سیٹنگز, ٹریکس | the plural of apps. "All settings" in running text is `ساری ترتیبات` |
+| a chord tone or a degree (the full notation) | روٹ; فرسٹ, فلیٹ تھرڈ, ففتھ, ڈبل فلیٹ سیونتھ, نائنتھ | the interval's English name, as the theory glossary writes it |
 
 ### Which "play" is which
 

@@ -4,7 +4,7 @@ import type { Translation } from "../translation";
 import type { learnBadges as en } from "./learn-badges.en";
 
 export const learnBadges: Translation<typeof en> = {
-  cheer: "پیانو سکھانے والا بن مانس آپ کے لیے تالیاں بجا رہا ہے",
+  cheer: "آپ کے پیانو ٹیچر کی طرف سے شاباش",
   fixed: {
     "first-note": { name: "پہلا نوٹ", description: "کسی سبق میں اپنا پہلا نوٹ بجائیں۔" },
     "first-lesson": { name: "پہلا سبق", description: "اپنا پہلا سبق مکمل کریں۔" },

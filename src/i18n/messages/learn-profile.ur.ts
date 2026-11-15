@@ -28,7 +28,7 @@ export const learnProfile: Translation<typeof en> = {
   },
   calendar: {
     heading: "پچھلے آٹھ ہفتے",
-    label: (met: number, played: number) => `پچھلے آٹھ ہفتوں میں ${days(met)} ہدف پورا ہوا، اور ${days(played)} کوئی سبق ہوا۔`,
+    label: (met: number, played: number) => `پچھلے آٹھ ہفتوں میں ${days(met)} ہدف پورا ہوا، اور ${days(played)} سبق ہوا۔`,
     met: "ہدف پورا",
     played: "سبق ہوا",
     none: "کوئی سبق نہیں",
@@ -64,7 +64,7 @@ export const learnProfile: Translation<typeof en> = {
     cancel: "میری پیش رفت رہنے دیں",
     ask: {
       title: "کیا ساری پیش رفت ری سیٹ کریں؟",
-      text: `اس سے اس براؤزر سے ہر سبق، ستارہ، ${isolate("XP")} پوائنٹ اور بیج ہٹ جائے گا۔ آپ کی ترتیبات برقرار رہیں گی۔`,
+      text: `یہ عمل اس براؤزر سے ہر سبق، ستارہ، ${isolate("XP")} پوائنٹ اور بیج ہٹا دے گا۔ آپ کی ترتیبات برقرار رہیں گی۔`,
       next: "جاری رکھیں",
     },
     askAgain: {

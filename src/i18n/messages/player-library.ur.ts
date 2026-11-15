@@ -18,7 +18,7 @@ export const playerLibrary: Translation<typeof en> = {
   rarity: {
     taglines: {
       common: "ہاتھ کی ایک ہی پوزیشن، آہستہ رفتار کے نوٹ، اور ایسا بیس جو آپ کا انتظار کرتا ہے۔",
-      rare: "دونوں ہاتھ بجاتے ہیں۔ ایٹتھ نوٹ، آسان کورڈ، اور ہاتھ جو کبھی کبھی اپنی جگہ بدلتا ہے۔",
+      rare: "دونوں ہاتھ بجاتے ہیں۔ ایٹتھ نوٹ، آسان کورڈ، اور ایک ہاتھ جو کبھی کبھی اپنی جگہ بدلتا ہے۔",
       epic: "بروکن کورڈ، انگوٹھا نیچے سے لے جانا، اور پیڈل۔",
       legendary: "دونوں ہاتھ مصروف، تیز اور ایک دوسرے سے آزاد۔",
     },
@@ -37,15 +37,15 @@ export const playerLibrary: Translation<typeof en> = {
   },
   skills: {
     fiveFingerPosition: "پانچ انگلیوں کی پوزیشن",
-    heldBass: "دبائے رکھے بیس نوٹ",
+    heldBass: "دبے رہنے والے بیس نوٹ",
     openFifths: "اوپن ففتھ",
     eighthNotes: "ایٹتھ نوٹ",
     dottedRhythm: "ڈاٹڈ ردھم",
     triads: "ٹرائیڈ",
     twoNoteChords: "دو نوٹوں کے کورڈ",
-    positionChange: "پوزیشن بدلنا",
-    thumbUnder: "انگوٹھا نیچے سے",
-    fingerOver: "انگوٹھے کے اوپر سے انگلی",
+    positionChange: "ہاتھ کی پوزیشن بدلنا",
+    thumbUnder: "انگوٹھا نیچے سے لے جانا",
+    fingerOver: "انگوٹھے کے اوپر سے انگلی لے جانا",
     brokenChords: "بروکن کورڈ",
     albertiBass: "البرٹی بیس",
     waltzBass: "والز بیس",
@@ -63,7 +63,7 @@ export const playerLibrary: Translation<typeof en> = {
   panel: {
     search: { placeholder: "نام، کمپوزر یا ٹیگ تلاش کریں", label: "گانے تلاش کریں", clear: "تلاش صاف کریں" },
     fits: "میرے کی بورڈ کے مطابق",
-    kinds: { level: "مشکل کا درجہ", yours: "آپ کے", collection: "مجموعہ", style: "انداز", skill: "تکنیک", composer: "کمپوزر" },
+    kinds: { level: "مشکل کا درجہ", yours: "آپ کے گانے", collection: "مجموعہ", style: "انداز", skill: "تکنیک", composer: "کمپوزر" },
     levels: { beginner: "ابتدائی", easy: "آسان", medium: "درمیانہ", hard: "مشکل" },
     styles: {
       baroque: "باروک",
@@ -72,7 +72,7 @@ export const playerLibrary: Translation<typeof en> = {
       impressionist: "امپریشنسٹ",
       ragtime: "ریگ ٹائم",
       folk: "لوک دھن",
-      contemporary: "عصری",
+      contemporary: "جدید",
     },
     sets: { path: "ابتدائی راستہ", ours: "ہمارے ارینجمنٹ" },
     yours: { favourite: "پسندیدہ", played: "بجائے گئے", upload: "آپ کی فائلیں" },
@@ -94,7 +94,7 @@ export const playerLibrary: Translation<typeof en> = {
       continue: "بجانا جاری رکھیں",
       favourites: "پسندیدہ",
       path: "ابتدائی راستہ",
-      pathLead: "آپ کے اگلے قدم، پہلے نوٹوں سے پہلے سوناٹینا تک۔",
+      pathLead: "آپ کے اگلے قدم، شروع کے نوٹوں سے لے کر پہلے سوناٹینا تک۔",
       pathAll: (n: number) => `سارے ${num(n)} گانے دکھائیں`,
       all: "سارے گانے",
       results: "نتائج",
@@ -104,9 +104,9 @@ export const playerLibrary: Translation<typeof en> = {
     preview: {
       start: "جھلک",
       stop: "جھلک بند کریں",
-      title: (title: string) => `${isolate(title)} کا آغاز سنیں`,
+      title: (title: string) => `${isolate(title)} کی شروعات سنیں`,
       failed: (title: string) =>
-        `"${isolate(title)}" ابھی اس آلے پر نہیں ہے۔ اس کی جھلک سننے کے لیے انٹرنیٹ سے منسلک ہوں۔`,
+        `${isolate(title)} ابھی اس آلے پر نہیں ہے۔ اس کی جھلک سننے کے لیے انٹرنیٹ سے منسلک ہوں۔`,
     },
     favourite: { label: "پسندیدہ", title: (title: string) => `پسندیدہ: ${isolate(title)}` },
     lengthTitle: "دورانیہ",
@@ -137,7 +137,7 @@ export const playerLibrary: Translation<typeof en> = {
     hands: {
       right: "دایاں ہاتھ",
       left: "بایاں ہاتھ",
-      split: `دونوں ہاتھ، مڈل ${isolate("C")} سے تقسیم`,
+      split: `دونوں ہاتھ، مڈل ${isolate("C")} پر تقسیم`,
       none: "میرا نہیں: ایپ اسے بجاتی ہے",
     },
     fromNotes: "نوٹوں کے مطابق",
@@ -180,7 +180,7 @@ export const playerLibrary: Translation<typeof en> = {
   openSong: {
     outside: "اس گانے کے کچھ نوٹ آپ کے کی بورڈ سے باہر ہیں۔",
     fold: "انہیں اپنی کلیدوں پر لے آئیں",
-    failed: (title: string, reason: string) => `"${isolate(title)}" کو کھولا نہیں جا سکا: ${isolate(reason)}`,
+    failed: (title: string, reason: string) => `${isolate(title)} کو کھولا نہیں جا سکا: ${isolate(reason)}`,
     catalogFailed: (code: number) => `گانوں کی فہرست لوڈ نہیں ہو سکی (${status(code)})۔`,
     fileFailed: (code: number) => `فائل لوڈ نہیں ہو سکی (${status(code)})`,
   },

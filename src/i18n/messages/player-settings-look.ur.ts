@@ -34,15 +34,15 @@ export const playerSettingsLook: Translation<typeof en> = {
     help: "ہر نوٹ کے گرد روشنی کا کنارا کتنا روشن ہے۔",
   },
   noteEndedShrink: {
-    label: "بجے ہوئے نوٹ کلید میں سمٹ جائیں",
-    help: "نوٹ بجتے ہوئے اپنی کلید میں دھنستا جاتا ہے۔ بند ہونے پر وہ کلیدوں سے آگے نکل جاتا ہے۔",
+    label: "بجے ہوئے نوٹ اپنی کلید میں سمٹ جائیں",
+    help: "نوٹ بجتے ہوئے اپنی کلید میں دھنستا جاتا ہے۔ یہ سیٹنگ بند ہو تو نوٹ کلیدوں سے آگے نکل جاتا ہے۔",
   },
   playedNoteFalloffSpeed: {
     label: "بجے ہوئے نوٹ کلیدوں سے کتنا آگے جائیں",
     help: "کلید کی چوڑائی کے حساب سے، جب بجے ہوئے نوٹ نہیں سمٹتے۔",
   },
   showSustainedNotes: {
-    label: "پیڈل نوٹ کو کتنی دیر تھامتا ہے",
+    label: "دکھائیں کہ پیڈل نوٹ کو کتنی دیر تھامتا ہے",
     help: "پیڈل جس نوٹ کو تھامے رکھے، اس سے ایک پتلی دُم آگے چلتی ہے۔",
   },
   sustainedNotesOpacity: {
@@ -61,7 +61,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   bgCol3: {
     label: "آکٹیو کی حد کا رنگ",
-    help: `ہر ${isolate("B")} اور اگلے ${isolate("C")} کے بیچ لائن کا رنگ۔`,
+    help: `ہر ${isolate("B")} اور اگلے ${isolate("C")} کے بیچ کی لائن کا رنگ۔`,
   },
   drawMeasureLines: {
     label: "میژر لائنیں",
@@ -96,7 +96,7 @@ export const playerSettingsLook: Translation<typeof en> = {
     help: "میژر نمبروں کا رنگ۔",
   },
   highlightInputLanes: {
-    label: "دبی ہوئی کلیدوں کی لینیں روشن",
+    label: "دبی ہوئی کلیدوں کی لینیں روشن ہوں",
     help: "کلید جب تک دبی رہے، اس کے اوپر کی لین روشن رہتی ہے۔",
   },
   inputLaneOpacity: {
@@ -105,7 +105,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   showMarkersSong: {
     label: "مارکر",
-    help: "جہاں گانا کسی حصے کا نام لیتا ہے، جیسے انترا، وہاں ایک لائن اور اس کا متن۔",
+    help: "جہاں گانے میں کسی حصے کا نام ہو، جیسے انترا، وہاں ایک لائن اور اس کا متن۔",
   },
   showSustainPeriods: {
     label: "پیڈل کے دورانیے",
@@ -117,17 +117,17 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   showSustainChannels: {
     label: "پیڈل کے چینل",
-    help: `ہر پیڈل دورانیے کا ${isolate("MIDI")} چینل دکھاتا ہے۔`,
+    help: `ہر پیڈل کے دورانیے کا ${isolate("MIDI")} چینل دکھاتا ہے۔`,
   },
 
   // Particles
   showParticles: {
     label: "ذرات",
-    help: "ہر بجتی کلید سے اثرات اٹھتے ہیں۔ یہ گرافکس کارڈ پر بوجھ ڈالتے ہیں، اس لیے شروع میں بند ہوتے ہیں۔",
+    help: "ہر بجتی کلید سے ایفیکٹس اٹھتے ہیں۔ یہ گرافکس کارڈ پر بوجھ ڈالتے ہیں، اس لیے شروع میں بند ہوتے ہیں۔",
   },
   particlesFlames: {
     label: "شعلے",
-    help: "ہر کلید اپنے نوٹ کے ساتھ اس نوٹ کے رنگ میں جلتی ہے۔ یہ گرافکس کارڈ پر سب سے زیادہ بوجھ ڈالتے ہیں۔",
+    help: "ہر کلید اپنے نوٹ کے ساتھ اس نوٹ کے رنگ میں جلتی ہے۔ شعلے گرافکس کارڈ پر سب سے زیادہ بوجھ ڈالتے ہیں۔",
   },
   particlesSparks: {
     label: "چنگاریاں",
@@ -147,7 +147,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   particlesTexture: {
     label: "شکل",
-    help: "آپ کا ہر ذرہ جو تصویر دکھاتا ہے۔",
+    help: "وہ تصویر جو آپ کے اپنے ذرات میں سے ہر ایک دکھاتا ہے۔",
     options: { circle: "چمک", spark: "چنگاری", smoke: "دھواں", star: "ستارہ", ring: "حلقہ" },
   },
   particlesBlending: {
@@ -165,7 +165,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   particlesOpacity: {
     label: "گاڑھا پن",
-    help: "ہر ذرہ کتنا ٹھوس نظر آتا ہے۔ کم قدر پر پیچھے کی چیز زیادہ نظر آتی ہے۔",
+    help: "ہر ذرہ کتنا ٹھوس نظر آتا ہے۔ کم ویلیو پر پیچھے کی چیز زیادہ نظر آتی ہے۔",
   },
   particleSize: {
     label: "سائز",
@@ -193,14 +193,14 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   particleSpeedX: {
     label: "دائیں بائیں رفتار",
-    help: "سب سے تیز دائیں بائیں رفتار، کلید کی چوڑائی فی سیکنڈ میں۔",
+    help: "سب سے تیز دائیں بائیں رفتار، کلید کی چوڑائی فی سیکنڈ کے حساب سے۔",
   },
   particleSpeedY: {
     label: "اوپر اٹھنے کی رفتار",
-    help: "اوپر اٹھنے کی سب سے تیز رفتار، کلید کی چوڑائی فی سیکنڈ میں۔",
+    help: "اوپر اٹھنے کی سب سے تیز رفتار، کلید کی چوڑائی فی سیکنڈ کے حساب سے۔",
   },
   particlesFriction: {
-    label: "رکاوٹ",
+    label: "مزاحمت",
     help: "اڑتے ہوئے ذرات کتنی جلدی آہستہ ہوتے ہیں۔",
   },
   particleRising: {
@@ -221,7 +221,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   particleNoiseResX: {
     label: "دائیں بائیں بھٹکنے کی تفصیل",
-    help: "زیادہ قدر پر ساتھ والی کلیدوں کے ذرات ایک دوسرے سے زیادہ مختلف انداز میں دائیں بائیں بھٹکتے ہیں۔",
+    help: "زیادہ ویلیو پر ساتھ والی کلیدوں کے ذرات ایک دوسرے سے زیادہ مختلف انداز میں دائیں بائیں بھٹکتے ہیں۔",
   },
   particleNoiseStrengthX: {
     label: "دائیں بائیں بھٹکنا",
@@ -229,7 +229,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   particleNoiseResY: {
     label: "اٹھتے ہوئے بھٹکنے کی تفصیل",
-    help: "زیادہ قدر پر ساتھ والی کلیدوں کا اٹھتے ہوئے بھٹکنا ایک دوسرے سے زیادہ مختلف ہوتا ہے۔",
+    help: "زیادہ ویلیو پر ساتھ والی کلیدوں کا اٹھتے ہوئے بھٹکنا ایک دوسرے سے زیادہ مختلف ہوتا ہے۔",
   },
   particleNoiseStrengthY: {
     label: "اٹھتے ہوئے بھٹکنا",
@@ -291,7 +291,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   noteLabel: {
     label: "نوٹ کے لیبل",
-    help: "ہر نوٹ پر لکھے متن: ان میں سے کوئی بھی منتخب کریں، یا کوئی نہیں۔ انگلی مقرر کرنے کے لیے نوٹ دبائیں، پھر 1 سے 5 تک کوئی نمبر دبائیں۔",
+    help: "ہر نوٹ پر لکھے متن: ان میں سے جتنے چاہیں منتخب کریں، یا کوئی بھی نہیں۔ انگلی مقرر کرنے کے لیے نوٹ دبائیں، پھر 1 سے 5 تک کوئی نمبر دبائیں۔",
     options: { name: "نوٹ کا نام", keyBinding: "کی بورڈ کا بٹن", fingering: "انگلی" },
   },
   noteLabelColor: {
@@ -330,7 +330,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   chordLabelPlacement: {
     label: "کورڈ لیبل کی جگہ",
-    help: "اوپر سے مراد کورڈ کا وہ سرا ہے جو پیانو سے دور ہے۔",
+    help: "اوپری سرے سے مراد کورڈ کا وہ سرا ہے جو پیانو سے دور ہے۔",
     options: {
       above: "کورڈ کے اوپر",
       top: "اس کے اوپری سرے پر",
@@ -349,7 +349,7 @@ export const playerSettingsLook: Translation<typeof en> = {
     options: { none: "کوئی نہیں", tone: "کورڈ کا نوٹ", degree: "اسکیل کا درجہ" },
   },
   chordToneNotation: {
-    label: "نوٹ بلاک کی لکھائی",
+    label: "نوٹ بلاک لکھنے کا انداز",
     help: "نوٹ بلاک چھوٹے نشان دکھاتے ہیں یا پورے الفاظ۔",
     options: { simple: `مختصر: ${isolate("R ♭3 5")}`, full: "پورا: روٹ، فلیٹ تھرڈ، ففتھ" },
   },
@@ -483,16 +483,16 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   sheetAutoClef: {
     label: "ہر کلیف نوٹوں کے مطابق منتخب کریں",
-    help: "بند ہونے پر پہلا اسٹاف ٹریبل اور باقی بیس ہوتے ہیں۔",
+    help: "بند ہونے پر پہلے اسٹاف پر ٹریبل کلیف اور باقی سب پر بیس کلیف ہوتا ہے۔",
   },
   overrideTimeSignature: {
     label: "ٹائم سگنیچر",
-    help: "شیٹ جس ٹائم سگنیچر میں لکھی جاتی ہے۔ گانے کا اپنا غلط ہو تو کوئی اور منتخب کریں۔",
+    help: "وہ ٹائم سگنیچر جس میں شیٹ لکھی جاتی ہے۔ اگر گانے کا اپنا ٹائم سگنیچر غلط ہو تو کوئی اور منتخب کریں۔",
     options: { auto: "گانے سے" },
   },
   sheetMinNoteDenom: {
     label: "سب سے چھوٹا نوٹ",
-    help: "شیٹ جو سب سے چھوٹا نوٹ لکھتی ہے۔ اس کے ٹرپلٹ پھر بھی آ جاتے ہیں۔",
+    help: "سب سے چھوٹا نوٹ جو شیٹ لکھتی ہے۔ اس کے ٹرپلٹ پھر بھی آ جاتے ہیں۔",
     options: { "4": "کوارٹر", "8": "ایٹتھ", "16": "سکسٹینتھ", "32": "تھرٹی سیکنڈ", "64": "سکسٹی فورتھ" },
   },
   hideRestsBelow: {
@@ -529,7 +529,7 @@ export const playerSettingsLook: Translation<typeof en> = {
     help: "شیٹ پر نوٹ بجتے ہوئے بڑا ہو جاتا ہے۔",
   },
   sheetRenderInputNotes: {
-    label: "آپ کے بجائے نوٹ دکھائیں",
+    label: "آپ کے بجائے ہوئے نوٹ دکھائیں",
     help: "ہر دبی ہوئی کلید کرسر پر نوٹ کی صورت میں نظر آتی ہے۔",
   },
   sheetShowHoverInfo: {
@@ -544,7 +544,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   // PDF
   pdfExportButtonGroup: {
     label: `نوٹ ${isolate("PDF")} کی صورت میں محفوظ کریں`,
-    help: "ایک ونڈو کھولتا ہے، جو کھلے گانے کے گرتے نوٹ صفحوں کی صورت میں محفوظ کرتا ہے۔ صفحوں کی لمبائی مقرر کی جا سکتی ہے۔",
+    help: "ایک ونڈو کھولتا ہے، جو کھلے گانے کے گرتے نوٹ صفحوں کی صورت میں محفوظ کرتی ہے۔ صفحوں کی لمبائی مقرر کی جا سکتی ہے۔",
   },
   exportPdfBackground: {
     label: "پس منظر کے رنگ استعمال کریں",
@@ -558,7 +558,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   autoCacheSongs: {
     label: "گانے محفوظ رکھیں",
-    help: "ہر مثال والا گانا ابھی محفوظ کرتا ہے، اور ہر اپ ڈیٹ کے بعد دوبارہ۔",
+    help: "ایپ میں شامل ہر گانا ابھی محفوظ کرتا ہے، اور ہر اپ ڈیٹ کے بعد دوبارہ۔",
   },
   autoCacheSounds: {
     label: "پیانو کی آوازیں محفوظ رکھیں",

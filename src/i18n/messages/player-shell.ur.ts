@@ -15,6 +15,11 @@ const megabytes = (n: number) => isolate(`${isolate(tenths(n))} MB`);
 const files = (n: number) => plural("ur", n, { one: `${num(n)} فائل`, other: `${num(n)} فائلیں` });
 /** `n` files before a postposition, in the oblique: `40 فائلوں`. */
 const filesOf = (n: number) => plural("ur", n, { one: `${num(n)} فائل`, other: `${num(n)} فائلوں` });
+/** A chord tone's interval by its number, as the glossary names it. A tone without a name shows its digits. */
+const INTERVALS: Record<string, string> = {
+  "1": "فرسٹ", "2": "سیکنڈ", "3": "تھرڈ", "4": "فورتھ", "5": "ففتھ", "6": "سکستھ", "7": "سیونتھ",
+  "9": "نائنتھ", "11": "الیونتھ", "13": "تھرٹینتھ",
+};
 
 export const playerShell: Translation<typeof en> = {
   dialog: {
@@ -73,7 +78,7 @@ export const playerShell: Translation<typeof en> = {
     none: "کوئی انگلی نہیں",
     finger: (finger, source) => `انگلی ${num(finger)}، ${isolate(source)}`,
     line: (note, said) =>
-      `${isolate(note)}: ${isolate(said)}۔ انگلی رکھنے کے لیے 1 سے 5 تک، ہٹانے کے لیے 0، اور ختم کرنے کے لیے ${isolate("Esc")} دبائیں۔`,
+      `${isolate(note)}: ${isolate(said)}۔ انگلی لگانے کے لیے 1 سے 5 میں سے کوئی نمبر، ہٹانے کے لیے 0، اور ختم کرنے کے لیے ${isolate("Esc")} دبائیں۔`,
   },
   backgroundTrack: {
     notAudio: (file) => `فائل ${isolate(file)} ایسی آڈیو نہیں جسے یہ براؤزر چلا سکے۔`,
@@ -97,7 +102,7 @@ export const playerShell: Translation<typeof en> = {
         label: "بس پیانو بجائیں",
         description: `${isolate("3D")} پیانو، پلیئر اور گانوں کی فہرست۔ "پیانو سیکھیں" والا حصہ بھی انہیں استعمال کرتا ہے۔`,
       },
-      learn: { label: "پیانو سیکھیں", description: "کورس: اس کی دنیائیں، اس کے اسباق اور آپ کی پروفائل۔" },
+      learn: { label: "پیانو سیکھیں", description: "کورس: اس کی دنیائیں، اس کے اسباق اور آپ کا پروفائل۔" },
       songs: { label: "گانے", description: "ایپ کے ساتھ آنے والا ہر گانا، تاکہ ان میں سے کوئی بھی آف لائن کھل سکے۔" },
       sounds: { label: "پیانو کی آوازیں", description: "آوازوں کے سارے سیٹ، تاکہ جو بھی سیٹ منتخب ہو، پیانو آف لائن بجے۔" },
     },
@@ -161,8 +166,13 @@ export const playerShell: Translation<typeof en> = {
   },
   chords: {
     root: "روٹ",
-    /** A chord tone, such as `♭3`, as a scale degree: `درجہ ♭3`. */
-    ordinal: (tone) => `درجہ ${isolate(String(tone))}`,
+    /** A chord tone or a degree, such as `♭3`, by its interval's English name in Urdu script: `فلیٹ تھرڈ`. A tone without a name shows its digits. */
+    ordinal: (tone) => {
+      const text = String(tone);
+      const sign = text.startsWith("𝄫") ? "ڈبل فلیٹ " : text.startsWith("♭") ? "فلیٹ " : text.startsWith("♯") ? "شارپ " : "";
+      const name = INTERVALS[text.replace(/^(𝄫|♭|♯)/u, "")];
+      return name ? `${sign}${name}` : isolate(text);
+    },
   },
   overlays: {
     fps: "فریم فی سیکنڈ",

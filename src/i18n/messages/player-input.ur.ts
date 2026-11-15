@@ -18,7 +18,7 @@ export const playerInput: Translation<typeof en> = {
     everyInput: "تمام ان پٹ",
     noOutput: "کوئی آؤٹ پٹ نہیں",
     notConnected: (name: string) => `${isolate(name)} (منسلک نہیں)`,
-    unsupported: `یہ براؤزر ${midi} آلات تک رسائی نہیں کر سکتا۔ ${isolate("Chrome")}، ${isolate("Edge")} اور ${isolate("Firefox")} یہ کر سکتے ہیں۔`,
+    unsupported: `یہ براؤزر ${midi} آلات تک رسائی حاصل نہیں کر سکتا۔ ${isolate("Chrome")}، ${isolate("Edge")} اور ${isolate("Firefox")} کر سکتے ہیں۔`,
     off: `${midi} کی بورڈ سے بجانے کے لیے اپنے ${midi} آلات منسلک کریں۔`,
     asking: "براؤزر کی اجازت کا انتظار ہے…",
     denied: `${midi} تک رسائی کی اجازت نہیں دی گئی۔ براؤزر میں ویب سائٹ کی ترتیبات سے اس کی اجازت دیں، پھر دوبارہ منسلک کریں۔`,
@@ -41,11 +41,11 @@ export const playerInput: Translation<typeof en> = {
       `${plural("ur", n, {
         one: `${num(n)} نوٹ ریکارڈ ہوا۔`,
         other: `${num(n)} نوٹ ریکارڈ ہوئے۔`,
-      })} "محفوظ کریں" سے ریکارڈنگ ${midi} فائل میں محفوظ ہو جاتی ہے۔`,
-    hint: `کھل کر بجائیں، یا اپنا بجایا ہوا رکھنے کے لیے "ریکارڈ کریں" دبائیں۔`,
+      })} "محفوظ کریں" دبانے سے ریکارڈنگ ${midi} فائل میں محفوظ ہو جائے گی۔`,
+    hint: `کھل کر بجائیں، یا اپنا بجایا ہوا محفوظ کرنے کے لیے "ریکارڈ کریں" دبائیں۔`,
   },
   history: {
-    empty: "اس گانے کی ابھی کوئی مکمل کوشش نہیں۔ اسکورنگ آن کر کے اسے آخر تک بجائیں۔",
+    empty: "اس گانے کی ابھی کوئی مکمل کوشش نہیں ہے۔ اسکورنگ آن کر کے اسے آخر تک بجائیں۔",
     hands: { both: "دونوں", right: "دایاں", left: "بایاں" },
     columns: {
       date: "تاریخ",
@@ -59,7 +59,7 @@ export const playerInput: Translation<typeof en> = {
     },
   },
   keyBinding: {
-    help: `کسی نوٹ کی کلید دبائیں، پھر کمپیوٹر کی بورڈ کا وہ بٹن دبائیں جو اسے بجائے۔ ${isolate("Esc")} یہ ونڈو بند کرتا ہے۔`,
+    help: `کسی نوٹ کی کلید دبائیں، پھر کمپیوٹر کی بورڈ کا وہ بٹن دبائیں جو اسے بجائے۔ ${isolate("Esc")} دبانے سے یہ ونڈو بند ہو جاتی ہے۔`,
     open: "بٹن بدلیں",
   },
   learnRange: {
@@ -92,7 +92,7 @@ export const playerInput: Translation<typeof en> = {
         one: `${num(count)} نوٹ میں`,
         other: `${num(count)} نوٹوں میں`,
       })} ${n === 0 ? "کوئی غلط نوٹ نہیں" : `${num(n)} غلط نوٹ`}۔`,
-    columns: { note: "نوٹ", asked: "پوچھا گیا", mistakes: "غلط نوٹ", playedInstead: "اس کی جگہ بجایا" },
+    columns: { note: "نوٹ", asked: "پوچھا گیا", mistakes: "غلط نوٹ", playedInstead: "اس کی جگہ بجایا گیا" },
     firstTry: (n: number, count: number) =>
       plural("ur", n, {
         one: `${num(count)} میں سے ${num(n)} پہلی کوشش میں مل گیا۔`,
@@ -105,7 +105,7 @@ export const playerInput: Translation<typeof en> = {
     counts: (hits: number, perfect: number, misses: number, mistakes: number) =>
       `صحیح نوٹ ${num(hits)} · پرفیکٹ ${num(perfect)} · چھوٹے ہوئے نوٹ ${num(misses)} · غلط نوٹ ${num(mistakes)}`,
     history: "ہسٹری",
-    historyTitle: "اس گانے کی آپ کی کوششیں",
+    historyTitle: "اس گانے پر آپ کی کوششیں",
     readError: "ہسٹری پڑھی نہیں جا سکی۔",
     saved: "کوشش ہسٹری میں محفوظ ہو گئی۔",
     saveError: "یہ کوشش محفوظ نہیں کی جا سکی۔",
@@ -129,7 +129,7 @@ export const playerInput: Translation<typeof en> = {
     combo: "کومبو",
     multiplier: "ملٹی پلائر",
     held: (points: string) => `ہولڈ ${isolate(points)}`,
-    burst: (multiplier: number) => `کومبو ×${num(multiplier)}!`,
+    burst: (multiplier: number) => `کومبو ${isolate(`×${num(multiplier)}`)}!`,
     inARow: (combo: number) => `لگاتار ${num(combo)}`,
     announce: (multiplier: number, combo: number) => `کومبو ${num(multiplier)} گنا، لگاتار ${num(combo)}۔`,
     result: "کوشش کا نتیجہ",
@@ -152,7 +152,7 @@ export const playerInput: Translation<typeof en> = {
   pdf: {
     noSong: `پہلے کوئی گانا کھولیں، پھر اس کے نوٹ ${isolate("PDF")} کے طور پر محفوظ کریں۔`,
     intro: (title: string) =>
-      `${isolate(title)} کے گرتے ہوئے نوٹ پیانو کے اوپر محفوظ ہوتے ہیں، اور ہر صفحے پر گانے کے چند سیکنڈ ہوتے ہیں۔`,
+      `${isolate(title)} کے گرتے ہوئے نوٹ پیانو کے اوپر بنا کر محفوظ کیے جاتے ہیں، اور ہر صفحے پر گانے کے چند سیکنڈ آتے ہیں۔`,
     secondsPerPage: "فی صفحہ سیکنڈ",
     background: "پس منظر کے رنگ استعمال کریں",
     pages: (pages: number, seconds: number) =>

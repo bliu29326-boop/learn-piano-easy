@@ -9,7 +9,7 @@ stages:
     status: done
   - id: 2
     title: The site and the player in Urdu
-    status: open
+    status: done
   - id: 3
     title: The course in Urdu
     status: open
@@ -104,12 +104,12 @@ report what each settles.
 then review them blind, as the method says.
 **Gate:** `docs/reference/translation/ur.md` exists.
 
-- [ ] The site, its pages and *Learn Piano*. `src/i18n/messages/ur.ts:1`, `src/i18n/messages/learn-lesson.ur.ts:1`
-- [ ] The player's shell, bar, library, input and play modes. `src/i18n/messages/player-shell.ur.ts:1`
-- [ ] The player's settings. `src/i18n/messages/player-settings.ur.ts:1`
-- [ ] Each batch reviewed blind, every finding settled, and every *wrong* batch reviewed again.
-- [ ] `bun x tsc` and `urdu_texts_keep_their_rules` pass, with every argument isolated. `src/i18n/translation-rules.test.ts:1`
-- [ ] `bun run i18n stamp ur` for each catalog section. `src/i18n/stamps/ur.json:1`
+- [x] The site, its pages and *Learn Piano*. `src/i18n/messages/ur.ts:1`, `src/i18n/messages/learn-lesson.ur.ts:1`
+- [x] The player's shell, bar, library, input and play modes. `src/i18n/messages/player-shell.ur.ts:1`
+- [x] The player's settings. `src/i18n/messages/player-settings.ur.ts:1`
+- [x] Each batch reviewed blind, every finding settled, and every *wrong* batch reviewed again.
+- [x] `bun x tsc` and `urdu_texts_keep_their_rules` pass, with every argument isolated. `src/i18n/translation-rules.test.ts:1`
+- [x] `bun run i18n stamp ur` for each catalog section. `src/i18n/stamps/ur.json:1`
 
 ### 3. The course in Urdu
 
@@ -173,23 +173,30 @@ address or mark that drifts between files.
 
 ### State
 
-Stage 1 is done. `docs/reference/translation/ur.md` holds every section of the method's shape. The `ur`
-entry of `src/i18n/typography.ts` holds its kept words and 16 mark rules. Test
-`the_urdu_marks_hold_and_spare_kept_words` in `src/i18n/translation-rules.test.ts` checks them. The
-locale row's `ur-PK` is confirmed: CLDR writes Western digits for it, and `ur-IN` would not.
+Stages 1 and 2 are done. Every catalog section has its `src/i18n/messages/*.ur.ts`, and
+`src/i18n/all-catalogs.ts` and `src/i18n/locale.ts` load them. Six writers translated, six blind
+reviewers read, and settlers applied every finding. The four batches with a *wrong* finding were reviewed
+again. The shell batch needed a third read, for `chords.ordinal` in `src/i18n/messages/player-shell.ur.ts`.
+Every section is stamped in `src/i18n/stamps/ur.json`.
 
-The sources were thin. Microsoft's guide lists no interface terms, and Urdu Wikipedia has almost no
-Western theory. Most notation terms are unsourced loanwords, as the guide's *Open* lists.
+Status lists 44 catalog texts missing on purpose: note letters, time signatures, language names and
+kept words, which would copy the English. The glossary in `docs/reference/translation/ur.md` gained
+about 30 interface rows. Examples: `ونڈو` (feminine) for a dialog, `ویو` for the camera's view, and
+`نظر آنا` over `دکھنا`. § 4 now covers a third-person description of the teacher.
+
+No page was looked at in `ur` yet, since `ur` is not shipped. Stage 6 looks at every route.
 
 ### Next
 
-**Stage 2: the site and the player in Urdu.** Run `bun tools/i18n.ts status ur`, then one work list per
-catalog section with `bun tools/i18n.ts work ur <unit>`. Three writing subagents translate side by side:
-`src/i18n/messages/ur.ts` with `learn-lesson.ur.ts`, `player-shell.ur.ts`, and `player-settings.ur.ts`.
-Each brief carries `docs/reference/translation/ur.md` whole and the playbook's bullets on isolates.
-Three fresh reviewers then review blind. Gate: `docs/reference/translation/ur.md` exists.
+**Stage 3: the course in Urdu.** Run `bun tools/i18n.ts work ur lesson/<world>` for the eight worlds.
+Five writers go side by side, paired as the stage's **Split:** says. Each writes the world's
+`src/learn/lessons/<world>/<lesson>.ur.ts` files and its `texts.ur.ts`. Each also adds the `ur` line to the
+world's `index.ts` translations, as `src/learn/lessons/chords/index.ts:27` does for `fr`. Each brief
+carries the style guide whole. Write arguments and Latin runs with `isolate()`, never typed isolates.
+A world's reviewer reads it blind, as the method's *The reviewer's brief* says, then a settler applies
+the findings. Gate: stage 2's catalogs are stamped.
 
-Expected red: none. `urdu_texts_keep_their_rules` passes while no Urdu text exists.
+Expected red: none. `urdu_texts_keep_their_rules` passes.
 
 ### Backlog
 

@@ -20,8 +20,8 @@ export const playerBar: Translation<typeof en> = {
     zoomIn: "زوم ان کریں",
     zoomOut: "زوم آؤٹ کریں",
     fit: "پورا گانا دکھائیں",
-    viewLeft: "منظر بائیں طرف لے جائیں",
-    viewRight: "منظر دائیں طرف لے جائیں",
+    viewLeft: "ویو بائیں طرف لے جائیں",
+    viewRight: "ویو دائیں طرف لے جائیں",
     fullscreen: "فل اسکرین",
   },
   controls: {
@@ -41,7 +41,7 @@ export const playerBar: Translation<typeof en> = {
     more: "مزید ٹولز",
     zoom: "زوم",
     fit: "فٹ کریں",
-    view: "منظر",
+    view: "ویو",
     leaveFullScreen: "فل اسکرین سے باہر نکلیں",
     expert: "ماہر",
     expertTitles: {
@@ -55,8 +55,8 @@ export const playerBar: Translation<typeof en> = {
   hotkeyDialog: {
     pressKey: "کوئی بٹن دبائیں…",
     keyFor: (label: string) => `${isolate(label)} کا بٹن`,
-    clear: "صاف کریں",
-    clearTitle: (label: string) => `${isolate(label)} کا بٹن صاف کریں`,
+    clear: "ہٹائیں",
+    clearTitle: (label: string) => `${isolate(label)} کا بٹن ہٹائیں`,
     resetAll: "سارے بٹن ری سیٹ کریں",
     help: `کسی شارٹ کٹ کو دبائیں، پھر کی بورڈ کا وہ بٹن دبائیں جو آپ چاہتے ہیں۔ ${isolate("Esc")} دبانے سے یہ ونڈو بند ہو جاتی ہے۔`,
     off: "ترتیبات میں کی بورڈ شارٹ کٹ بند ہیں، اس لیے یہ بٹن ابھی کچھ نہیں کرتے۔",
