@@ -122,6 +122,8 @@ and OS were not read online for this guide; § 12 says so.
 | triad; major, minor triad | 三和音; 長三和音, 短三和音 | WP *三和音*, *和音*; JM |
 | root | 根音 | WP *和音*; JM |
 | inversion; root position | 転回形; 基本形 | JM; WP *和音* names the root position only |
+| first, second inversion | 第1転回形, 第2転回形 | JM; WP *和音* |
+| C, F and G chords (a list) | `C、F、Gコード`: コード follows the last symbol only | the guides' own form |
 | G seventh (chord) | G7コード | WP *属七の和音*, *コードネーム*; JM |
 | broken chord | 分散和音 | WP *分散和音*; JM |
 | arpeggio | アルペジオ | WP *アルペッジョ*; JM. Methods write アルペジオ. |
@@ -129,7 +131,13 @@ and OS were not read online for this guide; § 12 says so.
 | bass note | 低音, `いちばん下の音` in a lesson | WP *和音*; JM |
 | third, fourth, fifth, sixth | 3度, 4度, 5度, 6度 | WP *音程*; JM |
 | major third, minor third | 長3度, 短3度 | WP *音程*; JM |
-| open fifth | 空虚5度 | WP *空虚五度*, one source |
+| open fifth | 空虚5度 at its first use in a text, then 5度 | WP *空虚五度*, one source |
+| space (of the staff) | 間（かん）: `第1間`; すき間 where a lesson speaks to a child | WP *五線譜*; JM |
+| line (of the staff) | 線: `第2線` | WP *五線譜*; JM |
+| trill, tremolo, mordent | トリル, トレモロ, モルデント | WP *装飾音*, *トレモロ*; JM |
+| triplet | 3連符 | WP *連符*; JM |
+| round (a song sung in canon) | 輪唱 | WP *輪唱* |
+| refrain | リフレイン; サビ only where the English says chorus | WP *リフレイン*, one source |
 | step, skip (between keys) | となりの音へ進む, 1つとばす | everyday words; JM |
 | tune, melody | メロディー | WP *メロディ*; MS writes the long vowel |
 | phrase | フレーズ | WP *フレーズ*; JM |
@@ -159,7 +167,7 @@ and OS were not read online for this guide; § 12 says so.
 | right hand, left hand | 右手, 左手 | WP *ピアノ*; JM |
 | hand position; C position | 手の位置; ドのポジション | JM; the course's own term |
 | hand shape | 手の形 | everyday word |
-| thumb under, finger over | 指くぐり, 指越え | JM, one source |
+| thumb under, finger over | 指くぐり, 指越え; the verbs `親指をくぐらせる`, `指を越える` | JM, one source |
 | lift (a finger, a key) | 上げる, 離す | everyday words |
 | land (on a key, a beat) | 〜に着く, 〜に乗る | everyday words |
 | jump, climb, slide | とぶ, 上がる, すべらせる | everyday words; `上行`, `下行` where a guide speaks of a line |
@@ -224,7 +232,7 @@ and OS were not read online for this guide; § 12 says so.
 | press a computer key | 押す | MS; OS |
 | lesson, step, world | レッスン, ステップ, ワールド: `レッスン3` | the course's own terms |
 | quiz; demo | クイズ; お手本 | everyday words |
-| boss (a world's last lesson) | ボス; a boss's title is `ボス：「喜びの歌」` | the word of games |
+| boss (a world's last lesson) | ボス; a boss's title is `ボス：「喜びの歌」`, and a both-hands boss is `ボス：「…」を両手で` | the word of games |
 | skip test | とび級テスト | the course's own term |
 | level; Level up! | レベル; レベルアップ！ | the word of games |
 | XP | XP, a kept word | the word of games |
