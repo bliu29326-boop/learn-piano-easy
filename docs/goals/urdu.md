@@ -6,7 +6,7 @@ context: [docs/agent/translation.md, docs/decisions/0012.md, docs/goals/many-loc
 stages:
   - id: 1
     title: The Urdu style guide and glossary
-    status: open
+    status: done
   - id: 2
     title: The site and the player in Urdu
     status: open
@@ -71,6 +71,9 @@ already carries what the `spanish` pilot taught.
   otherwise. No digit or separator is set by hand.
 - **The script style is Nastaliq.** The Nastaliq font stack of `many-locales` applies, with Naskh as the
   fallback. Nastaliq needs a taller line, so the look check covers clipped ascenders and descenders.
+- **The style guide confirms every decision above, and adds four.** A quote stands in straight double
+  quotes, as Microsoft and Android write it. A bar is `میژر`, since `بار` also means "time". A piano key
+  is `کلید`, and a computer key is `کی بورڈ کا بٹن`. Initial `s` before `k`, `t` or `p` takes an alef.
 - **The layout checks in `ur` run at every width,** as those in `ar-XB` do.
 - **The kept words:** *Learn Piano Easy*, *MIDI*, the song titles and the composers' names.
 - **Lanes:** stage 1 comes first. Stages 2 to 5 touch disjoint files, but each follows the glossary
@@ -87,12 +90,12 @@ catalogs, lessons and guides, with a count. `web-fetch` subagents, sent together
 report what each settles.
 **Gate:** `tools/i18n.ts` and `src/i18n/typography.ts` exist.
 
-- [ ] The term list: every music and interface term the English uses more than once. `docs/reference/translation/ur.md:1`
-- [ ] Microsoft's Urdu style guide: the address, the marks and the interface terms. `docs/reference/translation/ur.md:1`
-- [ ] Urdu Wikipedia's music articles and Urdu-language piano methods: each music term with two sources. `docs/reference/translation/ur.md:1`
-- [ ] Every section of the style guide, with calibration texts from every kind of text. `docs/reference/translation/ur.md:1`
-- [ ] The Urdu entry of the rule table: script, kept words and the patterns of the marks. `src/i18n/typography.ts:1`
-- [ ] The Urdu row of the locale table, confirmed or changed with its reason. `src/i18n/locale.ts:18`
+- [x] The term list: every music and interface term the English uses more than once. `docs/reference/translation/ur.md:1`
+- [x] Microsoft's Urdu style guide: the address, the marks and the interface terms. `docs/reference/translation/ur.md:1`
+- [x] Urdu Wikipedia's music articles and Urdu-language piano methods: each music term with two sources. `docs/reference/translation/ur.md:1`
+- [x] Every section of the style guide, with calibration texts from every kind of text. `docs/reference/translation/ur.md:1`
+- [x] The Urdu entry of the rule table: script, kept words and the patterns of the marks. `src/i18n/typography.ts:1`
+- [x] The Urdu row of the locale table, confirmed or changed with its reason. `src/i18n/locale.ts:18`
 
 ### 2. The site and the player in Urdu
 
@@ -170,15 +173,26 @@ address or mark that drifts between files.
 
 ### State
 
-The goal is written, behind `french` on the chain. No stage has started.
+Stage 1 is done. `docs/reference/translation/ur.md` holds every section of the method's shape. The `ur`
+entry of `src/i18n/typography.ts` holds its kept words and 16 mark rules. Test
+`the_urdu_marks_hold_and_spare_kept_words` in `src/i18n/translation-rules.test.ts` checks them. The
+locale row's `ur-PK` is confirmed: CLDR writes Western digits for it, and `ur-IN` would not.
+
+The sources were thin. Microsoft's guide lists no interface terms, and Urdu Wikipedia has almost no
+Western theory. Most notation terms are unsourced loanwords, as the guide's *Open* lists.
 
 ### Next
 
-**Stage 1: the Urdu style guide and glossary.** Files: `docs/reference/translation/ur.md`,
-`src/i18n/typography.ts` and `src/i18n/locale.ts`. Gate: `french` is reached.
+**Stage 2: the site and the player in Urdu.** Run `bun tools/i18n.ts status ur`, then one work list per
+catalog section with `bun tools/i18n.ts work ur <unit>`. Three writing subagents translate side by side:
+`src/i18n/messages/ur.ts` with `learn-lesson.ur.ts`, `player-shell.ur.ts`, and `player-settings.ur.ts`.
+Each brief carries `docs/reference/translation/ur.md` whole and the playbook's bullets on isolates.
+Three fresh reviewers then review blind. Gate: `docs/reference/translation/ur.md` exists.
 
-Expected red: none.
+Expected red: none. `urdu_texts_keep_their_rules` passes while no Urdu text exists.
 
 ### Backlog
 
 - A read of the course by an Urdu speaker from India would catch words that read as Pakistan's only.
+- A Pakistani piano teacher's read would settle `نوٹ` against `سُر`, `میژر` against `بار`, and `مشق`
+  against `ریاض`.

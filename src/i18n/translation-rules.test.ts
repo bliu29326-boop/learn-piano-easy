@@ -364,6 +364,23 @@ test("the_indonesian_marks_hold_and_spare_kept_words", () => {
   for (const text of kept) expect(problemsOf([textOf("English", text, "id")], "id")).toEqual([]);
 });
 
+test("the_urdu_marks_hold_and_spare_kept_words", () => {
+  const broken = [
+    "سبق مکمل ہو گیا.", "کیا آپ تیار ہیں?", "C، E, G", "“1، 2” گنیں۔", "«چلائیں» دبائیں۔", "میژر ۳", "تمام كورڈ", "يہ سبق",
+    "ھم شروع کرتے ہیں۔", "آپ کے لۓ", "C دبایں۔", "میژر 1-4", "تم بجاؤ۔", "C دباؤ۔", "C دبائیے۔", "کیا آپ تیار ہیں ؟",
+    "شاباش!اب بجائیں۔", "بجائیں؛ پھر سنیں; پھر", "یہ تیز ـــ ہے۔",
+  ];
+  for (const text of broken) expect(problemsOf([textOf("English", text, "ur")], "ur")).not.toEqual([]);
+  const kept = [
+    "السلام علیکم! میں یہاں آپ کو پیانو سکھانے کے لیے ہوں۔ چلیں، شروع کریں؟", "اب آپ کی باری۔ دائیں ہاتھ کا انگوٹھا مڈل C پر رکھیں، اور C اور E ایک ساتھ بجائیں۔",
+    "ہر ہاف نوٹ پر \"1، 2\" گنیں۔", "میژر 1 سے 4 تک", "C شارپ مائنر", "f (زور سے) اور p (ہلکے سے)", "\"چلائیں\" دبائیں۔",
+    "فولڈر تلاش کیا جا رہا ہے…", "1,234.5 گانے", "80% رفتار پر", "MIDI کی بورڈ سے بجائیں۔", "Hark! The Herald Angels Sing دونوں ہاتھوں سے بجائیں۔",
+    "چھوٹے گروپ میں کتنی کالی کلیدیں ہیں؟", "ورژن 4.2", "rit. کا مطلب ہے رفتار آہستہ آہستہ کم کرنا۔", "دوبارہ کوشش کریں۔",
+    "بیتھوون نے یہ دھن اپنی نویں سمفنی کے آخری موومنٹ کے لیے لکھی۔", "شاباش! اب بائیں ہاتھ سے بجائیں۔",
+  ];
+  for (const text of kept) expect(problemsOf([textOf("English", text, "ur")], "ur")).toEqual([]);
+});
+
 const units = await loadUnits();
 const everyText = units.flatMap((unit) => unit.texts);
 

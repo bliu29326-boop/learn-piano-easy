@@ -356,6 +356,32 @@ export const TYPOGRAPHY: Record<LanguageCode, Typography> = {
       },
     ],
   },
-  ur: { kept: [], marks: [] },
+  ur: {
+    kept: [...KEPT_IN_OWN_SCRIPT, "Do", "Re", "Mi"],
+    marks: [
+      { says: "A sentence ends with ۔, and an ASCII period stands only inside a number", mustNot: /(?<!\d)\.|\.(?!\d)/ },
+      { says: "A comma is ،, and a Latin comma stands only inside a number", mustNot: /(?<!\d),|,(?!\d)/ },
+      { says: "A semicolon is ؛", mustNot: /;/ },
+      { says: "A question ends with ؟", mustNot: /\?/ },
+      { says: "No space stands before ۔, ،, ؛, ؟, !, : or %", mustNot: /\s[۔،؛؟!:%]/ },
+      { says: "A space follows ۔, ،, ؛, ؟ and ! before the next word", mustNot: /[۔،؛؟!](?=[\p{L}\p{N}])/u },
+      { says: "A quote stands in straight double quotes, never in curly quotes or « »", mustNot: /[“”„«»]/ },
+      { says: "Digits are Western", mustNot: /[٠-٩۰-۹]/ },
+      { says: "No tatweel stretches a word", mustNot: /ـ/ },
+      { says: "A letter is Urdu's own: ک, ی, ہ and ے, never Arabic's ك, ي, ى, ه or ة", mustNot: /[كيىهة]/ },
+      { says: "ھ only marks an aspirate, so it never starts a word", mustNot: /(?<![\p{L}\p{M}])ھ/u },
+      { says: "ۓ is written as ئے", mustNot: /ۓ/ },
+      { says: "A polite imperative of a stem in ا takes ئیں: دبائیں", mustNot: /ایں(?![\p{L}\p{M}])/u },
+      { says: "A range between digits takes words, never a dash", mustNot: /\d\s?[-–—]\s?\d/ },
+      {
+        says: "The learner is آپ, never تم or تو",
+        mustNot: /(?<![\p{L}\p{M}])(?:تم|تمہیں|تمہارا|تمہاری|تمہارے|تجھے|تجھ|تیرا|تیری|تیرے)(?![\p{L}\p{M}])/u,
+      },
+      {
+        says: "An instruction is the polite imperative in یں, never the imperative of تم or the formal ئیے",
+        mustNot: /(?<![\p{L}\p{M}])(?:کرو|دباؤ|بجاؤ|سنو|دیکھو|چنو|رکھو|کھولو|چلاؤ|گنو|آزماؤ|چھوڑو|اٹھاؤ|جاؤ|کیجیے|کیجئے|دبائیے|بجائیے|سنیے|دیکھیے|رکھیے)(?![\p{L}\p{M}])/u,
+      },
+    ],
+  },
   ja: { kept: [], marks: [] },
 };
