@@ -195,7 +195,7 @@ address or mark that drifts between files.
 
 ### State
 
-Every stage is done, and the goal is reached and harvested into `docs/findings.md` § `japanese`.
+Every stage is done. The goal is reached and harvested into `docs/findings.md` § `japanese`.
 
 - **Verify is green on its first run.** tsc, bun test, every end-to-end test, links, layout, prose and
   lint pass, so stage 7 had nothing to fix. `looper check --name japanese-rules` passes too.
@@ -208,8 +208,8 @@ Every stage is done, and the goal is reached and harvested into `docs/findings.m
   The guides write 低音, メロディー, ヴァイオリン and 分散オクターブ, and every counted rhythm stands in 「」.
 - **The glossary** `docs/reference/translation/ja.md:124` holds every row the drift read asked for.
 - **Settled against the English, and left alone:** ダンパー at `tools/our-songs/moonlight-sonata.ja.ts:12`
-  ("dampers raised"), 3拍子 in `dies-irae` and `handel-sarabande` (no 3/4 in the English), and Dコード in
-  `beethoven-7-allegretto` and `handel-sarabande` (D major). The refrains already said リフレイン.
+  ("dampers raised"). So is 3拍子 in `dies-irae` and `handel-sarabande`, whose English has no 3/4. So is
+  Dコード in `beethoven-7-allegretto` and `handel-sarabande`, for D major. The refrains already said リフレイン.
 - **The hero lead changed,** so `public/images/social/ja.png` is redrawn and reads well.
 - **The look is done.** Two `reader`s shot all 11 routes, a lesson and the player at 360 and 1280
   pixels in both themes. No page logged an error, and no glyph drew as a box. The one break inside a

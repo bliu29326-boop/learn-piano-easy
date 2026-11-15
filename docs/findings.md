@@ -1795,3 +1795,38 @@ and the Urdu site ships.
 - The script style is Nastaliq, with Naskh as the fallback.
 - A text that reads the same in Urdu stays missing, so the English shows.
 - *Learn Piano Easy*, *MIDI*, the song titles and the composers' names are kept.
+
+## japanese
+
+**Target:** the site, the course and the song guides read in Japanese as if a native teacher wrote
+them, and the Japanese site ships.
+
+### Findings
+
+- `ja` ships in standard Japanese. Every catalog section, all eight worlds and every song guide hold their Japanese.
+- `docs/reference/translation/ja.md` is the style guide and glossary, and its § *Open* lists the terms no source settled.
+- Microsoft's style guide and Japanese piano methods were not read online, so several course terms wait on a teacher's read.
+- `bun tools/i18n.ts status ja` lists 19 missing of 4547 texts and none stale. Each missing text reads the same in Japanese.
+- The drift read found terms that differed between files, such as ノート, 低音 and メロディー. The glossary gained a row for each.
+- Shipping Japanese added the world titles to `src/learn/course.ts` and 日本語 to the language setting.
+- Every locale of the table now ships. The catalog test loads the pseudo-locale, and Korean stands for a language no locale owns.
+- The layout checks pass in `ja` at 360 and 1280 pixels, and no glyph draws as a missing-glyph box.
+- One line broke inside a word, 見た|目, and a rewording fixed it. `word-break: auto-phrase` breaks between phrases elsewhere.
+- The landing pictures show the English interface in every locale. One set per locale would multiply them by thirteen.
+- No native Japanese speaker has read the texts.
+
+### Decisions that still bind
+
+- The variety is standard Japanese. `lang` and `intl` are `ja`, `og` is `ja_JP`, and `naming` is `solfege`.
+- A sentence uses です・ます. A label or a button is a short noun or a plain verb, such as 設定 or 開く.
+- The learner is never named, and あなた is never used.
+- Notes are ドレミ in katakana. A key takes the Japanese letter names, such as ハ長調, and a chord symbol stays Latin, such as `Cコード`.
+- A lesson quiz whose answers are note names takes them in ドレミ.
+- `。`, `、` and `「」` are full-width, Latin letters and digits stay half-width, and no space stands between Japanese characters.
+- A katakana loanword takes the long vowel mark ー, such as コンピューター.
+- A range of numbers takes `～` (U+FF5E), never the wave dash `〜`.
+- Numbers follow `Intl` for `ja`, and no digit or separator is set by hand.
+- The font stack names Japanese fonts, `word-break: auto-phrase` applies, and no text is italic.
+- A layout failure in `ja` is fixed in the text, with a shorter glossary form, never with a smaller font.
+- A text that reads the same in Japanese stays missing, so the English shows.
+- *Learn Piano Easy*, *MIDI* and the song titles are kept. The composers' names are in katakana, such as ベートーヴェン.
