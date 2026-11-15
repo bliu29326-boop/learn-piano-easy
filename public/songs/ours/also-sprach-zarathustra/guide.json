@@ -13,7 +13,8 @@
     "id": "Richard Strauss menulis puisi simfonis ini pada 1896, terilhami sebuah buku karya filsuf Friedrich Nietzsche. Fanfare pembukanya melukiskan matahari terbit, yang naik di atas C rendah yang ditahan panjang. Film 2001: A Space Odyssey (1968) karya Stanley Kubrick dibuka dengan musik ini.",
     "bn": "Richard Strauss ১৮৯৬ সালে দার্শনিক Friedrich Nietzsche-র একটি বই অবলম্বনে এই টোন পোয়েমটি লেখেন। এর শুরুর ফ্যানফেয়ার একটি সূর্যোদয়ের ছবি আঁকে, যা লম্বা করে ধরে রাখা একটি গভীর C-এর উপরে জেগে ওঠে। Stanley Kubrick-এর সিনেমা 2001: A Space Odyssey (১৯৬৮) এটি দিয়েই শুরু হয়।",
     "ru": "Рихард Штраус написал эту симфоническую поэму в 1896 году по книге философа Фридриха Ницше. Её вступительная фанфара рисует восход солнца над глубоким выдержанным до. С неё начинается фильм Стэнли Кубрика «Космическая одиссея 2001 года» (1968).",
-    "fr": "Richard Strauss a écrit ce poème symphonique en 1896, d’après un livre du philosophe Friedrich Nietzsche. Sa fanfare d’ouverture peint un lever de soleil, qui monte au-dessus d’un do très grave et tenu. Le film de Stanley Kubrick « 2001, l’Odyssée de l’espace » (1968) s’ouvre sur elle."
+    "fr": "Richard Strauss a écrit ce poème symphonique en 1896, d’après un livre du philosophe Friedrich Nietzsche. Sa fanfare d’ouverture peint un lever de soleil, qui monte au-dessus d’un do très grave et tenu. Le film de Stanley Kubrick « 2001, l’Odyssée de l’espace » (1968) s’ouvre sur elle.",
+    "ur": "⁨Richard Strauss⁩ نے یہ ٹون پوئم 1896 میں فلسفی ⁨Friedrich Nietzsche⁩ کی ایک کتاب کی بنیاد پر لکھی۔ اس کا شروع کا فین فیئر سورج نکلنے کا منظر دکھاتا ہے، جو دیر تک دبے ایک گہرے ⁨C⁩ کے اوپر ابھرتا ہے۔ ⁨Stanley Kubrick⁩ کی فلم ⁨2001: A Space Odyssey⁩ (1968) اسی سے شروع ہوتی ہے۔"
   },
   "funFact": {
     "en": "The three rising notes, C, G and C, are the second, third and fourth notes of the overtone series of a low C.",
@@ -26,7 +27,8 @@
     "id": "Tiga not yang naik itu, C, G, dan C, adalah nada kedua, ketiga, dan keempat dari deret nada harmonik sebuah C rendah.",
     "bn": "উপরে ওঠা তিনটি নোট, C, G আর C, হলো একটি নিচের C-এর ওভারটোন সিরিজের দ্বিতীয়, তৃতীয় আর চতুর্থ নোট।",
     "ru": "Три восходящие ноты до, соль и до — это второй, третий и четвёртый звуки натурального звукоряда, построенного на низком до.",
-    "fr": "Les trois notes qui montent, do, sol et do, sont les deuxième, troisième et quatrième notes de la série harmonique d’un do grave."
+    "fr": "Les trois notes qui montent, do, sol et do, sont les deuxième, troisième et quatrième notes de la série harmonique d’un do grave.",
+    "ur": "اوپر چڑھتے تین نوٹ، ⁨C⁩، ⁨G⁩ اور ⁨C⁩، نیچے والے ⁨C⁩ کی اوورٹون سیریز کے دوسرے، تیسرے اور چوتھے نوٹ ہیں۔"
   },
   "mythic": null,
   "versions": {
@@ -57,7 +59,8 @@
             "id": "Mainkan 2 birama pertama dengan tangan kanan saja, dan biarkan lagu menunggu setiap not.",
             "bn": "প্রথম দুটি বার শুধু ডান হাতে বাজান, আর প্রতিটি নোটের জন্য গানটিকে অপেক্ষা করতে দিন।",
             "ru": "Сыграйте первые два такта одной правой рукой. Песня подождёт каждую ноту.",
-            "fr": "Joue les deux premières mesures à la main droite seule. Le morceau attend chaque note."
+            "fr": "Joue les deux premières mesures à la main droite seule. Le morceau attend chaque note.",
+            "ur": "پہلے دو میژر صرف دائیں ہاتھ سے بجائیں۔ گانا ہر نوٹ پر آپ کا انتظار کرے گا۔"
           },
           "hands": "right",
           "speed": 0.6,
@@ -76,7 +79,8 @@
             "id": "Sekarang mainkan birama 3 sampai 8 dengan tangan kanan. Ibu jarimu tetap di dekat G.",
             "bn": "এবার 3 থেকে 8 নম্বর বার ডান হাতে বাজান। বুড়ো আঙুল G-এর কাছেই থাকে।",
             "ru": "Теперь сыграйте такты 3–8 правой рукой. Первый палец остаётся возле соль.",
-            "fr": "Maintenant, joue les mesures 3 à 8 à la main droite. Le pouce reste près du sol."
+            "fr": "Maintenant, joue les mesures 3 à 8 à la main droite. Le pouce reste près du sol.",
+            "ur": "اب میژر 3 سے 8 تک دائیں ہاتھ سے بجائیں۔ انگوٹھا ⁨G⁩ کے پاس رہتا ہے۔"
           },
           "hands": "right",
           "speed": 0.6,
@@ -95,7 +99,8 @@
             "id": "Mainkan tangan kiri saja. Tangan kiri menahan satu kuint kosong di setiap birama.",
             "bn": "শুধু বাঁ হাতে বাজান। প্রতিটি বারে হাত একটি ওপেন ফিফথ ধরে রাখে।",
             "ru": "Сыграйте одной левой рукой. В каждом такте она держит одну пустую квинту.",
-            "fr": "Joue la main gauche seule. Elle tient une quinte à vide par mesure."
+            "fr": "Joue la main gauche seule. Elle tient une quinte à vide par mesure.",
+            "ur": "صرف بائیں ہاتھ سے بجائیں۔ یہ ہر میژر میں ایک اوپن ففتھ دبائے رکھتا ہے۔"
           },
           "hands": "left",
           "speed": 0.6,
@@ -114,7 +119,8 @@
             "id": "Gabungkan kedua tangan pada seluruh lagu, pelan-pelan.",
             "bn": "দুই হাতে পুরো গানটি ধীরে ধীরে বাজান।",
             "ru": "Сыграйте всю песню двумя руками, медленно.",
-            "fr": "Joue tout le morceau à deux mains, lentement."
+            "fr": "Joue tout le morceau à deux mains, lentement.",
+            "ur": "پورا گانا دونوں ہاتھوں سے آہستہ آہستہ بجائیں۔"
           },
           "hands": "both",
           "speed": 0.7,
@@ -133,7 +139,8 @@
             "id": "Mainkan seluruh lagu dengan kedua tangan, dengan kecepatan penuh.",
             "bn": "দুই হাতে পুরো গানটি পুরো গতিতে বাজান।",
             "ru": "Сыграйте всю песню двумя руками в полном темпе.",
-            "fr": "Joue tout le morceau à deux mains, au tempo."
+            "fr": "Joue tout le morceau à deux mains, au tempo.",
+            "ur": "پورا گانا دونوں ہاتھوں سے پوری رفتار پر بجائیں۔"
           },
           "hands": "both",
           "speed": 1,
@@ -157,7 +164,8 @@
             "id": "Ini matahari terbit. Mainkan setiap not panjang dengan penuh, dan biarkan berbunyi sampai habis.",
             "bn": "এটি একটি সূর্যোদয়। প্রতিটি লম্বা নোট পুরোটা বাজান, আর শেষ পর্যন্ত তার আওয়াজ বাজতে দিন।",
             "ru": "Это восход солнца. Играйте каждую долгую ноту полностью и дайте ей прозвучать до конца.",
-            "fr": "C’est un lever de soleil. Joue chaque note longue pleinement, et laisse-la sonner jusqu’au bout."
+            "fr": "C’est un lever de soleil. Joue chaque note longue pleinement, et laisse-la sonner jusqu’au bout.",
+            "ur": "یہ سورج نکلنے کا منظر ہے۔ ہر لمبا نوٹ پورا بجائیں، اور اس کی آواز آخر تک گونجنے دیں۔"
           }
         },
         {
@@ -175,7 +183,8 @@
             "id": "Di sini E berubah menjadi E mol, dan bunyi yang cerah berubah menjadi gelap. Dengarkan perubahannya.",
             "bn": "এখানে E বদলে E ফ্ল্যাট হয়, আর উজ্জ্বল আওয়াজটি অন্ধকার হয়ে যায়। বদলটি কান পেতে শুনুন।",
             "ru": "Здесь ми становится ми-бемолем, и светлый звук темнеет. Прислушайтесь к этой перемене.",
-            "fr": "Ici, le mi devient mi bémol, et le son clair devient sombre. Écoute ce changement."
+            "fr": "Ici, le mi devient mi bémol, et le son clair devient sombre. Écoute ce changement.",
+            "ur": "یہاں ⁨E⁩ بدل کر ⁨E⁩ فلیٹ ہو جاتا ہے، اور روشن آواز گہری ہو جاتی ہے۔ اس تبدیلی کو غور سے سنیں۔"
           }
         },
         {
@@ -193,7 +202,8 @@
             "id": "Birama 3 tidak memakai C rendah, jadi ibu jarimu bisa menunggu di G.",
             "bn": "বার 3-এ নিচের C নেই, তাই বুড়ো আঙুল G-তে অপেক্ষা করতে পারে।",
             "ru": "В такте 3 нет нижнего до, так что первый палец может ждать на соль.",
-            "fr": "La mesure 3 laisse de côté le do grave, pour que le pouce puisse attendre sur le sol."
+            "fr": "La mesure 3 laisse de côté le do grave, pour que le pouce puisse attendre sur le sol.",
+            "ur": "میژر 3 میں نیچے والا ⁨C⁩ نہیں ہے، اس لیے انگوٹھا ⁨G⁩ پر انتظار کر سکتا ہے۔"
           }
         }
       ],
@@ -211,7 +221,8 @@
             "id": "Ibu jarimu memainkan C tengah, lalu pindah naik ke G. Pindahkan selama not yang panjang.",
             "bn": "বুড়ো আঙুল মধ্য C বাজায়, তারপর উঠে G-তে যায়। লম্বা নোটটি বাজার সময়েই আঙুলটি সরান।",
             "ru": "Первый палец играет до первой октавы, затем переходит вверх на соль. Переносите его, пока звучит долгая нота.",
-            "fr": "Le pouce joue le do central, puis monte jusqu’au sol. Déplace-le pendant la note longue."
+            "fr": "Le pouce joue le do central, puis monte jusqu’au sol. Déplace-le pendant la note longue.",
+            "ur": "انگوٹھا مڈل ⁨C⁩ بجاتا ہے، پھر اوپر ⁨G⁩ پر جاتا ہے۔ اسے لمبے نوٹ کے دوران ہی لے جائیں۔"
           }
         },
         {
@@ -227,14 +238,16 @@
             "id": "Kedua tangan pulang. Tangan kiri kembali ke C dan G, dan tangan kanan berakhir di E.",
             "bn": "দুই হাতই ঘরে ফেরে। বাঁ হাত C আর G-তে ফিরে আসে, আর ডান হাত E-তে শেষ করে।",
             "ru": "Обе руки возвращаются домой. Левая снова на до и соль, а правая заканчивает на ми.",
-            "fr": "Les deux mains rentrent à la maison. La main gauche revient sur do et sol, et la main droite finit sur le mi."
+            "fr": "Les deux mains rentrent à la maison. La main gauche revient sur do et sol, et la main droite finit sur le mi.",
+            "ur": "دونوں ہاتھ اپنی اصل جگہ پر لوٹتے ہیں۔ بایاں ہاتھ واپس ⁨C⁩ اور ⁨G⁩ پر آتا ہے، اور دایاں ہاتھ ⁨E⁩ پر ختم کرتا ہے۔"
           }
         },
         {
           "bar": 7,
           "text": {
             "en": "The right hand steps up from E to F with finger 5. The left hand moves down to F and C.",
-            "de": "Die rechte Hand steigt mit Finger 5 vom E zum F. Die linke Hand geht hinab zu F und C."
+            "de": "Die rechte Hand steigt mit Finger 5 vom E zum F. Die linke Hand geht hinab zu F und C.",
+            "ur": "دایاں ہاتھ انگلی 5 کے ساتھ ⁨E⁩ سے ایک قدم اوپر ⁨F⁩ پر جاتا ہے۔ بایاں ہاتھ نیچے ⁨F⁩ اور ⁨C⁩ پر جاتا ہے۔"
           }
         }
       ]
@@ -266,7 +279,8 @@
             "id": "Mainkan birama 3 sampai 6 dengan tangan kanan saja. Inilah melodi matahari terbit.",
             "bn": "3 থেকে 6 নম্বর বার শুধু ডান হাতে বাজান। এটিই সূর্যোদয়ের সুর।",
             "ru": "Сыграйте такты 3–6 одной правой рукой. Это мелодия восхода.",
-            "fr": "Joue les mesures 3 à 6 à la main droite seule. C’est la mélodie du lever de soleil."
+            "fr": "Joue les mesures 3 à 6 à la main droite seule. C’est la mélodie du lever de soleil.",
+            "ur": "میژر 3 سے 6 تک صرف دائیں ہاتھ سے بجائیں۔ یہ سورج نکلنے والی دھن ہے۔"
           },
           "hands": "right",
           "speed": 0.6,
@@ -285,7 +299,8 @@
             "id": "Mainkan akor dua not tangan kanan saja, pada birama 9 sampai 16.",
             "bn": "9 থেকে 16 নম্বর বারে ডান হাতের দুই নোটের কর্ডগুলো আলাদা করে বাজান।",
             "ru": "Сыграйте аккорды из двух нот правой руки отдельно, в тактах 9–16.",
-            "fr": "Joue seuls les accords de deux notes de la main droite, aux mesures 9 à 16."
+            "fr": "Joue seuls les accords de deux notes de la main droite, aux mesures 9 à 16.",
+            "ur": "میژر 9 سے 16 تک صرف دائیں ہاتھ کے دو نوٹوں والے کورڈ بجائیں۔"
           },
           "hands": "right",
           "speed": 0.6,
@@ -304,7 +319,8 @@
             "id": "Mainkan tangan kiri saja. Pada birama 7 dan 8, tangan kiri menabuh C dan G seperti timpani.",
             "bn": "শুধু বাঁ হাতে বাজান। 7 আর 8 নম্বর বারে হাত টিম্পানির মতো C আর G ঠুকে ঠুকে বাজায়।",
             "ru": "Сыграйте одной левой рукой. В тактах 7 и 8 она отбивает до и соль, как литавры.",
-            "fr": "Joue la main gauche seule. Aux mesures 7 et 8, elle frappe do et sol comme des timbales."
+            "fr": "Joue la main gauche seule. Aux mesures 7 et 8, elle frappe do et sol comme des timbales.",
+            "ur": "صرف بائیں ہاتھ سے بجائیں۔ میژر 7 اور 8 میں یہ ٹمپنی ڈرم کی طرح ⁨C⁩ اور ⁨G⁩ بجاتا ہے۔"
           },
           "hands": "left",
           "speed": 0.6,
@@ -323,7 +339,8 @@
             "id": "Mainkan seluruh lagu dengan kedua tangan, sedikit lebih lambat dari tertulis.",
             "bn": "দুই হাতে পুরো গানটি লেখা গতির চেয়ে একটু ধীরে বাজান।",
             "ru": "Сыграйте всю песню двумя руками чуть медленнее, чем написано.",
-            "fr": "Joue tout le morceau à deux mains, un peu plus lentement que le tempo écrit."
+            "fr": "Joue tout le morceau à deux mains, un peu plus lentement que le tempo écrit.",
+            "ur": "پورا گانا دونوں ہاتھوں سے، لکھی ہوئی رفتار سے تھوڑا آہستہ بجائیں۔"
           },
           "hands": "both",
           "speed": 0.8,
@@ -342,7 +359,8 @@
             "id": "Sekarang mainkan dengan kecepatan penuh.",
             "bn": "এবার পুরো গতিতে বাজান।",
             "ru": "Теперь сыграйте в полном темпе.",
-            "fr": "Maintenant, joue-le au tempo."
+            "fr": "Maintenant, joue-le au tempo.",
+            "ur": "اب اسے پوری رفتار پر بجائیں۔"
           },
           "hands": "both",
           "speed": 1,
@@ -366,7 +384,8 @@
             "id": "Tangan kiri mulai sendirian, seperti not orgel yang rendah sebelum fajar. Tahan selama dua birama.",
             "bn": "বাঁ হাত একা শুরু করে, ভোরের আগে অর্গানের একটি নিচু নোটের মতো। দুটি বার জুড়েই এটি ধরে রাখুন।",
             "ru": "Левая рука начинает одна, как низкая нота органа перед рассветом. Держите эту ноту оба такта.",
-            "fr": "La main gauche commence seule, comme une note d’orgue grave avant l’aube. Tiens-la pendant les deux mesures."
+            "fr": "La main gauche commence seule, comme une note d’orgue grave avant l’aube. Tiens-la pendant les deux mesures.",
+            "ur": "بایاں ہاتھ اکیلا شروع کرتا ہے، جیسے صبح سے پہلے آرگن کا کوئی گہرا نوٹ۔ اسے پورے دو میژر تک دبائے رکھیں۔"
           }
         },
         {
@@ -384,7 +403,8 @@
             "id": "Mainkan not tabuhan dengan rata, satu pada setiap ketukan, dan sedikit lebih keras setiap kali.",
             "bn": "টিম্পানির মতো নোটগুলো সমানভাবে বাজান, প্রতিটি বিটে একটি, আর প্রতিবার একটু বেশি জোরে।",
             "ru": "Играйте удары литавр ровно, по одному на каждую долю, и каждый раз чуть громче.",
-            "fr": "Joue les notes de timbales bien régulières, une sur chaque temps, et un peu plus fort à chaque fois."
+            "fr": "Joue les notes de timbales bien régulières, une sur chaque temps, et un peu plus fort à chaque fois.",
+            "ur": "ڈرم والے نوٹ یکساں بجائیں، ہر بیٹ پر ایک، اور ہر بار پہلے سے تھوڑا زور سے۔"
           }
         },
         {
@@ -402,7 +422,8 @@
             "id": "Not teratas setiap akor membawa melodinya. Mainkan sedikit lebih keras.",
             "bn": "প্রতিটি কর্ডের সবচেয়ে উপরের নোটটিই সুর বয়ে নেয়। সেটি একটু জোরে বাজান।",
             "ru": "Мелодию несёт верхняя нота каждого аккорда. Играйте её чуть громче.",
-            "fr": "La note du haut de chaque accord porte la mélodie. Joue-la un peu plus fort."
+            "fr": "La note du haut de chaque accord porte la mélodie. Joue-la un peu plus fort.",
+            "ur": "ہر کورڈ کا سب سے اوپر والا نوٹ دھن ہے۔ اسے تھوڑا زور سے بجائیں۔"
           }
         }
       ],
@@ -420,7 +441,8 @@
             "id": "Ibu jarimu memainkan C tengah, lalu pindah naik ke G selama not yang panjang.",
             "bn": "বুড়ো আঙুল মধ্য C বাজায়, তারপর লম্বা নোটটি বাজার সময় উঠে G-তে যায়।",
             "ru": "Первый палец играет до первой октавы, затем, пока звучит долгая нота, переходит вверх на соль.",
-            "fr": "Le pouce joue le do central, puis monte jusqu’au sol pendant la note longue."
+            "fr": "Le pouce joue le do central, puis monte jusqu’au sol pendant la note longue.",
+            "ur": "انگوٹھا مڈل ⁨C⁩ بجاتا ہے، پھر لمبے نوٹ کے دوران اوپر ⁨G⁩ پر جاتا ہے۔"
           }
         },
         {
@@ -436,14 +458,16 @@
             "id": "Di sini tangan kiri memainkan akor C penuh. Rentangkan jari 5, 3, dan 1 di atas C, E, dan G.",
             "bn": "এখানে বাঁ হাত একটি পুরো C কর্ড বাজায়। 5, 3 আর 1 নম্বর আঙুল C, E আর G জুড়ে ছড়িয়ে দিন।",
             "ru": "Здесь левая рука играет полный аккорд до мажор. Раскройте пальцы 5, 3 и 1 над до, ми и соль.",
-            "fr": "Ici, la main gauche joue un accord de do majeur complet. Ouvre les doigts 5, 3 et 1 sur do, mi et sol."
+            "fr": "Ici, la main gauche joue un accord de do majeur complet. Ouvre les doigts 5, 3 et 1 sur do, mi et sol.",
+            "ur": "یہاں بایاں ہاتھ پورا ⁨C⁩ کورڈ بجاتا ہے۔ انگلیاں 5، 3 اور 1 ⁨C⁩، ⁨E⁩ اور ⁨G⁩ پر پھیلائیں۔"
           }
         },
         {
           "bar": 14,
           "text": {
             "en": "The right hand holds C and F with fingers 2 and 5. The left hand moves down to A, C and F.",
-            "de": "Die rechte Hand hält C und F mit Finger 2 und 5. Die linke Hand geht hinab zu A, C und F."
+            "de": "Die rechte Hand hält C und F mit Finger 2 und 5. Die linke Hand geht hinab zu A, C und F.",
+            "ur": "دایاں ہاتھ انگلیوں 2 اور 5 سے ⁨C⁩ اور ⁨F⁩ دبائے رکھتا ہے۔ بایاں ہاتھ نیچے ⁨A⁩، ⁨C⁩ اور ⁨F⁩ پر جاتا ہے۔"
           }
         }
       ]
@@ -467,7 +491,8 @@
         {
           "text": {
             "en": "Play the left hand alone. From bar 9, it rocks between a low note and its octave, like a drum roll.",
-            "de": "Spiel die linke Hand allein. Ab Takt 9 wiegt sie zwischen einem tiefen Ton und seiner Oktave, wie ein Trommelwirbel."
+            "de": "Spiel die linke Hand allein. Ab Takt 9 wiegt sie zwischen einem tiefen Ton und seiner Oktave, wie ein Trommelwirbel.",
+            "ur": "صرف بائیں ہاتھ سے بجائیں۔ میژر 9 سے یہ ڈرم رول کی طرح ایک نیچے والے نوٹ اور اس کے آکٹیو کے بیچ آگے پیچھے بجاتا ہے۔"
           },
           "hands": "left",
           "speed": 0.5,
@@ -477,7 +502,8 @@
         {
           "text": {
             "en": "Play the right hand alone on bars 9 to 12, and press both notes of each pair as one.",
-            "de": "Spiel die rechte Hand allein in den Takten 9 bis 12, und drück beide Töne jedes Paars wie einen an."
+            "de": "Spiel die rechte Hand allein in den Takten 9 bis 12, und drück beide Töne jedes Paars wie einen an.",
+            "ur": "میژر 9 سے 12 تک صرف دائیں ہاتھ سے بجائیں، اور ہر جوڑی کے دونوں نوٹ ایک ساتھ دبائیں۔"
           },
           "hands": "right",
           "speed": 0.6,
@@ -487,7 +513,8 @@
         {
           "text": {
             "en": "Play the right hand's climb alone, bars 13 to 17. Each pair of notes steps up from the last.",
-            "de": "Spiel den Aufstieg der rechten Hand allein, die Takte 13 bis 17. Jedes Paar steigt eine Stufe über das letzte."
+            "de": "Spiel den Aufstieg der rechten Hand allein, die Takte 13 bis 17. Jedes Paar steigt eine Stufe über das letzte.",
+            "ur": "میژر 13 سے 17 تک صرف دائیں ہاتھ کی چڑھائی بجائیں۔ ہر جوڑی پچھلی جوڑی سے ایک قدم اوپر ہوتی ہے۔"
           },
           "hands": "right",
           "speed": 0.5,
@@ -497,7 +524,8 @@
         {
           "text": {
             "en": "Play the whole song with both hands at three-quarter speed.",
-            "de": "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo."
+            "de": "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
+            "ur": "پورا گانا دونوں ہاتھوں سے تین چوتھائی رفتار پر بجائیں۔"
           },
           "hands": "both",
           "speed": 0.75,
@@ -507,7 +535,8 @@
         {
           "text": {
             "en": "Now play it at full speed, with the pedal.",
-            "de": "Jetzt spiel es im vollen Tempo, mit Pedal."
+            "de": "Jetzt spiel es im vollen Tempo, mit Pedal.",
+            "ur": "اب اسے پوری رفتار پر پیڈل کے ساتھ بجائیں۔"
           },
           "hands": "both",
           "speed": 1,
@@ -531,7 +560,8 @@
             "id": "Tahan oktaf rendah sambil pedal diinjak. Bunyinya harus bergemuruh seperti orgel pipa yang besar.",
             "bn": "প্যাডেল চেপে রেখে নিচের অক্টেভটি ধরে রাখুন। এটি বিশাল একটি অর্গানের মতো গমগম করবে।",
             "ru": "Держите нижнюю октаву с нажатой педалью. Она должна гудеть, как большой орган.",
-            "fr": "Tiens l’octave grave avec la pédale enfoncée. Elle doit gronder comme un grand orgue."
+            "fr": "Tiens l’octave grave avec la pédale enfoncée. Elle doit gronder comme un grand orgue.",
+            "ur": "پیڈل دبا کر نیچے والا آکٹیو دبائے رکھیں۔ اس کی آواز کسی بڑے آرگن کی طرح گڑگڑانی چاہیے۔"
           }
         },
         {
@@ -549,7 +579,8 @@
             "id": "E yang cerah berubah menjadi E mol yang gelap. Mainkan E mol sedikit lebih lembut.",
             "bn": "উজ্জ্বল E বদলে অন্ধকার E ফ্ল্যাট হয়। E ফ্ল্যাট একটু হালকা করে বাজান।",
             "ru": "Светлое ми становится тёмным ми-бемолем. Играйте ми-бемоль чуть тише.",
-            "fr": "Le mi clair devient un mi bémol sombre. Joue le mi bémol un peu plus doux."
+            "fr": "Le mi clair devient un mi bémol sombre. Joue le mi bémol un peu plus doux.",
+            "ur": "روشن ⁨E⁩ بدل کر گہرا ⁨E⁩ فلیٹ بن جاتا ہے۔ ⁨E⁩ فلیٹ تھوڑا ہلکے سے بجائیں۔"
           }
         },
         {
@@ -567,7 +598,8 @@
             "id": "Tabuh C dan G seperti timpani, dan makin keras menuju birama 9.",
             "bn": "টিম্পানির মতো C আর G ঠুকে ঠুকে বাজান, আর বার 9-এর দিকে আওয়াজ বাড়িয়ে নিয়ে যান।",
             "ru": "Отбивайте до и соль, как литавры, и усиливайте звук к такту 9.",
-            "fr": "Frappe do et sol comme des timbales, et joue de plus en plus fort jusqu’à la mesure 9."
+            "fr": "Frappe do et sol comme des timbales, et joue de plus en plus fort jusqu’à la mesure 9.",
+            "ur": "⁨C⁩ اور ⁨G⁩ کو ٹمپنی ڈرم کی طرح بجائیں، اور میژر 9 تک آواز بڑھاتے جائیں۔"
           }
         }
       ],
@@ -576,7 +608,8 @@
           "bar": 15,
           "text": {
             "en": "The thumb jumps up to C in the rest before this bar. The pairs climb E, F and G, then E and F again.",
-            "de": "Der Daumen springt in der Pause vor diesem Takt hinauf zum C. Die Paare steigen E, F und G, dann noch einmal E und F."
+            "de": "Der Daumen springt in der Pause vor diesem Takt hinauf zum C. Die Paare steigen E, F und G, dann noch einmal E und F.",
+            "ur": "اس میژر سے پہلے کے ریسٹ میں انگوٹھا چھلانگ لگا کر اوپر ⁨C⁩ پر جاتا ہے۔ جوڑیاں ⁨E⁩، ⁨F⁩ اور ⁨G⁩ پر چڑھتی ہیں، پھر دوبارہ ⁨E⁩ اور ⁨F⁩ پر۔"
           }
         },
         {
@@ -592,14 +625,16 @@
             "id": "Tangan kanan masuk di C tengah saat tangan kiri pindah naik satu oktaf. Tanda istirahat di birama 2 memberinya waktu.",
             "bn": "বাঁ হাত যখন এক অক্টেভ উপরে সরে, তখন ডান হাত মধ্য C দিয়ে শুরু করে। বার 2-এর রেস্টটি তাকে সময় দেয়।",
             "ru": "Правая рука вступает на до первой октавы, когда левая переходит на октаву вверх. Пауза в такте 2 даёт на это время.",
-            "fr": "La main droite entre sur le do central pendant que la main gauche monte d’une octave. Le silence de la mesure 2 lui en laisse le temps."
+            "fr": "La main droite entre sur le do central pendant que la main gauche monte d’une octave. Le silence de la mesure 2 lui en laisse le temps.",
+            "ur": "جب بایاں ہاتھ ایک آکٹیو اوپر جاتا ہے، دایاں ہاتھ مڈل ⁨C⁩ سے شروع کرتا ہے۔ میژر 2 کا ریسٹ اس کے لیے وقت دیتا ہے۔"
           }
         },
         {
           "bar": 12,
           "text": {
             "en": "The hand opens to a sixth on E and high C, then moves up to G. Finger 5 slides from E flat to E.",
-            "de": "Die Hand öffnet sich zu einer Sexte auf E und dem hohen C und geht dann hinauf zum G. Finger 5 gleitet vom Es zum E."
+            "de": "Die Hand öffnet sich zu einer Sexte auf E und dem hohen C und geht dann hinauf zum G. Finger 5 gleitet vom Es zum E.",
+            "ur": "ہاتھ ⁨E⁩ اور اوپر والے ⁨C⁩ پر ایک سکستھ تک کھلتا ہے، پھر اوپر ⁨G⁩ پر جاتا ہے۔ انگلی 5 ⁨E⁩ فلیٹ سے کھسک کر ⁨E⁩ پر آتی ہے۔"
           }
         }
       ]
@@ -623,7 +658,8 @@
         {
           "text": {
             "en": "Play the right hand's octaves alone, in bars 9 to 12. Keep the hand's shape and move the whole arm.",
-            "de": "Spiel die Oktaven der rechten Hand allein, in den Takten 9 bis 12. Halt die Form der Hand, und beweg den ganzen Arm."
+            "de": "Spiel die Oktaven der rechten Hand allein, in den Takten 9 bis 12. Halt die Form der Hand, und beweg den ganzen Arm.",
+            "ur": "میژر 9 سے 12 تک صرف دائیں ہاتھ کے آکٹیو بجائیں۔ ہاتھ کی شکل قائم رکھیں اور پورا بازو حرکت دیں۔"
           },
           "hands": "right",
           "speed": 0.5,
@@ -633,7 +669,8 @@
         {
           "text": {
             "en": "Play the left hand alone. It switches between deep octaves, timpani rolls and a rocking octave.",
-            "de": "Spiel die linke Hand allein. Sie wechselt zwischen tiefen Oktaven, Paukenwirbeln und einer wiegenden Oktave."
+            "de": "Spiel die linke Hand allein. Sie wechselt zwischen tiefen Oktaven, Paukenwirbeln und einer wiegenden Oktave.",
+            "ur": "صرف بائیں ہاتھ سے بجائیں۔ یہ گہرے آکٹیو، ٹمپنی رول اور آگے پیچھے بجتے آکٹیو کے بیچ بدلتا رہتا ہے۔"
           },
           "hands": "left",
           "speed": 0.5,
@@ -643,7 +680,8 @@
         {
           "text": {
             "en": "Play the right hand's climb alone, bars 13 to 16. Keep each chord's shape as the hand moves up.",
-            "de": "Spiel den Aufstieg der rechten Hand allein, die Takte 13 bis 16. Halt die Form jedes Akkords, während die Hand steigt."
+            "de": "Spiel den Aufstieg der rechten Hand allein, die Takte 13 bis 16. Halt die Form jedes Akkords, während die Hand steigt.",
+            "ur": "میژر 13 سے 16 تک صرف دائیں ہاتھ کی چڑھائی بجائیں۔ ہاتھ اوپر جاتے ہوئے ہر کورڈ کی شکل قائم رکھیں۔"
           },
           "hands": "right",
           "speed": 0.5,
@@ -653,7 +691,8 @@
         {
           "text": {
             "en": "Play the whole song with both hands at three-quarter speed.",
-            "de": "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo."
+            "de": "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
+            "ur": "پورا گانا دونوں ہاتھوں سے تین چوتھائی رفتار پر بجائیں۔"
           },
           "hands": "both",
           "speed": 0.75,
@@ -663,7 +702,8 @@
         {
           "text": {
             "en": "Now play it at full speed, and let the last chord ring.",
-            "de": "Jetzt spiel es im vollen Tempo, und lass den letzten Akkord klingen."
+            "de": "Jetzt spiel es im vollen Tempo, und lass den letzten Akkord klingen.",
+            "ur": "اب اسے پوری رفتار پر بجائیں، اور آخری کورڈ کی آواز گونجنے دیں۔"
           },
           "hands": "both",
           "speed": 1,
@@ -687,7 +727,8 @@
             "id": "Kunci tanganmu dalam posisi oktaf, ibu jari dan kelingking. Lenganmu membawanya dari tuts ke tuts.",
             "bn": "হাত একটি অক্টেভের আকারে আটকে রাখুন, বুড়ো আঙুল আর কড়ে আঙুলে। বাহু তাকে এক চাবি থেকে আরেক চাবিতে বয়ে নেয়।",
             "ru": "Зафиксируйте октавную позицию: первый палец и мизинец. Рука переносит её от клавиши к клавише.",
-            "fr": "Fixe la main en position d’octave, le pouce et l’auriculaire. Le bras la porte de touche en touche."
+            "fr": "Fixe la main en position d’octave, le pouce et l’auriculaire. Le bras la porte de touche en touche.",
+            "ur": "ہاتھ کو انگوٹھے اور چھوٹی انگلی سے آکٹیو کی شکل میں جما دیں۔ بازو اسے ایک کلید سے دوسری تک لے جاتا ہے۔"
           }
         },
         {
@@ -705,7 +746,8 @@
             "id": "Untuk akor empat not, pakai jari 1, 2, 3, dan 5. Jari 4 beristirahat.",
             "bn": "চার নোটের কর্ডগুলোতে 1, 2, 3 আর 5 নম্বর আঙুল ব্যবহার করুন। 4 নম্বর আঙুল বিশ্রাম নেয়।",
             "ru": "Аккорды из четырёх нот берите пальцами 1, 2, 3 и 5. 4-й палец отдыхает.",
-            "fr": "Pour les accords de quatre notes, prends les doigts 1, 2, 3 et 5. Le doigt 4 se repose."
+            "fr": "Pour les accords de quatre notes, prends les doigts 1, 2, 3 et 5. Le doigt 4 se repose.",
+            "ur": "چار نوٹوں والے کورڈ کے لیے انگلیاں 1، 2، 3 اور 5 استعمال کریں۔ انگلی 4 آرام کرتی ہے۔"
           }
         },
         {
@@ -723,7 +765,8 @@
             "id": "Setiap akor naik makin tinggi dan makin keras. Simpan bunyi paling kerasmu untuk akor C terakhir.",
             "bn": "প্রতিটি কর্ড আরও উপরে ওঠে, আরও জোরে বাজে। সবচেয়ে জোরালো আওয়াজটি শেষ C কর্ডের জন্য রেখে দিন।",
             "ru": "Каждый аккорд звучит выше и громче предыдущего. Самый громкий звук приберегите для последнего аккорда до мажор.",
-            "fr": "Chaque accord monte plus haut et sonne plus fort. Garde le son le plus fort pour le dernier accord de do majeur."
+            "fr": "Chaque accord monte plus haut et sonne plus fort. Garde le son le plus fort pour le dernier accord de do majeur.",
+            "ur": "ہر کورڈ پچھلے سے اوپر اور زیادہ زور سے بجتا ہے۔ سب سے زیادہ زور آخری ⁨C⁩ کورڈ کے لیے بچا کر رکھیں۔"
           }
         }
       ],
@@ -741,21 +784,24 @@
             "id": "Tangan kanan melompat dari akor tinggi turun ke oktaf di C tengah. Pakai tanda istirahat sebelumnya.",
             "bn": "ডান হাত উপরের কর্ড থেকে লাফ দিয়ে নেমে মধ্য C-এর অক্টেভে যায়। তার আগের রেস্টটি কাজে লাগান।",
             "ru": "Правая рука прыгает с высокого аккорда вниз, на октаву от до первой октавы. Используйте паузу перед ней.",
-            "fr": "La main droite saute de l’accord aigu jusqu’à l’octave sur le do central. Profite du silence juste avant."
+            "fr": "La main droite saute de l’accord aigu jusqu’à l’octave sur le do central. Profite du silence juste avant.",
+            "ur": "دایاں ہاتھ اوپر والے کورڈ سے چھلانگ لگا کر نیچے مڈل ⁨C⁩ والے آکٹیو پر آتا ہے۔ اس سے پہلے والے ریسٹ کا فائدہ اٹھائیں۔"
           }
         },
         {
           "bar": 17,
           "text": {
             "en": "Rock the hand between the C chord and the high C, like a drum roll.",
-            "de": "Wieg die Hand zwischen dem C-Akkord und dem hohen C, wie bei einem Trommelwirbel."
+            "de": "Wieg die Hand zwischen dem C-Akkord und dem hohen C, wie bei einem Trommelwirbel.",
+            "ur": "⁨C⁩ کورڈ اور اوپر والے ⁨C⁩ کے بیچ ہاتھ کو ڈرم رول کی طرح آگے پیچھے بجائیں۔"
           }
         },
         {
           "bar": 10,
           "text": {
             "en": "After the octave on C, spread the hand over E, G, C and E. Thumb and little finger then drop to E flat.",
-            "de": "Nach der Oktave auf C spannt sich die Hand über E, G, C und E. Dann fallen Daumen und kleiner Finger zum Es."
+            "de": "Nach der Oktave auf C spannt sich die Hand über E, G, C und E. Dann fallen Daumen und kleiner Finger zum Es.",
+            "ur": "⁨C⁩ والے آکٹیو کے بعد ہاتھ کو ⁨E⁩، ⁨G⁩، ⁨C⁩ اور ⁨E⁩ پر پھیلائیں۔ پھر انگوٹھا اور چھوٹی انگلی نیچے ⁨E⁩ فلیٹ پر آتے ہیں۔"
           }
         }
       ]

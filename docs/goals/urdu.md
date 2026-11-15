@@ -15,7 +15,7 @@ stages:
     status: done
   - id: 4
     title: "The song guides in Urdu, from a to m"
-    status: open
+    status: done
   - id: 5
     title: "The song guides in Urdu, from n to z"
     status: open
@@ -75,6 +75,8 @@ already carries what the `spanish` pilot taught.
   quotes, as Microsoft and Android write it. A bar is `میژر`, since `بار` also means "time". A piano key
   is `کلید`, and a computer key is `کی بورڈ کا بٹن`. Initial `s` before `k`, `t` or `p` takes an alef.
 - **The layout checks in `ur` run at every width,** as those in `ar-XB` do.
+- **A guide batch's second read covers only the guides a *wrong* finding changed,** each read whole.
+  The *wrong* findings of stage 4 each sat in one text, so a whole batch's reread bought little.
 - **The kept words:** *Learn Piano Easy*, *MIDI*, the song titles and the composers' names.
 - **Lanes:** stage 1 comes first. Stages 2 to 5 touch disjoint files, but each follows the glossary
   stage 1 writes, so they run in order. Stage 6 needs all of them.
@@ -143,8 +145,8 @@ most eight guides each work side by side, and one fresh reviewer per batch revie
 - [x] Each batch reviewed blind, and every finding settled.
   - [x] Two fresh reviewers per batch read it blind, four guides each.
   - [x] Settlers apply every finding, and each batch with a *wrong* finding is read again.
-- [ ] `bun tools/make-our-songs.ts` writes the guides, and `bun run i18n stamp ur` stamps them. `public/songs/ours/alle-jahre-wieder/guide.json:1`
-  - [ ] No missing space before a join, and no raw isolate or no-break space in the files.
+- [x] `bun tools/make-our-songs.ts` writes the guides, and `bun run i18n stamp ur` stamps them. `public/songs/ours/alle-jahre-wieder/guide.json:1`
+  - [x] No missing space before a join, and no raw isolate or no-break space in the files.
 
 ### 5. The song guides in Urdu, from n to z
 
@@ -182,13 +184,19 @@ address or mark that drifts between files.
 
 ### State
 
-Stages 1, 2 and 3 are done. Every catalog section and every lesson of the eight worlds has its Urdu
-file, reviewed blind and stamped in `src/i18n/stamps/ur.json`. Each world's `index.ts` loads
-`texts.ur.ts`, as `src/learn/lessons/chords/index.ts:28` shows.
+Stages 1 to 4 are done. Every catalog section, every lesson and the 51 guides from
+`air-on-the-g-string` to `mozart-21-andante` have their Urdu files. Each is reviewed blind and stamped
+in `src/i18n/stamps/ur.json`. Each guide's Urdu is in its `public/songs/ours/<slug>/guide.json`.
 
-In stage 3, five writers translated, five fresh reviewers read blind, and settlers applied every
-finding. The three batches with a *wrong* finding were read again: Both hands, Chords with Rhythm, and
-Expression. Expression's second read found one more, so a third reader checked its 13 changed texts.
+In stage 4, seven writers translated runs of seven or eight guides. Fourteen fresh reviewers then read
+at most four guides each, and seven settlers applied every finding. Five batches had a *wrong*
+finding, all in single texts. Two fresh readers read again the six whole guides those texts sit in,
+and the session settled their 11 findings.
+
+The glossary gained rows for triplet, grace note, trill, the orchestra's strings, a song's home chord
+and a quick run. § 6 now spells Chopin `شوپن`, Schubert `شوبرٹ` and Handel `ہینڈل`. The `ur` rules
+gained "A space parts an isolated run from the word beside it". A settler's Edit had glued
+`کاؤنٹیس` to an isolated name, and no other check saw it.
 
 Status lists 13 lesson texts missing on purpose. They are quiz answers made only of note letters, which
 fall back to the catalog's own letters, as the Hindi files do. The glossary gained rows for `سطر`, a
@@ -199,20 +207,20 @@ No page was looked at in `ur` yet, since `ur` is not shipped. Stage 6 looks at e
 
 ### Next
 
-**Stage 4: the song guides from a to m.** That is 51 slugs, from `air-on-the-g-string` to
-`mozart-21-andante`. Run `bun tools/i18n.ts work ur guide/<slug>` for each. Seven writers go side by
-side, each with at most eight guides in alphabetical runs. Each writes `tools/our-songs/<slug>.ur.ts`,
-shaped like `tools/our-songs/air-on-the-g-string.ar.ts`. Each brief points the writer at
-`docs/reference/translation/ur.md` to read whole. It names § 5's *A guide's recurring steps* (line 359)
-as the settled wording. Latin runs and song titles go through `isolate()` in template literals, never
-typed isolates.
+**Stage 5: the song guides from n to z.** That is 29 slugs, from `neon-chase` to `yankee-doodle`.
+Run `bun tools/i18n.ts work ur guide/<slug>` for each. Four writers go side by side, in alphabetical
+runs of eight, seven, seven and seven. Each writes `tools/our-songs/<slug>.ur.ts`, shaped like
+`tools/our-songs/air-on-the-g-string.ur.ts`. Each brief points the writer at
+`docs/reference/translation/ur.md` to read whole, and names § 5's *A guide's recurring steps* as the
+settled wording. Latin runs go through `isolate()` in template literals, never typed isolates. A kept
+name missing from `src/i18n/typography.ts` is reported, never added by a writer.
 
-Review each batch of eight with two fresh reviewers of four guides each, as the playbook says. Use the
-method's *The reviewer's brief*. Each reviewer writes its findings to `.agent-tmp/review-urdu-<batch>.md`
-as `id — kind — weight — problem — Proposed: <text>`, and a settler applies them. Before stamping, Grep
-each touched file for `[^ ]" \+$`, and check raw characters with
+Review with two fresh reviewers per batch, four guides at most each. Each writes
+`.agent-tmp/review-urdu-<batch>.md` as `id — kind — weight — problem — Proposed: <text>`, and one
+settler per batch applies it. Read again, whole, each guide that holds a text a *wrong* finding
+changed. Before stamping, Grep each touched file for ``[^ ]["`] \+$``, and check raw characters with
 `LC_ALL=C.UTF-8 grep -lP '[\x{2068}\x{2069}\x{00A0}]'`. Then run `bun tools/make-our-songs.ts` and
-`bun tools/i18n.ts stamp ur guide/<slug>`. Gate: stage 3's worlds are stamped.
+`bun tools/i18n.ts stamp ur guide/<slug>`. Gate: stage 4's guides are stamped.
 
 Expected red: none. `urdu_texts_keep_their_rules` passes.
 
