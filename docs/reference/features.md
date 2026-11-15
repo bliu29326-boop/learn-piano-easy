@@ -161,7 +161,8 @@ Each one is easy to make, and ours avoids it in the goal named.
 - A sponsor page at `sponsor/`, opened by the top bar's heart. It links to GitHub Sponsors and names
   ways to help that cost no money.
 - The site, the course and the song guides read in English, German, Spanish, Chinese, Hindi, Arabic,
-  Brazilian Portuguese, Indonesian, Bengali, Russian and French. Arabic pages read and lay out from right to left, while the piano and the notes keep their direction.
+  Brazilian Portuguese, Indonesian, Bengali, Russian, French and Urdu. Arabic and Urdu pages read and lay out from right to
+  left, while the piano and the notes keep their direction. Urdu takes a Nastaliq font where the device has one.
   The language switch in the top bar picks one, and a first visit opens in the browser's language.
 - Every page and every lesson is in a sitemap for search engines, with its page in each other language.
   The landing page describes the app as structured data.

@@ -19,6 +19,7 @@
   <a href="https://learn-piano-easy.app/bn/">বাংলা</a> ·
   <a href="https://learn-piano-easy.app/ru/">Русский</a> ·
   <a href="https://learn-piano-easy.app/fr/">Français</a> ·
+  <a href="https://learn-piano-easy.app/ur/">اردو</a> ·
   <a href="https://learn-piano-easy.app/sponsor/">Sponsor</a>
 </p>
 

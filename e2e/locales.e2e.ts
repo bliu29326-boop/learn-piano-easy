@@ -2,8 +2,8 @@
  * The locales a translation pass keeps, in a real browser: each reads in its own language, and its pages
  * pass the layout checks.
  *
- * - **Spanish, Chinese, Hindi, Arabic, Portuguese, Indonesian, Bengali, Russian and French each read in their own language** from the language
- *   switch to a lesson's step, its piano's key names and the player's controls. Arabic also sets `dir="rtl"`.
+ * - **Spanish, Chinese, Hindi, Arabic, Portuguese, Indonesian, Bengali, Russian, French and Urdu each read in their own language** from the language
+ *   switch to a lesson's step, its piano's key names and the player's controls. Arabic and Urdu also set `dir="rtl"`.
  * - **A passed locale's pages run the layout checks at a phone's and a desktop's width,** in both themes.
  *   A right-to-left one runs them at every width, as `passedWidthsOf` says. A flaw counts only where the
  *   locale's text adds it, since each page's own test holds its English. The pseudo-locale's longer texts
@@ -266,6 +266,39 @@ test("the_french_site_reads_in_french", async ({ page }) => {
   await expect(page.getByRole("button", { name: "Lire", exact: true })).toBeVisible();
   await expect(bar(page).getByRole("button", { name: "Morceaux" })).toBeVisible();
   await expect(bar(page).getByRole("button", { name: "Paramètres" })).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
+test("the_urdu_site_reads_in_urdu", async ({ page }) => {
+  test.setTimeout(60_000);
+  await pastSetup(page);
+  const errors = watchErrors(page);
+
+  await page.goto("./learn/");
+  const choice = bar(page).getByRole("combobox", { name: "Language" });
+  await expect(choice.locator('option[value="ur"]')).toHaveText("اردو");
+  await choice.selectOption("ur");
+  await expect(page).toHaveURL(/\/ur\/learn\/$/);
+  await expect(page.locator("html")).toHaveAttribute("lang", "ur");
+  await expect(page.locator("html")).toHaveAttribute("dir", "rtl");
+  await expect(heading(page)).toHaveText("پیانو سیکھیں");
+  await expect(page.locator("main")).toContainText("پیانو سے تعارف");
+
+  // A note's letter stands isolated inside the Urdu, so the title's match allows the isolates.
+  await page.goto("./ur/learn/meet-the-piano/find-c/");
+  await expect(page.locator(".lesson__title")).toHaveText(/^⁨?C⁩? ڈھونڈیں$/);
+  await expect(page.locator("main")).toContainText("ان سب کا نام ایک ہی ہے");
+  await expect(page.locator('.piano-keys__key[data-pitch="60"]')).toHaveAttribute("data-name", "C4");
+
+  await page.goto("./ur/play/");
+  await expect(page.getByRole("button", { name: "چلائیں", exact: true })).toBeVisible();
+  await expect(bar(page).getByRole("button", { name: "گانے" })).toBeVisible();
+  await expect(bar(page).getByRole("button", { name: "ترتیبات" })).toBeVisible();
+
+  // The legal texts are English in Urdu, so they read left to right on the right-to-left page.
+  await page.goto("./ur/imprint/");
+  await expect(page.locator(".legal")).toHaveAttribute("dir", "ltr");
+  await expect(page.locator(".legal")).toHaveAttribute("lang", "en");
   expect(errors).toEqual([]);
 });
 

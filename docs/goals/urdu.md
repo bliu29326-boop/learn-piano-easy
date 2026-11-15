@@ -21,7 +21,7 @@ stages:
     status: done
   - id: 6
     title: The Urdu site ships
-    status: open
+    status: done
   - id: 7
     title: "the goal is verified once, and every failure is fixed"
     status: open
@@ -170,14 +170,14 @@ most eight guides each work side by side, and one fresh reviewer per batch revie
 address or mark that drifts between files.
 **Gate:** `bun run i18n status ur` lists no missing and no stale text outside `legal`.
 
-- [ ] Every drift the reader lists is settled in the files it names.
-- [ ] `ur` is `shipped`. `src/i18n/locale.ts:18`
-- [ ] The Urdu social image. `tools/make-social-image.ts:104`
-- [ ] The layout checks run in `ur` at every width. `e2e/layout-check.ts:43`
-- [ ] Test `the_urdu_site_reads_in_urdu`: `lang`, `dir`, the switch's *اردو*, a lesson step and the player in Urdu. `e2e/locales.e2e.ts:1`
-- [ ] Look at every route in `ur` with `bun run shot --locale ur-PK`, on a phone and a desktop, in both themes. No ascender or descender is clipped.
-- [ ] Look for any character drawn as a missing-glyph box, in Chrome on Windows and on an Android phone width.
-- [ ] The feature list and the README name Urdu. `docs/reference/features.md:1`, `README.md:12`
+- [x] Every drift the reader lists is settled in the files it names.
+- [x] `ur` is `shipped`. `src/i18n/locale.ts:18`
+- [x] The Urdu social image. `tools/make-social-image.ts:104`
+- [x] The layout checks run in `ur` at every width. `e2e/layout-check.ts:43`
+- [x] Test `the_urdu_site_reads_in_urdu`: `lang`, `dir`, the switch's *اردو*, a lesson step and the player in Urdu. `e2e/locales.e2e.ts:1`
+- [x] Look at every route in `ur` with `bun run shot --locale ur-PK`, on a phone and a desktop, in both themes. No ascender or descender is clipped.
+- [x] Look for any character drawn as a missing-glyph box, in Chrome on Windows and on an Android phone width.
+- [x] The feature list and the README name Urdu. `docs/reference/features.md:1`, `README.md:12`
 
 ### 7. the goal is verified once, and every failure is fixed
 
@@ -189,43 +189,39 @@ address or mark that drifts between files.
 
 ### State
 
-Stages 1 to 5 are done. Every catalog section, every lesson and all 80 song guides have their Urdu
-files. Each is reviewed blind and stamped in `src/i18n/stamps/ur.json`. Each guide's Urdu is in its
-`public/songs/ours/<slug>/guide.json`.
+Stages 1 to 6 are done. Urdu ships: `ur` is `shipped` in `src/i18n/locale-table.ts`, and every catalog,
+lesson and song guide has its reviewed, stamped Urdu.
 
-In stage 5, four writers translated the 29 guides from `neon-chase` to `yankee-doodle`. Eight fresh
-reviewers read at most four guides each, and four settlers applied the findings. Ten guides held a text
-a *wrong* finding changed. Four fresh readers read those again whole, and the session settled their
-24 findings. One of them was real: toccata's "eighty years" read as "that same year" (`اسی`), now `اسّی`.
+In stage 6, nine `reader` subagents read every Urdu file against the glossary, split by unit. The one
+broad drift was a singular `انگلی` before a list of finger numbers, in 166 places. A script made each
+one `انگلیاں` as a subject or object, and `انگلیوں` before a postposition. Every nominative one already
+had a plural verb. "Finger 2 and the thumb" kept its singular, and § 5 of the guide now says all this.
 
-The session settled three calls the reviewers split on. A list of finger numbers keeps the thumb's
-digit, and § 5 now says so. "Finger N takes X" stays `لیتی ہے`, the wording of 20 earlier texts. "Keep
-both notes of a pair together" is `ایک ساتھ دبائیں` in every guide. The glossary gained rows for
-tremolo, broken octave, mordent, ballet, opera, oratorio, choir, organ, synthesizer and a sung round.
+Twenty more drifts were settled: bare `تیز` or `آہستہ` for tempo, `کوائر` for `کوئر`, `گنتی` for a beat,
+`تیز` before a quick note, and one `بار` for a bar. Adjectival `آہستہ`, as in "a slow movement", stayed,
+as the "slow waltz" row allows. `چال` in half-and-whole-steps stayed, since its English says "move".
 
-Status lists 57 texts missing on purpose, and none stale. The 13 lesson texts are quiz answers made
-only of note letters. The 44 catalog texts are language names, note letters, time signatures and XP
-amounts, which read the same in every locale.
+Shipping Urdu added the world titles of § 6 to `src/learn/course.ts`, and `اردو` to the language
+setting's options. Status lists 58 texts missing on purpose, and none stale. The new one is that `اردو`
+option, a language name that reads the same in every locale.
 
-No page was looked at in `ur` yet, since `ur` is not shipped. Stage 6 looks at every route and a lesson.
+The social image `public/images/social/ur.png` is made. `the_urdu_site_reads_in_urdu` passed when run
+once. The layout checks take `ur` at every width with no change, through `passedWidthsOf`.
+
+Every route and a lesson were looked at in Chrome on Windows, on a phone and a desktop, in both themes.
+No page error, no missing-glyph box and no clipped line showed. This machine has no Nastaliq font, so
+the pages drew Urdu in the Naskh fallback. The Nastaliq line height is unseen yet.
 
 ### Next
 
-**Stage 6: the Urdu site ships.** Gate: `bun run i18n status ur` lists only the 57 texts above.
+**Stage 7: the goal is verified once.**
 
-1. A fresh `reader` reads every Urdu file against `docs/reference/translation/ur.md`, split by unit
-   across readers. Each lists each term, address or mark that drifts between files. Known drift to
-   check: a bare `آہستہ` for tempo, `تیز نوٹ` for a quick note, and `انگلی` before a list of fingers.
-   Settle every listed drift in the files it names.
-2. Set `ur` to `shipped` at `src/i18n/locale.ts:18`, and make the social image at
-   `tools/make-social-image.ts:104`.
-3. Run the layout checks in `ur` at every width, at `e2e/layout-check.ts:43`.
-4. Write `the_urdu_site_reads_in_urdu` in `e2e/locales.e2e.ts`, modelled on the Arabic test there.
-5. Look at every route with `bun run shot --locale ur-PK`, on a phone and a desktop, in both themes.
-   Look for clipped ascenders and missing-glyph boxes.
-6. Name Urdu in `docs/reference/features.md` and `README.md:12`.
+1. Run `looper verify` over the whole goal, then fix every failure in one pass, and run it once more.
+2. The layout checks in `e2e/locales.e2e.ts` now run `ur` at four widths and two themes for the first
+   time. A flaw there is Urdu's own, so fix its text or its CSS and never loosen the check.
 
-Expected red: none. `urdu_texts_keep_their_rules` passes.
+Expected red: none known. The likeliest are the new `ur` layout checks, and any test that counts the
+shipped locales or the social images.
 
 ### Backlog
 
@@ -235,3 +231,6 @@ Expected red: none. `urdu_texts_keep_their_rules` passes.
 - Two English texts of `tools/our-songs/william-tell.ts` may misstate the score, by a reader's check.
   Rare tip 1 says the left hand plays on every beat, but it plays once a half bar. Epic tricky 9 says
   "sixths", but its first pair is a third. An English fix there gives the Urdu new texts to translate.
+- A look at the Urdu pages with a Nastaliq font installed would show whether its tall line clips.
+- The profile's weekday letters in `ur` are Latin, since `Intl` for `ur-PK` gives Latin narrow weekdays.
+- The social image draws its Urdu subtitle in a Naskh system font, as the Arabic image does.
