@@ -47,11 +47,6 @@ test("a_missing_text_shows_in_english", async () => {
   expect(merged.counts.badges(3)).toBe(en.counts.badges(3));
   // A list is one leaf, so the translated list stands whole.
   expect(merged.sponsor.promises).toEqual(["Uno"]);
-  // A locale without a catalog of its own reads English in every text.
-  await loadLocale("ur");
-  expect(shape(messagesOf("ur"))).toEqual(shape(en));
-  expect(messagesOf("ur").pages.learn.title).toBe(en.pages.learn.title);
-  expect(catalogOf("ur").footer).toEqual(en.footer);
 });
 
 /** Every module the static imports of `entry` reach, as paths from the repository's root. */
@@ -76,6 +71,10 @@ test("a_page_loads_only_its_own_catalog", async () => {
   expect(() => messagesOf("ja")).toThrow();
   await loadLocale("ja");
   expect(messagesOf("ja").siteName).toBe(en.siteName);
+  // A locale without a catalog of its own reads English in every text.
+  expect(shape(messagesOf("ja"))).toEqual(shape(en));
+  expect(messagesOf("ja").pages.learn.title).toBe(en.pages.learn.title);
+  expect(catalogOf("ja").footer).toEqual(en.footer);
   // The site's script reaches the English catalog by static imports, and no other locale's.
   const graph = await staticGraph(join(import.meta.dir, "../main.ts"));
   expect(graph.has("src/i18n/messages/en.ts")).toBe(true);
@@ -141,9 +140,9 @@ test("plurals_and_numbers_follow_the_locale", () => {
 test("the_first_visit_takes_the_browser_language", () => {
   // With no choice stored, an English page moves to the first site locale the browser names.
   expect(chooseLocale("en", "auto", ["de-AT", "en-US"])).toBe("de");
-  expect(chooseLocale("en", "auto", ["ur-PK", "de"])).toBe("de");
+  expect(chooseLocale("en", "auto", ["ja-JP", "de"])).toBe("de");
   expect(chooseLocale("en", "auto", ["en-GB", "de-DE"])).toBe("en");
-  expect(chooseLocale("en", "auto", ["ur-PK"])).toBe("en");
+  expect(chooseLocale("en", "auto", ["ja-JP"])).toBe("en");
   expect(chooseLocale("en", "auto", ["fr-CA", "de"])).toBe("fr");
   expect(chooseLocale("en", "auto", [])).toBe("en");
   // A German page was reached on purpose, so it stays.
@@ -166,8 +165,9 @@ test("the_first_visit_takes_the_browser_language", () => {
   expect(localeOfPath("bn/play/")).toBe("bn");
   expect(localeOfPath("ru/play/")).toBe("ru");
   expect(localeOfPath("fr/play/")).toBe("fr");
+  expect(localeOfPath("ur/play/")).toBe("ur");
   // A locale that has not shipped has no pages, so its folder is no locale's.
-  expect(localeOfPath("ur/play/")).toBe("en");
+  expect(localeOfPath("ja/play/")).toBe("en");
   expect(pathInLocale("de/play/", "en")).toBe("play/");
   expect(pathInLocale("learn/profile/", "de")).toBe("de/learn/profile/");
   expect(pathInLocale("de/", "de")).toBe("de/");
