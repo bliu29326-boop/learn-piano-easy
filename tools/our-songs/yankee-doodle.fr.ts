@@ -48,18 +48,6 @@ export const translation: Translation<GuideTranslation> = {
       },
     },
     epic: {
-      practice: [
-        "Joue la basse d’Alberti seule, jusqu’à ce qu’elle roule toute seule : grave, aigu, milieu, aigu.",
-        "Joue seul le trait de la mesure 8, et passe le pouce dessous jusqu’au do.",
-        "Joue seul le refrain en tierces, et garde ensemble les deux notes de chaque paire.",
-        "Joue tout le morceau à deux mains, à 75 % de la vitesse.",
-        "Maintenant, joue-le au tempo, avec la pédale.",
-      ],
-      tips: [
-        "Joue la basse d’Alberti tout en douceur, pour que la mélodie chante au-dessus.",
-        "Le pouce passe sous le doigt 3 pour atteindre le do, et le trait continue de monter jusque dans le refrain.",
-        "Les fa dièse frottent un instant contre la basse, exprès.",
-      ],
       tricky: {
         7: "Descends le doigt 2 du sol au fa dièse. Le reste de la main le suit.",
         11: "Le refrain redescend au ré. Le doigt 3 le prend, pour que la main soit prête pour le do.",

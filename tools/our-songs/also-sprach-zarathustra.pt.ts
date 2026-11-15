@@ -25,7 +25,6 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         1: "O polegar toca o Dó central e depois sobe para o Sol. Mova-o durante a nota longa.",
-        7: "A mão esquerda desce para Sol e Ré. A mão direita desce do Ré até o Sol.",
         8: "As duas mãos voltam para casa. A esquerda volta para Dó e Sol, e a direita termina no Mi.",
       },
     },
@@ -44,18 +43,10 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         3: "O polegar toca o Dó central e depois sobe para o Sol durante a nota longa.",
-        10: "Mantenha o dedo 2 no Dó, e deixe o dedo 5 no Mi passar a vez para o dedo 4 no Mi bemol.",
         15: "Aqui a mão esquerda toca um acorde de Dó completo. Abra os dedos 5, 3 e 1 sobre Dó, Mi e Sol.",
       },
     },
     epic: {
-      practice: [
-        "Toque só os acordes quebrados da mão esquerda, nos compassos 9 a 12: Dó grave, Sol, Dó e Sol.",
-        "Toque só a mão direita nos compassos 9 a 12, e pressione as duas notas de cada par como uma só.",
-        "Junte as mãos nos compassos 9 a 12, devagar.",
-        "Toque a música inteira com as duas mãos, a três quartos da velocidade.",
-        "Agora toque na velocidade normal, com o pedal.",
-      ],
       tips: [
         "Segure a oitava grave com o pedal pisado. Ela deve retumbar como um grande órgão.",
         "O Mi claro vira um Mi bemol escuro. Toque o Mi bemol um pouco mais suave.",
@@ -63,18 +54,9 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         3: "A mão direita entra no Dó central enquanto a mão esquerda sobe uma oitava. A pausa do compasso 2 dá tempo para isso.",
-        15: "Abra a mão direita sobre Mi, Sol e o Dó agudo. A mão esquerda segura uma oitava de Dó por baixo.",
-        16: "As duas mãos descem num salto até o último acorde. Aproveite a pausa curta no fim do compasso 15.",
       },
     },
     legendary: {
-      practice: [
-        "Toque só as oitavas da mão direita, nos compassos 9 a 12. Mantenha a posição da mão e mova o braço inteiro.",
-        "Toque só a mão esquerda. Ela alterna entre oitavas graves e rufos de tímpano.",
-        "Junte as mãos no clímax, os compassos 13 a 16.",
-        "Toque a música inteira com as duas mãos, a três quartos da velocidade.",
-        "Agora toque na velocidade normal, e deixe o último acorde soar.",
-      ],
       tips: [
         "Trave a mão na posição de oitava, do polegar ao dedo mínimo. O braço leva a mão de tecla em tecla.",
         "Nos acordes de quatro notas, use os dedos 1, 2, 3 e 5. O dedo 4 descansa.",
@@ -82,8 +64,6 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         11: "A mão direita salta do acorde agudo para a oitava no Dó central. Aproveite a pausa antes dela.",
-        13: "A subida começa aqui. Levante a mão depois de cada acorde, e deixe o pedal unir o som.",
-        14: "No tempo 4, a mão esquerda desce para uma oitava de Fá grave enquanto a mão direita toca o acorde de Fá.",
       },
     },
   },

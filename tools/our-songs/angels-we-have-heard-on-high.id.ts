@@ -56,14 +56,8 @@ export const translation: Translation<GuideTranslation> = {
         "Mainkan seluruh lagu dengan kedua tangan, dengan tiga perempat kecepatan.",
         "Sekarang mainkan dengan kecepatan penuh, dengan pedal.",
       ],
-      tips: [
-        "Mainkan bas Alberti dengan lembut, agar melodi bernyanyi di atasnya.",
-        "Angkat tanganmu setelah G, A, dan B, lalu daratkan jari 3 di E satu oktaf lebih tinggi.",
-        "Ganti pedal setiap kali tangan kiri memulai akor baru.",
-      ],
       tricky: {
         17: "Jari 2 memainkan D tinggi, dan ibu jari merentang turun ke G sementara tangan kiri naik.",
-        19: "Kini bagian Gloria berada di nada tinggi. Biarkan jari 5, 4, 3, dan 2 bergulir turun dari A ke E.",
         20: "Ibu jari mengambil C, lalu jari 2 mendarat di D. Jaga akor terurai di bawahnya tetap rata.",
       },
     },
@@ -75,15 +69,9 @@ export const translation: Translation<GuideTranslation> = {
         "Gabungkan kedua tangan pada seluruh lagu, dengan tiga perempat kecepatan.",
         "Sekarang mainkan dengan kecepatan penuh, dan biarkan akor terakhir berbunyi.",
       ],
-      tips: [
-        "Dalam bas stride, lihat oktaf rendahnya dan biarkan tanganmu menemukan akornya dengan rabaan.",
-        "Setelah setiap oktaf, jari 5 tetap di atas dan memimpin not-not cepat turun.",
-        "Rentetan not cepat menuju G itu seperti fanfare kecil. Mainkan dengan ringan dan cerah.",
-      ],
       tricky: {
         2: "Angkat tanganmu dari setiap not tunggal sebelum oktaf berikutnya, agar tanganmu mendarat tanpa merentang.",
         3: "Pembukaannya lagi. Jaga oktafnya tetap rata sementara tangan kiri melompat.",
-        11: "Empat not cepat berlari dari C naik ke F, dan jari 5 mendarat di G. Bas stride terus berjalan di bawahnya.",
       },
     },
   },

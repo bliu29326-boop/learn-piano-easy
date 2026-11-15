@@ -42,7 +42,6 @@ export const translation: Translation<GuideTranslation> = {
         "这一段是山妖们越走越近。弹得比开头稍响一点。",
       ],
       tricky: {
-        4: "2 指往里够到降 B，同时左手在 G 和 D 之间来回走。",
         9: "趁休止符把左手落到低音 E。右手拇指从 E 开始往上爬。",
         17: "两只手趁休止符回到 A，旋律再一次开始。",
       },

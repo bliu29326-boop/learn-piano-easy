@@ -4,10 +4,17 @@
  * The tune is the eight bars of the verse, in G major, in quarter notes. The hook is its first two
  * bars. Rare and above add the eight bars of the chorus after the verse, which the tune leaves out.
  *
+ * The print is Aird's No. 102, "Yanky Doodle", on page 36 of his first volume. It is a single line for
+ * fife or violin, in D major and 2/4, so it has no accompaniment to take. Its first strain closes on two
+ * D quarters, and Epic's bar 8 plays them as the two G halves of the tune's last bar. Bars 2, 6 and 7 of
+ * the verse are the tune as it is sung today, not Aird's. The chorus is the one sung today, and Aird's
+ * second strain is a different tune.
+ *
  * Common moves the verse to C major, and lifts the hand once before bar 7 to reach the low G. Rare
  * plays verse and chorus in G over a bass and triads. Epic puts an Alberti bass under it with the pedal,
- * runs up into the chorus with the thumb under, and plays the second half of the chorus in thirds. Legendary plays over a stride bass and octaves, sets the tune in sixths and thirds, and
- * ends on a four-note chord.
+ * moves the hand up to the chorus on the thumb, and plays the second half of the chorus in thirds.
+ * Legendary plays over a stride bass and octaves, sets the tune in sixths and thirds, and ends on a
+ * four-note chord.
  */
 import type { Key } from "../../src/theory/key";
 import type { OurSong } from "../make-our-songs";
@@ -71,7 +78,9 @@ export const yankeeDoodle: OurSong = {
     composer: "Traditional",
     died: null,
     published: 1782,
-    edition: "James Aird, A Selection of Scotch, English, Irish and Foreign Airs, volume 1, Glasgow (1782)",
+    edition:
+      "James Aird, A Selection of Scotch, English, Irish and Foreign Airs, volume 1, Glasgow (1782), No. 102, page 36, " +
+      "the National Library of Scotland's scan on the Internet Archive (selectionofscotc00ingl)",
   },
   about:
     "Yankee Doodle is a traditional tune that British soldiers sang to make fun of the American colonists. " +
@@ -148,22 +157,21 @@ export const yankeeDoodle: OurSong = {
       numerator: 4,
       denominator: 4,
       steps: 2,
-      right: [...VERSE, "G4/4:4 G4/1:1 A4/2:1 B4/3:1 C5/1:1", CHORUS, CHORUS_THIRDS, "B4+D5+G5/1+2+5:8"].join(" | "),
+      right: [...VERSE, "G4/4:4 G4/1:4", CHORUS, CHORUS_THIRDS, "B4+D5+G5/1+2+5:8"].join(" | "),
       left: `${halfBars(ALBERTI, "GG GD GG GD GG CG DD GG CC CG DD GG CC CG DD G")} G2+B2+D3/5+3+1:4`,
       pedal: "P:8 | P:4 P:4 | P:8 | P:4 P:4 | P:8 | P:4 P:4 | P:8 | P:8 | P:8 | P:4 P:4 | P:8 | P:8 | P:8 | P:4 P:4 | P:8 | P:8",
       markedClashBars: [6, 13, 14],
-      ownBars: [8],
-      skills: ["alberti-bass", "thumb-under", "thirds-and-sixths"],
+      skills: ["alberti-bass", "thirds-and-sixths"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
-        { text: "Play the run of bar 8 alone, and pass the thumb under to C.", hands: "right", speed: 0.5, loop: [8, 9], wait: true },
+        { text: "Play the right hand alone from bar 7 to bar 9, and move the hand up after bar 8.", hands: "right", speed: 0.5, loop: [7, 9], wait: true },
         { text: "Play the chorus in thirds alone, and keep both notes of each pair together.", hands: "right", speed: 0.6, loop: [13, 16], wait: true },
         { text: "Play the whole song with both hands at three-quarter speed.", hands: "both", speed: 0.75, loop: null, wait: false },
         { text: "Now play it at full speed, with the pedal.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
         { fromBar: 1, toBar: 4, kind: "sound", text: "Keep the Alberti bass soft, so the tune sings above it." },
-        { fromBar: 8, toBar: 8, kind: "fingering", text: "The thumb passes under finger 3 to reach C, and the run climbs on into the chorus." },
+        { fromBar: 8, toBar: 9, kind: "fingering", text: "Play the second G of bar 8 with the thumb. Then the hand moves up to E for the chorus." },
         { fromBar: 13, toBar: 14, kind: "sound", text: "The F sharps clash with the bass for a moment, on purpose." },
       ],
       tricky: {
@@ -256,14 +264,14 @@ export const yankeeDoodle: OurSong = {
       epic: {
         practice: [
           "Spiel den Alberti-Bass allein, bis er von selbst rollt: tief, hoch, Mitte, hoch.",
-          "Spiel den Lauf in Takt 8 allein, mit Daumenuntersatz zum C.",
+          "Spiel die rechte Hand allein von Takt 7 bis Takt 9, und setz die Hand nach Takt 8 nach oben um.",
           "Spiel den Refrain in Terzen allein, und drück beide Töne jedes Zweiklangs zusammen.",
           "Spiel das ganze Lied mit beiden Händen in Dreiviertel-Tempo.",
           "Jetzt spiel es im vollen Tempo, mit Pedal.",
         ],
         tips: [
           "Halt den Alberti-Bass leise, damit die Melodie darüber singt.",
-          "Der Daumen geht unter Finger 3 hindurch zum C, und der Lauf steigt weiter in den Refrain.",
+          "Spiel das zweite G in Takt 8 mit dem Daumen. Dann geht die Hand hinauf zum E für den Refrain.",
           "Die Fis reiben sich kurz mit dem Bass, und zwar mit Absicht.",
         ],
         tricky: {

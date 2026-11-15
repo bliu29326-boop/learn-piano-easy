@@ -57,14 +57,8 @@ export const translation: Translation<GuideTranslation> = {
         "Toque a música inteira com as duas mãos, a três quartos da velocidade.",
         "Agora toque na velocidade normal, com o pedal.",
       ],
-      tips: [
-        "Toque o baixo Alberti suave, para a melodia cantar por cima.",
-        "Levante a mão depois de Sol, Lá e Si, e coloque o dedo 3 no Mi uma oitava acima.",
-        "Troque o pedal cada vez que a mão esquerda começa um acorde novo.",
-      ],
       tricky: {
         17: "O dedo 2 toca o Ré agudo, e o polegar se estica para baixo até o Sol enquanto a mão esquerda sobe.",
-        19: "Agora o Gloria corre no agudo. Deixe os dedos 5, 4, 3 e 2 descerem rolando do Lá até o Mi.",
         20: "O polegar pega o Dó, depois o dedo 2 cai no Ré. Mantenha regulares os acordes quebrados por baixo.",
       },
     },
@@ -76,15 +70,9 @@ export const translation: Translation<GuideTranslation> = {
         "Junte as mãos na música inteira, a três quartos da velocidade.",
         "Agora toque na velocidade normal, e deixe o último acorde soar.",
       ],
-      tips: [
-        "No baixo stride, olhe para a oitava grave e deixe a mão achar o acorde pelo tato.",
-        "Depois de cada oitava, o dedo 5 fica no agudo e conduz as notas rápidas para baixo.",
-        "A passagem rápida até o Sol é uma pequena fanfarra. Toque leve e brilhante.",
-      ],
       tricky: {
         2: "Levante a mão depois de cada nota isolada, antes da próxima oitava, para ela cair sem se esticar.",
         3: "O início de novo. Mantenha as oitavas regulares enquanto a mão esquerda salta.",
-        11: "Quatro notas rápidas correm do Dó até o Fá, e o dedo 5 cai no Sol. Embaixo, o baixo stride continua.",
       },
     },
   },

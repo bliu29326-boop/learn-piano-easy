@@ -56,14 +56,8 @@ export const translation: Translation<GuideTranslation> = {
         "Joue tout le morceau à deux mains, à 75 % de la vitesse.",
         "Maintenant, joue-le au tempo, avec la pédale.",
       ],
-      tips: [
-        "Joue la basse d’Alberti tout en douceur, pour que la mélodie chante au-dessus.",
-        "Lève la main après sol, la et si, et pose le doigt 3 sur le mi une octave plus haut.",
-        "Change de pédale chaque fois que la main gauche commence un nouvel accord.",
-      ],
       tricky: {
         17: "Le doigt 2 joue le ré du haut, et le pouce s’allonge jusqu’au sol pendant que la main gauche monte.",
-        19: "Le Gloria passe maintenant dans l’aigu. Laisse les doigts 5, 4, 3 et 2 rouler du la jusqu’au mi.",
         20: "Le pouce prend le do, puis le doigt 2 arrive sur le ré. Garde bien réguliers les accords brisés en dessous.",
       },
     },
@@ -75,15 +69,9 @@ export const translation: Translation<GuideTranslation> = {
         "Joue tout le morceau à deux mains, à 75 % de la vitesse.",
         "Maintenant, joue-le au tempo et laisse sonner le dernier accord.",
       ],
-      tips: [
-        "Dans la basse stride, regarde l’octave grave et laisse la main trouver l’accord au toucher.",
-        "Après chaque octave, le doigt 5 reste en haut et mène les notes rapides vers le bas.",
-        "Le trait rapide jusqu’au sol est une petite fanfare. Joue-le léger et brillant.",
-      ],
       tricky: {
         2: "Lève la main après chaque note seule, avant l’octave suivante, pour qu’elle y arrive sans s’étirer.",
         3: "Revoici le début. Garde les octaves bien régulières pendant que la main gauche saute.",
-        11: "Quatre notes rapides montent du do au fa, et le doigt 5 arrive sur le sol. En dessous, la basse stride continue.",
       },
     },
   },

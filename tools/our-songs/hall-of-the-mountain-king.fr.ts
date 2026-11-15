@@ -44,7 +44,6 @@ export const translation: Translation<GuideTranslation> = {
         "Dans ce passage, les trolls se rapprochent. Joue-le un peu plus fort que le début.",
       ],
       tricky: {
-        4: "Le doigt 2 s’avance vers le si bémol, pendant que la main gauche alterne entre sol et ré.",
         9: "Profite du silence pour descendre la main gauche sur le mi grave. Le pouce droit commence la montée sur le mi.",
         17: "Les deux mains reviennent sur le la pendant le silence, et la mélodie recommence encore une fois.",
       },

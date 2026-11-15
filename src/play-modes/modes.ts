@@ -106,7 +106,7 @@ export const PLAY_MODES: readonly PlayMode[] = [
     group: "fun",
     icon: "trophy",
     hue: "orchid",
-    song: "ours/hall-of-the-mountain-king/common.mid",
+    song: "ours/hall-of-the-mountain-king/common-2.mid",
     settings: { ...EFFECTS, enableGameMode: true, gameDifficulty: "easy" },
   },
   {
@@ -182,7 +182,7 @@ export const PLAY_MODES: readonly PlayMode[] = [
     group: "learn",
     icon: "audio-lines",
     hue: "teal",
-    song: "ours/twinkle-twinkle-little-star/rare.mid",
+    song: "ours/twinkle-twinkle-little-star/rare-2.mid",
     settings: { enableMetronome: true, enableScoreMode: true },
   },
   {

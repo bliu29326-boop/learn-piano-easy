@@ -56,14 +56,8 @@ export const translation: Translation<GuideTranslation> = {
         "Toca toda la canción con las dos manos juntas a tres cuartos de velocidad.",
         "Ahora tócala a velocidad completa, con el pedal.",
       ],
-      tips: [
-        "Mantén suave el bajo de Alberti, para que la melodía cante encima.",
-        "Levanta la mano después del sol, el la y el si, y pon el dedo 3 en el mi una octava más arriba.",
-        "Cambia el pedal cada vez que la mano izquierda empieza un acorde nuevo.",
-      ],
       tricky: {
         17: "El dedo 2 toca el re agudo, y el pulgar se estira hacia abajo hasta el sol mientras la mano izquierda sube.",
-        19: "Ahora el Gloria corre por arriba. Deja que los dedos 5, 4, 3 y 2 rueden hacia abajo del la al mi.",
         20: "El pulgar toma el do, y luego el dedo 2 cae en el re. Mantén parejos los acordes arpegiados de abajo.",
       },
     },
@@ -75,15 +69,9 @@ export const translation: Translation<GuideTranslation> = {
         "Junta las manos en toda la canción a tres cuartos de velocidad.",
         "Ahora tócala a velocidad completa, y deja sonar el último acorde.",
       ],
-      tips: [
-        "En el bajo stride, mira la octava grave y deja que la mano encuentre el acorde al tacto.",
-        "Después de cada octava, el dedo 5 se queda arriba y guía las notas rápidas hacia abajo.",
-        "La carrera rápida hasta el sol es una pequeña fanfarria. Tócala ligera y brillante.",
-      ],
       tricky: {
         2: "Levanta la mano de cada nota suelta antes de la octava siguiente, para que caiga sin estirarse.",
         3: "Otra vez el comienzo. Mantén parejas las octavas mientras la mano izquierda salta.",
-        11: "Cuatro notas rápidas corren de do hasta fa, y el dedo 5 cae en el sol. Abajo, el bajo stride sigue.",
       },
     },
   },

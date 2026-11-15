@@ -11,7 +11,9 @@
  *
  * Common moves the tune to A minor over held open fifths, with D sharp and B flat in the chromatic bars.
  * There the left hand holds one low note of its position, so the hands never clash. Rare plays every note
- * of the tune over a root and fifth in turns, one on each beat. Epic keeps B minor over broken chords,
+ * of the tune over a root and fifth in turns, one on each beat. Both close on the statement before Più
+ * vivo in Grieg's piano arrangement, print bars 46 to 49. Bar 23 plays the first half of print bar 49, and
+ * bar 24 ends on its A, without the print's drop of an octave. Epic keeps B minor over broken chords,
  * then gives the theme to the left hand. Legendary builds up, from a plucked octave bass to the tune in
  * octaves over a driving bass, and ends in full chords.
  */
@@ -93,7 +95,8 @@ export const hallOfTheMountainKing: OurSong = {
     composer: "Edvard Grieg",
     died: 1907,
     published: 1888,
-    edition: "Peer Gynt Suite No. 1, Op. 46, C. F. Peters, Leipzig (1888), from the incidental music Op. 23, first played in 1876",
+    edition: "Peer Gynt Suite No. 1, Op. 46, C. F. Peters, Leipzig (1888), from the incidental music Op. 23, first played in 1876; " +
+      "Grieg's piano arrangement, The University Society (1918), as typeset by the Mutopia Project",
   },
   about:
     "Grieg wrote this music for Henrik Ibsen's play Peer Gynt, first staged in Christiania, today's Oslo, in 1876. " +
@@ -116,7 +119,7 @@ export const hallOfTheMountainKing: OurSong = {
         ANSWER_A_MINOR,
         "B4/4:3 r:1",
         "A3/1:1 B3/2:1 C4/3:1 D4/4:1 | E4/5:1 C4/3:1 E4/5:2 | D#4/4:1 B3/2:1 D#4/4:2 | D4/4:1 Bb3/2:1 D4/4:2",
-        "A3/1:1 B3/2:1 C4/3:1 D4/4:1 | E4/5:1 C4/3:1 E4/5:2 | E4/5:1 D4/4:1 C4/3:1 B3/2:1 | A3/1:4",
+        "A3/1:1 B3/2:1 C4/3:1 D4/4:1 | E4/5:1 C4/3:1 E4/5:2 | E4/5:1 C4/1:1 E4/3:1 A4/5:1 | A4/5:4",
       ].join(" | "),
       left: [
         "A2+E3/5+1:4 | A2+E3/5+1:4 | B2/4:4 | D3/2:4 | " + "A2+E3/5+1:4 | ".repeat(4),
@@ -153,7 +156,7 @@ export const hallOfTheMountainKing: OurSong = {
         ANSWER_A_MINOR,
         "G#4+B4/2+4:3 r:1",
         "A3/1:1 B3/2:1 C4/3:1 D4/4:1 | E4/5:1 C4/3:1 E4/5:2 | D#4/4:1 B3/2:1 D#4/4:2 | D4/4:1 Bb3/2:1 D4/4:2",
-        "A3/1:1 B3/2:1 C4/3:1 D4/4:1 | E4/5:1 C4/3:1 E4/5:2 | E4/5:1 D4/4:1 C4/3:1 B3/2:1 | A3+E4/1+5:4",
+        "A3/1:1 B3/2:1 C4/3:1 D4/4:1 | E4/5:1 C4/3:1 E4/5:2 | E4/5:1 C4/1:1 E4/3:1 A4/5:1 | E4+A4/3+5:4",
       ].join(" | "),
       left: [
         "A2/5:1 E3/1:1 A2/5:1 E3/1:1 | A2/5:1 E3/1:1 A2/5:1 E3/1:1 | B2/5:1 F#3/1:1 B2/5:1 F#3/1:1 | G2/5:1 D3/1:1 G2/5:1 D3/1:1",
@@ -177,9 +180,9 @@ export const hallOfTheMountainKing: OurSong = {
         { fromBar: 9, toBar: 16, kind: "sound", text: "This part is the trolls getting closer. Play it a little louder than the start." },
       ],
       tricky: {
-        4: "Finger 2 reaches in for B flat, while the left hand steps between G and D.",
         9: "Use the rest to drop the left hand to the low E. The right thumb starts the climb on E.",
         17: "Both hands go back to A during the rest, and the tune starts once more.",
+        23: "Finger 5 plays E, the thumb shifts down to C, and finger 5 stretches up to end on the high A.",
       },
     },
     epic: {
@@ -313,9 +316,9 @@ export const hallOfTheMountainKing: OurSong = {
           "In diesem Teil kommen die Trolle näher. Spiel ihn etwas lauter als den Anfang.",
         ],
         tricky: {
-          4: "Finger 2 greift hinein zum B, während die linke Hand zwischen G und D wechselt.",
           9: "Nutz die Pause, um die linke Hand zum tiefen E zu bringen. Der rechte Daumen beginnt den Aufstieg auf dem E.",
           17: "Beide Hände gehen in der Pause zurück zum A, und die Melodie beginnt noch einmal.",
+          23: "Finger 5 spielt das E, der Daumen rückt hinab zum C, und Finger 5 streckt sich hinauf zum hohen A, dem Schlusston.",
         },
       },
       epic: {

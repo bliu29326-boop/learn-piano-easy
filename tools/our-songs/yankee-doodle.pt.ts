@@ -47,18 +47,6 @@ export const translation: Translation<GuideTranslation> = {
       },
     },
     epic: {
-      practice: [
-        "Toque só o baixo Alberti até ele rolar sozinho: grave, agudo, meio, agudo.",
-        "Toque só a passagem rápida do compasso 8, e passe o polegar por baixo até o Dó.",
-        "Toque só o refrão em terças, e mantenha juntas as duas notas de cada par.",
-        "Toque a música inteira com as duas mãos, a três quartos da velocidade.",
-        "Agora toque na velocidade normal, com o pedal.",
-      ],
-      tips: [
-        "Toque o baixo Alberti suave, para a melodia cantar por cima.",
-        "O polegar passa por baixo do dedo 3 para alcançar o Dó, e a passagem continua subindo até o refrão.",
-        "Os Fás sustenidos fazem atrito com o baixo por um instante, de propósito.",
-      ],
       tricky: {
         7: "Desça o dedo 2 do Sol para o Fá sustenido. O resto da mão vai junto.",
         11: "O refrão volta para o Ré. O dedo 3 o pega, e a mão fica pronta para o Dó.",

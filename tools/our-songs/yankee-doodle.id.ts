@@ -47,18 +47,6 @@ export const translation: Translation<GuideTranslation> = {
       },
     },
     epic: {
-      practice: [
-        "Mainkan bas Alberti saja sampai mengalir dengan sendirinya: rendah, tinggi, tengah, tinggi.",
-        "Mainkan rentetan not cepat di birama 8 saja, dan susupkan ibu jari ke C.",
-        "Mainkan refrein dalam terts saja, dan jaga kedua not setiap pasangan tetap bersamaan.",
-        "Mainkan seluruh lagu dengan kedua tangan, dengan tiga perempat kecepatan.",
-        "Sekarang mainkan dengan kecepatan penuh, dengan pedal.",
-      ],
-      tips: [
-        "Mainkan bas Alberti dengan lembut, agar melodi bernyanyi di atasnya.",
-        "Ibu jari menyusup di bawah jari 3 untuk meraih C, dan rentetan not cepat terus naik ke refrein.",
-        "F kres sengaja bergesekan dengan bas sejenak.",
-      ],
       tricky: {
         7: "Geser jari 2 dari G turun ke F kres. Bagian tanganmu yang lain mengikutinya.",
         11: "Refrein turun kembali ke D. Jari 3 mengambilnya, agar tanganmu siap untuk C.",

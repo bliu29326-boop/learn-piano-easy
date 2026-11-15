@@ -25,7 +25,6 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         1: "Le pouce joue le do central, puis monte jusqu’au sol. Déplace-le pendant la note longue.",
-        7: "La main gauche descend sur sol et ré. La main droite descend du ré au sol.",
         8: "Les deux mains rentrent à la maison. La main gauche revient sur do et sol, et la main droite finit sur le mi.",
       },
     },
@@ -44,18 +43,10 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         3: "Le pouce joue le do central, puis monte jusqu’au sol pendant la note longue.",
-        10: "Garde le doigt 2 sur le do, et laisse le doigt 5 sur le mi céder la place au doigt 4 sur le mi bémol.",
         15: "Ici, la main gauche joue un accord de do majeur complet. Ouvre les doigts 5, 3 et 1 sur do, mi et sol.",
       },
     },
     epic: {
-      practice: [
-        "Joue seuls les accords brisés de la main gauche, aux mesures 9 à 12 : do grave, sol, do et sol.",
-        "Joue les mesures 9 à 12 à la main droite seule, et enfonce les deux notes de chaque paire d’un seul geste.",
-        "Joue les mesures 9 à 12 à deux mains, lentement.",
-        "Joue tout le morceau à deux mains, à 75 % de la vitesse.",
-        "Maintenant, joue-le au tempo, avec la pédale.",
-      ],
       tips: [
         "Tiens l’octave grave avec la pédale enfoncée. Elle doit gronder comme un grand orgue.",
         "Le mi clair devient un mi bémol sombre. Joue le mi bémol un peu plus doux.",
@@ -64,18 +55,9 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         3: "La main droite entre sur le do central pendant que la main gauche monte d’une octave. " +
           "Le silence de la mesure 2 lui en laisse le temps.",
-        15: "Ouvre la main droite sur mi, sol et le do aigu. La main gauche tient en dessous une octave de do.",
-        16: "Les deux mains sautent vers le bas pour le dernier accord. Profite du court silence à la fin de la mesure 15.",
       },
     },
     legendary: {
-      practice: [
-        "Joue seules les octaves de la main droite, aux mesures 9 à 12. Garde la position de la main et déplace tout le bras.",
-        "Joue la main gauche seule. Elle alterne entre octaves graves et roulements de timbales.",
-        "Joue le point culminant, les mesures 13 à 16, à deux mains.",
-        "Joue tout le morceau à deux mains, à 75 % de la vitesse.",
-        "Maintenant, joue-le au tempo et laisse sonner le dernier accord.",
-      ],
       tips: [
         "Fixe la main en position d’octave, le pouce et l’auriculaire. Le bras la porte de touche en touche.",
         "Pour les accords de quatre notes, prends les doigts 1, 2, 3 et 5. Le doigt 4 se repose.",
@@ -83,9 +65,6 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         11: "La main droite saute de l’accord aigu jusqu’à l’octave sur le do central. Profite du silence juste avant.",
-        13: "La montée commence ici. Lève la main après chaque accord, et laisse la pédale lier le son.",
-        14: "Sur le quatrième temps, la main gauche descend sur une octave de fa grave, " +
-          "pendant que la main droite joue son accord de fa majeur.",
       },
     },
   },

@@ -13,9 +13,9 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `mary-had-a-little-lamb/legendary.mid` | Mary Had a Little Lamb, Hard | Traditional | MIT |
 | `mary-had-a-little-lamb/guide.json` | Mary Had a Little Lamb, the guide | | MIT |
 | `twinkle-twinkle-little-star/common.mid` | Twinkle Twinkle Little Star, Beginner | Traditional | MIT |
-| `twinkle-twinkle-little-star/rare.mid` | Twinkle Twinkle Little Star, Easy | Traditional | MIT |
-| `twinkle-twinkle-little-star/epic.mid` | Twinkle Twinkle Little Star, Medium | Traditional | MIT |
-| `twinkle-twinkle-little-star/legendary.mid` | Twinkle Twinkle Little Star, Hard | Traditional | MIT |
+| `twinkle-twinkle-little-star/rare-2.mid` | Twinkle Twinkle Little Star, Easy | Traditional | MIT |
+| `twinkle-twinkle-little-star/epic-2.mid` | Twinkle Twinkle Little Star, Medium | Traditional | MIT |
+| `twinkle-twinkle-little-star/legendary-2.mid` | Twinkle Twinkle Little Star, Hard | Traditional | MIT |
 | `twinkle-twinkle-little-star/guide.json` | Twinkle Twinkle Little Star, the guide | | MIT |
 | `old-macdonald-had-a-farm/common.mid` | Old MacDonald Had a Farm, Beginner | Traditional | MIT |
 | `old-macdonald-had-a-farm/rare.mid` | Old MacDonald Had a Farm, Easy | Traditional | MIT |
@@ -29,7 +29,7 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `row-row-row-your-boat/guide.json` | Row Row Row Your Boat, the guide | | MIT |
 | `yankee-doodle/common.mid` | Yankee Doodle, Beginner | Traditional | MIT |
 | `yankee-doodle/rare.mid` | Yankee Doodle, Easy | Traditional | MIT |
-| `yankee-doodle/epic.mid` | Yankee Doodle, Medium | Traditional | MIT |
+| `yankee-doodle/epic-2.mid` | Yankee Doodle, Medium | Traditional | MIT |
 | `yankee-doodle/legendary.mid` | Yankee Doodle, Hard | Traditional | MIT |
 | `yankee-doodle/guide.json` | Yankee Doodle, the guide | | MIT |
 | `ode-to-joy/common.mid` | Ode to Joy, Beginner | Ludwig van Beethoven | MIT |
@@ -52,8 +52,8 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `canon-in-d/epic.mid` | Canon in D, Medium | Johann Pachelbel | MIT |
 | `canon-in-d/legendary.mid` | Canon in D, Hard | Johann Pachelbel | MIT |
 | `canon-in-d/guide.json` | Canon in D, the guide | | MIT |
-| `hall-of-the-mountain-king/common.mid` | In the Hall of the Mountain King, Beginner | Edvard Grieg | MIT |
-| `hall-of-the-mountain-king/rare.mid` | In the Hall of the Mountain King, Easy | Edvard Grieg | MIT |
+| `hall-of-the-mountain-king/common-2.mid` | In the Hall of the Mountain King, Beginner | Edvard Grieg | MIT |
+| `hall-of-the-mountain-king/rare-2.mid` | In the Hall of the Mountain King, Easy | Edvard Grieg | MIT |
 | `hall-of-the-mountain-king/epic.mid` | In the Hall of the Mountain King, Medium | Edvard Grieg | MIT |
 | `hall-of-the-mountain-king/legendary.mid` | In the Hall of the Mountain King, Hard | Edvard Grieg | MIT |
 | `hall-of-the-mountain-king/guide.json` | In the Hall of the Mountain King, the guide | | MIT |
@@ -139,8 +139,8 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `o-holy-night/guide.json` | O Holy Night, the guide | | MIT |
 | `angels-we-have-heard-on-high/common.mid` | Angels We Have Heard on High, Beginner | Traditional | MIT |
 | `angels-we-have-heard-on-high/rare.mid` | Angels We Have Heard on High, Easy | Traditional | MIT |
-| `angels-we-have-heard-on-high/epic.mid` | Angels We Have Heard on High, Medium | Traditional | MIT |
-| `angels-we-have-heard-on-high/legendary.mid` | Angels We Have Heard on High, Hard | Traditional | MIT |
+| `angels-we-have-heard-on-high/epic-2.mid` | Angels We Have Heard on High, Medium | Traditional | MIT |
+| `angels-we-have-heard-on-high/legendary-2.mid` | Angels We Have Heard on High, Hard | Traditional | MIT |
 | `angels-we-have-heard-on-high/guide.json` | Angels We Have Heard on High, the guide | | MIT |
 | `good-king-wenceslas/common.mid` | Good King Wenceslas, Beginner | Traditional | MIT |
 | `good-king-wenceslas/rare.mid` | Good King Wenceslas, Easy | Traditional | MIT |
@@ -217,10 +217,10 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `tochter-zion/epic.mid` | Tochter Zion, freue dich, Medium | George Frideric Handel | MIT |
 | `tochter-zion/legendary.mid` | Tochter Zion, freue dich, Hard | George Frideric Handel | MIT |
 | `tochter-zion/guide.json` | Tochter Zion, freue dich, the guide | | MIT |
-| `also-sprach-zarathustra/common.mid` | Also sprach Zarathustra, Beginner | Richard Strauss | MIT |
-| `also-sprach-zarathustra/rare.mid` | Also sprach Zarathustra, Easy | Richard Strauss | MIT |
-| `also-sprach-zarathustra/epic.mid` | Also sprach Zarathustra, Medium | Richard Strauss | MIT |
-| `also-sprach-zarathustra/legendary.mid` | Also sprach Zarathustra, Hard | Richard Strauss | MIT |
+| `also-sprach-zarathustra/common-2.mid` | Also sprach Zarathustra, Beginner | Richard Strauss | MIT |
+| `also-sprach-zarathustra/rare-2.mid` | Also sprach Zarathustra, Easy | Richard Strauss | MIT |
+| `also-sprach-zarathustra/epic-2.mid` | Also sprach Zarathustra, Medium | Richard Strauss | MIT |
+| `also-sprach-zarathustra/legendary-2.mid` | Also sprach Zarathustra, Hard | Richard Strauss | MIT |
 | `also-sprach-zarathustra/guide.json` | Also sprach Zarathustra, the guide | | MIT |
 | `the-blue-danube/common.mid` | The Blue Danube, Beginner | Johann Strauss II | MIT |
 | `the-blue-danube/rare.mid` | The Blue Danube, Easy | Johann Strauss II | MIT |
@@ -348,10 +348,10 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `morning-mood/legendary-2.mid` | Morning Mood, Hard | Edvard Grieg | MIT |
 | `morning-mood/mythic.mid` | Morning Mood, Original | Edvard Grieg | MIT |
 | `morning-mood/guide.json` | Morning Mood, the guide | | MIT |
-| `wedding-march/common.mid` | Wedding March, Beginner | Felix Mendelssohn | MIT |
-| `wedding-march/rare.mid` | Wedding March, Easy | Felix Mendelssohn | MIT |
-| `wedding-march/epic.mid` | Wedding March, Medium | Felix Mendelssohn | MIT |
-| `wedding-march/legendary.mid` | Wedding March, Hard | Felix Mendelssohn | MIT |
+| `wedding-march/common-2.mid` | Wedding March, Beginner | Felix Mendelssohn | MIT |
+| `wedding-march/rare-2.mid` | Wedding March, Easy | Felix Mendelssohn | MIT |
+| `wedding-march/epic-2.mid` | Wedding March, Medium | Felix Mendelssohn | MIT |
+| `wedding-march/legendary-2.mid` | Wedding March, Hard | Felix Mendelssohn | MIT |
 | `wedding-march/guide.json` | Wedding March, the guide | | MIT |
 | `can-can/common-2.mid` | Can-can, Beginner | Jacques Offenbach | MIT |
 | `can-can/rare-2.mid` | Can-can, Easy | Jacques Offenbach | MIT |
@@ -365,10 +365,10 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `vltava/legendary-2.mid` | Vltava, Hard | Bedřich Smetana | MIT |
 | `vltava/mythic.mid` | Vltava, Original | Bedřich Smetana | MIT |
 | `vltava/guide.json` | Vltava, the guide | | MIT |
-| `aquarium/common.mid` | Aquarium, Beginner | Camille Saint-Saëns | MIT |
-| `aquarium/rare.mid` | Aquarium, Easy | Camille Saint-Saëns | MIT |
-| `aquarium/epic.mid` | Aquarium, Medium | Camille Saint-Saëns | MIT |
-| `aquarium/legendary.mid` | Aquarium, Hard | Camille Saint-Saëns | MIT |
+| `aquarium/common-2.mid` | Aquarium, Beginner | Camille Saint-Saëns | MIT |
+| `aquarium/rare-2.mid` | Aquarium, Easy | Camille Saint-Saëns | MIT |
+| `aquarium/epic-2.mid` | Aquarium, Medium | Camille Saint-Saëns | MIT |
+| `aquarium/legendary-2.mid` | Aquarium, Hard | Camille Saint-Saëns | MIT |
 | `aquarium/guide.json` | Aquarium, the guide | | MIT |
 | `mahler-adagietto/common-2.mid` | Adagietto, Beginner | Gustav Mahler | MIT |
 | `mahler-adagietto/rare-2.mid` | Adagietto, Easy | Gustav Mahler | MIT |
@@ -380,10 +380,10 @@ They are under the MIT License, the same as the app: see `LICENSE` at the reposi
 | `drunken-sailor/epic.mid` | Drunken Sailor, Medium | Traditional | MIT |
 | `drunken-sailor/legendary.mid` | Drunken Sailor, Hard | Traditional | MIT |
 | `drunken-sailor/guide.json` | Drunken Sailor, the guide | | MIT |
-| `blow-the-man-down/common.mid` | Blow the Man Down, Beginner | Traditional | MIT |
-| `blow-the-man-down/rare.mid` | Blow the Man Down, Easy | Traditional | MIT |
-| `blow-the-man-down/epic.mid` | Blow the Man Down, Medium | Traditional | MIT |
-| `blow-the-man-down/legendary.mid` | Blow the Man Down, Hard | Traditional | MIT |
+| `blow-the-man-down/common-2.mid` | Blow the Man Down, Beginner | Traditional | MIT |
+| `blow-the-man-down/rare-2.mid` | Blow the Man Down, Easy | Traditional | MIT |
+| `blow-the-man-down/epic-2.mid` | Blow the Man Down, Medium | Traditional | MIT |
+| `blow-the-man-down/legendary-2.mid` | Blow the Man Down, Hard | Traditional | MIT |
 | `blow-the-man-down/guide.json` | Blow the Man Down, the guide | | MIT |
 | `sailors-hornpipe/common.mid` | The Sailor's Hornpipe, Beginner | Traditional | MIT |
 | `sailors-hornpipe/rare.mid` | The Sailor's Hornpipe, Easy | Traditional | MIT |

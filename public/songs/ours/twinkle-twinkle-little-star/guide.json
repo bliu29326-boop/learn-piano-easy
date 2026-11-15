@@ -230,14 +230,14 @@
       ]
     },
     "rare": {
-      "file": "ours/twinkle-twinkle-little-star/rare.mid",
+      "file": "ours/twinkle-twinkle-little-star/rare-2.mid",
       "skills": [
         "eighth-notes",
         "triads"
       ],
       "fingers": {
-        "right": [1, 1, 4, 4, 5, 5, 4, 4, 4, 3, 3, 2, 2, 3, 1, 5, 5, 4, 4, 5, 3, 3, 2, 5, 5, 4, 3, 4, 3, 3, 2, 1, 1, 4, 4, 5, 5, 4, 4, 4, 3, 3, 2, 2, 3, 1, 5, 5, 4, 4, 4, 3, 3, 2, 3, 4, 3, 2, 1],
-        "left": [4, 2, 1, 5, 3, 2, 2, 1, 5, 3, 2, 2, 1, 5, 3, 2, 1, 2, 1, 5, 3, 2, 2, 1, 5, 3, 2, 1, 5, 3, 2, 2, 1, 5, 3, 2, 1, 5, 3, 2, 2, 1, 5, 3, 2, 2, 1, 5, 3, 2, 1, 5, 3, 2, 2, 1, 5, 3, 2, 2, 1, 5, 3, 5, 2, 1]
+        "right": [1, 1, 4, 4, 5, 5, 4, 4, 4, 3, 3, 2, 2, 3, 1, 5, 5, 4, 4, 5, 3, 3, 2, 5, 5, 4, 3, 4, 3, 3, 2, 1, 1, 4, 4, 5, 5, 4, 4, 4, 3, 3, 2, 2, 3, 1, 5, 5, 4, 4, 4, 3, 3, 2, 2, 3, 1, 1],
+        "left": [4, 2, 1, 5, 3, 2, 2, 1, 5, 3, 2, 2, 1, 5, 3, 2, 1, 2, 1, 5, 3, 2, 2, 1, 5, 3, 2, 1, 5, 3, 2, 2, 1, 5, 3, 2, 1, 5, 3, 2, 2, 1, 5, 3, 2, 2, 1, 5, 3, 2, 1, 5, 3, 2, 2, 1, 5, 3, 2, 2, 1, 5, 3, 5, 3, 2, 1, 5, 2, 1]
       },
       "start": {
         "right": [60, null, null, 67, 69],
@@ -347,16 +347,7 @@
           "kind": "rhythm",
           "text": {
             "en": "The D and the E share one beat. Say \"one-and\" as you play them.",
-            "de": "Das D und das E teilen sich einen Schlag. Sag \"eins-und\", während du sie spielst.",
-            "es": "El re y el mi comparten un tiempo. Di «uno-y» mientras los tocas.",
-            "zh": "D 和 E 共用一拍。弹的时候数“1 哒”。",
-            "hi": "D और E मिलकर एक बीट लेते हैं। उन्हें बजाते हुए “1 एंड” बोलें।",
-            "ar": "ري ومي تتقاسمان نبضة واحدة. قل «1 و» أثناء عزفهما.",
-            "pt": "O Ré e o Mi dividem um tempo. Conte “um e” enquanto os toca.",
-            "id": "D dan E berbagi satu ketukan. Ucapkan “satu-dan” sambil memainkannya.",
-            "bn": "D আর E একটি বিট ভাগ করে নেয়। বাজানোর সময় “1 অ্যান্ড” বলুন।",
-            "ru": "Ре и ми делят одну долю. Произносите «раз-и», пока играете их.",
-            "fr": "Le ré et le mi se partagent un temps. Dis « un-et » en les jouant."
+            "de": "Das D und das E teilen sich einen Schlag. Sag \"eins-und\", während du sie spielst."
           }
         },
         {
@@ -365,16 +356,7 @@
           "kind": "fingering",
           "text": {
             "en": "The left hand stays in one place, and each chord keeps its own fingers.",
-            "de": "Die linke Hand bleibt an einem Ort, und jeder Akkord behält seine eigenen Finger.",
-            "es": "La mano izquierda se queda en un mismo lugar, y cada acorde conserva sus propios dedos.",
-            "zh": "左手停在一个位置，每个和弦都用它自己的手指。",
-            "hi": "बायाँ हाथ एक ही जगह रहता है, और हर कॉर्ड की अपनी उँगलियाँ होती हैं।",
-            "ar": "تبقى اليد اليسرى في مكان واحد، ولكل تآلف أصابعه الخاصة.",
-            "pt": "A mão esquerda fica num só lugar, e cada acorde mantém seus próprios dedos.",
-            "id": "Tangan kiri tetap di satu tempat, dan setiap akor punya jarinya sendiri.",
-            "bn": "বাঁ হাত এক জায়গায় থাকে, আর প্রতিটি কর্ড সবসময় একই আঙুলে বাজে।",
-            "ru": "Левая рука остаётся на месте, и у каждого аккорда свои пальцы.",
-            "fr": "La main gauche reste au même endroit, et chaque accord garde ses propres doigts."
+            "de": "Die linke Hand bleibt an einem Ort, und jeder Akkord behält seine eigenen Finger."
           }
         },
         {
@@ -382,17 +364,8 @@
           "toBar": 16,
           "kind": "sound",
           "text": {
-            "en": "The last four bars are a coda, a short goodbye. Slow down a little at the end.",
-            "de": "Die letzten vier Takte sind eine Coda, ein kurzer Abschied. Nimm am Ende das Tempo etwas zurück.",
-            "es": "Los últimos cuatro compases son una coda, una despedida corta. Ve un poco más despacio al final.",
-            "zh": "最后四个小节是尾声，一段简短的告别。结尾稍微放慢一点。",
-            "hi": "आखिरी चार माप कोडा हैं, यानी एक छोटी-सी विदाई। आखिर में स्पीड थोड़ी धीमी करें।",
-            "ar": "آخر 4 موازير هي الخاتمة، وداع قصير. أبطئ قليلًا عند النهاية.",
-            "pt": "Os quatro últimos compassos são uma coda, uma breve despedida. Vá um pouco mais devagar no final.",
-            "id": "Empat birama terakhir adalah koda, sebuah salam perpisahan singkat. Perlambat sedikit di bagian akhir.",
-            "bn": "শেষ চারটি বার একটি কোডা, ছোট্ট একটি বিদায়। শেষে গতি একটু কমিয়ে আনুন।",
-            "ru": "Последние четыре такта — это кода, короткое прощание. В конце немного замедлите темп.",
-            "fr": "Les quatre dernières mesures sont une coda, un petit au revoir. Ralentis un peu à la fin."
+            "en": "Bars 13 to 15 play the end of the tune once more, and bar 16 holds the last chord. Slow down a little at the end.",
+            "de": "Die Takte 13 bis 15 spielen noch einmal das Ende der Melodie, und Takt 16 hält den letzten Akkord. Nimm am Ende das Tempo etwas zurück."
           }
         }
       ],
@@ -448,15 +421,15 @@
       ]
     },
     "epic": {
-      "file": "ours/twinkle-twinkle-little-star/epic.mid",
+      "file": "ours/twinkle-twinkle-little-star/epic-2.mid",
       "skills": [
         "alberti-bass",
         "pedal",
-        "thumb-under"
+        "thirds-and-sixths"
       ],
       "fingers": {
-        "right": [1, 1, 4, 4, 5, 5, 4, 4, 4, 3, 3, 2, 2, 1, 2, 3, 4, 4, 3, 3, 2, 2, 1, 2, 3, 4, 4, 3, 3, 2, 2, 1, 1, 1, 2, 4, 2, 4, 3, 5, 3, 5, 2, 4, 2, 4, 2, 4, 1, 3, 1, 3, 1, 2, 1, 2, 1, 5, 5, 4, 4, 4, 3, 3, 1, 2, 3, 1, 2, 3, 4, 5, 1, 2, 5],
-        "left": [5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 3, 1]
+        "right": [1, 1, 4, 4, 5, 5, 4, 4, 4, 3, 3, 2, 2, 1, 2, 3, 4, 4, 3, 3, 2, 2, 1, 2, 3, 4, 4, 3, 3, 2, 2, 1, 1, 1, 2, 4, 2, 4, 3, 5, 3, 5, 2, 4, 2, 4, 2, 4, 1, 3, 1, 3, 1, 2, 1, 2, 1, 5, 5, 4, 4, 4, 3, 3, 2, 2, 3, 1, 1, 2, 5],
+        "left": [5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 4, 1, 5, 1, 3, 1, 5, 3, 1]
       },
       "start": {
         "right": [60, null, null, 67, 69],
@@ -466,16 +439,7 @@
         {
           "text": {
             "en": "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.",
-            "de": "Spiel den Alberti-Bass allein, bis er von selbst rollt: tief, hoch, Mitte, hoch.",
-            "es": "Toca con la mano izquierda sola el bajo de Alberti, hasta que ruede por sí mismo: grave, agudo, medio, agudo.",
-            "zh": "单独弹阿尔贝蒂低音，直到它自己流畅地滚动起来：低、高、中、高。",
-            "hi": "सिर्फ़ अल्बर्टी बेस बजाएँ, जब तक वह अपने-आप न बहने लगे: नीचे वाला, ऊपर वाला, बीच वाला, ऊपर वाला।",
-            "ar": "اعزف باص ألبرتي وحده حتى ينساب من تلقاء نفسه: المنخفضة، فالعالية، فالوسطى، فالعالية.",
-            "pt": "Toque só o baixo Alberti até ele rolar sozinho: grave, agudo, meio, agudo.",
-            "id": "Mainkan bas Alberti saja sampai mengalir dengan sendirinya: rendah, tinggi, tengah, tinggi.",
-            "bn": "আলবের্তি বেস আলাদা করে বাজান, যতক্ষণ না সেটি নিজে থেকে গড়িয়ে চলে: নিচের, উপরের, মাঝের, উপরের।",
-            "ru": "Сыграйте альбертиевы басы отдельно, пока они не покатятся сами: нижняя, верхняя, средняя, верхняя.",
-            "fr": "Joue la basse d’Alberti seule, jusqu’à ce qu’elle roule toute seule : grave, aigu, milieu, aigu."
+            "de": "Spiel den Alberti-Bass allein, bis er von selbst rollt: tief, hoch, Mitte, hoch."
           },
           "hands": "left",
           "speed": 0.5,
@@ -485,16 +449,7 @@
         {
           "text": {
             "en": "Play the right hand's thirds alone, and press both notes of each pair as one.",
-            "de": "Spiel die Terzen der rechten Hand allein, und drück beide Töne jedes Zweiklangs wie einen.",
-            "es": "Toca las terceras de la mano derecha sola, y presiona las dos notas de cada doble nota como una sola.",
-            "zh": "单独弹右手的三度，每一对的两个音要像一个音那样同时按下。",
-            "hi": "सिर्फ़ दाएँ हाथ के थर्ड बजाएँ, और हर जोड़ी के दोनों नोट एक साथ दबाएँ।",
-            "ar": "اعزف ثالثات اليد اليمنى وحدها، واضغط نغمتي كل زوج كأنهما نغمة واحدة.",
-            "pt": "Toque só as terças da mão direita, e pressione as duas notas de cada par como se fossem uma.",
-            "id": "Mainkan terts tangan kanan saja, dan tekan kedua not setiap pasangan sebagai satu.",
-            "bn": "ডান হাতের থার্ডগুলো আলাদা করে বাজান, আর প্রতিটি জোড়ার দুটি নোট একসঙ্গে চাপুন।",
-            "ru": "Сыграйте терции правой руки отдельно и нажимайте обе ноты каждой пары как одну.",
-            "fr": "Joue seules les tierces de la main droite, et enfonce les deux notes de chaque paire d’un seul geste."
+            "de": "Spiel die Terzen der rechten Hand allein, und drück beide Töne jedes Zweiklangs wie einen."
           },
           "hands": "right",
           "speed": 0.6,
@@ -503,36 +458,18 @@
         },
         {
           "text": {
-            "en": "Play the scale of bar 15 alone, with the thumb passing under after finger 3.",
-            "de": "Spiel die Tonleiter in Takt 15 allein, mit Daumenuntersatz nach Finger 3.",
-            "es": "Toca sola la escala del compás 15, con el paso del pulgar después del dedo 3.",
-            "zh": "单独弹第 15 小节的音阶，弹完 3 指后拇指从下面穿过去。",
-            "hi": "सिर्फ़ माप 15 का स्केल बजाएँ, और उँगली 3 के बाद अँगूठा नीचे से ले जाएँ।",
-            "ar": "اعزف السلم في المازورة 15 وحده، مع تمرير الإبهام من تحت بعد الإصبع 3.",
-            "pt": "Toque só a escala do compasso 15, com o polegar passando por baixo depois do dedo 3.",
-            "id": "Mainkan tangga nada di birama 15 saja, dengan ibu jari menyusup setelah jari 3.",
-            "bn": "15 নম্বর বারের স্কেলটি আলাদা করে বাজান, 3 নম্বর আঙুলের পরে বুড়ো আঙুল নিচ দিয়ে নিয়ে।",
-            "ru": "Сыграйте гамму такта 15 отдельно и подкладывайте первый палец после 3-го.",
-            "fr": "Joue seule la gamme de la mesure 15, avec le passage du pouce après le doigt 3."
+            "en": "Play the left hand of bars 14 to 16 alone, slowly, until the step down to F feels sure.",
+            "de": "Spiel die linke Hand der Takte 14 bis 16 allein und langsam, bis der Schritt hinab zum F sicher sitzt."
           },
-          "hands": "right",
+          "hands": "left",
           "speed": 0.5,
-          "loop": [15, 16],
+          "loop": [14, 16],
           "wait": true
         },
         {
           "text": {
             "en": "Play the whole song with both hands at three-quarter speed.",
-            "de": "Spiel das ganze Lied mit beiden Händen in Dreiviertel-Tempo.",
-            "es": "Toca toda la canción con las dos manos juntas a tres cuartos de velocidad.",
-            "zh": "双手合奏，用四分之三速度弹完整首歌。",
-            "hi": "दोनों हाथों से पूरा गाना तीन-चौथाई स्पीड पर बजाएँ।",
-            "ar": "اعزف الأغنية كاملة باليدين معًا، بثلاثة أرباع السرعة.",
-            "pt": "Toque a música inteira com as duas mãos, a três quartos da velocidade.",
-            "id": "Mainkan seluruh lagu dengan kedua tangan, dengan tiga perempat kecepatan.",
-            "bn": "দুই হাতে পুরো গানটি তিন-চতুর্থাংশ গতিতে বাজান।",
-            "ru": "Сыграйте всю песню двумя руками на скорости 75 %.",
-            "fr": "Joue tout le morceau à deux mains, à 75 % de la vitesse."
+            "de": "Spiel das ganze Lied mit beiden Händen in Dreiviertel-Tempo."
           },
           "hands": "both",
           "speed": 0.75,
@@ -542,16 +479,7 @@
         {
           "text": {
             "en": "Now play it at full speed, with the pedal.",
-            "de": "Jetzt spiel es im vollen Tempo, mit Pedal.",
-            "es": "Ahora tócala a velocidad completa, con el pedal.",
-            "zh": "现在用原速弹，加上踏板。",
-            "hi": "अब इसे पूरी स्पीड पर पेडल के साथ बजाएँ।",
-            "ar": "والآن اعزفها بالسرعة الكاملة، مع الدواسة.",
-            "pt": "Agora toque na velocidade normal, com o pedal.",
-            "id": "Sekarang mainkan dengan kecepatan penuh, dengan pedal.",
-            "bn": "এবার প্যাডেলসহ পুরো গতিতে বাজান।",
-            "ru": "Теперь сыграйте в полном темпе, с педалью.",
-            "fr": "Maintenant, joue-le au tempo, avec la pédale."
+            "de": "Jetzt spiel es im vollen Tempo, mit Pedal."
           },
           "hands": "both",
           "speed": 1,
@@ -566,16 +494,7 @@
           "kind": "sound",
           "text": {
             "en": "Play the Alberti bass softly, so the tune stays on top.",
-            "de": "Spiel den Alberti-Bass leise, damit die Melodie obenauf bleibt.",
-            "es": "Toca suave el bajo de Alberti, para que la melodía quede arriba.",
-            "zh": "阿尔贝蒂低音要弹得轻，让旋律保持在上面。",
-            "hi": "अल्बर्टी बेस हल्के से बजाएँ, ताकि धुन ऊपर बनी रहे।",
-            "ar": "اعزف باص ألبرتي بهدوء، ليبقى اللحن في الأعلى.",
-            "pt": "Toque o baixo Alberti suave, para a melodia ficar por cima.",
-            "id": "Mainkan bas Alberti dengan lembut, agar melodi tetap terdengar di atasnya.",
-            "bn": "আলবের্তি বেস হালকা করে বাজান, যাতে সুরটি উপরে থাকে।",
-            "ru": "Играйте альбертиевы басы тихо, чтобы мелодия оставалась наверху.",
-            "fr": "Joue la basse d’Alberti tout en douceur, pour que la mélodie reste au-dessus."
+            "de": "Spiel den Alberti-Bass leise, damit die Melodie obenauf bleibt."
           }
         },
         {
@@ -584,34 +503,16 @@
           "kind": "rhythm",
           "text": {
             "en": "The two quick notes at the end of bars 4 and 6 lead up to G. Play them lightly.",
-            "de": "Die zwei schnellen Töne am Ende der Takte 4 und 6 führen hinauf zum G. Spiel sie leicht.",
-            "es": "Las dos notas rápidas al final de los compases 4 y 6 llevan hasta el sol. Tócalas ligeras.",
-            "zh": "第 4 小节和第 6 小节结尾的两个快音往上引向 G。把它们弹得轻一些。",
-            "hi": "माप 4 और 6 के आखिर के दो छोटे नोट G तक ले जाते हैं। उन्हें हल्के से बजाएँ।",
-            "ar": "النغمتان السريعتان في نهاية المازورتين 4 و6 تقودان إلى صول. اعزفهما بخفة.",
-            "pt": "As duas notas rápidas no fim dos compassos 4 e 6 levam ao Sol. Toque-as com leveza.",
-            "id": "Dua not cepat di akhir birama 4 dan 6 mengantar naik ke G. Mainkan dengan ringan.",
-            "bn": "4 আর 6 নম্বর বারের শেষের দুটি দ্রুত নোট G পর্যন্ত নিয়ে যায়। সেগুলো হালকা করে বাজান।",
-            "ru": "Две быстрые ноты в конце тактов 4 и 6 ведут вверх к соль. Играйте их легко.",
-            "fr": "Les deux notes rapides à la fin des mesures 4 et 6 montent vers le sol. Joue-les légèrement."
+            "de": "Die zwei schnellen Töne am Ende der Takte 4 und 6 führen hinauf zum G. Spiel sie leicht."
           }
         },
         {
           "fromBar": 15,
           "toBar": 15,
-          "kind": "fingering",
+          "kind": "rhythm",
           "text": {
-            "en": "Your thumb tucks under on F, so the scale climbs to C without a gap.",
-            "de": "Mit Daumenuntersatz auf dem F steigt die Tonleiter ohne Lücke bis zum C.",
-            "es": "El pulgar pasa por debajo en el fa, para que la escala suba hasta el do sin un hueco.",
-            "zh": "弹到 F 时拇指从下面穿过去，这样音阶就能不间断地往上走到 C。",
-            "hi": "अँगूठा F पर नीचे से आता है, इसलिए स्केल बिना रुके C तक चढ़ता है।",
-            "ar": "يمر إبهامك من تحت عند فا، فيصعد السلم إلى دو دون انقطاع.",
-            "pt": "Seu polegar passa por baixo no Fá, para a escala subir até o Dó sem interrupção.",
-            "id": "Ibu jarimu menyusup di F, agar tangga nada naik sampai C tanpa jeda.",
-            "bn": "বুড়ো আঙুল F-এ নিচ দিয়ে ঢুকে যায়, তাই স্কেলটি কোনো ফাঁক ছাড়াই C পর্যন্ত ওঠে।",
-            "ru": "Первый палец подкладывается на фа, и гамма без разрыва поднимается к до.",
-            "fr": "Le pouce passe dessous sur le fa, pour que la gamme monte jusqu’au do sans trou."
+            "en": "In bar 15 the second D and the E share one beat, as the theme ends.",
+            "de": "In Takt 15 teilen sich das zweite D und das E einen Schlag, während das Thema endet."
           }
         },
         {
@@ -619,21 +520,19 @@
           "toBar": 15,
           "kind": "sound",
           "text": {
-            "en": "Change the pedal twice a bar, on beats one and three.",
-            "de": "Wechsle das Pedal zweimal pro Takt, auf Schlag eins und drei.",
-            "es": "Cambia el pedal dos veces por compás, en los tiempos uno y tres.",
-            "zh": "每小节换两次踏板，在第一拍和第三拍。",
-            "hi": "हर माप में दो बार पेडल बदलें, पहली और तीसरी बीट पर।",
-            "ar": "غيّر الدواسة مرتين في كل مازورة، عند النبضتين الأولى والثالثة.",
-            "pt": "Troque o pedal duas vezes por compasso, nos tempos 1 e 3.",
-            "id": "Ganti pedal dua kali per birama, pada ketukan 1 dan 3.",
-            "bn": "প্রতিটি বারে দুবার প্যাডেল বদলান, 1 আর 3 নম্বর বিটে।",
-            "ru": "Меняйте педаль дважды в такте, на первую и третью долю.",
-            "fr": "Change de pédale deux fois par mesure, sur le premier et le troisième temps."
+            "en": "Change the pedal twice a bar, on beats one and three. In bar 15, change it on beat two as well.",
+            "de": "Wechsle das Pedal zweimal pro Takt, auf Schlag eins und drei. In Takt 15 wechsle es auch auf Schlag zwei."
           }
         }
       ],
       "tricky": [
+        {
+          "bar": 15,
+          "text": {
+            "en": "The left hand drops to F, then rocks between G and D before it climbs back to C.",
+            "de": "Die linke Hand geht hinab zum F und wiegt dann zwischen G und D, bevor sie zurück zum C steigt."
+          }
+        },
         {
           "bar": 3,
           "text": {
@@ -665,34 +564,18 @@
             "ru": "Первый палец скользит с ре вниз на до. Затем 2-й и 4-й пальцы берут первую терцию.",
             "fr": "Le pouce descend en glissant du ré au do. Puis les doigts 2 et 4 prennent la première tierce."
           }
-        },
-        {
-          "bar": 14,
-          "text": {
-            "en": "Finger 4 slides from G down to F, as it did in bar 3.",
-            "de": "Finger 4 gleitet vom G hinab zum F, wie schon in Takt 3.",
-            "es": "El dedo 4 se desliza del sol al fa, como en el compás 3.",
-            "zh": "4 指从 G 往下滑到 F，和第 3 小节一样。",
-            "hi": "उँगली 4 G से खिसककर नीचे F पर आती है, जैसे माप 3 में आई थी।",
-            "ar": "ينزلق الإصبع 4 من صول إلى فا، كما في المازورة 3.",
-            "pt": "O dedo 4 desliza do Sol para o Fá, como no compasso 3.",
-            "id": "Jari 4 bergeser turun dari G ke F, seperti di birama 3.",
-            "bn": "4 নম্বর আঙুল G থেকে পিছলে F-এ নামে, যেমন 3 নম্বর বারে নেমেছিল।",
-            "ru": "4-й палец скользит с соль вниз на фа, как в такте 3.",
-            "fr": "Le doigt 4 descend en glissant du sol au fa, comme à la mesure 3."
-          }
         }
       ]
     },
     "legendary": {
-      "file": "ours/twinkle-twinkle-little-star/legendary.mid",
+      "file": "ours/twinkle-twinkle-little-star/legendary-2.mid",
       "skills": [
         "stride",
         "sixteenth-notes",
         "melody-in-chords"
       ],
       "fingers": {
-        "right": [1, 1, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 2, 5, 1, 2, 5, 1, 2, 5, 1, 2, 5, 1, 2, 5, 1, 2, 5, 1, 2, 4, 5, 4, 3, 4, 5, 4, 3, 4, 4, 3, 2, 3, 4, 3, 2, 3, 3, 2, 1, 2, 3, 2, 1, 2, 2, 5, 4, 3, 4, 5, 4, 3, 4, 4, 3, 2, 3, 4, 3, 2, 3, 3, 2, 1, 2, 3, 2, 1, 2, 2, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 2, 5, 1, 2, 5, 1, 2, 5, 1, 2, 5, 5, 4, 3, 2, 1, 3, 2, 1, 1, 2, 3, 5, 4, 2, 1, 1, 2, 3, 5],
+        "right": [1, 1, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 2, 5, 1, 2, 5, 1, 2, 5, 1, 2, 5, 1, 2, 5, 1, 2, 5, 1, 2, 4, 5, 4, 3, 4, 5, 4, 3, 4, 4, 3, 2, 3, 4, 3, 2, 3, 3, 2, 1, 2, 3, 2, 1, 2, 2, 5, 4, 3, 4, 5, 4, 3, 4, 4, 3, 2, 3, 4, 3, 2, 3, 3, 2, 1, 2, 3, 2, 1, 2, 2, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 3, 5, 1, 3, 5, 1, 3, 5, 1, 2, 5, 1, 2, 5, 1, 2, 5, 1, 2, 5, 1, 2, 5, 1, 2, 4, 5, 1, 2, 5, 1, 2, 3, 5],
         "left": [5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 2, 1]
       },
       "start": {
@@ -856,17 +739,8 @@
         {
           "bar": 15,
           "text": {
-            "en": "Finger 3 crosses over the thumb on B as the run falls. Then the hand climbs back up through G major.",
-            "de": "Finger 3 greift beim H über den Daumen, während der Lauf fällt. Dann steigt die Hand durch G-Dur wieder hinauf.",
-            "es": "El dedo 3 cruza por encima del pulgar en el si mientras el pasaje baja. Luego la mano vuelve a subir por sol mayor.",
-            "zh": "快速经过句往下走时，3 指在 B 上从拇指上面跨过去。然后手沿着 G 大调往上走回去。",
-            "hi": "तेज़ नोटों की लड़ी नीचे उतरते समय, उँगली 3 अँगूठे के ऊपर से B पर जाती है। फिर हाथ G मेजर स्केल के नोटों पर वापस ऊपर चढ़ता है।",
-            "ar": "يعبر الإصبع 3 فوق الإبهام عند سي، بينما تهبط سلسلة النغمات. ثم تصعد اليد من جديد عبر سلم صول الكبير.",
-            "pt": "O dedo 3 cruza por cima do polegar no Si enquanto a passagem rápida desce. Depois a mão sobe de volta em Sol maior.",
-            "id": "Jari 3 menyeberang di atas ibu jari di B saat rentetan not cepat itu turun. Lalu tangan naik kembali melalui G mayor.",
-            "bn": "দ্রুত নোটের সারি নামার সময় 3 নম্বর আঙুল B-তে বুড়ো আঙুলের উপর দিয়ে যায়। তারপর হাত G মেজর স্কেল বেয়ে আবার উপরে ওঠে।",
-            "ru": "Пока пассаж идёт вниз, 3-й палец перекладывается через первый на си. Затем рука поднимается обратно по соль мажору.",
-            "fr": "Le doigt 3 passe par-dessus le pouce sur le si, pendant que le trait descend. Puis la main remonte sur l’arpège de sol majeur."
+            "en": "Finger 4 takes the D of the second chord, so finger 5 is free for the quick E. The left hand jumps from F to a G chord.",
+            "de": "Finger 4 nimmt das D des zweiten Akkords, damit Finger 5 frei ist für das schnelle E. Die linke Hand springt vom F zu einem G-Dur-Akkord."
           }
         },
         {

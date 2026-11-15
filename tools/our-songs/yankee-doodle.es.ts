@@ -47,18 +47,6 @@ export const translation: Translation<GuideTranslation> = {
       },
     },
     epic: {
-      practice: [
-        "Toca con la mano izquierda sola el bajo de Alberti, hasta que ruede por sí mismo: grave, agudo, medio, agudo.",
-        "Toca solo el pasaje del compás 8, y pasa el pulgar por debajo hasta el do.",
-        "Toca solo el estribillo en terceras, y mantén juntas las dos notas de cada doble nota.",
-        "Toca toda la canción con las dos manos juntas a tres cuartos de velocidad.",
-        "Ahora tócala a velocidad completa, con el pedal.",
-      ],
-      tips: [
-        "Mantén suave el bajo de Alberti, para que la melodía cante por encima.",
-        "El pulgar pasa por debajo del dedo 3 para llegar al do, y el pasaje sigue subiendo hasta el estribillo.",
-        "Los fa sostenido chocan un momento con el bajo, a propósito.",
-      ],
       tricky: {
         7: "Baja el dedo 2 del sol al fa sostenido. El resto de la mano lo sigue.",
         11: "El estribillo vuelve a bajar al re. El dedo 3 lo toma, para que la mano quede lista para el do.",

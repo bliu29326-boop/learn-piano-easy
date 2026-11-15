@@ -42,7 +42,6 @@ export const translation: Translation<GuideTranslation> = {
         "En esta parte los trols se acercan. Tócala un poco más fuerte que el comienzo.",
       ],
       tricky: {
-        4: "El dedo 2 se estira hacia dentro para el si bemol, mientras la mano izquierda va y viene entre el sol y el re.",
         9: "Aprovecha el silencio para bajar la mano izquierda al mi grave. El pulgar derecho empieza la subida en el mi.",
         17: "Durante el silencio, las dos manos vuelven al la, y la melodía empieza una vez más.",
       },

@@ -37,54 +37,13 @@ export const translation: Translation<GuideTranslation> = {
         "Joue tout le morceau à deux mains, un peu plus lentement que le tempo écrit.",
         "Maintenant, joue-le au tempo.",
       ],
-      tips: [
-        "La main gauche joue long, bref, long, bref dans chaque mesure. Laisse la mélodie voguer au-dessus, comme une barque sur les vagues.",
-        "Enfonce les deux notes de chaque accord d’un seul geste. La note du haut est la mélodie : fais-la sonner un peu plus fort.",
-        "Deux croches rapides remplissent un temps. Dis « oh-hisse » sur chaque paire.",
-      ],
       tricky: {
         8: "Après l’accord do et mi, la main descend. Le doigt 4 arrive sur do. La main gauche joue ré, puis la et ré ensemble.",
         13: "Le doigt 4 monte de la à mi, et le doigt 5 joue le sol aigu. La main gauche joue do, puis sol et do ensemble.",
         14: "Le doigt 5 descend du sol aigu sur ré et le joue trois fois. Garde le poignet souple.",
       },
     },
-    epic: {
-      practice: [
-        "Joue la main gauche seule, jusqu’à ce que les accords brisés roulent tout seuls.",
-        "Joue les mesures 18 à 24 à la main droite seule. Passe le pouce dessous en montant.",
-        "Joue les neuf premières mesures à deux mains, lentement.",
-        "Joue tout le morceau à deux mains, à 75 % de la vitesse.",
-        "Maintenant, joue-le au tempo, avec la pédale.",
-      ],
-      tips: [
-        "Change de pédale à chaque nouvelle note de basse, deux fois par mesure.",
-        "Après sol au doigt 3, passe le pouce dessous jusqu’au la bémol. Les doigts 2 et 3 atteignent ensuite si bémol et do.",
-        "En descendant, le doigt 3 passe par-dessus le pouce jusqu’au fa.",
-      ],
-      tricky: {
-        14: "Après le mi bémol aigu, le doigt 5 descend sur si bémol et le joue trois fois.",
-        18: "Passe le pouce dessous jusqu’au la bémol, et garde le trait bien lié. La main gauche continue de rouler sans s’arrêter.",
-        21: "La main s’ouvre sur une octave, de mi bémol à mi bémol. Les doigts 4 et 3 descendent ensuite sur ré et do.",
-      },
-    },
-    legendary: {
-      practice: [
-        "Joue la main gauche seule : une octave sur le temps, puis deux fois un accord, chacun suivi d’un court silence pour sauter.",
-        "Joue seuls les accords de la main droite, et laisse le doigt du haut chanter la mélodie.",
-        "Joue seuls les arpèges de la main gauche. En montant, le doigt 3 passe par-dessus le pouce.",
-        "Joue tout le morceau à deux mains, à 75 % de la vitesse.",
-        "Maintenant, joue-le au tempo et laisse sonner le dernier accord.",
-      ],
-      tips: [
-        "Profite du court silence après chaque octave et chaque accord pour sauter au suivant.",
-        "Joue la note du haut de chaque grand accord un peu plus fort. C’est elle qui porte la mélodie.",
-        "Laisse les arpèges rouler tout en douceur, comme des vagues sous le navire.",
-      ],
-      tricky: {
-        19: "La main gauche commence sur le la bémol grave, et le doigt 3 passe par-dessus le pouce jusqu’au do.",
-        22: "Le pouce droit reste près du la bémol, et le doigt 5 s’étire jusqu’au mi bémol à la fin.",
-        24: "Profite du silence pour sauter sur le si bémol grave. La main droite monte de fa à ré, puis redescend pas à pas jusqu’au la bémol.",
-      },
-    },
+    epic: {},
+    legendary: {},
   },
 };

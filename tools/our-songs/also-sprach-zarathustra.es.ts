@@ -24,7 +24,6 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         1: "Tu pulgar toca el do central y luego sube hasta el sol. Muévelo durante la nota larga.",
-        7: "La mano izquierda baja al sol y al re. La mano derecha baja del re al sol.",
         8: "Las dos manos vuelven a casa. La izquierda regresa al do y al sol, y la derecha termina en el mi.",
       },
     },
@@ -43,18 +42,10 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         3: "Tu pulgar toca el do central y luego sube hasta el sol durante la nota larga.",
-        10: "Mantén el dedo 2 en el do, y deja que el dedo 5 en el mi le ceda el lugar al dedo 4 en el mi bemol.",
         15: "Aquí la mano izquierda toca un acorde de do completo. Abre los dedos 5, 3 y 1 sobre el do, el mi y el sol.",
       },
     },
     epic: {
-      practice: [
-        "Toca solos los acordes arpegiados de la mano izquierda, en los compases 9 a 12: do grave, sol, do y sol.",
-        "Toca la mano derecha sola en los compases 9 a 12, y presiona las dos notas de cada par como si fueran una.",
-        "Junta las manos en los compases 9 a 12, despacio.",
-        "Toca toda la canción con las dos manos juntas a tres cuartos de velocidad.",
-        "Ahora tócala a velocidad completa, con el pedal.",
-      ],
       tips: [
         "Mantén la octava grave con el pedal pisado. Debe retumbar como un gran órgano.",
         "El mi brillante se vuelve un mi bemol oscuro. Toca el mi bemol un poco más suave.",
@@ -62,18 +53,9 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         3: "La mano derecha entra en el do central mientras la mano izquierda sube una octava. El silencio del compás 2 le da tiempo.",
-        15: "Abre la mano derecha sobre el mi, el sol y el do agudo. La mano izquierda mantiene una octava de do debajo.",
-        16: "Las dos manos saltan hacia abajo para el último acorde. Aprovecha el silencio corto al final del compás 15.",
       },
     },
     legendary: {
-      practice: [
-        "Toca solas las octavas de la mano derecha, en los compases 9 a 12. Mantén la forma de la mano y mueve todo el brazo.",
-        "Toca la mano izquierda sola. Alterna entre octavas graves y redobles de timbal.",
-        "Junta las manos en el clímax, los compases 13 a 16.",
-        "Toca toda la canción con las dos manos juntas a tres cuartos de velocidad.",
-        "Ahora tócala a velocidad completa, y deja sonar el último acorde.",
-      ],
       tips: [
         "Fija la mano en una octava, con el pulgar y el meñique. El brazo la lleva de tecla en tecla.",
         "Para los acordes de cuatro notas, usa los dedos 1, 2, 3 y 5. El dedo 4 descansa.",
@@ -81,8 +63,6 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         11: "La mano derecha baja de un salto del acorde agudo a la octava sobre el do central. Aprovecha el silencio de antes.",
-        13: "Aquí empieza la subida. Levanta la mano después de cada acorde, y deja que el pedal una el sonido.",
-        14: "En el tiempo 4, la mano izquierda baja a una octava de fa grave mientras la mano derecha toca su acorde de fa.",
       },
     },
   },

@@ -3,6 +3,7 @@
  *
  * The tune is the melody of Lambillotte's 1842 edition, and nothing of any later harmony. The score is in
  * F major, and the tune here is in C major, a fourth lower, at the score's own octave. Every harmony is our own.
+ * The print is the melody alone, so it gives no accompaniment figure, and each version keeps its level's patterns.
  *
  * The score is in 4/4 with eighths. Every length here is twice as long, so an eighth is a quarter and
  * Common plays the Gloria run at its place. The tune is written in 4/2, one bar of the score to a bar.
@@ -11,10 +12,13 @@
  * A version must play the hook within its first 8 bars, and the hook starts in the score's ninth bar. So
  * every version is in 4/1, two bars of the score to a bar, and the Gloria starts in its fifth bar.
  *
- * Common plays the tune once over held fifths. Rare, Epic and Legendary play it twice, with a short
- * bridge between. Rare plays it over block triads. Epic puts an Alberti bass under the tune, then plays it
- * an octave up over broken chords, with the pedal. Legendary sets the tune in octaves over a stride bass.
- * It then plays the tune an octave up over a broken octave bass, and ends on a four-note chord.
+ * The print ends with the score's bar 21, and the carol has no further music, only more verses.
+ * Common plays the score's 21 bars once over held fifths. Rare, Epic and Legendary play all 21 bars, then
+ * play bars 1 to 20 again and end on the home chord. Their bar 11 plays the score's last C, then a turn to
+ * G seventh that leads back to the start. Rare plays over block triads. Epic puts an Alberti bass under
+ * the tune, then plays it an octave up over broken chords, with the pedal. Legendary sets the tune in
+ * octaves over a stride bass. It then plays the tune an octave up over a broken octave bass, and ends
+ * on a four-note chord.
  */
 import type { Key } from "../../src/theory/key";
 import type { OurSong } from "../make-our-songs";
@@ -168,7 +172,9 @@ export const angelsWeHaveHeardOnHigh: OurSong = {
     composer: "Traditional",
     died: null,
     published: 1842,
-    edition: "Les Anges dans nos campagnes, from Louis Lambillotte's Choix de cantiques sur des airs nouveaux (1842), the melody only",
+    edition:
+      "Les Anges dans nos campagnes, from Louis Lambillotte's Choix de cantiques sur des airs nouveaux (1842), the melody only, " +
+      "checked against the melody of the printed score in the English Wikipedia article",
   },
   about:
     "Angels We Have Heard on High is a traditional French carol. " +
@@ -248,7 +254,7 @@ export const angelsWeHaveHeardOnHigh: OurSong = {
       steps: 8,
       right: [
         scaled(inPairs(TUNE_RIGHT), 2),
-        "C4/1:16 r:8 G4/1:2 A4/2:2 B4/3:2 r:2",
+        "C4/1:16 r:16",
         scaled(inPairs(TUNE_HIGH), 2),
         "E4+G4+C5/1+2+5:32",
       ].join(" | "),
@@ -259,7 +265,6 @@ export const angelsWeHaveHeardOnHigh: OurSong = {
         "C3+E3+G3/5+3+1:32",
       ].join(" | "),
       pedal: pedalLine(8),
-      ownBars: [11],
       skills: ["alberti-bass", "broken-chords", "pedal"],
       practice: [
         { text: "Play the Alberti bass alone until it rolls by itself: low, high, middle, high.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
@@ -270,12 +275,12 @@ export const angelsWeHaveHeardOnHigh: OurSong = {
       ],
       tips: [
         { fromBar: 1, toBar: 10, kind: "sound", text: "Keep the Alberti bass soft, so the tune sings above it." },
-        { fromBar: 11, toBar: 11, kind: "trick", text: "Lift the hand after the G, A and B, and land finger 3 on the E an octave up." },
+        { fromBar: 11, toBar: 11, kind: "trick", text: "Hold the last C for half the bar. While the left hand turns to G, move the right hand an octave up for the E." },
         { fromBar: 1, toBar: 21, kind: "sound", text: "Change the pedal each time the left hand starts a new chord." },
       ],
       tricky: {
+        12: "The tune starts again an octave up, with finger 3 on the high E. The left hand now plays broken chords.",
         17: "Finger 2 plays the high D, and the thumb stretches down to G while the left hand climbs.",
-        19: "The Gloria runs high now. Let fingers 5, 4, 3 and 2 roll down from A to E.",
         20: "The thumb takes C, then finger 2 lands on D. Keep the broken chords below even.",
       },
     },
@@ -287,7 +292,7 @@ export const angelsWeHaveHeardOnHigh: OurSong = {
       steps: 16,
       right: [
         inPairs(TUNE_OCTAVES),
-        "C4+C5/1+5:32 r:16 C5/1:1 D5/2:1 E5/3:1 F5/4:1 G5/5:8 r:4",
+        "C4+C5/1+5:32 r:32",
         scaled(inPairs(TUNE_HIGH), 4),
         "C4+E4+G4+C5/1+2+3+5:64",
       ].join(" | "),
@@ -298,7 +303,6 @@ export const angelsWeHaveHeardOnHigh: OurSong = {
         "C2+G2+C3/5+2+1:64",
       ].join(" | "),
       pedal: pedalLine(16),
-      ownBars: [11],
       skills: ["stride", "octave-bass", "sixteenth-notes"],
       practice: [
         { text: "Play the stride bass alone: jump down for the low octave, then back up for the chord.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
@@ -310,12 +314,12 @@ export const angelsWeHaveHeardOnHigh: OurSong = {
       tips: [
         { fromBar: 1, toBar: 10, kind: "trick", text: "In stride, look at the low octave and let the hand find the chord by feel." },
         { fromBar: 5, toBar: 7, kind: "fingering", text: "After each octave, finger 5 stays up high and leads the quick notes down." },
-        { fromBar: 11, toBar: 11, kind: "sound", text: "The quick run to G is a little fanfare. Play it light and bright." },
+        { fromBar: 11, toBar: 11, kind: "sound", text: "Hold the octave C for half the bar, then lift it as the stride bass turns to G. The bass leads you back to the start." },
       ],
       tricky: {
         2: "Lift the hand off each single note before the next octave, so it lands without a stretch.",
         3: "The opening again. Keep the octaves even while the left hand jumps.",
-        11: "Four quick notes run from C up to F, and finger 5 lands on G. The stride bass keeps going below.",
+        11: "The right hand holds its octave C for half the bar and rests, while the stride bass jumps on from C to G.",
       },
     },
   },
@@ -376,12 +380,12 @@ export const angelsWeHaveHeardOnHigh: OurSong = {
         ],
         tips: [
           "Halt den Alberti-Bass leise, damit die Melodie darüber singt.",
-          "Heb die Hand nach G, A und H, und setz Finger 3 eine Oktave höher auf das E.",
+          "Halt das letzte C einen halben Takt lang. Während die linke Hand zu G wechselt, setz die rechte Hand eine Oktave höher für das E.",
           "Wechsle das Pedal jedes Mal, wenn die linke Hand einen neuen Akkord beginnt.",
         ],
         tricky: {
+          12: "Die Melodie beginnt eine Oktave höher von vorn, mit Finger 3 auf dem hohen E. Die linke Hand spielt jetzt gebrochene Akkorde.",
           17: "Finger 2 spielt das hohe D, und der Daumen streckt sich hinab zum G, während die linke Hand steigt.",
-          19: "Das Gloria läuft jetzt hoch. Lass Finger 5, 4, 3 und 2 vom A hinab zum E rollen.",
           20: "Der Daumen nimmt das C, dann landet Finger 2 auf dem D. Halt die gebrochenen Akkorde darunter gleichmäßig.",
         },
       },
@@ -396,12 +400,12 @@ export const angelsWeHaveHeardOnHigh: OurSong = {
         tips: [
           "Schau beim Stride auf die tiefe Oktave, und lass die Hand den Akkord nach Gefühl finden.",
           "Nach jeder Oktave bleibt Finger 5 oben und führt die schnellen Töne hinab.",
-          "Der schnelle Lauf zum G ist eine kleine Fanfare. Spiel ihn leicht und hell.",
+          "Halt das Oktav-C einen halben Takt lang, und heb es ab, wenn der Stride-Bass zu G wechselt. Der Bass führt dich zurück zum Anfang.",
         ],
         tricky: {
           2: "Heb die Hand nach jedem Einzelton ab, damit sie ohne Strecken auf der nächsten Oktave landet.",
           3: "Wieder der Anfang. Halt die Oktaven gleichmäßig, während die linke Hand springt.",
-          11: "Vier schnelle Töne laufen vom C hinauf zum F, und Finger 5 landet auf dem G. Darunter läuft der Stride-Bass weiter.",
+          11: "Die rechte Hand hält ihr Oktav-C einen halben Takt lang und pausiert, während der Stride-Bass von C zu G weiterspringt.",
         },
       },
     },

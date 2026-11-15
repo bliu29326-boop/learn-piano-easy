@@ -36,11 +36,6 @@ export const translation: Translation<GuideTranslation> = {
         "Joue tout le morceau à deux mains, un peu plus lentement que le tempo écrit.",
         "Maintenant, joue-le au tempo.",
       ],
-      tips: [
-        "Le ré et le mi se partagent un temps. Dis « un-et » en les jouant.",
-        "La main gauche reste au même endroit, et chaque accord garde ses propres doigts.",
-        "Les quatre dernières mesures sont une coda, un petit au revoir. Ralentis un peu à la fin.",
-      ],
       tricky: {
         3: "Ici, le doigt 4 descend du sol au fa. Laisse toute la main glisser d’une touche avec lui.",
         11: "C’est de nouveau la mesure 3. Glisse la main d’une touche vers le bas, pour que le doigt 4 arrive sur le fa.",
@@ -48,23 +43,9 @@ export const translation: Translation<GuideTranslation> = {
       },
     },
     epic: {
-      practice: [
-        "Joue la basse d’Alberti seule, jusqu’à ce qu’elle roule toute seule : grave, aigu, milieu, aigu.",
-        "Joue seules les tierces de la main droite, et enfonce les deux notes de chaque paire d’un seul geste.",
-        "Joue seule la gamme de la mesure 15, avec le passage du pouce après le doigt 3.",
-        "Joue tout le morceau à deux mains, à 75 % de la vitesse.",
-        "Maintenant, joue-le au tempo, avec la pédale.",
-      ],
-      tips: [
-        "Joue la basse d’Alberti tout en douceur, pour que la mélodie reste au-dessus.",
-        "Les deux notes rapides à la fin des mesures 4 et 6 montent vers le sol. Joue-les légèrement.",
-        "Le pouce passe dessous sur le fa, pour que la gamme monte jusqu’au do sans trou.",
-        "Change de pédale deux fois par mesure, sur le premier et le troisième temps.",
-      ],
       tricky: {
         3: "Le doigt 4 descend en glissant du sol au fa, pendant que la basse d’Alberti continue de rouler.",
         9: "Le pouce descend en glissant du ré au do. Puis les doigts 2 et 4 prennent la première tierce.",
-        14: "Le doigt 4 descend en glissant du sol au fa, comme à la mesure 3.",
       },
     },
     legendary: {
@@ -84,8 +65,6 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         3: "Le pouce descend du la au sol pendant que le doigt 2 garde le do. Déplace la main d’un seul bloc.",
         14: "C’est de nouveau la mesure 3. Le pouce descend du la au sol, et le doigt 2 reste sur le do.",
-        15: "Le doigt 3 passe par-dessus le pouce sur le si, pendant que le trait descend. " +
-          "Puis la main remonte sur l’arpège de sol majeur.",
       },
     },
   },

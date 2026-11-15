@@ -18,7 +18,7 @@ stages:
     status: done
   - id: 5
     title: "Batch 4: the short motifs and the codas"
-    status: open
+    status: done
   - id: 6
     title: "Batch 5: the sea songs"
     status: open
@@ -90,6 +90,9 @@ inside the limits they keep.
 - **Writers, review and commits** work as `original-arrangements` rules: two fresh reviewers of four
   songs each per batch, and one commit per batch. Each writing subagent takes one song, four at a time,
   since a writer reading a print runs out of context before a second song.
+- **A folk tune in the form sung today is not a bar of our own.** *Yankee Doodle* and *Twinkle,
+  Twinkle* keep that form, though the old prints differ in a few notes. Fixing the `tune` would change
+  every version's notes, and a learner's fingers with them.
 - **The chain:** this goal runs after `original-arrangements` and before `urdu` and `japanese`.
 
 ## Stages
@@ -176,14 +179,14 @@ build nothing, and the session runs the writer and the build once all end.
 songs each. Writers build nothing, and the session runs the writer and the build once all end.
 **Gate:** stage 4 is done.
 
-- [ ] *Aquarium*: all four (c r 9-15, e l 9-16). `tools/our-songs/aquarium.ts:1`
-- [ ] *Also sprach Zarathustra*: all four (c 7, r 14, e l 13-15). `tools/our-songs/also-sprach-zarathustra.ts:1`
-- [ ] *Wedding March*: all four (c r 9-15, e l 9-16). `tools/our-songs/wedding-march.ts:1`
-- [ ] *In the Hall of the Mountain King*: check Beginner's and Easy's bar 23 against the print. Mark and rework it only if it is ours. `tools/our-songs/hall-of-the-mountain-king.ts:1`
-- [ ] *Angels We Have Heard on High*: Epic and Legendary (11). `tools/our-songs/angels-we-have-heard-on-high.ts:1`
-- [ ] *Twinkle, Twinkle, Little Star*: Easy, Medium and Hard (15). `tools/our-songs/twinkle-twinkle-little-star.ts:1`
-- [ ] *Yankee Doodle*: the versions marked. `tools/our-songs/yankee-doodle.ts:1`
-- [ ] *Blow the Man Down*: all four (c r 18-20, e l 18-24). `tools/our-songs/blow-the-man-down.ts:1`
+- [x] *Aquarium*: all four (c r 9-15, e l 9-16). `tools/our-songs/aquarium.ts:1`
+- [x] *Also sprach Zarathustra*: all four (c 7, r 14, e l 13-15). `tools/our-songs/also-sprach-zarathustra.ts:1`
+- [x] *Wedding March*: all four (c r 9-15, e l 9-16). `tools/our-songs/wedding-march.ts:1`
+- [x] *In the Hall of the Mountain King*: check Beginner's and Easy's bar 23 against the print. Mark and rework it only if it is ours. `tools/our-songs/hall-of-the-mountain-king.ts:1`
+- [x] *Angels We Have Heard on High*: Epic and Legendary (11). `tools/our-songs/angels-we-have-heard-on-high.ts:1`
+- [x] *Twinkle, Twinkle, Little Star*: Easy, Medium and Hard (15). `tools/our-songs/twinkle-twinkle-little-star.ts:1`
+- [x] *Yankee Doodle*: the versions marked. `tools/our-songs/yankee-doodle.ts:1`
+- [x] *Blow the Man Down*: all four (c r 18-20, e l 18-24). `tools/our-songs/blow-the-man-down.ts:1`
 
 ### 6. Batch 5: the sea songs
 
@@ -208,36 +211,39 @@ another setting or ends on the home chord.
 
 ### State
 
-Stages 1 to 4 are done. Batch 3 reworked all four versions of its eight songs, 32 versions in all.
-Each is in `REWORKED_VERSIONS` with its `<id>-2.mid` file. No code outside the generated files named
-an old file of the batch. Two fresh reviewers compared the new bars with each print and found no
-must-fix. The meter accepts every module, and `bun x tsc` is clean.
+Stages 1 to 5 are done. Batch 4 reworked 24 versions of its eight songs. Each is in
+`REWORKED_VERSIONS` with its `<id>-2.mid` file, and every other version's file is byte for byte the
+same. The play modes now name *Mountain King*'s `common-2.mid` and *Twinkle*'s `rare-2.mid`. Two
+fresh reviewers compared the new bars with each print. Their must-fixes are fixed: *Aquarium*'s Epic
+and Legendary chords in bars 5 to 7, *Wedding March*'s top A in bar 20, *Zarathustra*'s Legendary
+bar 14 and *Angels*' Legendary bar 11. The meter accepts every module, `bun x tsc` is clean, and the
+build is green.
 
-- *Adagietto*'s Easy plays the tune twice. The print's next phrase breaks Easy's limit on notes outside the key.
-- *Toccata*'s Beginner ends on D minor at bar 10, since its tempo leaves no time for the next phrase.
-- *Mozart 21* reads a four-hands arrangement on Commons that looks like a modern engraving. It is the
-  print the module already cited, and Commons tags it public domain.
+- *Mountain King*'s bar 23 was ours. Beginner and Easy now play the print's bar 49, and keep their note count.
+- *Blow the Man Down*'s print is the tune alone. Beginner and Easy end with it, and Medium and Hard
+  repeat print bars 6 to 8.
+- *Angels* and *Yankee Doodle* print the melody alone, so Medium and Hard keep their patterns.
+- *Zarathustra*'s Medium and Hard play the print's sixteenths of bars 16 and 17 as eighths.
 
-Two writers rewrote the narrow spaces and isolates of the `fr` and `ar` files they kept. Those files
-were restored and pruned by `.agent-tmp/prune-locales.ts`, so every locale diff is deletions only.
-
-11 modules still mark bars of our own in `ownBars`, in stages 5 and 6.
+Four modules still mark bars of our own in `ownBars`: the sea songs of stage 6.
 
 ### Next
 
-**Stage 5: batch 4, the short motifs and the codas.** Files: the eight modules the stage names,
-`src/library/moved-songs.ts:50` and their guides. Gate: stage 4 is done.
+**Stage 6: batch 5, the sea songs.** Files: the four modules the stage names,
+`src/library/moved-songs.ts:50` and their guides. Gate: stage 5 is done.
 
-- [ ] Eight songs, each item of stage 5 above. `tools/our-songs/aquarium.ts:1`
+- [ ] Four songs, each item of stage 6 above. `tools/our-songs/drunken-sailor.ts:1`
 - [ ] `REWORKED_VERSIONS` lists every reworked version of the batch. `src/library/moved-songs.ts:50`
-- [ ] No code names an old file of the batch. *In the Hall of the Mountain King* is named in `src/play-modes/modes.ts:109`.
+- [ ] No code names an old file of the batch, as `rg "ours/drunken-sailor/"` shows for each slug. `src/play-modes/modes.ts:103`
+- [ ] Test `no_version_plays_a_bar_of_our_own` passes, run once by name. `tools/our-songs.test.ts:42`
 
-Reuse `.agent-tmp/brief-s4-rework.md` and `.agent-tmp/brief-s4-review.md`. Give each writer one song,
-not two: three of four writers ran out of context before their second song. Run
-`bun tools/check-our-song.ts` on every module once all writers end, since a half-edited module breaks
-the others' checks. Check each locale file's `git diff -U0` for added text lines before you stamp.
+Reuse `.agent-tmp/brief-s5-rework.md` and `.agent-tmp/brief-s5-review.md`, one writer per song.
+Three of the four use Terry's *Shanty Book*, whose print ends with the tune, as *Blow the Man Down*
+did. Run `bun tools/check-our-song.ts` on every module once all writers end. Check each locale file's
+`git diff -U0` for added text lines: an empty `epic: {}` is fine. Then compare `git status -- public`
+after `bun tools/make-our-songs.ts`: only reworked versions' files may change.
 
-Expected red: `no_version_plays_a_bar_of_our_own` until stage 6.
+Expected red: `no_version_plays_a_bar_of_our_own` until stage 6 lands.
 
 Optional from the reviews:
 
@@ -251,6 +257,12 @@ Optional from the reviews:
 - *Air on the G String*'s thirds in bar 14 became C sharp under G, a tritone. A sixth, B under G,
   also avoids the rub. `tools/our-songs/air-on-the-g-string.ts:144`
 - *Moonlight Sonata*'s last chord has the third on top, where the print has the root.
+
+- *Wedding March*'s Beginner and Easy keep F and D chords under tune bars 1 to 4. The print has
+  F sharp half-diminished, B7, E minor and D minor there. These are tune bars, which Beginner and Easy keep.
+- *Aquarium*'s Beginner and Easy keep D minor under bar 6, where the print has G major.
+- *Twinkle*'s Legendary bar 15 plays G, B and D on beat 2 with no G in the bass. The print's bass is G.
+- *Twinkle*'s versions play F under print bar 21, where the print has D minor, then G7.
 
 ### Backlog
 

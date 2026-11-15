@@ -31,13 +31,13 @@
   "mythic": null,
   "versions": {
     "common": {
-      "file": "ours/hall-of-the-mountain-king/common.mid",
+      "file": "ours/hall-of-the-mountain-king/common-2.mid",
       "skills": [
         "five-finger-position",
         "open-fifths"
       ],
       "fingers": {
-        "right": [1, 2, 3, 4, 5, 3, 5, 4, 2, 4, 4, 2, 4, 1, 2, 3, 4, 5, 1, 3, 5, 4, 2, 1, 2, 4, 1, 2, 3, 4, 5, 2, 4, 5, 2, 5, 4, 2, 4, 1, 2, 3, 4, 5, 2, 4, 5, 2, 5, 4, 1, 2, 3, 4, 5, 3, 5, 4, 2, 4, 4, 2, 4, 1, 2, 3, 4, 5, 3, 5, 5, 4, 3, 2, 1],
+        "right": [1, 2, 3, 4, 5, 3, 5, 4, 2, 4, 4, 2, 4, 1, 2, 3, 4, 5, 1, 3, 5, 4, 2, 1, 2, 4, 1, 2, 3, 4, 5, 2, 4, 5, 2, 5, 4, 2, 4, 1, 2, 3, 4, 5, 2, 4, 5, 2, 5, 4, 1, 2, 3, 4, 5, 3, 5, 4, 2, 4, 4, 2, 4, 1, 2, 3, 4, 5, 3, 5, 5, 1, 3, 5, 5],
         "left": [5, 1, 5, 1, 4, 2, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 5, 1, 5, 1, 5, 1, 5, 5, 1, 5, 1, 5, 1, 4, 2, 5, 1, 5, 1, 1, 5, 1]
       },
       "start": {
@@ -230,13 +230,13 @@
       ]
     },
     "rare": {
-      "file": "ours/hall-of-the-mountain-king/rare.mid",
+      "file": "ours/hall-of-the-mountain-king/rare-2.mid",
       "skills": [
         "five-finger-position",
         "triads"
       ],
       "fingers": {
-        "right": [1, 2, 3, 4, 5, 3, 5, 4, 2, 4, 4, 2, 4, 1, 2, 3, 4, 5, 1, 3, 5, 4, 2, 1, 2, 2, 4, 1, 2, 3, 4, 5, 2, 4, 5, 2, 5, 4, 2, 4, 1, 2, 3, 4, 5, 2, 4, 5, 2, 5, 2, 4, 1, 2, 3, 4, 5, 3, 5, 4, 2, 4, 4, 2, 4, 1, 2, 3, 4, 5, 3, 5, 5, 4, 3, 2, 1, 5],
+        "right": [1, 2, 3, 4, 5, 3, 5, 4, 2, 4, 4, 2, 4, 1, 2, 3, 4, 5, 1, 3, 5, 4, 2, 1, 2, 2, 4, 1, 2, 3, 4, 5, 2, 4, 5, 2, 5, 4, 2, 4, 1, 2, 3, 4, 5, 2, 4, 5, 2, 5, 2, 4, 1, 2, 3, 4, 5, 3, 5, 4, 2, 4, 4, 2, 4, 1, 2, 3, 4, 5, 3, 5, 5, 1, 3, 5, 3, 5],
         "left": [5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 3, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 3, 1]
       },
       "start": {
@@ -430,19 +430,10 @@
           }
         },
         {
-          "bar": 4,
+          "bar": 23,
           "text": {
-            "en": "Finger 2 reaches in for B flat, while the left hand steps between G and D.",
-            "de": "Finger 2 greift hinein zum B, während die linke Hand zwischen G und D wechselt.",
-            "es": "El dedo 2 se estira hacia dentro para el si bemol, mientras la mano izquierda va y viene entre el sol y el re.",
-            "zh": "2 指往里够到降 B，同时左手在 G 和 D 之间来回走。",
-            "hi": "उँगली 2 अंदर की ओर B फ़्लैट तक पहुँचती है, जबकि बायाँ हाथ G और D के बीच आगे-पीछे चलता है।",
-            "ar": "يمتد الإصبع 2 إلى الداخل نحو سي بيمول، بينما تتنقل اليد اليسرى بين صول وري.",
-            "pt": "O dedo 2 avança até o Si bemol, enquanto a mão esquerda anda entre Sol e Ré.",
-            "id": "Jari 2 maju ke dalam untuk B mol, sementara tangan kiri bergantian di antara G dan D.",
-            "bn": "2 নম্বর আঙুল ভেতরে গিয়ে B ফ্ল্যাট বাজায়, আর বাঁ হাত G আর D-এর মধ্যে আসা-যাওয়া করে।",
-            "ru": "2-й палец тянется вглубь к си-бемолю, а левая рука шагает между соль и ре.",
-            "fr": "Le doigt 2 s’avance vers le si bémol, pendant que la main gauche alterne entre sol et ré."
+            "en": "Finger 5 plays E, the thumb shifts down to C, and finger 5 stretches up to end on the high A.",
+            "de": "Finger 5 spielt das E, der Daumen rückt hinab zum C, und Finger 5 streckt sich hinauf zum hohen A, dem Schlusston."
           }
         }
       ]

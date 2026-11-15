@@ -35,54 +35,13 @@ export const translation: Translation<GuideTranslation> = {
         "Toque a música inteira com as duas mãos, um pouco mais devagar que o escrito.",
         "Agora toque na velocidade normal.",
       ],
-      tips: [
-        "A mão esquerda toca longa, curta, longa, curta em cada compasso. Deixe a melodia navegar por cima, como um barco nas ondas.",
-        "Pressione as duas notas de cada acorde como se fossem uma. A nota de cima é a melodia, então deixe que ela soe um pouco mais forte.",
-        "Duas colcheias rápidas preenchem um tempo. Diga “pu-xa” em cada par.",
-      ],
       tricky: {
         8: "Depois do acorde de Dó e Mi, a mão desce. O dedo 4 cai no Dó. A mão esquerda toca Ré, depois Lá e Ré juntos.",
         13: "O dedo 4 sobe do Lá até o Mi, e o dedo 5 toca o Sol agudo. A mão esquerda toca Dó, depois Sol e Dó juntos.",
         14: "O dedo 5 desce do Sol agudo até o Ré e toca o Ré três vezes. Mantenha o pulso solto.",
       },
     },
-    epic: {
-      practice: [
-        "Toque só a mão esquerda até os acordes quebrados rolarem sozinhos.",
-        "Toque os compassos 18 a 24 só com a mão direita. Passe o polegar por baixo na subida.",
-        "Junte as mãos nos 9 primeiros compassos, devagar.",
-        "Toque a música inteira com as duas mãos, a três quartos da velocidade.",
-        "Agora toque na velocidade normal, com o pedal.",
-      ],
-      tips: [
-        "Troque o pedal a cada nova nota do baixo, duas vezes por compasso.",
-        "Depois do Sol com o dedo 3, passe o polegar por baixo até o Lá bemol. Os dedos 2 e 3 então alcançam Si bemol e Dó.",
-        "Na descida, o dedo 3 cruza por cima do polegar até o Fá.",
-      ],
-      tricky: {
-        14: "Depois do Mi bemol agudo, o dedo 5 desce até o Si bemol e toca a nota três vezes.",
-        18: "Passe o polegar por baixo até o Lá bemol, e mantenha a passagem rápida fluindo. A mão esquerda continua rolando sem parar.",
-        21: "A mão se abre sobre uma oitava, de Mi bemol a Mi bemol. Depois os dedos 4 e 3 descem para Ré e Dó.",
-      },
-    },
-    legendary: {
-      practice: [
-        "Toque só a mão esquerda: uma oitava no tempo, depois um acorde duas vezes, cada um com uma pausa curta para saltar.",
-        "Toque só os acordes da mão direita, e deixe o dedo de cima cantar a melodia.",
-        "Toque só os arpejos da mão esquerda. Na subida, o dedo 3 cruza por cima do polegar.",
-        "Toque a música inteira com as duas mãos, a três quartos da velocidade.",
-        "Agora toque na velocidade normal, e deixe o último acorde soar.",
-      ],
-      tips: [
-        "Use a pausa curta depois de cada oitava e de cada acorde para saltar para o próximo.",
-        "Toque a nota de cima de cada acorde grande um pouco mais forte. Ela leva a melodia.",
-        "Deixe os arpejos rolarem suaves, como ondas debaixo do navio.",
-      ],
-      tricky: {
-        19: "A mão esquerda começa no Lá bemol grave, e o dedo 3 cruza por cima do polegar até o Dó.",
-        22: "O polegar direito fica perto do Lá bemol, e o dedo 5 se estica até o Mi bemol no final.",
-        24: "Use a pausa para saltar até o Si bemol grave. A mão direita sobe do Fá ao Ré e volta até o Lá bemol.",
-      },
-    },
+    epic: {},
+    legendary: {},
   },
 };

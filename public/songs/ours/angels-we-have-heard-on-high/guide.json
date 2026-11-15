@@ -466,14 +466,14 @@
       ]
     },
     "epic": {
-      "file": "ours/angels-we-have-heard-on-high/epic.mid",
+      "file": "ours/angels-we-have-heard-on-high/epic-2.mid",
       "skills": [
         "alberti-bass",
         "broken-chords",
         "pedal"
       ],
       "fingers": {
-        "right": [3, 3, 3, 5, 5, 4, 3, 3, 2, 3, 5, 3, 2, 1, 3, 3, 3, 5, 5, 4, 3, 3, 2, 3, 5, 3, 2, 1, 4, 5, 4, 3, 2, 3, 4, 3, 2, 1, 3, 4, 3, 2, 1, 2, 1, 1, 2, 3, 4, 5, 3, 2, 4, 5, 4, 3, 2, 3, 4, 3, 2, 1, 3, 4, 3, 2, 1, 2, 1, 1, 2, 3, 4, 5, 3, 2, 1, 1, 2, 3, 3, 3, 3, 5, 5, 4, 3, 3, 2, 3, 5, 3, 2, 1, 3, 3, 3, 5, 5, 4, 3, 3, 2, 3, 5, 3, 2, 1, 4, 5, 4, 3, 2, 3, 4, 3, 2, 1, 3, 4, 3, 2, 1, 2, 1, 1, 2, 3, 4, 5, 3, 2, 4, 5, 4, 3, 2, 3, 4, 3, 2, 1, 3, 4, 3, 2, 1, 2, 1, 1, 2, 3, 4, 5, 3, 2, 1, 2, 5],
+        "right": [3, 3, 3, 5, 5, 4, 3, 3, 2, 3, 5, 3, 2, 1, 3, 3, 3, 5, 5, 4, 3, 3, 2, 3, 5, 3, 2, 1, 4, 5, 4, 3, 2, 3, 4, 3, 2, 1, 3, 4, 3, 2, 1, 2, 1, 1, 2, 3, 4, 5, 3, 2, 4, 5, 4, 3, 2, 3, 4, 3, 2, 1, 3, 4, 3, 2, 1, 2, 1, 1, 2, 3, 4, 5, 3, 2, 1, 3, 3, 3, 5, 5, 4, 3, 3, 2, 3, 5, 3, 2, 1, 3, 3, 3, 5, 5, 4, 3, 3, 2, 3, 5, 3, 2, 1, 4, 5, 4, 3, 2, 3, 4, 3, 2, 1, 3, 4, 3, 2, 1, 2, 1, 1, 2, 3, 4, 5, 3, 2, 4, 5, 4, 3, 2, 3, 4, 3, 2, 1, 3, 4, 3, 2, 1, 2, 1, 1, 2, 3, 4, 5, 3, 2, 1, 2, 5],
         "left": [5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 2, 1, 5, 1, 2, 1, 5, 1, 2, 1, 5, 1, 2, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 2, 1, 5, 1, 2, 1, 5, 1, 2, 1, 5, 1, 2, 1, 5, 1, 2, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 3, 1, 5, 1, 2, 1, 5, 1, 2, 1, 5, 1, 2, 1, 5, 1, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 2, 1, 5, 3, 1]
       },
       "start": {
@@ -584,16 +584,7 @@
           "kind": "sound",
           "text": {
             "en": "Keep the Alberti bass soft, so the tune sings above it.",
-            "de": "Halt den Alberti-Bass leise, damit die Melodie darüber singt.",
-            "es": "Mantén suave el bajo de Alberti, para que la melodía cante encima.",
-            "zh": "阿尔贝蒂低音要弹得轻，让旋律在它上面歌唱。",
-            "hi": "अल्बर्टी बेस हल्के से बजाएँ, ताकि धुन उसके ऊपर गा सके।",
-            "ar": "اعزف باص ألبرتي بهدوء، ليغني اللحن فوقه.",
-            "pt": "Toque o baixo Alberti suave, para a melodia cantar por cima.",
-            "id": "Mainkan bas Alberti dengan lembut, agar melodi bernyanyi di atasnya.",
-            "bn": "আলবের্তি বেস হালকা করে বাজান, যাতে সুরটি তার উপরে গেয়ে ওঠে।",
-            "ru": "Играйте альбертиевы басы тихо, чтобы мелодия пела над ними.",
-            "fr": "Joue la basse d’Alberti tout en douceur, pour que la mélodie chante au-dessus."
+            "de": "Halt den Alberti-Bass leise, damit die Melodie darüber singt."
           }
         },
         {
@@ -601,17 +592,8 @@
           "toBar": 11,
           "kind": "trick",
           "text": {
-            "en": "Lift the hand after the G, A and B, and land finger 3 on the E an octave up.",
-            "de": "Heb die Hand nach G, A und H, und setz Finger 3 eine Oktave höher auf das E.",
-            "es": "Levanta la mano después del sol, el la y el si, y pon el dedo 3 en el mi una octava más arriba.",
-            "zh": "弹完 G、A、B 后把手抬起，让 3 指落在高八度的 E 上。",
-            "hi": "G, A और B के बाद हाथ उठाएँ, और उँगली 3 को एक ऑक्टेव ऊपर वाले E पर रखें।",
-            "ar": "ارفع اليد بعد صول ونغمة لا وسي، وأنزل الإصبع 3 على مي التي تعلوها بأوكتاف.",
-            "pt": "Levante a mão depois de Sol, Lá e Si, e coloque o dedo 3 no Mi uma oitava acima.",
-            "id": "Angkat tanganmu setelah G, A, dan B, lalu daratkan jari 3 di E satu oktaf lebih tinggi.",
-            "bn": "G, A আর B-এর পরে হাত তুলুন, আর এক অক্টেভ উপরের E-তে 3 নম্বর আঙুল নামিয়ে দিন।",
-            "ru": "После соль, ля и си снимите руку и поставьте 3-й палец на ми октавой выше.",
-            "fr": "Lève la main après sol, la et si, et pose le doigt 3 sur le mi une octave plus haut."
+            "en": "Hold the last C for half the bar. While the left hand turns to G, move the right hand an octave up for the E.",
+            "de": "Halt das letzte C einen halben Takt lang. Während die linke Hand zu G wechselt, setz die rechte Hand eine Oktave höher für das E."
           }
         },
         {
@@ -620,16 +602,7 @@
           "kind": "sound",
           "text": {
             "en": "Change the pedal each time the left hand starts a new chord.",
-            "de": "Wechsle das Pedal jedes Mal, wenn die linke Hand einen neuen Akkord beginnt.",
-            "es": "Cambia el pedal cada vez que la mano izquierda empieza un acorde nuevo.",
-            "zh": "左手每开始一个新和弦，就换一次踏板。",
-            "hi": "जब भी बायाँ हाथ नया कॉर्ड शुरू करे, पेडल बदलें।",
-            "ar": "غيّر الدواسة كلما بدأت اليد اليسرى تآلفًا جديدًا.",
-            "pt": "Troque o pedal cada vez que a mão esquerda começa um acorde novo.",
-            "id": "Ganti pedal setiap kali tangan kiri memulai akor baru.",
-            "bn": "বাঁ হাত যখনই নতুন কর্ড শুরু করে, তখনই প্যাডেল বদলান।",
-            "ru": "Меняйте педаль каждый раз, когда левая рука начинает новый аккорд.",
-            "fr": "Change de pédale chaque fois que la main gauche commence un nouvel accord."
+            "de": "Wechsle das Pedal jedes Mal, wenn die linke Hand einen neuen Akkord beginnt."
           }
         }
       ],
@@ -667,32 +640,23 @@
           }
         },
         {
-          "bar": 19,
+          "bar": 12,
           "text": {
-            "en": "The Gloria runs high now. Let fingers 5, 4, 3 and 2 roll down from A to E.",
-            "de": "Das Gloria läuft jetzt hoch. Lass Finger 5, 4, 3 und 2 vom A hinab zum E rollen.",
-            "es": "Ahora el Gloria corre por arriba. Deja que los dedos 5, 4, 3 y 2 rueden hacia abajo del la al mi.",
-            "zh": "现在 Gloria 跑到高处了。让 5、4、3、2 指从 A 往下滚到 E。",
-            "hi": "अब Gloria ऊपर वाले नोटों पर बजता है। उँगली 5, 4, 3 और 2 को A से नीचे E तक लुढ़कने दें।",
-            "ar": "يرتفع مقطع ⁨Gloria⁩ الآن إلى الأعلى. دع الأصابع 5 و4 و3 و2 تتدحرج نزولًا من نغمة لا إلى مي.",
-            "pt": "Agora o Gloria corre no agudo. Deixe os dedos 5, 4, 3 e 2 descerem rolando do Lá até o Mi.",
-            "id": "Kini bagian Gloria berada di nada tinggi. Biarkan jari 5, 4, 3, dan 2 bergulir turun dari A ke E.",
-            "bn": "এবার Gloria অংশটি উঁচুতে চলে। 5, 4, 3 আর 2 নম্বর আঙুলকে A থেকে E পর্যন্ত গড়িয়ে নামতে দিন।",
-            "ru": "Теперь Gloria звучит высоко. Пусть пальцы 5, 4, 3 и 2 скатятся вниз от ля к ми.",
-            "fr": "Le Gloria passe maintenant dans l’aigu. Laisse les doigts 5, 4, 3 et 2 rouler du la jusqu’au mi."
+            "en": "The tune starts again an octave up, with finger 3 on the high E. The left hand now plays broken chords.",
+            "de": "Die Melodie beginnt eine Oktave höher von vorn, mit Finger 3 auf dem hohen E. Die linke Hand spielt jetzt gebrochene Akkorde."
           }
         }
       ]
     },
     "legendary": {
-      "file": "ours/angels-we-have-heard-on-high/legendary.mid",
+      "file": "ours/angels-we-have-heard-on-high/legendary-2.mid",
       "skills": [
         "stride",
         "octave-bass",
         "sixteenth-notes"
       ],
       "fingers": {
-        "right": [1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 4, 1, 5, 1, 5, 4, 1, 5, 1, 5, 5, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 4, 1, 5, 1, 5, 4, 1, 5, 1, 5, 5, 4, 1, 5, 1, 5, 5, 4, 3, 2, 1, 5, 5, 4, 3, 2, 1, 5, 5, 4, 3, 2, 1, 5, 1, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 5, 4, 3, 2, 1, 5, 5, 4, 3, 2, 1, 5, 5, 4, 3, 2, 1, 5, 1, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 2, 3, 4, 5, 3, 3, 3, 5, 5, 4, 3, 3, 2, 3, 5, 3, 2, 1, 3, 3, 3, 5, 5, 4, 3, 3, 2, 3, 5, 3, 2, 1, 4, 5, 4, 3, 2, 3, 4, 3, 2, 1, 3, 4, 3, 2, 1, 2, 1, 1, 2, 3, 4, 5, 3, 2, 4, 5, 4, 3, 2, 3, 4, 3, 2, 1, 3, 4, 3, 2, 1, 2, 1, 1, 2, 3, 4, 5, 3, 2, 1, 2, 3, 5],
+        "right": [1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 4, 1, 5, 1, 5, 4, 1, 5, 1, 5, 5, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 4, 1, 5, 1, 5, 4, 1, 5, 1, 5, 5, 4, 1, 5, 1, 5, 5, 4, 3, 2, 1, 5, 5, 4, 3, 2, 1, 5, 5, 4, 3, 2, 1, 5, 1, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 5, 4, 3, 2, 1, 5, 5, 4, 3, 2, 1, 5, 5, 4, 3, 2, 1, 5, 1, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 3, 3, 3, 5, 5, 4, 3, 3, 2, 3, 5, 3, 2, 1, 3, 3, 3, 5, 5, 4, 3, 3, 2, 3, 5, 3, 2, 1, 4, 5, 4, 3, 2, 3, 4, 3, 2, 1, 3, 4, 3, 2, 1, 2, 1, 1, 2, 3, 4, 5, 3, 2, 4, 5, 4, 3, 2, 3, 4, 3, 2, 1, 3, 4, 3, 2, 1, 2, 1, 1, 2, 3, 4, 5, 3, 2, 1, 2, 3, 5],
         "left": [5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 1, 3, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1, 2, 5, 2, 1, 5, 2, 1]
       },
       "start": {
@@ -803,16 +767,7 @@
           "kind": "trick",
           "text": {
             "en": "In stride, look at the low octave and let the hand find the chord by feel.",
-            "de": "Schau beim Stride auf die tiefe Oktave, und lass die Hand den Akkord nach Gefühl finden.",
-            "es": "En el bajo stride, mira la octava grave y deja que la mano encuentre el acorde al tacto.",
-            "zh": "弹跨步低音时，眼睛看着低音八度，让手凭手感找到和弦。",
-            "hi": "स्ट्राइड बेस में नीचे वाले ऑक्टेव पर नज़र रखें, और हाथ को कॉर्ड छूकर ढूँढ़ने दें।",
-            "ar": "في باص السترايد، انظر إلى الأوكتاف المنخفض، ودع يدك تجد التآلف باللمس.",
-            "pt": "No baixo stride, olhe para a oitava grave e deixe a mão achar o acorde pelo tato.",
-            "id": "Dalam bas stride, lihat oktaf rendahnya dan biarkan tanganmu menemukan akornya dengan rabaan.",
-            "bn": "স্ট্রাইডে নিচের অক্টেভের দিকে তাকান, আর হাতকে ছুঁয়ে ছুঁয়ে কর্ডটি খুঁজে নিতে দিন।",
-            "ru": "В страйд-басе смотрите на нижнюю октаву, а аккорд пусть рука находит на ощупь.",
-            "fr": "Dans la basse stride, regarde l’octave grave et laisse la main trouver l’accord au toucher."
+            "de": "Schau beim Stride auf die tiefe Oktave, und lass die Hand den Akkord nach Gefühl finden."
           }
         },
         {
@@ -821,16 +776,7 @@
           "kind": "fingering",
           "text": {
             "en": "After each octave, finger 5 stays up high and leads the quick notes down.",
-            "de": "Nach jeder Oktave bleibt Finger 5 oben und führt die schnellen Töne hinab.",
-            "es": "Después de cada octava, el dedo 5 se queda arriba y guía las notas rápidas hacia abajo.",
-            "zh": "每个八度之后，5 指留在高处，带着快速的音往下走。",
-            "hi": "हर ऑक्टेव के बाद उँगली 5 ऊपर ही रहती है, और जल्दी बजने वाले नोटों को नीचे की ओर ले जाती है।",
-            "ar": "بعد كل أوكتاف، يبقى الإصبع 5 في الأعلى ويقود النغمات السريعة نزولًا.",
-            "pt": "Depois de cada oitava, o dedo 5 fica no agudo e conduz as notas rápidas para baixo.",
-            "id": "Setelah setiap oktaf, jari 5 tetap di atas dan memimpin not-not cepat turun.",
-            "bn": "প্রতিটি অক্টেভের পরে 5 নম্বর আঙুল উপরেই থাকে, আর পথ দেখিয়ে দ্রুত নোটগুলোকে নিচে নামায়।",
-            "ru": "После каждой октавы 5-й палец остаётся наверху и ведёт быстрые ноты вниз.",
-            "fr": "Après chaque octave, le doigt 5 reste en haut et mène les notes rapides vers le bas."
+            "de": "Nach jeder Oktave bleibt Finger 5 oben und führt die schnellen Töne hinab."
           }
         },
         {
@@ -838,17 +784,8 @@
           "toBar": 11,
           "kind": "sound",
           "text": {
-            "en": "The quick run to G is a little fanfare. Play it light and bright.",
-            "de": "Der schnelle Lauf zum G ist eine kleine Fanfare. Spiel ihn leicht und hell.",
-            "es": "La carrera rápida hasta el sol es una pequeña fanfarria. Tócala ligera y brillante.",
-            "zh": "跑向 G 的快速经过句像一小段号角。弹得轻快、明亮。",
-            "hi": "G तक जाती तेज़ नोटों की लड़ी एक छोटा-सा फ़ैनफ़ेयर है। इसे हल्के और उजले ढंग से बजाएँ।",
-            "ar": "السلسلة السريعة إلى صول نداء احتفالي صغير. اعزفها بخفة وإشراق.",
-            "pt": "A passagem rápida até o Sol é uma pequena fanfarra. Toque leve e brilhante.",
-            "id": "Rentetan not cepat menuju G itu seperti fanfare kecil. Mainkan dengan ringan dan cerah.",
-            "bn": "G পর্যন্ত দ্রুত নোটের সারিটি একটি ছোট্ট ফ্যানফেয়ার। এটি হালকা আর উজ্জ্বলভাবে বাজান।",
-            "ru": "Быстрый пассаж к соль — это маленькая фанфара. Играйте его легко и ярко.",
-            "fr": "Le trait rapide jusqu’au sol est une petite fanfare. Joue-le léger et brillant."
+            "en": "Hold the octave C for half the bar, then lift it as the stride bass turns to G. The bass leads you back to the start.",
+            "de": "Halt das Oktav-C einen halben Takt lang, und heb es ab, wenn der Stride-Bass zu G wechselt. Der Bass führt dich zurück zum Anfang."
           }
         }
       ],
@@ -856,17 +793,8 @@
         {
           "bar": 11,
           "text": {
-            "en": "Four quick notes run from C up to F, and finger 5 lands on G. The stride bass keeps going below.",
-            "de": "Vier schnelle Töne laufen vom C hinauf zum F, und Finger 5 landet auf dem G. Darunter läuft der Stride-Bass weiter.",
-            "es": "Cuatro notas rápidas corren de do hasta fa, y el dedo 5 cae en el sol. Abajo, el bajo stride sigue.",
-            "zh": "四个快音从 C 往上跑到 F，5 指落在 G 上。下面的跨步低音继续进行。",
-            "hi": "चार जल्दी बजने वाले नोट C से ऊपर F तक जाते हैं, और उँगली 5 G पर पहुँचती है। नीचे स्ट्राइड बेस चलता रहता है।",
-            "ar": "تجري 4 نغمات سريعة من دو صعودًا إلى فا، ثم يصل الإصبع 5 إلى صول. ويواصل باص السترايد في الأسفل.",
-            "pt": "Quatro notas rápidas correm do Dó até o Fá, e o dedo 5 cai no Sol. Embaixo, o baixo stride continua.",
-            "id": "Empat not cepat berlari dari C naik ke F, dan jari 5 mendarat di G. Bas stride terus berjalan di bawahnya.",
-            "bn": "চারটি দ্রুত নোট C থেকে উঠে F পর্যন্ত যায়, আর 5 নম্বর আঙুল G-তে গিয়ে পড়ে। নিচে স্ট্রাইড বেস চলতেই থাকে।",
-            "ru": "Четыре быстрые ноты бегут от до вверх к фа, и 5-й палец попадает на соль. Внизу продолжается страйд-бас.",
-            "fr": "Quatre notes rapides montent du do au fa, et le doigt 5 arrive sur le sol. En dessous, la basse stride continue."
+            "en": "The right hand holds its octave C for half the bar and rests, while the stride bass jumps on from C to G.",
+            "de": "Die rechte Hand hält ihr Oktav-C einen halben Takt lang und pausiert, während der Stride-Bass von C zu G weiterspringt."
           }
         },
         {

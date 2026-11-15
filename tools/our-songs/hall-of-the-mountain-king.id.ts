@@ -42,7 +42,6 @@ export const translation: Translation<GuideTranslation> = {
         "Di bagian ini, para troll makin mendekat. Mainkan sedikit lebih keras daripada awalnya.",
       ],
       tricky: {
-        4: "Jari 2 maju ke dalam untuk B mol, sementara tangan kiri bergantian di antara G dan D.",
         9: "Pakai tanda istirahat untuk menurunkan tangan kiri ke E rendah. Ibu jari kanan memulai jalan naik di E.",
         17: "Kedua tangan kembali ke A saat tanda istirahat, dan melodi mulai sekali lagi.",
       },
