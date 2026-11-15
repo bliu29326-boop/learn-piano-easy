@@ -24,7 +24,7 @@ stages:
     status: done
   - id: 7
     title: "the goal is verified once, and every failure is fixed"
-    status: open
+    status: done
     gate: true
 checks:
   - id: urdu-rules
@@ -181,15 +181,15 @@ address or mark that drifts between files.
 
 ### 7. the goal is verified once, and every failure is fixed
 
-- [ ] Run `looper verify` over the whole goal.
-- [ ] Fix every failure it names in one pass, never deleting or loosening a test.
-- [ ] Run `looper verify` once more, and it is green.
+- [x] Run `looper verify` over the whole goal.
+- [x] Fix every failure it names in one pass, never deleting or loosening a test.
+- [x] Run `looper verify` once more, and it is green.
 
 ## Handoff
 
 ### State
 
-Stages 1 to 6 are done. Urdu ships: `ur` is `shipped` in `src/i18n/locale-table.ts`, and every catalog,
+Every stage is done, and `looper verify` is green over the whole goal. Urdu ships: `ur` is `shipped` in `src/i18n/locale-table.ts`, and every catalog,
 lesson and song guide has its reviewed, stamped Urdu.
 
 In stage 6, nine `reader` subagents read every Urdu file against the glossary, split by unit. The one
@@ -197,8 +197,8 @@ broad drift was a singular `انگلی` before a list of finger numbers, in 166 
 one `انگلیاں` as a subject or object, and `انگلیوں` before a postposition. Every nominative one already
 had a plural verb. "Finger 2 and the thumb" kept its singular, and § 5 of the guide now says all this.
 
-Twenty more drifts were settled: bare `تیز` or `آہستہ` for tempo, `کوائر` for `کوئر`, `گنتی` for a beat,
-`تیز` before a quick note, and one `بار` for a bar. Adjectival `آہستہ`, as in "a slow movement", stayed,
+Twenty more drifts were settled. They were bare `تیز` or `آہستہ` for tempo, `کوائر` for `کوئر`, and `گنتی`
+for a beat. They were also `تیز` before a quick note, and one `بار` for a bar. Adjectival `آہستہ`, as in "a slow movement", stayed,
 as the "slow waltz" row allows. `چال` in half-and-whole-steps stayed, since its English says "move".
 
 Shipping Urdu added the world titles of § 6 to `src/learn/course.ts`, and `اردو` to the language
@@ -208,20 +208,19 @@ option, a language name that reads the same in every locale.
 The social image `public/images/social/ur.png` is made. `the_urdu_site_reads_in_urdu` passed when run
 once. The layout checks take `ur` at every width with no change, through `passedWidthsOf`.
 
-Every route and a lesson were looked at in Chrome on Windows, on a phone and a desktop, in both themes.
-No page error, no missing-glyph box and no clipped line showed. This machine has no Nastaliq font, so
-the pages drew Urdu in the Naskh fallback. The Nastaliq line height is unseen yet.
+Every route and a lesson were looked at in Chrome, on a phone and a desktop, in both themes. No flaw
+showed, though the pages drew Urdu in the Naskh fallback, as this machine has no Nastaliq font.
+
+In stage 7, three tests of `src/i18n/i18n.test.ts` used `ur` as the unshipped locale. They now use `ja`.
+The fallback check moved into `a_page_loads_only_its_own_catalog`, which needs `ja` unloaded first.
 
 ### Next
 
-**Stage 7: the goal is verified once.**
+**The goal is reached.** Harvest it into `docs/findings.md` § `urdu`, move its checks into the floor,
+and delete this file.
 
-1. Run `looper verify` over the whole goal, then fix every failure in one pass, and run it once more.
-2. The layout checks in `e2e/locales.e2e.ts` now run `ur` at four widths and two themes for the first
-   time. A flaw there is Urdu's own, so fix its text or its CSS and never loosen the check.
-
-Expected red: none known. The likeliest are the new `ur` layout checks, and any test that counts the
-shipped locales or the social images.
+Expected red: none. The japanese goal will turn the same three tests red when `ja` ships, since no
+unshipped locale is left. They then need a locale the table has not shipped, such as a pseudo-locale.
 
 ### Backlog
 

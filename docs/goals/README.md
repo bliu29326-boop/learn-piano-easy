@@ -645,7 +645,7 @@ The chain holds 2 goal(s). `urdu` is live.
 
 | # | Goal | Reached when | Stages |
 |---|---|---|---|
-| 1 | [`urdu`](urdu.md) **live** | Every text of the site, the course and the song guides reads in Urdu as if a native teacher wrote it, and the Urdu site ships. | 1 ✓ The Urdu style guide and glossary · 2 ✓ The site and the player in Urdu · 3 ✓ The course in Urdu · 4 ✓ The song guides in Urdu, from a to m · 5 ✓ The song guides in Urdu, from n to z · 6 ✓ The Urdu site ships · **7 the goal is verified once, and every failure is fixed** |
+| 1 | [`urdu`](urdu.md) **live** | Every text of the site, the course and the song guides reads in Urdu as if a native teacher wrote it, and the Urdu site ships. | 1 ✓ The Urdu style guide and glossary · 2 ✓ The site and the player in Urdu · 3 ✓ The course in Urdu · 4 ✓ The song guides in Urdu, from a to m · 5 ✓ The song guides in Urdu, from n to z · 6 ✓ The Urdu site ships · 7 ✓ the goal is verified once, and every failure is fixed |
 | 2 | [`japanese`](japanese.md) | Every text of the site, the course and the song guides reads in Japanese as if a native teacher wrote it, and the Japanese site ships. | **1 The Japanese style guide and glossary** · 2 The site and the player in Japanese · 3 The course in Japanese · 4 The song guides in Japanese, from a to m · 5 The song guides in Japanese, from n to z · 6 The Japanese site ships · 7 the goal is verified once, and every failure is fixed |
 
 The floor holds 127 check(s) carried from reached goals; every goal keeps them green.
