@@ -21,7 +21,7 @@ stages:
     status: done
   - id: 6
     title: "Batch 5: the sea songs"
-    status: open
+    status: done
   - id: 7
     title: "the goal is verified once, and every failure is fixed"
     status: open
@@ -93,6 +93,9 @@ inside the limits they keep.
 - **A folk tune in the form sung today is not a bar of our own.** *Yankee Doodle* and *Twinkle,
   Twinkle* keep that form, though the old prints differ in a few notes. Fixing the `tune` would change
   every version's notes, and a learner's fingers with them.
+- **A tune played again keeps the chords its version has under the tune.** Beginner and Easy keep
+  their patterns there, as in the tune bars. *Haul Away Joe*'s and *Drunken Sailor*'s Beginner and Easy
+  repeat their own chords for that reason.
 - **The chain:** this goal runs after `original-arrangements` and before `urdu` and `japanese`.
 
 ## Stages
@@ -195,11 +198,11 @@ another setting or ends on the home chord.
 **Split:** four writing subagents of one song each, then one fresh reviewer.
 **Gate:** stage 5 is done.
 
-- [ ] *Drunken Sailor*: all four (9-16). `tools/our-songs/drunken-sailor.ts:1`
-- [ ] *Haul Away Joe*: all four (9-16). `tools/our-songs/haul-away-joe.ts:1`
-- [ ] *Sailor's Hornpipe*: all four (10-16). `tools/our-songs/sailors-hornpipe.ts:1`
-- [ ] *Spanish Ladies*: all four (c r 10-16, e l 10-17). `tools/our-songs/spanish-ladies.ts:1`
-- [ ] Test `no_version_plays_a_bar_of_our_own` passes. `tools/our-songs.test.ts:1`
+- [x] *Drunken Sailor*: all four (9-16). `tools/our-songs/drunken-sailor.ts:1`
+- [x] *Haul Away Joe*: all four (9-16). `tools/our-songs/haul-away-joe.ts:1`
+- [x] *Sailor's Hornpipe*: all four (10-16). `tools/our-songs/sailors-hornpipe.ts:1`
+- [x] *Spanish Ladies*: all four (c r 10-16, e l 10-17). `tools/our-songs/spanish-ladies.ts:1`
+- [x] Test `no_version_plays_a_bar_of_our_own` passes. `tools/our-songs.test.ts:1`
 
 ### 7. the goal is verified once, and every failure is fixed
 
@@ -211,41 +214,44 @@ another setting or ends on the home chord.
 
 ### State
 
-Stages 1 to 5 are done. Batch 4 reworked 24 versions of its eight songs. Each is in
-`REWORKED_VERSIONS` with its `<id>-2.mid` file, and every other version's file is byte for byte the
-same. The play modes now name *Mountain King*'s `common-2.mid` and *Twinkle*'s `rare-2.mid`. Two
-fresh reviewers compared the new bars with each print. Their must-fixes are fixed: *Aquarium*'s Epic
-and Legendary chords in bars 5 to 7, *Wedding March*'s top A in bar 20, *Zarathustra*'s Legendary
-bar 14 and *Angels*' Legendary bar 11. The meter accepts every module, `bun x tsc` is clean, and the
-build is green.
+Stages 1 to 6 are done. Batch 5 reworked all 16 versions of the four sea songs. Each is in
+`REWORKED_VERSIONS` with its `<id>-2.mid` file, and no code names an old file. No module marks a bar
+of our own any more, and test `no_version_plays_a_bar_of_our_own` passes. A fresh reviewer compared
+the new bars with each print. Its must-fix is fixed: *Haul Away Joe*'s Medium and Hard bars 10 to 12
+take the print's E under G. The meter accepts every module, `bun x tsc` is clean, and the build is green.
 
-- *Mountain King*'s bar 23 was ours. Beginner and Easy now play the print's bar 49, and keep their note count.
-- *Blow the Man Down*'s print is the tune alone. Beginner and Easy end with it, and Medium and Hard
-  repeat print bars 6 to 8.
-- *Angels* and *Yankee Doodle* print the melody alone, so Medium and Hard keep their patterns.
-- *Zarathustra*'s Medium and Hard play the print's sixteenths of bars 16 and 17 as eighths.
-
-Four modules still mark bars of our own in `ownBars`: the sea songs of stage 6.
+- *Drunken Sailor*'s print has a chorus after the verse. Every version plays it as bars 9 to 16, and
+  Medium and Hard take its figure: a bass on the beat, then the chord three times.
+- *Haul Away Joe*'s print is the verse alone. Bars 9 to 16 play it again, and Medium and Hard take
+  the print's own left hand. Legendary marks its B under C in bars 2 and 10 as a clash.
+- *Sailor's Hornpipe* plays print bars 5 to 8 as bars 10 to 17. The print is one line, so the chords
+  there are ours.
+- *Spanish Ladies* plays the verse's second half, print bars 9 to 16, as bars 10 to 17. Medium and
+  Hard take the print's root and fifth there. Beginner's C major in bar 14 holds E and G alone, since
+  its limits refuse a C.
 
 ### Next
 
-**Stage 6: batch 5, the sea songs.** Files: the four modules the stage names,
-`src/library/moved-songs.ts:50` and their guides. Gate: stage 5 is done.
+**Stage 7: the gate.** Files: whatever `looper verify` names. Gate: stage 6 is done.
 
-- [ ] Four songs, each item of stage 6 above. `tools/our-songs/drunken-sailor.ts:1`
-- [ ] `REWORKED_VERSIONS` lists every reworked version of the batch. `src/library/moved-songs.ts:50`
-- [ ] No code names an old file of the batch, as `rg "ours/drunken-sailor/"` shows for each slug. `src/play-modes/modes.ts:103`
-- [ ] Test `no_version_plays_a_bar_of_our_own` passes, run once by name. `tools/our-songs.test.ts:42`
+- [ ] Run `looper verify` over the whole goal. `docs/goals/faithful-levels.md:209`
+- [ ] Fix every failure it names in one pass, never deleting or loosening a test. `docs/goals/faithful-levels.md:210`
+- [ ] Run `looper verify` once more, and it is green. `docs/goals/faithful-levels.md:211`
 
-Reuse `.agent-tmp/brief-s5-rework.md` and `.agent-tmp/brief-s5-review.md`, one writer per song.
-Three of the four use Terry's *Shanty Book*, whose print ends with the tune, as *Blow the Man Down*
-did. Run `bun tools/check-our-song.ts` on every module once all writers end. Check each locale file's
-`git diff -U0` for added text lines: an empty `epic: {}` is fine. Then compare `git status -- public`
-after `bun tools/make-our-songs.ts`: only reworked versions' files may change.
-
-Expected red: `no_version_plays_a_bar_of_our_own` until stage 6 lands.
+No test is expected to go red. Tests that read a version's file name or a guide's bar numbers are the
+likeliest to fail, if any do. `src/library/moved-songs.test.ts:1`, `tools/our-songs.test.ts:1`
 
 Optional from the reviews:
+
+- *Spanish Ladies*' tune bars 4, 5, 8 and 9 and Medium's and Hard's chorus bars 18 to 25 keep our
+  chords. The print has B minor, G and D where they have G, C and B major. `tools/our-songs/spanish-ladies.ts:1`
+- *Spanish Ladies*' Medium and Hard chorus could take the print's rocking root, fifth and octave.
+- *Haul Away Joe*'s Beginner and Easy keep C, G and C under bars 2, 3 and 6, where the print has A
+  minor, E minor and A minor. Easy's bar 7 plays G major where the print has G minor over B flat.
+- *Drunken Sailor*'s Beginner and Easy keep their own chords under bars 6, 7, 14 and 15, where the
+  print walks A minor, G, F and D minor.
+- *Sailor's Hornpipe*'s Legendary bar 21 sounds G on top over the left hand's F sharp.
+
 
 - *Toccata*'s Easy holds C sharp in the left hand under the run in bars 14 and 15. The print rests there.
 - *Hungarian Dance No. 5*'s Medium and Hard bar 12 fill the print's single F sharp with a chord.

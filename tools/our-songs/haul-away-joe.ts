@@ -9,16 +9,28 @@
  * range is D4 to D5. The F sharp of bar 3 and the B of bar 4 lie outside D minor, and the hook is bars 1
  * to 4, the solo.
  *
- * Every version writes the tune in 6/4 eighths, one bar per print bar, and then plays 8 bars of our own.
- * Epic and Legendary then play the tune again in another setting. Our chords are D minor, C major, G
- * major and A minor, two to a bar. A D chord without its third sits under the F sharp, and A major under
- * the last A before the close. Our own bars use the same chords. Every version keeps D minor and closes on it.
+ * The print opens with four bars of piano alone, and the shanty ends with its chorus. The repeat sign
+ * sends every verse back to the solo, so the print has no music past the tune. Every version writes the
+ * tune in 6/4 eighths, one bar per print bar, and plays it twice, as the print's first two verses. Bars 1
+ * to 8 and 9 to 16 are both the print's solo and chorus. Every version keeps D minor and closes on it.
  *
- * Common plays the tune over open fifths and fourths, held in one hand position. Rare plays a long bass
- * note and a short two-note chord in each half bar, and a few eighths in our own bars. Epic rolls a
- * broken chord under the tune with the pedal, passes the thumb under in our bars, then plays the tune in
- * thirds and sixths. Legendary plays an octave bass and a chord twice in each half bar, and arpeggios over
- * two octaves under our own bars. It then plays the tune again in chords of three and four notes.
+ * Common and Rare keep their own chords, two to a bar: D minor, C major, G major and A minor. A D chord
+ * without its third sits under the F sharp, and A major under the last A before the close. Common plays
+ * the tune over open fifths and fourths, held in one hand position. Its bar 8 takes the print's ending
+ * for a verse that follows, D and then a short A, so the hand climbs back to the solo without a leap.
+ * Rare plays a long bass note and a short two-note chord in each half bar, and sixths in the chorus.
+ *
+ * Epic and Legendary take the print's piano part. Under the solo its left hand strikes a low note, then
+ * its octave or the same note, a dotted quarter each. Its right hand lilts in each bar: a quarter, a short
+ * passing chord, then a long chord. Under the chorus a tenor line moves over a low A. The print's chords
+ * are D minor, A minor, E minor and A minor in the solo. In the chorus they are D minor, A minor, G minor
+ * over B flat, A major and D minor.
+ *
+ * Epic plays the print's left hand as it stands, with the pedal. Its right hand plays the tune, then the
+ * second verse in thirds and sixths. Legendary folds the print's lilt into the left hand: a low octave, a
+ * passing chord and a long chord. Under the chorus it plays the print's tenor line after a low octave. Its
+ * second verse plays chords of two to four notes. Both put A, not F or E, under the second verse's long D
+ * and C, since the tenor line moves against them.
  */
 import type { Key } from "../../src/theory/key";
 import type { OurSong } from "../make-our-songs";
@@ -36,52 +48,45 @@ const SOLO = "D5/5:4 D5/5:2 D5/5:4 A4/2:2 | C5/5:4 C5/5:2 C5/5:4 A4/3:2 | G4/2:4
 /** The chorus, bars 5 to 8, in 6/4 eighths, for Common, Epic and Legendary. */
 const CHORUS = "D5/5:6 D5/5:4 A4/3:2 | C5/5:6 C5/5:4 A4/3:2 | G4/2:4 G4/2:2 A4/3:6 | D4/1:12";
 
+/**
+ * Common's first chorus, with the print's ending for a verse that follows: D, then the A that leads back
+ * up to the solo.
+ */
+const CHORUS_FIRST = CHORUS.replace(/D4\/1:12$/, "D4/1:10 A4/2:2");
+
 /** Rare's chorus, with a sixth under the first D and the first C. */
 const CHORUS_RARE = "F4+D5/1+5:6 D5/5:4 A4/3:2 | E4+C5/1+5:6 C5/5:4 A4/3:2 | G4/2:4 G4/2:2 A4/3:6 | D4/1:12";
 
-/** Our bars 9 to 16 in quarters, in one hand position from D to A, for Common. */
-const OWN_COMMON = [
-  "A4/5:4 A4/5:2 F4/3:4 D4/1:2 | E4/2:4 G4/4:2 G4/4:4 E4/2:2 | G4/4:4 F4/3:2 E4/2:4 D4/1:2 | A4/5:4 G4/4:2 E4/2:6",
-  "F4/3:4 E4/2:2 D4/1:4 F4/3:2 | G4/4:4 A4/5:2 G4/4:4 F4/3:2 | G4/4:4 E4/2:2 A4/5:4 E4/2:2 | D4/1:12",
-].join(" | ");
+/** Rare's second verse: the solo and chorus again, ending on D and F together. */
+const RARE_AGAIN = `${SOLO} | ${CHORUS_RARE.replace(/D4\/1:12$/, "D4+F4/1+3:12")}`;
 
-/** Our bars 9 to 16 for Rare, in the same hand position, with a few eighths. */
-const OWN_RARE = [
-  "D4/1:2 F4/3:2 A4/5:2 A4/5:2 G4/4:1 F4/3:1 G4/4:2 | E4/2:4 G4/4:2 G4/4:2 F4/3:1 E4/2:1 D4/1:2",
-  "D4/1:2 E4/2:2 G4/4:2 G4/4:4 D4/1:2 | E4/2:4 A4/5:2 G4/4:1 F4/3:1 E4/2:4",
-  "F4/3:2 E4/2:2 D4/1:2 F4/3:2 A4/5:4 | G4/4:4 A4/5:2 G4/4:2 E4/2:2 D4/1:2",
-  "E4/2:2 G4/4:2 A4/5:4 G4/4:1 F4/3:1 E4/2:2 | D4+F4/1+3:12",
-].join(" | ");
-
-/** Our bars 9 to 16 in eighths for Epic and Legendary, with the thumb passing under and finger 3 crossing over. */
-const OWN_EIGHTHS = [
-  "D4/1:1 E4/2:1 F4/3:1 G4/1:1 A4/2:1 B4/3:1 C5/4:2 A4/2:2 F4/1:2",
-  "E4/1:2 G4/2:1 A4/3:1 G4/2:2 C5/5:4 G4/2:2",
-  "D4/1:1 G4/2:1 B4/3:1 D5/5:1 B4/3:2 A4/2:1 G4/1:1 A4/2:2 B4/3:2",
-  "C5/4:2 B4/3:1 A4/2:1 E4/1:2 A4/2:2 B4/3:1 C5/4:1 E5/5:2",
-  "D5/5:2 C5/4:1 B4/3:1 A4/2:1 G4/1:1 F4/3:2 D4/1:2 A4/5:2",
-  "G4/3:1 A4/4:1 B4/5:2 D4/1:2 G4/3:2 B4/5:2 A4/4:1 G4/3:1",
-  "C5/5:2 B4/4:1 A4/3:1 E4/1:2 C#5/4:2 B4/3:1 A4/2:1 E4/1:2",
-  "D4/1:2 F4/2:2 A4/3:2 D5/5:4 A4/2:2",
-].join(" | ");
-
-/** Epic's tune again in eighths, with a third, a fourth or a sixth under each note. */
+/**
+ * Epic's second verse in eighths, with a second, a third, a fourth, a fifth or a sixth under each note.
+ * Bars 11 and 12 take the print's E under G, F sharp and B. Bars 13 and 14 put A
+ * under the long D and C, since an F or an E would clash with the print's tenor line. Bar 15 takes the
+ * print's D and G, since a B would clash with the print's B flat in the bass.
+ */
 const EPIC_TUNE_AGAIN = [
   "F4+D5/1+5:4 A4+D5/2+5:2 F4+D5/1+5:4 F4+A4/1+3:2 | E4+C5/1+5:4 E4+C5/1+5:2 A4+C5/3+5:4 E4+A4/1+3:2",
-  "D4+G4/1+3:4 D4+G4/1+3:2 D4+F#4/1+2:4 B3+G4/1+4:2 | C4+A4/1+5:4 D4+B4/1+5:2 E4+C5/1+5:4 C4+A4/1+5:2",
-  "F4+D5/1+5:6 F4+D5/1+5:4 F4+A4/1+3:2 | E4+C5/1+5:6 E4+C5/1+5:4 C4+A4/1+5:2",
-  "B3+G4/1+5:4 B3+G4/1+5:2 C#4+A4/1+5:6 | A3+D4/1+3:12",
+  "E4+G4/1+3:4 E4+G4/1+3:2 E4+F#4/1+2:4 B3+G4/1+4:2 | C4+A4/1+5:4 E4+B4/1+5:2 E4+C5/1+5:4 C4+A4/1+5:2",
+  "A4+D5/2+5:6 A4+D5/2+5:4 F4+A4/1+3:2 | A4+C5/3+5:6 A4+C5/3+5:4 C4+A4/1+5:2",
+  "D4+G4/1+4:4 D4+G4/1+4:2 C#4+A4/1+5:6 | A3+D4/1+3:12",
 ].join(" | ");
 
-/** Legendary's tune again in eighths, in chords of three and four notes with the tune on top. */
+/**
+ * Legendary's second verse in eighths, in chords of two to four notes with the tune on top. Bar 9 takes
+ * the print's E and G under the short D. Bars 10 and 11 take the print's A minor and E minor. Bars 13 and 14 leave out the F and the E that would clash with
+ * the print's tenor line, and keep the print's D and C under the tune. Bar 15 takes the print's G minor
+ * over B flat.
+ */
 const LEGENDARY_TUNE_AGAIN = [
-  "D4+F4+A4+D5/1+2+3+5:4 F4+A4+D5/1+3+5:2 D4+F4+A4+D5/1+2+3+5:4 D4+F4+A4/1+2+4:2",
-  "E4+G4+C5/1+2+5:4 E4+G4+C5/1+2+5:2 C4+E4+G4+C5/1+2+3+5:4 C4+E4+A4/1+2+4:2",
-  "B3+D4+G4/1+2+4:4 B3+D4+G4/1+2+4:2 D4+F#4/1+3:4 B3+D4+G4/1+2+4:2",
+  "D4+F4+A4+D5/1+2+3+5:4 E4+G4+D5/1+2+5:2 D4+F4+A4+D5/1+2+3+5:4 D4+F4+A4/1+2+4:2",
+  "C4+E4+C5/1+2+5:4 C4+E4+C5/1+2+5:2 C4+E4+G4+C5/1+2+3+5:4 C4+E4+A4/1+2+4:2",
+  "B3+E4+G4/1+2+4:4 B3+E4+G4/1+2+4:2 E4+F#4/1+2:4 B3+E4+G4/1+2+4:2",
   "C4+E4+A4/1+2+4:4 D4+G4+B4/1+3+5:2 E4+A4+C5/1+3+5:4 C4+E4+A4/1+2+4:2",
-  "D4+F4+A4+D5/1+2+3+5:6 F4+A4+D5/1+3+5:4 D4+F4+A4/1+2+4:2",
-  "C4+E4+G4+C5/1+2+3+5:6 E4+G4+C5/1+2+5:4 C4+E4+A4/1+2+4:2",
-  "B3+D4+G4/1+2+4:4 B3+D4+G4/1+2+4:2 C#4+E4+A4/1+2+4:6",
+  "D4+A4+D5/1+3+5:6 F4+A4+D5/1+3+5:4 D4+F4+A4/1+2+4:2",
+  "C4+A4+C5/1+4+5:6 E4+A4+C5/1+3+5:4 C4+E4+A4/1+2+4:2",
+  "Bb3+D4+G4/1+2+4:4 Bb3+D4+G4/1+2+4:2 C#4+E4+A4/1+2+4:6",
   "D4+F4+A4+D5/1+2+3+5:12",
 ].join(" | ");
 
@@ -103,9 +108,6 @@ function bars(patterns: Record<string, string>, chords: string): string {
  */
 const TUNE_CHORDS = "ddccgDaaddccgAdd";
 
-/** The chords under our bars 9 to 16, two per bar. */
-const OWN_CHORDS = "ddccggaaddggaAdd";
-
 /** Common's held shapes in eighths, a half bar each, in one hand position from C3 to A3. */
 const HELD: Record<string, string> = {
   d: "D3+A3/4+1:6",
@@ -126,48 +128,49 @@ const LILT: Record<string, string> = {
   A: "A2/5:4 E3+A3/2+1:2",
 };
 
-/** Epic's half bar in eighths: a broken chord, with no note that rubs against the tune on a beat. */
-const BROKEN: Record<string, string> = {
-  d: "D3/5:1 A3/1:1 F3/3:1 A3/1:1 F3/3:1 A3/1:1",
-  D: "D3/5:1 A3/1:1 D3/5:1 A3/1:1 D3/5:1 A3/1:1",
-  c: "C3/5:1 G3/1:1 E3/3:1 G3/1:1 E3/3:1 G3/1:1",
-  g: "G2/5:1 D3/2:1 G3/1:1 D3/2:1 G3/1:1 D3/2:1",
-  a: "A2/5:1 E3/2:1 A3/1:1 E3/2:1 A3/1:1 E3/2:1",
-  A: "A2/5:1 E3/2:1 A3/1:1 E3/2:1 A3/1:1 E3/2:1",
-};
+/**
+ * The print's left hand under bars 1 to 8, in 6/4 eighths, for Epic. In the solo it plays a low note and
+ * then its octave or the same note, a dotted quarter of the print each. In the chorus a tenor line moves
+ * over a held A, and bar 7 holds B flat and E, then A and E. Bar 6 strikes A again where the print ties it.
+ */
+const PRINT_LEFT = [
+  "D2/5:6 D3/1:6",
+  "A2/5:6 A3/1:6",
+  "E3/1:6 E3/1:6",
+  "A2/5:6 A3/1:6",
+  "A2+F3/5+2:4 E3/3:2 F3/2:4 A3/1:2",
+  "A2+E3/5+1:4 D#3/2:2 A2+E3/5+1:4 C3/3:2",
+  "Bb2+E3/5+1:6 A2+E3/5+1:6",
+  "D3/1:6 D2/5:6",
+].join(" | ");
 
-/** Legendary's half bar in eighths: an octave on the beat, a chord on the next two, each with a rest to jump. */
-const STRIDE: Record<string, string> = {};
-for (const [chord, [octave, triad]] of Object.entries({
-  d: ["D2+D3/5+1", "A2+D3+F3/5+3+1"],
-  D: ["D2+D3/5+1", "A2+D3+A3/5+2+1"],
-  c: ["C2+C3/5+1", "G2+C3+E3/5+3+1"],
-  g: ["G1+G2/5+1", "G2+B2+D3/5+3+1"],
-  a: ["A1+A2/5+1", "A2+E3+A3/5+2+1"],
-  A: ["A1+A2/5+1", "A2+C#3+E3/5+3+1"],
-})) {
-  STRIDE[chord] = `${octave}:1 r:1 ${triad}:1 r:1 ${triad}:1 r:1`;
+/**
+ * Legendary's left hand under bars 1 to 8. In the solo it takes the print's lilt from the right hand an
+ * octave down: a low octave, a short passing chord, then a long chord. In the chorus it plays the print's
+ * left hand with an octave on each first beat. Each octave lets go an eighth early, so the hand can jump.
+ * Bars 2 and 10 keep the print's B under the tune's C, a clash the guide marks.
+ */
+const LEGENDARY_LEFT = [
+  "D2+D3/5+1:3 r:1 E3+G3/3+1:2 D3+F3+A3/5+3+1:5 r:1",
+  "A1+A2/5+1:3 r:1 B2+D3/3+1:2 A2+C3+E3/5+3+1:5 r:1",
+  "E2+E3/5+1:5 r:1 E3+F#3/2+1:4 B2+E3+G3/5+2+1:1 r:1",
+  "A1+A2/5+1:3 r:1 E3/1:2 A2+C3+E3/5+3+1:5 r:1",
+  "A1+A2/5+1:3 r:1 E3/3:2 F3/2:4 A3/1:1 r:1",
+  "A1+A2/5+1:3 r:1 D#3/3:2 E3/2:4 C3/4:2",
+  "Bb2+E3/5+1:6 A2+E3/5+1:6",
+  "D3/1:6 D2/5:6",
+].join(" | ");
+
+/** Epic's whole left hand: the print's left hand twice. */
+const EPIC_LEFT = [PRINT_LEFT, PRINT_LEFT].join(" | ");
+
+/** Legendary's whole left hand: its verse twice, closing on a low D minor chord. */
+const LEGENDARY_LEFT_ALL = `${LEGENDARY_LEFT} | ${LEGENDARY_LEFT.replace(/ \| [^|]+$/, "")} | D2+A2+D3/5+2+1:12`;
+
+/** A pedal that changes with each note of `left`, so no passing note blurs into the next chord. */
+function pedalUnder(left: string): string {
+  return left.replace(/\S+:(\d+)/g, "P:$1");
 }
-
-/** The six notes of each chord over two octaves, for Legendary's arpeggios. */
-const WIDE_NOTES: Record<string, string> = {
-  d: "D2 A2 D3 F3 A3 D4",
-  c: "C2 G2 C3 E3 G3 C4",
-  g: "G1 D2 G2 B2 D3 G3",
-  a: "A1 E2 A2 C3 E3 A3",
-  A: "A1 E2 A2 C#3 E3 A3",
-};
-
-/** Legendary's bar of arpeggio in eighths: up two octaves, back down to the fifth, then a rest to jump. */
-const WIDE: Record<string, string> = {};
-for (const [chord, notes] of Object.entries(WIDE_NOTES)) {
-  const pitches = notes.split(" ");
-  const steps: [number, number][] = [[0, 5], [1, 2], [2, 1], [3, 3], [4, 2], [5, 1], [4, 2], [3, 3], [2, 1], [1, 2]];
-  WIDE[chord] = `${steps.map(([at, finger]) => `${pitches[at]}/${finger}:1`).join(" ")} r:2`;
-}
-
-/** The pedal of Epic and Legendary in eighths: changed at each half bar, held through the last bar. */
-const PEDAL = `${Array<string>(23).fill("P:6 P:6").join(" | ")} | P:12`;
 
 export const haulAwayJoe: OurSong = {
   slug: "haul-away-joe",
@@ -176,7 +179,8 @@ export const haulAwayJoe: OurSong = {
     composer: "Traditional",
     died: null,
     published: 1921,
-    edition: "The solo and chorus as R. R. Terry's The Shanty Book, Part I (1921) prints them, scanned on Wikimedia Commons",
+    edition:
+      "The solo, chorus and piano part as R. R. Terry's The Shanty Book, Part I (1921) prints them on pages 56 and 57, scanned on Wikimedia Commons",
   },
   about: "Haul Away Joe is a short shanty for hauling on a rope. R. R. Terry printed it in 1921 as a shanty for hauling the fore-sheet.",
   funFact: "One verse in Terry's print tells of King Louis of France, who lost his head in the Revolution.",
@@ -190,9 +194,8 @@ export const haulAwayJoe: OurSong = {
       numerator: 6,
       denominator: 4,
       steps: 2,
-      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
-      right: `${SOLO} | ${CHORUS} | ${OWN_COMMON}`,
-      left: bars(HELD, `${TUNE_CHORDS}${OWN_CHORDS}`),
+      right: [SOLO, CHORUS_FIRST, SOLO, CHORUS].join(" | "),
+      left: bars(HELD, TUNE_CHORDS.repeat(2)),
       skills: ["five-finger-position", "open-fifths"],
       practice: [
         { text: "Play bars 1 to 4 with the right hand alone, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 4], wait: true },
@@ -204,12 +207,12 @@ export const haulAwayJoe: OurSong = {
       tips: [
         { fromBar: 1, toBar: 4, kind: "fingering", text: "Finger 5 takes D and C at the top. The thumb only plays the F sharp in bar 3." },
         { fromBar: 1, toBar: 16, kind: "rhythm", text: "Count six beats in a bar: long, short, long, short. That is the pull on the rope." },
-        { fromBar: 8, toBar: 9, kind: "trick", text: "The low D of bar 8 is the thumb. The hand now stays over D to A to the end." },
+        { fromBar: 8, toBar: 9, kind: "trick", text: "The thumb holds the low D of bar 8. Then finger 2 takes a short A, and the hand is back up for bar 9." },
       ],
       tricky: {
         2: "Finger 5 plays C three times. Then finger 3 takes A, and finger 2 waits over G.",
-        11: "The fingers walk down from G to D, one key at a time. The left hand holds D and G.",
-        14: "Fingers 4 and 5 rock between G and A. Then finger 3 steps down to F.",
+        3: "Finger 2 plays G twice, and the thumb takes the F sharp. The left hand moves from D and G to D and A.",
+        10: "Bar 10 is bar 2 again. Finger 5 plays C three times, then finger 3 takes A.",
       },
     },
     rare: {
@@ -218,10 +221,9 @@ export const haulAwayJoe: OurSong = {
       numerator: 6,
       denominator: 4,
       steps: 2,
-      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
-      right: `${SOLO} | ${CHORUS_RARE} | ${OWN_RARE}`,
-      left: `${bars(LILT, `${TUNE_CHORDS}${OWN_CHORDS.slice(0, -2)}`)} | D3+A3/5+1:12`,
-      skills: ["two-note-chords", "eighth-notes"],
+      right: [SOLO, CHORUS_RARE, RARE_AGAIN].join(" | "),
+      left: `${bars(LILT, `${TUNE_CHORDS}${TUNE_CHORDS.slice(0, -2)}`)} | D3+A3/5+1:12`,
+      skills: ["two-note-chords", "held-bass"],
       practice: [
         { text: "Play the left hand alone: a long low note, then a short chord.", hands: "left", speed: 0.6, loop: [1, 4], wait: true },
         { text: "Play the right hand alone on the first eight bars, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 8], wait: true },
@@ -235,9 +237,9 @@ export const haulAwayJoe: OurSong = {
         { fromBar: 16, toBar: 16, kind: "fingering", text: "End with D and F together. Fingers 1 and 3 press them as one." },
       ],
       tricky: {
-        4: "Fingers 3, 4 and 5 climb A, B and C. This B is the white key, not B flat.",
         5: "Spread fingers 1 and 5 over F and D for the sixth. Then finger 5 plays D again alone.",
-        9: "The tune climbs D, F and A. G and F are quick eighths, so count them evenly.",
+        9: "The second verse starts. The hand jumps from the low D up to the high D, and finger 5 plays it three times.",
+        13: "Bar 13 is bar 5 again. Spread fingers 1 and 5 over F and D, then finger 5 plays D alone.",
       },
     },
     epic: {
@@ -246,27 +248,26 @@ export const haulAwayJoe: OurSong = {
       numerator: 6,
       denominator: 4,
       steps: 2,
-      right: [SOLO, CHORUS, OWN_EIGHTHS, EPIC_TUNE_AGAIN].join(" | "),
-      left: `${bars(BROKEN, `${TUNE_CHORDS}${OWN_CHORDS}${TUNE_CHORDS.slice(0, -2)}`)} | D3+F3+A3/5+2+1:12`,
-      pedal: PEDAL,
-      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
-      skills: ["broken-chords", "thumb-under", "thirds-and-sixths"],
+      right: [SOLO, CHORUS, EPIC_TUNE_AGAIN].join(" | "),
+      left: EPIC_LEFT,
+      pedal: pedalUnder(EPIC_LEFT),
+      skills: ["counter-melody", "thirds-and-sixths", "pedal"],
       practice: [
-        { text: "Play the left hand alone until the broken chords flow by themselves.", hands: "left", speed: 0.5, loop: [1, 4], wait: false },
-        { text: "Play the right hand alone on bars 9 to 16, and pass the thumb under on the way up.", hands: "right", speed: 0.5, loop: [9, 16], wait: true },
-        { text: "Play the right hand's thirds and sixths alone, and press both notes of each pair as one.", hands: "right", speed: 0.6, loop: [17, 24], wait: true },
+        { text: "Play the left hand alone on the first eight bars. It is the old print's own bass line.", hands: "left", speed: 0.5, loop: [1, 8], wait: true },
+        { text: "Play the right hand alone on bars 9 to 16, and press both notes of each pair as one.", hands: "right", speed: 0.6, loop: [9, 16], wait: true },
+        { text: "Put both hands together on the first eight bars, slowly.", hands: "both", speed: 0.6, loop: [1, 8], wait: true },
         { text: "Play the whole song with both hands at three-quarter speed.", hands: "both", speed: 0.75, loop: null, wait: false },
         { text: "Now play it at full speed, with the pedal.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
-        { fromBar: 1, toBar: 8, kind: "sound", text: "Change the pedal on each new bass note, twice in every bar." },
-        { fromBar: 9, toBar: 9, kind: "fingering", text: "Pass the thumb under to G after F. Fingers 2, 3 and 4 then reach A, B and C." },
-        { fromBar: 17, toBar: 24, kind: "sound", text: "The tune is the top note of each pair, so let the upper finger lead." },
+        { fromBar: 1, toBar: 16, kind: "sound", text: "Change the pedal with each new note of the left hand, so the moving notes stay clear." },
+        { fromBar: 5, toBar: 6, kind: "sound", text: "In bars 5 and 6 the left hand sings a little line of its own. Let it answer the tune." },
+        { fromBar: 9, toBar: 16, kind: "sound", text: "The tune is the top note of each pair, so let the upper finger lead." },
       ],
       tricky: {
-        13: "Run down from D with fingers 5 to 1. Then finger 3 crosses over the thumb to F.",
-        16: "Climb the D minor chord with fingers 1, 2, 3 and 5. The hand opens wide for the high D.",
-        20: "Fingers 1 and 5 hold each sixth and glide up one key at a time. Keep the hand's shape the same.",
+        11: "The thumb holds E under G, then under F sharp. Then it drops to B, and finger 4 takes G.",
+        12: "Finger 5 climbs A, B and C over C, E and E in the thumb. Then the hand drops back to C and A.",
+        13: "The right hand holds A and D with fingers 2 and 5. Below it, the left hand plays F, E, F and A.",
       },
     },
     legendary: {
@@ -275,32 +276,27 @@ export const haulAwayJoe: OurSong = {
       numerator: 6,
       denominator: 4,
       steps: 2,
-      right: [SOLO, CHORUS, OWN_EIGHTHS, LEGENDARY_TUNE_AGAIN].join(" | "),
-      left: [
-        bars(STRIDE, TUNE_CHORDS),
-        [..."dcgadgAd"].map((chord) => WIDE[chord]).join(" | "),
-        bars(STRIDE, TUNE_CHORDS.slice(0, -2)),
-        "D2+A2+D3/5+2+1:12",
-      ].join(" | "),
-      pedal: PEDAL,
-      ownBars: [9, 10, 11, 12, 13, 14, 15, 16],
-      skills: ["octave-bass", "arpeggios", "melody-in-chords"],
+      right: [SOLO, CHORUS, LEGENDARY_TUNE_AGAIN].join(" | "),
+      left: LEGENDARY_LEFT_ALL,
+      pedal: pedalUnder(LEGENDARY_LEFT_ALL),
+      markedClashBars: [2, 10],
+      skills: ["octave-bass", "triads", "melody-in-chords"],
       practice: [
-        { text: "Play the left hand alone: an octave on the beat, then a chord twice, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },
-        { text: "Play the left hand's arpeggios alone. The thumb passes under, and finger 3 crosses over.", hands: "left", speed: 0.5, loop: [9, 16], wait: true },
-        { text: "Play the right hand's chords alone, and let the top finger sing the tune.", hands: "right", speed: 0.5, loop: [17, 24], wait: true },
+        { text: "Play the left hand alone: a low octave, a short chord, then a long chord.", hands: "left", speed: 0.5, loop: [1, 4], wait: true },
+        { text: "Play the left hand alone on bars 5 to 8, where a line moves under the chorus.", hands: "left", speed: 0.5, loop: [5, 8], wait: true },
+        { text: "Play the right hand's chords alone on bars 9 to 16, and let the top finger sing the tune.", hands: "right", speed: 0.5, loop: [9, 16], wait: true },
         { text: "Play the whole song with both hands at three-quarter speed.", hands: "both", speed: 0.75, loop: null, wait: false },
         { text: "Now play it at full speed, and let the last chord ring.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
-        { fromBar: 1, toBar: 8, kind: "trick", text: "Use the short rest after each octave and chord to jump to the next one." },
-        { fromBar: 9, toBar: 16, kind: "sound", text: "Let the arpeggios roll like waves under the tune." },
-        { fromBar: 17, toBar: 24, kind: "sound", text: "Play the top note of each chord a little louder, so the tune rings out." },
+        { fromBar: 1, toBar: 16, kind: "trick", text: "The left hand lets go of each low octave a little early. Use that short rest to jump." },
+        { fromBar: 2, toBar: 2, kind: "sound", text: "In bars 2 and 10, the left hand's B rubs against the tune's C. The old print plays it so." },
+        { fromBar: 9, toBar: 16, kind: "sound", text: "Play the top note of each chord a little louder, so the tune rings out." },
       ],
       tricky: {
-        4: "The left hand jumps from a low octave A to a chord of A, E and A. The right hand climbs A, B and C.",
-        20: "Each chord moves the whole hand up or down a key. Keep its shape, and let the top finger lead.",
-        23: "The hand moves from G major to A major in one step. The thumb lands on C sharp, a black key.",
+        6: "The left hand jumps from the low octave up to D sharp. Then it steps up to E and down to C.",
+        13: "The right hand holds D, A and D, then F, A and D. Below it, the left hand climbs E, F and A.",
+        14: "The thumb moves from C to E and back under A and C. In the last chord, A is on top.",
       },
     },
   },
@@ -321,12 +317,12 @@ export const haulAwayJoe: OurSong = {
         tips: [
           "Finger 5 nimmt oben das D und das C. Der Daumen spielt nur das Fis in Takt 3.",
           "Zähl sechs Schläge in jedem Takt: lang, kurz, lang, kurz. So zieht man am Tau.",
-          "Das tiefe D in Takt 8 ist der Daumen. Die Hand bleibt nun bis zum Ende über D bis A.",
+          "Der Daumen hält das tiefe D in Takt 8. Dann nimmt Finger 2 ein kurzes A, und die Hand ist wieder oben für Takt 9.",
         ],
         tricky: {
           2: "Finger 5 spielt dreimal das C. Dann nimmt Finger 3 das A, und Finger 2 wartet über dem G.",
-          11: "Die Finger gehen Taste für Taste vom G hinunter zum D. Die linke Hand hält D und G.",
-          14: "Finger 4 und 5 wiegen sich zwischen G und A. Dann geht Finger 3 hinunter zum F.",
+          3: "Finger 2 spielt zweimal das G, und der Daumen nimmt das Fis. Die linke Hand wechselt von D und G zu D und A.",
+          10: "Takt 10 ist wieder Takt 2. Finger 5 spielt dreimal das C, dann nimmt Finger 3 das A.",
         },
       },
       rare: {
@@ -343,47 +339,47 @@ export const haulAwayJoe: OurSong = {
           "Am Ende spielst du D und F zusammen. Finger 1 und 3 drücken sie wie einen Ton.",
         ],
         tricky: {
-          4: "Finger 3, 4 und 5 steigen über A, H und C. Das H ist die weiße Taste, nicht das B.",
           5: "Spann Finger 1 und 5 über F und D für die Sexte. Dann spielt Finger 5 das D noch einmal allein.",
-          9: "Die Melodie steigt über D, F und A. G und F sind schnelle Achtel, also zähl sie gleichmäßig.",
+          9: "Die zweite Strophe beginnt. Die Hand springt vom tiefen D zum hohen D, und Finger 5 spielt es dreimal.",
+          13: "Takt 13 ist wieder Takt 5. Spann Finger 1 und 5 über F und D, dann spielt Finger 5 das D allein.",
         },
       },
       epic: {
         practice: [
-          "Spiel die linke Hand allein, bis die gebrochenen Akkorde von selbst fließen.",
-          "Spiel die Takte 9 bis 16 nur mit der rechten Hand, und setz auf dem Weg nach oben den Daumen unter.",
-          "Spiel die Terzen und Sexten der rechten Hand allein, und drück beide Töne jedes Paars wie einen an.",
+          "Spiel die ersten acht Takte nur mit der linken Hand. Das ist die Basslinie aus dem alten Druck.",
+          "Spiel die Takte 9 bis 16 nur mit der rechten Hand, und drück beide Töne jedes Paars wie einen an.",
+          "Spiel die ersten acht Takte langsam mit beiden Händen zusammen.",
           "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
           "Jetzt spiel es im vollen Tempo, mit Pedal.",
         ],
         tips: [
-          "Wechsle das Pedal bei jedem neuen Basston, zweimal in jedem Takt.",
-          "Setz nach dem F den Daumen unter zum G. Dann erreichen Finger 2, 3 und 4 das A, das H und das C.",
+          "Wechsle das Pedal bei jedem neuen Ton der linken Hand, damit die bewegten Töne klar bleiben.",
+          "In den Takten 5 und 6 singt die linke Hand eine eigene kleine Linie. Lass sie der Melodie antworten.",
           "Die Melodie ist der obere Ton jedes Paars, also lass den oberen Finger führen.",
         ],
         tricky: {
-          13: "Lauf mit Finger 5 bis 1 vom D hinunter. Dann kreuzt Finger 3 über den Daumen zum F.",
-          16: "Steig mit Finger 1, 2, 3 und 5 durch den d-Moll-Akkord. Für das hohe D öffnet sich die Hand weit.",
-          20: "Finger 1 und 5 halten jede Sexte und gleiten Taste für Taste hinauf. Halt die Form der Hand gleich.",
+          11: "Der Daumen hält das E unter dem G, dann unter dem Fis. Dann geht er hinunter zum H, und Finger 4 nimmt das G.",
+          12: "Finger 5 steigt über A, H und C, und der Daumen spielt C, E und E darunter. Dann fällt die Hand zurück auf C und A.",
+          13: "Die rechte Hand hält A und D mit Finger 2 und 5. Darunter spielt die linke Hand F, E, F und A.",
         },
       },
       legendary: {
         practice: [
-          "Spiel die linke Hand allein: eine Oktave auf dem Schlag, dann zweimal einen Akkord, jeweils mit einer kurzen Pause zum Springen.",
-          "Spiel die Arpeggios der linken Hand allein. Der Daumen geht unter, und Finger 3 kreuzt darüber.",
-          "Spiel die Akkorde der rechten Hand allein, und lass den obersten Finger die Melodie singen.",
+          "Spiel die linke Hand allein: eine tiefe Oktave, einen kurzen Akkord, dann einen langen Akkord.",
+          "Spiel die Takte 5 bis 8 nur mit der linken Hand. Dort bewegt sich eine Linie unter dem Refrain.",
+          "Spiel die Akkorde der rechten Hand in den Takten 9 bis 16 allein, und lass den obersten Finger die Melodie singen.",
           "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
           "Jetzt spiel es im vollen Tempo, und lass den letzten Akkord klingen.",
         ],
         tips: [
-          "Nutz die kurze Pause nach jeder Oktave und jedem Akkord, um zum nächsten Griff zu springen.",
-          "Lass die Arpeggios wie Wellen unter der Melodie rollen.",
+          "Die linke Hand lässt jede tiefe Oktave etwas früher los. Nutz diese kurze Pause zum Springen.",
+          "In den Takten 2 und 10 reibt sich das H der linken Hand am C der Melodie. Der alte Druck spielt es so.",
           "Spiel den oberen Ton jedes Akkords etwas lauter, damit die Melodie klar klingt.",
         ],
         tricky: {
-          4: "Die linke Hand springt von einer tiefen Oktave A zu einem Akkord aus A, E und A. Die rechte Hand steigt über A, H und C.",
-          20: "Jeder Akkord rückt die ganze Hand eine Taste hinauf oder hinunter. Halt ihre Form, und lass den oberen Finger führen.",
-          23: "Die Hand rückt in einem Schritt von G-Dur nach A-Dur. Der Daumen landet auf dem Cis, einer schwarzen Taste.",
+          6: "Die linke Hand springt von der tiefen Oktave hinauf zum Dis. Dann geht sie hinauf zum E und hinunter zum C.",
+          13: "Die rechte Hand hält D, A und D, dann F, A und D. Darunter steigt die linke Hand über E, F und A.",
+          14: "Der Daumen geht unter A und C vom C zum E und zurück. Im letzten Akkord liegt das A oben.",
         },
       },
     },

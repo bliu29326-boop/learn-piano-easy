@@ -12,16 +12,24 @@
  * in the right hand. Its fingers stretch from 5 to the thumb, and repeated notes change the finger, so
  * the hand stays in place. Common lifts the hand for a moment before each leap.
  *
- * Every version writes the tune in 2/2 quarters, two bars per print bar, and then plays bars of our own.
- * Legendary then plays the tune again in chords. Our chords are G major under the first bars, and D
- * major from the high A on. Our own bars add C major. Every version keeps G major and closes on it.
+ * Every version writes the tune in 2/2 quarters, two bars per print bar. Bars 10 to 17 of every version
+ * play the print's next phrase, the rest of its first strain: bars 5 to 8. The phrase runs down from G5
+ * to D4 and climbs back to a close on G4. Common and Rare hold that G, and Epic ends on a G chord. In
+ * Legendary, bar 17 takes the print's upbeat back to the start, and bars 18 to 26 play the tune again in
+ * chords, as the print's repeat does.
  *
- * Common plays the tune over held open fifths and single bass notes, in one hand position. Rare plays a
- * bass note and then a two-note chord or a second bass note in each bar. It adds eighths and two-note
- * chords in our own bars. Epic rolls a broken chord in quarters with the pedal, and runs eighths with
- * the thumb under in our own bars. Legendary plays an octave bass and a chord under the tune, and
- * arpeggios over two octaves under our own bars. It then plays the tune again in chords of three and
- * four notes.
+ * The print is one line with no chords, so the chords are ours. They are G major under the first bars,
+ * and D major from the high A on. The phrase moves through G, C and D major, two chords per bar. Every
+ * version keeps G major and closes on it. The print has no accompaniment, so every version plays its
+ * level's patterns.
+ *
+ * Common plays the tune over held open fifths and single bass notes, in one hand position. In the phrase,
+ * its right hand moves three times, each after a note it lets go early. Rare plays a bass note and then a
+ * two-note chord or a second bass note in each bar. Its right hand moves four times in the phrase, and
+ * no finger crosses. Epic rolls a broken chord in quarters with the pedal. Finger 3 crosses over the
+ * thumb in the falling run, and the broken chords move up under it. Legendary plays an octave bass and a
+ * chord under the tune, arpeggios over two octaves under bars 10 to 13, and the octave bass again to bar
+ * 17. It then plays the tune again in chords of three and four notes.
  */
 import type { Key } from "../../src/theory/key";
 import type { OurSong } from "../make-our-songs";
@@ -44,23 +52,29 @@ const TUNE_LIFTED = [
 /** The tune in 2/2 eighths with its leaps played straight, for Rare, Epic and Legendary. */
 const TUNE_STRAIGHT = TUNE_LIFTED.replace("G5/5:3 r:1", "G5/5:4").replace("A5/4:3 r:1", "A5/4:4");
 
-/** Common's bars 10 to 16 in quarters, over G, C, G, D, G, D and G. */
-const COMMON_OWN = [
-  "G5/5:4 D5/2:4 | E5/3:2 C5/1:2 E5/3:2 G5/5:2 | D5/2:4 B4/1:4 | C5/2:2 D5/3:2 E5/4:2 F#5/5:2",
-  "D5/3:4 B4/1:4 | D5/2:2 C5/1:2 E5/3:2 F#5/4:2 | G5/5:8",
+/**
+ * Print bars 5 to 7 and the first two quarters of bar 8 in 2/2 quarters, two bars per print bar: bars 10
+ * to 16. The run falls from G5 to D4, finger 3 crossing over the thumb, and climbs back to C5. Epic and
+ * Legendary play it so.
+ */
+const PHRASE = [
+  "G5/5:2 F#5/4:2 E5/3:2 D5/2:2 | E5/3:2 D5/2:2 C5/1:2 B4/3:2 | C5/4:2 B4/3:2 A4/2:2 G4/1:2",
+  "G4/1:2 F#4/3:2 E4/2:2 D4/1:2 | E4/2:2 G4/4:2 F#4/3:2 A4/5:2 | G4/1:2 B4/3:2 A4/2:2 C5/4:2 | B4/3:4 G4/1:4",
 ].join(" | ");
 
-/** Rare's bars 10 to 16 in eighths, with two-note chords, in the same hand position. */
-const RARE_OWN = [
-  "G5/5:4 D5/2:2 B4/1:2 | E5/4:2 D5/3:1 C5/2:1 G4+E5/1+4:4 | D5/3:2 B4/2:1 D5/3:1 G5/5:4 | F#5/4:2 E5/3:1 D5/2:1 A4+F#5/1+4:4",
-  "G5/5:2 D5/2:2 B4/1:2 D5/2:2 | D5/2:2 E5/3:1 F#5/4:1 A5/5:2 F#5/4:2 | B4+G5/1+5:8",
+/** The phrase for Rare. The hand moves to a new position four times, and no finger crosses over. */
+const PHRASE_PLACED = [
+  "G5/5:2 F#5/4:2 E5/3:2 D5/2:2 | E5/4:2 D5/3:2 C5/2:2 B4/1:2 | C5/4:2 B4/3:2 A4/2:2 G4/1:2",
+  "G4/4:2 F#4/3:2 E4/2:2 D4/1:2 | E4/2:2 G4/4:2 F#4/3:2 A4/5:2 | G4/1:2 B4/3:2 A4/2:2 C5/4:2 | B4/3:4 G4/1:4",
 ].join(" | ");
 
-/** Epic's and Legendary's bars 10 to 15 in eighths, with the thumb passing under. */
-const OWN_EIGHTHS = [
-  "G5/5:2 D5/3:1 B4/2:1 G4/1:2 B4/2:1 D5/3:1 | E5/5:2 C5/3:1 A4/2:1 G4/1:2 C5/2:1 E5/4:1",
-  "D5/3:2 B4/2:1 G4/1:1 A4/2:1 B4/3:1 C5/1:1 D5/2:1 | E5/3:1 F#5/4:1 A5/5:2 F#5/4:1 E5/3:1 D5/2:1 C5/1:1",
-  "B4/1:2 D5/2:1 G5/3:1 B5/5:2 G5/3:2 | F#5/2:2 E5/1:1 F#5/2:1 A5/4:2 F#5/2:1 E5/1:1",
+/**
+ * The phrase for Common, then a held G. The hand moves three times, and the note before each move lets go
+ * an eighth early, so the hand moves in the gap.
+ */
+const PHRASE_LIFTED = [
+  "G5/5:2 F#5/4:2 E5/3:2 D5/2:2 | E5/3:2 D5/2:2 C5/1:1 r:1 B4/3:2 | C5/4:2 B4/3:2 A4/2:2 G4/1:1 r:1",
+  "G4/4:2 F#4/3:2 E4/2:2 D4/1:2 | E4/2:2 G4/4:2 F#4/3:2 A4/5:1 r:1 | G4/1:2 B4/3:2 A4/2:2 C5/4:2 | B4/3:4 G4/1:4 | G4/1:8",
 ].join(" | ");
 
 /**
@@ -80,8 +94,8 @@ const TUNE_IN_CHORDS = [
 /** The chords of bars 2 to 9 under the tune, two per bar: g and d are G major and D major. */
 const TUNE_CHORDS = "gggggggddddddddd";
 
-/** The chords of our bars 10 to 16, one per bar: g, c and d are G, C and D major. */
-const OWN_CHORDS = "gcgdgdd";
+/** The chords of bars 10 to 16 under print bars 5 to 8, two per bar. The print has none, so these are ours. */
+const PHRASE_CHORDS = "ggccccddcdgdgg";
 
 /** Bars of `patterns` from `chords`, one letter per half bar, two half bars per bar. */
 function halfBars(patterns: Record<string, string>, chords: string): string {
@@ -116,16 +130,25 @@ const BASS_AND_CHORD: Record<string, string> = {
 
 /**
  * Epic's half bar in eighths, a broken chord in quarters. A lower-case letter plays the root, then the
- * fifth. Its capital, for the second half of a bar, plays the third, then the fifth.
+ * fifth. Its capital, for the second half of a bar, plays the third, then the fifth. Under the phrase, e
+ * and E play the D chord an octave up, b plays G major from B2, and a plays D major from A2, so the hand
+ * never jumps past an octave.
  */
 const BROKEN: Record<string, string> = {
   g: "G2/5:2 D3/1:2",
   c: "C3/5:2 G3/1:2",
   d: "D2/5:2 A2/1:2",
+  e: "D3/5:2 A3/1:2",
+  b: "B2/5:2 G3/1:2",
+  a: "A2/5:2 F#3/1:2",
   G: "B2/3:2 D3/1:2",
   C: "E3/3:2 G3/1:2",
   D: "F#2/3:2 A2/1:2",
+  E: "F#3/3:2 A3/1:2",
 };
+
+/** Epic's broken chords under bars 10 to 16: the chords of `PHRASE_CHORDS` in the shapes of `BROKEN`. */
+const EPIC_PHRASE_CHORDS = "gGcCcCeEcebagG";
 
 /** Legendary's half bar in eighths: an octave on the beat and a chord after it, each with a rest to jump. */
 const STRIDE: Record<string, string> = {
@@ -149,10 +172,11 @@ for (const [chord, notes] of Object.entries(WIDE_NOTES)) {
   WIDE[chord] = `${steps.map(([at, finger]) => `${pitches[at]}/${finger}:1`).join(" ")} r:1`;
 }
 
-/** Epic's left hand: rest in bar 1, a broken chord under the tune and our bars, and a held G chord. */
+/** Epic's left hand: rest in bar 1, a broken chord under the tune and the phrase, and a held G chord. */
 const EPIC_LEFT = [
   "r:8",
-  halfBars(BROKEN, [...`${TUNE_CHORDS}ggccggddggdddd`].map((chord, at) => (at % 2 === 0 ? chord : chord.toUpperCase())).join("")),
+  halfBars(BROKEN, [...TUNE_CHORDS].map((chord, at) => (at % 2 === 0 ? chord : chord.toUpperCase())).join("")),
+  halfBars(BROKEN, EPIC_PHRASE_CHORDS),
   "G2+D3+G3/5+2+1:8",
 ].join(" | ");
 
@@ -165,7 +189,7 @@ export const sailorsHornpipe: OurSong = {
     died: null,
     published: 1781,
     edition:
-      "A public domain typeset of The College Hornpipe on Wikimedia Commons, File:College Hornpipe.svg, in G major; McGlashan's Collection of Scots Measures printed the tune in 1781",
+      "A public domain typeset of The College Hornpipe on Wikimedia Commons, File:College Hornpipe.svg, in G major, for the tune and the phrase after it (bars 5 to 8); McGlashan's Collection of Scots Measures printed the tune in 1781",
   },
   about:
     "The Sailor's Hornpipe is a lively dance tune with a strong link to the Royal Navy. " +
@@ -181,26 +205,26 @@ export const sailorsHornpipe: OurSong = {
       numerator: 2,
       denominator: 2,
       steps: 4,
-      ownBars: [10, 11, 12, 13, 14, 15, 16],
-      right: `${TUNE_LIFTED} | ${COMMON_OWN}`,
-      left: ["r:8", wholeBars(HELD, "ggg"), "G2+D3/5+1:4 D3/1:4", wholeBars(HELD, "dddd"), wholeBars(HELD, OWN_CHORDS.slice(0, -1) + "g")].join(" | "),
+      right: `${TUNE_LIFTED} | ${PHRASE_LIFTED}`,
+      left: ["r:8", wholeBars(HELD, "ggg"), "G2+D3/5+1:4 D3/1:4", wholeBars(HELD, "ddddgccd"), "C3/2:4 D3/1:4", "G2+D3/5+1:4 D3/1:4", wholeBars(HELD, "gg")].join(" | "),
       skills: ["five-finger-position", "open-fifths"],
       practice: [
-        { text: "Play bars 1 to 5 with the right hand alone, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 5], wait: true },
-        { text: "Play bars 5 to 9 with the right hand alone. The tune jumps from the high A down to the low A.", hands: "right", speed: 0.6, loop: [5, 9], wait: true },
+        { text: "Play bars 1 to 9 with the right hand alone, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 9], wait: true },
+        { text: "Play bars 10 to 17 with the right hand alone. The tune runs down to the low D, then climbs back to G.", hands: "right", speed: 0.6, loop: [10, 17], wait: true },
         { text: "Now the left hand alone. It holds one shape for a whole bar, and never moves.", hands: "left", speed: 0.6, loop: null, wait: true },
-        { text: "Put both hands together on the first nine bars, slowly.", hands: "both", speed: 0.7, loop: [1, 9], wait: true },
+        { text: "Put both hands together on the whole song, slowly.", hands: "both", speed: 0.7, loop: null, wait: true },
         { text: "Play the whole song with both hands at full speed.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
         { fromBar: 1, toBar: 2, kind: "fingering", text: "Start with finger 5 on the high G and finger 4 on F sharp. The thumb then reaches down to the low G." },
         { fromBar: 2, toBar: 2, kind: "trick", text: "Let go of the high G a little early. In the short gap, stretch the thumb down an octave." },
-        { fromBar: 1, toBar: 16, kind: "rhythm", text: "Count four steady beats in each bar. A hornpipe is a dance, so keep it bouncing." },
+        { fromBar: 11, toBar: 15, kind: "trick", text: "The hand moves three times in the run. Each time, let go of the note before a little early, and move in the gap." },
+        { fromBar: 1, toBar: 17, kind: "rhythm", text: "Count four steady beats in each bar. A hornpipe is a dance, so keep it bouncing." },
       ],
       tricky: {
         4: "The thumb tucks under to B after C. Then fingers 2 and 4 climb to D and G.",
-        6: "Let go of the high A early. The thumb then drops an octave to the low A.",
-        8: "The thumb plays F sharp, and finger 2 plays A. Then finger 4 reaches up to D.",
+        11: "Let go of C early. In the short gap, the hand moves down, and finger 3 takes B.",
+        15: "Let go of A early. The thumb then lands on G, and fingers 3, 2 and 4 play B, A and C.",
       },
     },
     rare: {
@@ -209,26 +233,34 @@ export const sailorsHornpipe: OurSong = {
       numerator: 2,
       denominator: 2,
       steps: 4,
-      ownBars: [10, 11, 12, 13, 14, 15, 16],
-      right: `${TUNE_STRAIGHT} | ${RARE_OWN}`,
-      left: ["r:8", wholeBars(BASS_AND_CHORD, "ggg"), "G2/5:4 D3/1:4", wholeBars(BASS_AND_CHORD, "dddd"), wholeBars(BASS_AND_CHORD, "gcgdgd"), "G2+B2+D3/5+3+1:8"].join(" | "),
-      skills: ["eighth-notes", "two-note-chords"],
+      right: `${TUNE_STRAIGHT} | ${PHRASE_PLACED} | G4/1:8`,
+      left: [
+        "r:8",
+        wholeBars(BASS_AND_CHORD, "ggg"),
+        "G2/5:4 D3/1:4",
+        wholeBars(BASS_AND_CHORD, "ddddgccd"),
+        "C3/2:4 D3/1:4",
+        "G2/5:4 D3/1:4",
+        wholeBars(BASS_AND_CHORD, "g"),
+        "G2+B2+D3/5+3+1:8",
+      ].join(" | "),
+      skills: ["two-note-chords", "position-change"],
       practice: [
         { text: "Play the left hand alone: a low note, then a two-note chord or a second note.", hands: "left", speed: 0.6, loop: [2, 5], wait: true },
         { text: "Play the right hand alone on the first nine bars, and let the song wait for each note.", hands: "right", speed: 0.6, loop: [1, 9], wait: true },
-        { text: "Play the right hand alone on bars 10 to 16, where the eighths and two-note chords come.", hands: "right", speed: 0.6, loop: [10, 16], wait: true },
+        { text: "Play the right hand alone on bars 10 to 17. The tune runs down to the low D, then climbs back to G.", hands: "right", speed: 0.6, loop: [10, 17], wait: true },
         { text: "Join the hands on the whole song, a little slower than written.", hands: "both", speed: 0.8, loop: null, wait: false },
         { text: "Now play it at full speed.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
         { fromBar: 2, toBar: 2, kind: "fingering", text: "Finger 5 plays the high G, and the thumb drops to the low G. Keep the hand open as wide as an octave." },
-        { fromBar: 10, toBar: 16, kind: "rhythm", text: "Two eighths fill one beat. Count them as one-and, and keep them even." },
-        { fromBar: 16, toBar: 16, kind: "fingering", text: "End with B and G together. The thumb and finger 5 press them as one." },
+        { fromBar: 11, toBar: 13, kind: "fingering", text: "Bars 11, 12 and 13 each start the hand in a lower place. Watch the finger on each first note." },
+        { fromBar: 16, toBar: 17, kind: "rhythm", text: "The last two bars slow to longer notes. Let the dance come to rest on G." },
       ],
       tricky: {
         4: "The thumb tucks under to B after C. Then fingers 2 and 4 climb to D and G.",
-        12: "Fingers 3, 2 and 3 play D, B and D quickly. Then finger 5 reaches up to G.",
-        15: "Fingers 2, 3, 4 and 5 climb from D to A. Then finger 4 steps back down to F sharp.",
+        12: "Finger 4 starts on C, so the hand moves down. Fingers 3, 2 and 1 then walk down to G.",
+        15: "The thumb jumps from A down to G. Then fingers 3, 2 and 4 play B, A and C.",
       },
     },
     epic: {
@@ -237,26 +269,25 @@ export const sailorsHornpipe: OurSong = {
       numerator: 2,
       denominator: 2,
       steps: 4,
-      right: [TUNE_STRAIGHT, OWN_EIGHTHS, "D5/1:2 E5/2:1 F#5/3:1 A5/5:2 F#5/3:1 E5/2:1", "B4+D5+G5/1+2+5:8"].join(" | "),
+      right: [TUNE_STRAIGHT, PHRASE, "B3+D4+G4/1+2+5:8"].join(" | "),
       left: EPIC_LEFT,
-      pedal: `r:8 | P:8 | P:8 | P:8 | P:4 P:4 | ${Array<string>(11).fill("P:8").join(" | ")} | P:8`,
-      ownBars: [10, 11, 12, 13, 14, 15, 16],
+      pedal: `r:8 | P:8 | P:8 | P:8 | P:4 P:4 | ${Array<string>(8).fill("P:8").join(" | ")} | P:4 P:4 | P:4 P:4 | P:8 | P:8`,
       skills: ["broken-chords", "pedal", "thumb-under"],
       practice: [
         { text: "Play the left hand alone until the broken chords flow by themselves.", hands: "left", speed: 0.5, loop: [2, 9], wait: false },
-        { text: "Play the right hand alone on bars 10 to 16, and pass the thumb under on the way up.", hands: "right", speed: 0.5, loop: [10, 16], wait: true },
+        { text: "Play the right hand alone on bars 10 to 16. On the way down, finger 3 crosses over the thumb.", hands: "right", speed: 0.5, loop: [10, 16], wait: true },
         { text: "Play the first nine bars with both hands, and change the pedal with each new chord.", hands: "both", speed: 0.6, loop: [1, 9], wait: true },
         { text: "Play the whole song with both hands at three-quarter speed.", hands: "both", speed: 0.75, loop: null, wait: false },
         { text: "Now play it at full speed, with the pedal.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
         { fromBar: 2, toBar: 9, kind: "sound", text: "Change the pedal when the bass moves to a new chord. Lift it, then press it again just after the bass note." },
-        { fromBar: 12, toBar: 12, kind: "fingering", text: "Pass the thumb under to C after B. Finger 2 then takes D." },
-        { fromBar: 13, toBar: 16, kind: "sound", text: "Let the runs sing softly over the broken chords, like a fiddle at a dance." },
+        { fromBar: 10, toBar: 16, kind: "sound", text: "Let the runs sing softly over the broken chords, like a fiddle at a dance." },
+        { fromBar: 13, toBar: 13, kind: "fingering", text: "Play G with the thumb again, then cross finger 3 over to F sharp. Finger 2 and the thumb finish on D." },
       ],
       tricky: {
-        10: "Fingers 5, 3, 2 and 1 walk down the G chord. Then they climb back up the same way.",
-        14: "The thumb jumps down to B. Then fingers 2, 3 and 5 climb the G chord to the high B.",
+        11: "After the thumb plays C, finger 3 crosses over it to B. Keep the wrist level as it passes.",
+        15: "The thumb passes under to G after finger 5 plays A. Then fingers 3, 2 and 4 play B, A and C.",
         17: "Play the last chord in both hands at once. Let the pedal hold it to the end.",
       },
     },
@@ -266,33 +297,33 @@ export const sailorsHornpipe: OurSong = {
       numerator: 2,
       denominator: 2,
       steps: 4,
-      right: [TUNE_STRAIGHT, OWN_EIGHTHS, "D5/1:2 E5/2:1 F#5/3:1 A5/5:3 r:1", TUNE_IN_CHORDS].join(" | "),
+      right: [TUNE_STRAIGHT, PHRASE, "G4/1:4 G5/5:2 F#5/4:2", TUNE_IN_CHORDS].join(" | "),
       left: [
         "r:8",
         halfBars(STRIDE, TUNE_CHORDS),
-        wholeBars(WIDE, OWN_CHORDS),
+        wholeBars(WIDE, PHRASE_CHORDS.slice(0, 8).replace(/(.)./g, "$1")),
+        halfBars(STRIDE, `${PHRASE_CHORDS.slice(8)}gg`),
         halfBars(STRIDE, TUNE_CHORDS),
         "G1+G2/5+1:8",
       ].join(" | "),
-      pedal: `r:8 | ${Array<string>(23).fill("P:4 P:4").join(" | ")} | P:8`,
-      ownBars: [10, 11, 12, 13, 14, 15, 16],
+      pedal: `r:8 | ${Array<string>(24).fill("P:4 P:4").join(" | ")} | P:8`,
       skills: ["octave-bass", "arpeggios", "melody-in-chords"],
       practice: [
         { text: "Play the left hand alone: an octave on the beat, then a chord, each with a short rest to jump.", hands: "left", speed: 0.5, loop: [2, 9], wait: true },
-        { text: "Play the left hand's arpeggios alone. The thumb passes under, and finger 3 crosses over.", hands: "left", speed: 0.5, loop: [10, 16], wait: true },
-        { text: "Play the right hand's chords alone, and let the top finger sing the tune.", hands: "right", speed: 0.5, loop: [17, 25], wait: true },
+        { text: "Play the left hand's arpeggios alone. The thumb passes under, and finger 3 crosses over.", hands: "left", speed: 0.5, loop: [10, 13], wait: true },
+        { text: "Play the right hand's chords alone, and let the top finger sing the tune.", hands: "right", speed: 0.5, loop: [18, 26], wait: true },
         { text: "Play the whole song with both hands at three-quarter speed.", hands: "both", speed: 0.75, loop: null, wait: false },
         { text: "Now play it at full speed, and let the last chord ring.", hands: "both", speed: 1, loop: null, wait: false },
       ],
       tips: [
         { fromBar: 2, toBar: 9, kind: "trick", text: "Use the short rest after each octave and chord to jump to the next one." },
-        { fromBar: 10, toBar: 16, kind: "sound", text: "Let the arpeggios roll softly under the right hand's runs." },
-        { fromBar: 17, toBar: 24, kind: "trick", text: "Each chord lets go a little early. Use that gap to move the whole hand to the next chord." },
+        { fromBar: 10, toBar: 13, kind: "sound", text: "Let the arpeggios roll softly under the right hand's runs." },
+        { fromBar: 18, toBar: 25, kind: "trick", text: "Each chord lets go a little early. Use that gap to move the whole hand to the next chord." },
       ],
       tricky: {
-        17: "Spread the hand over G, B, D and G. Then drop it an octave to B, D and G.",
-        18: "The hand climbs from a low G chord to D on top. Then fingers 1 and 4 take G and C.",
-        19: "Three chords climb to the high G. Keep the wrist loose, and lead with finger 5.",
+        18: "Spread the hand over G, B, D and G. Then drop it an octave to B, D and G.",
+        19: "The hand climbs from a low G chord to D on top. Then fingers 1 and 4 take G and C.",
+        20: "Three chords climb to the high G. Keep the wrist loose, and lead with finger 5.",
       },
     },
   },
@@ -304,58 +335,59 @@ export const sailorsHornpipe: OurSong = {
     versions: {
       common: {
         practice: [
-          "Spiel die Takte 1 bis 5 nur mit der rechten Hand, und lass das Stück auf jeden Ton warten.",
-          "Spiel die Takte 5 bis 9 nur mit der rechten Hand. Die Melodie springt vom hohen A hinunter zum tiefen A.",
+          "Spiel die Takte 1 bis 9 nur mit der rechten Hand, und lass das Stück auf jeden Ton warten.",
+          "Spiel die Takte 10 bis 17 nur mit der rechten Hand. Die Melodie läuft hinunter zum tiefen D und steigt dann zurück zum G.",
           "Jetzt die linke Hand allein. Sie hält jeden Griff einen ganzen Takt lang und bewegt sich nie.",
-          "Spiel die ersten neun Takte langsam mit beiden Händen zusammen.",
+          "Spiel das ganze Stück langsam mit beiden Händen zusammen.",
           "Spiel das ganze Stück mit beiden Händen im vollen Tempo.",
         ],
         tips: [
           "Fang mit Finger 5 auf dem hohen G und Finger 4 auf dem Fis an. Dann greift der Daumen hinunter zum tiefen G.",
           "Lass das hohe G etwas früher los. In der kurzen Lücke streckst du den Daumen eine Oktave nach unten.",
+          "Im Lauf bewegt sich die Hand dreimal. Lass jedes Mal den Ton davor etwas früher los, und bewege dich in der Lücke.",
           "Zähl vier gleichmäßige Schläge in jedem Takt. Eine Hornpipe ist ein Tanz, also lass sie hüpfen.",
         ],
         tricky: {
           4: "Nach dem C setzt der Daumen unter zum H. Dann steigen Finger 2 und 4 zum D und zum G.",
-          6: "Lass das hohe A früh los. Dann fällt der Daumen eine Oktave hinunter zum tiefen A.",
-          8: "Der Daumen spielt das Fis, und Finger 2 spielt das A. Dann greift Finger 4 hinauf zum D.",
+          11: "Lass das C früh los. In der kurzen Lücke geht die Hand hinunter, und Finger 3 nimmt das H.",
+          15: "Lass das A früh los. Dann landet der Daumen auf dem G, und Finger 3, 2 und 4 spielen H, A und C.",
         },
       },
       rare: {
         practice: [
           "Spiel die linke Hand allein: einen tiefen Ton, dann einen Zweiklang oder einen zweiten Ton.",
           "Spiel die ersten neun Takte nur mit der rechten Hand, und lass das Stück auf jeden Ton warten.",
-          "Spiel die Takte 10 bis 16 nur mit der rechten Hand. Dort kommen die Achtel und die Zweiklänge.",
+          "Spiel die Takte 10 bis 17 nur mit der rechten Hand. Die Melodie läuft hinunter zum tiefen D und steigt dann zurück zum G.",
           "Spiel das ganze Stück mit beiden Händen, etwas langsamer als notiert.",
           "Jetzt spiel es im vollen Tempo.",
         ],
         tips: [
           "Finger 5 spielt das hohe G, und der Daumen fällt zum tiefen G. Halt die Hand so weit offen wie eine Oktave.",
-          "Zwei Achtel füllen einen Schlag. Zähl sie als eins-und, und spiel sie gleichmäßig.",
-          "Am Ende spielst du H und G zusammen. Der Daumen und Finger 5 drücken sie wie einen Ton.",
+          "Die Takte 11, 12 und 13 beginnen jeweils mit der Hand an einer tieferen Stelle. Achte auf den Finger beim ersten Ton.",
+          "Die letzten zwei Takte werden zu längeren Tönen. Lass den Tanz auf dem G zur Ruhe kommen.",
         ],
         tricky: {
           4: "Nach dem C setzt der Daumen unter zum H. Dann steigen Finger 2 und 4 zum D und zum G.",
-          12: "Finger 3, 2 und 3 spielen schnell D, H und D. Dann greift Finger 5 hinauf zum G.",
-          15: "Finger 2, 3, 4 und 5 steigen vom D zum A. Dann geht Finger 4 zurück zum Fis.",
+          12: "Finger 4 beginnt auf dem C, also geht die Hand hinunter. Dann gehen Finger 3, 2 und 1 hinunter zum G.",
+          15: "Der Daumen springt vom A hinunter zum G. Dann spielen Finger 3, 2 und 4 H, A und C.",
         },
       },
       epic: {
         practice: [
           "Spiel die linke Hand allein, bis die gebrochenen Akkorde von selbst fließen.",
-          "Spiel die Takte 10 bis 16 nur mit der rechten Hand, und setz auf dem Weg nach oben den Daumen unter.",
+          "Spiel die Takte 10 bis 16 nur mit der rechten Hand. Auf dem Weg nach unten kreuzt Finger 3 über den Daumen.",
           "Spiel die ersten neun Takte mit beiden Händen, und wechsle das Pedal bei jedem neuen Akkord.",
           "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
           "Jetzt spiel es im vollen Tempo, mit Pedal.",
         ],
         tips: [
           "Wechsle das Pedal, wenn der Bass zu einem neuen Akkord geht. Heb es an, und drück es gleich nach dem Basston wieder.",
-          "Setz nach dem H den Daumen unter zum C. Dann nimmt Finger 2 das D.",
           "Lass die Läufe leise über den gebrochenen Akkorden singen, wie eine Geige beim Tanz.",
+          "Spiel das G noch einmal mit dem Daumen, dann kreuz Finger 3 über zum Fis. Finger 2 und der Daumen enden auf dem D.",
         ],
         tricky: {
-          10: "Finger 5, 3, 2 und 1 gehen den G-Dur-Akkord hinunter. Dann steigen sie auf demselben Weg wieder hinauf.",
-          14: "Der Daumen springt hinunter zum H. Dann steigen Finger 2, 3 und 5 den G-Dur-Akkord hinauf zum hohen H.",
+          11: "Nach dem C mit dem Daumen kreuzt Finger 3 darüber zum H. Halt das Handgelenk dabei ruhig.",
+          15: "Nach dem A mit Finger 5 geht der Daumen unter zum G. Dann spielen Finger 3, 2 und 4 H, A und C.",
           17: "Spiel den letzten Akkord in beiden Händen zugleich. Lass das Pedal ihn bis zum Ende halten.",
         },
       },
@@ -373,9 +405,9 @@ export const sailorsHornpipe: OurSong = {
           "Jeder Akkord endet etwas früher. Nutz die Lücke, um die ganze Hand zum nächsten Akkord zu bewegen.",
         ],
         tricky: {
-          17: "Spann die Hand über G, H, D und G. Dann lass sie eine Oktave tiefer auf H, D und G fallen.",
-          18: "Die Hand steigt von einem tiefen G-Dur-Akkord zum D oben. Dann nehmen Finger 1 und 4 das G und das C.",
-          19: "Drei Akkorde steigen zum hohen G. Halt das Handgelenk locker, und führ mit Finger 5.",
+          18: "Spann die Hand über G, H, D und G. Dann lass sie eine Oktave tiefer auf H, D und G fallen.",
+          19: "Die Hand steigt von einem tiefen G-Dur-Akkord zum D oben. Dann nehmen Finger 1 und 4 das G und das C.",
+          20: "Drei Akkorde steigen zum hohen G. Halt das Handgelenk locker, und führ mit Finger 5.",
         },
       },
     },
