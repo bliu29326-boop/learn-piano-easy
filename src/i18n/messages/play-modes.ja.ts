@@ -14,7 +14,7 @@ export const playModes: Translation<typeof en> = {
   groups: {
     fun: {
       heading: "楽しく弾く",
-      lead: "点数に火花、そしてショー。1つ選んで、ピアノに楽しませてもらいましょう。",
+      lead: "スコアに火花、そしてショー。1つ選んで、ピアノに楽しませてもらいましょう。",
     },
     learn: {
       heading: "曲を覚える",
@@ -30,14 +30,14 @@ export const playModes: Translation<typeof en> = {
       tag: "楽しむ",
       name: "ゲームモード",
       text: "音を弾くたびに点が入り、ピアノがきらきら光って応えます。コンボをつないで、自己ベストを更新しましょう。",
-      traits: ["「やさしい」で点数とコンボ", "火花、閃光、光るピアノ", "短くて覚えやすい曲"],
+      traits: ["「やさしい」でスコアとコンボ", "火花、閃光、光るピアノ", "短くて覚えやすい曲"],
       song: "In the Hall of the Mountain King（入門）",
     },
     challenge: {
       tag: "上級者向け",
       name: "チャレンジ",
       text: "いちばんむずかしいレベルのゲームモードです。音名もヒントも出ません。ミスなく弾ききったときだけ、最高スコアが取れます。",
-      traits: ["「むずかしい」で点数とコンボ", "音名なし、鍵盤のヒントなし", "曲のむずかしいバージョン"],
+      traits: ["「むずかしい」でスコアとコンボ", "音名なし、鍵盤のヒントなし", "曲のむずかしいバージョン"],
       song: "In the Hall of the Mountain King（ふつう）",
     },
     concert: {
@@ -50,8 +50,8 @@ export const playModes: Translation<typeof en> = {
     playAlong: {
       tag: "一歩ずつ",
       name: "一緒に弾く",
-      text: "曲は音ごとに待ってくれます。音符には音名と指番号が、鍵盤には音名が表示されます。",
-      traits: ["音符が待ってくれる", "音符に音名と指番号", "白鍵と黒鍵に音名"],
+      text: "曲は音ごとに待ってくれます。ノートには音名と指番号が、鍵盤には音名が表示されます。",
+      traits: ["ノートが待ってくれる", "ノートに音名と指番号", "白鍵と黒鍵に音名"],
       song: "Ode to Joy（入門）",
     },
     oneHand: {
@@ -64,8 +64,8 @@ export const playModes: Translation<typeof en> = {
     readMusic: {
       tag: "楽譜",
       name: "楽譜を読む",
-      text: "ピアノの上に楽譜が表示され、曲は待ってくれます。音符に音名は出ないので、五線から読み取りましょう。",
-      traits: ["ピアノの上に楽譜", "音符が待ってくれる", "鳴っている音の後ろにやわらかな光"],
+      text: "ピアノの上に楽譜が表示され、曲は待ってくれます。ノートに音名は出ないので、五線から読み取りましょう。",
+      traits: ["ピアノの上に楽譜", "ノートが待ってくれる", "鳴っている音の後ろにやわらかな光"],
       song: "Mary Had a Little Lamb（入門）",
     },
     slowSteady: {
@@ -85,8 +85,8 @@ export const playModes: Translation<typeof en> = {
     colourByFinger: {
       tag: "指",
       name: "指で色分け",
-      text: "指ごとに色が決まっていて、音符にも鍵盤にもその色がつきます。正しい指を見つけるまで、曲は待ってくれます。",
-      traits: ["音符を指ごとに色分け", "鍵盤が指の色で光る", "音符が待ってくれる"],
+      text: "指ごとに色が決まっていて、ノートにも鍵盤にもその色がつきます。正しい指を見つけるまで、曲は待ってくれます。",
+      traits: ["ノートを指ごとに色分け", "鍵盤が指の色で光る", "ノートが待ってくれる"],
       song: "Twinkle Twinkle Little Star（入門）",
     },
     noteTrainer: {
@@ -104,7 +104,7 @@ export const playModes: Translation<typeof en> = {
     chordExplorer: {
       tag: "ハーモニー",
       name: "コード探検",
-      text: "曲が流れると、和音ごとにコード名と、調の中での番号が表示されます。音符の上のブロックが、各音が音階の何番目の音かを示します。",
+      text: "曲が流れると、和音ごとにコード名と、調の中での番号が表示されます。ノートの上のブロックが、各音が音階の何番目の音かを示します。",
       traits: ["曲に合わせてコード名", "和音ごとにローマ数字", "音階の第何音か、根音には印"],
       song: "Canon in D（やさしい）",
     },

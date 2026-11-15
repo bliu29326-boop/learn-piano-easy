@@ -25,11 +25,11 @@ export const playerSettingsPlay: Translation<typeof en> = {
   },
   learnSetupDone: {
     label: "初回訪問の完了",
-    help: "ピアノを学ぶコースは、初めて開いたときに短い初期設定を表示します。終わるまで表示が続きます。",
+    help: "ピアノを学ぶコースは、はじめて開いたときに短い初期設定を表示します。終わるまで表示が続きます。",
   },
   expertControls: {
     label: "エキスパートツール",
-    help: "操作バーの「エキスパート」ボタンで、速さ、移調、ループの最初と最後の小節、フィット、視点の左右移動を表示します。",
+    help: "操作バーの「エキスパート」ボタンで、速さ、移調、ループの最初と最後の小節、全体表示、表示の左右移動を表示します。",
   },
   // General
   theme: {
@@ -78,8 +78,8 @@ export const playerSettingsPlay: Translation<typeof en> = {
     help: "曲のすべての音を上げたり下げたりします。",
   },
   reverseNoteDirection: {
-    label: "音符の向きを逆にする",
-    help: "音符がピアノに向かうのではなく、ピアノから離れるように動きます。",
+    label: "ノートの向きを逆にする",
+    help: "ノートがピアノに向かうのではなく、ピアノから離れるように動きます。",
   },
   renderOffset: {
     label: "映像のずれ（ms）",
@@ -87,15 +87,15 @@ export const playerSettingsPlay: Translation<typeof en> = {
   },
   showBPM: {
     label: "テンポをBPMで表示",
-    help: "曲の今の1分あたりの拍数を、シーンの上の1秒あたりのフレーム数の横に表示します。",
+    help: "曲のいまの1分あたりの拍数を、シーンの上の1秒あたりのフレーム数の横に表示します。",
   },
   showFps: {
     label: "1秒あたりのフレーム数を表示",
     help: "シーンが1秒間に何枚の画面を描くかを表示します。数が小さいときは、映像の動きが遅くなっています。",
   },
   showNoteDebugInfo: {
-    label: "ポインターを重ねて音符の詳細を表示",
-    help: "音符を指すと、音の高さ、時間、長さ、ベロシティが表示されます。",
+    label: "ポインターを重ねてノートの詳細を表示",
+    help: "ノートを指すと、音の高さ、時間、長さ、ベロシティが表示されます。",
   },
   showMilliseconds: {
     label: "タイムラインにミリ秒を表示",
@@ -309,7 +309,7 @@ export const playerSettingsPlay: Translation<typeof en> = {
   },
   glowStrength: {
     label: "光の強さ",
-    help: "音符と鍵盤がどれだけ明るく光るかです。",
+    help: "ノートと鍵盤がどれだけ明るく光るかです。",
   },
   zoomByMeasures: {
     label: "小節でズーム",
@@ -317,11 +317,11 @@ export const playerSettingsPlay: Translation<typeof en> = {
   },
   noteToHeightConst: {
     label: "先に表示する秒数",
-    help: "これから来る音符を、レーンに何秒分表示するかです。秒数を少なくすると、音符が長く、速くなります。",
+    help: "これから来るノートを、レーンに何秒分表示するかです。秒数を少なくすると、ノートが長く、速くなります。",
   },
   measuresShownOnScreen: {
     label: "先に表示する小節数",
-    help: "小節でズームするとき、これから来る音符をレーンに何小節分表示するかです。",
+    help: "小節でズームするとき、これから来るノートをレーンに何小節分表示するかです。",
   },
   // Keyboard
   keyboardFirstNote: {

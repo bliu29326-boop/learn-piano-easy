@@ -117,7 +117,7 @@ export const playerShell: Translation<typeof en> = {
     amount: (done, total) => `${tenths(done)} / ${tenths(total)} MB`,
     sounds: "ピアノの音を読み込み中",
     newest: "最新バージョンを取得中",
-    offline: (label) => `${label}は、初めて開くときにインターネット接続が必要です。接続してから、もう一度試してください。`,
+    offline: (label) => `${label}は、はじめて開くときにインターネット接続が必要です。接続してから、もう一度試してください。`,
     failed: (label) => `${label}を読み込めませんでした。しばらくしてから、もう一度試してください。`,
     retry: "再試行",
   },

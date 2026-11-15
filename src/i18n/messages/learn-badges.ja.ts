@@ -25,6 +25,6 @@ export const learnBadges: Translation<typeof en> = {
   },
   world: {
     name: (world: string) => `「${world}」マスター`,
-    description: (world: string) => `「${world}」のボスをたおす。`,
+    description: (world: string) => `「${world}」のボスに勝つ。`,
   },
 };

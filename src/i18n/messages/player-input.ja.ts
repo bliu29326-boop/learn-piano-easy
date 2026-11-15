@@ -114,7 +114,7 @@ export const playerInput: Translation<typeof en> = {
     complete: "演奏完了",
     bestCombo: (combo: number) => `最大コンボ${formatNumber("ja", combo)}`,
     stats: { perfect: "パーフェクト", great: "グレート", good: "グッド", wrong: "違う音", miss: "ミス", late: "遅れた", short: "短すぎ", long: "長すぎ" },
-    helped: "「弾くまで待つ」を使用",
+    helped: "「弾くまで待つ」を使った",
     close: "閉じる",
     closeName: "演奏の結果を閉じる",
   },

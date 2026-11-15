@@ -22,7 +22,7 @@ export const learnSetup: Translation<typeof en> = {
     checkMidi: "MIDIキーボードのどれかの鍵盤を弾きましょう。",
     checkComputer: "Q、W、Eなどの文字キーを押しましょう。",
     checkScreen: "下の鍵盤を押しましょう。",
-    heard: (note: string) => `聞こえました！今のは${note}です。`,
+    heard: (note: string) => `聞こえました！いまのは${note}です。`,
     keys: "試し弾きのピアノ",
     skip: "チェックをスキップ",
     marks: { next: "この鍵盤をためす", correct: "聞こえた", mistake: "聞こえた" },

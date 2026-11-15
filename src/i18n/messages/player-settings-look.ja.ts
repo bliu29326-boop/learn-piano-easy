@@ -104,7 +104,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   showMarkersSong: {
     label: "マーカー",
-    help: "Aメロなど、曲が名前を付けた部分に線と文字を表示します。",
+    help: "Aメロなど、曲が名前をつけた部分に線と文字を表示します。",
   },
   showSustainPeriods: {
     label: "ペダルの区間",
@@ -112,7 +112,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   showSustainOnOffs: {
     label: "ペダルを踏む・離す",
-    help: "ペダルを踏む所に「Ped.」、離す所に「✱」の印が付いた線を引きます。",
+    help: "ペダルを踏む所に「Ped.」、離す所に「✱」の印がついた線を引きます。",
   },
   showSustainChannels: {
     label: "ペダルのチャンネル",
@@ -306,8 +306,8 @@ export const playerSettingsLook: Translation<typeof en> = {
     help: "鍵盤の上だけ、ド♯の代わりにレ♭と表示します。ノートは曲の調に従います。",
   },
   octaveLabel: {
-    label: "鍵盤の音名にオクターブを付ける",
-    help: "ド4のように、鍵盤の音名にオクターブの番号を付けます。",
+    label: "鍵盤の音名にオクターブをつける",
+    help: "ド4のように、鍵盤の音名にオクターブの番号をつけます。",
     options: { none: "なし", all: "すべての鍵盤", onlyC: "ドだけ" },
   },
   showKeyBindingsOnPiano: {
@@ -316,7 +316,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   showChords: {
     label: "コードネーム",
-    help: "ノートが作る各和音に、ペダルで伸びている音も含めて名前を付けます。",
+    help: "ノートが作る各和音に、ペダルで伸びている音も含めて名前をつけます。",
   },
   chordLabelStyle: {
     label: "コードネームの表示形式",
@@ -336,21 +336,21 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   showChordRomanNumerals: {
     label: "ローマ数字",
-    help: "曲の調の中での、各和音の度数です。V7などと表示します。",
+    help: "各和音が、曲の調の音階の第何音の上にできているかです。V7などと表示します。",
   },
   chordBlocks: {
     label: "音のブロック",
-    help: "名前の付いた和音の各音の上に、その音の役割を示すブロックが出ます。",
-    options: { none: "なし", tone: "和音の構成音", degree: "音階の度数" },
+    help: "名前のついた和音の各音の上に、その音の役割を示すブロックが出ます。",
+    options: { none: "なし", tone: "和音の構成音", degree: "音階の第何音か" },
   },
   chordToneNotation: {
     label: "音のブロックの書き方",
     help: "音のブロックに、短い記号と言葉のどちらを使うかを選びます。",
-    options: { simple: "簡単：R ♭3 5", full: "くわしく：根音、♭3度、5度" },
+    options: { simple: "かんたん：R ♭3 5", full: "くわしく：根音、♭3度、5度" },
   },
   chordMarkRoot: {
-    label: "根音に印を付ける",
-    help: "各和音の根音に、金色のブロックが付きます。",
+    label: "根音に印をつける",
+    help: "各和音の根音に、金色のブロックがつきます。",
   },
 
   // Lyrics
@@ -394,7 +394,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   // Coding
   enableColorCodingNote: {
     label: "音の高さでノートを色分け",
-    help: "12の音の高さに、それぞれ別の色が付きます。",
+    help: "12の音の高さに、それぞれ別の色がつきます。",
   },
   enableColorCodingNotePiano: {
     label: "音の高さで鍵盤を色分け",
@@ -459,7 +459,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   enableGrandStaff: {
     label: "2段の五線をブレースでつなぐ",
-    help: "大譜表のブレースを、各段の始めに付けます。",
+    help: "大譜表のブレースを、各段の始めにつけます。",
   },
   sheetAutoClef: {
     label: "音符から音部記号を選ぶ",
@@ -495,7 +495,7 @@ export const playerSettingsLook: Translation<typeof en> = {
     help: "曲のいまの位置に線を引きます。",
   },
   sheetColorActiveNotes: {
-    label: "鳴っている音符に色を付ける",
+    label: "鳴っている音符に色をつける",
     help: "楽譜の音符が、鳴っている間に色を変えます。",
   },
   sheetColorByTrack: {
@@ -548,7 +548,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   autoCacheSongs: {
     label: "曲を保存しておく",
-    help: "すべてのサンプル曲をいま保存し、更新のたびにもう一度保存します。",
+    help: "すべての収録曲をいま保存し、更新のたびにもう一度保存します。",
   },
   autoCacheSounds: {
     label: "ピアノの音を保存しておく",

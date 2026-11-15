@@ -7,13 +7,13 @@ export const playerLibrary: Translation<typeof en> = {
   rarity: {
     taglines: {
       common: "手の位置は1つで、音はゆっくり。低音は弾くまで待ってくれます。",
-      rare: "両手で弾きます。8分音符とやさしい和音があり、ときどき手が移動します。",
+      rare: "両手で弾きます。8分音符とかんたんな和音があり、ときどき手が移動します。",
       epic: "分散和音、指くぐり、ペダル。",
       legendary: "両手とも忙しく、速く、別々に動きます。",
     },
     originalName: "原曲",
     originalTagline: "作曲家が書いたとおりの音です。",
-    ourOriginalTagline: "楽譜のとおりの曲を、両手用にアレンジしました。",
+    ourOriginalTagline: "楽譜のとおりの曲を、両手用に編曲しました。",
     stepTitle: (name: string, tagline: string) => `${name}：${tagline}`,
   },
   collections: { christmas: "クリスマス", film: "映画の音楽", sea: "船乗りの歌" },
@@ -114,7 +114,7 @@ export const playerLibrary: Translation<typeof en> = {
     count: (n: number) => `${formatNumber("ja", n)}曲`,
   },
   tracks: {
-    hands: { right: "右手", left: "左手", split: "両手（真ん中のドで分ける）", none: "弾かない（アプリが弾きます）" },
+    hands: { right: "右手", left: "左手", split: "両手（真ん中のドで分ける）", none: "弾かない（アプリが弾く）" },
     fromNotes: "音符から判定",
     fromNotesKey: (key: string) => `音符から判定：${key}`,
     useForNew: { label: "新しい曲にも使う", title: "この色、音量、オン・オフを新しい曲にも使う" },
