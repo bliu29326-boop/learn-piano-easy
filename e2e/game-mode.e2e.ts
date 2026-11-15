@@ -11,6 +11,25 @@ function watchErrors(page: Page): string[] {
   return errors;
 }
 
+/**
+ * Records the kind of every game popup the page adds from now on, and returns what reads them. A popup
+ * floats away after 1.2 s, which a slow page's next check can miss.
+ */
+async function recordPops(page: Page): Promise<() => Promise<string[]>> {
+  await page.evaluate(() => {
+    const kinds: string[] = [];
+    (window as unknown as { popKinds: string[] }).popKinds = kinds;
+    new MutationObserver((records) => {
+      for (const record of records) {
+        record.addedNodes.forEach((node) => {
+          if (node instanceof HTMLElement && node.matches(".game-pop")) kinds.push(node.dataset.kind ?? "");
+        });
+      }
+    }).observe(document.body, { childList: true, subtree: true });
+  });
+  return () => page.evaluate(() => (window as unknown as { popKinds: string[] }).popKinds);
+}
+
 test("game_mode_pops_up_judgements_and_hides_when_off", async ({ page }) => {
   const errors = watchErrors(page);
   await page.goto("./play/");
@@ -26,13 +45,14 @@ test("game_mode_pops_up_judgements_and_hides_when_off", async ({ page }) => {
 
   await page.getByRole("button", { name: "Play" }).click();
   await expect(page.getByRole("button", { name: "Pause" })).toBeVisible();
+  const pops = await recordPops(page);
   // Whether each key lands as a hit or a wrong note depends on timing, and either one pops up.
   for (const key of ["q", "e", "t", "q", "e", "t"]) {
     await page.keyboard.down(key);
     await page.waitForTimeout(120);
     await page.keyboard.up(key);
   }
-  await expect(page.locator(".game-pop").first()).toBeAttached();
+  await expect.poll(async () => (await pops()).length).toBeGreaterThan(0);
 
   await page.getByRole("button", { name: "Settings" }).click();
   await toggle.click();
@@ -58,9 +78,10 @@ test("a_note_wait_mode_waits_long_for_scores_late", async ({ page }) => {
   await expect(position).toHaveAttribute("aria-valuenow", "0", { timeout: 20_000 });
   await page.waitForTimeout(1500);
   await expect(position).toHaveAttribute("aria-valuenow", "0");
+  const pops = await recordPops(page);
   await page.keyboard.down("q");
   await page.keyboard.up("q");
-  await expect(page.locator('.game-pop[data-kind="late"]')).toBeAttached();
-  await expect(page.locator('.game-pop[data-kind="perfect"]')).toHaveCount(0);
+  await expect.poll(pops).toContain("late");
+  expect(await pops()).not.toContain("perfect");
   expect(errors).toEqual([]);
 });

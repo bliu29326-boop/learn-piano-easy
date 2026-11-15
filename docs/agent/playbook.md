@@ -297,6 +297,9 @@ Traps a session paid for once, so the next one does not. **It is not a changelog
   draws WebGL in software outside Windows, and each click waits on several frames. On Windows, check
   that `playwright.config.ts` still passes its GPU flags. Count `linkProgram` calls per second
   in an init script, since rebuilt shaders, such as the bloom of `src/render/glow.ts`, are the usual cause.
+- **A check for a game popup after a key press can miss it on CI.** A popup floats away after 1.2 s,
+  and a slow page's `keyboard.up` alone can take that long. Record each popup as it joins the page, as
+  `recordPops` in `e2e/game-mode.e2e.ts` does.
 - **A gate's verify is void while another session works.** Its uncommitted edits void the e2e step
   of `tools/looper/`'s verify. Find its job with `looper exec list`, wait on it with `looper exec wait <id>`, and rerun verify on a
   clean tree.
