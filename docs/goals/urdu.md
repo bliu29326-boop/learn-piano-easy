@@ -12,7 +12,7 @@ stages:
     status: done
   - id: 3
     title: The course in Urdu
-    status: open
+    status: done
   - id: 4
     title: "The song guides in Urdu, from a to m"
     status: open
@@ -119,12 +119,16 @@ hands* each go alone. *Chords* goes with *Rhythm*, *Reading music* with *Meet th
 keys* with *First melodies*. Five fresh reviewers then review the five batches blind.
 **Gate:** stage 2's catalogs are stamped.
 
-- [ ] *Meet the piano* and *First melodies*. `src/learn/lessons/meet-the-piano/texts.ur.ts:1`, `src/learn/lessons/first-melodies/texts.ur.ts:1`
-- [ ] *Rhythm* and *Reading music*. `src/learn/lessons/rhythm/texts.ur.ts:1`, `src/learn/lessons/reading-music/texts.ur.ts:1`
-- [ ] *Both hands* and *Chords*. `src/learn/lessons/both-hands/texts.ur.ts:1`, `src/learn/lessons/chords/texts.ur.ts:1`
-- [ ] *Scales and keys* and *Expression*. `src/learn/lessons/scales-and-keys/texts.ur.ts:1`, `src/learn/lessons/expression/texts.ur.ts:1`
-- [ ] Each world reviewed blind, and every finding settled.
-- [ ] `bun run i18n stamp ur` for each world. `src/i18n/stamps/ur.json:1`
+- [x] *Meet the piano* and *First melodies*. `src/learn/lessons/meet-the-piano/texts.ur.ts:1`, `src/learn/lessons/first-melodies/texts.ur.ts:1`
+- [x] *Rhythm* and *Reading music*. `src/learn/lessons/rhythm/texts.ur.ts:1`, `src/learn/lessons/reading-music/texts.ur.ts:1`
+- [x] *Both hands* and *Chords*. `src/learn/lessons/both-hands/texts.ur.ts:1`, `src/learn/lessons/chords/texts.ur.ts:1`
+- [x] *Scales and keys* and *Expression*. `src/learn/lessons/scales-and-keys/texts.ur.ts:1`, `src/learn/lessons/expression/texts.ur.ts:1`
+- [x] Each world reviewed blind, and every finding settled.
+  - [x] `bun x tsc` and `urdu_texts_keep_their_rules` pass on the five batches.
+  - [x] Five fresh reviewers read the five batches blind.
+  - [x] Settlers apply every finding, and each disputed term is settled in the glossary first.
+  - [x] Each batch with a *wrong* finding is reviewed again.
+- [x] `bun run i18n stamp ur` for each world. `src/i18n/stamps/ur.json:1`
 
 ### 4. The song guides in Urdu, from a to m
 
@@ -133,7 +137,7 @@ keys* with *First melodies*. Five fresh reviewers then review the five batches b
 most eight guides each work side by side, and one fresh reviewer per batch reviews it blind.
 **Gate:** stage 3's worlds are stamped.
 
-- [ ] One `tools/our-songs/<slug>.ur.ts` per slug from `alle-jahre-wieder` to `morgen-kinder`. `tools/our-songs/alle-jahre-wieder.ur.ts:1`
+- [ ] One `tools/our-songs/<slug>.ur.ts` per slug from `air-on-the-g-string` to `mozart-21-andante`. `tools/our-songs/air-on-the-g-string.ur.ts:1`
 - [ ] Each batch reviewed blind, and every finding settled.
 - [ ] `bun tools/make-our-songs.ts` writes the guides, and `bun run i18n stamp ur` stamps them. `public/songs/ours/alle-jahre-wieder/guide.json:1`
 
@@ -143,7 +147,7 @@ most eight guides each work side by side, and one fresh reviewer per batch revie
 **Split:** as stage 4.
 **Gate:** stage 4's guides are stamped.
 
-- [ ] One `tools/our-songs/<slug>.ur.ts` per slug from `o-christmas-tree` to `yankee-doodle`. `tools/our-songs/o-christmas-tree.ur.ts:1`
+- [ ] One `tools/our-songs/<slug>.ur.ts` per slug from `neon-chase` to `yankee-doodle`. `tools/our-songs/neon-chase.ur.ts:1`
 - [ ] Each batch reviewed blind, and every finding settled.
 - [ ] `bun tools/make-our-songs.ts` writes the guides, and `bun run i18n stamp ur` stamps them. `public/songs/ours/o-christmas-tree/guide.json:1`
 
@@ -173,28 +177,37 @@ address or mark that drifts between files.
 
 ### State
 
-Stages 1 and 2 are done. Every catalog section has its `src/i18n/messages/*.ur.ts`, and
-`src/i18n/all-catalogs.ts` and `src/i18n/locale.ts` load them. Six writers translated, six blind
-reviewers read, and settlers applied every finding. The four batches with a *wrong* finding were reviewed
-again. The shell batch needed a third read, for `chords.ordinal` in `src/i18n/messages/player-shell.ur.ts`.
-Every section is stamped in `src/i18n/stamps/ur.json`.
+Stages 1, 2 and 3 are done. Every catalog section and every lesson of the eight worlds has its Urdu
+file, reviewed blind and stamped in `src/i18n/stamps/ur.json`. Each world's `index.ts` loads
+`texts.ur.ts`, as `src/learn/lessons/chords/index.ts:28` shows.
 
-Status lists 44 catalog texts missing on purpose: note letters, time signatures, language names and
-kept words, which would copy the English. The glossary in `docs/reference/translation/ur.md` gained
-about 30 interface rows. Examples: `ونڈو` (feminine) for a dialog, `ویو` for the camera's view, and
-`نظر آنا` over `دکھنا`. § 4 now covers a third-person description of the teacher.
+In stage 3, five writers translated, five fresh reviewers read blind, and settlers applied every
+finding. The three batches with a *wrong* finding were read again: Both hands, Chords with Rhythm, and
+Expression. Expression's second read found one more, so a third reader checked its 13 changed texts.
 
-No page was looked at in `ur` yet, since `ur` is not shipped. Stage 6 looks at every route.
+Status lists 13 lesson texts missing on purpose. They are quiz answers made only of note letters, which
+fall back to the catalog's own letters, as the Hindi files do. The glossary gained rows for `سطر`, a
+line of music, for `پہلی اور آخری کلید سمیت`, counting an interval's ends, and for `فاصلہ`, a move's
+distance. It also gained `پلگ ان کریں`, and § 2 now opens a pick-one question with its question word.
+
+No page was looked at in `ur` yet, since `ur` is not shipped. Stage 6 looks at every route and a lesson.
 
 ### Next
 
-**Stage 3: the course in Urdu.** Run `bun tools/i18n.ts work ur lesson/<world>` for the eight worlds.
-Five writers go side by side, paired as the stage's **Split:** says. Each writes the world's
-`src/learn/lessons/<world>/<lesson>.ur.ts` files and its `texts.ur.ts`. Each also adds the `ur` line to the
-world's `index.ts` translations, as `src/learn/lessons/chords/index.ts:27` does for `fr`. Each brief
-carries the style guide whole. Write arguments and Latin runs with `isolate()`, never typed isolates.
-A world's reviewer reads it blind, as the method's *The reviewer's brief* says, then a settler applies
-the findings. Gate: stage 2's catalogs are stamped.
+**Stage 4: the song guides from a to m.** That is 51 slugs, from `air-on-the-g-string` to
+`mozart-21-andante`. Run `bun tools/i18n.ts work ur guide/<slug>` for each. Seven writers go side by
+side, each with at most eight guides in alphabetical runs. Each writes `tools/our-songs/<slug>.ur.ts`,
+shaped like `tools/our-songs/air-on-the-g-string.ar.ts`. Each brief points the writer at
+`docs/reference/translation/ur.md` to read whole. It names § 5's *A guide's recurring steps* (line 359)
+as the settled wording. Latin runs and song titles go through `isolate()` in template literals, never
+typed isolates.
+
+Review each batch of eight with two fresh reviewers of four guides each, as the playbook says. Use the
+method's *The reviewer's brief*. Each reviewer writes its findings to `.agent-tmp/review-urdu-<batch>.md`
+as `id — kind — weight — problem — Proposed: <text>`, and a settler applies them. Before stamping, Grep
+each touched file for `[^ ]" \+$`, and check raw characters with
+`LC_ALL=C.UTF-8 grep -lP '[\x{2068}\x{2069}\x{00A0}]'`. Then run `bun tools/make-our-songs.ts` and
+`bun tools/i18n.ts stamp ur guide/<slug>`. Gate: stage 3's worlds are stamped.
 
 Expected red: none. `urdu_texts_keep_their_rules` passes.
 

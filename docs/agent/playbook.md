@@ -23,6 +23,9 @@ Traps a session paid for once, so the next one does not. **It is not a changelog
 - **A no-break space typed as itself in Write or Edit can land as an ASCII space.** The rules test
   then fails on `%` or a unit. Type a backslash, then `u00A0`, which the tools write raw. Then Grep each
   file under `src/i18n/messages/` for a digit or `}` followed by an ASCII space and `%`.
+- **A Grep for a raw isolate or no-break space typed into its pattern matches every plain space.** The
+  tool turns the typed characters into ASCII, so it matched every line of `src/learn/lessons/*/*.ur.ts`. Run
+  `LC_ALL=C.UTF-8 grep -lP '[\x{2068}\x{2069}\x{00A0}]'` in Bash, since plain `grep -P` refuses without a UTF-8 locale.
 - **A writer that deletes guide texts can rewrite the lines it kept.** Two writers turned the narrow
   no-break spaces and isolates of `tools/our-songs/<slug>.fr.ts` and `.ar.ts` into plain characters. A
   rework only deletes locale texts, so `git diff -U0` of each locale file must show no added text line.
