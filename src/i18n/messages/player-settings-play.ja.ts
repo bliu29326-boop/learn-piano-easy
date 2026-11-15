@@ -21,6 +21,7 @@ export const playerSettingsPlay: Translation<typeof en> = {
   learnDailyGoal: {
     label: "1日の目標",
     help: "連続記録を続けるために、ピアノを学ぶコースで1日に集めたいXPです。",
+    options: { "10": "10XP", "20": "20XP", "30": "30XP", "50": "50XP" },
   },
   learnSetupDone: {
     label: "初回訪問の完了",

@@ -119,6 +119,7 @@ export const learnLesson: Translation<typeof en> = {
   },
   end: {
     heading: "レッスンクリア",
+    xp: (number: string) => `+${number}XP`,
     stars: (n: number) => `星${formatNumber("ja", 3)}つ中${formatNumber("ja", n)}つ`,
     again: "もう一度弾く",
     saving: "進み具合を保存しています…",
