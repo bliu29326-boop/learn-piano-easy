@@ -312,6 +312,7 @@ and OS were not read online for this guide; § 12 says so.
   teacher never writes *Beethoven* in a Japanese sentence, and every Japanese method uses katakana.
 - **The sections "Learn Piano" and "Just Play Piano" are translated,** since they describe what a
   learner does. "Learn Piano" is `ピアノを学ぶ`, and "Just Play Piano" is `気軽にピアノ`. Neither takes quotes.
+  Inside a sentence, "Learn Piano" is `ピアノを学ぶコース`, since a bare `ピアノを学ぶで` reads as a verb.
 - **The worlds' titles are** ピアノとなかよし, はじめてのメロディー, リズム, 楽譜を読む, 両手で弾く,
   音階と調, 和音, and 表現. `src/learn/course.ts` takes them when Japanese ships.
 - The `kept` list of `src/i18n/typography.ts` holds each kept word a test could misread.

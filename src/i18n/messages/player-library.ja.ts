@@ -83,7 +83,7 @@ export const playerLibrary: Translation<typeof en> = {
       continue: "続きを弾く",
       favourites: "お気に入り",
       path: "入門ルート",
-      pathLead: "最初の音から、はじめてのソナチネまで。次に弾く曲が順に並んでいます。",
+      pathLead: "最初の音から、はじめてのソナチネまで。次のステップが順に並んでいます。",
       pathAll: (n: number) => `全${formatNumber("ja", n)}曲を表示`,
       all: "すべての曲",
       results: "結果",

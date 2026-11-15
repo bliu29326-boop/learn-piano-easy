@@ -8,7 +8,7 @@ export const learnBadges: Translation<typeof en> = {
     "first-note": { name: "はじめての音", description: "レッスンではじめて音を弾く。" },
     "first-lesson": { name: "はじめてのレッスン", description: "はじめてレッスンをクリアする。" },
     "first-three-stars": { name: "星みっつ", description: "星3つでレッスンをクリアする。" },
-    "three-stars-ten": { name: "星あつめ名人", description: "10のレッスンで星3つをとる。" },
+    "three-stars-ten": { name: "星あつめ名人", description: "10レッスンで星3つをとる。" },
     "first-daily-goal": { name: "目標クリア", description: "はじめて1日の目標をクリアする。" },
     "streak-3": { name: "3日連続", description: "3日連続で1日の目標をクリアする。" },
     "streak-7": { name: "1週間連続", description: "7日連続で1日の目標をクリアする。" },

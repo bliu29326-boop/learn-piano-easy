@@ -4,7 +4,7 @@ import type { Translation } from "../translation";
 import type { learnSetup as en } from "./learn-setup.en";
 
 export const learnSetup: Translation<typeof en> = {
-  title: "ピアノを学ぶへようこそ",
+  title: "ピアノを学ぶコースへようこそ",
   welcome: "こんにちは！ピアノの先生です。かんたんな質問に3つ答えたら、一緒に弾きましょう。",
   mascot: "ピアノの先生。はちみつ色の毛で、コーデュロイのジャケットを着たサル",
   close: "セットアップをスキップ",
@@ -18,7 +18,7 @@ export const learnSetup: Translation<typeof en> = {
     computer: { name: "パソコンのキーボード", text: "文字キーで音を弾きます。" },
     screen: { name: "画面", text: "画面の鍵盤を押します。" },
     noMidi: "このブラウザーはMIDIに対応していません。かわりにパソコンのキーボードか画面で弾きましょう。",
-    check: "どれかのキーを押して、音が聞こえるか確かめましょう。",
+    check: "どれかのキーを押して、アプリに伝わるか確かめましょう。",
     checkMidi: "MIDIキーボードのどれかの鍵盤を弾きましょう。",
     checkComputer: "Q、W、Eなどの文字キーを押しましょう。",
     checkScreen: "下の鍵盤を押しましょう。",

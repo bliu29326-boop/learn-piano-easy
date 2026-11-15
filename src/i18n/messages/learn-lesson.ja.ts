@@ -104,7 +104,7 @@ export const learnLesson: Translation<typeof en> = {
       phrase: (countIn: number, ...parts: string[]) =>
         `${formatNumber("ja", countIn)}拍カウントします。そのあと次のように弾きます：${parts.join("、")}。`,
       held: (note: string, beats: number) => `${note}を${formatNumber("ja", beats)}拍のばす`,
-      rest: (beats: number) => (beats === 1 ? "休み" : `${formatNumber("ja", beats)}拍の休み`),
+      rest: (beats: number) => (beats === 1 ? "休符" : `${formatNumber("ja", beats)}拍の休符`),
     },
   },
   song: {

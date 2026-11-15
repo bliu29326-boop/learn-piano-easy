@@ -16,15 +16,15 @@ export const playerSettingsPlay: Translation<typeof en> = {
   },
   learnSounds: {
     label: "ごほうびの音",
-    help: "ピアノを学ぶで、ステップをクリアしたとき、星やバッジをもらったとき、レベルが上がったときに鳴る音です。ピアノの音はいつも鳴ります。",
+    help: "ピアノを学ぶコースで、ステップをクリアしたとき、星やバッジをもらったとき、レベルが上がったときに鳴る音です。ピアノの音はいつも鳴ります。",
   },
   learnDailyGoal: {
     label: "1日の目標",
-    help: "連続記録を続けるために、ピアノを学ぶで1日に集めるXPです。",
+    help: "連続記録を続けるために、ピアノを学ぶコースで1日に集めたいXPです。",
   },
   learnSetupDone: {
     label: "初回訪問の完了",
-    help: "ピアノを学ぶは、初めて開いたときに短い初期設定を表示します。設定が終わるまで表示が続きます。",
+    help: "ピアノを学ぶコースは、初めて開いたときに短い初期設定を表示します。終わるまで表示が続きます。",
   },
   expertControls: {
     label: "エキスパートツール",
@@ -143,7 +143,7 @@ export const playerSettingsPlay: Translation<typeof en> = {
   },
   loopTrainer: {
     label: "ループトレーナー",
-    help: "ゆっくり始めて、くり返すたびに速さを5%ずつ上げ、100%まで上げます。",
+    help: "ゆっくり始めて、くり返すたびに速さを5%ずつ、100%まで上げます。",
   },
   loopTrainerSpeed: {
     label: "ループトレーナーの開始速度（%）",
@@ -280,7 +280,7 @@ export const playerSettingsPlay: Translation<typeof en> = {
   },
   bgTrackOffset: {
     label: "ずらす時間（秒）",
-    help: "トラックの始まりが鳴る、曲の位置を秒で表します。0より小さくすると、トラックの始まりを飛ばします。",
+    help: "トラックの始まりを、曲の何秒目に鳴らすかです。0より小さくすると、トラックの始まりを飛ばします。",
   },
   bgTrackLoop: {
     label: "伴奏トラックをループ再生",
@@ -298,7 +298,7 @@ export const playerSettingsPlay: Translation<typeof en> = {
     },
   },
   resetCamera: {
-    label: "カメラを戻す",
+    label: "カメラを元に戻す",
     help: "シーンをドラッグしたあと、カメラを元に戻します。",
   },
   glowMode: {
@@ -477,7 +477,7 @@ export const playerSettingsPlay: Translation<typeof en> = {
   },
   pianoLineAmplitude: {
     label: "波の高さ",
-    help: "最大の強さで鳴る鍵盤の上での高さを、鍵盤の幅で表します。",
+    help: "最大の強さで鳴る鍵盤の上で、波がどれだけ高くなるかを、鍵盤の幅を1として表します。",
   },
   pianoLineColor: {
     label: "波線の色",

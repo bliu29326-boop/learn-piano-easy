@@ -78,7 +78,7 @@ export const playerShell: Translation<typeof en> = {
   cache: {
     groups: {
       site: { label: "ウェブサイト", description: "サイトそのものです。ページ、コード、スタイル、画像が入っています。どのページをオフラインで開くにも必要です。" },
-      player: { label: "気軽にピアノ", description: "3Dピアノ、プレーヤー、曲リストです。ピアノを学ぶのレッスンでも使われます。" },
+      player: { label: "気軽にピアノ", description: "3Dピアノ、プレーヤー、曲リストです。ピアノを学ぶコースでも使われます。" },
       learn: { label: "ピアノを学ぶ", description: "レッスンコースです。ワールド、レッスン、プロフィールが入っています。" },
       songs: { label: "曲", description: "アプリに入っているすべての曲です。どの曲もオフラインで開けます。" },
       sounds: { label: "ピアノの音", description: "すべての音源セットです。どのセットを選んでも、オフラインでピアノが鳴ります。" },
@@ -94,7 +94,7 @@ export const playerShell: Translation<typeof en> = {
     intro: "保存したファイルは、ネットワークがなくても使えます。それぞれの部分を、個別に保存したり削除したりできます。",
     allSaved: "すべて保存済み",
     noneSaved: "未保存",
-    someSaved: (count, total) => `${files(total)}中${formatNumber("ja", count)}個を保存済み`,
+    someSaved: (count, total) => `${files(total)}中${formatNumber("ja", count)}個が保存済み`,
     status: (size, total, state) => `${size}、${files(total)}、${state}。`,
     saving: (done, total) => `${files(total)}中${formatNumber("ja", done)}個を保存中…`,
     savingGroup: (label) => `${label}を保存中`,

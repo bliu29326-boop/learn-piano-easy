@@ -42,7 +42,7 @@ export const ja: Translation<Messages> = {
     },
     about: {
       title: "このサイトについて",
-      description: "Learn Piano Easyの紹介と、収録しているすべてのもののライセンスです。",
+      description: "Learn Piano Easyの紹介と、収録しているすべての素材のライセンスです。",
     },
     data: {
       title: "データ",
@@ -89,7 +89,7 @@ export const ja: Translation<Messages> = {
   landing: {
     hero: {
       eyebrow: "無料・オープンソース",
-      lead: "音符が鍵盤に落ちてくるのを見たら、自分で弾いてみましょう。1曲ずつ、楽しく。",
+      lead: "音符が鍵盤に落ちてくるのを見たら、自分で弾いてみましょう。1曲ずつ。",
       start: "学びはじめる",
       play: "気軽に弾く",
       proofs: ["アカウント不要", "オフラインで使える", "広告なし"],

@@ -32,7 +32,7 @@ export const playerBar: Translation<typeof en> = {
     speedPercent: (n) => `${formatNumber("ja", n)}%`,
     transpose: "移調",
     loop: "ループ",
-    repeatAll: "全体をリピート",
+    repeatAll: "曲全体をくり返す",
     loopTitles: {
       off: "設定で選んだ小節をループ再生",
       measures: "代わりに曲全体をくり返す",

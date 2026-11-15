@@ -46,7 +46,7 @@ export const playerInput: Translation<typeof en> = {
     },
   },
   keyBinding: {
-    help: "音の鍵盤を押してから、その音を弾くパソコンのキーを押します。Escキーでこのダイアログを閉じます。",
+    help: "鍵盤を1つ選んでから、その音を弾くパソコンのキーを押します。Escキーでこのダイアログを閉じます。",
     open: "キーを変更",
   },
   learnRange: {

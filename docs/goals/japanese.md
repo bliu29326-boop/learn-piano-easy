@@ -9,7 +9,7 @@ stages:
     status: done
   - id: 2
     title: The site and the player in Japanese
-    status: open
+    status: done
   - id: 3
     title: The course in Japanese
     status: open
@@ -75,6 +75,9 @@ characters need Japanese fonts, which draw them differently from Chinese fonts. 
   differently. No space stands beside a Latin word or a digit: `MIDIキーボード`, `3曲`.
 - **Lanes:** stage 1 comes first. Stages 2 to 5 touch disjoint files, but each follows the glossary
   stage 1 writes, so they run in order. Stage 6 needs all of them.
+- **No page loads the Japanese catalog until Japanese ships.** `src/i18n/all-catalogs.ts` holds `ja`
+  for the tools and the tests. Stage 6 adds its chunk to `CATALOG_CHUNKS` of `src/i18n/locale.ts`, when
+  the site serves it.
 
 ## Stages
 
@@ -101,12 +104,12 @@ report what each settles.
 then review them blind, as the method says.
 **Gate:** `docs/reference/translation/ja.md` exists.
 
-- [ ] The site, its pages and *Learn Piano*. `src/i18n/messages/ja.ts:1`, `src/i18n/messages/learn-lesson.ja.ts:1`
-- [ ] The player's shell, bar, library, input and play modes. `src/i18n/messages/player-shell.ja.ts:1`
-- [ ] The player's settings. `src/i18n/messages/player-settings.ja.ts:1`
-- [ ] Each batch reviewed blind, every finding settled, and every *wrong* batch reviewed again.
-- [ ] `bun x tsc` and `japanese_texts_keep_their_rules` pass. `src/i18n/translation-rules.test.ts:1`
-- [ ] `bun run i18n stamp ja` for each catalog section. `src/i18n/stamps/ja.json:1`
+- [x] The site, its pages and *Learn Piano*. `src/i18n/messages/ja.ts:1`, `src/i18n/messages/learn-lesson.ja.ts:1`
+- [x] The player's shell, bar, library, input and play modes. `src/i18n/messages/player-shell.ja.ts:1`
+- [x] The player's settings. `src/i18n/messages/player-settings.ja.ts:1`
+- [x] Each batch reviewed blind, every finding settled, and every *wrong* batch reviewed again.
+- [x] `bun x tsc` and `japanese_texts_keep_their_rules` pass. `src/i18n/translation-rules.test.ts:1`
+- [x] `bun run i18n stamp ja` for each catalog section. `src/i18n/stamps/ja.json:1`
 
 ### 3. The course in Japanese
 
@@ -170,30 +173,37 @@ address or mark that drifts between files.
 
 ### State
 
-Stage 1 is done. `docs/reference/translation/ja.md` holds every section of the method, and the `ja` entry
-of `src/i18n/typography.ts` holds its kept words and thirteen mark rules. The locale row of
-`src/i18n/locale-table.ts:61` is confirmed unchanged: `ja`, `solfege`, `japanese`, not shipped.
+Stages 1 and 2 are done. Every catalog section has its `src/i18n/messages/<section>.ja.ts`, reviewed
+blind by six readers and stamped in `src/i18n/stamps/ja.json`. No batch had a finding of the kind
+*wrong*, so none was reviewed again. The 23 texts `status` still lists are left out on purpose, since
+each equals its English: language names, modifier keys, `+n XP` and the site's name.
 
-The music terms were checked against Japanese Wikipedia through its API. Microsoft's guide, the systems'
-interfaces and Japanese piano methods were not read online. The guide's § 12 and *Open* say which rows
-rest on them.
+`src/i18n/all-catalogs.ts` holds `ja` for the tools and the tests. `CATALOG_CHUNKS` of
+`src/i18n/locale.ts` does not, as the standing decision says. The rules test now strips a chord symbol
+wherever no Latin letter touches it, so `Cコード` and `Aメロ` pass. Test
+`the_japanese_marks_hold_and_spare_kept_words` pins the guide's mark rules.
 
-`src/ui/base.css` already sets `line-break: strict`, `word-break: auto-phrase` and no italic for `ja`.
-`src/ui/tokens.css:221` already names the Japanese fonts. `src/theory/note-names.ts:61` already writes ドレミ.
+The glossary gained the writers' terms, such as 音源セット and 原曲. Its § 6 now says "Learn Piano"
+inside a sentence is ピアノを学ぶコース.
+
+The writer and reviewer briefs that worked are `.agent-tmp/ja-writer-brief.md` and
+`.agent-tmp/ja-reviewer-brief.md`. Reuse them, pointing at the lesson files instead of the catalog.
 
 ### Next
 
-**Stage 2: the site and the player in Japanese.** Files: `src/i18n/messages/*.ja.ts`, created per
-section, and `src/i18n/stamps/ja.json`. Gate: `docs/reference/translation/ja.md` exists.
+**Stage 3: the course in Japanese.** Each lesson is `src/learn/lessons/<world>/<lesson>.ja.ts`, beside
+its `.en.ts`, as `src/learn/lessons/meet-the-piano/black-key-groups.ur.ts` shows. The stage's item
+anchors name `texts.ja.ts`, which does not exist. Each world's `index.ts` gains one line that loads
+its `ja` chunk, as commit `778dcf6` did for Urdu.
 
-- Run `bun tools/i18n.ts status ja`, then `work ja <unit>` per catalog section, as the method's steps say.
-- Three writers side by side, then three blind reviewers. Each brief carries the whole style guide.
-- A key in `src/i18n/messages/player-settings.ja.ts` writes ハ長調 from a tonic letter. It maps C D E F G
-  A B to ハ ニ ホ ヘ ト イ ロ, with 嬰 or 変 before it. The `solfege()` helper of the `es` file is the shape.
-- Add test `japanese_texts_keep_their_rules` to `src/i18n/translation-rules.test.ts`, as the other
-  locales' tests do. Import `test` from `src/testing.ts`.
+- Run `bun tools/i18n.ts work ja lesson/<world>` per world, as the method's steps say.
+- Five writers side by side, in the stage's batches, then five blind reviewers on `reader`.
+- A quiz whose answers are note letters keeps the catalog's own letters.
+- Then `bun tools/i18n.ts stamp ja lesson/<world>` for each world.
 
-Expected red: none.
+Expected red: `a_page_loads_only_its_own_catalog` in `src/i18n/i18n.test.ts:77`. It expects
+`catalogOf("ja").footer` to equal the English, and `ja.ts` now translates the footer. Stage 6 rewrites
+that test's unshipped-locale checks, since `ja` is the last locale to ship.
 
 ### Backlog
 

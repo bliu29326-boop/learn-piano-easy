@@ -192,15 +192,15 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   particleSpeedX: {
     label: "横の速さ",
-    help: "横向きのいちばん速い速さです。単位は1秒あたりの鍵盤の幅です。",
+    help: "横向きの最高の速さです。単位は1秒あたりの鍵盤の幅です。",
   },
   particleSpeedY: {
     label: "上昇の速さ",
-    help: "上昇のいちばん速い速さです。単位は1秒あたりの鍵盤の幅です。",
+    help: "上昇の最高の速さです。単位は1秒あたりの鍵盤の幅です。",
   },
   particlesFriction: {
     label: "空気抵抗",
-    help: "飛んでいるパーティクルが、どれだけ早く遅くなるかです。",
+    help: "飛んでいるパーティクルが、どれだけ急に遅くなるかです。",
   },
   particleRising: {
     label: "重力",
@@ -243,7 +243,7 @@ export const playerSettingsLook: Translation<typeof en> = {
     help: "パーティクルが左右に揺れる幅です。",
   },
   turbulenceXFrequency: {
-    label: "横の揺れの回数",
+    label: "横の揺れの頻度",
     help: "1秒あたりの揺れの回数です。",
   },
   turbulenceYAmplitude: {
@@ -251,7 +251,7 @@ export const playerSettingsLook: Translation<typeof en> = {
     help: "上がっていくパーティクルが上下に揺れる幅です。",
   },
   turbulenceYFrequency: {
-    label: "上昇の揺れの回数",
+    label: "上昇の揺れの頻度",
     help: "1秒あたりの揺れの回数です。",
   },
   particleYOffset: {
@@ -259,7 +259,7 @@ export const playerSettingsLook: Translation<typeof en> = {
     help: "鍵盤の上の高さを、鍵盤の幅を単位にして決めます。",
   },
   particleDistributionX: {
-    label: "鍵盤の横方向の出る位置",
+    label: "出る位置（鍵盤の横方向）",
     help: "各パーティクルが、鍵盤の横方向のどこから出るかです。",
     options: { across: "横幅のどこでも", centre: "真ん中から" },
   },
@@ -268,7 +268,7 @@ export const playerSettingsLook: Translation<typeof en> = {
     help: "パーティクルが出る範囲が、鍵盤の幅のどれだけを占めるかです。",
   },
   particleDistributionY: {
-    label: "鍵盤の縦方向の出る位置",
+    label: "出る位置（鍵盤の縦方向）",
     help: "各パーティクルが、鍵盤の縦方向のどこから出るかです。",
     options: { hitLine: "判定ラインから", key: "鍵盤の上面のどこでも" },
   },
@@ -534,7 +534,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   // PDF
   pdfExportButtonGroup: {
     label: "ノートをPDFで保存",
-    help: "開いている曲の落ちてくるノートを、長さを決めたページにしてPDFで保存するダイアログを開きます。",
+    help: "開いている曲の落ちてくるノートを、好きな長さのページに分けてPDFで保存するダイアログを開きます。",
   },
   exportPdfBackground: {
     label: "背景の色を使う",
