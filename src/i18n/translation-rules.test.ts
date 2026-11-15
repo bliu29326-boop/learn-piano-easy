@@ -17,7 +17,8 @@
  *   never cuts into `Press`. The narrow no-break space counts as Latin in Unicode's data, so the check
  *   skips it, and a kept title stands inside French `« »`.
  * - **Music's Latin passes in every script:** note letters with ♯ and ♭, chord symbols such as `Am7`, and
- *   digits. A text made only of them may equal its English.
+ *   digits. A text made only of them may equal its English. A symbol counts where no Latin letter
+ *   touches it, so Japanese `Cコード` passes, as a script without spaces writes it.
  */
 import { loadUnits, type Leaf, type Text } from "../../tools/i18n";
 import { expect, test } from "../testing";
@@ -132,7 +133,7 @@ function replaceKept(text: string, kept: readonly string[], by: string): string 
 
 /** `text` with its kept words and music's Latin taken out. */
 function withoutKept(text: string, kept: readonly string[]): string {
-  return replaceKept(text, kept, " ").replace(/(?<![\p{L}\p{N}])[A-H][♯♭#b]?(?:maj|min|dim|aug|sus|add|m|M)?\d*(?![\p{L}])/gu, " ");
+  return replaceKept(text, kept, " ").replace(/(?<![\p{scx=Latin}\p{N}])[A-H][♯♭#b]?(?:maj|min|dim|aug|sus|add|m|M)?\d*(?!\p{scx=Latin})/gu, " ");
 }
 
 /** A locale's rules: its typography, its scripts, its direction and its plural forms. */
@@ -379,6 +380,22 @@ test("the_urdu_marks_hold_and_spare_kept_words", () => {
     "بیتھوون نے یہ دھن اپنی نویں سمفنی کے آخری موومنٹ کے لیے لکھی۔", "شاباش! اب بائیں ہاتھ سے بجائیں۔",
   ];
   for (const text of kept) expect(problemsOf([textOf("English", text, "ur")], "ur")).toEqual([]);
+});
+
+test("the_japanese_marks_hold_and_spare_kept_words", () => {
+  const broken = [
+    "レッスンが終わりました.", "準備はいいですか?", "ド、ミ, ソ", "\"再生\"を押します。", "“再生”を押します。", "f(フォルテ)で弾きます。",
+    "第1-4小節", "第1〜4小節", "３曲", "ﾋﾟｱﾉ", "ピアノ を弾きましょう。", "MIDI キーボード", "3 曲", "いいですね！ 次へ進みましょう。",
+    "80 %", "あなたの番です。", "これはドである。", "これはドだ。", "ブラウザで開きます。", "ミュージックプレイヤー", "まず弾きます; 次に聴きます。",
+  ];
+  for (const text of broken) expect(problemsOf([textOf("English", text, "ja")], "ja")).not.toEqual([]);
+  const kept = [
+    "こんにちは！ピアノの先生です。一緒に弾いてみましょう！", "おしい！もう一度弾いてみましょう。", "「再生」を押します。", "「1と2と」と数えます。",
+    "第1～4小節", "MIDIキーボードで弾きましょう。", "3曲", "80%の速さで", "1,234.5曲", "f（フォルテ、強く）", "Cコード（ド・ミ・ソ）", "嬰ヘ短調",
+    "Hark! The Herald Angels Singを両手で弾きましょう。", "ブラウザーで開きます。", "プレーヤー", "ファ♯とシ♭", "Escキーを押します。", "バージョン4.2",
+    "ベートーヴェンは、この曲を交響曲第9番の最後の楽章に書きました。", "フォルダーを探しています…", "ド4",
+  ];
+  for (const text of kept) expect(problemsOf([textOf("English", text, "ja")], "ja")).toEqual([]);
 });
 
 const units = await loadUnits();

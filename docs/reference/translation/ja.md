@@ -268,6 +268,14 @@ and OS were not read online for this guide; § 12 says so.
 | hand crossing | 手の交差 | everyday word, unsourced |
 | low, high band (of the equaliser) | 低域, 高域 | MS; never 低音 or 高音, which name notes |
 | scoring; a scored take | 採点; 採点つきの演奏 | the player's own term |
+| Retry (a failed download) | 再試行 | MS; a system retry, where a lesson says もう一度 |
+| falling note (in the scene); note on a staff | ノート; 音符 | the player's own term; WP *音符* |
+| sound set | 音源セット | the player's own term |
+| demo song; the Original (a song's last step) | デモ曲; 原曲 | everyday words |
+| Your songs (the library's own shelf) | 自分の曲 | keeps the learner unnamed |
+| opacity; thickness | 不透明度; 太さ | MS |
+| Style (a tag kind); Classical (the period) | ジャンル; 古典派 | WP *古典派音楽*; クラシック names all classical music |
+| Sponsor; Legal notice; Your data | 応援する; 運営者情報; データ | everyday words |
 | a guide's stock practice steps | `左手だけで弾きましょう。`, `両手でゆっくり弾きましょう。`, `両手で、4分の3の速さで通して弾きましょう。`, `両手で、楽譜より少しゆっくり通して弾きましょう。`, `両手で、もとの速さで通して弾きましょう。`, `もとの速さで、ペダルもつけて弾きましょう。` | the guides' own forms, one per English step |
 
 ### Which "play" is which
