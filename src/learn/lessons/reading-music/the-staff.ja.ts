@@ -16,7 +16,7 @@ export const theStaffJa: Translation<TheStaffTexts> = {
       text: "5本の線の間には、4つのすきまがあります。これを「間（かん）」といいます。間も下から数えます。",
     },
     "spaces-quiz": {
-      text: "五線の線と線の間には、間がいくつありますか？",
+      text: "五線の線と線のあいだに、間（かん）はいくつありますか？",
       answers: ["3つ", "4つ", "5つ"],
     },
     "line-or-space": {

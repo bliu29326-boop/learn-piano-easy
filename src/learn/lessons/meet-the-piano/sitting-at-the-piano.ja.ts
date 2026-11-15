@@ -6,7 +6,7 @@ export const sittingAtThePianoJa: Translation<SittingAtThePianoTexts> = {
   title: "ピアノの前に座る",
   steps: {
     "face-middle-c": {
-      text: "上手に弾くには、まず座り方が大切です。ピアノの真ん中に、真ん中のドが目の前にくるように座りましょう。そうすると、両手とも鍵盤に楽に届きます。",
+      text: "上手に弾くには、まず座り方が大切です。ピアノの中央で、真ん中のドが目の前にくるように座りましょう。そうすると、両手とも鍵盤に楽に届きます。",
     },
     "find-middle-c": {
       text: "目の前にある鍵盤、真ん中のドを弾きましょう。",

@@ -19,7 +19,7 @@ export const crescendoAndDiminuendoJa: Translation<CrescendoAndDiminuendoTexts> 
       text: "真ん中のドから、ド・レ・ミ・ファ・ソをクレッシェンドで弾きましょう。ド・レ・ミはやさしくゆっくり、ファとソはすばやくしっかり弾きます。",
     },
     "hear-crescendo": {
-      text: "ド・レ・ミ・ファ・ソをクレッシェンドで弾いたお手本を聴きましょう。鍵盤が、前の鍵盤より少しずつ速く下ります。",
+      text: "ド・レ・ミ・ファ・ソをクレッシェンドで弾いたお手本を聴きましょう。1音ごとに、鍵盤が下りる速さが少しずつ速くなります。",
     },
     "how-crescendo-changed": {
       text: "最初の音から最後の音まで、音はどう変わりましたか？",
@@ -39,7 +39,7 @@ export const crescendoAndDiminuendoJa: Translation<CrescendoAndDiminuendoTexts> 
       text: "真ん中のドの上のソから、ソ・ファ・ミ・レ・ドをディミヌエンドで弾きましょう。ソ・ファ・ミはすばやくしっかり、レとドはやさしくゆっくり弾きます。",
     },
     "hear-diminuendo": {
-      text: "ソ・ファ・ミ・レ・ドをディミヌエンドで弾いたお手本を聴きましょう。鍵盤が、前の鍵盤より少しずつゆっくり下ります。",
+      text: "ソ・ファ・ミ・レ・ドをディミヌエンドで弾いたお手本を聴きましょう。1音ごとに、鍵盤が下りる速さが少しずつゆっくりになります。",
     },
     "how-diminuendo-changed": {
       text: "最初の音から最後の音まで、音はどう変わりましたか？",

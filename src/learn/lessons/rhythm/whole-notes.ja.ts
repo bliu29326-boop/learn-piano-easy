@@ -16,7 +16,7 @@ export const wholeNotesJa: Translation<WholeNotesTexts> = {
       answers: ["2拍", "3拍", "4拍"],
     },
     "four-beats-three-ways-demo": {
-      text: "4拍を3通りの方法で満たしてみます。はじめは全音符1つ、次は2分音符2つ、最後は4分音符4つです。どれも同じ長さです。",
+      text: "4拍を3通りで満たすのを聴いてみましょう。はじめは全音符1つ、次は2分音符2つ、最後は4分音符4つです。どれも同じ長さです。",
     },
     "same-as-whole-quiz": {
       text: "全音符1つと同じ長さなのはどれですか？",

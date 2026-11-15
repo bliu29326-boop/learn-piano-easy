@@ -18,7 +18,7 @@ export const halfAndWholeStepsJa: Translation<HalfAndWholeStepsTexts> = {
       text: "ミとファを見てみましょう。あいだに黒鍵がありません。だから、ミからファは半音です。シからドも半音です。",
     },
     "white-half-step": {
-      text: "半音はなれている白鍵の組はどれ？",
+      text: "半音だけはなれている白鍵の組はどれ？",
       answers: ["ドとレ", "ミとファ", "ファとソ"],
     },
     "e-f-and-b-c": {
@@ -31,7 +31,7 @@ export const halfAndWholeStepsJa: Translation<HalfAndWholeStepsTexts> = {
       text: "聴きましょう。ドからレは全音、レからミも全音です。でも、ミからファは半音だけです。",
     },
     "whole-steps-from-c": {
-      text: "弾いてみましょう。真ん中のド・レ・ミを弾きます。どの動きも、黒鍵をこえる全音です。",
+      text: "弾いてみましょう。真ん中のド・レ・ミを弾きます。どの動きも、黒鍵を越える全音です。",
     },
     "f-to-g": {
       text: "ファからソへ上がるのは、半音？それとも全音？",
