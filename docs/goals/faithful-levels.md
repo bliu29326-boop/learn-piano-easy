@@ -227,8 +227,8 @@ acceptance checks pass. The gate fixed four failures:
 
 ### Next
 
-Harvest the goal into `docs/findings.md` § `faithful-levels`, move its checks into the floor, and
-delete its file. `docs/goals/faithful-levels.md:1`
+The harvest is in `docs/findings.md` § `faithful-levels`. Retiring the goal moves its two checks into
+the floor and deletes this file, as the retirement of `song-rows` did. `docs/findings.md:1722`
 
 No test is expected to go red.
 

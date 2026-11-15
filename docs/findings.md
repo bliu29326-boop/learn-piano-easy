@@ -1718,3 +1718,40 @@ from one row.
 - Up and Down move between rows. Right opens a work and Left closes it, mirrored in a right-to-left
   locale.
 - The length's tooltip reads "Length · license · credit" under the key `lengthLicense`.
+
+## faithful-levels
+
+**Target:** the four versions of every song of ours play the source's real phrases instead of bars of
+our own. Medium and Hard use the source's own accompaniment where the limits allow.
+
+### Findings
+
+- 134 versions of 36 songs were reworked, in five batches. Each now plays as `<id>-2.mid`.
+- No version of a public domain song plays a bar its module marks as our own.
+- The songs with an Original of ours were read from it. Every other song was read from the print its
+  module's `source.edition` names, or from its Wikipedia score.
+- A reviewer of eight songs ran out of context before the last one, so each batch took two reviewers.
+- Writers that deleted guide texts rewrote kept French, Russian and Arabic lines with plain spaces. The
+  gate restored each line from the file before the batches.
+- The `legendary` badge now names the current Hard files. A badge earned on the old notes stays earned.
+- The reviews left chords of our own under some tune bars, such as *Spanish Ladies*, *Haul Away Joe*
+  and *Drunken Sailor*. The rules keep a version's chords under the tune, so a later pass may revisit them.
+- The user has not yet listened to the reworked versions.
+
+### Decisions that still bind
+
+- [docs/our-songs.md](our-songs.md) owns the rules of a version's notes, and its § *The versions* owns
+  the reworked file.
+- Every version keeps its limits, and only what fills them changes.
+- A bar of our own is replaced by the source's next real phrase, simplified to the version's limits.
+- Medium and Hard take the source's own figure, and fall back to the level's patterns only where the
+  limits refuse it.
+- Beginner and Easy keep their patterns, and a tune played again keeps the chords under the tune.
+- A reworked version moves to `<id>-2.mid`. The learner's work moves with it, except the fingers set by
+  hand, which stay under the old file.
+- `REWORKED_VERSIONS` in `src/library/moved-songs.ts` is the one home of a version's revision.
+- A module marks each bar of our own, and the songs of our own tunes are exempt.
+- A folk tune in the form sung today is not a bar of our own.
+- A source with no next phrase in a public domain print counts as having none. Its versions repeat the
+  tune in another setting or end on the home chord.
+- A guide text whose meaning changes loses every locale beyond German until that locale's pass.
