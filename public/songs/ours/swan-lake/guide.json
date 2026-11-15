@@ -13,7 +13,8 @@
     "id": "Tchaikovsky menulis musik untuk balet Danau Angsa (Swan Lake) pada 1875 dan 1876, dan Balet Bolshoi pertama kali mementaskannya pada 1877. Tema ini adalah melodi obo dari babak kedua. Film Black Swan (2010) memuat beberapa adegan dari Danau Angsa.",
     "bn": "চাইকোভস্কি Swan Lake ব্যালের সংগীত লেখেন ১৮৭৫ আর ১৮৭৬ সালে, আর Bolshoi Ballet ১৮৭৭ সালে প্রথম এটি মঞ্চে আনে। এই থিমটি দ্বিতীয় অঙ্কে ওবোর সুর। ২০১০ সালের Black Swan সিনেমায় Swan Lake-এর কয়েকটি অংশ আছে।",
     "ru": "Чайковский написал музыку к балету «Лебединое озеро» в 1875 и 1876 годах, а впервые его поставила балетная труппа Большого театра в 1877 году. Эта тема — мелодия гобоя из второго действия. В фильме «Чёрный лебедь» (2010) есть сцены из «Лебединого озера».",
-    "fr": "Tchaïkovski a écrit la musique du ballet « Le Lac des cygnes » en 1875 et 1876, et le Ballet du Bolchoï l’a monté pour la première fois en 1877. Ce thème est la mélodie du hautbois au deuxième acte. Le film Black Swan (2010) contient des séquences du « Lac des cygnes »."
+    "fr": "Tchaïkovski a écrit la musique du ballet « Le Lac des cygnes » en 1875 et 1876, et le Ballet du Bolchoï l’a monté pour la première fois en 1877. Ce thème est la mélodie du hautbois au deuxième acte. Le film Black Swan (2010) contient des séquences du « Lac des cygnes ».",
+    "ur": "⁨Tchaikovsky⁩ نے بیلے ⁨Swan Lake⁩ کی موسیقی 1875 اور 1876 میں لکھی، اور ⁨Bolshoi Ballet⁩ نے اسے پہلی بار 1877 میں اسٹیج پر پیش کیا۔ یہ تھیم دوسرے ایکٹ میں اوبو کی دھن ہے۔ فلم ⁨Black Swan⁩ (2010) میں ⁨Swan Lake⁩ کے کئی حصے شامل ہیں۔"
   },
   "funFact": {
     "en": "Vladimir Begichev commissioned the score in May 1875, and Tchaikovsky received a fee of 800 rubles for it.",
@@ -26,7 +27,8 @@
     "id": "Vladimir Begichev memesan musik ini pada Mei 1875, dan Tchaikovsky menerima bayaran 800 rubel untuknya.",
     "bn": "১৮৭৫ সালের মে মাসে Vladimir Begichev এই সংগীত লেখার ফরমাশ দেন। এর জন্য চাইকোভস্কি ৮০০ রুবল পারিশ্রমিক পান।",
     "ru": "Владимир Бегичев заказал эту музыку в мае 1875 года, и Чайковский получил за неё гонорар в 800 рублей.",
-    "fr": "Vladimir Begitchev a commandé la partition en mai 1875, et Tchaïkovski a reçu 800 roubles pour ce travail."
+    "fr": "Vladimir Begitchev a commandé la partition en mai 1875, et Tchaïkovski a reçu 800 roubles pour ce travail.",
+    "ur": "⁨Vladimir Begichev⁩ نے مئی 1875 میں یہ موسیقی لکھنے کی فرمائش کی، اور ⁨Tchaikovsky⁩ کو اس کے لیے 800 روبل معاوضہ ملا۔"
   },
   "mythic": "ours/swan-lake/mythic.mid",
   "versions": {
@@ -48,7 +50,8 @@
         {
           "text": {
             "en": "Play the first four bars with the right hand alone, and let the song wait for each note.",
-            "de": "Spiel die ersten vier Takte nur mit der rechten Hand, und lass das Stück auf jeden Ton warten."
+            "de": "Spiel die ersten vier Takte nur mit der rechten Hand, und lass das Stück auf jeden Ton warten.",
+            "ur": "پہلے چار میژر صرف دائیں ہاتھ سے بجائیں۔ گانا ہر نوٹ پر آپ کا انتظار کرے گا۔"
           },
           "hands": "right",
           "speed": 0.6,
@@ -58,7 +61,8 @@
         {
           "text": {
             "en": "Play bars 9 to 13 with the right hand alone. Finger 5 moves up from E to G in bar 10.",
-            "de": "Spiel die Takte 9 bis 13 nur mit der rechten Hand. In Takt 10 geht Finger 5 vom E hinauf zum G."
+            "de": "Spiel die Takte 9 bis 13 nur mit der rechten Hand. In Takt 10 geht Finger 5 vom E hinauf zum G.",
+            "ur": "میژر 9 سے 13 تک صرف دائیں ہاتھ سے بجائیں۔ میژر 10 میں انگلی 5 ⁨E⁩ سے اوپر ⁨G⁩ پر جاتی ہے۔"
           },
           "hands": "right",
           "speed": 0.6,
@@ -68,7 +72,8 @@
         {
           "text": {
             "en": "Now the left hand alone. It holds one shape for a whole bar or half a bar.",
-            "de": "Jetzt die linke Hand allein. Sie hält jeden Griff einen ganzen oder einen halben Takt lang."
+            "de": "Jetzt die linke Hand allein. Sie hält jeden Griff einen ganzen oder einen halben Takt lang.",
+            "ur": "اب صرف بایاں ہاتھ۔ یہ پورے میژر یا آدھے میژر تک ایک ہی شکل میں رہتا ہے۔"
           },
           "hands": "left",
           "speed": 0.6,
@@ -78,7 +83,8 @@
         {
           "text": {
             "en": "Put both hands together on the first eight bars, slowly.",
-            "de": "Spiel die ersten acht Takte langsam mit beiden Händen zusammen."
+            "de": "Spiel die ersten acht Takte langsam mit beiden Händen zusammen.",
+            "ur": "پہلے آٹھ میژر دونوں ہاتھوں سے آہستہ آہستہ بجائیں۔"
           },
           "hands": "both",
           "speed": 0.7,
@@ -88,7 +94,8 @@
         {
           "text": {
             "en": "Play the whole song with both hands at full speed.",
-            "de": "Spiel das ganze Stück mit beiden Händen im vollen Tempo."
+            "de": "Spiel das ganze Stück mit beiden Händen im vollen Tempo.",
+            "ur": "پورا گانا دونوں ہاتھوں سے پوری رفتار پر بجائیں۔"
           },
           "hands": "both",
           "speed": 1,
@@ -112,7 +119,8 @@
             "id": "Tahan E pertama sambil menghitung sampai empat. Lalu empat not pendek naik dari A ke D.",
             "bn": "চার পর্যন্ত গোনার সময় প্রথম E ধরে রাখুন। তারপর চারটি ছোট নোট A থেকে D পর্যন্ত ওঠে।",
             "ru": "Держите первое ми, пока считаете до четырёх. Затем четыре короткие ноты поднимаются от ля к ре.",
-            "fr": "Tiens le premier mi en comptant jusqu’à quatre. Puis quatre notes courtes montent du la au ré."
+            "fr": "Tiens le premier mi en comptant jusqu’à quatre. Puis quatre notes courtes montent du la au ré.",
+            "ur": "پہلا ⁨E⁩ دبائے رکھیں اور چار تک گنیں۔ پھر چار چھوٹے نوٹ ⁨A⁩ سے ⁨D⁩ تک چڑھتے ہیں۔"
           }
         },
         {
@@ -130,7 +138,8 @@
             "id": "Melodi ini sedih sekaligus gagah. Biarkan setiap not tinggi yang panjang bernyanyi.",
             "bn": "এটি একটি করুণ, গর্বিত সুর। প্রতিটি লম্বা উঁচু নোটকে গাইতে দিন।",
             "ru": "Это грустная и гордая мелодия. Пусть каждая долгая высокая нота поёт.",
-            "fr": "C’est une mélodie triste et fière. Laisse chanter chaque longue note aiguë."
+            "fr": "C’est une mélodie triste et fière. Laisse chanter chaque longue note aiguë.",
+            "ur": "یہ ایک اداس اور باوقار دھن ہے۔ ہر لمبے اوپر والے نوٹ کو گانے دیں۔"
           }
         },
         {
@@ -148,7 +157,8 @@
             "id": "Di birama ini jari 2 memainkan A, agar ibu jari bisa menjangkau turun ke F.",
             "bn": "এই বারে 2 নম্বর আঙুল A বাজায়, যাতে বুড়ো আঙুল নিচে F পর্যন্ত পৌঁছাতে পারে।",
             "ru": "В этом такте играйте ля 2-м пальцем, чтобы первый палец мог дотянуться вниз к фа.",
-            "fr": "Dans cette mesure, le doigt 2 joue le la, pour que le pouce puisse descendre jusqu’au fa."
+            "fr": "Dans cette mesure, le doigt 2 joue le la, pour que le pouce puisse descendre jusqu’au fa.",
+            "ur": "اس میژر میں انگلی 2 ⁨A⁩ بجاتی ہے، تاکہ انگوٹھا نیچے ⁨F⁩ تک پہنچ سکے۔"
           }
         }
       ],
@@ -157,7 +167,8 @@
           "bar": 10,
           "text": {
             "en": "Finger 5 holds E, then moves up to G. Finger 3 takes F, and finger 2 takes E.",
-            "de": "Finger 5 hält das E und geht dann hinauf zum G. Finger 3 nimmt das F, und Finger 2 nimmt das E."
+            "de": "Finger 5 hält das E und geht dann hinauf zum G. Finger 3 nimmt das F, und Finger 2 nimmt das E.",
+            "ur": "انگلی 5 ⁨E⁩ دبائے رکھتی ہے، پھر اوپر ⁨G⁩ پر جاتی ہے۔ انگلی 3 ⁨F⁩ لیتی ہے، اور انگلی 2 ⁨E⁩۔"
           }
         },
         {
@@ -173,7 +184,8 @@
             "id": "Di sini mainkan A dengan jari 2. Lalu ibu jari menjangkau turun ke F, dan jari 3 mengambil C.",
             "bn": "এখানে 2 নম্বর আঙুলে A বাজান। তারপর বুড়ো আঙুল নিচে F পর্যন্ত পৌঁছায়, আর 3 নম্বর আঙুল C ধরে।",
             "ru": "Здесь сыграйте ля 2-м пальцем. Затем первый палец тянется вниз к фа, а 3-й палец берёт до.",
-            "fr": "Ici, joue le la avec le doigt 2. Puis le pouce descend jusqu’au fa, et le doigt 3 prend le do."
+            "fr": "Ici, joue le la avec le doigt 2. Puis le pouce descend jusqu’au fa, et le doigt 3 prend le do.",
+            "ur": "یہاں ⁨A⁩ انگلی 2 سے بجائیں۔ پھر انگوٹھا نیچے ⁨F⁩ تک پہنچتا ہے، اور انگلی 3 ⁨C⁩ لیتی ہے۔"
           }
         },
         {
@@ -189,7 +201,8 @@
             "id": "Seperti di birama 3, jari 2 memainkan A, dan ibu jari menjangkau turun ke F.",
             "bn": "3 নম্বর বারের মতো 2 নম্বর আঙুল A বাজায়, আর বুড়ো আঙুল নিচে F পর্যন্ত পৌঁছায়।",
             "ru": "Как в такте 3, 2-й палец играет ля, а первый палец тянется вниз к фа.",
-            "fr": "Comme à la mesure 3, le doigt 2 joue le la, et le pouce descend jusqu’au fa."
+            "fr": "Comme à la mesure 3, le doigt 2 joue le la, et le pouce descend jusqu’au fa.",
+            "ur": "میژر 3 کی طرح انگلی 2 ⁨A⁩ بجاتی ہے، اور انگوٹھا نیچے ⁨F⁩ تک پہنچتا ہے۔"
           }
         }
       ]
@@ -221,7 +234,8 @@
             "id": "Mainkan tangan kiri saja. Satu not rendah datang tepat pada ketukan, lalu akor dua not menjawabnya.",
             "bn": "শুধু বাঁ হাতে বাজান। বিটে আসে একটি নিচের নোট, আর দুই নোটের একটি কর্ড তার উত্তর দেয়।",
             "ru": "Сыграйте одной левой рукой. Низкая нота звучит на долю, а аккорд из двух нот ей отвечает.",
-            "fr": "Joue la main gauche seule. Une note grave arrive sur le temps, et un accord de deux notes lui répond."
+            "fr": "Joue la main gauche seule. Une note grave arrive sur le temps, et un accord de deux notes lui répond.",
+            "ur": "صرف بائیں ہاتھ سے بجائیں۔ بیٹ پر ایک نیچے والا نوٹ آتا ہے، اور دو نوٹوں والا کورڈ اس کا جواب دیتا ہے۔"
           },
           "hands": "left",
           "speed": 0.6,
@@ -240,7 +254,8 @@
             "id": "Mainkan tangan kanan saja pada 8 birama pertama, dan biarkan lagu menunggu setiap not.",
             "bn": "প্রথম আটটি বার শুধু ডান হাতে বাজান, আর প্রতিটি নোটের জন্য গানটিকে অপেক্ষা করতে দিন।",
             "ru": "Сыграйте первые восемь тактов одной правой рукой. Песня подождёт каждую ноту.",
-            "fr": "Joue les huit premières mesures à la main droite seule. Le morceau attend chaque note."
+            "fr": "Joue les huit premières mesures à la main droite seule. Le morceau attend chaque note.",
+            "ur": "پہلے آٹھ میژر صرف دائیں ہاتھ سے بجائیں۔ گانا ہر نوٹ پر آپ کا انتظار کرے گا۔"
           },
           "hands": "right",
           "speed": 0.6,
@@ -259,7 +274,8 @@
             "id": "Gabungkan kedua tangan pada 8 birama pertama, pelan-pelan.",
             "bn": "প্রথম আটটি বার দুই হাতে ধীরে ধীরে বাজান।",
             "ru": "Сыграйте первые восемь тактов двумя руками, медленно.",
-            "fr": "Joue les huit premières mesures à deux mains, lentement."
+            "fr": "Joue les huit premières mesures à deux mains, lentement.",
+            "ur": "پہلے آٹھ میژر دونوں ہاتھوں سے آہستہ آہستہ بجائیں۔"
           },
           "hands": "both",
           "speed": 0.6,
@@ -278,7 +294,8 @@
             "id": "Mainkan seluruh lagu dengan kedua tangan, sedikit lebih lambat dari tertulis.",
             "bn": "দুই হাতে পুরো গানটি লেখা গতির চেয়ে একটু ধীরে বাজান।",
             "ru": "Сыграйте всю песню двумя руками чуть медленнее, чем написано.",
-            "fr": "Joue tout le morceau à deux mains, un peu plus lentement que le tempo écrit."
+            "fr": "Joue tout le morceau à deux mains, un peu plus lentement que le tempo écrit.",
+            "ur": "پورا گانا دونوں ہاتھوں سے، لکھی ہوئی رفتار سے تھوڑا آہستہ بجائیں۔"
           },
           "hands": "both",
           "speed": 0.8,
@@ -297,7 +314,8 @@
             "id": "Sekarang mainkan dengan kecepatan penuh.",
             "bn": "এবার পুরো গতিতে বাজান।",
             "ru": "Теперь сыграйте в полном темпе.",
-            "fr": "Maintenant, joue-le au tempo."
+            "fr": "Maintenant, joue-le au tempo.",
+            "ur": "اب اسے پوری رفتار پر بجائیں۔"
           },
           "hands": "both",
           "speed": 1,
@@ -312,7 +330,8 @@
           "kind": "rhythm",
           "text": {
             "en": "The left hand plays on every beat: a low note, then a chord. Count it as one, two.",
-            "de": "Die linke Hand spielt auf jedem Schlag: erst einen tiefen Ton, dann einen Akkord. Zähl dazu eins, zwei."
+            "de": "Die linke Hand spielt auf jedem Schlag: erst einen tiefen Ton, dann einen Akkord. Zähl dazu eins, zwei.",
+            "ur": "بایاں ہاتھ ہر بیٹ پر بجاتا ہے: پہلے ایک نیچے والا نوٹ، پھر ایک کورڈ۔ اسے \"1، 2\" گنیں۔"
           }
         },
         {
@@ -321,7 +340,8 @@
           "kind": "sound",
           "text": {
             "en": "Keep the left hand soft, so the tune sings above it.",
-            "de": "Spiel die linke Hand leise, damit die Melodie darüber singt."
+            "de": "Spiel die linke Hand leise, damit die Melodie darüber singt.",
+            "ur": "بایاں ہاتھ ہلکے سے بجائیں، تاکہ دھن اس کے اوپر گا سکے۔"
           }
         },
         {
@@ -330,7 +350,8 @@
           "kind": "fingering",
           "text": {
             "en": "End with C and A together. Fingers 1 and 4 press them as one.",
-            "de": "Am Ende spielst du C und A zusammen. Finger 1 und 4 drücken sie wie einen Ton."
+            "de": "Am Ende spielst du C und A zusammen. Finger 1 und 4 drücken sie wie einen Ton.",
+            "ur": "آخر میں ⁨C⁩ اور ⁨A⁩ ایک ساتھ بجائیں۔ انگلیاں 1 اور 4 انہیں ایک نوٹ کی طرح دباتی ہیں۔"
           }
         }
       ],
@@ -339,21 +360,24 @@
           "bar": 10,
           "text": {
             "en": "Finger 5 moves up from E to G. Then fingers 3 and 2 take F and E.",
-            "de": "Finger 5 geht vom E hinauf zum G. Dann nehmen Finger 3 und 2 das F und das E."
+            "de": "Finger 5 geht vom E hinauf zum G. Dann nehmen Finger 3 und 2 das F und das E.",
+            "ur": "انگلی 5 ⁨E⁩ سے اوپر ⁨G⁩ پر جاتی ہے۔ پھر انگلیاں 3 اور 2 ⁨F⁩ اور ⁨E⁩ لیتی ہیں۔"
           }
         },
         {
           "bar": 14,
           "text": {
             "en": "As in bar 10, finger 5 moves up from E to G.",
-            "de": "Wie in Takt 10 geht Finger 5 vom E hinauf zum G."
+            "de": "Wie in Takt 10 geht Finger 5 vom E hinauf zum G.",
+            "ur": "میژر 10 کی طرح انگلی 5 ⁨E⁩ سے اوپر ⁨G⁩ پر جاتی ہے۔"
           }
         },
         {
           "bar": 9,
           "text": {
             "en": "Finger 2 starts on B, and each finger climbs one key up to E. The left hand plays G, then D.",
-            "de": "Finger 2 beginnt auf dem H, und jeder Finger steigt eine Taste höher bis zum E. Die linke Hand spielt G, dann D."
+            "de": "Finger 2 beginnt auf dem H, und jeder Finger steigt eine Taste höher bis zum E. Die linke Hand spielt G, dann D.",
+            "ur": "انگلی 2 ⁨B⁩ سے شروع کرتی ہے، اور ہر انگلی ایک ایک کلید اوپر چڑھ کر ⁨E⁩ تک جاتی ہے۔ بایاں ہاتھ ⁨G⁩ بجاتا ہے، پھر ⁨D⁩۔"
           }
         }
       ]
@@ -377,7 +401,8 @@
         {
           "text": {
             "en": "Play bars 1 to 4 with the left hand alone. Shake evenly between the lower notes and the upper note.",
-            "de": "Spiel die Takte 1 bis 4 nur mit der linken Hand. Wechsle gleichmäßig zwischen den unteren Tönen und dem oberen Ton."
+            "de": "Spiel die Takte 1 bis 4 nur mit der linken Hand. Wechsle gleichmäßig zwischen den unteren Tönen und dem oberen Ton.",
+            "ur": "میژر 1 سے 4 تک صرف بائیں ہاتھ سے بجائیں۔ نیچے والے نوٹوں اور اوپر والے نوٹ کے بیچ یکساں انداز میں تیزی سے آگے پیچھے بجائیں۔"
           },
           "hands": "left",
           "speed": 0.5,
@@ -387,7 +412,8 @@
         {
           "text": {
             "en": "Play bars 18 to 24 with the left hand alone. It carries the tune here, under the right hand's tremolo.",
-            "de": "Spiel die Takte 18 bis 24 nur mit der linken Hand. Sie trägt hier die Melodie, unter dem Tremolo der rechten Hand."
+            "de": "Spiel die Takte 18 bis 24 nur mit der linken Hand. Sie trägt hier die Melodie, unter dem Tremolo der rechten Hand.",
+            "ur": "میژر 18 سے 24 تک صرف بائیں ہاتھ سے بجائیں۔ یہاں یہ دائیں ہاتھ کے ٹریمولو کے نیچے دھن بجاتا ہے۔"
           },
           "hands": "left",
           "speed": 0.5,
@@ -397,7 +423,8 @@
         {
           "text": {
             "en": "Join the hands on the first eight bars, slowly.",
-            "de": "Spiel die ersten acht Takte langsam mit beiden Händen zusammen."
+            "de": "Spiel die ersten acht Takte langsam mit beiden Händen zusammen.",
+            "ur": "پہلے آٹھ میژر دونوں ہاتھوں سے آہستہ آہستہ بجائیں۔"
           },
           "hands": "both",
           "speed": 0.5,
@@ -407,7 +434,8 @@
         {
           "text": {
             "en": "Play the whole song with both hands at three-quarter speed.",
-            "de": "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo."
+            "de": "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
+            "ur": "پورا گانا دونوں ہاتھوں سے تین چوتھائی رفتار پر بجائیں۔"
           },
           "hands": "both",
           "speed": 0.75,
@@ -417,7 +445,8 @@
         {
           "text": {
             "en": "Now play it at full speed, with the pedal.",
-            "de": "Jetzt spiel es im vollen Tempo, mit Pedal."
+            "de": "Jetzt spiel es im vollen Tempo, mit Pedal.",
+            "ur": "اب اسے پوری رفتار پر پیڈل کے ساتھ بجائیں۔"
           },
           "hands": "both",
           "speed": 1,
@@ -432,7 +461,8 @@
           "kind": "sound",
           "text": {
             "en": "Play the tremolo as softly as you can, so the tune sings above it.",
-            "de": "Spiel das Tremolo so leise, wie du kannst, damit die Melodie darüber singt."
+            "de": "Spiel das Tremolo so leise, wie du kannst, damit die Melodie darüber singt.",
+            "ur": "ٹریمولو جتنا ہو سکے ہلکے سے بجائیں، تاکہ دھن اس کے اوپر گا سکے۔"
           }
         },
         {
@@ -441,7 +471,8 @@
           "kind": "rhythm",
           "text": {
             "en": "The left hand plays three notes to each beat. Keep them even against the right hand's straight notes.",
-            "de": "Die linke Hand spielt drei Töne auf jeden Schlag. Halt sie gleichmäßig gegen die geraden Töne der rechten Hand."
+            "de": "Die linke Hand spielt drei Töne auf jeden Schlag. Halt sie gleichmäßig gegen die geraden Töne der rechten Hand.",
+            "ur": "بایاں ہاتھ ہر بیٹ پر تین نوٹ بجاتا ہے۔ دائیں ہاتھ کے سیدھے نوٹوں کے مقابلے میں انہیں برابر رکھیں۔"
           }
         },
         {
@@ -450,7 +481,8 @@
           "kind": "sound",
           "text": {
             "en": "The tune is in the left hand now. Let it sing out, and keep the right hand's tremolo softer.",
-            "de": "Die Melodie liegt jetzt in der linken Hand. Lass sie singen, und spiel das Tremolo der rechten Hand leiser."
+            "de": "Die Melodie liegt jetzt in der linken Hand. Lass sie singen, und spiel das Tremolo der rechten Hand leiser.",
+            "ur": "اب دھن بائیں ہاتھ میں ہے۔ اسے کھل کر گانے دیں، اور دائیں ہاتھ کا ٹریمولو اس سے ہلکا رکھیں۔"
           }
         }
       ],
@@ -459,21 +491,24 @@
           "bar": 23,
           "text": {
             "en": "As in bar 19, jump down to the low octave in the short rest. The right hand keeps shaking evenly above.",
-            "de": "Wie in Takt 19 springst du in der kurzen Pause hinunter zur tiefen Oktave. Die rechte Hand wechselt darüber gleichmäßig weiter."
+            "de": "Wie in Takt 19 springst du in der kurzen Pause hinunter zur tiefen Oktave. Die rechte Hand wechselt darüber gleichmäßig weiter.",
+            "ur": "میژر 19 کی طرح چھوٹے ریسٹ میں نیچے والے آکٹیو پر چھلانگ لگائیں۔ دایاں ہاتھ اوپر یکساں انداز میں آگے پیچھے بجاتا رہتا ہے۔"
           }
         },
         {
           "bar": 18,
           "text": {
             "en": "The left hand now plays the tune. It lets go of its chord early, jumps down to a low octave, then climbs from B to E.",
-            "de": "Die linke Hand spielt jetzt die Melodie. Sie lässt ihren Akkord früh los, springt hinunter zu einer tiefen Oktave und steigt dann vom H zum E."
+            "de": "Die linke Hand spielt jetzt die Melodie. Sie lässt ihren Akkord früh los, springt hinunter zu einer tiefen Oktave und steigt dann vom H zum E.",
+            "ur": "اب بایاں ہاتھ دھن بجاتا ہے۔ یہ اپنا کورڈ جلدی چھوڑتا ہے، نیچے والے آکٹیو پر چھلانگ لگاتا ہے، پھر ⁨B⁩ سے ⁨E⁩ تک چڑھتا ہے۔"
           }
         },
         {
           "bar": 19,
           "text": {
             "en": "Let go of the chord a little early, and jump down to the low B octave. Then finger 3 takes D, and the thumb takes F sharp.",
-            "de": "Lass den Akkord etwas früher los, und spring hinunter zur tiefen H-Oktave. Dann nimmt Finger 3 das D und der Daumen das Fis."
+            "de": "Lass den Akkord etwas früher los, und spring hinunter zur tiefen H-Oktave. Dann nimmt Finger 3 das D und der Daumen das Fis.",
+            "ur": "کورڈ تھوڑا پہلے چھوڑ دیں، اور نیچے والے ⁨B⁩ کے آکٹیو پر چھلانگ لگائیں۔ پھر انگلی 3 ⁨D⁩ لیتی ہے، اور انگوٹھا ⁨F⁩ شارپ۔"
           }
         }
       ]
@@ -497,7 +532,8 @@
         {
           "text": {
             "en": "Play bars 1 to 8 with the left hand alone. Shake evenly between the lower notes and the upper note, and keep it very soft.",
-            "de": "Spiel die Takte 1 bis 8 nur mit der linken Hand. Wechsle gleichmäßig zwischen den unteren Tönen und dem oberen Ton, und spiel sehr leise."
+            "de": "Spiel die Takte 1 bis 8 nur mit der linken Hand. Wechsle gleichmäßig zwischen den unteren Tönen und dem oberen Ton, und spiel sehr leise.",
+            "ur": "میژر 1 سے 8 تک صرف بائیں ہاتھ سے بجائیں۔ نیچے والے نوٹوں اور اوپر والے نوٹ کے بیچ یکساں انداز میں تیزی سے آگے پیچھے بجائیں، اور بہت ہلکے سے بجائیں۔"
           },
           "hands": "left",
           "speed": 0.5,
@@ -507,7 +543,8 @@
         {
           "text": {
             "en": "Play bars 9 to 16 with the left hand alone. It plays three notes to each beat, and finger 3 crosses over the thumb.",
-            "de": "Spiel die Takte 9 bis 16 nur mit der linken Hand. Sie spielt drei Töne auf jeden Schlag, und Finger 3 kreuzt über den Daumen."
+            "de": "Spiel die Takte 9 bis 16 nur mit der linken Hand. Sie spielt drei Töne auf jeden Schlag, und Finger 3 kreuzt über den Daumen.",
+            "ur": "میژر 9 سے 16 تک صرف بائیں ہاتھ سے بجائیں۔ یہ ہر بیٹ پر تین نوٹ بجاتا ہے، اور انگلی 3 انگوٹھے کے اوپر سے جاتی ہے۔"
           },
           "hands": "left",
           "speed": 0.5,
@@ -517,7 +554,8 @@
         {
           "text": {
             "en": "Play bars 18 to 24 with the left hand alone. It carries the tune, and jumps down to a low octave in each bar.",
-            "de": "Spiel die Takte 18 bis 24 nur mit der linken Hand. Sie trägt die Melodie und springt in jedem Takt hinunter zu einer tiefen Oktave."
+            "de": "Spiel die Takte 18 bis 24 nur mit der linken Hand. Sie trägt die Melodie und springt in jedem Takt hinunter zu einer tiefen Oktave.",
+            "ur": "میژر 18 سے 24 تک صرف بائیں ہاتھ سے بجائیں۔ یہ دھن بجاتا ہے، اور ہر میژر میں نیچے والے آکٹیو پر چھلانگ لگاتا ہے۔"
           },
           "hands": "left",
           "speed": 0.5,
@@ -527,7 +565,8 @@
         {
           "text": {
             "en": "Play the whole song with both hands at three-quarter speed.",
-            "de": "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo."
+            "de": "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
+            "ur": "پورا گانا دونوں ہاتھوں سے تین چوتھائی رفتار پر بجائیں۔"
           },
           "hands": "both",
           "speed": 0.75,
@@ -537,7 +576,8 @@
         {
           "text": {
             "en": "Now play it at full speed, and let the last chord ring.",
-            "de": "Jetzt spiel es im vollen Tempo, und lass den letzten Akkord klingen."
+            "de": "Jetzt spiel es im vollen Tempo, und lass den letzten Akkord klingen.",
+            "ur": "اب اسے پوری رفتار پر بجائیں، اور آخری کورڈ کی آواز گونجنے دیں۔"
           },
           "hands": "both",
           "speed": 1,
@@ -552,7 +592,8 @@
           "kind": "sound",
           "text": {
             "en": "Play the tremolo as softly as you can. The oboe's tune sings above it.",
-            "de": "Spiel das Tremolo so leise, wie du kannst. Die Melodie der Oboe singt darüber."
+            "de": "Spiel das Tremolo so leise, wie du kannst. Die Melodie der Oboe singt darüber.",
+            "ur": "ٹریمولو جتنا ہو سکے ہلکے سے بجائیں۔ اوبو کی دھن اس کے اوپر گاتی ہے۔"
           }
         },
         {
@@ -561,7 +602,8 @@
           "kind": "rhythm",
           "text": {
             "en": "The left hand plays three notes to each beat. Keep them even against the right hand's straight notes.",
-            "de": "Die linke Hand spielt drei Töne auf jeden Schlag. Halt sie gleichmäßig gegen die geraden Töne der rechten Hand."
+            "de": "Die linke Hand spielt drei Töne auf jeden Schlag. Halt sie gleichmäßig gegen die geraden Töne der rechten Hand.",
+            "ur": "بایاں ہاتھ ہر بیٹ پر تین نوٹ بجاتا ہے۔ دائیں ہاتھ کے سیدھے نوٹوں کے مقابلے میں انہیں برابر رکھیں۔"
           }
         },
         {
@@ -570,7 +612,8 @@
           "kind": "sound",
           "text": {
             "en": "The tune moves into the left hand. Let it sing out, and keep the right hand's tremolo softer.",
-            "de": "Die Melodie wandert in die linke Hand. Lass sie singen, und spiel das Tremolo der rechten Hand leiser."
+            "de": "Die Melodie wandert in die linke Hand. Lass sie singen, und spiel das Tremolo der rechten Hand leiser.",
+            "ur": "دھن بائیں ہاتھ میں چلی جاتی ہے۔ اسے کھل کر گانے دیں، اور دائیں ہاتھ کا ٹریمولو اس سے ہلکا رکھیں۔"
           }
         }
       ],
@@ -579,21 +622,24 @@
           "bar": 23,
           "text": {
             "en": "The left hand plays the tune's F sharp in a chord, then jumps down to a low B octave. Then finger 2 takes D.",
-            "de": "Die linke Hand spielt das Fis der Melodie in einem Akkord und springt dann hinunter zu einer tiefen H-Oktave. Dann nimmt Finger 2 das D."
+            "de": "Die linke Hand spielt das Fis der Melodie in einem Akkord und springt dann hinunter zu einer tiefen H-Oktave. Dann nimmt Finger 2 das D.",
+            "ur": "بایاں ہاتھ دھن کا ⁨F⁩ شارپ ایک کورڈ میں بجاتا ہے، پھر نیچے والے ⁨B⁩ کے آکٹیو پر چھلانگ لگاتا ہے۔ پھر انگلی 2 ⁨D⁩ لیتی ہے۔"
           }
         },
         {
           "bar": 24,
           "text": {
             "en": "Jump down to the low octave, then back up to B. The right hand's tremolo moves to G, then to A sharp.",
-            "de": "Spring hinunter zur tiefen Oktave und dann zurück hinauf zum H. Das Tremolo der rechten Hand geht zum G und dann zum Ais."
+            "de": "Spring hinunter zur tiefen Oktave und dann zurück hinauf zum H. Das Tremolo der rechten Hand geht zum G und dann zum Ais.",
+            "ur": "نیچے والے آکٹیو پر چھلانگ لگائیں، پھر واپس اوپر ⁨B⁩ پر آئیں۔ دائیں ہاتھ کا ٹریمولو ⁨G⁩ پر جاتا ہے، پھر ⁨A⁩ شارپ پر۔"
           }
         },
         {
           "bar": 22,
           "text": {
             "en": "The left hand lets go of its four-note chord early, and jumps down to the low B octave. Then it climbs from B to E.",
-            "de": "Die linke Hand lässt ihren Vierklang früh los und springt hinunter zur tiefen H-Oktave. Dann steigt sie vom H zum E."
+            "de": "Die linke Hand lässt ihren Vierklang früh los und springt hinunter zur tiefen H-Oktave. Dann steigt sie vom H zum E.",
+            "ur": "بایاں ہاتھ اپنا چار نوٹوں والا کورڈ جلدی چھوڑتا ہے، اور نیچے والے ⁨B⁩ کے آکٹیو پر چھلانگ لگاتا ہے۔ پھر یہ ⁨B⁩ سے ⁨E⁩ تک چڑھتا ہے۔"
           }
         }
       ]
@@ -618,7 +664,8 @@
       {
         "text": {
           "en": "Play bars 1 to 9 with the left hand alone. Shake evenly between the lower notes and the upper note, and keep it very soft.",
-          "de": "Spiel die Takte 1 bis 9 nur mit der linken Hand. Wechsle gleichmäßig zwischen den unteren Tönen und dem oberen Ton, und spiel sehr leise."
+          "de": "Spiel die Takte 1 bis 9 nur mit der linken Hand. Wechsle gleichmäßig zwischen den unteren Tönen und dem oberen Ton, und spiel sehr leise.",
+          "ur": "میژر 1 سے 9 تک صرف بائیں ہاتھ سے بجائیں۔ نیچے والے نوٹوں اور اوپر والے نوٹ کے بیچ یکساں انداز میں تیزی سے آگے پیچھے بجائیں، اور بہت ہلکے سے بجائیں۔"
         },
         "hands": "left",
         "speed": 0.5,
@@ -628,7 +675,8 @@
       {
         "text": {
           "en": "Play bars 18 to 25 with the left hand alone. It carries the tune here, and jumps down to a low octave on beat 2.",
-          "de": "Spiel die Takte 18 bis 25 nur mit der linken Hand. Sie trägt hier die Melodie und springt auf Schlag 2 hinunter zu einer tiefen Oktave."
+          "de": "Spiel die Takte 18 bis 25 nur mit der linken Hand. Sie trägt hier die Melodie und springt auf Schlag 2 hinunter zu einer tiefen Oktave.",
+          "ur": "میژر 18 سے 25 تک صرف بائیں ہاتھ سے بجائیں۔ یہاں یہ دھن بجاتا ہے، اور بیٹ 2 پر چھلانگ لگا کر نیچے والا آکٹیو بجاتا ہے۔"
         },
         "hands": "left",
         "speed": 0.5,
@@ -638,7 +686,8 @@
       {
         "text": {
           "en": "Play bars 26 to 38 with the right hand alone. Strike each chord in even groups of three, and keep the wrist loose.",
-          "de": "Spiel die Takte 26 bis 38 nur mit der rechten Hand. Schlag jeden Akkord in gleichmäßigen Dreiergruppen an, und halt das Handgelenk locker."
+          "de": "Spiel die Takte 26 bis 38 nur mit der rechten Hand. Schlag jeden Akkord in gleichmäßigen Dreiergruppen an, und halt das Handgelenk locker.",
+          "ur": "میژر 26 سے 38 تک صرف دائیں ہاتھ سے بجائیں۔ ہر کورڈ کو تین تین کے یکساں گروپوں میں بجائیں، اور کلائی ڈھیلی رکھیں۔"
         },
         "hands": "right",
         "speed": 0.5,
@@ -648,7 +697,8 @@
       {
         "text": {
           "en": "Play bars 39 to 47 with both hands, slowly. Count three even notes to every half bar.",
-          "de": "Spiel die Takte 39 bis 47 langsam mit beiden Händen. Zähl drei gleichmäßige Töne auf jeden halben Takt."
+          "de": "Spiel die Takte 39 bis 47 langsam mit beiden Händen. Zähl drei gleichmäßige Töne auf jeden halben Takt.",
+          "ur": "میژر 39 سے 47 تک دونوں ہاتھوں سے آہستہ آہستہ بجائیں۔ ہر آدھے میژر میں تین برابر نوٹ گنیں۔"
         },
         "hands": "both",
         "speed": 0.6,
@@ -658,7 +708,8 @@
       {
         "text": {
           "en": "Play the whole Scene with both hands at full speed, with the pedal where it is marked.",
-          "de": "Spiel die ganze Szene mit beiden Händen im vollen Tempo, mit Pedal, wo es notiert ist."
+          "de": "Spiel die ganze Szene mit beiden Händen im vollen Tempo, mit Pedal, wo es notiert ist.",
+          "ur": "پورا سین دونوں ہاتھوں سے پوری رفتار پر بجائیں، اور جہاں نشان ہو وہاں پیڈل استعمال کریں۔"
         },
         "hands": "both",
         "speed": 1,
@@ -673,7 +724,8 @@
         "kind": "sound",
         "text": {
           "en": "The oboe sings the theme here. Play the tremolo below it as softly as you can.",
-          "de": "Hier singt die Oboe das Thema. Spiel das Tremolo darunter so leise, wie du kannst."
+          "de": "Hier singt die Oboe das Thema. Spiel das Tremolo darunter so leise, wie du kannst.",
+          "ur": "یہاں اوبو تھیم گاتا ہے۔ اس کے نیچے ٹریمولو جتنا ہو سکے ہلکے سے بجائیں۔"
         }
       },
       {
@@ -682,7 +734,8 @@
         "kind": "rhythm",
         "text": {
           "en": "The left hand plays three notes to each beat. Keep them even against the right hand's straight eighths.",
-          "de": "Die linke Hand spielt drei Töne auf jeden Schlag. Halt sie gleichmäßig gegen die geraden Achtel der rechten Hand."
+          "de": "Die linke Hand spielt drei Töne auf jeden Schlag. Halt sie gleichmäßig gegen die geraden Achtel der rechten Hand.",
+          "ur": "بایاں ہاتھ ہر بیٹ پر تین نوٹ بجاتا ہے۔ دائیں ہاتھ کے سیدھے ایٹتھ نوٹوں کے مقابلے میں انہیں برابر رکھیں۔"
         }
       },
       {
@@ -691,7 +744,8 @@
         "kind": "sound",
         "text": {
           "en": "The tune moves into the left hand. Let it sing out, and keep the right hand's chords a little softer.",
-          "de": "Die Melodie wandert in die linke Hand. Lass sie singen, und spiel die Akkorde der rechten Hand etwas leiser."
+          "de": "Die Melodie wandert in die linke Hand. Lass sie singen, und spiel die Akkorde der rechten Hand etwas leiser.",
+          "ur": "دھن بائیں ہاتھ میں چلی جاتی ہے۔ اسے کھل کر گانے دیں، اور دائیں ہاتھ کے کورڈ تھوڑا ہلکے رکھیں۔"
         }
       },
       {
@@ -700,7 +754,8 @@
         "kind": "sound",
         "text": {
           "en": "The tune returns very loudly in octaves. Then the music grows soft and ends on a quiet B minor chord.",
-          "de": "Die Melodie kehrt sehr laut in Oktaven zurück. Dann wird die Musik leise und endet auf einem ruhigen h-Moll-Akkord."
+          "de": "Die Melodie kehrt sehr laut in Oktaven zurück. Dann wird die Musik leise und endet auf einem ruhigen h-Moll-Akkord.",
+          "ur": "دھن آکٹیو میں بہت زور سے واپس آتی ہے۔ پھر موسیقی ہلکی ہوتی جاتی ہے، اور ایک دھیمے ⁨B⁩ مائنر کورڈ پر ختم ہوتی ہے۔"
         }
       }
     ],
@@ -709,21 +764,24 @@
         "bar": 45,
         "text": {
           "en": "The left hand strikes a low F sharp octave, then leaps up to the C sharp above middle C. The right hand keeps shaking its chord in triplets.",
-          "de": "Die linke Hand schlägt eine tiefe Fis-Oktave an und springt dann hinauf zum Cis über dem mittleren C. Die rechte Hand wiederholt dabei weiter ihren Akkord in Triolen."
+          "de": "Die linke Hand schlägt eine tiefe Fis-Oktave an und springt dann hinauf zum Cis über dem mittleren C. Die rechte Hand wiederholt dabei weiter ihren Akkord in Triolen.",
+          "ur": "بایاں ہاتھ نیچے والے ⁨F⁩ شارپ کا آکٹیو بجاتا ہے، پھر چھلانگ لگا کر مڈل ⁨C⁩ کے اوپر والے ⁨C⁩ شارپ پر جاتا ہے۔ دایاں ہاتھ اپنا کورڈ ٹرپلٹ میں آگے پیچھے بجاتا رہتا ہے۔"
         }
       },
       {
         "bar": 30,
         "text": {
           "en": "The left hand plays a C sharp major chord, jumps down to a low C sharp octave, then leaps back up to B. Hold the pedal across the jump.",
-          "de": "Die linke Hand spielt einen Cis-Dur-Akkord, springt hinunter zu einer tiefen Cis-Oktave und dann zurück hinauf zum H. Halt das Pedal über den Sprung."
+          "de": "Die linke Hand spielt einen Cis-Dur-Akkord, springt hinunter zu einer tiefen Cis-Oktave und dann zurück hinauf zum H. Halt das Pedal über den Sprung.",
+          "ur": "بایاں ہاتھ ⁨C⁩ شارپ میجر کورڈ بجاتا ہے، نیچے والے ⁨C⁩ شارپ کے آکٹیو پر چھلانگ لگاتا ہے، پھر واپس اوپر ⁨B⁩ پر چھلانگ لگاتا ہے۔ چھلانگ کے دوران پیڈل دبائے رکھیں۔"
         }
       },
       {
         "bar": 24,
         "text": {
           "en": "The left hand plays the tune's F sharp in a chord, then jumps down to a low B octave. The pedal holds both as the hand comes back up to D.",
-          "de": "Die linke Hand spielt das Fis der Melodie in einem Akkord und springt dann hinunter zu einer tiefen H-Oktave. Das Pedal hält beide, während die Hand zurück zum D kommt."
+          "de": "Die linke Hand spielt das Fis der Melodie in einem Akkord und springt dann hinunter zu einer tiefen H-Oktave. Das Pedal hält beide, während die Hand zurück zum D kommt.",
+          "ur": "بایاں ہاتھ دھن کا ⁨F⁩ شارپ ایک کورڈ میں بجاتا ہے، پھر نیچے والے ⁨B⁩ کے آکٹیو پر چھلانگ لگاتا ہے۔ جب ہاتھ واپس اوپر ⁨D⁩ پر آتا ہے تو پیڈل دونوں کو تھامے رکھتا ہے۔"
         }
       }
     ]

@@ -229,6 +229,10 @@ of a work, *download*, *loading*, *retry*, *website*, *internet* and *connection
 | the strings (of an orchestra); plucked | تار والے ساز; تار چھیڑنے جیسا | the guides' own terms. `تاروں والے` is not used |
 | a song's home chord; a quick run | گانے کا بنیادی کورڈ; تیز نوٹوں کی لڑی | the guides' own terms |
 | attack, decay, sustain, release | اٹیک, ڈیکے, سسٹین, ریلیز | the terms of synthesizers |
+| tremolo; broken octave; mordent | ٹریمولو; بروکن آکٹیو; مورڈنٹ | the guides' own terms. `بروکن آکٹیو` follows `بروکن کورڈ` |
+| ballet, act, opera, oratorio | بیلے, ایکٹ, اوپرا, اوریٹوریو | unsourced, the European terms |
+| choir; organ; organist; synthesizer | کوئر; آرگن; آرگن نواز; سنتھیسائزر | the guides' own terms. `کورس` names a course, so a choir is never `کورس` |
+| round (a song sung in canon) | راؤنڈ | the guides' own term |
 
 ### The interface glossary
 
@@ -404,7 +408,8 @@ More rules the guides settle:
 - **"Slowly" is `آہستہ آہستہ`, and "soft" is `ہلکے سے`.** `آہستہ` alone stands only on `رفتار`, since
   `آہستہ بولیں` also means "speak softly".
 - **The thumb is `انگوٹھا` in every guide,** and the other fingers are numbers: `انگلی 3`. A finger's name
-  stands only where the English says it, such as "little finger", which is `چھوٹی انگلی`.
+  stands only where the English says it, such as "little finger", which is `چھوٹی انگلی`. A list of
+  finger numbers keeps the thumb's digit, as in `انگلیاں 1 اور 3`.
 - **A counted beat is a digit in straight quotes,** and "and" is `اینڈ`: `"1 اینڈ 2 اینڈ"`.
 
 ### A lesson's recurring lines
