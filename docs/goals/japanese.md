@@ -24,7 +24,7 @@ stages:
     status: done
   - id: 7
     title: "the goal is verified once, and every failure is fixed"
-    status: open
+    status: done
     gate: true
 checks:
   - id: japanese-rules
@@ -187,16 +187,20 @@ address or mark that drifts between files.
 
 ### 7. the goal is verified once, and every failure is fixed
 
-- [ ] Run `looper verify` over the whole goal.
-- [ ] Fix every failure it names in one pass, never deleting or loosening a test.
-- [ ] Run `looper verify` once more, and it is green.
+- [x] Run `looper verify` over the whole goal.
+- [x] Fix every failure it names in one pass, never deleting or loosening a test.
+- [x] Run `looper verify` once more, and it is green.
 
 ## Handoff
 
 ### State
 
-Stages 1 to 6 are done. Only the gate stage is left.
+Every stage is done, and the goal is reached and harvested into `docs/findings.md` § `japanese`.
 
+- **Verify is green on its first run.** tsc, bun test, every end-to-end test, links, layout, prose and
+  lint pass, so stage 7 had nothing to fix. `looper check --name japanese-rules` passes too.
+- **The layout checks in `ja`** run through `PASSED_LOCALES` at `e2e/layout-check.ts:53`, at 360 and
+  1280 pixels, inside `e2e/locales.e2e.ts`. They pass.
 - **The gate holds.** `bun tools/i18n.ts status ja` lists 0 stale and 19 missing. All 19 are the
   deliberate copies that *Standing decisions* names. The English was not changed, so no stamp moved.
 - **Every drift is settled.** The catalog says ノート for a falling note, スコア, 編曲 and 第〜音, and
@@ -210,25 +214,15 @@ Stages 1 to 6 are done. Only the gate stage is left.
 - **The look is done.** Two `reader`s shot all 11 routes, a lesson and the player at 360 and 1280
   pixels in both themes. No page logged an error, and no glyph drew as a box. The one break inside a
   word, 見た|目 in the modes lead, is reworded at `src/i18n/messages/play-modes.ja.ts:7`. The dark
-  phone learn and profile pages were judged only from scaled full-page shots. Stage 7's layout
-  checks cover them.
+  phone learn and profile pages were judged only from scaled full-page shots. The layout checks
+  cover them, and they pass.
 
 ### Next
 
-**Stage 7, the gate: verify the whole goal once, fix every failure in one pass, verify again.**
+**The goal is reached and harvested** into `docs/findings.md` § `japanese`. The driver retires it: the
+checks go into the floor, the goal leaves the chain, and this file is deleted.
 
-- Run `looper verify`. Each step's log is at `.agent-tmp/verify-<name>.log`.
-- The checks this goal reaches are `japanese_texts_keep_their_rules` at
-  `src/i18n/translation-rules.test.ts:1`, `the_japanese_site_reads_in_japanese` at `e2e/locales.e2e.ts:305`,
-  and the layout checks at `e2e/layout-check.ts:43`, which take `ja` for the first time.
-- A layout failure in `ja` is fixed in the text, with a shorter glossary form, never with a smaller font.
-- Once verify is green, tick stage 7, set its status to done, and harvest the goal into
-  `docs/findings.md` § `japanese`, as AGENTS.md § *Goals* says.
-
-**Split:** none. A failing step's log goes to one `reader` if it is long.
-
-Expected red: none known. The rules test has not run since this session's drift fixes, and the layout
-checks have never run in `ja`.
+Expected red: none.
 
 ### Backlog
 
