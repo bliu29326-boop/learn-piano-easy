@@ -18,7 +18,7 @@ stages:
     status: done
   - id: 5
     title: "The song guides in Urdu, from n to z"
-    status: open
+    status: done
   - id: 6
     title: The Urdu site ships
     status: open
@@ -154,9 +154,14 @@ most eight guides each work side by side, and one fresh reviewer per batch revie
 **Split:** as stage 4.
 **Gate:** stage 4's guides are stamped.
 
-- [ ] One `tools/our-songs/<slug>.ur.ts` per slug from `neon-chase` to `yankee-doodle`. `tools/our-songs/neon-chase.ur.ts:1`
-- [ ] Each batch reviewed blind, and every finding settled.
-- [ ] `bun tools/make-our-songs.ts` writes the guides, and `bun run i18n stamp ur` stamps them. `public/songs/ours/o-christmas-tree/guide.json:1`
+- [x] One `tools/our-songs/<slug>.ur.ts` per slug from `neon-chase` to `yankee-doodle`. `tools/our-songs/neon-chase.ur.ts:1`
+  - [x] Four writers, side by side, with runs of eight, seven, seven and seven guides.
+  - [x] `bun x tsc` and `urdu_texts_keep_their_rules` pass on the 29 files.
+- [x] Each batch reviewed blind, and every finding settled.
+  - [x] Two fresh reviewers per batch read it blind, four guides at most each.
+  - [x] Settlers apply every finding, and each guide a *wrong* finding changed is read again whole.
+- [x] `bun tools/make-our-songs.ts` writes the guides, and `bun run i18n stamp ur` stamps them. `public/songs/ours/o-christmas-tree/guide.json:1`
+  - [x] No missing space before a join, and no raw isolate or no-break space in the files.
 
 ### 6. The Urdu site ships
 
@@ -184,43 +189,41 @@ address or mark that drifts between files.
 
 ### State
 
-Stages 1 to 4 are done. Every catalog section, every lesson and the 51 guides from
-`air-on-the-g-string` to `mozart-21-andante` have their Urdu files. Each is reviewed blind and stamped
-in `src/i18n/stamps/ur.json`. Each guide's Urdu is in its `public/songs/ours/<slug>/guide.json`.
+Stages 1 to 5 are done. Every catalog section, every lesson and all 80 song guides have their Urdu
+files. Each is reviewed blind and stamped in `src/i18n/stamps/ur.json`. Each guide's Urdu is in its
+`public/songs/ours/<slug>/guide.json`.
 
-In stage 4, seven writers translated runs of seven or eight guides. Fourteen fresh reviewers then read
-at most four guides each, and seven settlers applied every finding. Five batches had a *wrong*
-finding, all in single texts. Two fresh readers read again the six whole guides those texts sit in,
-and the session settled their 11 findings.
+In stage 5, four writers translated the 29 guides from `neon-chase` to `yankee-doodle`. Eight fresh
+reviewers read at most four guides each, and four settlers applied the findings. Ten guides held a text
+a *wrong* finding changed. Four fresh readers read those again whole, and the session settled their
+24 findings. One of them was real: toccata's "eighty years" read as "that same year" (`اسی`), now `اسّی`.
 
-The glossary gained rows for triplet, grace note, trill, the orchestra's strings, a song's home chord
-and a quick run. § 6 now spells Chopin `شوپن`, Schubert `شوبرٹ` and Handel `ہینڈل`. The `ur` rules
-gained "A space parts an isolated run from the word beside it". A settler's Edit had glued
-`کاؤنٹیس` to an isolated name, and no other check saw it.
+The session settled three calls the reviewers split on. A list of finger numbers keeps the thumb's
+digit, and § 5 now says so. "Finger N takes X" stays `لیتی ہے`, the wording of 20 earlier texts. "Keep
+both notes of a pair together" is `ایک ساتھ دبائیں` in every guide. The glossary gained rows for
+tremolo, broken octave, mordent, ballet, opera, oratorio, choir, organ, synthesizer and a sung round.
 
-Status lists 13 lesson texts missing on purpose. They are quiz answers made only of note letters, which
-fall back to the catalog's own letters, as the Hindi files do. The glossary gained rows for `سطر`, a
-line of music, for `پہلی اور آخری کلید سمیت`, counting an interval's ends, and for `فاصلہ`, a move's
-distance. It also gained `پلگ ان کریں`, and § 2 now opens a pick-one question with its question word.
+Status lists 57 texts missing on purpose, and none stale. The 13 lesson texts are quiz answers made
+only of note letters. The 44 catalog texts are language names, note letters, time signatures and XP
+amounts, which read the same in every locale.
 
 No page was looked at in `ur` yet, since `ur` is not shipped. Stage 6 looks at every route and a lesson.
 
 ### Next
 
-**Stage 5: the song guides from n to z.** That is 29 slugs, from `neon-chase` to `yankee-doodle`.
-Run `bun tools/i18n.ts work ur guide/<slug>` for each. Four writers go side by side, in alphabetical
-runs of eight, seven, seven and seven. Each writes `tools/our-songs/<slug>.ur.ts`, shaped like
-`tools/our-songs/air-on-the-g-string.ur.ts`. Each brief points the writer at
-`docs/reference/translation/ur.md` to read whole, and names § 5's *A guide's recurring steps* as the
-settled wording. Latin runs go through `isolate()` in template literals, never typed isolates. A kept
-name missing from `src/i18n/typography.ts` is reported, never added by a writer.
+**Stage 6: the Urdu site ships.** Gate: `bun run i18n status ur` lists only the 57 texts above.
 
-Review with two fresh reviewers per batch, four guides at most each. Each writes
-`.agent-tmp/review-urdu-<batch>.md` as `id — kind — weight — problem — Proposed: <text>`, and one
-settler per batch applies it. Read again, whole, each guide that holds a text a *wrong* finding
-changed. Before stamping, Grep each touched file for ``[^ ]["`] \+$``, and check raw characters with
-`LC_ALL=C.UTF-8 grep -lP '[\x{2068}\x{2069}\x{00A0}]'`. Then run `bun tools/make-our-songs.ts` and
-`bun tools/i18n.ts stamp ur guide/<slug>`. Gate: stage 4's guides are stamped.
+1. A fresh `reader` reads every Urdu file against `docs/reference/translation/ur.md`, split by unit
+   across readers. Each lists each term, address or mark that drifts between files. Known drift to
+   check: a bare `آہستہ` for tempo, `تیز نوٹ` for a quick note, and `انگلی` before a list of fingers.
+   Settle every listed drift in the files it names.
+2. Set `ur` to `shipped` at `src/i18n/locale.ts:18`, and make the social image at
+   `tools/make-social-image.ts:104`.
+3. Run the layout checks in `ur` at every width, at `e2e/layout-check.ts:43`.
+4. Write `the_urdu_site_reads_in_urdu` in `e2e/locales.e2e.ts`, modelled on the Arabic test there.
+5. Look at every route with `bun run shot --locale ur-PK`, on a phone and a desktop, in both themes.
+   Look for clipped ascenders and missing-glyph boxes.
+6. Name Urdu in `docs/reference/features.md` and `README.md:12`.
 
 Expected red: none. `urdu_texts_keep_their_rules` passes.
 
@@ -229,3 +232,6 @@ Expected red: none. `urdu_texts_keep_their_rules` passes.
 - A read of the course by an Urdu speaker from India would catch words that read as Pakistan's only.
 - A Pakistani piano teacher's read would settle `نوٹ` against `سُر`, `میژر` against `بار`, and `مشق`
   against `ریاض`.
+- Two English texts of `tools/our-songs/william-tell.ts` may misstate the score, by a reader's check.
+  Rare tip 1 says the left hand plays on every beat, but it plays once a half bar. Epic tricky 9 says
+  "sixths", but its first pair is a third. An English fix there gives the Urdu new texts to translate.
