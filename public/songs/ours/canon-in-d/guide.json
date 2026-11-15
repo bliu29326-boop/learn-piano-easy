@@ -15,7 +15,7 @@
     "ru": "Иоганн Пахельбель написал этот канон около 1700 года для трёх скрипок и баса. Бас снова и снова играет одни и те же восемь нот, а каждая скрипка вступает с одной и той же мелодией. Пьеса была забыта, пока Gustav Beckmann впервые не напечатал её в 1919 году. Знаменитой её сделал фильм «Обыкновенные люди» в 1980 году.",
     "fr": "Johann Pachelbel a écrit ce canon vers 1700, pour trois violons sur une ligne de basse. La basse joue les mêmes huit notes encore et encore, et chaque violon entre à son tour avec la même mélodie. Le morceau est resté oublié jusqu’à sa première édition par Gustav Beckmann, en 1919. Le film « Des gens comme les autres » l’a rendu célèbre en 1980.",
     "ur": "⁨Johann Pachelbel⁩ نے یہ کینن تقریباً 1700 میں لکھا، تین وائلن اور ایک بیس لائن کے لیے۔ بیس وہی آٹھ نوٹ بار بار بجاتا ہے، جبکہ ہر وائلن باری باری وہی دھن لے کر آتا ہے۔ یہ کمپوزیشن 1919 تک بھولی بسری رہی، جب ⁨Gustav Beckmann⁩ نے اسے پہلی بار چھاپا۔ فلم ⁨Ordinary People⁩ نے 1980 میں اسے مشہور کر دیا۔",
-    "ja": "ヨハン・パッヘルベルは1700年ごろ、低音の旋律の上で3つのヴァイオリンが奏でる、この「カノン」を書きました。低音は同じ8つの音を何度もくり返し、その上でヴァイオリンが1つずつ、同じメロディーで入ってきます。この曲は忘れられていましたが、1919年にグスタフ・ベックマンが初めて楽譜を出版しました。1980年の映画『普通の人々』で、広く知られるようになりました。"
+    "ja": "ヨハン・パッヘルベルは1700年ごろ、低音のメロディーの上で3つのヴァイオリンが奏でる、この「カノン」を書きました。低音は同じ8つの音を何度もくり返し、その上でヴァイオリンが1つずつ、同じメロディーで入ってきます。この曲は忘れられていましたが、1919年にグスタフ・ベックマンが初めて楽譜を出版しました。1980年の映画『普通の人々』で、広く知られるようになりました。"
   },
   "funFact": {
     "en": "The canon was almost unknown until the late 1960s, and today it is one of the most played pieces at weddings.",
@@ -282,7 +282,7 @@
             "ru": "Сыграйте одной правой рукой нисходящую линию, медленно.",
             "fr": "Joue la main droite seule sur toute la ligne descendante, lentement.",
             "ur": "نیچے اترتی دھن صرف دائیں ہاتھ سے آہستہ آہستہ بجائیں۔",
-            "ja": "下りていく旋律を、右手だけでゆっくり弾きましょう。"
+            "ja": "下りていくメロディーを、右手だけでゆっくり弾きましょう。"
           },
           "hands": "right",
           "speed": 0.6,

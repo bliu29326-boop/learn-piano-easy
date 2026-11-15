@@ -383,7 +383,7 @@
             "en": "Play the left hand alone. It repeats each chord in the gallop's rhythm: long, short, short.",
             "de": "Spiel die linke Hand allein. Sie wiederholt jeden Akkord im Rhythmus des Galopps: lang, kurz, kurz.",
             "ur": "صرف بائیں ہاتھ سے بجائیں۔ یہ ہر کورڈ کو سرپٹ دوڑ کے ردھم میں دہراتا ہے: لمبا، چھوٹا، چھوٹا۔",
-            "ja": "左手だけで弾きましょう。長い、短い、短いのギャロップのリズムで、和音をくり返します。"
+            "ja": "左手だけで弾きましょう。「長い、短い、短い」のギャロップのリズムで、和音をくり返します。"
           },
           "hands": "left",
           "speed": 0.5,
@@ -534,7 +534,7 @@
             "en": "Play the left hand alone. It repeats full chords in the gallop's rhythm: long, short, short.",
             "de": "Spiel die linke Hand allein. Sie wiederholt volle Akkorde im Rhythmus des Galopps: lang, kurz, kurz.",
             "ur": "صرف بائیں ہاتھ سے بجائیں۔ یہ پورے کورڈ سرپٹ دوڑ کے ردھم میں دہراتا ہے: لمبا، چھوٹا، چھوٹا۔",
-            "ja": "左手だけで弾きましょう。長い、短い、短いのギャロップのリズムで、厚い和音をくり返します。"
+            "ja": "左手だけで弾きましょう。「長い、短い、短い」のギャロップのリズムで、厚い和音をくり返します。"
           },
           "hands": "left",
           "speed": 0.5,
@@ -784,7 +784,7 @@
           "en": "In the broken octaves, the thumb takes the low note and finger 5 the high one. Let the wrist rock between them.",
           "de": "Bei den gebrochenen Oktaven nimmt der Daumen den tiefen Ton und Finger 5 den hohen. Lass das Handgelenk zwischen ihnen schaukeln.",
           "ur": "بروکن آکٹیو میں انگوٹھا نیچے والا نوٹ لیتا ہے اور انگلی 5 اوپر والا۔ کلائی کو ان دونوں کے بیچ آگے پیچھے جھولنے دیں۔",
-          "ja": "分散したオクターブでは、低い音を親指で、高い音を小指で弾きます。そのあいだで手首をゆらしましょう。"
+          "ja": "分散オクターブでは、低い音を親指で、高い音を小指で弾きます。そのあいだで手首をゆらしましょう。"
         }
       },
       {
