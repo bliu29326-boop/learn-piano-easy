@@ -12,7 +12,7 @@ stages:
     status: done
   - id: 3
     title: The course in Japanese
-    status: open
+    status: done
   - id: 4
     title: "The song guides in Japanese, from a to m"
     status: open
@@ -78,6 +78,9 @@ characters need Japanese fonts, which draw them differently from Chinese fonts. 
 - **No page loads the Japanese catalog until Japanese ships.** `src/i18n/all-catalogs.ts` holds `ja`
   for the tools and the tests. Stage 6 adds its chunk to `CATALOG_CHUNKS` of `src/i18n/locale.ts`, when
   the site serves it.
+- **A lesson quiz whose answers are note names takes them in ドレミ,** as the Spanish and French files
+  do. A quiz names its right answer by index, so no code reads the letter. A beginner then sees one
+  naming in the prose and in the answers.
 
 ## Stages
 
@@ -119,12 +122,15 @@ hands* each go alone. *Chords* goes with *Rhythm*, *Reading music* with *Meet th
 keys* with *First melodies*. Five fresh reviewers then review the five batches blind.
 **Gate:** stage 2's catalogs are stamped.
 
-- [ ] *Meet the piano* and *First melodies*. `src/learn/lessons/meet-the-piano/texts.ja.ts:1`, `src/learn/lessons/first-melodies/texts.ja.ts:1`
-- [ ] *Rhythm* and *Reading music*. `src/learn/lessons/rhythm/texts.ja.ts:1`, `src/learn/lessons/reading-music/texts.ja.ts:1`
-- [ ] *Both hands* and *Chords*. `src/learn/lessons/both-hands/texts.ja.ts:1`, `src/learn/lessons/chords/texts.ja.ts:1`
-- [ ] *Scales and keys* and *Expression*. `src/learn/lessons/scales-and-keys/texts.ja.ts:1`, `src/learn/lessons/expression/texts.ja.ts:1`
-- [ ] Each world reviewed blind, and every finding settled.
-- [ ] `bun run i18n stamp ja` for each world. `src/i18n/stamps/ja.json:1`
+- [x] *Meet the piano* and *First melodies*. `src/learn/lessons/meet-the-piano/texts.ja.ts:1`, `src/learn/lessons/first-melodies/texts.ja.ts:1`
+- [x] *Rhythm* and *Reading music*. `src/learn/lessons/rhythm/texts.ja.ts:1`, `src/learn/lessons/reading-music/texts.ja.ts:1`
+- [x] *Both hands* and *Chords*. `src/learn/lessons/both-hands/texts.ja.ts:1`, `src/learn/lessons/chords/texts.ja.ts:1`
+- [x] *Scales and keys* and *Expression*. `src/learn/lessons/scales-and-keys/texts.ja.ts:1`, `src/learn/lessons/expression/texts.ja.ts:1`
+- [x] Each world reviewed blind, and every finding settled.
+  - [x] Five blind reviews back.
+  - [x] Every *wrong* and *unnatural* finding applied or answered.
+  - [x] `tsc` and the rules test pass again.
+- [x] `bun run i18n stamp ja` for each world. `src/i18n/stamps/ja.json:1`
 
 ### 4. The song guides in Japanese, from a to m
 
@@ -173,33 +179,40 @@ address or mark that drifts between files.
 
 ### State
 
-Stages 1 and 2 are done. Every catalog section has its `src/i18n/messages/<section>.ja.ts`, reviewed
-blind by six readers and stamped in `src/i18n/stamps/ja.json`. No batch had a finding of the kind
-*wrong*, so none was reviewed again. The 23 texts `status` still lists are left out on purpose, since
-each equals its English: language names, modifier keys, `+n XP` and the site's name.
+Stages 1 to 3 are done. Every catalog section and every lesson of the eight worlds has its `.ja.ts`,
+reviewed blind and stamped in `src/i18n/stamps/ja.json`. Each world's `index.ts` loads its `ja` chunk
+from `texts.ja.ts`. `bun tools/i18n.ts status ja` lists no lesson unit. The 23 catalog texts it lists
+are left out on purpose, since each equals its English.
 
-`src/i18n/all-catalogs.ts` holds `ja` for the tools and the tests. `CATALOG_CHUNKS` of
-`src/i18n/locale.ts` does not, as the standing decision says. The rules test now strips a chord symbol
-wherever no Latin letter touches it, so `Cコード` and `Aメロ` pass. Test
-`the_japanese_marks_hold_and_spare_kept_words` pins the guide's mark rules.
+The course review had 2 *wrong* findings, 14 *unnatural* and 15 *nit*, and every one is applied. Both
+*wrong* findings were in *Meet the piano*, an ambiguous phrase each time. The first sent the batch to
+a second reader. The session checked the second reader's single *wrong* against the English and
+applied it, without a third round.
 
-The glossary gained the writers' terms, such as 音源セット and 原曲. Its § 6 now says "Learn Piano"
-inside a sentence is ピアノを学ぶコース.
+A lesson quiz whose answers are note names takes them in ドレミ, as `## Standing decisions` records.
+The writers' new terms stand in their files, such as 空虚5度, 第1転回形, 間（かん） and 指越え. A boss
+that adds both hands reads `ボス：「エリーゼのために」を両手で`. None of them is in the glossary yet.
 
-The writer and reviewer briefs that worked are `.agent-tmp/ja-writer-brief.md` and
-`.agent-tmp/ja-reviewer-brief.md`. Reuse them, pointing at the lesson files instead of the catalog.
+The page look of a lesson in Japanese waits for stage 6, since no page serves `ja` until it ships.
+
+The lesson briefs that worked are `.agent-tmp/ja-lesson-writer-brief.md` and
+`.agent-tmp/ja-lesson-reviewer-brief.md`. The catalog briefs are `.agent-tmp/ja-writer-brief.md` and
+`.agent-tmp/ja-reviewer-brief.md`.
 
 ### Next
 
-**Stage 3: the course in Japanese.** Each lesson is `src/learn/lessons/<world>/<lesson>.ja.ts`, beside
-its `.en.ts`, as `src/learn/lessons/meet-the-piano/black-key-groups.ur.ts` shows. The stage's item
-anchors name `texts.ja.ts`, which does not exist. Each world's `index.ts` gains one line that loads
-its `ja` chunk, as commit `778dcf6` did for Urdu.
+**Stage 4: the song guides from a to m.** `tools/our-songs/` holds 51 guide modules from
+`air-on-the-g-string.ts` to `mozart-21-andante.ts`, so the item's "to `morgen-kinder`" is stale. Each
+locale's file is `tools/our-songs/<slug>.<locale>.ts`,
+as `tools/our-songs/alle-jahre-wieder.ur.ts` shows.
 
-- Run `bun tools/i18n.ts work ja lesson/<world>` per world, as the method's steps say.
-- Five writers side by side, in the stage's batches, then five blind reviewers on `reader`.
-- A quiz whose answers are note letters keeps the catalog's own letters.
-- Then `bun tools/i18n.ts stamp ja lesson/<world>` for each world.
+- Run `bun tools/i18n.ts work ja guide/<slug>` per slug, and adapt the lesson briefs to the guides.
+- Seven writers of at most eight guides each, side by side. Give the first batch's recurring steps,
+  such as "Play the whole song", to every later brief, as the method's *Before a locale ships* says.
+- Give each batch two reviewers of four songs each, as the playbook says.
+- Mind the playbook's trap that an Edit drops a trailing space before `" +`.
+- Then `bun tools/make-our-songs.ts` and `bun tools/i18n.ts stamp ja guide/<slug>` per slug.
+- Stage 6's consistency read should add the course's new terms and the boss form to the glossary.
 
 Expected red: `a_page_loads_only_its_own_catalog` in `src/i18n/i18n.test.ts:77`. It expects
 `catalogOf("ja").footer` to equal the English, and `ja.ts` now translates the footer. Stage 6 rewrites
