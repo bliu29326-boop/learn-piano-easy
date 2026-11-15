@@ -1755,3 +1755,43 @@ our own. Medium and Hard use the source's own accompaniment where the limits all
 - A source with no next phrase in a public domain print counts as having none. Its versions repeat the
   tune in another setting or end on the home chord.
 - A guide text whose meaning changes loses every locale beyond German until that locale's pass.
+
+## urdu
+
+**Target:** the site, the course and the song guides read in Urdu as if a native teacher wrote them,
+and the Urdu site ships.
+
+### Findings
+
+- `ur` ships in standard Urdu as written in Pakistan. Every catalog section, all eight worlds and every song guide hold their Urdu.
+- `docs/reference/translation/ur.md` is the style guide and glossary, and its § *Open* lists the terms no source settled.
+- No Urdu piano method was reached, so `نوٹ`, `میژر` and `مشق` wait on a Pakistani piano teacher's read.
+- `bun tools/i18n.ts status ur` lists 58 missing of 4546 texts and none stale. Each missing text reads the same in Urdu.
+- The drift pass found one broad drift: a singular `انگلی` before a list of finger numbers, in 166 places.
+- Before a list of fingers, `انگلیاں` stands as subject or object, and `انگلیوں` before a postposition.
+- Shipping Urdu added the world titles to `src/learn/course.ts` and `اردو` to the language setting.
+- Three tests of `src/i18n/i18n.test.ts` used `ur` as the unshipped locale. They use `ja` now.
+- When `ja` ships, those three tests need a locale the table never ships, such as a pseudo-locale.
+- The layout checks pass in `ur` at every width.
+- The pages were looked at in the Naskh fallback only, since the machine had no Nastaliq font.
+- Whether Nastaliq's tall line clips is unchecked until a look with a Nastaliq font installed.
+- The profile's weekday letters in `ur` are Latin, since `Intl` for `ur-PK` gives Latin narrow weekdays.
+- `public/images/social/ur.png` draws its Urdu subtitle in a Naskh system font, as the Arabic image does.
+- Two English texts of `tools/our-songs/william-tell.ts` may misstate the score. A fix there gives every locale new texts.
+- No native Urdu speaker has read the texts, from Pakistan or India.
+
+### Decisions that still bind
+
+- The variety is standard Urdu as written in Pakistan, in the everyday register of Pakistani apps.
+- `lang` is `ur`, `intl` is `ur-PK`, `og` is `ur_PK`, `dir` is `rtl`, and `naming` is `letters`.
+- The learner is `آپ`, and an instruction is its polite form, such as `منتخب کریں`.
+- The learner's gender stays out of the text. Where it cannot, the text uses the honorific plural with `آپ`.
+- A common English loanword is written in Urdu script, and no word is found only in Hindi or only in Persian.
+- Notes are letters, C D E F G A B, each isolated inside Urdu text.
+- `۔` ends a sentence, the comma is `،`, the question mark is `؟`, and a quote stands in straight double quotes.
+- A bar is `میژر`, a piano key is `کلید`, and a computer key is `کی بورڈ کا بٹن`.
+- Initial `s` before `k`, `t` or `p` takes an alef.
+- Numbers follow `Intl` for `ur-PK`, and no digit or separator is set by hand.
+- The script style is Nastaliq, with Naskh as the fallback.
+- A text that reads the same in Urdu stays missing, so the English shows.
+- *Learn Piano Easy*, *MIDI*, the song titles and the composers' names are kept.

@@ -216,8 +216,8 @@ The fallback check moved into `a_page_loads_only_its_own_catalog`, which needs `
 
 ### Next
 
-**The goal is reached.** Harvest it into `docs/findings.md` § `urdu`, move its checks into the floor,
-and delete this file.
+**The goal is reached and harvested** into `docs/findings.md` § `urdu`. The driver retires it: the
+checks go into the floor, the goal leaves the chain, and this file is deleted.
 
 Expected red: none. The japanese goal will turn the same three tests red when `ja` ships, since no
 unshipped locale is left. They then need a locale the table has not shipped, such as a pseudo-locale.
