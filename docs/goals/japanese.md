@@ -81,6 +81,13 @@ characters need Japanese fonts, which draw them differently from Chinese fonts. 
 - **A lesson quiz whose answers are note names takes them in ドレミ,** as the Spanish and French files
   do. A quiz names its right answer by index, so no code reads the letter. A beginner then sees one
   naming in the prose and in the answers.
+- **A text that is the same in Japanese as in English stays missing,** as in Chinese, Hindi and Urdu.
+  These are the languages' own names, the modifier keys and the site's name. The English fallback
+  shows the same text, and the rules test refuses a copy. So stage 6's gate reads "only these 18
+  deliberate copies are missing".
+- **The drifts are settled by the glossary where it has a row.** The reader is a pointer, so each fix
+  is checked against `docs/reference/translation/ja.md` first. Where the glossary has no row, the
+  majority form wins and the glossary gains the row.
 
 ## Stages
 
@@ -167,13 +174,13 @@ address or mark that drifts between files.
 **Gate:** `bun run i18n status ja` lists no missing and no stale text outside `legal`.
 
 - [ ] Every drift the reader lists is settled in the files it names.
-- [ ] `ja` is `shipped`. `src/i18n/locale.ts:18`
-- [ ] The Japanese social image. `tools/make-social-image.ts:104`
-- [ ] The layout checks run in `ja` at 360 and 1280 pixels. `e2e/layout-check.ts:43`
-- [ ] Test `the_japanese_site_reads_in_japanese`: `lang`, the switch's *日本語*, a lesson step and the player in Japanese. `e2e/locales.e2e.ts:1`
+- [x] `ja` is `shipped`. `src/i18n/locale.ts:18`
+- [x] The Japanese social image. `tools/make-social-image.ts:104`
+- [x] The layout checks run in `ja` at 360 and 1280 pixels. `e2e/layout-check.ts:43`
+- [x] Test `the_japanese_site_reads_in_japanese`: `lang`, the switch's *日本語*, a lesson step and the player in Japanese. `e2e/locales.e2e.ts:1`
 - [ ] Look at every route in `ja` with `bun run shot --locale ja-JP`, on a phone and a desktop, in both themes. No line breaks inside a word.
 - [ ] Look for any character drawn as a missing-glyph box, in Chrome on Windows and on an Android phone width.
-- [ ] The feature list and the README name Japanese. `docs/reference/features.md:1`, `README.md:12`
+- [x] The feature list and the README name Japanese. `docs/reference/features.md:1`, `README.md:12`
 
 ### 7. the goal is verified once, and every failure is fixed
 
@@ -185,54 +192,92 @@ address or mark that drifts between files.
 
 ### State
 
-Stages 1 to 5 are done. Every catalog section, every lesson and all 80 guides have their `.ja.ts`.
-Each was reviewed blind and is stamped in `src/i18n/stamps/ja.json`. `public/songs/ours/*/guide.json`
-carries their `ja` texts. `src/i18n/translation-rules.test.ts` and `tsc` pass, and the build is green.
+Stages 1 to 5 are done, and Japanese ships.
 
-Stage 5's review had 3 *wrong* findings, 22 *unnatural* and 15 *nit*, and every one is settled. The
-session checked each *wrong* against the English, so no batch had a second round. Each stage-5 guide
-already used the settled "wait for each note" step. One pedal step dropped `今度は`, as the glossary
-stock form says.
-
-`ABC` joined the Japanese kept words in `src/i18n/typography.ts`, for 「ABCの歌」. The other Latin
-titles the writers kept pass the rules test as they stand.
-
-Stage 5 left these unconfirmed for stage 6's read:
-- the names デイヴィス・ギルバート and オールド・マクドゥーガル;
-- the tune 「セント・ルイス」;
-- the work 「牧人ひつじを」 for *The First Noel*;
-- the terms リフレイン, which one writer used beside サビ, 分散オクターブ and 分散したオクターブ;
-- the chord names レを根音とする和音 and ミを根音とする和音.
-
-Earlier stages left these titles in English for want of a settled Japanese name: 「Away in a Manger」,
-「God Rest Ye Merry, Gentlemen」 and 「Es ist ein Ros entsprungen」. 主和音 for "home chord" and
-ケーレル・ベーラ for Béla Kéler are unconfirmed.
-
-The page look waits for stage 6, since no page serves `ja` until it ships.
+- **The gate holds.** `bun tools/i18n.ts status ja` lists 0 stale and 18 missing, which are all
+  deliberate copies, as *Standing decisions* says. The daily-goal options and the run's `+NXP` are
+  translated and stamped.
+- **`ja` is shipped** in `src/i18n/locale-table.ts:61`, with its chunk in `CATALOG_CHUNKS`. Its world
+  titles are in `src/learn/course.ts:61`, and 日本語 is in the language switch.
+- **`the_japanese_site_reads_in_japanese` passes** at `e2e/locales.e2e.ts:305`. The layout checks take
+  `ja` through `PASSED_LOCALES`, which derives from the shipped locales.
+- **`src/i18n/i18n.test.ts` is green.** Its load check uses `en-XA`, since `all-catalogs` loads every
+  shipped locale. Its "no locale owns it" checks use Korean.
+- `public/images/social/ja.png` draws Japanese with no missing glyph. A phone shot of the home page and
+  a desktop shot of the learn page read well, with no line break inside a word.
+- **The consistency read is done, and no drift is fixed yet.** Four `reader`s read the catalog, the
+  course and the guides. Their findings, each with its settled fix, are under *Next*.
 
 ### Next
 
-**Stage 6: the Japanese site ships.**
+**Stage 6, the rest: settle the drifts, then look at every page.**
 
-- **The gate is red first.** `bun tools/i18n.ts status ja` lists 23 catalog texts missing, all added
-  since stage 2:
-  - `player-settings`: 16
-  - `player-bar`: 4
-  - `site`: 2
-  - `learn-lesson`: 1
+Check each fix against the glossary and the English before you make it. Paths are under
+`src/i18n/messages/`, `src/learn/lessons/` or `tools/our-songs/`. Restamp every unit you touch. Run
+`bun tools/make-our-songs.ts` after a guide edit.
 
-  Translate them with `bun tools/i18n.ts work ja catalog/<section>`, review them, and stamp them.
-- Then the consistency read: one fresh `reader` over every Japanese file against
-  `docs/reference/translation/ja.md`. It lists each drifting term, address or mark.
-- That read adds the course's new terms to the glossary: 空虚5度, 第1転回形, 間（かん）, 指越え. It also
-  adds the boss form `ボス：「エリーゼのために」を両手で`, plus the guides' トリル, トレモロ, 3連符 and 輪唱.
-- It checks every unconfirmed name and title under *State*.
-- Then `ja` ships in `src/i18n/locale.ts:18` and its chunk joins `CATALOG_CHUNKS`. The stage's other
-  items follow in order.
+**The catalog:**
+- [ ] A falling note in the scene is ノート, as the glossary row says. Change 音符 at `ja.ts:24,92,101,122`,
+  `play-modes.ja.ts:53,54,89`, `player-settings.ja.ts:54,73`, `player-settings-play.ja.ts:81,97,320` and
+  `player-shell.ja.ts:81`. Keep 音符 where the text means a note on a staff. If the hero lead changes,
+  redraw `public/images/social/ja.png` with `bun tools/make-social-image.ts`. Commit only `ja.png`.
+- [ ] Use スコア, never 点数: `ja.ts:33`, `play-modes.ja.ts:17,33,40`. Use 編曲, never アレンジ:
+  `player-library.ja.ts:16`. Use 第〜音, never 度数: `player-settings-look.ja.ts:339,344`.
+- [ ] Write 全体表示 and 表示の左右移動 at `player-settings-play.ja.ts:32`, as the bar says. Write かんたん at
+  `player-library.ja.ts:10` and `player-settings-look.ja.ts:349`, since やさしい names a level.
+- [ ] Use ボスに勝つ at `learn-badges.ja.ts:28`, 使った at `player-input.ja.ts:117`, and すべての収録曲 at
+  `player-settings-look.ja.ts:551`. The label at `player-library.ja.ts:117` becomes 弾かない（アプリが弾く）.
+- [ ] Kana for はじめて, つける and いま in every catalog file: `src/i18n/messages/player-shell.ja.ts:120`.
+  The child-reader rule asks it, and `src/i18n/messages/player-settings-look.ja.ts:107` is another.
 
-Expected red: `a_page_loads_only_its_own_catalog` in `src/i18n/i18n.test.ts:77`. It expects
-`catalogOf("ja").footer` to equal the English, and `ja.ts` now translates the footer. Stage 6 rewrites
-that test's unshipped-locale checks, since `ja` is the last locale to ship.
+**The course:**
+- [ ] Write `Cコード`, `Fコード` and `Gコード` at `chords/c-f-and-g.ja.ts:9` and `chords/major-triads.ja.ts:9`.
+- [ ] Use すき間 at `reading-music/the-staff.ja.ts:16,23`, and 1つとばし at
+  `reading-music/reading-steps-and-skips.ja.ts:6`. Use 指くぐり at `expression/legato.ja.ts:61`.
+- [ ] Write あいだ for "while" and "between", the majority form. The reader named `expression/phrases.ja.ts:9,49`,
+  `rhythm/whole-notes.ja.ts:30`, `rhythm/half-notes.ja.ts:19`, `chords/major-triads.ja.ts:12`,
+  `chords/the-waltz-bass.ja.ts:44` and `expression/loud-and-soft.ja.ts:46,63`. The staff's 間 stays.
+- [ ] A quiz answer takes no 。 inside it. Use 、 at `meet-the-piano/sitting-at-the-piano.ja.ts:42`,
+  `both-hands/hands-apart-then-together.ja.ts:16`, `expression/playing-with-feeling.ja.ts:55` and
+  `meet-the-piano/octaves.ja.ts:35`.
+
+**The guides:**
+- [ ] Use すき間 at `neon-chase.ja.ts:24` and `o-holy-night.ja.ts:85`. Use かえる at `we-three-kings.ja.ts:23`
+  and `yankee-doodle.ja.ts:40`. Use 分散オクターブ at `silent-night.ja.ts:73,80` and `william-tell.ja.ts:101`.
+- [ ] Use とび at `the-blue-danube.ja.ts:15` and はねる at `the-sorcerers-apprentice.ja.ts:21,59`. Use
+  ヴァイオリン at `air-on-the-g-string.ja.ts:8,11,23`. Use ダンパーペダル at `moonlight-sonata.ja.ts:12`.
+- [ ] Use 低音 for a bass note at `chopin-nocturne-c-sharp-minor.ja.ts:59`, `clair-de-lune.ja.ts:61`,
+  `dies-irae.ja.ts:59,71`, `ding-dong-merrily-on-high.ja.ts:48` and `carol-of-the-bells.ja.ts:60`.
+  ストライド奏法のベース stays. Use メロディー at `canon-in-d.ja.ts:7,33` and `mozart-21-andante.ja.ts:55`.
+- [ ] Put the counted rhythms in 「」, as `william-tell.ja.ts:21` does: `o-christmas-tree.ja.ts:24`,
+  `ode-to-joy.ja.ts:43`, `o-come-all-ye-faithful.ja.ts:25,44`, `o-du-froehliche.ja.ts:25`,
+  `haul-away-joe.ja.ts:22`, `jingle-bells.ja.ts:39` and `joy-to-the-world.ja.ts:40`.
+- [ ] Write 1つ and 2つ in one phrase that repeats across guides. Fix 低い音ひとつ in `jingle-bells.ja.ts:16`,
+  `hall-of-the-mountain-king.ja.ts:20`, `happy-birthday.ja.ts:17`, `it-came-upon-the-midnight-clear.ja.ts:17`
+  and `last-horizon.ja.ts:18`. Leave a kana count elsewhere, which §8 allows.
+- [ ] Check against the English, then fix: サビ or リフレイン in `o-come-all-ye-faithful.ja.ts:26,38` and
+  `o-holy-night.ja.ts:53,61,73`. Check 3拍子 against 3/4 at `dies-irae.ja.ts:41` and `handel-sarabande.ja.ts:8`.
+  Check D against Dm at `beethoven-7-allegretto.ja.ts:60` and `handel-sarabande.ja.ts:61`. Use アルペジオ at
+  `morning-mood.ja.ts:109`. Write 分散和音 or アルペジオ wherever the English says broken chord or arpeggio.
+- [ ] Names and titles: ヨーゼフ・モール at `silent-night.ja.ts:8`, and セントルイス at
+  `o-little-town-of-bethlehem.ja.ts:10`, as `the-entertainer.ja.ts:7` writes it. Use 「ゆかいな牧場」 at
+  `old-macdonald-had-a-farm.ja.ts:7`, as the course does. Use 「もみの木」 at `o-christmas-tree.ja.ts:7`.
+  Every other Latin title and name stays: no reader could confirm a Japanese form offline.
+
+**The glossary** `docs/reference/translation/ja.md` gains rows for 空虚5度 (first use, then 5度),
+第1転回形 and 第2転回形, 間（かん）, 指越え and 指くぐり with their verbs, and the boss form
+`ボス：「…」を両手で`. It also gains `C、F、Gコード`, 第2線, トリル, トレモロ, モルデント, 3連符, 輪唱 and
+リフレイン.
+
+**Then the look:**
+- [ ] Every route in `ja` with `tools/shot.ts:1` and `--locale ja-JP`, on a phone and a desktop.
+  Shoot both themes. Serve one build as the playbook's `bun run preview` bullet says.
+- [ ] A missing-glyph box, in Chrome on Windows and at an Android phone's width. `src/ui/tokens.css:1`
+
+**Split:** the three file groups are disjoint, so three writing subagents may take one each. The
+session writes the glossary rows, builds and stamps.
+
+Expected red: none known. Stage 7 runs the layout checks in `ja` for the first time.
 
 ### Backlog
 
