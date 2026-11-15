@@ -136,6 +136,7 @@ and OS were not read online for this guide; § 12 says so.
 | call and answer (phrases) | 呼びかけとこたえ | the course's own term, unsourced |
 | pattern (of notes) | パターン; 音型 in a guide | WP *オスティナート*, one source |
 | verse, chorus | Aメロ, サビ | WP *サビ*, one source |
+| a numbered verse (a strophe) | `1番`, `2番` | everyday words |
 | coda | コーダ | WP *コーダ*; JM |
 | dynamics | 強弱 | WP *強弱法*; JM |
 | loud, soft | 強く, 弱く | WP *強弱法*; JM |
@@ -276,7 +277,7 @@ and OS were not read online for this guide; § 12 says so.
 | opacity; thickness | 不透明度; 太さ | MS |
 | Style (a tag kind); Classical (the period) | ジャンル; 古典派 | WP *古典派音楽*; クラシック names all classical music |
 | Sponsor; Legal notice; Your data | 応援する; 運営者情報; データ | everyday words |
-| a guide's stock practice steps | `左手だけで弾きましょう。`, `両手でゆっくり弾きましょう。`, `両手で、4分の3の速さで通して弾きましょう。`, `両手で、楽譜より少しゆっくり通して弾きましょう。`, `両手で、もとの速さで通して弾きましょう。`, `もとの速さで、ペダルもつけて弾きましょう。` | the guides' own forms, one per English step |
+| a guide's stock practice steps | `左手だけで弾きましょう。`, `両手でゆっくり弾きましょう。`, `両手で、4分の3の速さで通して弾きましょう。`, `両手で、楽譜より少しゆっくり通して弾きましょう。`, `両手で、もとの速さで通して弾きましょう。`, `今度はもとの速さで弾きましょう。`, `もとの速さで、ペダルもつけて弾きましょう。`, `最初の4小節を右手だけで弾きましょう。曲は1音ずつ待ってくれます。` | the guides' own forms, one per English step |
 
 ### Which "play" is which
 

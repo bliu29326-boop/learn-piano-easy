@@ -117,7 +117,7 @@ const KEPT_IN_OWN_SCRIPT: readonly string[] = [
   "dB", "ms", "KB", "MB", "px", "3D", "Esc", "BWV", "K.", "HWV",
   "mezzo-piano", "mezzo-forte", "ritardando", "rallentando", "piano", "forte", "rit.", "rall.", "decresc.", "cresc.",
   "dim.", "a tempo", "Ped.", "mp", "mf", "pp", "ff", "p", "f",
-  "Q", "W", "Z", "M", "I", "R", "V",
+  "Q", "W", "Z", "M", "I", "R", "V", "J",
 ];
 
 /** Each locale's rules. English is the source, and German is checked by eye, so the test skips both. */
