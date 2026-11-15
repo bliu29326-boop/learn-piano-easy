@@ -4,7 +4,7 @@ import type { playModes as en } from "./play-modes.en";
 
 export const playModes: Translation<typeof en> = {
   eyebrow: "よーい、スタート！",
-  lead: "モードを選ぶと、プレーヤーがぴったりの曲、手助け、見た目に自動で整います。あとは弾くだけです。",
+  lead: "モードを選ぶと、ぴったりの曲と手助けと表示を、プレーヤーが自動で整えます。あとは弾くだけです。",
   note: "モードは、プレーヤーの設定をいくつか変えます。始まったあとでも、1回押すだけで元に戻せます。どの設定も、あとから変えられます。",
   traits: "このモードの設定",
   song: (title) => `曲：${title}`,
