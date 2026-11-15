@@ -20,13 +20,13 @@ export const theWaltzBassUr: Translation<TheWaltzBassTexts> = {
       answers: ["بیٹ 2", "بیٹ 1", "بیٹ 3"],
     },
     "c-waltz": {
-      text: `اب ${isolate("C")} پر آپ کی باری۔ انگلی 5 سے مڈل ${isolate("C")} سے نیچے والا ${isolate("C")} بجائیں، پھر انگلی 3 اور 1 سے ${isolate("E")} اور ${isolate("G")} ایک ساتھ، دو بار۔ دو میژر بجائیں۔`,
+      text: `اب ${isolate("C")} پر آپ کی باری۔ انگلی 5 سے مڈل ${isolate("C")} سے نیچے والا ${isolate("C")} بجائیں، پھر انگلیوں 3 اور 1 سے ${isolate("E")} اور ${isolate("G")} ایک ساتھ، دو بار۔ دو میژر بجائیں۔`,
     },
     "g-and-f-shapes": {
       text: `یہی پیٹرن ہر کورڈ پر چلتا ہے۔ ${isolate("G")} کے لیے نیچے والا ${isolate("G")} بجائیں، پھر ${isolate("B")} اور ${isolate("D")}۔ ${isolate("F")} کے لیے نیچے والا ${isolate("F")} بجائیں، پھر ${isolate("A")} اور ${isolate("C")}۔`,
     },
     "g-waltz": {
-      text: `ہاتھ نیچے لے جائیں، اس ${isolate("G")} پر جو مڈل ${isolate("C")} سے نیچے والے ${isolate("C")} کے نیچے ہے۔ انگلی 5 سے ${isolate("G")} بجائیں، پھر انگلی 3 اور 1 سے ${isolate("B")} اور ${isolate("D")} ایک ساتھ، دو بار۔`,
+      text: `ہاتھ نیچے لے جائیں، اس ${isolate("G")} پر جو مڈل ${isolate("C")} سے نیچے والے ${isolate("C")} کے نیچے ہے۔ انگلی 5 سے ${isolate("G")} بجائیں، پھر انگلیوں 3 اور 1 سے ${isolate("B")} اور ${isolate("D")} ایک ساتھ، دو بار۔`,
     },
     "f-beats-two-and-three": {
       text: `${isolate("F")} والے میژر میں بایاں ہاتھ دوسری اور تیسری بیٹ پر کیا بجاتا ہے؟`,
@@ -37,7 +37,7 @@ export const theWaltzBassUr: Translation<TheWaltzBassTexts> = {
       ],
     },
     "f-waltz": {
-      text: `اب اس ${isolate("G")} سے ایک سفید کلید نیچے والے ${isolate("F")} پر جائیں۔ انگلی 5 سے ${isolate("F")} بجائیں، پھر انگلی 3 اور 1 سے ${isolate("A")} اور ${isolate("C")} ایک ساتھ، دو بار۔`,
+      text: `اب اس ${isolate("G")} سے ایک سفید کلید نیچے والے ${isolate("F")} پر جائیں۔ انگلی 5 سے ${isolate("F")} بجائیں، پھر انگلیوں 3 اور 1 سے ${isolate("A")} اور ${isolate("C")} ایک ساتھ، دو بار۔`,
     },
     "chord-walk": {
       text: `${isolate("C")}، ${isolate("F")}، ${isolate("G")} اور ${isolate("C")} میں سے ہر ایک کا ایک میژر بجائیں۔ پہلی بیٹ پر ہاتھ اگلے کورڈ پر لے جائیں، اور تین تک گنتے رہیں۔`,

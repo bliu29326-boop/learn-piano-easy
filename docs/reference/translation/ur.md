@@ -410,6 +410,9 @@ More rules the guides settle:
 - **The thumb is `انگوٹھا` in every guide,** and the other fingers are numbers: `انگلی 3`. A finger's name
   stands only where the English says it, such as "little finger", which is `چھوٹی انگلی`. A list of
   finger numbers keeps the thumb's digit, as in `انگلیاں 1 اور 3`.
+- **A list or range of finger numbers is plural.** It is `انگلیاں 2 سے 5 تک` as a subject or object,
+  with a plural verb, and `انگلیوں 1، 3 اور 5 سے` before a postposition. "Finger 2 and the thumb" names
+  two nouns, so it stays `انگلی 2 اور انگوٹھا`.
 - **A counted beat is a digit in straight quotes,** and "and" is `اینڈ`: `"1 اینڈ 2 اینڈ"`.
 
 ### A lesson's recurring lines

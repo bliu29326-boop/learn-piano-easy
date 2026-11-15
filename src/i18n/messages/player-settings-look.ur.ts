@@ -181,7 +181,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   particleSpeed: {
     label: "حرکت کی رفتار",
-    help: "ذرات کی ہر حرکت تیز یا آہستہ کرتا ہے۔",
+    help: "ذرات کی ہر حرکت کی رفتار تیز یا آہستہ کرتا ہے۔",
   },
   particleFadeOut: {
     label: "مدھم ہونا",
@@ -201,7 +201,7 @@ export const playerSettingsLook: Translation<typeof en> = {
   },
   particlesFriction: {
     label: "مزاحمت",
-    help: "اڑتے ہوئے ذرات کتنی جلدی آہستہ ہوتے ہیں۔",
+    help: "اڑتے ہوئے ذرات کی رفتار کتنی جلدی کم ہوتی ہے۔",
   },
   particleRising: {
     label: "کشش ثقل",

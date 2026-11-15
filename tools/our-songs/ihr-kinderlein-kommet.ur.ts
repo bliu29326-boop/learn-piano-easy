@@ -29,8 +29,8 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         2: `انگلی 4 سے ${isolate("G")} بجائیں، پھر انگلی 2 نیچے ${isolate("E")} پر آتی ہے۔ ` +
           `ہاتھ ${isolate("D")} سے ${isolate("A")} تک کی کلیدوں پر بغیر ہلائے رکھیں۔`,
-        15: `انگلی 5 کو پھیلا کر اوپر والے ${isolate("C")} تک لے جائیں، پھر انگلی 3 اور 2 سے ${isolate("G")} اور ${isolate("E")} بجائیں۔`,
-        16: `انگلی 3 اور 2 سے ${isolate("F")} اور ${isolate("D")} بجائیں، اور انگوٹھا نیچے ${isolate("B")} تک لے جائیں۔`,
+        15: `انگلی 5 کو پھیلا کر اوپر والے ${isolate("C")} تک لے جائیں، پھر انگلیوں 3 اور 2 سے ${isolate("G")} اور ${isolate("E")} بجائیں۔`,
+        16: `انگلیوں 3 اور 2 سے ${isolate("F")} اور ${isolate("D")} بجائیں، اور انگوٹھا نیچے ${isolate("B")} تک لے جائیں۔`,
       },
     },
     rare: {
@@ -50,7 +50,7 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         14: `انگلی 3 سے ${isolate("G")} تین بار بجائیں، اور ساتھ ہی بائیں ہاتھ کا انگوٹھا ${isolate("A")} سے واپس ${isolate("G")} پر کھسکائیں۔`,
         15: `انگلی 5 کو اوپر والے ${isolate("C")} تک لے جائیں، پھر انگلی 3 واپس ${isolate("G")} پر آتی ہے۔`,
-        16: `${isolate("G7")} کورڈ کے اوپر انگلی 3، 2 اور 1 سے ${isolate("F")}، ${isolate("D")} اور ${isolate("B")} نیچے کی طرف بجائیں۔`,
+        16: `${isolate("G7")} کورڈ کے اوپر انگلیوں 3، 2 اور 1 سے ${isolate("F")}، ${isolate("D")} اور ${isolate("B")} نیچے کی طرف بجائیں۔`,
       },
     },
     epic: {

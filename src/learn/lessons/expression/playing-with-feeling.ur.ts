@@ -56,7 +56,7 @@ export const playingWithFeelingUr: Translation<PlayingWithFeelingTexts> = {
       answers: ["دوسری بار، ہلکی والی", "پہلی بار، زور دار والی", "دونوں، کیونکہ وہ ایک جیسی تھیں", "کوئی بھی نہیں"],
     },
     "elise-left-demo": {
-      text: `آخری چیلنج کا بایاں ہاتھ سنیں، انگلی 5، 2 اور 1 کے ساتھ۔ یہ ${isolate("A")} مائنر کو ${isolate("A")}، ${isolate("E")} اور ${isolate("A")} میں توڑتا ہے، پھر ${isolate("E")} میجر کو ${isolate("E")}، ${isolate("B")} اور ${isolate("G")} شارپ میں۔ ${isolate("E")} میجر کی شکل ایک آکٹیو سے زیادہ چوڑی ہے، اس لیے بجاتے ہوئے ہاتھ کو اوپر کھسکنے دیں۔`,
+      text: `آخری چیلنج کا بایاں ہاتھ سنیں، انگلیوں 5، 2 اور 1 کے ساتھ۔ یہ ${isolate("A")} مائنر کو ${isolate("A")}، ${isolate("E")} اور ${isolate("A")} میں توڑتا ہے، پھر ${isolate("E")} میجر کو ${isolate("E")}، ${isolate("B")} اور ${isolate("G")} شارپ میں۔ ${isolate("E")} میجر کی شکل ایک آکٹیو سے زیادہ چوڑی ہے، اس لیے بجاتے ہوئے ہاتھ کو اوپر کھسکنے دیں۔`,
     },
     "elise-left-hand": {
       text: `اب آپ کی باری۔ مڈل ${isolate("C")} سے نیچے دوسرے ${isolate("A")} سے شروع کر کے ${isolate("A")}، ${isolate("E")} اور ${isolate("A")} بجائیں، پھر مڈل ${isolate("C")} سے نیچے دوسرے ${isolate("E")} سے شروع کر کے ${isolate("E")}، ${isolate("B")} اور ${isolate("G")} شارپ۔ آخر میں پھر ${isolate("A")}، ${isolate("E")} اور ${isolate("A")} بجائیں۔`,

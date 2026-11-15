@@ -54,7 +54,7 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         13:
-          `انگلی 2 اور 1 ${isolate("D")} اور ${isolate("C")} بجاتی ہیں، ` +
+          `انگلیاں 2 اور 1 ${isolate("D")} اور ${isolate("C")} بجاتی ہیں، ` +
           `پھر انگوٹھا چھلانگ لگا کر اوپر اگلے ${isolate("G")} پر جاتا ہے۔`,
         16:
           `ایک آکٹیو اوپر انگلیاں 3، 4 اور 5 ${isolate("F")} تک چڑھتی ہیں، ` +

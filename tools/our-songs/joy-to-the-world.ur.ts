@@ -7,7 +7,7 @@ export const translation: Translation<GuideTranslation> = {
   about:
     `${isolate("Lowell Mason")} نے یہ دھن بوسٹن میں ${isolate("Antioch")} کے نام سے شائع کی۔ ` +
     `اس پر وہ بول گائے جاتے ہیں جو ${isolate("Isaac Watts")} نے 1719 میں لکھے۔ ` +
-    `اس کے پہلے چار نوٹ ہینڈل کے ${isolate("Messiah")} میں کوائر کے حصے ${isolate("Lift up your heads")} کے شروع سے ملتے ہیں۔`,
+    `اس کے پہلے چار نوٹ ہینڈل کے ${isolate("Messiah")} میں کوئر کے حصے ${isolate("Lift up your heads")} کے شروع سے ملتے ہیں۔`,
   funFact:
     `${isolate("Isaac Watts")} نے یہ بول زبور 98 کو اپنے الفاظ میں بیان کرنے کے لیے لکھے۔ ` +
     "ان کا ارادہ کبھی یہ نہیں تھا کہ یہ کرسمس کا گیت بنیں۔",

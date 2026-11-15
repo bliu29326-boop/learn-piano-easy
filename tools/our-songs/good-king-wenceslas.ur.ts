@@ -36,7 +36,7 @@ export const translation: Translation<GuideTranslation> = {
         5: `میژر 1 والے ہی نوٹ۔ تینوں ${isolate("C")} یکساں بجائیں اور ${isolate("D")} ہلکے سے۔`,
         11:
           `ہاتھ اٹھانے کے بعد انگلی 2 ${isolate("A")} پر پہنچتی ہے اور انگوٹھا ${isolate("G")} بجاتا ہے۔ ` +
-          `پھر انگلی 2 اور 3 اوپر ${isolate("A")} اور ${isolate("B")} تک چڑھتی ہیں۔`,
+          `پھر انگلیاں 2 اور 3 اوپر ${isolate("A")} اور ${isolate("B")} تک چڑھتی ہیں۔`,
       },
     },
     rare: {

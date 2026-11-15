@@ -54,7 +54,7 @@ export const translation: Translation<GuideTranslation> = {
       ],
       tricky: {
         6:
-          `دایاں ہاتھ انگلی 3، 4 اور 5 سے ${isolate("A")}، ${isolate("B")} اور ${isolate("C")} پر چڑھتا ہے، ` +
+          `دایاں ہاتھ انگلیوں 3، 4 اور 5 سے ${isolate("A")}، ${isolate("B")} اور ${isolate("C")} پر چڑھتا ہے، ` +
           `جبکہ بایاں ہاتھ ${isolate("F")} سے ${isolate("G")} پر جاتا ہے۔`,
         12:
           `انگلی 4 ${isolate("G")} بجاتی ہے، انگلی 5 چھوٹا ${isolate("A")}، ` +
@@ -78,10 +78,10 @@ export const translation: Translation<GuideTranslation> = {
       tricky: {
         17:
           "ہاتھ ایک آکٹیو اوپر چھلانگ لگاتا ہے۔ " +
-          `انگلی 3 اور 5 سے ${isolate("E")} اور ${isolate("G")} پر پہنچیں، ` +
+          `انگلیوں 3 اور 5 سے ${isolate("E")} اور ${isolate("G")} پر پہنچیں، ` +
           `پھر ہاتھ کھول کر ${isolate("C")} اور ${isolate("A")} والے سکستھ تک لے جائیں۔`,
         22:
-          `انگلی 2 اور 4 ${isolate("F")} اور ${isolate("A")} لیتی ہیں، ` +
+          `انگلیاں 2 اور 4 ${isolate("F")} اور ${isolate("A")} لیتی ہیں، ` +
           `ہاتھ کھل کر ${isolate("D")} اور ${isolate("B")} والے سکستھ تک جاتا ہے، اور انگلی 5 ${isolate("C")} تک پہنچتی ہے۔`,
         32: `چھوٹے ریسٹ میں ہاتھ اٹھائیں، پھر آخری کورڈ کے لیے اسے ${isolate("E")}، ${isolate("G")} اور ${isolate("C")} پر پھیلائیں۔`,
       },

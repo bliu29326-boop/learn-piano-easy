@@ -13,7 +13,7 @@ export const inversionsUr: Translation<InversionsTexts> = {
       text: `جب ${isolate("C-E-G")} میں ${isolate("C")} سب سے نیچے ہو، تو یہ روٹ پوزیشن ہے۔ انورژن انہی تین نوٹوں کو کسی اور ترتیب میں بجاتا ہے۔ یہ پھر بھی ${isolate("C")} میجر ہی ہے۔`,
     },
     "root-position": {
-      text: `${isolate("C")} میجر روٹ پوزیشن میں بجائیں: مڈل ${isolate("C")} سے ${isolate("C")}، ${isolate("E")} اور ${isolate("G")}، تینوں ایک ساتھ۔ انگلی 1، 3 اور 5 استعمال کریں۔`,
+      text: `${isolate("C")} میجر روٹ پوزیشن میں بجائیں: مڈل ${isolate("C")} سے ${isolate("C")}، ${isolate("E")} اور ${isolate("G")}، تینوں ایک ساتھ۔ انگلیاں 1، 3 اور 5 استعمال کریں۔`,
     },
     "first-inversion": {
       text: `اب سب سے نیچے والا نوٹ ایک آکٹیو اوپر لے جائیں۔ ${isolate("C-E-G")} بن جاتا ہے ${isolate("E-G-C")}۔ یہ پہلا انورژن ہے۔`,

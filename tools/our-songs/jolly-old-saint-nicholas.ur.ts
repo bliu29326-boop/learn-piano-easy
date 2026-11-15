@@ -30,7 +30,7 @@ export const translation: Translation<GuideTranslation> = {
         2: `انگلی 5 کو ${isolate("E")} سے اٹھائیں، اور انگلی 4 سے ${isolate("D")} تین بار بجائیں۔ ` +
           `آخری ${isolate("D")} دو گنتی تک دبائے رکھیں۔`,
         10: `میژر 2 جیسا۔ اس کے نیچے بایاں ہاتھ ${isolate("D")} اور ${isolate("G")} پر جاتا ہے۔`,
-        15: `انگلی 4، 3، 4 اور 5 سے ${isolate("D")}، ${isolate("C")}، ${isolate("D")} اور ${isolate("E")} بجائیں۔ ` +
+        15: `انگلیوں 4، 3، 4 اور 5 سے ${isolate("D")}، ${isolate("C")}، ${isolate("D")} اور ${isolate("E")} بجائیں۔ ` +
           `پھر انگلی 3 نیچے آخری ${isolate("C")} پر آتی ہے۔`,
       },
     },
@@ -51,7 +51,7 @@ export const translation: Translation<GuideTranslation> = {
         2: `انگلی 4 سے ${isolate("D")} تین بار بجائیں، ` +
           `اور ساتھ ہی بایاں ہاتھ ${isolate("B")} کے بغیر ${isolate("G7")} کورڈ دبائے رکھتا ہے۔`,
         10: `میژر 2 جیسا۔ دہرایا جانے والا ${isolate("D")} برابر اور ہلکا رکھیں۔`,
-        15: `انگلی 4، 3، 4 اور 5 سے ${isolate("D")}، ${isolate("C")}، ${isolate("D")} اور ${isolate("E")} بجائیں۔ ` +
+        15: `انگلیوں 4، 3، 4 اور 5 سے ${isolate("D")}، ${isolate("C")}، ${isolate("D")} اور ${isolate("E")} بجائیں۔ ` +
           `میژر کے بیچ میں بایاں ہاتھ ${isolate("F")} چھوڑ دیتا ہے۔`,
       },
     },

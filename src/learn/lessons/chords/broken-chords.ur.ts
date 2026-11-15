@@ -13,7 +13,7 @@ export const brokenChordsUr: Translation<BrokenChordsTexts> = {
       text: "بروکن کورڈ میں کورڈ کے نوٹ ایک ساتھ نہیں، بلکہ ایک کے بعد ایک بجتے ہیں۔ نوٹ وہی ہیں، اس لیے کورڈ بھی وہی ہے۔",
     },
     "chord-together": {
-      text: `پہلے ${isolate("C")} میجر ایک ساتھ بجائیں: مڈل ${isolate("C")} سے ${isolate("C")}، ${isolate("E")} اور ${isolate("G")}، انگلی 1، 3 اور 5 سے۔`,
+      text: `پہلے ${isolate("C")} میجر ایک ساتھ بجائیں: مڈل ${isolate("C")} سے ${isolate("C")}، ${isolate("E")} اور ${isolate("G")}، انگلیوں 1، 3 اور 5 سے۔`,
     },
     "broken-up": {
       text: `اب اسے توڑ کر بجائیں۔ ہاتھ اپنی جگہ پر رکھیں اور ${isolate("C")} بجائیں، پھر ${isolate("E")}، پھر ${isolate("G")}۔`,
