@@ -14,7 +14,8 @@
     "bn": "The Sailor's Hornpipe একটি প্রাণবন্ত নাচের সুর, ব্রিটিশ রাজকীয় নৌবাহিনীর সঙ্গে যার গভীর যোগ আছে। পুরোনো সংকলনগুলোতে এটি ছাপা হতো The College Hornpipe নামে।",
     "ru": "The Sailor's Hornpipe — живая танцевальная мелодия, тесно связанная с Королевским военно-морским флотом Великобритании. В ранних сборниках её печатали под названием The College Hornpipe.",
     "fr": "The Sailor's Hornpipe est un air de danse plein d’entrain, étroitement lié à la Royal Navy. Les premiers recueils l’imprimaient sous le titre The College Hornpipe.",
-    "ur": "⁨The Sailor's Hornpipe⁩ رقص کی ایک جاندار دھن ہے، جس کا برطانوی شاہی بحریہ سے گہرا تعلق ہے۔ ابتدائی مجموعوں میں یہ ⁨The College Hornpipe⁩ کے نام سے چھپی۔"
+    "ur": "⁨The Sailor's Hornpipe⁩ رقص کی ایک جاندار دھن ہے، جس کا برطانوی شاہی بحریہ سے گہرا تعلق ہے۔ ابتدائی مجموعوں میں یہ ⁨The College Hornpipe⁩ کے نام سے چھپی۔",
+    "ja": "「The Sailor's Hornpipe」は元気な踊りの曲で、イギリス海軍と深いつながりがあります。古い曲集には「The College Hornpipe」という題で載っていました。"
   },
   "funFact": {
     "en": "Max Fleischer's Popeye cartoons opened with the hornpipe, so many people know it as Popeye's tune.",
@@ -28,7 +29,8 @@
     "bn": "Max Fleischer-এর Popeye কার্টুনগুলো শুরু হতো এই হর্নপাইপ দিয়ে, তাই অনেকে এটিকে Popeye-এর সুর বলে চেনেন।",
     "ru": "Мультфильмы Макса Флейшера о моряке Попае начинались с этого хорнпайпа, поэтому многие знают его как мелодию Попая.",
     "fr": "Les dessins animés de Popeye, de Max Fleischer, commençaient par ce hornpipe. Beaucoup de gens le connaissent donc comme l’air de Popeye.",
-    "ur": "⁨Max Fleischer⁩ کے ⁨Popeye⁩ کارٹون اسی ہارن پائپ سے شروع ہوتے تھے، اس لیے بہت سے لوگ اسے ⁨Popeye⁩ کی دھن کے طور پر جانتے ہیں۔"
+    "ur": "⁨Max Fleischer⁩ کے ⁨Popeye⁩ کارٹون اسی ہارن پائپ سے شروع ہوتے تھے، اس لیے بہت سے لوگ اسے ⁨Popeye⁩ کی دھن کے طور پر جانتے ہیں۔",
+    "ja": "マックス・フライシャーのアニメ『ポパイ』はこのホーンパイプで始まったので、多くの人がポパイの曲として知っています。"
   },
   "mythic": null,
   "versions": {
@@ -51,7 +53,8 @@
           "text": {
             "en": "Play bars 1 to 9 with the right hand alone, and let the song wait for each note.",
             "de": "Spiel die Takte 1 bis 9 nur mit der rechten Hand, und lass das Stück auf jeden Ton warten.",
-            "ur": "میژر 1 سے 9 تک صرف دائیں ہاتھ سے بجائیں۔ گانا ہر نوٹ پر آپ کا انتظار کرے گا۔"
+            "ur": "میژر 1 سے 9 تک صرف دائیں ہاتھ سے بجائیں۔ گانا ہر نوٹ پر آپ کا انتظار کرے گا۔",
+            "ja": "1～9小節目を右手だけで弾きましょう。曲は1音ずつ待ってくれます。"
           },
           "hands": "right",
           "speed": 0.6,
@@ -62,7 +65,8 @@
           "text": {
             "en": "Play bars 10 to 17 with the right hand alone. The tune runs down to the low D, then climbs back to G.",
             "de": "Spiel die Takte 10 bis 17 nur mit der rechten Hand. Die Melodie läuft hinunter zum tiefen D und steigt dann zurück zum G.",
-            "ur": "میژر 10 سے 17 تک صرف دائیں ہاتھ سے بجائیں۔ دھن نیچے والے ⁨D⁩ تک اترتی ہے، پھر واپس ⁨G⁩ تک چڑھتی ہے۔"
+            "ur": "میژر 10 سے 17 تک صرف دائیں ہاتھ سے بجائیں۔ دھن نیچے والے ⁨D⁩ تک اترتی ہے، پھر واپس ⁨G⁩ تک چڑھتی ہے۔",
+            "ja": "10～17小節目を右手だけで弾きましょう。メロディーが低いレまで下り、またソまで上がります。"
           },
           "hands": "right",
           "speed": 0.6,
@@ -73,7 +77,8 @@
           "text": {
             "en": "Now the left hand alone. It holds one shape for a whole bar, and never moves.",
             "de": "Jetzt die linke Hand allein. Sie hält jeden Griff einen ganzen Takt lang und bewegt sich nie.",
-            "ur": "اب صرف بایاں ہاتھ۔ یہ پورے میژر میں ایک ہی شکل میں رہتا ہے، اور کبھی اپنی جگہ نہیں بدلتا۔"
+            "ur": "اب صرف بایاں ہاتھ۔ یہ پورے میژر میں ایک ہی شکل میں رہتا ہے، اور کبھی اپنی جگہ نہیں بدلتا۔",
+            "ja": "次は左手だけで弾きましょう。どの手の形も1小節のあいだ保ち、手は動きません。"
           },
           "hands": "left",
           "speed": 0.6,
@@ -84,7 +89,8 @@
           "text": {
             "en": "Put both hands together on the whole song, slowly.",
             "de": "Spiel das ganze Stück langsam mit beiden Händen zusammen.",
-            "ur": "پورا گانا دونوں ہاتھوں سے آہستہ آہستہ بجائیں۔"
+            "ur": "پورا گانا دونوں ہاتھوں سے آہستہ آہستہ بجائیں۔",
+            "ja": "曲全体を両手でゆっくり弾きましょう。"
           },
           "hands": "both",
           "speed": 0.7,
@@ -95,7 +101,8 @@
           "text": {
             "en": "Play the whole song with both hands at full speed.",
             "de": "Spiel das ganze Stück mit beiden Händen im vollen Tempo.",
-            "ur": "پورا گانا دونوں ہاتھوں سے پوری رفتار پر بجائیں۔"
+            "ur": "پورا گانا دونوں ہاتھوں سے پوری رفتار پر بجائیں۔",
+            "ja": "両手で、もとの速さで通して弾きましょう。"
           },
           "hands": "both",
           "speed": 1,
@@ -111,7 +118,8 @@
           "text": {
             "en": "Start with finger 5 on the high G and finger 4 on F sharp. The thumb then reaches down to the low G.",
             "de": "Fang mit Finger 5 auf dem hohen G und Finger 4 auf dem Fis an. Dann greift der Daumen hinunter zum tiefen G.",
-            "ur": "انگلی 5 اوپر والے ⁨G⁩ پر اور انگلی 4 ⁨F⁩ شارپ پر رکھ کر شروع کریں۔ پھر انگوٹھا نیچے والے ⁨G⁩ تک پہنچتا ہے۔"
+            "ur": "انگلی 5 اوپر والے ⁨G⁩ پر اور انگلی 4 ⁨F⁩ شارپ پر رکھ کر شروع کریں۔ پھر انگوٹھا نیچے والے ⁨G⁩ تک پہنچتا ہے۔",
+            "ja": "5の指（小指）を高いソに、4の指をファ♯に置いて始めます。そのあと1の指（親指）が低いソまでのびます。"
           }
         },
         {
@@ -121,7 +129,8 @@
           "text": {
             "en": "Let go of the high G a little early. In the short gap, stretch the thumb down an octave.",
             "de": "Lass das hohe G etwas früher los. In der kurzen Lücke streckst du den Daumen eine Oktave nach unten.",
-            "ur": "اوپر والا ⁨G⁩ تھوڑا پہلے چھوڑ دیں۔ اس چھوٹے سے وقفے میں انگوٹھا ایک آکٹیو نیچے پھیلائیں۔"
+            "ur": "اوپر والا ⁨G⁩ تھوڑا پہلے چھوڑ دیں۔ اس چھوٹے سے وقفے میں انگوٹھا ایک آکٹیو نیچے پھیلائیں۔",
+            "ja": "高いソは少し早めに離しましょう。その短いすき間に、親指を1オクターブ下へのばします。"
           }
         },
         {
@@ -131,7 +140,8 @@
           "text": {
             "en": "The hand moves three times in the run. Each time, let go of the note before a little early, and move in the gap.",
             "de": "Im Lauf bewegt sich die Hand dreimal. Lass jedes Mal den Ton davor etwas früher los, und bewege dich in der Lücke.",
-            "ur": "تیز نوٹوں کی لڑی میں ہاتھ تین بار جگہ بدلتا ہے۔ ہر بار اس سے پہلے والا نوٹ تھوڑا پہلے چھوڑ دیں، اور اس وقفے میں ہاتھ لے جائیں۔"
+            "ur": "تیز نوٹوں کی لڑی میں ہاتھ تین بار جگہ بدلتا ہے۔ ہر بار اس سے پہلے والا نوٹ تھوڑا پہلے چھوڑ دیں، اور اس وقفے میں ہاتھ لے جائیں۔",
+            "ja": "速いパッセージの中で、手は3回動きます。そのたびに前の音を少し早めに離し、すき間で動きましょう。"
           }
         },
         {
@@ -141,7 +151,8 @@
           "text": {
             "en": "Count four steady beats in each bar. A hornpipe is a dance, so keep it bouncing.",
             "de": "Zähl vier gleichmäßige Schläge in jedem Takt. Eine Hornpipe ist ein Tanz, also lass sie hüpfen.",
-            "ur": "ہر میژر میں چار یکساں بیٹ گنیں۔ ہارن پائپ ایک رقص ہے، اس لیے اسے اچھلتا ہوا رکھیں۔"
+            "ur": "ہر میژر میں چار یکساں بیٹ گنیں۔ ہارن پائپ ایک رقص ہے، اس لیے اسے اچھلتا ہوا رکھیں۔",
+            "ja": "どの小節も、4拍を同じ速さで数えましょう。ホーンパイプは踊りの曲なので、はずむように弾きます。"
           }
         }
       ],
@@ -151,7 +162,8 @@
           "text": {
             "en": "Let go of A early. The thumb then lands on G, and fingers 3, 2 and 4 play B, A and C.",
             "de": "Lass das A früh los. Dann landet der Daumen auf dem G, und Finger 3, 2 und 4 spielen H, A und C.",
-            "ur": "⁨A⁩ پہلے چھوڑ دیں۔ پھر انگوٹھا ⁨G⁩ پر پہنچتا ہے، اور انگلیاں 3، 2 اور 4 ⁨B⁩، ⁨A⁩ اور ⁨C⁩ بجاتی ہیں۔"
+            "ur": "⁨A⁩ پہلے چھوڑ دیں۔ پھر انگوٹھا ⁨G⁩ پر پہنچتا ہے، اور انگلیاں 3، 2 اور 4 ⁨B⁩، ⁨A⁩ اور ⁨C⁩ بجاتی ہیں۔",
+            "ja": "ラは早めに離しましょう。そのあと親指がソに着き、3の指、2の指、4の指でシ・ラ・ドを弾きます。"
           }
         },
         {
@@ -159,7 +171,8 @@
           "text": {
             "en": "Let go of C early. In the short gap, the hand moves down, and finger 3 takes B.",
             "de": "Lass das C früh los. In der kurzen Lücke geht die Hand hinunter, und Finger 3 nimmt das H.",
-            "ur": "⁨C⁩ پہلے چھوڑ دیں۔ اس چھوٹے سے وقفے میں ہاتھ نیچے جاتا ہے، اور انگلی 3 ⁨B⁩ لیتی ہے۔"
+            "ur": "⁨C⁩ پہلے چھوڑ دیں۔ اس چھوٹے سے وقفے میں ہاتھ نیچے جاتا ہے، اور انگلی 3 ⁨B⁩ لیتی ہے۔",
+            "ja": "ドは早めに離しましょう。その短いすき間に手を下へ動かし、3の指でシを弾きます。"
           }
         },
         {
@@ -176,7 +189,8 @@
             "bn": "C-এর পরে বুড়ো আঙুল নিচ দিয়ে নিয়ে B-তে আনুন। তারপর 2 আর 4 নম্বর আঙুল উঠে D আর G-তে যায়।",
             "ru": "После ноты до подложите первый палец на си. Затем 2-й и 4-й пальцы поднимаются к ре и соль.",
             "fr": "Après le do, le pouce passe dessous jusqu’au si. Puis les doigts 2 et 4 montent jusqu’au ré et au sol.",
-            "ur": "⁨C⁩ کے بعد انگوٹھا نیچے سے ⁨B⁩ پر لے جائیں۔ پھر انگلیاں 2 اور 4 اوپر چڑھ کر ⁨D⁩ اور ⁨G⁩ پر پہنچتی ہیں۔"
+            "ur": "⁨C⁩ کے بعد انگوٹھا نیچے سے ⁨B⁩ پر لے جائیں۔ پھر انگلیاں 2 اور 4 اوپر چڑھ کر ⁨D⁩ اور ⁨G⁩ پر پہنچتی ہیں۔",
+            "ja": "ドのあと、親指をくぐらせてシを弾きます。そのあと2の指と4の指で、レとソへ上がります。"
           }
         }
       ]
@@ -200,7 +214,8 @@
           "text": {
             "en": "Play the left hand alone: a low note, then a two-note chord or a second note.",
             "de": "Spiel die linke Hand allein: einen tiefen Ton, dann einen Zweiklang oder einen zweiten Ton.",
-            "ur": "صرف بائیں ہاتھ سے بجائیں: پہلے ایک نیچے والا نوٹ، پھر دو نوٹوں والا کورڈ یا ایک دوسرا نوٹ۔"
+            "ur": "صرف بائیں ہاتھ سے بجائیں: پہلے ایک نیچے والا نوٹ، پھر دو نوٹوں والا کورڈ یا ایک دوسرا نوٹ۔",
+            "ja": "左手だけで弾きましょう。低い音のあとに、ふたつの音の和音か、もうひとつの音を弾きます。"
           },
           "hands": "left",
           "speed": 0.6,
@@ -211,7 +226,8 @@
           "text": {
             "en": "Play the right hand alone on the first nine bars, and let the song wait for each note.",
             "de": "Spiel die ersten neun Takte nur mit der rechten Hand, und lass das Stück auf jeden Ton warten.",
-            "ur": "پہلے نو میژر صرف دائیں ہاتھ سے بجائیں۔ گانا ہر نوٹ پر آپ کا انتظار کرے گا۔"
+            "ur": "پہلے نو میژر صرف دائیں ہاتھ سے بجائیں۔ گانا ہر نوٹ پر آپ کا انتظار کرے گا۔",
+            "ja": "最初の9小節を右手だけで弾きましょう。曲は1音ずつ待ってくれます。"
           },
           "hands": "right",
           "speed": 0.6,
@@ -222,7 +238,8 @@
           "text": {
             "en": "Play the right hand alone on bars 10 to 17. The tune runs down to the low D, then climbs back to G.",
             "de": "Spiel die Takte 10 bis 17 nur mit der rechten Hand. Die Melodie läuft hinunter zum tiefen D und steigt dann zurück zum G.",
-            "ur": "میژر 10 سے 17 تک صرف دائیں ہاتھ سے بجائیں۔ دھن نیچے والے ⁨D⁩ تک اترتی ہے، پھر واپس ⁨G⁩ تک چڑھتی ہے۔"
+            "ur": "میژر 10 سے 17 تک صرف دائیں ہاتھ سے بجائیں۔ دھن نیچے والے ⁨D⁩ تک اترتی ہے، پھر واپس ⁨G⁩ تک چڑھتی ہے۔",
+            "ja": "10～17小節目を右手だけで弾きましょう。メロディーが低いレまで下り、またソまで上がります。"
           },
           "hands": "right",
           "speed": 0.6,
@@ -233,7 +250,8 @@
           "text": {
             "en": "Join the hands on the whole song, a little slower than written.",
             "de": "Spiel das ganze Stück mit beiden Händen, etwas langsamer als notiert.",
-            "ur": "پورا گانا دونوں ہاتھوں سے، لکھی ہوئی رفتار سے تھوڑا آہستہ بجائیں۔"
+            "ur": "پورا گانا دونوں ہاتھوں سے، لکھی ہوئی رفتار سے تھوڑا آہستہ بجائیں۔",
+            "ja": "両手で、楽譜より少しゆっくり通して弾きましょう。"
           },
           "hands": "both",
           "speed": 0.8,
@@ -244,7 +262,8 @@
           "text": {
             "en": "Now play it at full speed.",
             "de": "Jetzt spiel es im vollen Tempo.",
-            "ur": "اب اسے پوری رفتار پر بجائیں۔"
+            "ur": "اب اسے پوری رفتار پر بجائیں۔",
+            "ja": "今度はもとの速さで弾きましょう。"
           },
           "hands": "both",
           "speed": 1,
@@ -260,7 +279,8 @@
           "text": {
             "en": "Finger 5 plays the high G, and the thumb drops to the low G. Keep the hand open as wide as an octave.",
             "de": "Finger 5 spielt das hohe G, und der Daumen fällt zum tiefen G. Halt die Hand so weit offen wie eine Oktave.",
-            "ur": "انگلی 5 اوپر والا ⁨G⁩ بجاتی ہے، اور انگوٹھا نیچے والے ⁨G⁩ پر آتا ہے۔ ہاتھ ایک آکٹیو جتنا کھلا رکھیں۔"
+            "ur": "انگلی 5 اوپر والا ⁨G⁩ بجاتی ہے، اور انگوٹھا نیچے والے ⁨G⁩ پر آتا ہے۔ ہاتھ ایک آکٹیو جتنا کھلا رکھیں۔",
+            "ja": "5の指（小指）で高いソを弾き、1の指（親指）は低いソへ下ろします。手は1オクターブの幅に開いたままにしましょう。"
           }
         },
         {
@@ -270,7 +290,8 @@
           "text": {
             "en": "Bars 11, 12 and 13 each start the hand in a lower place. Watch the finger on each first note.",
             "de": "Die Takte 11, 12 und 13 beginnen jeweils mit der Hand an einer tieferen Stelle. Achte auf den Finger beim ersten Ton.",
-            "ur": "میژر 11، 12 اور 13 میں سے ہر ایک میں ہاتھ پہلے سے نیچے والی جگہ سے شروع ہوتا ہے۔ ہر میژر کے پہلے نوٹ پر دیکھیں کہ کون سی انگلی بجاتی ہے۔"
+            "ur": "میژر 11، 12 اور 13 میں سے ہر ایک میں ہاتھ پہلے سے نیچے والی جگہ سے شروع ہوتا ہے۔ ہر میژر کے پہلے نوٹ پر دیکھیں کہ کون سی انگلی بجاتی ہے۔",
+            "ja": "11、12、13小節目は、どれも前より低い位置から手を始めます。最初の音を弾く指をよく見ましょう。"
           }
         },
         {
@@ -280,7 +301,8 @@
           "text": {
             "en": "The last two bars slow to longer notes. Let the dance come to rest on G.",
             "de": "Die letzten zwei Takte werden zu längeren Tönen. Lass den Tanz auf dem G zur Ruhe kommen.",
-            "ur": "آخری دو میژر میں نوٹ لمبے ہو جاتے ہیں۔ رقص کو ⁨G⁩ پر آرام سے رکنے دیں۔"
+            "ur": "آخری دو میژر میں نوٹ لمبے ہو جاتے ہیں۔ رقص کو ⁨G⁩ پر آرام سے رکنے دیں۔",
+            "ja": "最後の2小節は、長めの音になってゆっくりになります。踊りがソで静かに終わるようにしましょう。"
           }
         }
       ],
@@ -290,7 +312,8 @@
           "text": {
             "en": "The thumb jumps from A down to G. Then fingers 3, 2 and 4 play B, A and C.",
             "de": "Der Daumen springt vom A hinunter zum G. Dann spielen Finger 3, 2 und 4 H, A und C.",
-            "ur": "انگوٹھا ⁨A⁩ سے نیچے ⁨G⁩ پر چھلانگ لگاتا ہے۔ پھر انگلیاں 3، 2 اور 4 ⁨B⁩، ⁨A⁩ اور ⁨C⁩ بجاتی ہیں۔"
+            "ur": "انگوٹھا ⁨A⁩ سے نیچے ⁨G⁩ پر چھلانگ لگاتا ہے۔ پھر انگلیاں 3، 2 اور 4 ⁨B⁩، ⁨A⁩ اور ⁨C⁩ بجاتی ہیں۔",
+            "ja": "親指がラから下のソへとびます。そのあと3の指、2の指、4の指でシ・ラ・ドを弾きます。"
           }
         },
         {
@@ -298,7 +321,8 @@
           "text": {
             "en": "Finger 4 starts on C, so the hand moves down. Fingers 3, 2 and 1 then walk down to G.",
             "de": "Finger 4 beginnt auf dem C, also geht die Hand hinunter. Dann gehen Finger 3, 2 und 1 hinunter zum G.",
-            "ur": "انگلی 4 ⁨C⁩ سے شروع کرتی ہے، اس لیے ہاتھ نیچے جاتا ہے۔ پھر انگلیاں 3، 2 اور 1 نیچے اتر کر ⁨G⁩ تک آتی ہیں۔"
+            "ur": "انگلی 4 ⁨C⁩ سے شروع کرتی ہے، اس لیے ہاتھ نیچے جاتا ہے۔ پھر انگلیاں 3، 2 اور 1 نیچے اتر کر ⁨G⁩ تک آتی ہیں۔",
+            "ja": "4の指がドから始まるので、手は下へ動きます。そのあと3の指、2の指、親指で、ソまで下ります。"
           }
         },
         {
@@ -315,7 +339,8 @@
             "bn": "C-এর পরে বুড়ো আঙুল নিচ দিয়ে নিয়ে B-তে আনুন। তারপর 2 আর 4 নম্বর আঙুল উঠে D আর G-তে যায়।",
             "ru": "После ноты до подложите первый палец на си. Затем 2-й и 4-й пальцы поднимаются к ре и соль.",
             "fr": "Après le do, le pouce passe dessous jusqu’au si. Puis les doigts 2 et 4 montent jusqu’au ré et au sol.",
-            "ur": "⁨C⁩ کے بعد انگوٹھا نیچے سے ⁨B⁩ پر لے جائیں۔ پھر انگلیاں 2 اور 4 اوپر چڑھ کر ⁨D⁩ اور ⁨G⁩ پر پہنچتی ہیں۔"
+            "ur": "⁨C⁩ کے بعد انگوٹھا نیچے سے ⁨B⁩ پر لے جائیں۔ پھر انگلیاں 2 اور 4 اوپر چڑھ کر ⁨D⁩ اور ⁨G⁩ پر پہنچتی ہیں۔",
+            "ja": "ドのあと、親指をくぐらせてシを弾きます。そのあと2の指と4の指で、レとソへ上がります。"
           }
         }
       ]
@@ -340,7 +365,8 @@
           "text": {
             "en": "Play the left hand alone until the broken chords flow by themselves.",
             "de": "Spiel die linke Hand allein, bis die gebrochenen Akkorde von selbst fließen.",
-            "ur": "صرف بائیں ہاتھ سے بجائیں، یہاں تک کہ بروکن کورڈ خود بخود رواں ہو جائیں۔"
+            "ur": "صرف بائیں ہاتھ سے بجائیں، یہاں تک کہ بروکن کورڈ خود بخود رواں ہو جائیں۔",
+            "ja": "左手だけで弾きましょう。分散和音がひとりでに流れるようになるまで続けます。"
           },
           "hands": "left",
           "speed": 0.5,
@@ -351,7 +377,8 @@
           "text": {
             "en": "Play the right hand alone on bars 10 to 16. On the way down, finger 3 crosses over the thumb.",
             "de": "Spiel die Takte 10 bis 16 nur mit der rechten Hand. Auf dem Weg nach unten kreuzt Finger 3 über den Daumen.",
-            "ur": "میژر 10 سے 16 تک صرف دائیں ہاتھ سے بجائیں۔ نیچے جاتے ہوئے انگلی 3 انگوٹھے کے اوپر سے جاتی ہے۔"
+            "ur": "میژر 10 سے 16 تک صرف دائیں ہاتھ سے بجائیں۔ نیچے جاتے ہوئے انگلی 3 انگوٹھے کے اوپر سے جاتی ہے۔",
+            "ja": "10～16小節目を右手だけで弾きましょう。下りでは、3の指が親指を越えます。"
           },
           "hands": "right",
           "speed": 0.5,
@@ -362,7 +389,8 @@
           "text": {
             "en": "Play the first nine bars with both hands, and change the pedal with each new chord.",
             "de": "Spiel die ersten neun Takte mit beiden Händen, und wechsle das Pedal bei jedem neuen Akkord.",
-            "ur": "پہلے نو میژر دونوں ہاتھوں سے بجائیں، اور ہر نئے کورڈ پر پیڈل بدلیں۔"
+            "ur": "پہلے نو میژر دونوں ہاتھوں سے بجائیں، اور ہر نئے کورڈ پر پیڈل بدلیں۔",
+            "ja": "最初の9小節を両手で弾きましょう。新しい和音になるたびにペダルを踏みかえます。"
           },
           "hands": "both",
           "speed": 0.6,
@@ -373,7 +401,8 @@
           "text": {
             "en": "Play the whole song with both hands at three-quarter speed.",
             "de": "Spiel das ganze Stück mit beiden Händen in Dreiviertel-Tempo.",
-            "ur": "پورا گانا دونوں ہاتھوں سے تین چوتھائی رفتار پر بجائیں۔"
+            "ur": "پورا گانا دونوں ہاتھوں سے تین چوتھائی رفتار پر بجائیں۔",
+            "ja": "両手で、4分の3の速さで通して弾きましょう。"
           },
           "hands": "both",
           "speed": 0.75,
@@ -384,7 +413,8 @@
           "text": {
             "en": "Now play it at full speed, with the pedal.",
             "de": "Jetzt spiel es im vollen Tempo, mit Pedal.",
-            "ur": "اب اسے پوری رفتار پر پیڈل کے ساتھ بجائیں۔"
+            "ur": "اب اسے پوری رفتار پر پیڈل کے ساتھ بجائیں۔",
+            "ja": "もとの速さで、ペダルもつけて弾きましょう。"
           },
           "hands": "both",
           "speed": 1,
@@ -400,7 +430,8 @@
           "text": {
             "en": "Change the pedal when the bass moves to a new chord. Lift it, then press it again just after the bass note.",
             "de": "Wechsle das Pedal, wenn der Bass zu einem neuen Akkord geht. Heb es an, und drück es gleich nach dem Basston wieder.",
-            "ur": "جب بیس نئے کورڈ پر جائے تو پیڈل بدلیں۔ پیڈل چھوڑیں، پھر بیس نوٹ کے ذرا بعد دوبارہ دبائیں۔"
+            "ur": "جب بیس نئے کورڈ پر جائے تو پیڈل بدلیں۔ پیڈل چھوڑیں، پھر بیس نوٹ کے ذرا بعد دوبارہ دبائیں۔",
+            "ja": "低音が新しい和音に移るときにペダルを踏みかえましょう。ペダルを離し、低音を弾いたすぐあとにまた踏みます。"
           }
         },
         {
@@ -410,7 +441,8 @@
           "text": {
             "en": "Let the runs sing softly over the broken chords, like a fiddle at a dance.",
             "de": "Lass die Läufe leise über den gebrochenen Akkorden singen, wie eine Geige beim Tanz.",
-            "ur": "تیز نوٹوں کی لڑیوں کو بروکن کورڈ کے اوپر ہلکے سے گانے دیں، جیسے کسی رقص میں وائلن۔"
+            "ur": "تیز نوٹوں کی لڑیوں کو بروکن کورڈ کے اوپر ہلکے سے گانے دیں، جیسے کسی رقص میں وائلن۔",
+            "ja": "速いパッセージは、ダンスで鳴るフィドルのように、分散和音の上でやさしく歌わせましょう。"
           }
         },
         {
@@ -420,7 +452,8 @@
           "text": {
             "en": "Play G with the thumb again, then cross finger 3 over to F sharp. Finger 2 and the thumb finish on D.",
             "de": "Spiel das G noch einmal mit dem Daumen, dann kreuz Finger 3 über zum Fis. Finger 2 und der Daumen enden auf dem D.",
-            "ur": "انگوٹھے سے دوبارہ ⁨G⁩ بجائیں، پھر انگلی 3 اوپر سے ⁨F⁩ شارپ پر لے جائیں۔ انگلی 2 اور انگوٹھا ⁨D⁩ پر ختم کرتے ہیں۔"
+            "ur": "انگوٹھے سے دوبارہ ⁨G⁩ بجائیں، پھر انگلی 3 اوپر سے ⁨F⁩ شارپ پر لے جائیں۔ انگلی 2 اور انگوٹھا ⁨D⁩ پر ختم کرتے ہیں۔",
+            "ja": "親指でまたソを弾き、3の指で親指を越えてファ♯を弾きます。最後は2の指と親指で弾いて、レで終わります。"
           }
         }
       ],
@@ -430,7 +463,8 @@
           "text": {
             "en": "After the thumb plays C, finger 3 crosses over it to B. Keep the wrist level as it passes.",
             "de": "Nach dem C mit dem Daumen kreuzt Finger 3 darüber zum H. Halt das Handgelenk dabei ruhig.",
-            "ur": "انگوٹھے کے ⁨C⁩ بجانے کے بعد انگلی 3 اس کے اوپر سے ⁨B⁩ پر جاتی ہے۔ گزرتے وقت کلائی ایک ہی اونچائی پر رکھیں۔"
+            "ur": "انگوٹھے کے ⁨C⁩ بجانے کے بعد انگلی 3 اس کے اوپر سے ⁨B⁩ پر جاتی ہے۔ گزرتے وقت کلائی ایک ہی اونچائی پر رکھیں۔",
+            "ja": "親指でドを弾いたら、3の指が親指を越えてシを弾きます。越えるあいだ、手首は水平に保ちましょう。"
           }
         },
         {
@@ -447,7 +481,8 @@
             "bn": "দুই হাতে শেষ কর্ডটি একসঙ্গে বাজান। প্যাডেল সেটিকে শেষ পর্যন্ত ধরে রাখুক।",
             "ru": "Сыграйте последний аккорд двумя руками одновременно. Пусть педаль держит его до конца.",
             "fr": "Joue le dernier accord aux deux mains à la fois. Laisse la pédale le tenir jusqu’à la fin.",
-            "ur": "آخری کورڈ دونوں ہاتھوں میں ایک ساتھ بجائیں۔ پیڈل کو اسے آخر تک تھامے رکھنے دیں۔"
+            "ur": "آخری کورڈ دونوں ہاتھوں میں ایک ساتھ بجائیں۔ پیڈل کو اسے آخر تک تھامے رکھنے دیں۔",
+            "ja": "最後の和音は両手で同時に弾きます。ペダルで最後まで響かせましょう。"
           }
         },
         {
@@ -455,7 +490,8 @@
           "text": {
             "en": "The thumb passes under to G after finger 5 plays A. Then fingers 3, 2 and 4 play B, A and C.",
             "de": "Nach dem A mit Finger 5 geht der Daumen unter zum G. Dann spielen Finger 3, 2 und 4 H, A und C.",
-            "ur": "انگلی 5 کے ⁨A⁩ بجانے کے بعد انگوٹھا نیچے سے ⁨G⁩ پر جاتا ہے۔ پھر انگلیاں 3، 2 اور 4 ⁨B⁩، ⁨A⁩ اور ⁨C⁩ بجاتی ہیں۔"
+            "ur": "انگلی 5 کے ⁨A⁩ بجانے کے بعد انگوٹھا نیچے سے ⁨G⁩ پر جاتا ہے۔ پھر انگلیاں 3، 2 اور 4 ⁨B⁩، ⁨A⁩ اور ⁨C⁩ بجاتی ہیں۔",
+            "ja": "5の指でラを弾いたら、親指をくぐらせてソを弾きます。そのあと3の指、2の指、4の指でシ・ラ・ドを弾きます。"
           }
         }
       ]
@@ -489,7 +525,8 @@
             "bn": "শুধু বাঁ হাতে বাজান: বিটে একটি অক্টেভ, তারপর একটি কর্ড, প্রতিটির পরে লাফ দেওয়ার জন্য একটি ছোট রেস্ট।",
             "ru": "Сыграйте одной левой рукой: октава на долю, затем аккорд, и после каждого из них короткая пауза для прыжка.",
             "fr": "Joue la main gauche seule : une octave sur le temps, puis un accord, chacun suivi d’un court silence pour sauter.",
-            "ur": "صرف بائیں ہاتھ سے بجائیں: بیٹ پر ایک آکٹیو، پھر ایک کورڈ، اور ہر ایک کے بعد چھلانگ کے لیے ایک چھوٹا ریسٹ۔"
+            "ur": "صرف بائیں ہاتھ سے بجائیں: بیٹ پر ایک آکٹیو، پھر ایک کورڈ، اور ہر ایک کے بعد چھلانگ کے لیے ایک چھوٹا ریسٹ۔",
+            "ja": "左手だけで弾きましょう。拍に合わせてオクターブ、次に和音を弾き、どちらのあとにも短い休符をはさんでとびます。"
           },
           "hands": "left",
           "speed": 0.5,
@@ -509,7 +546,8 @@
             "bn": "বাঁ হাতের আর্পেজিওগুলো আলাদা করে বাজান। বুড়ো আঙুল নিচ দিয়ে যায়, আর 3 নম্বর আঙুল উপর দিয়ে যায়।",
             "ru": "Сыграйте арпеджио левой руки отдельно. Первый палец подкладывается, а 3-й перекладывается через него.",
             "fr": "Joue seuls les arpèges de la main gauche. Le pouce passe dessous, et le doigt 3 passe par-dessus.",
-            "ur": "صرف بائیں ہاتھ کے آرپیجیو بجائیں۔ انگوٹھا نیچے سے جاتا ہے، اور انگلی 3 اوپر سے۔"
+            "ur": "صرف بائیں ہاتھ کے آرپیجیو بجائیں۔ انگوٹھا نیچے سے جاتا ہے، اور انگلی 3 اوپر سے۔",
+            "ja": "左手のアルペジオだけを弾きましょう。親指はくぐり、3の指は越えます。"
           },
           "hands": "left",
           "speed": 0.5,
@@ -529,7 +567,8 @@
             "bn": "ডান হাতের কর্ডগুলো আলাদা করে বাজান, আর সবচেয়ে উপরের আঙুলকে সুরটি গাইতে দিন।",
             "ru": "Сыграйте аккорды правой руки отдельно, и пусть верхний палец поёт мелодию.",
             "fr": "Joue seuls les accords de la main droite, et laisse le doigt du haut chanter la mélodie.",
-            "ur": "صرف دائیں ہاتھ کے کورڈ بجائیں، اور سب سے اوپر والی انگلی کو دھن گانے دیں۔"
+            "ur": "صرف دائیں ہاتھ کے کورڈ بجائیں، اور سب سے اوپر والی انگلی کو دھن گانے دیں۔",
+            "ja": "右手の和音だけを弾きましょう。いちばん上の指でメロディーを歌わせます。"
           },
           "hands": "right",
           "speed": 0.5,
@@ -549,7 +588,8 @@
             "bn": "দুই হাতে পুরো গানটি তিন-চতুর্থাংশ গতিতে বাজান।",
             "ru": "Сыграйте всю песню двумя руками на скорости 75 %.",
             "fr": "Joue tout le morceau à deux mains, à 75 % de la vitesse.",
-            "ur": "پورا گانا دونوں ہاتھوں سے تین چوتھائی رفتار پر بجائیں۔"
+            "ur": "پورا گانا دونوں ہاتھوں سے تین چوتھائی رفتار پر بجائیں۔",
+            "ja": "両手で、4分の3の速さで通して弾きましょう。"
           },
           "hands": "both",
           "speed": 0.75,
@@ -569,7 +609,8 @@
             "bn": "এবার পুরো গতিতে বাজান, আর শেষ কর্ডের আওয়াজ বাজতে দিন।",
             "ru": "Теперь сыграйте в полном темпе и дайте последнему аккорду прозвучать.",
             "fr": "Maintenant, joue-le au tempo et laisse sonner le dernier accord.",
-            "ur": "اب اسے پوری رفتار پر بجائیں، اور آخری کورڈ کی آواز گونجنے دیں۔"
+            "ur": "اب اسے پوری رفتار پر بجائیں، اور آخری کورڈ کی آواز گونجنے دیں۔",
+            "ja": "今度はもとの速さで弾き、最後の和音を響かせましょう。"
           },
           "hands": "both",
           "speed": 1,
@@ -594,7 +635,8 @@
             "bn": "প্রতিটি অক্টেভ আর কর্ডের পরের ছোট রেস্টটি কাজে লাগিয়ে পরেরটিতে লাফ দিন।",
             "ru": "Используйте короткую паузу после каждой октавы и каждого аккорда, чтобы прыгнуть к следующему.",
             "fr": "Profite du court silence après chaque octave et chaque accord pour sauter au suivant.",
-            "ur": "ہر آکٹیو اور کورڈ کے بعد والے چھوٹے ریسٹ میں اگلے پر چھلانگ لگائیں۔"
+            "ur": "ہر آکٹیو اور کورڈ کے بعد والے چھوٹے ریسٹ میں اگلے پر چھلانگ لگائیں۔",
+            "ja": "オクターブと和音のあとの短い休符を使って、次の音へとびましょう。"
           }
         },
         {
@@ -613,7 +655,8 @@
             "bn": "ডান হাতের দ্রুত নোটের সারির নিচে আর্পেজিওগুলো হালকা করে গড়িয়ে যেতে দিন।",
             "ru": "Пусть арпеджио тихо перекатываются под пассажами правой руки.",
             "fr": "Laisse les arpèges rouler tout en douceur sous les traits de la main droite.",
-            "ur": "آرپیجیو کو دائیں ہاتھ کی تیز نوٹوں کی لڑیوں کے نیچے ہلکے سے رواں رہنے دیں۔"
+            "ur": "آرپیجیو کو دائیں ہاتھ کی تیز نوٹوں کی لڑیوں کے نیچے ہلکے سے رواں رہنے دیں۔",
+            "ja": "アルペジオは、右手の速いパッセージの下でやさしく転がるように弾きましょう。"
           }
         },
         {
@@ -632,7 +675,8 @@
             "bn": "প্রতিটি কর্ড একটু আগে ছেড়ে দেওয়া হয়। সেই ফাঁকে পুরো হাত পরের কর্ডে সরিয়ে নিন।",
             "ru": "Каждый аккорд обрывается чуть раньше. За этот миг перенесите всю руку к следующему аккорду.",
             "fr": "Chaque accord se relâche un peu tôt. Profite de ce petit vide pour déplacer toute la main jusqu’à l’accord suivant.",
-            "ur": "ہر کورڈ تھوڑا پہلے چھوڑا جاتا ہے۔ اس وقفے میں پورا ہاتھ اگلے کورڈ پر لے جائیں۔"
+            "ur": "ہر کورڈ تھوڑا پہلے چھوڑا جاتا ہے۔ اس وقفے میں پورا ہاتھ اگلے کورڈ پر لے جائیں۔",
+            "ja": "どの和音も少し早めに離します。そのすき間に、手全体を次の和音へ動かしましょう。"
           }
         }
       ],
@@ -642,7 +686,8 @@
           "text": {
             "en": "Spread the hand over G, B, D and G. Then drop it an octave to B, D and G.",
             "de": "Spann die Hand über G, H, D und G. Dann lass sie eine Oktave tiefer auf H, D und G fallen.",
-            "ur": "ہاتھ ⁨G⁩، ⁨B⁩، ⁨D⁩ اور ⁨G⁩ پر پھیلائیں۔ پھر اسے ایک آکٹیو نیچے ⁨B⁩، ⁨D⁩ اور ⁨G⁩ پر لے آئیں۔"
+            "ur": "ہاتھ ⁨G⁩، ⁨B⁩، ⁨D⁩ اور ⁨G⁩ پر پھیلائیں۔ پھر اسے ایک آکٹیو نیچے ⁨B⁩، ⁨D⁩ اور ⁨G⁩ پر لے آئیں۔",
+            "ja": "手を広げて、ソ・シ・レ・ソを弾きます。そのあと1オクターブ下ろして、シ・レ・ソを弾きます。"
           }
         },
         {
@@ -650,7 +695,8 @@
           "text": {
             "en": "Three chords climb to the high G. Keep the wrist loose, and lead with finger 5.",
             "de": "Drei Akkorde steigen zum hohen G. Halt das Handgelenk locker, und führ mit Finger 5.",
-            "ur": "تین کورڈ اوپر والے ⁨G⁩ تک چڑھتے ہیں۔ کلائی ڈھیلی رکھیں، اور انگلی 5 کو آگے رہنے دیں۔"
+            "ur": "تین کورڈ اوپر والے ⁨G⁩ تک چڑھتے ہیں۔ کلائی ڈھیلی رکھیں، اور انگلی 5 کو آگے رہنے دیں۔",
+            "ja": "3つの和音が高いソまで上がります。手首の力を抜き、5の指（小指）からリードしましょう。"
           }
         },
         {
@@ -658,7 +704,8 @@
           "text": {
             "en": "The hand climbs from a low G chord to D on top. Then fingers 1 and 4 take G and C.",
             "de": "Die Hand steigt von einem tiefen G-Dur-Akkord zum D oben. Dann nehmen Finger 1 und 4 das G und das C.",
-            "ur": "ہاتھ نیچے والے ⁨G⁩ کورڈ سے اوپر ⁨D⁩ تک چڑھتا ہے۔ پھر انگلیاں 1 اور 4 ⁨G⁩ اور ⁨C⁩ لیتی ہیں۔"
+            "ur": "ہاتھ نیچے والے ⁨G⁩ کورڈ سے اوپر ⁨D⁩ تک چڑھتا ہے۔ پھر انگلیاں 1 اور 4 ⁨G⁩ اور ⁨C⁩ لیتی ہیں۔",
+            "ja": "手は低いソの和音から、いちばん上がレの和音へ上がります。そのあと親指と4の指でソとドを弾きます。"
           }
         }
       ]

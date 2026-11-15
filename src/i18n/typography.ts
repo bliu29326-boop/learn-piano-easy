@@ -385,7 +385,7 @@ export const TYPOGRAPHY: Record<LanguageCode, Typography> = {
     ],
   },
   ja: {
-    kept: [...KEPT_IN_OWN_SCRIPT],
+    kept: [...KEPT_IN_OWN_SCRIPT, "ABC"],
     marks: [
       { says: "A comma is 、, and a Latin comma stands only inside a number", mustNot: /(?<!\d),|,(?!\d)/ },
       { says: "A sentence ends with 。, and an ASCII period stands only inside a number", mustNot: /(?<!\d)\.|\.(?!\d)/ },
