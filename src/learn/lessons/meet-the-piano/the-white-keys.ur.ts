@@ -31,7 +31,7 @@ export const theWhiteKeysUr: Translation<TheWhiteKeysTexts> = {
       text: `${isolate("B")} وہ سفید کلید ہے جو تین کالی کلیدوں کے گروپ کے بالکل دائیں طرف ہے۔ ایک ${isolate("B")} ڈھونڈیں۔`,
     },
     "play-c-to-c": {
-      text: `اب مڈل ${isolate("C")} سے اوپر اگلے ${isolate("C")} تک ساری سفید کلیدیں بجائیں۔ بجاتے ہوئے ہر حرف بول کر کہیں۔`,
+      text: `اب مڈل ${isolate("C")} سے اوپر اگلے ${isolate("C")} تک ساری سفید کلیدیں بجائیں۔ بجاتے ہوئے ہر حرف بولیں۔`,
     },
     "letters-quiz": {
       text: `سفید کلیدوں پر ${isolate("B")} کے بعد کون سا حرف آتا ہے؟`,

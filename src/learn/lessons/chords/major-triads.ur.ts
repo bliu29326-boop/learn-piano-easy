@@ -7,7 +7,7 @@ export const majorTriadsUr: Translation<MajorTriadsTexts> = {
   title: "میجر ٹرائیڈ",
   steps: {
     "major-demo": {
-      text: `چار ٹرائیڈ سنیں: ${isolate("C")}، ${isolate("F")}، ${isolate("G")} اور پھر ${isolate("C")}۔ ہر ایک کی آواز روشن اور خوش لگتی ہے۔ یہ میجر ٹرائیڈ ہیں۔`,
+      text: `چار ٹرائیڈ سنیں: ${isolate("C")}، ${isolate("F")}، ${isolate("G")} اور پھر ${isolate("C")}۔ ہر ایک کی آواز روشن اور خوشگوار لگتی ہے۔ یہ میجر ٹرائیڈ ہیں۔`,
     },
     "count-the-steps": {
       text: `${isolate("C")}، ${isolate("E")} اور ${isolate("G")} میں سیمی ٹون گنیں۔ ہر کلید گنی جاتی ہے، کالی کلیدیں بھی۔ ${isolate("E")} سے اوپر ${isolate("G")} تک تین سیمی ٹون ہیں۔`,
@@ -58,7 +58,7 @@ export const majorTriadsUr: Translation<MajorTriadsTexts> = {
       points: [
         "میجر ٹرائیڈ اپنے روٹ نوٹ سے شروع ہوتا ہے۔",
         "اس کی بیچ والی کلید چار سیمی ٹون اوپر ہے، اور سب سے اوپر والی تین اور اوپر۔",
-        `${isolate("C")}، ${isolate("F")} اور ${isolate("G")} میجر صرف سفید کلیدیں لیتے ہیں، اور ${isolate("D")} میجر کو ${isolate("F")} شارپ چاہیے۔`,
+        `${isolate("C")}، ${isolate("F")} اور ${isolate("G")} میجر صرف سفید کلیدوں سے بنتے ہیں، اور ${isolate("D")} میجر کو ${isolate("F")} شارپ چاہیے۔`,
         "دایاں ہاتھ 1، 3 اور 5 بجاتا ہے، اور بایاں ہاتھ 5، 3 اور 1۔",
       ],
     },

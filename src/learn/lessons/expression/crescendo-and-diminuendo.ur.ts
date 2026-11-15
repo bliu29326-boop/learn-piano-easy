@@ -20,7 +20,7 @@ export const crescendoAndDiminuendoUr: Translation<CrescendoAndDiminuendoTexts> 
       text: `مڈل ${isolate("C")} سے شروع کر کے ${isolate("C")}، ${isolate("D")}، ${isolate("E")}، ${isolate("F")} اور ${isolate("G")} کریشینڈو کے ساتھ بجائیں۔ ${isolate("C")}، ${isolate("D")} اور ${isolate("E")} نرمی سے اور آہستہ آہستہ دبائیں، پھر ${isolate("F")} اور ${isolate("G")} تیزی سے اور مضبوطی سے۔`,
     },
     "hear-crescendo": {
-      text: `${isolate("C")}، ${isolate("D")}، ${isolate("E")}، ${isolate("F")} اور ${isolate("G")} کو کریشینڈو کے ساتھ بجتے ہوئے سنیں۔ ہر کلید پچھلی کلید سے تھوڑا زیادہ تیزی سے نیچے جاتی ہے۔`,
+      text: `${isolate("C")}، ${isolate("D")}، ${isolate("E")}، ${isolate("F")} اور ${isolate("G")} کو کریشینڈو کے ساتھ بجتے ہوئے سنیں۔ ہر کلید پچھلی کلید سے تھوڑی زیادہ تیزی سے نیچے جاتی ہے۔`,
     },
     "how-crescendo-changed": {
       text: "پہلے نوٹ سے آخری نوٹ تک آواز کیسے بدلی؟",
@@ -40,7 +40,7 @@ export const crescendoAndDiminuendoUr: Translation<CrescendoAndDiminuendoTexts> 
       text: `مڈل ${isolate("C")} کے اوپر والے ${isolate("G")} سے شروع کر کے ${isolate("G")}، ${isolate("F")}، ${isolate("E")}، ${isolate("D")} اور ${isolate("C")} ڈمنیوئنڈو کے ساتھ بجائیں۔ ${isolate("G")}، ${isolate("F")} اور ${isolate("E")} تیزی سے اور مضبوطی سے دبائیں، پھر ${isolate("D")} اور ${isolate("C")} نرمی سے اور آہستہ آہستہ۔`,
     },
     "hear-diminuendo": {
-      text: `${isolate("G")}، ${isolate("F")}، ${isolate("E")}، ${isolate("D")} اور ${isolate("C")} کو ڈمنیوئنڈو کے ساتھ بجتے ہوئے سنیں۔ ہر کلید پچھلی کلید سے تھوڑا آہستہ نیچے جاتی ہے۔`,
+      text: `${isolate("G")}، ${isolate("F")}، ${isolate("E")}، ${isolate("D")} اور ${isolate("C")} کو ڈمنیوئنڈو کے ساتھ بجتے ہوئے سنیں۔ ہر کلید پچھلی کلید سے تھوڑی کم تیزی سے نیچے جاتی ہے۔`,
     },
     "how-diminuendo-changed": {
       text: "پہلے نوٹ سے آخری نوٹ تک آواز کیسے بدلی؟",

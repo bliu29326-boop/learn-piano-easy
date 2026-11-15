@@ -34,7 +34,7 @@ export const theCMajorScaleUr: Translation<TheCMajorScaleTexts> = {
       answers: ["انگلی 4", "انگلی 1، انگوٹھا", "انگلی 5"],
     },
     "tuck-to-f": {
-      text: `${isolate("C")}، ${isolate("D")} اور ${isolate("E")} دوبارہ بجائیں۔ پھر انگوٹھا نیچے سے لے جائیں اور ${isolate("F")} بجائیں۔ کلائی پرسکون اور سیدھی رکھیں۔`,
+      text: `${isolate("C")}، ${isolate("D")} اور ${isolate("E")} دوبارہ بجائیں۔ پھر انگوٹھا نیچے سے لے جائیں اور ${isolate("F")} بجائیں۔ کلائی ہلائے بغیر سیدھی رکھیں۔`,
     },
     "last-five": {
       text: `اب انگوٹھا ${isolate("F")} پر ہے۔ انگلیاں 1، 2، 3، 4 اور 5 سے ${isolate("F")}، ${isolate("G")}، ${isolate("A")}، ${isolate("B")} اور ${isolate("C")} بجائیں۔`,

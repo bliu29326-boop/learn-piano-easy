@@ -42,7 +42,8 @@ of these rules is the `ur` entry of `src/i18n/typography.ts`.
 - **A stem in `ا` takes `ئیں`:** `دبائیں`, `بجائیں`, `جائیں`. `دبایں` is a misspelling.
 - **A button or a menu item is the same imperative, or a short noun:** `کھولیں`, `جاری رکھیں`, `ترتیبات`.
 - **A setting's name is a noun phrase,** and its help text is a plain sentence about what it does.
-- **A question to the learner starts with `کیا`:** `کیا آپ یہ سبق چھوڑنا چاہتے ہیں؟` § 4 names its verb.
+- **A yes-or-no question to the learner starts with `کیا`:** `کیا آپ یہ سبق چھوڑنا چاہتے ہیں؟` § 4 names
+  its verb. A question that picks one of several starts with its question word: `ان میں سے کون سا…؟`
 - **An error is passive and impersonal.** It names what failed, never the learner's mistake: `محفوظ نہیں
   کیا جا سکا۔` Android phrases every failure so, often followed by `دوبارہ کوشش کریں۔`
 - **One verb serves a button, a piano key and a computer key: `دبائیں`.** It holds for a tap, a click and
@@ -113,6 +114,7 @@ of a work, *download*, *loading*, *retry*, *website*, *internet* and *connection
 | sharp, flat (the signs) | شارپ, فلیٹ | unsourced, the English terms |
 | accidental | شارپ یا فلیٹ کا نشان | the course's own phrase, unsourced |
 | staff | اسٹاف | WP *امام الدین شہباز* writes `اسٹاف نوٹیشن` |
+| a line of music, a system | سطر | kept apart from `لائن`, one of the staff's five lines |
 | grand staff | گرینڈ اسٹاف | follows `اسٹاف` |
 | treble clef, bass clef | ٹریبل کلیف, بیس کلیف | unsourced, the English terms |
 | ledger line | لیجر لائن | unsourced, the English term |
@@ -157,6 +159,7 @@ of a work, *download*, *loading*, *retry*, *website*, *internet* and *connection
 | bass note | بیس نوٹ | follows `بیس کلیف` |
 | third, fourth, fifth, sixth, seventh | تھرڈ, فورتھ, ففتھ, سکستھ, سیونتھ | unsourced, the English terms |
 | major third, minor third; open fifth | میجر تھرڈ, مائنر تھرڈ; اوپن ففتھ | follows the row above |
+| an interval's span, counting both ends | پہلی اور آخری کلید سمیت | `دونوں سروں سمیت` would also read as "with both notes", since `سروں` is the plural of `سُر` too |
 | step, skip (between keys) | ساتھ والی کلید پر جانا, ایک کلید چھوڑ کر جانا | everyday words |
 | a step, a skip, a leap (nouns) | قدم, چھلانگ, بڑی چھلانگ | everyday words; a lesson defines each by the row above |
 | tune, melody | دھن, feminine | WP *وولف گینگ موزارٹ*; RK *دھن* |
@@ -173,7 +176,7 @@ of a work, *download*, *loading*, *retry*, *website*, *internet* and *connection
 | hairpin | ہیئر پن کا نشان | unsourced |
 | mark (p, f, rit.) | نشان | everyday word |
 | fermata | فرماٹا | unsourced, the Italian term |
-| hold (a fermata's note) | کھینچنا: `نوٹ کو ذرا دیر تک کھینچیں` | everyday word. `روکنا` reads as stop |
+| hold (a fermata's note) | کھینچنا: `نوٹ کو تھوڑی زیادہ دیر تک کھینچیں` | everyday word. `روکنا` reads as stop, and `ذرا دیر تک` means "for a little while" |
 | hold (the pedal holds the notes) | تھامنا: `پیڈل نوٹوں کو تھامے رکھتا ہے` | everyday word |
 | fast, slow (tempo); speed up | تیز رفتار سے, آہستہ رفتار سے; رفتار بڑھانا | everyday words. `تیز آواز` means loud, so tempo takes `رفتار` |
 | slow down, back in time | رفتار آہستہ آہستہ کم کرنا, پھر پہلی رفتار | everyday words |
@@ -249,6 +252,7 @@ of a work, *download*, *loading*, *retry*, *website*, *internet* and *connection
 | computer keyboard; computer key | کمپیوٹر کی بورڈ; کی بورڈ کا بٹن | AN *کی بورڈ*. MSG's `کلید` is the piano's key here, so the two never blur |
 | touch screen | ٹچ اسکرین | unsourced |
 | device; connect, disconnect | آلہ; منسلک کریں, منقطع کریں | AN |
+| plug in (a cable or a keyboard) | پلگ ان کریں | the everyday phrase for a cable |
 | folder; file | فولڈر; فائل | AN *فائل*; MSG |
 | browser | براؤزر | AN; FF |
 | offline; internet; connection | آف لائن; انٹرنیٹ; کنکشن | FF *آف لائن*; AN *کنکشن* |
@@ -311,7 +315,8 @@ of a work, *download*, *loading*, *retry*, *website*, *internet* and *connection
 | error (a title) | خرابی | AN. MSG's `نقص` reads formal |
 | leave (a lesson, a page); skip | باہر نکلیں; چھوڑیں | everyday words. `چھوڑیں` also releases a key, never leaves a lesson |
 | skill (a song's technique tag); a skill in general | تکنیک; ہنر | everyday words |
-| size; shape | سائز; شکل | everyday words |
+| size; shape | سائز; شکل | everyday words. `سائز` is a physical size only |
+| the distance of a move, as a step or a skip | فاصلہ | `سائز` would read as the key's own size |
 | opacity | گاڑھا پن | everyday word. `چمک` is only *glow* |
 | in key widths (a unit); per second | کلید کی چوڑائی کے حساب سے; فی سیکنڈ | the player's own unit |
 | the Original (a song's last version) | اوریجنل | the app's own term |

@@ -7,7 +7,7 @@ export const brokenChordsUr: Translation<BrokenChordsTexts> = {
   title: "بروکن کورڈ",
   steps: {
     "broken-demo": {
-      text: `${isolate("C")} میجر سنیں، ایک وقت میں ایک نوٹ۔ یہ اوپر جاتا ہے اور واپس نیچے آتا ہے۔ کورڈ پھر بھی سنائی دیتا ہے۔`,
+      text: `${isolate("C")} میجر ایک ایک نوٹ کر کے سنیں۔ یہ اوپر جاتا ہے اور واپس نیچے آتا ہے۔ کورڈ پھر بھی سنائی دیتا ہے۔`,
     },
     "one-after-another": {
       text: "بروکن کورڈ میں کورڈ کے نوٹ ایک ساتھ نہیں، بلکہ ایک کے بعد ایک بجتے ہیں۔ نوٹ وہی ہیں، اس لیے کورڈ بھی وہی ہے۔",
@@ -16,7 +16,7 @@ export const brokenChordsUr: Translation<BrokenChordsTexts> = {
       text: `پہلے ${isolate("C")} میجر ایک ساتھ بجائیں: مڈل ${isolate("C")} سے ${isolate("C")}، ${isolate("E")} اور ${isolate("G")}، انگلی 1، 3 اور 5 سے۔`,
     },
     "broken-up": {
-      text: `اب اسے توڑیں۔ ہاتھ اپنی جگہ پر رکھیں اور ${isolate("C")} بجائیں، پھر ${isolate("E")}، پھر ${isolate("G")}۔`,
+      text: `اب اسے توڑ کر بجائیں۔ ہاتھ اپنی جگہ پر رکھیں اور ${isolate("C")} بجائیں، پھر ${isolate("E")}، پھر ${isolate("G")}۔`,
     },
     "which-chord-broken": {
       text: `آپ نے ${isolate("C")}، ${isolate("E")} اور ${isolate("G")} ایک ایک کر کے بجائے۔ آپ نے کون سا کورڈ بجایا؟`,

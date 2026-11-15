@@ -21,13 +21,13 @@ export const albertiBassUr: Translation<AlbertiBassTexts> = {
       ],
     },
     "five-one-three-one": {
-      text: "بایاں ہاتھ اسے انگلی 5، 1، 3، 1 سے بجاتا ہے۔ انگلی 5 نیچے والا نوٹ لیتی ہے، انگوٹھا اوپر والا، اور انگلی 3 بیچ والا۔",
+      text: "بایاں ہاتھ اسے انگلی 5، 1، 3، 1 سے بجاتا ہے۔ انگلی 5 نیچے والا نوٹ بجاتی ہے، انگوٹھا اوپر والا، اور انگلی 3 بیچ والا۔",
     },
     "c-alberti": {
       text: `اب ${isolate("C")} پر آپ کی باری۔ انگلی 5 مڈل ${isolate("C")} سے نیچے والے ${isolate("C")} پر رکھیں۔ ${isolate("C")}، ${isolate("G")}، ${isolate("E")}، ${isolate("G")} دو بار بجائیں، ایک جیسی رفتار سے۔`,
     },
     "g7-shape": {
-      text: `${isolate("G")} کے لیے ${isolate("G7")} کورڈ لیں: ${isolate("G")} میجر، جس کے اوپر ${isolate("F")} جوڑا گیا ہو۔ اس کا ${isolate("G")} چھوڑ دیں اور ${isolate("B")}، ${isolate("D")} اور ${isolate("F")} بجائیں۔ یہ ${isolate("C")}، ${isolate("E")} اور ${isolate("G")} کے بالکل پاس ہیں، اس لیے ہاتھ مشکل سے ہلتا ہے۔`,
+      text: `${isolate("G")} کے لیے ${isolate("G7")} کورڈ لیں: ${isolate("G")} میجر، جس کے اوپر ${isolate("F")} جوڑا گیا ہو۔ اس کا ${isolate("G")} چھوڑ دیں اور ${isolate("B")}، ${isolate("D")} اور ${isolate("F")} بجائیں۔ یہ ${isolate("C")}، ${isolate("E")} اور ${isolate("G")} کے بالکل پاس ہیں، اس لیے ہاتھ تقریباً نہیں ہلتا۔`,
     },
     "g7-alberti": {
       text: `انگلی 5 نیچے ${isolate("B")} پر لے جائیں۔ انگلی 5، 1، 3، 1 سے ${isolate("B")}، ${isolate("F")}، ${isolate("D")}، ${isolate("F")} دو بار بجائیں۔`,
@@ -43,7 +43,7 @@ export const albertiBassUr: Translation<AlbertiBassTexts> = {
       text: `انگلی 5 کو ${isolate("C")} پر ہی رکھیں۔ انگلی 5، 1، 3، 1 سے ${isolate("C")}، ${isolate("A")}، ${isolate("F")}، ${isolate("A")} دو بار بجائیں۔`,
     },
     "change-chords": {
-      text: `پیٹرن ${isolate("C")}، ${isolate("F")}، ${isolate("G7")} اور ${isolate("C")} پر ایک ایک بار بجائیں۔ کورڈ بدلتے وقت ایٹتھ نوٹ ایک جیسے رکھیں۔`,
+      text: `پیٹرن ${isolate("C")}، ${isolate("F")}، ${isolate("G7")} اور ${isolate("C")} پر ایک ایک بار بجائیں۔ کورڈ بدلتے وقت بھی ایٹتھ نوٹ برابر وقفے سے بجاتے رہیں۔`,
     },
     "alberti-tune-demo": {
       text: "یہ رہی البرٹی بیس پر ایک چھوٹی سی دھن۔ دایاں ہاتھ ہاف نوٹ بجاتا ہے، اور بایاں ہاتھ لہراتا رہتا ہے۔",
@@ -85,7 +85,7 @@ export const albertiBassUr: Translation<AlbertiBassTexts> = {
       points: [
         "البرٹی بیس کورڈ کو اس ترتیب سے توڑتا ہے: نیچے والا، اوپر والا، بیچ والا، اوپر والا۔",
         "یہ ایٹتھ نوٹوں میں چلتا ہے، انگلی 5، 1، 3، 1 سے۔",
-        `${isolate("G7")} اور دوسرے انورژن میں ${isolate("F")}، ہاتھ کو ${isolate("C")} کے پاس رکھتے ہیں۔`,
+        `${isolate("G7")} اور دوسرے انورژن والا ${isolate("F")} ہاتھ کو ${isolate("C")} کے پاس رکھتے ہیں۔`,
         `${isolate("D")} میجر کے اسکیل کے نشان میں دو شارپ ہیں: ${isolate("F")} شارپ اور ${isolate("C")} شارپ۔`,
       ],
     },

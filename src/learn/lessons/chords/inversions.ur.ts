@@ -35,10 +35,10 @@ export const inversionsUr: Translation<InversionsTexts> = {
       text: `${isolate("C")} میجر کے ساتھ کلیدوں پر اوپر چڑھیں: روٹ پوزیشن، پہلا انورژن، دوسرا انورژن، اور پھر ایک آکٹیو اوپر روٹ پوزیشن۔`,
     },
     "move-less": {
-      text: `انورژن سے کورڈ بدلتے وقت ہاتھ کم ہلتا ہے۔ ${isolate("C-F-A")} کی شکل میں ${isolate("F")} میجر اور ${isolate("B-D-G")} کی شکل میں ${isolate("G")} میجر، ${isolate("C-E-G")} کے بالکل پاس ہیں۔`,
+      text: `انورژن سے کورڈ بدلتے وقت ہاتھ کم ہلتا ہے۔ ${isolate("C-F-A")} کی شکل میں ${isolate("F")} میجر اور ${isolate("B-D-G")} کی شکل میں ${isolate("G")} میجر، دونوں ${isolate("C-E-G")} کے بالکل پاس ہیں۔`,
     },
     "close-chords-demo": {
-      text: `${isolate("C")}، ${isolate("F")}، ${isolate("G")} اور ${isolate("C")} پھر سے سنیں، اس بار پاس پاس بجائے ہوئے۔ ہر انگلی صرف ایک یا دو کلید آگے پیچھے ہوتی ہے۔`,
+      text: `${isolate("C")}، ${isolate("F")}، ${isolate("G")} اور ${isolate("C")} پھر سے سنیں۔ اس بار یہ پاس پاس بجتے ہیں۔ ہر انگلی صرف ایک یا دو کلید آگے پیچھے ہوتی ہے۔`,
     },
     "which-chord-is-c-f-a": {
       text: `${isolate("C-F-A")} میں ${isolate("F")}، ${isolate("A")} اور ${isolate("C")} کسی اور ترتیب میں ہیں۔ یہ کون سا کورڈ ہے؟`,

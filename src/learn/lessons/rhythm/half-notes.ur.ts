@@ -27,7 +27,7 @@ export const halfNotesUr: Translation<HalfNotesTexts> = {
       answers: ["کوارٹر نوٹ", "ہاف نوٹ"],
     },
     "halves-in-four-quiz": {
-      text: "چار بیٹ کتنے ہاف نوٹوں سے بھرتی ہیں؟",
+      text: "کتنے ہاف نوٹ چار بیٹ بھر دیتے ہیں؟",
       answers: ["ایک", "دو", "چار"],
     },
     recap: {
