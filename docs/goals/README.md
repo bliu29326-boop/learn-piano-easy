@@ -655,7 +655,7 @@ The chain holds 1 goal(s). `japanese` is live.
 
 | # | Goal | Reached when | Stages |
 |---|---|---|---|
-| 1 | [`japanese`](japanese.md) **live** | Every text of the site, the course and the song guides reads in Japanese as if a native teacher wrote it, and the Japanese site ships. | 1 ✓ The Japanese style guide and glossary · 2 ✓ The site and the player in Japanese · 3 ✓ The course in Japanese · **4 The song guides in Japanese, from a to m** · 5 The song guides in Japanese, from n to z · 6 The Japanese site ships · 7 the goal is verified once, and every failure is fixed |
+| 1 | [`japanese`](japanese.md) **live** | Every text of the site, the course and the song guides reads in Japanese as if a native teacher wrote it, and the Japanese site ships. | 1 ✓ The Japanese style guide and glossary · 2 ✓ The site and the player in Japanese · 3 ✓ The course in Japanese · 4 ✓ The song guides in Japanese, from a to m · **5 The song guides in Japanese, from n to z** · 6 The Japanese site ships · 7 the goal is verified once, and every failure is fixed |
 
 The floor holds 129 check(s) carried from reached goals; every goal keeps them green.
 The format is `docs/goal-format.md`.

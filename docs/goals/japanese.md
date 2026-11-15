@@ -15,7 +15,7 @@ stages:
     status: done
   - id: 4
     title: "The song guides in Japanese, from a to m"
-    status: open
+    status: done
   - id: 5
     title: "The song guides in Japanese, from n to z"
     status: open
@@ -139,9 +139,9 @@ keys* with *First melodies*. Five fresh reviewers then review the five batches b
 most eight guides each work side by side, and one fresh reviewer per batch reviews it blind.
 **Gate:** stage 3's worlds are stamped.
 
-- [ ] One `tools/our-songs/<slug>.ja.ts` per slug from `alle-jahre-wieder` to `morgen-kinder`. `tools/our-songs/alle-jahre-wieder.ja.ts:1`
-- [ ] Each batch reviewed blind, and every finding settled.
-- [ ] `bun tools/make-our-songs.ts` writes the guides, and `bun run i18n stamp ja` stamps them. `public/songs/ours/alle-jahre-wieder/guide.json:1`
+- [x] One `tools/our-songs/<slug>.ja.ts` per slug from `air-on-the-g-string` to `mozart-21-andante`. `tools/our-songs/alle-jahre-wieder.ja.ts:1`
+- [x] Each batch reviewed blind, and every finding settled.
+- [x] `bun tools/make-our-songs.ts` writes the guides, and `bun run i18n stamp ja` stamps them. `public/songs/ours/alle-jahre-wieder/guide.json:1`
 
 ### 5. The song guides in Japanese, from n to z
 
@@ -149,7 +149,7 @@ most eight guides each work side by side, and one fresh reviewer per batch revie
 **Split:** as stage 4.
 **Gate:** stage 4's guides are stamped.
 
-- [ ] One `tools/our-songs/<slug>.ja.ts` per slug from `o-christmas-tree` to `yankee-doodle`. `tools/our-songs/o-christmas-tree.ja.ts:1`
+- [ ] One `tools/our-songs/<slug>.ja.ts` per slug from `neon-chase` to `yankee-doodle`. `tools/our-songs/o-christmas-tree.ja.ts:1`
 - [ ] Each batch reviewed blind, and every finding settled.
 - [ ] `bun tools/make-our-songs.ts` writes the guides, and `bun run i18n stamp ja` stamps them. `public/songs/ours/o-christmas-tree/guide.json:1`
 
@@ -179,40 +179,46 @@ address or mark that drifts between files.
 
 ### State
 
-Stages 1 to 3 are done. Every catalog section and every lesson of the eight worlds has its `.ja.ts`,
-reviewed blind and stamped in `src/i18n/stamps/ja.json`. Each world's `index.ts` loads its `ja` chunk
-from `texts.ja.ts`. `bun tools/i18n.ts status ja` lists no lesson unit. The 23 catalog texts it lists
-are left out on purpose, since each equals its English.
+Stages 1 to 4 are done. Every catalog section, every lesson and the 51 guides from
+`air-on-the-g-string` to `mozart-21-andante` have their `.ja.ts`, reviewed blind and stamped in
+`src/i18n/stamps/ja.json`. `public/songs/ours/*/guide.json` carries their `ja` texts.
+`src/i18n/translation-rules.test.ts` and `tsc` pass, and the build is green.
 
-The course review had 2 *wrong* findings, 14 *unnatural* and 15 *nit*, and every one is applied. Both
-*wrong* findings were in *Meet the piano*, an ambiguous phrase each time. The first sent the batch to
-a second reader. The session checked the second reader's single *wrong* against the English and
-applied it, without a third round.
+The guide review had 7 *wrong* findings, 30 *unnatural* and 27 *nit*, and every one is settled. Each
+*wrong* was a name, a stock step or one verb, checked against the English by the session, so no batch
+had a second round. Two names were confirmed in Japanese Wikipedia: トワノ・アルボ and 『オルケゾグラフィ』.
 
-A lesson quiz whose answers are note names takes them in ドレミ, as `## Standing decisions` records.
-The writers' new terms stand in their files, such as 空虚5度, 第1転回形, 間（かん） and 指越え. A boss
-that adds both hands reads `ボス：「エリーゼのために」を両手で`. None of them is in the glossary yet.
+The writers drifted on the step "let the song wait for each note" in four wordings. The session settled
+it as `…を右手だけで弾きましょう。曲は1音ずつ待ってくれます。` in every file. The glossary's stock-step
+row now holds it, with `今度はもとの速さで弾きましょう。`, and a numbered verse is `1番`, `2番`.
 
-The page look of a lesson in Japanese waits for stage 6, since no page serves `ja` until it ships.
+`J` joined the kept single letters of `src/i18n/typography.ts`, for a middle initial such as
+ウィリアム・J・カークパトリック. Every other Latin title the writers kept was already a kept word.
 
-The lesson briefs that worked are `.agent-tmp/ja-lesson-writer-brief.md` and
-`.agent-tmp/ja-lesson-reviewer-brief.md`. The catalog briefs are `.agent-tmp/ja-writer-brief.md` and
-`.agent-tmp/ja-reviewer-brief.md`.
+Titles left in English for want of a settled Japanese name: 「Away in a Manger」 (まぶねのなかに was
+unconfirmed), 「God Rest Ye Merry, Gentlemen」, 「Es ist ein Ros entsprungen」. 主和音 stands for "home
+chord", and ケーレル・ベーラ for Béla Kéler, both unconfirmed.
+
+The page look waits for stage 6, since no page serves `ja` until it ships.
 
 ### Next
 
-**Stage 4: the song guides from a to m.** `tools/our-songs/` holds 51 guide modules from
-`air-on-the-g-string.ts` to `mozart-21-andante.ts`, so the item's "to `morgen-kinder`" is stale. Each
-locale's file is `tools/our-songs/<slug>.<locale>.ts`,
-as `tools/our-songs/alle-jahre-wieder.ur.ts` shows.
+**Stage 5: the guides from n to z,** 29 slugs from `neon-chase` to `yankee-doodle`. The item's
+"from `o-christmas-tree`" is now fixed to `neon-chase`.
 
-- Run `bun tools/i18n.ts work ja guide/<slug>` per slug, and adapt the lesson briefs to the guides.
-- Seven writers of at most eight guides each, side by side. Give the first batch's recurring steps,
-  such as "Play the whole song", to every later brief, as the method's *Before a locale ships* says.
-- Give each batch two reviewers of four songs each, as the playbook says.
-- Mind the playbook's trap that an Edit drops a trailing space before `" +`.
-- Then `bun tools/make-our-songs.ts` and `bun tools/i18n.ts stamp ja guide/<slug>` per slug.
-- Stage 6's consistency read should add the course's new terms and the boss form to the glossary.
+- The briefs that worked are `.agent-tmp/ja-guide-writer-brief.md` and
+  `.agent-tmp/ja-guide-reviewer-brief.md`. Add the settled "wait for each note" form to the writer's
+  stock steps before sending it.
+- Run `bun tools/i18n.ts work ja guide/<slug>` per slug first.
+- Four writers of 7 or 8 guides each, side by side. Each `.es.ts` may be partial, so a writer takes the
+  shape from the work list, as this stage's writers did.
+- Two `reader` reviewers per batch, sent as soon as that batch's writer ends.
+- Grep the batch for `曲が1音ずつ\|曲に1音ずつ\|今度はもとの速さで、ペダル` and settle any drift.
+- Then `bun test src/i18n/translation-rules.test.ts`, `bun tools/make-our-songs.ts`, and
+  `bun tools/i18n.ts stamp ja guide/<slug>` per slug.
+- Stage 6's consistency read adds the course's new terms (空虚5度, 第1転回形, 間（かん）, 指越え) and the
+  boss form `ボス：「エリーゼのために」を両手で` to the glossary. It also checks the unconfirmed titles and
+  names above.
 
 Expected red: `a_page_loads_only_its_own_catalog` in `src/i18n/i18n.test.ts:77`. It expects
 `catalogOf("ja").footer` to equal the English, and `ja.ts` now translates the footer. Stage 6 rewrites
