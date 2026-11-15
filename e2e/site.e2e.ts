@@ -250,20 +250,25 @@ async function structureFlaws(page: Page, withNav: boolean): Promise<string[]> {
   }, withNav);
 }
 
-test("every_page_has_one_h1_a_main_a_nav_and_crawlable_links", async ({ page }) => {
-  test.setTimeout(120_000);
-  const errors = watchErrors(page);
+// A test per locale, so the workers share the pages as locales are added.
+test.describe("every_page_has_one_h1_a_main_a_nav_and_crawlable_links", () => {
   const lessons = ["learn/meet-the-piano/find-c/", "de/learn/meet-the-piano/find-c/"].map((path) => pageAt(path)!);
-  const flaws: Record<string, string[]> = {};
-  for (const site of [...allPages().filter((p) => !p.route.hidden), ...lessons]) {
-    await page.goto(`./${site.path}`);
-    await expect(heading(page)).toBeAttached();
-    await page.waitForLoadState("networkidle");
-    const found = await structureFlaws(page, site.route.id !== "play");
-    if (found.length > 0) flaws[site.path] = found;
+  const pages = [...allPages().filter((p) => !p.route.hidden), ...lessons];
+  for (const locale of new Set(pages.map((p) => p.locale))) {
+    test(locale, async ({ page }) => {
+      const errors = watchErrors(page);
+      const flaws: Record<string, string[]> = {};
+      for (const site of pages.filter((p) => p.locale === locale)) {
+        await page.goto(`./${site.path}`);
+        await expect(heading(page)).toBeAttached();
+        await page.waitForLoadState("networkidle");
+        const found = await structureFlaws(page, site.route.id !== "play");
+        if (found.length > 0) flaws[site.path] = found;
+      }
+      expect(flaws).toEqual({});
+      expect(errors).toEqual([]);
+    });
   }
-  expect(flaws).toEqual({});
-  expect(errors).toEqual([]);
 });
 
 test("the_top_bar_and_the_footer_pass_the_layout_checks", async ({ browser, baseURL }) => {
