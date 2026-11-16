@@ -18,6 +18,7 @@
  *   since a learner reached it by a link or a choice. A picked locale wins on every page.
  */
 import { DEFAULT_LOCALE, isPseudoLocale, LOCALES, type Locale, type LocaleCode, type ShippedLocale } from "./locale-table";
+import { rebrandMessages } from "./rebrand";
 import { en, type Messages } from "./messages/en";
 import { pseudoTree } from "./pseudo";
 import { withEnglish, type Translation } from "./translation";
@@ -59,13 +60,13 @@ const CATALOG_CHUNKS: Partial<Record<LocaleCode, () => Promise<Translation<Messa
 };
 
 /** Each loaded locale's catalog, its gaps filled with English. */
-const loaded = new Map<LocaleCode, Messages>([["en", en]]);
+const loaded = new Map<LocaleCode, Messages>([["en", rebrandMessages(en)]]);
 
 /** Loads the catalog of `locale` once, so `messagesOf(locale)` may read it. */
 export async function loadLocale(locale: LocaleCode): Promise<void> {
   if (loaded.has(locale)) return;
   const translation = (await CATALOG_CHUNKS[locale]?.()) ?? {};
-  loaded.set(locale, withEnglish<Messages>(en, translation));
+  loaded.set(locale, rebrandMessages(withEnglish<Messages>(en, translation)));
 }
 
 /** The catalog of `locale`, which `loadLocale` must have loaded. */

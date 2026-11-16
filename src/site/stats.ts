@@ -91,21 +91,5 @@ function referrerOrigin(referrer: string, host: string): string | undefined {
   }
 }
 
-/** Whether a page was counted yet. The referrer belongs to the first page only. */
-let counted = false;
-
-/** Counts the page on screen, unless the visitor refuses or the page is not on the hosted site. */
-export function countVisit(): void {
-  if (browserRefuses() || optedOut()) return;
-  const form = visitForm({ href: location.href, title: document.title, referrer: counted ? "" : document.referrer });
-  counted = true;
-  if (form === undefined) return;
-  void fetch(new URL("matomo.php", STATS.url), {
-    method: "POST",
-    body: form,
-    mode: "no-cors",
-    credentials: "omit",
-    referrerPolicy: "no-referrer",
-    keepalive: true,
-  }).catch(() => undefined);
-}
+/** Keytrail deliberately has no visitor analytics. Legacy exports stay for backward-compatible data settings only. */
+export function countVisit(): void {}

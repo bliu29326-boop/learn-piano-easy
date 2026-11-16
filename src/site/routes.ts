@@ -92,7 +92,6 @@ export const ROUTES: readonly Route[] = [
   { id: "profile", path: "learn/profile/", hidden: false },
   { id: "about", path: "about/", hidden: false },
   { id: "data", path: "data/", hidden: false },
-  { id: "sponsor", path: "sponsor/", hidden: false },
   { id: "imprint", path: "imprint/", hidden: false },
   { id: "privacy", path: "privacy/", hidden: false },
   { id: "design", path: "design/", hidden: true },
@@ -162,6 +161,7 @@ export function socialImageOf(locale: Locale): string {
 export function pageTitle(page: Page): string {
   const { siteName, pages } = messagesOf(page.locale);
   const title = page.route.lesson?.meta?.[page.locale]?.title ?? pages[page.route.id].title;
+  if (page.route.id === "home") return "Learn Piano Online Free | Keytrail";
   return title === siteName ? title : `${title} · ${siteName}`;
 }
 

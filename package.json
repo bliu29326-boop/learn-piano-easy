@@ -1,16 +1,18 @@
 {
-  "name": "learn-piano-easy",
+  "name": "keytrail",
   "version": "0.0.0",
-  "description": "Learn piano by playing. A guided course, a 3D piano and your MIDI keyboard. Free, open source and offline.",
+  "description": "Keytrail: learn piano online free with real-time practice, guided lessons and an optional monthly membership.",
   "license": "MIT",
-  "homepage": "https://learn-piano-easy.app",
+  "homepage": "https://keytrail-dev.pages.dev",
   "keywords": ["piano", "learn-piano", "piano-lessons", "music-education", "midi", "web-midi", "sheet-music", "three.js", "pwa", "offline-first"],
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "bun tools/build.ts",
+    "build": "bun tools/build.ts --site-url https://keytrail-dev.pages.dev",
     "dev": "bun tools/dev.ts",
-    "preview": "bun tools/dev.ts --preview",
+    "preview": "wrangler pages dev dist --port 4173",
+    "dev:fullstack": "wrangler pages dev dist --port 4173",
+    "deploy:dev": "wrangler pages deploy dist --project-name keytrail-dev --branch keytrail-development",
     "e2e": "playwright test",
     "e2e:install": "playwright install chromium",
     "e2e:docker": "bun tools/e2e-docker.ts",
@@ -24,7 +26,8 @@
     "@playwright/test": "1.64.1",
     "@types/bun": "1.4.4",
     "@types/three": "0.186.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "4.163.0"
   },
   "dependencies": {
     "three": "0.186.0"

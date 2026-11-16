@@ -1,7 +1,8 @@
-# Our own modern pieces
+# Original compositions by the upstream learn-piano-easy authors
 
 The MIDI files in this folder are original compositions by the learn-piano-easy authors.
-They are under the MIT License, the same as the app: see `LICENSE` at the repository root.
+These are not Keytrail compositions. The MIDI files remain under the MIT License.
+Copyright (c) 2026 The learn-piano-easy contributors. See `LICENSE` at the repository root.
 
 `tools/make-original-songs.ts` writes them, so a change goes there, never into a file here.
 

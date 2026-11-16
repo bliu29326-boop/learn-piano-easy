@@ -32,7 +32,6 @@
     "ur": "شیٹ میوزک کے شروع میں ⁨pianissimo⁩ اور \"⁨con sordina⁩\" لکھا ہے، اس لیے پہلے ہی نوٹ سے سافٹ پیڈل دبا کر بجایا جاتا ہے۔",
     "ja": "楽譜の最初にはピアニッシモと「con sordina」と書かれています。そのため、最初の音からソフトペダルを踏んで弾きます。"
   },
-  "mythic": "piano-midi/deb_clai.mid",
   "versions": {
     "common": {
       "file": "ours/clair-de-lune/common-2.mid",

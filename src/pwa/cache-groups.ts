@@ -117,7 +117,7 @@ export const ON_DEMAND: readonly GroupId[] = ["songs", "sounds"];
  * The files the build writes beside the groups' files, which no group caches: the worker, and the files
  * only a search engine's crawler reads.
  */
-const UNGROUPED = ["sw.js", "robots.txt", "sitemap.xml"];
+const UNGROUPED = ["sw.js", "robots.txt", "sitemap.xml", "_headers", "_redirects", "_routes.json", "404.html"];
 
 /** The files of the songs folder that the player part holds. */
 const PLAYER_SONGS: ReadonlySet<string> = new Set(["songs/catalog.json", ...LANDING_SONGS]);
@@ -135,8 +135,14 @@ function topFolder(path: string): string {
 /** The folder of the social pictures, which only a search or social site fetches. */
 const SOCIAL_FOLDER = "images/social/";
 
+/** Server identity and payment routes must never enter any offline cache. */
+export function isPrivatePath(path: string): boolean {
+  const normalized = path.replace(/^\.?\//, "").split(/[?#]/, 1)[0] ?? "";
+  return /^(?:api(?:\/|$)|account(?:\/|$))/.test(normalized);
+}
+
 function grouped(path: string): boolean {
-  return !path.endsWith(".map") && !UNGROUPED.includes(path) && !path.startsWith(SOCIAL_FOLDER);
+  return !isPrivatePath(path) && !path.endsWith(".map") && !UNGROUPED.includes(path) && !path.startsWith(SOCIAL_FOLDER);
 }
 
 /** The part of a file outside the bundle's chunks, by its path, or `undefined` for the core. */

@@ -9,9 +9,8 @@
  *   when the learner first opens it.
  * - **Every shell file is served cache-first,** the core's and the parts' alike, and from the network
  *   when the cache misses it. A navigation gets its route's page, so every route of the site reloads
- *   offline. A route whose page the cache misses, such as a lesson while learn is not saved or a page of a
- *   locale not saved, and an unknown path get the root page. The site reads the address, and shows the route or the landing page of the
- *   path's locale. A request for a byte range, as a video makes, gets that range of the cached file
+ *   offline. A missing route page goes to the server, never to the static marketing homepage. A request
+ *   for a byte range, as a video makes, gets that range of the cached file
  *   through `ranged.ts`.
  * - **Songs and sounds** are cached on first use into one content cache that outlives versions. After
  *   an update, the cache manager fetches again only the cached files whose bytes changed. It can also
@@ -50,7 +49,7 @@ interface WorkerScope {
   addEventListener(type: "message", listener: (event: MessageEvent) => void): void;
 }
 
-import { CONTENT_CACHE, groupOf, inShell, INSTALL_PROGRESS, markedIn, PARTS_CACHE, shellCacheName, type InstallProgress, type ShellGroupId } from "./cache-groups";
+import { CONTENT_CACHE, groupOf, inShell, isPrivatePath, INSTALL_PROGRESS, markedIn, PARTS_CACHE, shellCacheName, type InstallProgress, type ShellGroupId } from "./cache-groups";
 import { inParallel, isCurrent } from "./current";
 import { ranged } from "./ranged";
 
@@ -159,20 +158,8 @@ async function fromContent(request: Request): Promise<Response> {
 }
 
 /**
- * The root page with its `<base>` set to the scope's absolute URL, so it boots at any depth. The site
- * then reads the address, and shows the landing page of the address's locale.
- */
-async function rootPage(cache: Cache): Promise<Response | undefined> {
-  const page = await cache.match(new URL("./", scope).href);
-  if (page === undefined) return undefined;
-  const html = (await page.text()).replace(/<base href="[^"]*"/, `<base href="${scope.href}"`);
-  return new Response(html, { headers: page.headers });
-}
-
-/**
  * A shell file, cache-first. A navigation is answered with its route's page, its folder's
- * `index.html`, such as `de/play/index.html`. Where the cache holds no page, the root page answers.
- * Its `<base>` is rewritten, since the page's own `./` would resolve from the folder of the address.
+ * `index.html`, such as `de/play/index.html`. A missing page reaches its real server route.
  */
 async function fromShell(request: Request, navigate: boolean): Promise<Response> {
   const cache = await caches.open(SHELL_CACHE);
@@ -182,8 +169,9 @@ async function fromShell(request: Request, navigate: boolean): Promise<Response>
   }
   const url = new URL(request.url);
   const page = url.pathname.endsWith("/") ? new URL("index.html", url).href : request.url;
-  const hit = (await cache.match(page, { ignoreSearch: true })) ?? (await rootPage(cache));
-  return hit ?? fetch(request);
+  const hit = await cache.match(page, { ignoreSearch: true });
+  // Pages canonicalizes index.html during precache. Navigation cannot consume its redirected response directly.
+  return hit ? new Response(hit.body, { status: hit.status, statusText: hit.statusText, headers: hit.headers }) : fetch(request);
 }
 
 worker.addEventListener("fetch", (event) => {
@@ -192,7 +180,9 @@ worker.addEventListener("fetch", (event) => {
   if (request.method !== "GET" || request.cache === "reload") return;
   const url = new URL(request.url);
   if (url.origin !== scope.origin || !url.pathname.startsWith(scope.pathname)) return;
-  const group = groupOf(decodeURIComponent(url.pathname.slice(scope.pathname.length)));
+  const path = decodeURIComponent(url.pathname.slice(scope.pathname.length));
+  if (isPrivatePath(path)) return;
+  const group = groupOf(path);
   // A file no group holds, such as `sitemap.xml`, is never cached and never a route, so the network
   // answers it. A tab that opens it then shows the file, not the root page.
   if (group === undefined) return;

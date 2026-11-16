@@ -52,7 +52,7 @@ import { pathOf, siteRoot, startRouter } from "./router";
 import { pageAt, pageOf, pageTitle, routeOf, type Page } from "./routes";
 import { siteBar, siteSwitches, type SiteSwitches } from "./site-bar";
 import { attachDrop, attachLaunchQueue, songInbox } from "./song-inbox";
-import { countVisit } from "./stats";
+import { refreshSession } from "../membership/client";
 import { makeView, type View } from "./views";
 
 /** The page at `path`, or the landing page of its locale when no route is there. */
@@ -75,6 +75,8 @@ function followSiteTheme(settings: SettingsStore): void {
 
 /** Starts the site in `root`, the page's `#app`. */
 export async function startSite(root: HTMLElement, settings: SettingsStore): Promise<void> {
+  const skip = el("a", { class: "kt-skip", attrs: {href:"#main"}, text:"Skip to content" });
+  document.body.prepend(skip);
   followSiteTheme(settings);
   const site = siteRoot();
 
@@ -173,7 +175,11 @@ export async function startSite(root: HTMLElement, settings: SettingsStore): Pro
     document.documentElement.dir = rowOf(locale).dir;
     document.title = pageTitle(page);
     document.querySelector('meta[name="description"]')?.setAttribute("content", messagesOf(locale).pages[page.route.id].description);
-    countVisit();
+    // No visitor analytics: only a same-origin, private membership status read.
+    void refreshSession().then(identity => {
+      const account=barHost.querySelector<HTMLAnchorElement>(".site-bar__account");
+      if(account){account.textContent=identity.user?"My account":"Account";account.title=identity.user?`${identity.user.name} · ${identity.user.email}`:"Your Keytrail account";}
+    }).catch(() => undefined);
   };
 
   const leave = (path: string) => {

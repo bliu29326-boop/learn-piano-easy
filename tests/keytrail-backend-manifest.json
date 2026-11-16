@@ -1,0 +1,70 @@
+{
+  "docs/KEYTRAIL-BACKEND.md": {
+    "sha256": "70ba43361291f1a329890ccb1e28e6d5dedc65f97175d445a5f3234c4a75a69c",
+    "bytes": 19314
+  },
+  "functions/account.ts": {
+    "sha256": "f12f555e73750e0b7dbc0cc6b8a277d66bc7feb1611dee900e85025dbeba0723",
+    "bytes": 291
+  },
+  "functions/api/[[path]].ts": {
+    "sha256": "81e03742b60424e6a681b5069f62866b6ddde61fb45170fa188789cdecf9d778",
+    "bytes": 214
+  },
+  "migrations/0001_keytrail.sql": {
+    "sha256": "95fc2c7fddedfe3f0e8d77e060501999ecaabbd522c3dfe15309316bc1049af4",
+    "bytes": 2998
+  },
+  "server/account.ts": {
+    "sha256": "ee656e585509a5808e90c2bd52b0231ca0da4b7777369dbcc0820917131afd51",
+    "bytes": 5143
+  },
+  "server/auth.ts": {
+    "sha256": "eb551ad82dc83f326f83597e8ea05ea1b74e1a0656893184d5ee10fcef4c4638",
+    "bytes": 7252
+  },
+  "server/billing.ts": {
+    "sha256": "a56b25febc9d7561a3b1036f01555c07cb570b05b9f802a3f42c46a5c7510e34",
+    "bytes": 25236
+  },
+  "server/contact.ts": {
+    "sha256": "d7a08ce0793665c9e94349f25947479eecbee620002ed260ea36f0ebffca66d8",
+    "bytes": 7336
+  },
+  "server/crypto.ts": {
+    "sha256": "9a735f81eb2d7a16221347e0c5cf1b9e81448ed5b39674106ca1074d94d3477f",
+    "bytes": 2273
+  },
+  "server/entitlements.ts": {
+    "sha256": "1cd7666f0628359348646721a17a013bcedc7de6e35e6f3f9a2cefaa31ef20ba",
+    "bytes": 1886
+  },
+  "server/http.ts": {
+    "sha256": "eb774c367d57ffe908cb399ed79a1673f9d36de5215455a93ba5de23f3da6807",
+    "bytes": 3938
+  },
+  "server/index.ts": {
+    "sha256": "e4f524ea119d07abb9754c740047f44de4bdada913dc40f8a9203697ba7e48fc",
+    "bytes": 2409
+  },
+  "server/types.ts": {
+    "sha256": "81414adaa32ad39552625d906c01e38507c2a082edf9f1500261b447a76be817",
+    "bytes": 1625
+  },
+  "tests/keytrail-backend-typecheck.ts": {
+    "sha256": "29f5b6d58daa1df542017cce80c7fecd96f23d8a04e6301021954f17b5e7e0fd",
+    "bytes": 905
+  },
+  "tests/keytrail-backend-workerd.mjs": {
+    "sha256": "84820852db497240b3c9c7aef508a6f4e668648a27727ab255ad14b81de8ab2a",
+    "bytes": 5757
+  },
+  "tests/keytrail-backend.bunfig.toml": {
+    "sha256": "bb163da5f7764afa69c95fbdd835529d0cd707d155fb689d3a37ea3bed7cb644",
+    "bytes": 20
+  },
+  "tests/keytrail-backend.test.ts": {
+    "sha256": "4fd539075fd7a57ab8c0ddbb161ac522d86347df46942e745bd902475ffbcd9b",
+    "bytes": 28396
+  }
+}

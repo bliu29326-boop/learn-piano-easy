@@ -35,7 +35,6 @@
  * room the view will fill. The player's covers the window, and the others fill the page. The player and
  * a lesson also float the sound set's card over their view, as `src/audio/sound-download.ts` says.
  */
-import { aboutPage } from "../app/about";
 import { playerBar } from "../app/player-bar";
 import type { Shell } from "../app/shell";
 import { messagesOf, type Locale } from "../i18n/locale";
@@ -47,6 +46,9 @@ import { openPart } from "../pwa/part-loader";
 import type { SettingsStore } from "../settings/store";
 import { loading, type Loading } from "../ui/components/loading";
 import { el } from "../ui/dom";
+import { publicPage } from "./keytrail-content";
+import { mayUse } from "../membership/policy";
+import { refreshSession } from "../membership/client";
 import type { Route } from "./routes";
 
 /** A view the site shows and hides as the route changes. */
@@ -119,9 +121,9 @@ function learnView(locale: Locale, context: ViewContext, load: (refreshSlot: () 
 }
 
 /** The About page, whose license texts fill in once they are read. */
-function aboutView(locale: Locale): View {
-  const element = page(messagesOf(locale).pages.about.title, []);
-  void aboutPage().then((body) => element.append(body));
+function aboutView(_locale: Locale): View {
+  const element = el("div", {class:"kt-public kt-main kt-article"});
+  element.innerHTML = publicPage("/about/")!.body;
   return { element };
 }
 
@@ -150,18 +152,9 @@ function dataView(locale: Locale, settings: SettingsStore): View {
 }
 
 /** The legal notice or the privacy policy, whose heading shows at once and whose text loads as a chunk of its own. */
-function legalView(kind: "imprint" | "privacy", locale: Locale): View {
-  const element = page(messagesOf(locale).pages[kind].title, []);
-  element.classList.add("chunk-page");
-  void import("./legal-view").then((module) => element.append(module.legalBody(kind, locale)));
-  return { element };
-}
-
-/** The sponsor page, whose heading shows at once and whose body loads as a chunk of its own. */
-function sponsorView(locale: Locale): View {
-  const element = page(messagesOf(locale).pages.sponsor.title, []);
-  element.classList.add("chunk-page");
-  void import("./sponsor-view").then((module) => element.append(module.sponsorBody(locale)));
+function legalView(kind: "imprint" | "privacy", _locale: Locale): View {
+  const element = el("div", {class:"kt-public kt-main kt-article"});
+  element.innerHTML = publicPage(kind === "imprint" ? "/terms/" : "/privacy/")!.body;
   return { element };
 }
 
@@ -245,11 +238,25 @@ function lessonPage(at: { world: string; lesson: string }, locale: Locale, conte
   };
 }
 
+/** Membership is checked on every show, including deep-linked lessons and a cached view revisited after expiry. */
+function membershipLesson(at:{world:string;lesson:string},locale:Locale,context:ViewContext):View {
+  if (mayUse({feature:"world",world:at.world},null)) return lessonPage(at,locale,context);
+  const element=el("div",{class:"lesson-page"});
+  let inner:View|undefined;let showing=false;let version=0;
+  const lock=(message:string)=>{
+    const retry=el("button",{class:"kt-button",text:"Check membership again",on:{click:()=>void check()}});
+    element.replaceChildren(el("section",{class:"kt-lock-page",children:[el("h1",{text:"Your next world awaits."}),el("p",{text:message}),el("p",{text:"Keytrail Plus includes worlds 3 through 8. Worlds 1 and 2 and all core practice tools stay free."}),el("div",{class:"kt-actions",children:[el("a",{class:"kt-button kt-primary",attrs:{href:"/pricing/"},text:"Explore Plus"}),el("a",{class:"kt-button",attrs:{href:"./learn/"},text:"Back to the course"}),retry]})]}));
+  };
+  const check=async()=>{const own=++version;inner?.hidden?.();element.replaceChildren(el("p",{class:"kt-lock-page",text:"Checking your membership…"}));try{const me=await refreshSession();if(!showing||version!==own)return;if(!mayUse({feature:"world",world:at.world},me.membership)){lock("This course world is part of Keytrail Plus.");return}inner??=lessonPage(at,locale,context);element.replaceChildren(inner.element);inner.shown?.(locale)}catch(error){if(showing&&own===version)lock(error instanceof Error?error.message:"Membership could not be verified. Free practice is still available.")}};
+  lock("Sign in with an active Keytrail Plus membership to continue here.");
+  return {element,shown(){showing=true;void check()},hidden(){showing=false;version++;inner?.hidden?.()},mayLeave:()=>inner?.mayLeave?.()??Promise.resolve(true)};
+}
+
 /** Makes the view of `route` in `locale`. The player's view takes its locale on each show. */
 export function makeView(route: Route, locale: Locale, context: ViewContext): View {
   switch (route.id) {
     case "lesson":
-      return lessonPage(route.lesson!, locale, context);
+      return membershipLesson(route.lesson!, locale, context);
     case "home":
       return landingView(locale, context);
     case "learn":
@@ -269,7 +276,7 @@ export function makeView(route: Route, locale: Locale, context: ViewContext): Vi
     case "data":
       return dataView(locale, context.settings);
     case "sponsor":
-      return sponsorView(locale);
+      return { element: page("Page not found", [el("p", {text:"This page is not available. Return to practice or explore Keytrail."})]) };
     case "imprint":
     case "privacy":
       return legalView(route.id, locale);

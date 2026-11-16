@@ -135,7 +135,9 @@ export function startRouter(options: RouterOptions): Router {
     if (event.defaultPrevented || event.button !== 0) return;
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>("a[href]") : null;
-    if (link === null || (link.target !== "" && link.target !== "_self") || link.hasAttribute("download")) return;
+    if (link === null || link.hasAttribute("data-full-page") || (link.target !== "" && link.target !== "_self") || link.hasAttribute("download")) return;
+    // Public English content is independently rendered HTML; let normal navigation read its exact SSR/SSG.
+    if (["/", "/about/", "/privacy/", "/imprint/"].includes(new URL(link.href).pathname)) return;
     if (link.getAttribute("href")!.startsWith("#")) return;
     const url = new URL(link.href);
     const path = pathOf(url, root);

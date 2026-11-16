@@ -23,15 +23,15 @@ export type ThemeId = SettingValue<"theme">;
 export const THEMES: Record<ThemeId, Partial<Record<ColourId, string>>> = {
   dark: {},
   light: {
-    pianoWhiteKeyColor: "#ffffffff",
-    pianoBlackKeyColor: "#22262fff",
-    pianoBackgroundColor: "#e6eaf2ff",
-    bgCol1: "#f4f6fbff",
-    bgCol5: "#e3e7f0ff",
-    bgCol3: "#c5cddcff",
-    measureLineColor: "#8a95b0ff",
-    beatLineColor: "#d5dbe7ff",
-    measureNumbersColor: "#5a6684ff",
+    pianoWhiteKeyColor: "#fcfdf9ff",
+    pianoBlackKeyColor: "#14201aff",
+    pianoBackgroundColor: "#e7ece7ff",
+    bgCol1: "#f2f5f2ff",
+    bgCol5: "#e7ece7ff",
+    bgCol3: "#d6ded6ff",
+    measureLineColor: "#8fa192ff",
+    beatLineColor: "#d6ded6ff",
+    measureNumbersColor: "#536357ff",
   },
 };
 

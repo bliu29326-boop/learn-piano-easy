@@ -1,0 +1,19 @@
+import {chromium,expect} from '@playwright/test';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {spawnSync} from 'node:child_process';
+const base='https://keytrail-dev.pages.dev',out='/root/.hermes/cache/scratch/keytrail-real-integrations';await mkdir(out,{recursive:true});
+const b=await chromium.connectOverCDP('http://127.0.0.1:9334');
+const context=b.contexts().find(c=>c.pages().some(p=>p.url().includes('checkout.stripe.com')));if(!context)throw Error('No isolated genuine session context');
+// Reattached CDP exposes a default context, not the original incognito cookie jar; install only this site's genuine OAuth cookie.
+await context.addCookies(JSON.parse(await readFile('/root/.config/keytrail/qa-session.json','utf8')));
+const page=await context.newPage();await page.goto(base+'/account/');
+// A CDP reattachment's APIRequestContext may not inherit the native cookie jar. Use the real page's same-origin fetch.
+const api=async(path:string,body?:unknown)=>page.evaluate(async({path,body})=>{const r=await fetch(path,body===undefined?{cache:'no-store'}:{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});return {status:r.status,body:await r.json()}},{path,body});
+const me=(await api('/api/me')).body;expect(me.user?.id).toBe('kt_2b6998e2-0322-4f50-b41e-4ed02cf71d7a');expect(me.membership.active).toBe(false);
+const first=await api('/api/checkout',{});expect(first.status).toBe(200);const a=first.body;
+const second=await api('/api/checkout',{});expect(second.status).toBe(200);const c=second.body;expect(c.order_id).toBe(a.order_id);expect(c.url).toBe(a.url);expect(/^kto_[a-f0-9-]+$/.test(a.order_id)).toBe(true);
+const query=spawnSync('./node_modules/.bin/wrangler',['d1','execute','keytrail-dev','--remote','--command',`SELECT id,session_id,status,subscription_id FROM kt_orders WHERE id='${a.order_id}'`,'--json'],{encoding:'utf8'});if(query.status!==0)throw Error('Exact D1 order read failed');const order=JSON.parse(query.stdout)[0].results[0];expect(order.subscription_id).toBeNull();
+const secrets=JSON.parse(await readFile('/root/.config/keytrail/worker-secrets.json','utf8'));const sr=await fetch('https://api.stripe.com/v1/checkout/sessions/'+order.session_id,{headers:{Authorization:'Bearer '+secrets.STRIPE_SECRET_KEY,'Stripe-Version':'2025-06-30.basil'}});expect(sr.status).toBe(200);const session=await sr.json() as any;expect(session.livemode).toBe(false);expect(session.mode).toBe('subscription');expect(session.status).toBe('open');expect(session.payment_status).toBe('unpaid');expect(session.amount_total).toBe(999);expect(session.currency).toBe('usd');expect(session.metadata.order_id).toBe(a.order_id);expect(session.metadata.project).toBe('keytrail-dev');
+const reconcile=await api('/api/billing/reconcile',{session_id:order.session_id});expect(reconcile.status).toBe(200);const proof=reconcile.body;expect(proof.verified_payment).toBe(false);expect(proof.membership.active).toBe(false);
+const midi=Buffer.from(await readFile(new URL('../public/songs/ours/twinkle-twinkle-little-star/common.mid',import.meta.url))).toString('base64');const denied=await api('/api/export/midi',{midi_base64:midi,filename:'unpaid-check.mid'});expect(denied.status).toBe(403);
+const result={genuineGoogleUser:me.user.id,order_id:a.order_id,checkout_id:session.id,repeatedCheckoutSameOrder:true,provider:{livemode:session.livemode,mode:session.mode,status:session.status,payment_status:session.payment_status,amount_total:session.amount_total,currency:session.currency},reconcile:{httpStatus:reconcile.status,body:proof},unpaidExportDenied:denied.status,paidCheckoutCompleted:false,remaining:'No protected Vault test card. No PAN/CVC/OTP entered, no real charge; browser paid return and member unlock not asserted.'};await writeFile(out+'/stripe-unpaid-result.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result));await page.close();process.exit(0);

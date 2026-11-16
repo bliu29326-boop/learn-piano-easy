@@ -41,6 +41,8 @@
  *   anew, so they rise on every show.
  */
 import "./map-view.css";
+import { refreshSession, sessionState, showPlus } from "../membership/client";
+import { mayUse } from "../membership/policy";
 import { messagesOf, rowOf, type Locale } from "../i18n/locale";
 import { textFor } from "../i18n/pseudo";
 import { lessonRoute, pageOf } from "../site/routes";
@@ -183,7 +185,7 @@ function worldOf(loaded: LoadedWorld, state: MapWorld, number: number, first: nu
   const headingId = `map-world-${world.id}`;
   return el("li", {
     class: "map__world",
-    attrs: { style: `--c-world: var(--c-world-${world.accent}); --i: ${number - 1}`, "data-open": String(state.open), "aria-labelledby": headingId },
+    attrs: { style: `--c-world: var(--c-world-${world.accent}); --i: ${number - 1}`, "data-open": String(state.open), "data-world": world.id, "aria-labelledby": headingId },
     children: [
       el("div", {
         class: "map__band",
@@ -191,7 +193,7 @@ function worldOf(loaded: LoadedWorld, state: MapWorld, number: number, first: nu
           medal,
           el("div", {
             class: "map__band-text",
-            children: [el("p", { class: "map__eyebrow", text: t.map.world(number) }), el("h2", { class: "map__world-title", attrs: { id: headingId }, text: title }), progress, status],
+            children: [el("span", {class:"kt-membership-badge",text: number <= 2 ? "Free" : "Keytrail Plus"}), el("p", { class: "map__eyebrow", text: t.map.world(number) }), el("h2", { class: "map__world-title", attrs: { id: headingId }, text: title }), progress, status],
           }),
           skip,
         ],
@@ -228,6 +230,20 @@ export function mapPage(locale: Locale, context: ViewContext, onSetupDone: () =>
       body,
     ],
   });
+  const applyMembership = () => {
+    const current=sessionState();const membership=current.status === "ready" ? current.value.membership : null;
+    for(const band of worlds.querySelectorAll<HTMLElement>("[data-world]")){
+      const locked=!mayUse({feature:"world",world:band.dataset.world!},membership);
+      band.dataset.memberLocked=String(locked);
+      band.querySelector(".kt-world-lock")?.remove();
+      if(locked)band.append(el("div",{class:"kt-world-lock",children:[el("span",{text:"Continue this world with Keytrail Plus. Your free worlds remain available."}),el("a",{attrs:{href:"/pricing/"},text:"Explore Plus →"})]}));
+    }
+  };
+  element.addEventListener("click",event=>{
+    const link=(event.target as Element).closest<HTMLAnchorElement>('a[href*="learn/"]');if(!link)return;
+    const world=link.href.match(/\/learn\/([^/]+)\/[^/]+\/?$/)?.[1];
+    const state=sessionState();if(world&&!mayUse({feature:"world",world},state.status==="ready"?state.value.membership:null)){event.preventDefault();showPlus("Course worlds 3 through 8 are part of Keytrail Plus.")}
+  });
   let scrolledTo: string | undefined;
   let reading = 0;
 
@@ -243,6 +259,7 @@ export function mapPage(locale: Locale, context: ViewContext, onSetupDone: () =>
         return band;
       }),
     );
+    applyMembership();
     if (body.hasAttribute("aria-busy")) {
       body.replaceChildren(continueHost, worlds);
       body.removeAttribute("aria-busy");
@@ -303,6 +320,7 @@ export function mapPage(locale: Locale, context: ViewContext, onSetupDone: () =>
     shown: () => {
       showing = true;
       read();
+      void refreshSession().then(applyMembership,applyMembership);
     },
     hidden: () => {
       showing = false;

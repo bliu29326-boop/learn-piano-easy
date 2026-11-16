@@ -28,3 +28,12 @@ Desktop.ini
 
 # Each machine's own environment, such as the dev server's HTTPS certificate in tools/dev.ts.
 .env.local
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+.wrangler/
+/evidence/private/
+*.secret.json
+__pycache__/
+.finesse/
+/tests/keytrail-*.log

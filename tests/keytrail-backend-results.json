@@ -1,0 +1,28 @@
+[
+  {
+    "check": "green",
+    "command": [
+      "/root/.local/share/keytrail-tools/node_modules/.bin/bun",
+      "test",
+      "--config=tests/keytrail-backend.bunfig.toml",
+      "tests/keytrail-backend.test.ts"
+    ],
+    "exit_code": 0
+  },
+  {
+    "check": "typecheck",
+    "command": [
+      "/root/.local/share/keytrail-tools/node_modules/.bin/bun",
+      "tests/keytrail-backend-typecheck.ts"
+    ],
+    "exit_code": 0
+  },
+  {
+    "check": "workerd",
+    "command": [
+      "node",
+      "tests/keytrail-backend-workerd.mjs"
+    ],
+    "exit_code": 0
+  }
+]

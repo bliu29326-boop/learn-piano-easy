@@ -91,6 +91,8 @@
  */
 import type { AudioEngine } from "../audio/engine";
 import { aboutPage } from "./about";
+import { midiExportBytes } from "../export/keytrail-midi";
+import { exportMidi } from "../membership/client";
 import { createPdfDialog } from "../export/pdf-dialog";
 import { createCacheManager } from "../pwa/cache-manager";
 import { createDeviceControl } from "../input/device-control";
@@ -314,7 +316,7 @@ export function createShell(root: HTMLElement, settings: SettingsStore, bar: Pla
       trackStore.forget(upload.id);
       void uploads.remove(upload.id).then(showUploads);
     },
-    exportUpload: (upload) => download(upload.bytes.slice().buffer, upload.name, "audio/midi"),
+    exportUpload: (upload) => { void midiExportBytes(upload.bytes).then(bytes=>exportMidi(bytes,upload.name)).catch(error=>shell.toast(error instanceof Error?error.message:"MIDI export failed. Please retry.")); },
     addFiles: () => void pickFiles().then(addSongs),
     addFolder: () => void pickFolder().then(addSongs),
   };
@@ -336,6 +338,13 @@ export function createShell(root: HTMLElement, settings: SettingsStore, bar: Pla
   let catalog: CatalogSong[] = [];
   /** The catalog row of the open song, and its guide once that loads. */
   let current: { row: CatalogSong | undefined; guide: Guide | undefined } = { row: undefined, guide: undefined };
+  /** The current imported file ID, separate from catalogue rows. Imports always practice free. */
+  let currentUploadId:string|undefined;
+  bar.on("export", () => { void (async () => {
+    if(current.row!==undefined){const response=await fetch(`./songs/${current.row.file}`);if(!response.ok)throw new Error("The open MIDI file could not be read.");await exportMidi(new Uint8Array(await response.arrayBuffer()),current.row.file.split("/").pop()??"keytrail.mid");return}
+    if(currentUploadId!==undefined){const upload=await uploads.get(currentUploadId);if(upload){await exportMidi(await midiExportBytes(upload.bytes),upload.name);return}}
+    shell.toast("Choose a library piece or import your own MIDI file before exporting.");
+  })().catch(error=>shell.toast(error instanceof Error?error.message:"MIDI export failed. Please retry.")); });
   const openGuide = () => {
     const { row, guide } = current;
     if (row === undefined || guide === undefined) return;
@@ -371,6 +380,7 @@ export function createShell(root: HTMLElement, settings: SettingsStore, bar: Pla
   const followSong = (id: string) => {
     const row = catalog.find((song) => songIdOf({ source: "catalog", file: song.file }) === id);
     library.setCurrent(id);
+    currentUploadId = row === undefined && id !== DEMO_SONG_ID ? id : undefined;
     current = { row, guide: undefined };
     bar.showGuide(false);
     showGuide();

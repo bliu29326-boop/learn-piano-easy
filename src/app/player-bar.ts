@@ -32,7 +32,7 @@ import { el } from "../ui/dom";
 import type { IconName } from "../ui/icons/icons";
 
 /** What a button of the bar does. */
-export type BarAction = "songs" | "guide" | "tracks" | "settings" | "about";
+export type BarAction = "songs" | "guide" | "tracks" | "settings" | "about" | "export";
 
 /** The player's bar, built before the player starts. */
 export interface PlayerBar {
@@ -84,7 +84,7 @@ export function playerBar(): PlayerBar {
   const guide = item("guide", (m) => m.player.shell.topbar.guide, "sparkles");
   const settings = item("settings", (m) => m.player.shell.topbar.settings, "settings");
   settings.setAttribute("aria-expanded", "false");
-  const items = [guide, item("tracks", (m) => m.player.shell.topbar.tracks, "layers"), settings, item("about", (m) => m.player.shell.topbar.about, "info")];
+  const items = [guide, item("tracks", (m) => m.player.shell.topbar.tracks, "layers"), settings, item("export", () => "MIDI export · Plus", "file-down"), item("about", (m) => m.player.shell.topbar.about, "info")];
 
   // `src/app/shell.css` makes an absent button invisible, which also takes it out of the tab order.
   const showGuide = (shown: boolean) => void guide.classList.toggle("is-absent", !shown);

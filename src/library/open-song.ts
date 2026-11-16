@@ -15,6 +15,7 @@
  * - Two opens in a row load only the later song, so a slow fetch never replaces a newer pick.
  * - Each toast and error reads the live locale's catalog when it is raised.
  */
+import { requireFeature } from "../membership/client";
 import { noteChange } from "../data/changes";
 import { t } from "../i18n/live";
 import type { SongParser } from "../midi/parse";
@@ -124,6 +125,7 @@ export function createSongOpener(host: OpenerHost): SongOpener {
   const opener: SongOpener = {
     open(entry) {
       const read = async () => {
+        if (!(await requireFeature({feature:"catalogue",source:"catalogue",difficulty:entry.difficulty,...(entry.rarity === undefined ? {} : {rarity:entry.rarity})}))) throw new Error("This advanced library version needs Keytrail Plus. Your imports and beginner practice remain free.");
         const response = await fetch(`./songs/${entry.file}`);
         if (!response.ok) throw new Error(t().player.library.openSong.fileFailed(response.status));
         return new Uint8Array(await response.arrayBuffer());

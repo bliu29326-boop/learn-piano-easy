@@ -1,7 +1,9 @@
-# Our songs
+# Upstream arrangements and guides
 
-The files in this folder are our own arrangements of tunes in the public domain, and the guides to them.
-They are under the MIT License, the same as the app: see `LICENSE` at the repository root.
+The files in this folder are arrangements and guides by the learn-piano-easy authors, retained from the MIT upstream fork.
+The composer column credits the underlying tune; it does not transfer composition rights to Keytrail.
+The arrangement MIDI files and guides remain under the MIT License.
+Copyright (c) 2026 The learn-piano-easy contributors. See `LICENSE` at the repository root.
 
 `tools/make-our-songs.ts` writes them from `tools/our-songs/`, so a change goes there, never into a file here.
 

@@ -160,15 +160,8 @@ export function siteBar(id: RouteId, locale: Locale, switches: SiteSwitches, act
     tip: "bottom",
   });
   data.classList.add("site-bar__data");
-  const sponsor = iconLink({
-    label: messagesOf(locale).pages.sponsor.title,
-    icon: "heart",
-    href: hrefOf("sponsor", locale),
-    variant: "ghost",
-    current: id === "sponsor",
-    tip: "bottom",
-  });
-  sponsor.classList.add("site-bar__sponsor");
+  const pricing = el("a", { class: "site-bar__pricing", attrs: { href: "/pricing/" }, text: "Plus" });
+  const account = el("a", { class: "site-bar__account", attrs: { href: "/account/", "aria-label": "Your Keytrail account" }, text: "Account" });
   switches.github.hidden = id === "play";
   const link = (target: StaticRouteId, label: string) => ({
     label,
@@ -179,6 +172,6 @@ export function siteBar(id: RouteId, locale: Locale, switches: SiteSwitches, act
     brand: { label: messagesOf(locale).siteName, href: hrefOf("home", locale) },
     nav: id === "play" ? [] : [link("learn", t.learn), link("play", t.play), link("modes", t.modes)],
     navLabel: t.nav,
-    actions: [...actions, ...(id === "play" ? [] : [sponsor]), switches.element, data, menu],
+    actions: [...actions, pricing, account, switches.element, data, menu],
   });
 }

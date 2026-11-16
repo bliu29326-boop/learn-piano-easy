@@ -54,6 +54,7 @@ import {
   type ShellGroupId,
 } from "../src/pwa/cache-groups";
 import { contentHash } from "../src/pwa/current";
+import { renderKeytrailPages } from "./keytrail-pages";
 import { loadEveryLocale } from "../src/i18n/all-catalogs";
 import { DEFAULT_LOCALE, isLocale, loadLocale, LOCALES, messagesOf, PSEUDO_LOCALES, rowOf, type Locale } from "../src/i18n/locale";
 import {
@@ -515,6 +516,7 @@ export async function build(options: BuildOptions): Promise<BuildResult> {
   await cp(join(root, "public"), outDir, { recursive: true });
   await writePages(outDir, options.siteUrl, options.pseudo ?? false);
   await copyLicenses(outDir);
+  await renderKeytrailPages(outDir, options.siteUrl ?? "https://keytrail-dev.pages.dev");
 
   const grouped = (await listFiles(outDir)).filter((path) => groupOf(path) !== undefined);
   const files: BuiltFile[] = await Promise.all(

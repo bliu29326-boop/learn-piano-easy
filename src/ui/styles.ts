@@ -10,3 +10,4 @@
  */
 import "./tokens.css";
 import "./base.css";
+import "./keytrail.css";

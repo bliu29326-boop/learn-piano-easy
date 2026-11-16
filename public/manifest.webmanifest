@@ -1,15 +1,15 @@
 {
   "id": "./",
-  "name": "Learn Piano Easy",
-  "short_name": "Piano Easy",
-  "description": "Learn piano by playing. A guided course, a 3D piano and your MIDI keyboard. Free, open source and offline.",
+  "name": "Keytrail",
+  "short_name": "Keytrail",
+  "description": "Learn piano online free, with guided lessons, falling notes and your MIDI keyboard.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone"],
   "orientation": "any",
-  "background_color": "#0e0c16",
-  "theme_color": "#0e0c16",
+  "background_color": "#f2f5f2",
+  "theme_color": "#245c42",
   "categories": ["music", "education"],
   "file_handlers": [
     {

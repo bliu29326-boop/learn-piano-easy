@@ -792,7 +792,7 @@
 
   /*
    * On a phone held upright the panel is a sheet that fills the player, and it enters from below. It
-   * starts a little under the site's bar, where the song's title hangs. The search takes a row of its
+   * starts under the measured complete player bar and its song-title chip. The search takes a row of its
    * own under the title.
    */
   @media (max-width: 520px) and (min-height: 521px) {
@@ -800,7 +800,7 @@
       --enter-x: 0px;
       --enter-y: var(--s-9);
 
-      inset: var(--s-8) 0 0;
+      inset: calc(var(--bar-height, 0px) + var(--s-8)) 0 0;
       width: 100%;
       padding-block-end: env(safe-area-inset-bottom);
       border-inline: none;

@@ -1,0 +1,17 @@
+# Copy to .dev.vars for local-only development; never commit filled secrets.
+ENVIRONMENT=development
+APP_ORIGIN=http://localhost:4173
+AUTH_SECRET=
+CONTACT_DATA_KEY=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+# Dedicated sandbox resources; never put live keys in this development app.
+STRIPE_PROJECT_ID=keytrail-dev
+STRIPE_ACCOUNT_ID=acct_1UaHFNCx5ZHdkgDO
+STRIPE_PRODUCT_ID=prod_VdjtkACXZP1T95
+STRIPE_PRICE_ID=price_1UcSQ4Cx5ZHdkgDOArwgAdH1
+EMAIL_API_KEY=
+EMAIL_FROM=Keytrail <notifications@mail.burningbridgesrap.com>
+SUPPORT_EMAIL=bliu29326@gmail.com

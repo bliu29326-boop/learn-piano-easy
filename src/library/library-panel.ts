@@ -62,6 +62,8 @@
  * Bounds: a lead section shows `LEAD` rows, and the composers' group `COMPOSERS_SHOWN` until opened.
  */
 import "./library-panel.css";
+import { advancedCatalogue } from "../membership/policy";
+import { requireFeature } from "../membership/client";
 import type { AudioEngine } from "../audio/engine";
 import { localize, onLocale, type Pick as TextPick, t } from "../i18n/live";
 import { normalizeRange } from "../keyboard/range";
@@ -669,7 +671,7 @@ export function createLibraryPanel(
             class: "song-row__steps",
             attrs: { role: "group", "aria-label": say().kinds.level },
             children: versions.map((row) => {
-              const name = row.rarity === undefined ? originalName() : rarityName(row.rarity);
+              const name = (row.rarity === undefined ? originalName() : rarityName(row.rarity)) + (advancedCatalogue(row) ? " · Plus" : "");
               const tagline = row.rarity !== undefined ? rarityTagline(row.rarity) : row.song !== undefined ? ourOriginalTagline() : originalTagline();
               return el("button", {
                 class: "song-step",
@@ -689,14 +691,14 @@ export function createLibraryPanel(
     const preview = el("button", {
       class: "song-row__preview",
       attrs: { type: "button", "data-id": id, "data-tip": say().preview.title(item.title) },
-      on: { click: () => void previewer.toggle(id, () => read(item)) },
+      on: { click: () => void (async () => {if(song !== undefined && !(await requireFeature({feature:"catalogue",source:"catalogue",difficulty:song.difficulty,...(song.rarity === undefined ? {} : {rarity:song.rarity})}))) return;await previewer.toggle(id, () => read(item));})() },
       children: [el("span", { class: "song-row__sweep", attrs: { "aria-hidden": "true" } }), icon("play")],
     });
     paintPreview(preview);
 
     const node = el("li", {
       class: "song-row",
-      attrs: { "data-id": id, "data-song": songKey, ...(id === current ? { "aria-current": "true" } : {}) },
+      attrs: { "data-id": id, "data-song": songKey, "data-plus": String(song !== undefined && advancedCatalogue(song)), ...(id === current ? { "aria-current": "true" } : {}) },
       children: [
         el("button", {
           class: "song-row__open library-song",
